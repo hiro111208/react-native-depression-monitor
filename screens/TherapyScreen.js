@@ -1,133 +1,114 @@
-import React from "react";
-import {
-  StyleSheet,
-  SafeAreaView,
-  Text,
-  View,
-  TouchableOpacity,
-} from "react-native";
-import Constants from "expo-constants";
+import React from 'react';
+import { StatusBar, StyleSheet, Text, View, TouchableOpacity } from 'react-native';
+import Constants from 'expo-constants'; 
 
 const TherapyScreen = () => {
-  return (
-    <SafeAreaView style={styles.container}>
-      <TouchableOpacity>
-        <SafeAreaView style={styles.takebreak}>
-          <Text style={styles.text}>Take a break</Text>
-        </SafeAreaView>
-      </TouchableOpacity>
+    return (
+      <View style={styles.container}>
 
-      <View style={styles.area}>
-        <View style={styles.inner_area}>
-          <Text style={styles.box_text}>Question here</Text>
+        <View style={styles.top}>
+          <TouchableOpacity>
+            <View style={styles.optbutton}>              
+                <Text style={styles.text}>Take a break</Text>             
+            </View>
+          </TouchableOpacity>
         </View>
 
-        <TouchableOpacity>
-          <SafeAreaView style={styles.yes}>
-            <Text style={styles.text}>YES</Text>
-          </SafeAreaView>
-        </TouchableOpacity>
+        <View style={styles.center}>
+          <View style={styles.question}>
+            <Text style={styles.text}>Question here</Text>
+          </View>
+        </View>
 
-        <TouchableOpacity>
-          <SafeAreaView style={styles.no}>
-            <Text style={styles.text}>NO</Text>
-          </SafeAreaView>
-        </TouchableOpacity>
+        <View style={styles.answers}>
+          <TouchableOpacity>
+            <View style={styles.ansbutton}>
+              <Text style={styles.text}>YES</Text>
+            </View>
+          </TouchableOpacity>
+
+          <TouchableOpacity>
+            <View style={styles.ansbutton}>
+              <Text style={styles.text}>NO</Text>
+            </View>
+          </TouchableOpacity>
+        </View>
+
+        <View style={styles.bottom}>
+          <TouchableOpacity>
+            <View style={styles.optbutton}>
+              <Text style={styles.text}>Next</Text>
+            </View>
+          </TouchableOpacity>
+        </View>
       </View>
-
-      <TouchableOpacity>
-        <SafeAreaView style={styles.next}>
-          <Text style={styles.text}>Next</Text>
-        </SafeAreaView>
-      </TouchableOpacity>
-    </SafeAreaView>
-  );
-};
+    )
+}
 
 const styles = StyleSheet.create({
   container: {
     marginTop: Constants.statusBarHeight,
     flex: 1,
-    backgroundColor: "#ffd394",
+    backgroundColor: '#ffd394'
   },
-
-  takebreak: {
-    marginVertical: 20,
-    marginHorizontal: 150,
-    height: 40,
-    backgroundColor: "#94ffd3",
-    justifyContent: "center",
-    alignItems: "center",
-    borderRadius: 50,
+  optbutton: {
+    height: '70%',
+    width: 140,
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: '#94ffd3',
+    borderRadius: 10,
   },
-
+  ansbutton: {
+    height: '75%',
+    width: 250,
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: '#ffd0c1',
+    borderRadius: 10,
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
+    elevation: 5
+  },
   text: {
     color: "black",
     fontSize: 18,
   },
-
-  box_text: {
-    color: "black",
-    fontSize: 18,
-    marginVertical: 50,
+  top: {
+    height: '10%',
+    alignItems: 'center',
+    justifyContent: 'center',
   },
-
-  next: {
-    marginVertical: 20,
-    marginHorizontal: 150,
-    height: 40,
-    backgroundColor: "#94ffd3",
-    justifyContent: "center",
-    alignItems: "center",
-    borderRadius: 50,
+  center: {
+    height: '40%',
+    alignItems: 'center',
+    justifyContent: 'center'
   },
-
-  area: {
-    marginHorizontal: 20,
-    width: "90%",
-    height: "75%",
-    padding: 5,
-    backgroundColor: "#fff",
-    alignItems: "center",
-    borderRadius: 25,
-  },
-
-  inner_area: {
-    marginHorizontal: 50,
-    width: "85%",
-    height: "65%",
-    padding: 5,
-    backgroundColor: "#f4f0eb",
-    alignItems: "center",
-    borderRadius: 25,
-    position: "absolute",
-    left: -20,
-    top: 20,
-  },
-
-  yes: {
-    width: 200,
-    height: 40,
-    backgroundColor: "#ffd0c1",
-    justifyContent: "center",
-    alignItems: "center",
+  question: {
+    width: '80%',
+    height: '100%',
+    alignItems: 'center',
     borderRadius: 8,
-    position: "absolute",
-    right: -100,
-    top: 450,
+    borderWidth: 4,
+    borderColor: '#fff',
+    backgroundColor: '#eee'
   },
-
-  no: {
-    width: 200,
-    height: 40,
-    backgroundColor: "#ffd0c1",
-    justifyContent: "center",
-    alignItems: "center",
-    borderRadius: 8,
-    position: "absolute",
-    right: -100,
-    top: 500,
+  answers: {
+    height: '30%',
+    alignItems: 'center',
+    justifyContent: 'center',
+    padding: 70,
   },
-});
+  bottom: {
+    height: '10%',
+    alignItems: 'center',
+    justifyContent: 'center'
+  }
+})
 
 export default TherapyScreen;
