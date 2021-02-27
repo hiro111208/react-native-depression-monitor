@@ -7,10 +7,8 @@ const TherapyScreen = () => {
       <View style={styles.container}>
 
         <View style={[styles.top, styles.centering]}>
-          <TouchableOpacity>
-            <View style={[styles.optbutton, styles.centering]}>              
+          <TouchableOpacity style={[styles.optbutton, styles.centering]}>      
                 <Text style={styles.text}>Take a break</Text>             
-            </View>
           </TouchableOpacity>
         </View>
 
@@ -21,26 +19,21 @@ const TherapyScreen = () => {
         </View>
 
         <View style={[styles.answers, styles.centering]}>
-          <TouchableOpacity>
-            <View style={[styles.ansbutton, styles.centering]}>
+          <TouchableOpacity style={[styles.ansbutton, styles.centering]}>
               <Text style={styles.text}>YES</Text>
-            </View>
           </TouchableOpacity>
 
-          <TouchableOpacity>
-            <View style={[styles.ansbutton, styles.centering]}>
+          <TouchableOpacity style={[styles.ansbutton, styles.centering]}>
               <Text style={styles.text}>NO</Text>
-            </View>
           </TouchableOpacity>
         </View>
 
         <View style={[styles.bottom, styles.centering]}>
-          <TouchableOpacity>
-            <View style={[styles.optbutton, styles.centering]}>
-              <Text style={styles.text}>Next</Text>
-            </View>
+          <TouchableOpacity style={[styles.optbutton, styles.centering]}>
+              <Text style={styles.text}>Next</Text>           
           </TouchableOpacity>
         </View>
+
       </View>
     )
 }
@@ -69,11 +62,13 @@ const styles = StyleSheet.create({
     },
     shadowOpacity: 0.25,
     shadowRadius: 3.84,
-    elevation: 5
+    elevation: 5,
+    marginVertical: 5,
   },
   text: {
     color: "black",
     fontSize: 18,
+    marginVertical: 20,
   },
   top: {
     height: '10%',
