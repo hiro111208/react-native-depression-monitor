@@ -85,7 +85,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   center: {
-    height: '40%',
+    height: '50%',
     alignItems: 'center',
     justifyContent: 'center'
   },
@@ -99,7 +99,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#eee'
   },
   answers: {
-    height: '40%',
+    height: '30%',
     alignItems: 'center',
     justifyContent: 'center',
     padding: 70,
