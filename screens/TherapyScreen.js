@@ -6,37 +6,37 @@ const TherapyScreen = () => {
     return (
       <View style={styles.container}>
 
-        <View style={styles.top}>
+        <View style={[styles.top, styles.centering]}>
           <TouchableOpacity>
-            <View style={styles.optbutton}>              
+            <View style={[styles.optbutton, styles.centering]}>              
                 <Text style={styles.text}>Take a break</Text>             
             </View>
           </TouchableOpacity>
         </View>
 
-        <View style={styles.center}>
+        <View style={[styles.center, styles.centering]}>
           <View style={styles.question}>
             <Text style={styles.text}>Question here</Text>
           </View>
         </View>
 
-        <View style={styles.answers}>
+        <View style={[styles.answers, styles.centering]}>
           <TouchableOpacity>
-            <View style={styles.ansbutton}>
+            <View style={[styles.ansbutton, styles.centering]}>
               <Text style={styles.text}>YES</Text>
             </View>
           </TouchableOpacity>
 
           <TouchableOpacity>
-            <View style={styles.ansbutton}>
+            <View style={[styles.ansbutton, styles.centering]}>
               <Text style={styles.text}>NO</Text>
             </View>
           </TouchableOpacity>
         </View>
 
-        <View style={styles.bottom}>
+        <View style={[styles.bottom, styles.centering]}>
           <TouchableOpacity>
-            <View style={styles.optbutton}>
+            <View style={[styles.optbutton, styles.centering]}>
               <Text style={styles.text}>Next</Text>
             </View>
           </TouchableOpacity>
@@ -54,16 +54,12 @@ const styles = StyleSheet.create({
   optbutton: {
     height: '70%',
     width: 140,
-    alignItems: 'center',
-    justifyContent: 'center',
     backgroundColor: '#94ffd3',
     borderRadius: 10,
   },
   ansbutton: {
     height: '75%',
     width: 250,
-    alignItems: 'center',
-    justifyContent: 'center',
     backgroundColor: '#ffd0c1',
     borderRadius: 10,
     shadowColor: "#000",
@@ -81,13 +77,9 @@ const styles = StyleSheet.create({
   },
   top: {
     height: '10%',
-    alignItems: 'center',
-    justifyContent: 'center',
   },
   center: {
     height: '50%',
-    alignItems: 'center',
-    justifyContent: 'center'
   },
   question: {
     width: '80%',
@@ -100,12 +92,12 @@ const styles = StyleSheet.create({
   },
   answers: {
     height: '30%',
-    alignItems: 'center',
-    justifyContent: 'center',
     padding: 70,
   },
   bottom: {
     height: '10%',
+  },
+  centering: {
     alignItems: 'center',
     justifyContent: 'center'
   }
