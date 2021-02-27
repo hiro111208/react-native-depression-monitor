@@ -7,7 +7,7 @@ const TherapyScreen = () => {
       <View style={styles.container}>
 
         <View style={[styles.top, styles.centering]}>
-          <TouchableOpacity style={[styles.optbutton, styles.centering]}>      
+          <TouchableOpacity style={[styles.optButton, styles.centering]}>      
                 <Text style={styles.text}>Take a break</Text>             
           </TouchableOpacity>
         </View>
@@ -19,17 +19,17 @@ const TherapyScreen = () => {
         </View>
 
         <View style={[styles.answers, styles.centering]}>
-          <TouchableOpacity style={[styles.ansbutton, styles.centering]}>
+          <TouchableOpacity style={[styles.ansButton, styles.centering]}>
               <Text style={styles.text}>YES</Text>
           </TouchableOpacity>
 
-          <TouchableOpacity style={[styles.ansbutton, styles.centering]}>
+          <TouchableOpacity style={[styles.ansButton, styles.centering]}>
               <Text style={styles.text}>NO</Text>
           </TouchableOpacity>
         </View>
 
         <View style={[styles.bottom, styles.centering]}>
-          <TouchableOpacity style={[styles.optbutton, styles.centering]}>
+          <TouchableOpacity style={[styles.optButton, styles.centering]}>
               <Text style={styles.text}>Next</Text>           
           </TouchableOpacity>
         </View>
@@ -44,13 +44,13 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#ffd394'
   },
-  optbutton: {
+  optButton: {
     height: '70%',
     width: 140,
     backgroundColor: '#94ffd3',
     borderRadius: 10,
   },
-  ansbutton: {
+  ansButton: {
     height: '75%',
     width: 250,
     backgroundColor: '#ffd0c1',
