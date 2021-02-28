@@ -7,11 +7,11 @@ const PlantScreen = () => {
         <View style={styles.container}>
 
             <View style={[styles.top, styles.centering]}>
-                <TouchableOpacity style={[styles.topItem, styles.centering]}>
+                <View style={[styles.topItem, styles.centering]}>
                     <View style={[styles.featureButton, styles.centering]}>
                         <Text style={styles.text}>13</Text>
                     </View>
-                </TouchableOpacity>
+                </View>
             </View>
 
             <View style={[styles.top, styles.centering]}>
@@ -29,9 +29,9 @@ const PlantScreen = () => {
             <View style={[styles.plantSpace, styles.centering]}>
                 <View style={[styles.plantImage, styles.centering]}>
                     <Image 
-                         style={{ width: 250, height: 250 }}
+                         style={{ width: 300, height: 300 }}
                          resizeMode="contain"
-                         source={require('../assets/stage_1.png')}
+                         source={require('../assets/stage_9.png')}
                     />
                 </View>
             </View>
@@ -101,8 +101,8 @@ const styles = StyleSheet.create({
         height: '20%',
     },
     plantImage: {
-        width: 250,
-        height: 250,
+        width: 275,
+        height: 275,
         borderRadius: 100,
         borderWidth: 4,
         borderColor: '#fff',
