@@ -31,7 +31,7 @@ const PlantScreen = () => {
                     <Image 
                          style={{ width: 250, height: 250 }}
                          resizeMode="contain"
-                         source={require('../assets/leaf_2.png')}
+                         source={require('../assets/base_plant.png')}
                     />
                 </View>
             </View>
@@ -39,7 +39,7 @@ const PlantScreen = () => {
             <View style={[styles.nextSpace, styles.centering]}>
                 <TouchableOpacity style={[styles.optButton, styles.centering]}>
                     <Text style={styles.text}>Water your plant!</Text>
-                    <Text style={styles.comment}>Earn 5 coins</Text>
+                    <Text style={styles.comment}>-5 coins</Text>
                 </TouchableOpacity>
             </View>
 
@@ -80,7 +80,7 @@ const styles = StyleSheet.create({
     },
     comment: {
         color: "dodgerblue",
-        fontSize: 15,
+        fontSize: 16,
         fontStyle: 'italic'
     },
     top: {
