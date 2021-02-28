@@ -31,7 +31,7 @@ const PlantScreen = () => {
                     <Image 
                          style={{ width: 250, height: 250 }}
                          resizeMode="contain"
-                         source={require('../assets/base_plant.png')}
+                         source={require('../assets/stage_1.png')}
                     />
                 </View>
             </View>
