@@ -38,7 +38,8 @@ const PlantScreen = () => {
 
             <View style={[styles.nextSpace, styles.centering]}>
                 <TouchableOpacity style={[styles.optButton, styles.centering]}>
-                    <Text style={styles.text}>Next</Text>
+                    <Text style={styles.text}>Water your plant!</Text>
+                    <Text style={styles.comment}>Earn 5 coins</Text>
                 </TouchableOpacity>
             </View>
 
@@ -76,6 +77,11 @@ const styles = StyleSheet.create({
     text: {
         color: "black",
         fontSize: 18,
+    },
+    comment: {
+        color: "dodgerblue",
+        fontSize: 15,
+        fontStyle: 'italic'
     },
     top: {
         height: '6%',
