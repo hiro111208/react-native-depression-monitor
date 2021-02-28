@@ -42,12 +42,12 @@ const styles = StyleSheet.create({
   container: {
     marginTop: Constants.statusBarHeight,
     flex: 1,
-    backgroundColor: '#ffd394'
+    backgroundColor: '#ffd390'
   },
   optButton: {
     height: '70%',
     width: 140,
-    backgroundColor: '#94ffd3',
+    backgroundColor: '#c7ffd8',
     borderRadius: 10,
   },
   ansButton: {
