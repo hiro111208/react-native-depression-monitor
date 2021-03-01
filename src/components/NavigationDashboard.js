@@ -19,8 +19,6 @@ function getHeaderTitle(route) {
             return 'Home';
         case 'Calendar':
             return 'Calendar';
-        case 'Help':
-            return 'Help';
         case 'Account':
             return 'Account';
     }
@@ -43,14 +41,6 @@ function CalendarScreen() {
     return (
         <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
             <Text>Calendar!</Text>
-        </View>
-    );
-}
-
-function HelpScreen() {
-    return (
-        <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-            <Text>Help!</Text>
         </View>
     );
 }
@@ -88,8 +78,6 @@ function HomeTabs({ navigation, route }) {
                         iconName = focused ? 'ios-home' : 'ios-home-outline';
                     } else if (route.name === 'Calendar') {
                         iconName = focused ? 'ios-calendar' : 'ios-calendar-outline';
-                    } else if (route.name === 'Help') {
-                        iconName = focused ? 'ios-chatbox-ellipses' : 'ios-chatbox-ellipses-outline';
                     } else if (route.name === 'Account') {
                         iconName = focused ? 'ios-person' : 'ios-person-outline';
                     }
@@ -105,7 +93,6 @@ function HomeTabs({ navigation, route }) {
         >
             <Tab.Screen name="Home" component={HomeScreen} />
             <Tab.Screen name="Calendar" component={CalendarScreen} />
-            <Tab.Screen name="Help" component={HelpScreen} />
             <Tab.Screen name="Account" component={AccountScreen} />
         </Tab.Navigator>
     );
@@ -116,9 +103,9 @@ const Stack = createStackNavigator();
 export default function NavigationDashboard() {
     return (
         <NavigationContainer>
-            <Stack.Navigator>
+            <Stack.Navigator screenOptions={{gestureEnabled: false}}>
                 <Stack.Screen name="Home" component={HomeTabs} />
-                <Stack.Screen name="Sessions" component={SessionsScreen} />
+                <Stack.Screen options={{ headerShown: false }} name="Sessions" component={SessionsScreen} />
             </Stack.Navigator>
         </NavigationContainer>
     );
