@@ -1,21 +1,59 @@
-import { StatusBar } from 'expo-status-bar';
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
 
-export default function App() {
+import * as React from 'react';
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
+
+import LoginScreen from './app/screens/LoginScreen';
+import SignupScreen from './app/screens/SignupScreen';
+import DashboardScreen from './app/screens/DashboardScreen';
+
+import colors from './app/config/colors';
+
+const Stack = createStackNavigator();
+
+function MyStack() {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <Stack.Navigator
+      initialRouteName="SignupScreen"
+      screenOptions={{
+        headerTitleAlign: 'center',
+        headerStyle: {
+          backgroundColor: colors.darkBorder,
+        },
+        headerTintColor: '#fff',
+        headerTitleStyle: {
+          fontWeight: 'bold',
+        },
+      }}>
+      <Stack.Screen 
+        name="SignupScreen" 
+        component={SignupScreen} 
+        options={{ title: 'Signup' }}
+      />       
+      <Stack.Screen 
+        name="LoginScreen" 
+        component={LoginScreen} 
+        options={
+          {title: 'Login'},
+          {headerLeft: null} 
+        }
+      />
+      <Stack.Screen 
+       name="DashboardScreen" 
+       component={DashboardScreen} 
+       options={
+         { title: 'Dashboard' },
+         {headerLeft: null} 
+       }
+      />
+    </Stack.Navigator>
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+export default function App() {
+  return (
+    <NavigationContainer>
+      <MyStack />
+    </NavigationContainer>
+  );
+}
