@@ -13,7 +13,8 @@ export default class SignupScreen extends Component {
       displayName: '',
       email: '', 
       password: '',
-      isLoading: false
+      isLoading: false,
+      errorMessage: ''
     }
   }
 

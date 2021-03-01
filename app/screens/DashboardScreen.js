@@ -14,6 +14,7 @@ export default class DashboardScreen extends Component {
 
   signOut = () => {
     firebase.auth().signOut().then(() => {
+      console.log('Logout successful')
       this.props.navigation.navigate('LoginScreen')
     })
     .catch(error => this.setState({ errorMessage: error.message }))

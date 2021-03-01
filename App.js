@@ -6,6 +6,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 import LoginScreen from './app/screens/LoginScreen';
 import SignupScreen from './app/screens/SignupScreen';
 import DashboardScreen from './app/screens/DashboardScreen';
+import ForgotPasswordScreen from './app/screens/ForgotPasswordScreen';
 
 import colors from './app/config/colors';
 
@@ -34,16 +35,19 @@ function MyStack() {
         name="LoginScreen" 
         component={LoginScreen} 
         options={
-          {title: 'Login'},
-          {headerLeft: null} 
+          {title: 'Login'}
         }
       />
+      <Stack.Screen 
+        name="ForgotPasswordScreen" 
+        component={ForgotPasswordScreen} 
+        options={{ title: 'Forgot Password' }}
+      />   
       <Stack.Screen 
        name="DashboardScreen" 
        component={DashboardScreen} 
        options={
-         { title: 'Dashboard' },
-         {headerLeft: null} 
+         { title: 'Dashboard' }
        }
       />
     </Stack.Navigator>

@@ -12,7 +12,8 @@ export default class LoginScreen extends Component {
     this.state = { 
       email: '', 
       password: '',
-      isLoading: false
+      isLoading: false,
+      errorMessage: ''
     }
   }
 
@@ -85,10 +86,16 @@ export default class LoginScreen extends Component {
         </TouchableOpacity>
 
         <Text 
-          style={styles.loginText}
+          style={styles.textButton}
           onPress={() => this.props.navigation.navigate('SignupScreen')}>
           Don't have an account? Click here to signup
-        </Text>                          
+        </Text>
+
+        <Text 
+          style={styles.textButton}
+          onPress={() => this.props.navigation.navigate('ForgotPasswordScreen')}>
+          Forgot your password?
+        </Text>                            
       </View>
     );
   }
@@ -120,7 +127,7 @@ const styles = StyleSheet.create({
     paddingBottom:15,
     borderRadius:50,
   },
-  loginText: {
+  textButton: {
     color: colors.darkBorder,
     marginTop: 25,
     textAlign: 'center'
