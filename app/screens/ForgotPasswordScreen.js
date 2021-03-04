@@ -1,61 +1,50 @@
-import React, { Component } from 'react';
+import React, {useState} from 'react';
 import { StyleSheet, View, Text, TouchableOpacity, TextInput } from 'react-native';
 import firebase from '../../firebase.js';
 
 import colors from '../config/colors';
 
-export default class ForgotPasswordScreen extends Component {
-  constructor() {
-    super();
-    this.state={
-        email: '',
-        message: ''
-    }
-  }
+function ForgotPasswordScreen(props) {
 
-  updateInputVal = (val, prop) => {
-    const state = this.state;
-    state[prop] = val;
-    this.setState(state);
-  }
+  const [email, setEmail] = useState('');
+  const [message, setMessage] = useState('');
 
-  forgotPassword= ()=>{
-      firebase.auth().sendPasswordResetEmail(this.state.email).then(() => {
-        this.setState({message: 'You should have received an email to change your password'})
+  const forgotPassword=()=>{
+      firebase.auth().sendPasswordResetEmail(email).then(() => {
+        setMessage('You should have received an email to change your password')
       })
-      .catch(error => this.setState({ message: error.message }))
-  }
+      .catch(error => setMessage(error.message))
+  };
+  
+  return (
+    <View style={styles.container}>
+      <TextInput
+        style={styles.inputStyle}
+        placeholder="Email"
+        value={email}
+        onChangeText={(val) => setEmail(val)}
+      />
 
-  render() {  
-    return (
-      <View style={styles.container}>
-        <TextInput
-          style={styles.inputStyle}
-          placeholder="Email"
-          value={this.state.email}
-          onChangeText={(val) => this.updateInputVal(val, 'email')}
-        />
+      <TouchableOpacity
+        activeOpacity = { .5 }
+        style={styles.submitButton}
+        onPress={()=>forgotPassword()}
+      >
+        <Text style= {styles.submitText}>SUBMIT</Text>
+      </TouchableOpacity>
 
-        <TouchableOpacity
-          activeOpacity = { .5 }
-          style={styles.submitButton}
-          onPress={() => this.forgotPassword()}
-        >
-            <Text style= {styles.submitText}>SUBMIT</Text>
-        </TouchableOpacity>
-
-        <Text 
+      <Text 
         style = {styles.textButton}
-        onPress={() => this.props.navigation.navigate('LoginScreen')}>
+        onPress={() => props.navigation.navigate('LoginScreen')}>
           Back to Login
-        </Text>
+      </Text>
 
-        <Text style={{color:'red'}}>{this.state.message}</Text>
+      <Text style={{color:'red'}}>{message}</Text>
 
-      </View>
-    );
-  }
+    </View>
+  );
 }
+export default ForgotPasswordScreen;
 
 const styles = StyleSheet.create({
   container: {

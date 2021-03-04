@@ -1,107 +1,93 @@
-import React, { Component } from 'react';
+import React, {useState} from 'react';
 import { StyleSheet, Text, View, TextInput, Button, Alert, ActivityIndicator, TouchableOpacity } from 'react-native';
 import firebase from '../../firebase.js';
 
 import colors from '../config/colors';
 
 
-export default class SignupScreen extends Component {
+function SignupScreen(props) {
   
-  constructor() {
-    super();
-    this.state = { 
-      displayName: '',
-      email: '', 
-      password: '',
-      isLoading: false,
-      errorMessage: ''
-    }
-  }
+  const [displayName, setDisplayName] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [isLoading, setIsLoading]= useState(false);
+  const [errorMessage, setErrorMessage] = useState('');
 
-  updateInputVal = (val, prop) => {
-    const state = this.state;
-    state[prop] = val;
-    this.setState(state);
-  }
-
-  registerUser = () => {
-    if(this.state.email === '' && this.state.password === '') {
+  const registerUser=()=>{
+    if(email === '' && password === '') {
       Alert.alert('Enter details to signup!')
     } else {
-      this.setState({
-        isLoading: true,
-      })
+      setIsLoading(true)
       firebase
       .auth()
-      .createUserWithEmailAndPassword(this.state.email, this.state.password)
+      .createUserWithEmailAndPassword(email, password)
       .then((res) => {
         res.user.updateProfile({
-          displayName: this.state.displayName
+          displayName: displayName
         })
         console.log('User registered successfully!')
-        this.setState({
-          isLoading: false,
-          displayName: '',
-          email: '', 
-          password: ''
-        })
-        this.props.navigation.navigate('LoginScreen')
+        setIsLoading(false)
+        setDisplayName('')
+        setEmail('')
+        setPassword('')
+        props.navigation.navigate('LoginScreen')
       })
       .catch(error => {
         console.log(error.code)
-        this.setState({ isLoading: false, errorMessage: error.message })
+        setIsLoading(false)
+        setErrorMessage(error.message)
       })      
     }
-  }
+  };
 
-  render() {
-    if(this.state.isLoading){
-      return(
-        <View style={styles.preloader}>
-          <ActivityIndicator size="large" color="#9E9E9E"/>
-        </View>
-      )
-    }    
-    return (
-      <View style={styles.container}>  
-        <TextInput
-          style={styles.inputStyle}
-          placeholder="Name"
-          value={this.state.displayName}
-          onChangeText={(val) => this.updateInputVal(val, 'displayName')}
-        />      
-        <TextInput
-          style={styles.inputStyle}
-          placeholder="Email"
-          value={this.state.email}
-          onChangeText={(val) => this.updateInputVal(val, 'email')}
-        />
-        <TextInput
-          style={styles.inputStyle}
-          placeholder="Password"
-          value={this.state.password}
-          onChangeText={(val) => this.updateInputVal(val, 'password')}
-          maxLength={15}
-          secureTextEntry={true}
-        />   
-        <Text style={{color:'red'}}>{this.state.errorMessage}</Text>
-        <TouchableOpacity
-          activeOpacity = { .5 }
-          style={styles.signupButton}
-          onPress={() => this.registerUser()}
-        >
-            <Text style= {styles.signupText}>SIGNUP</Text>
-        </TouchableOpacity>
-
-        <Text 
-          style={styles.loginText}
-          onPress={() => this.props.navigation.navigate('LoginScreen')}>
-          Already Registered? Click here to login
-        </Text>                          
+  if(isLoading){
+    return(
+      <View style={styles.preloader}>
+        <ActivityIndicator size="large" color="#9E9E9E"/>
       </View>
-    );
-  }
+    )
+  }    
+  return (
+    <View style={styles.container}>  
+      <TextInput
+        style={styles.inputStyle}
+        placeholder="Name"
+        value={displayName}
+        onChangeText={(val) => setDisplayName(val)}
+      />      
+      <TextInput
+        style={styles.inputStyle}
+        placeholder="Email"
+        value={email}
+        onChangeText={(val) => setEmail(val)}
+      />
+      <TextInput
+        style={styles.inputStyle}
+        placeholder="Password"
+        value={password}
+        onChangeText={(val) => setPassword(val)}
+        maxLength={15}
+        secureTextEntry={true}
+      />   
+      <Text style={{color:'red'}}>{errorMessage}</Text>
+      <TouchableOpacity
+        activeOpacity = { .5 }
+        style={styles.signupButton}
+        onPress={()=>registerUser()}
+      >
+        <Text style= {styles.signupText}>SIGNUP</Text>
+      </TouchableOpacity>
+
+      <Text 
+        style={styles.loginText}
+        onPress={() => props.navigation.navigate('LoginScreen')}>
+        Already Registered? Click here to login
+      </Text>                          
+    </View>  
+  );  
+  
 }
+export default SignupScreen;
 
 const styles = StyleSheet.create({
   container: {

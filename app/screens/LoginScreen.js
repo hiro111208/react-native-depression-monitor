@@ -1,105 +1,89 @@
-import React, { Component } from 'react';
+import React, {useState} from 'react';
 import { StyleSheet, Text, View, TextInput, Alert, ActivityIndicator, TouchableOpacity } from 'react-native';
 import firebase from '../../firebase.js';
 
 import colors from '../config/colors';
 
+function LoginScreen(props) {
 
-export default class LoginScreen extends Component {
-  
-  constructor() {
-    super();
-    this.state = { 
-      email: '', 
-      password: '',
-      isLoading: false,
-      errorMessage: ''
-    }
-  }
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [isLoading, setIsLoading]= useState(false);
+  const [errorMessage, setErrorMessage] = useState('');
 
-  updateInputVal = (val, prop) => {
-    const state = this.state;
-    state[prop] = val;
-    this.setState(state);
-  }
-
-  userLogin = () => {
-    if(this.state.email === '' && this.state.password === '') {
+  const userLogin=()=>{
+    if(email === '' && password === '') {
       Alert.alert('Enter details to signin!')
     } else {
-      this.setState({
-        isLoading: true,
-      })
+      setIsLoading(true)
       firebase
       .auth()
-      .signInWithEmailAndPassword(this.state.email, this.state.password)
+      .signInWithEmailAndPassword(email, password)
       .then((res) => {
         console.log(res)
         console.log('User logged-in successfully!')
-        this.setState({
-          isLoading: false,
-          email: '', 
-          password: ''
-        })
-        this.props.navigation.navigate('DashboardScreen')
+        setIsLoading(false)
+        setEmail('')
+        setPassword('')
+        props.navigation.navigate('DashboardScreen')
       })
       .catch(error => {
         console.log(error.code)
-        this.setState({ isLoading:false, errorMessage: error.message
-        })
+        setIsLoading(false)
+        setErrorMessage(error.message)
       })
     }
-  }
+  };
 
-  render() {
-    if(this.state.isLoading){
-      return(
-        <View style={styles.preloader}>
-          <ActivityIndicator size="large" color="#9E9E9E"/>
-        </View>
-      )
-    }    
-    return (
-      <View style={styles.container}>  
-        <TextInput
-          style={styles.inputStyle}
-          placeholder="Email"
-          value={this.state.email}
-          onChangeText={(val) => this.updateInputVal(val, 'email')}
-        />
-        <TextInput
-          style={styles.inputStyle}
-          placeholder="Password"
-          value={this.state.password}
-          onChangeText={(val) => this.updateInputVal(val, 'password')}
-          maxLength={15}
-          secureTextEntry={true}
-        />   
-        <Text style={{color:'red'}}>{this.state.errorMessage}</Text>
+  if(isLoading){
+    return(
+      <View style={styles.preloader}>
+        <ActivityIndicator size="large" color="#9E9E9E"/>
+       </View>
+     )
+  }    
+  return (
+    <View style={styles.container}>  
+      <TextInput
+        style={styles.inputStyle}
+        placeholder="Email"
+        value={email}
+        onChangeText={(userEmail) => setEmail(userEmail)}
+      />
+      <TextInput
+        style={styles.inputStyle}
+        placeholder="Password"
+        value={password}
+        onChangeText={(userPassword) => setPassword(userPassword)}
+        maxLength={15}
+        secureTextEntry={true}
+      />   
+      <Text style={{color:'red'}}>{errorMessage}</Text>
 
-        <TouchableOpacity
-          activeOpacity = { .5 }
-          style={styles.loginButton}
-          onPress={() => this.userLogin()}
-        >
-            <Text style= {styles.signInText}>SIGN IN</Text>
-        </TouchableOpacity>
+      <TouchableOpacity
+        activeOpacity = { .5 }
+        style={styles.loginButton}
+        onPress={()=>userLogin()}
+      >
+          <Text style= {styles.signInText}>SIGN IN</Text>
+      </TouchableOpacity>
 
-        <Text 
-          style={styles.textButton}
-          onPress={() => this.props.navigation.navigate('SignupScreen')}>
-          Don't have an account? Click here to signup
-        </Text>
+      <Text 
+        style={styles.textButton}
+        onPress={() => props.navigation.navigate('SignupScreen')}>
+        Don't have an account? Click here to signup
+      </Text>
 
-        <Text 
-          style={styles.textButton}
-          onPress={() => this.props.navigation.navigate('ForgotPasswordScreen')}>
-          Forgot your password?
-        </Text>                            
-      </View>
-    );
-  }
+      <Text 
+        style={styles.textButton}
+        onPress={() => props.navigation.navigate('ForgotPasswordScreen')}>
+        Forgot your password?
+      </Text>                            
+    </View>
+  );
 }
+
+export default LoginScreen;
 
 const styles = StyleSheet.create({
   container: {

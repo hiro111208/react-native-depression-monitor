@@ -1,45 +1,37 @@
-import React, { Component } from 'react';
+import React, {useState} from 'react';
 import { StyleSheet, View, Text, Button } from 'react-native';
 import firebase from '../../firebase.js';
 
 import colors from '../config/colors';
 
-export default class DashboardScreen extends Component {
-  constructor() {
-    super();
-    this.state = { 
-      uid: ''
-    }
-  }
+function DashboardScreen(props) {
+  const [uid, setUid] = useState(firebase.auth().currentUser.uid);
+  const [errorMessage, setErrorMessage] = useState('');
+  const [displayName, setDisplayName] = useState(firebase.auth().currentUser.displayName);
 
-  signOut = () => {
+  const signOut=()=>{
     firebase.auth().signOut().then(() => {
       console.log('Logout successful')
-      this.props.navigation.navigate('LoginScreen')
+      props.navigation.navigate('LoginScreen')
     })
-    .catch(error => this.setState({ errorMessage: error.message }))
-  }  
+    .catch(error => setErrorMessage(error.message))
+  };  
 
-  render() {
-    this.state = { 
-      displayName: firebase.auth().currentUser.displayName,
-      uid: firebase.auth().currentUser.uid
-    }    
-    return (
-      <View style={styles.container}>
-        <Text style = {styles.textStyle}>
-          Hello, {this.state.displayName}
-        </Text>
+  return (
+    <View style={styles.container}>
+      <Text style = {styles.textStyle}>
+          Hello, {displayName}
+      </Text>
 
-        <Button
-          color={colors.darkBorder}
-          title="Logout"
-          onPress={() => this.signOut()}
-        />
-      </View>
-    );
-  }
+      <Button
+        color={colors.darkBorder}
+        title="Logout"
+        onPress={() => signOut()}
+      />
+    </View>
+  );
 }
+export default DashboardScreen;
 
 const styles = StyleSheet.create({
   container: {
