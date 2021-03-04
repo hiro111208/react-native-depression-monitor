@@ -25,7 +25,13 @@ function LoginScreen(props) {
         setIsLoading(false)
         setEmail('')
         setPassword('')
+        setErrorMessage('')
         props.navigation.navigate('DashboardScreen')
+        if(firebase.auth().currentUser.email == 'admin@joyapp.com'){
+          props.navigation.navigate('AdminDashboardScreen')
+        } else{
+          props.navigation.navigate('DashboardScreen')
+        }
       })
       .catch(error => {
         console.log(error.code)

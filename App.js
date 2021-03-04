@@ -7,6 +7,7 @@ import LoginScreen from './app/screens/LoginScreen';
 import SignupScreen from './app/screens/SignupScreen';
 import DashboardScreen from './app/screens/DashboardScreen';
 import ForgotPasswordScreen from './app/screens/ForgotPasswordScreen';
+import AdminDashboardScreen from './app/screens/AdminDashboardScreen';
 
 import colors from './app/config/colors';
 
@@ -48,6 +49,13 @@ function MyStack() {
        component={DashboardScreen} 
        options={
          { title: 'Dashboard' }
+       }
+      />
+      <Stack.Screen 
+       name="AdminDashboardScreen" 
+       component={AdminDashboardScreen} 
+       options={
+         { title: 'Admin Dashboard' }
        }
       />
     </Stack.Navigator>
