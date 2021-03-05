@@ -12,6 +12,7 @@ function SignupScreen(props) {
   const [password, setPassword] = useState('');
   const [isLoading, setIsLoading]= useState(false);
   const [errorMessage, setErrorMessage] = useState('');
+  const [message, setMessage] = useState('');
 
   const registerUser=()=>{
     if(email === '' && password === '') {
@@ -26,11 +27,25 @@ function SignupScreen(props) {
           displayName: displayName
         })
         console.log('User registered successfully!')
+
+        firebase.auth().currentUser.sendEmailVerification().then(function() {
+          console.log('email verification sent')
+          setMessage(`Please verify your email through the link we've sent to: `+ email)
+          // Email sent.
+        }).catch(function(error) {
+          console.log('failed to send email verification')
+          console.log(error.code)
+          setIsLoading(false)
+          setErrorMessage(error.message)
+          // An error happened.
+        });
+        
         setIsLoading(false)
         setDisplayName('')
         setEmail('')
         setPassword('')
-        props.navigation.navigate('LoginScreen')
+
+        //props.navigation.navigate('LoginScreen')
       })
       .catch(error => {
         console.log(error.code)
@@ -70,6 +85,7 @@ function SignupScreen(props) {
         secureTextEntry={true}
       />
       <Text style={{color:'red'}}>{errorMessage}</Text>
+      <Text style={{color:'red'}}>{message}</Text>
       <TouchableOpacity
         activeOpacity = { .5 }
         style={styles.signupButton}

@@ -10,10 +10,23 @@ function LoginScreen(props) {
   const [password, setPassword] = useState('');
   const [isLoading, setIsLoading]= useState(false);
   const [errorMessage, setErrorMessage] = useState('');
+  const [isVerified, setIsVerified] = useState(true);
+  
+  const sendVerificationEmail=()=>{
+    firebase.auth().currentUser.sendEmailVerification().then(function() {
+      console.log('email verification sent')
+      setErrorMessage(`Please verify your email through the link we've sent to: `+ email)
+    }).catch(function(error) {
+      console.log('failed to send email verification')
+      console.log(error.code)
+      setIsLoading(false)
+      setErrorMessage(error.message)
+    });
+  }
 
   const userLogin=()=>{
     if(email === '' && password === '') {
-      Alert.alert('Enter details to signin!')
+      Alert.alert('Enter details to login!')
     } else {
       setIsLoading(true)
       firebase
@@ -21,11 +34,18 @@ function LoginScreen(props) {
       .signInWithEmailAndPassword(email, password)
       .then((res) => {
         console.log(res)
-        console.log('User logged-in successfully!')
-        setIsLoading(false)
-        setEmail('')
-        setPassword('')
-        props.navigation.navigate('DashboardScreen')
+        if(firebase.auth().currentUser.emailVerified){
+          console.log(res)
+          console.log('User logged-in successfully!')
+          setIsLoading(false)
+          setEmail('')
+          setPassword('')
+          props.navigation.navigate('DashboardScreen')
+        }else{
+          setIsLoading(false)
+          setErrorMessage('Your email has not been verfied')
+          setIsVerified(false)
+        }
       })
       .catch(error => {
         console.log(error.code)
@@ -78,7 +98,19 @@ function LoginScreen(props) {
         style={styles.textButton}
         onPress={() => props.navigation.navigate('ForgotPasswordScreen')}>
         Forgot your password?
-      </Text>                            
+      </Text>
+
+      <View> 
+      {!isVerified
+        ? <TouchableOpacity
+          activeOpacity = { .5 }
+          style={styles.loginButton}
+          onPress={()=>sendVerificationEmail()}
+        ><Text style= {styles.signInText}>Send verification email</Text>
+        </TouchableOpacity>
+        :
+        null}
+      </View>
     </View>
   );
 }
