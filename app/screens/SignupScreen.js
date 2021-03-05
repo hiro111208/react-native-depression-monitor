@@ -68,7 +68,7 @@ function SignupScreen(props) {
         onChangeText={(val) => setPassword(val)}
         maxLength={15}
         secureTextEntry={true}
-      />   
+      />
       <Text style={{color:'red'}}>{errorMessage}</Text>
       <TouchableOpacity
         activeOpacity = { .5 }

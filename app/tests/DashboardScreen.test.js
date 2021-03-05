@@ -1,9 +1,9 @@
 import firebase from '../../firebase.js';
 import React from 'react';
 import renderer from 'react-test-renderer';
-import LoginScreen from '../screens/LoginScreen';
+import DashboardScreen from '../screens/DashboardScreen';
 
 test('renders correctly', () => {
-    const tree = renderer.create(<LoginScreen />).toJSON();
+    const tree = renderer.create(<DashboardScreen />).toJSON();
     expect(tree).toMatchSnapshot();
 });
