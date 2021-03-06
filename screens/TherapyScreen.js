@@ -5,6 +5,7 @@ import {
   Text,
   View,
   TouchableOpacity,
+  TextInput,
 } from "react-native";
 import Constants from "expo-constants";
 
@@ -31,12 +32,18 @@ const TherapyScreen = () => {
     } else {
       return (
         <View style={[styles.answerArea, styles.centering]}>
-          <TouchableOpacity style={[styles.answerButton, styles.centering]}>
-            <Text style={styles.text}>ENTER</Text>
-          </TouchableOpacity>
+          <TextInput
+            style={styles.input}
+            placeholder="enter answer here"
+            onChangeText={(value) => checkAnswer(value)}
+          />
         </View>
       );
     }
+  }
+
+  function checkAnswer(value) {
+    console.log(value);
   }
 
   return (
@@ -105,6 +112,16 @@ const styles = StyleSheet.create({
     width: 150,
     backgroundColor: "#c7ffd8",
     borderRadius: 10,
+  },
+  input: {
+    height: "75%",
+    width: "100%",
+    backgroundColor: "#ffcccb",
+    borderColor: "gray",
+    borderWidth: 1,
+    padding: 8,
+    fontSize: 24,
+    textAlign: "center",
   },
   questionArea: {
     width: "80%",
