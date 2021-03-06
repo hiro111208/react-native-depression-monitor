@@ -55,11 +55,16 @@ const TherapyScreen = () => {
     } else if (!isWordAnswer) {
       return (
         <View style={[styles.answerArea, styles.centering]}>
-          <TouchableOpacity style={[styles.answerButton, styles.centering]}>
+          <TouchableOpacity
+            style={[styles.answerButton, styles.centering]}
+            onPress={() => checkAnswer("Yes")}
+          >
             <Text style={styles.text}>YES</Text>
           </TouchableOpacity>
-
-          <TouchableOpacity style={[styles.answerButton, styles.centering]}>
+          <TouchableOpacity
+            style={[styles.answerButton, styles.centering]}
+            onPress={() => checkAnswer("No")}
+          >
             <Text style={styles.text}>NO</Text>
           </TouchableOpacity>
         </View>
@@ -79,8 +84,15 @@ const TherapyScreen = () => {
   }
 
   function checkAnswer(value) {
-    if (value.toLowerCase() == items[question].answer1) {
-      toggleWordAnswer(false);
+    if (isWordAnswer) {
+      if (value.toLowerCase() == items[question].answer1) {
+        toggleWordAnswer(false);
+      }
+    } else {
+      if (value.toLowerCase() == items[question].answer2) {
+        toggleWordAnswer(true);
+        setQuestion(question + 1);
+      }
     }
   }
 
