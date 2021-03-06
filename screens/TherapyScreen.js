@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   StatusBar,
   StyleSheet,
@@ -13,6 +13,32 @@ import Constants from "expo-constants";
  * answer question stored in Firebase or pause the session.
  */
 const TherapyScreen = () => {
+  const [isWordAnswer, toggleWordAnswer] = useState(false);
+
+  function renderAnswerArea() {
+    if (isWordAnswer) {
+      return (
+        <View style={[styles.answerArea, styles.centering]}>
+          <TouchableOpacity style={[styles.answerButton, styles.centering]}>
+            <Text style={styles.text}>YES</Text>
+          </TouchableOpacity>
+
+          <TouchableOpacity style={[styles.answerButton, styles.centering]}>
+            <Text style={styles.text}>NO</Text>
+          </TouchableOpacity>
+        </View>
+      );
+    } else {
+      return (
+        <View style={[styles.answerArea, styles.centering]}>
+          <TouchableOpacity style={[styles.answerButton, styles.centering]}>
+            <Text style={styles.text}>ENTER</Text>
+          </TouchableOpacity>
+        </View>
+      );
+    }
+  }
+
   return (
     <View style={styles.container}>
       {/* Button to take a break */}
@@ -30,15 +56,7 @@ const TherapyScreen = () => {
       </View>
 
       {/* Presents different answer formats */}
-      <View style={[styles.answerArea, styles.centering]}>
-        <TouchableOpacity style={[styles.answerButton, styles.centering]}>
-          <Text style={styles.text}>YES</Text>
-        </TouchableOpacity>
-
-        <TouchableOpacity style={[styles.answerButton, styles.centering]}>
-          <Text style={styles.text}>NO</Text>
-        </TouchableOpacity>
-      </View>
+      {renderAnswerArea()}
 
       {/* Button to navigate through the therapy session */}
       <View style={[styles.topAndBottom, styles.centering]}>
