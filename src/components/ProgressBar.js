@@ -47,7 +47,7 @@ export default class ProgressBar extends Component {
   render() {
     //custom Layout animation -> animates bar's width increase
     var CustomLayoutSpring = {
-      duration: 400,
+      duration: 1000,
       create: {
         type: LayoutAnimation.Types.spring,
         property: LayoutAnimation.Properties.scaleXY,
@@ -78,7 +78,11 @@ export default class ProgressBar extends Component {
       }),
       this._animatedColor.interpolate({
         inputRange: [0, 1],
-        outputRange: ["rgb(100,170,0)", "rgb(0,255,0)"],
+        outputRange: ["rgb(100,170,0)", "rgb(0,170,0)"],
+      }),
+      this._animatedColor.interpolate({
+        inputRange: [0, 1],
+        outputRange: ["rgb(0,170,0)", "rgb(0,255,0)"],
       }),
     ];
 

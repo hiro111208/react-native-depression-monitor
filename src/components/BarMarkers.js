@@ -4,7 +4,7 @@ import { StyleSheet, View } from "react-native";
 export default class BarMarkers extends Component {
   static defaultProps = {
     separation: 0,
-    bars: 5,
+    bars: 4,
   };
   state = {
     bar: [],
@@ -15,6 +15,7 @@ export default class BarMarkers extends Component {
       <View style={styles.barContainer}>
         <View style={styles.bar} left={this.props.separation * 1}></View>
         <View style={styles.bar} left={this.props.separation * 2}></View>
+        <View style={styles.bar} left={this.props.separation * 3}></View>
       </View>
     );
   }

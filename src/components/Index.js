@@ -5,7 +5,7 @@ import ProgressBar from "./ProgressBar";
 export default class Index extends Component {
   state = {
     steps: -1,
-    segments: 3,
+    segments: 4,
   };
 
   incrementBar = () => {
