@@ -15,9 +15,20 @@ import Constants from "expo-constants";
  */
 const TherapyScreen = () => {
   const [isWordAnswer, toggleWordAnswer] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   function renderAnswerArea() {
-    if (isWordAnswer) {
+    if (!loading) {
+      return (
+        <View style={[styles.answerArea, styles.centering]}>
+          <TextInput
+            style={styles.input}
+            placeholder="session loading..."
+            editable={false}
+          />
+        </View>
+      );
+    } else if (isWordAnswer) {
       return (
         <View style={[styles.answerArea, styles.centering]}>
           <TouchableOpacity style={[styles.answerButton, styles.centering]}>
@@ -117,8 +128,8 @@ const styles = StyleSheet.create({
     height: "75%",
     width: "100%",
     backgroundColor: "#ffcccb",
-    borderColor: "gray",
-    borderWidth: 1,
+    borderColor: "#ffffff",
+    borderWidth: 2,
     padding: 8,
     fontSize: 24,
     textAlign: "center",
