@@ -18,6 +18,7 @@ const TherapyScreen = () => {
   const [isWordAnswer, toggleWordAnswer] = useState(false);
   const [loading, setLoading] = useState(false);
   const [items, setItems] = useState([]);
+  const [question, setQuestion] = useState(0);
 
   const ref = firebase.firestore().collection("questions");
   const query = ref
@@ -81,6 +82,14 @@ const TherapyScreen = () => {
     console.log(value);
   }
 
+  function renderQuestion() {
+    if (loading) {
+      return <Text style={styles.text}>{items[question].question1}</Text>;
+    } else {
+      return <Text style={styles.text}>Welcome to the session!</Text>;
+    }
+  }
+
   return (
     <View style={styles.container}>
       {/* Button to take a break */}
@@ -92,8 +101,8 @@ const TherapyScreen = () => {
 
       {/* Displays therapy item story and question */}
       <View style={[styles.center, styles.centering]}>
-        <View style={styles.questionArea}>
-          <Text style={styles.text}>Question here</Text>
+        <View style={[styles.questionArea, styles.centering]}>
+          {renderQuestion()}
         </View>
       </View>
 
