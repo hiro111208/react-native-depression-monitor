@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   StatusBar,
   StyleSheet,
@@ -8,6 +8,7 @@ import {
   TextInput,
 } from "react-native";
 import Constants from "expo-constants";
+import firebase from "../firebase";
 
 /**
  * Screen where the therapy session takes place. Users will
@@ -16,6 +17,29 @@ import Constants from "expo-constants";
 const TherapyScreen = () => {
   const [isWordAnswer, toggleWordAnswer] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [items, setItems] = useState([]);
+
+  const ref = firebase.firestore().collection("questions");
+  const query = ref
+    .where("categoryDropped", "==", "CONTROL")
+    .where("block", "==", 1)
+    .orderBy("question");
+
+  function getItems() {
+    query.onSnapshot((querySnapshot) => {
+      const items = [];
+      querySnapshot.forEach((doc) => {
+        items.push(doc.data());
+      });
+      setItems(items);
+      console.log(items);
+      setLoading(true);
+    });
+  }
+
+  useEffect(() => {
+    getItems();
+  }, []);
 
   function renderAnswerArea() {
     if (!loading) {
