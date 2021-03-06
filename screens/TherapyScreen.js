@@ -4,6 +4,7 @@ import {
   StyleSheet,
   Text,
   View,
+  KeyboardAvoidingView,
   TouchableOpacity,
   TextInput,
 } from "react-native";
@@ -105,7 +106,7 @@ const TherapyScreen = () => {
   }
 
   return (
-    <View style={styles.container}>
+    <KeyboardAvoidingView style={styles.container} behavior="position">
       {/* Button to take a break */}
       <View style={[styles.topAndBottom, styles.centering]}>
         <TouchableOpacity style={[styles.optButton, styles.centering]}>
@@ -129,7 +130,7 @@ const TherapyScreen = () => {
           <Text style={styles.text}>Next</Text>
         </TouchableOpacity>
       </View>
-    </View>
+    </KeyboardAvoidingView>
   );
 };
 
