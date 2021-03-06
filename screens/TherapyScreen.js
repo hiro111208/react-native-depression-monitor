@@ -21,6 +21,7 @@ const TherapyScreen = () => {
   const [items, setItems] = useState([]);
   const [question, setQuestion] = useState(0);
   const [isCorrect, toggleCorrect] = useState(false);
+  const [isIncorrect, toggleIncorrect] = useState(false);
 
   const ref = firebase.firestore().collection("questions");
   const query = ref
@@ -43,6 +44,22 @@ const TherapyScreen = () => {
     getItems();
   }, []);
 
+  function getCorrectAnswer() {
+    if (isWordAnswer) {
+      return (
+        <Text styles={styles.text}>
+          The correct answer was {items[question].answer1}
+        </Text>
+      );
+    } else {
+      return (
+        <Text styles={styles.text}>
+          The correct answer was {items[question].answer2}
+        </Text>
+      );
+    }
+  }
+
   function renderAnswerArea() {
     if (isCorrect) {
       return (
@@ -50,6 +67,17 @@ const TherapyScreen = () => {
           <TextInput
             style={[styles.input, styles.correctHighlight]}
             value="Well done!"
+            editable={false}
+          />
+        </View>
+      );
+    } else if (isIncorrect) {
+      return (
+        <View style={[styles.answerArea, styles.centering]}>
+          {getCorrectAnswer()}
+          <TextInput
+            style={styles.input}
+            value="You can do this!"
             editable={false}
           />
         </View>
@@ -117,10 +145,15 @@ const TherapyScreen = () => {
   }
 
   function nextQuestion() {
-    toggleCorrect(false);
-    if (isWordAnswer) {
+    if (!isCorrect) {
+      toggleIncorrect(true);
+    } else if (isWordAnswer) {
+      toggleCorrect(false);
+      toggleIncorrect(false);
       toggleWordAnswer(false);
     } else {
+      toggleCorrect(false);
+      toggleIncorrect(false);
       setQuestion(question + 1);
       toggleWordAnswer(true);
     }
