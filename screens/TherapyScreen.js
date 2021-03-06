@@ -15,7 +15,7 @@ import firebase from "../firebase";
  * answer question stored in Firebase or pause the session.
  */
 const TherapyScreen = () => {
-  const [isWordAnswer, toggleWordAnswer] = useState(false);
+  const [isWordAnswer, toggleWordAnswer] = useState(true);
   const [loading, setLoading] = useState(false);
   const [items, setItems] = useState([]);
   const [question, setQuestion] = useState(0);
@@ -33,7 +33,6 @@ const TherapyScreen = () => {
         items.push(doc.data());
       });
       setItems(items);
-      console.log(items);
       setLoading(true);
     });
   }
@@ -53,7 +52,7 @@ const TherapyScreen = () => {
           />
         </View>
       );
-    } else if (isWordAnswer) {
+    } else if (!isWordAnswer) {
       return (
         <View style={[styles.answerArea, styles.centering]}>
           <TouchableOpacity style={[styles.answerButton, styles.centering]}>
@@ -72,6 +71,7 @@ const TherapyScreen = () => {
             style={styles.input}
             placeholder="enter answer here"
             onChangeText={(value) => checkAnswer(value)}
+            editable={true}
           />
         </View>
       );
@@ -79,7 +79,9 @@ const TherapyScreen = () => {
   }
 
   function checkAnswer(value) {
-    console.log(value);
+    if (value.toLowerCase() == items[question].answer1) {
+      toggleWordAnswer(false);
+    }
   }
 
   function renderQuestion() {
