@@ -8,21 +8,28 @@ import {
 } from "react-native";
 import Constants from "expo-constants";
 
+/**
+ * Screen where the therapy session takes place. Users will
+ * answer question stored in Firebase or pause the session.
+ */
 const TherapyScreen = () => {
   return (
     <View style={styles.container}>
+      {/* Button to take a break */}
       <View style={[styles.topAndBottom, styles.centering]}>
         <TouchableOpacity style={[styles.optButton, styles.centering]}>
           <Text style={styles.text}>Take a break</Text>
         </TouchableOpacity>
       </View>
 
+      {/* Displays therapy item story and question */}
       <View style={[styles.center, styles.centering]}>
         <View style={styles.questionArea}>
           <Text style={styles.text}>Question here</Text>
         </View>
       </View>
 
+      {/* Presents different answer formats */}
       <View style={[styles.answerArea, styles.centering]}>
         <TouchableOpacity style={[styles.answerButton, styles.centering]}>
           <Text style={styles.text}>YES</Text>
@@ -33,6 +40,7 @@ const TherapyScreen = () => {
         </TouchableOpacity>
       </View>
 
+      {/* Button to navigate through the therapy session */}
       <View style={[styles.topAndBottom, styles.centering]}>
         <TouchableOpacity style={[styles.optButton, styles.centering]}>
           <Text style={styles.text}>Next</Text>
