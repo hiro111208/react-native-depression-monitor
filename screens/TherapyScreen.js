@@ -20,6 +20,7 @@ const TherapyScreen = () => {
   const [loading, setLoading] = useState(false);
   const [items, setItems] = useState([]);
   const [question, setQuestion] = useState(0);
+  const [isCorrect, toggleCorrect] = useState(false);
 
   const ref = firebase.firestore().collection("questions");
   const query = ref
@@ -43,7 +44,17 @@ const TherapyScreen = () => {
   }, []);
 
   function renderAnswerArea() {
-    if (!loading) {
+    if (isCorrect) {
+      return (
+        <View style={[styles.answerArea, styles.centering]}>
+          <TextInput
+            style={[styles.input, styles.correctHighlight]}
+            value="Well done!"
+            editable={false}
+          />
+        </View>
+      );
+    } else if (!loading) {
       return (
         <View style={[styles.answerArea, styles.centering]}>
           <TextInput
@@ -87,11 +98,11 @@ const TherapyScreen = () => {
   function checkAnswer(value) {
     if (isWordAnswer) {
       if (value.toLowerCase() == items[question].answer1) {
-        toggleWordAnswer(false);
+        toggleCorrect(true);
       }
     } else {
       if (value.toLowerCase() == items[question].answer2) {
-        toggleWordAnswer(true);
+        toggleCorrect(true);
         setQuestion(question + 1);
       }
     }
@@ -165,6 +176,9 @@ const styles = StyleSheet.create({
     marginTop: Constants.statusBarHeight,
     flex: 1,
     backgroundColor: "#ffd390",
+  },
+  correctHighlight: {
+    borderColor: "#c7ffd8",
   },
   optButton: {
     height: "70%",
