@@ -67,6 +67,7 @@ const TherapyScreen = () => {
     } else if (!isWordAnswer) {
       return (
         <View style={[styles.answerArea, styles.centering]}>
+          <Text style={styles.text}>{items[question].question2}</Text>
           <TouchableOpacity
             style={[styles.answerButton, styles.centering]}
             onPress={() => checkAnswer("Yes")}
@@ -103,7 +104,6 @@ const TherapyScreen = () => {
     } else {
       if (value.toLowerCase() == items[question].answer2) {
         toggleCorrect(true);
-        setQuestion(question + 1);
       }
     }
   }
@@ -113,6 +113,16 @@ const TherapyScreen = () => {
       return <Text style={styles.text}>{items[question].question1}</Text>;
     } else {
       return <Text style={styles.text}>Welcome to the session!</Text>;
+    }
+  }
+
+  function nextQuestion() {
+    toggleCorrect(false);
+    if (isWordAnswer) {
+      toggleWordAnswer(false);
+    } else {
+      setQuestion(question + 1);
+      toggleWordAnswer(true);
     }
   }
 
@@ -137,7 +147,10 @@ const TherapyScreen = () => {
 
       {/* Button to navigate through the therapy session */}
       <View style={[styles.topAndBottom, styles.centering]}>
-        <TouchableOpacity style={[styles.optButton, styles.centering]}>
+        <TouchableOpacity
+          style={[styles.optButton, styles.centering]}
+          onPress={() => nextQuestion()}
+        >
           <Text style={styles.text}>Next</Text>
         </TouchableOpacity>
       </View>
