@@ -11,29 +11,29 @@ import Constants from "expo-constants";
 const TherapyScreen = () => {
   return (
     <View style={styles.container}>
-      <View style={[styles.top, styles.centering]}>
+      <View style={[styles.topAndBottom, styles.centering]}>
         <TouchableOpacity style={[styles.optButton, styles.centering]}>
           <Text style={styles.text}>Take a break</Text>
         </TouchableOpacity>
       </View>
 
       <View style={[styles.center, styles.centering]}>
-        <View style={styles.question}>
+        <View style={styles.questionArea}>
           <Text style={styles.text}>Question here</Text>
         </View>
       </View>
 
-      <View style={[styles.answers, styles.centering]}>
-        <TouchableOpacity style={[styles.ansButton, styles.centering]}>
+      <View style={[styles.answerArea, styles.centering]}>
+        <TouchableOpacity style={[styles.answerButton, styles.centering]}>
           <Text style={styles.text}>YES</Text>
         </TouchableOpacity>
 
-        <TouchableOpacity style={[styles.ansButton, styles.centering]}>
+        <TouchableOpacity style={[styles.answerButton, styles.centering]}>
           <Text style={styles.text}>NO</Text>
         </TouchableOpacity>
       </View>
 
-      <View style={[styles.bottom, styles.centering]}>
+      <View style={[styles.topAndBottom, styles.centering]}>
         <TouchableOpacity style={[styles.optButton, styles.centering]}>
           <Text style={styles.text}>Next</Text>
         </TouchableOpacity>
@@ -43,7 +43,7 @@ const TherapyScreen = () => {
 };
 
 const styles = StyleSheet.create({
-  ansButton: {
+  answerButton: {
     height: "75%",
     width: 250,
     backgroundColor: "#ffd0c1",
@@ -58,12 +58,9 @@ const styles = StyleSheet.create({
     elevation: 5,
     marginVertical: 5,
   },
-  answers: {
+  answerArea: {
     height: "30%",
     padding: 70,
-  },
-  bottom: {
-    height: "10%",
   },
   center: {
     height: "50%",
@@ -79,25 +76,24 @@ const styles = StyleSheet.create({
   },
   optButton: {
     height: "70%",
-    width: 140,
+    width: 150,
     backgroundColor: "#c7ffd8",
     borderRadius: 10,
   },
-  question: {
+  questionArea: {
     width: "80%",
     height: "100%",
-    alignItems: "center",
     borderRadius: 8,
     borderWidth: 4,
     borderColor: "#fff",
     backgroundColor: "#eee",
+    padding: 5,
   },
   text: {
     color: "black",
     fontSize: 18,
-    //marginVertical: 20,
   },
-  top: {
+  topAndBottom: {
     height: "10%",
   },
 });
