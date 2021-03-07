@@ -190,7 +190,7 @@ const TherapyScreen = () => {
 
   // displays the question of the therapy session
   function renderQuestion() {
-    if (loading) {
+    if (loaded) {
       return <Text style={styles.text}>{items[question].question1}</Text>;
     } else {
       return <Text style={styles.text}>Welcome to the session!</Text>;
