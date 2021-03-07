@@ -29,6 +29,7 @@ const TherapyScreen = () => {
     .where("block", "==", 1)
     .orderBy("question");
 
+  // Queries from firebase database and stores in list
   function getItems() {
     query.onSnapshot((querySnapshot) => {
       const items = [];
@@ -40,10 +41,12 @@ const TherapyScreen = () => {
     });
   }
 
+  // Gets therapy content while screen is rendering
   useEffect(() => {
     getItems();
   }, []);
 
+  // Returns text if the answer is wrong
   function getCorrectAnswer() {
     if (isWordAnswer) {
       return (
@@ -132,6 +135,8 @@ const TherapyScreen = () => {
     } else {
       if (value.toLowerCase() == items[question].answer2) {
         toggleCorrect(true);
+      } else {
+        toggleIncorrect(true);
       }
     }
   }
@@ -147,11 +152,12 @@ const TherapyScreen = () => {
   function nextQuestion() {
     if (!isCorrect) {
       toggleIncorrect(true);
-    } else if (isWordAnswer) {
+    }
+    if (isWordAnswer && (isCorrect || isIncorrect)) {
       toggleCorrect(false);
       toggleIncorrect(false);
       toggleWordAnswer(false);
-    } else {
+    } else if (!isWordAnswer && (isCorrect || isIncorrect)) {
       toggleCorrect(false);
       toggleIncorrect(false);
       setQuestion(question + 1);
