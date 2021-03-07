@@ -17,7 +17,7 @@ import firebase from "../firebase";
  */
 const TherapyScreen = () => {
   const [isWordAnswer, toggleWordAnswer] = useState(true);
-  const [loading, setLoading] = useState(false);
+  const [loaded, setLoaded] = useState(false);
   const [items, setItems] = useState([]);
   const [question, setQuestion] = useState(0);
   const [isCorrect, toggleCorrect] = useState(false);
@@ -37,7 +37,7 @@ const TherapyScreen = () => {
         items.push(doc.data());
       });
       setItems(items);
-      setLoading(true);
+      setLoaded(true);
     });
   }
 
@@ -49,98 +49,146 @@ const TherapyScreen = () => {
   // Returns text if the answer is wrong
   function getCorrectAnswer() {
     if (isWordAnswer) {
-      return (
-        <Text styles={styles.text}>
-          The correct answer was {items[question].answer1}
-        </Text>
-      );
+      return getCorrectWordAnswer;
     } else {
-      return (
-        <Text styles={styles.text}>
-          The correct answer was {items[question].answer2}
-        </Text>
-      );
+      return getCorrectChoiceAnswer;
     }
   }
 
+  // Returns answer to the 'enter the missing letter' question
+  function getCorrectWordAnswer() {
+    return (
+      <Text styles={styles.text}>
+        The correct answer was {items[question].answer1}
+      </Text>
+    );
+  }
+
+  // Returns correct answer to the 'yes or no' question
+  function getCorrectChoiceAnswer() {
+    return (
+      <Text styles={styles.text}>
+        The correct answer was {items[question].answer2}
+      </Text>
+    );
+  }
+
+  // View to display when answer is correct
+  function renderCorrectAnswerArea() {
+    return (
+      <View style={[styles.answerArea, styles.centering]}>
+        <TextInput
+          style={[styles.input, styles.correctHighlight]}
+          value="Well done!"
+          editable={false}
+        />
+      </View>
+    );
+  }
+
+  // View to display when answer is wrong
+  function renderIncorrectAnswerArea() {
+    return (
+      <View style={[styles.answerArea, styles.centering]}>
+        {getCorrectAnswer()}
+        <TextInput
+          style={styles.input}
+          value="You can do this!"
+          editable={false}
+        />
+      </View>
+    );
+  }
+
+  // Renders whilst data is being retrieved
+  function renderLoadingAnswerArea() {
+    return (
+      <View style={[styles.answerArea, styles.centering]}>
+        <TextInput
+          style={styles.input}
+          placeholder="session loading..."
+          editable={false}
+        />
+      </View>
+    );
+  }
+
+  // Renders format for the answer area to the yes or no question
+  function renderChoiceAnswerArea() {
+    return (
+      <View style={[styles.answerArea, styles.centering]}>
+        <Text style={styles.text}>{items[question].question2}</Text>
+        <TouchableOpacity
+          style={[styles.answerButton, styles.centering]}
+          onPress={() => checkAnswer("Yes")}
+        >
+          <Text style={styles.text}>YES</Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          style={[styles.answerButton, styles.centering]}
+          onPress={() => checkAnswer("No")}
+        >
+          <Text style={styles.text}>NO</Text>
+        </TouchableOpacity>
+      </View>
+    );
+  }
+
+  // renders answer area to the missing word question
+  function renderChoiceAnswerArea() {
+    return (
+      <View style={[styles.answerArea, styles.centering]}>
+        <TextInput
+          style={styles.input}
+          placeholder="enter answer here"
+          onChangeText={(value) => checkAnswer(value)}
+          editable={true}
+        />
+      </View>
+    );
+  }
+
+  // Renders answer portion of the screen
   function renderAnswerArea() {
     if (isCorrect) {
-      return (
-        <View style={[styles.answerArea, styles.centering]}>
-          <TextInput
-            style={[styles.input, styles.correctHighlight]}
-            value="Well done!"
-            editable={false}
-          />
-        </View>
-      );
+      return renderCorrectAnswerArea();
     } else if (isIncorrect) {
-      return (
-        <View style={[styles.answerArea, styles.centering]}>
-          {getCorrectAnswer()}
-          <TextInput
-            style={styles.input}
-            value="You can do this!"
-            editable={false}
-          />
-        </View>
-      );
-    } else if (!loading) {
-      return (
-        <View style={[styles.answerArea, styles.centering]}>
-          <TextInput
-            style={styles.input}
-            placeholder="session loading..."
-            editable={false}
-          />
-        </View>
-      );
-    } else if (!isWordAnswer) {
-      return (
-        <View style={[styles.answerArea, styles.centering]}>
-          <Text style={styles.text}>{items[question].question2}</Text>
-          <TouchableOpacity
-            style={[styles.answerButton, styles.centering]}
-            onPress={() => checkAnswer("Yes")}
-          >
-            <Text style={styles.text}>YES</Text>
-          </TouchableOpacity>
-          <TouchableOpacity
-            style={[styles.answerButton, styles.centering]}
-            onPress={() => checkAnswer("No")}
-          >
-            <Text style={styles.text}>NO</Text>
-          </TouchableOpacity>
-        </View>
-      );
+      return renderIncorrectAnswerArea();
+    } else if (!loaded) {
+      return renderLoadingAnswerArea();
+    } else if (isWordAnswer) {
+      return renderWordAnswerArea();
     } else {
-      return (
-        <View style={[styles.answerArea, styles.centering]}>
-          <TextInput
-            style={styles.input}
-            placeholder="enter answer here"
-            onChangeText={(value) => checkAnswer(value)}
-            editable={true}
-          />
-        </View>
-      );
+      return renderChoiceAnswerArea();
     }
   }
 
+  // check answer to the missing letter question
+  function checkWordAnswer(value) {
+    if (value.toLowerCase() == items[question].answer1) {
+      toggleCorrect(true);
+    }
+  }
+
+  // check answer to the yes or no question
+  function checkChoiceAnswer(value) {
+    if (value.toLowerCase() == items[question].answer2) {
+      toggleCorrect(true);
+    } else {
+      toggleIncorrect(true);
+    }
+  }
+
+  // check the user's answer to any question
   function checkAnswer(value) {
     if (isWordAnswer) {
-      if (value.toLowerCase() == items[question].answer1) {
-        toggleCorrect(true);
-      }
+      checkWordAnswer(value);
     } else {
-      if (value.toLowerCase() == items[question].answer2) {
-        toggleCorrect(true);
-      } else {
-        toggleIncorrect(true);
-      }
+      checkChoiceAnswer(value);
     }
   }
 
+  // displays the question of the therapy session
   function renderQuestion() {
     if (loading) {
       return <Text style={styles.text}>{items[question].question1}</Text>;
@@ -149,22 +197,28 @@ const TherapyScreen = () => {
     }
   }
 
+  // Advances to the next screen of the therapy session
   function nextQuestion() {
     if (!isCorrect) {
       toggleIncorrect(true);
     }
     if (isWordAnswer && (isCorrect || isIncorrect)) {
-      toggleCorrect(false);
-      toggleIncorrect(false);
+      resetStatus();
       toggleWordAnswer(false);
     } else if (!isWordAnswer && (isCorrect || isIncorrect)) {
-      toggleCorrect(false);
-      toggleIncorrect(false);
+      resetStatus();
       setQuestion(question + 1);
       toggleWordAnswer(true);
     }
   }
 
+  // Resets whether the user is right or wrong for a new question
+  function resetStatus() {
+    toggleCorrect(false);
+    toggleIncorrect(false);
+  }
+
+  // Returns the whole therapy screen interface
   return (
     <KeyboardAvoidingView style={styles.container} behavior="position">
       {/* Button to take a break */}
