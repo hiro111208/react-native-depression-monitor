@@ -49,28 +49,10 @@ const TherapyScreen = () => {
   // Returns text if the answer is wrong
   function getCorrectAnswer() {
     if (isWordAnswer) {
-      return getCorrectWordAnswer;
+      return items[question].answer1;
     } else {
-      return getCorrectChoiceAnswer;
+      return items[question].answer2;
     }
-  }
-
-  // Returns answer to the 'enter the missing letter' question
-  function getCorrectWordAnswer() {
-    return (
-      <Text styles={styles.text}>
-        The correct answer was {items[question].answer1}
-      </Text>
-    );
-  }
-
-  // Returns correct answer to the 'yes or no' question
-  function getCorrectChoiceAnswer() {
-    return (
-      <Text styles={styles.text}>
-        The correct answer was {items[question].answer2}
-      </Text>
-    );
   }
 
   // View to display when answer is correct
@@ -90,7 +72,9 @@ const TherapyScreen = () => {
   function renderIncorrectAnswerArea() {
     return (
       <View style={[styles.answerArea, styles.centering]}>
-        {getCorrectAnswer()}
+        <Text styles={styles.text}>
+          The correct answer was {getCorrectAnswer()}
+        </Text>
         <TextInput
           style={styles.input}
           value="You can do this!"
@@ -135,7 +119,7 @@ const TherapyScreen = () => {
   }
 
   // renders answer area to the missing word question
-  function renderChoiceAnswerArea() {
+  function renderWordAnswerArea() {
     return (
       <View style={[styles.answerArea, styles.centering]}>
         <TextInput
