@@ -15,7 +15,7 @@ function LoginScreen(props) {
   const sendVerificationEmail=()=>{
     firebase.auth().currentUser.sendEmailVerification().then(function() {
       console.log('email verification sent')
-      setErrorMessage(`Please verify your email through the link we've sent to: `+ email)
+      setErrorMessage(`Please verify your email through the link we've sent to: ` + email)
     }).catch(function(error) {
       console.log('failed to send email verification')
       console.log(error.code)
