@@ -43,8 +43,7 @@ export default class ProgressBar extends Component {
   componentDidMount() {
     this.handleLayout;
   }
-
-  render() {
+  componentDidUpdate() {
     //custom Layout animation -> animates bar's width increase
     var CustomLayoutSpring = {
       duration: 1000,
@@ -58,10 +57,11 @@ export default class ProgressBar extends Component {
         springDamping: 0.7,
       },
     };
-
     //set layout animation
     LayoutAnimation.configureNext(CustomLayoutSpring);
+  }
 
+  render() {
     //constants to use
     const barSeparation = this.state.width / this.props.segments;
     const barWidthAfter = barSeparation * this.props.nextWidth;

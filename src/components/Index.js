@@ -14,6 +14,7 @@ export default class Index extends Component {
     }
     console.log(this.state.steps);
   };
+
   decrementBar = () => {
     if (this.state.steps > -1) {
       this.setState({ steps: --this.state.steps });
@@ -24,13 +25,20 @@ export default class Index extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <Button title=" + " onPress={this.incrementBar}></Button>
+        <Button
+          className="increment"
+          title=" + "
+          onPress={this.incrementBar}
+        ></Button>
         <ProgressBar
           segments={this.state.segments}
-          currentWidth={this.state.steps}
           nextWidth={this.state.steps + 1}
         ></ProgressBar>
-        <Button title=" - " onPress={this.decrementBar}></Button>
+        <Button
+          className="decrement"
+          title=" - "
+          onPress={this.decrementBar}
+        ></Button>
       </View>
     );
   }
