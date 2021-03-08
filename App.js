@@ -1,8 +1,8 @@
 import { StatusBar } from "expo-status-bar";
 import React from "react";
-import TherapyScreen from "./screens/TherapyScreen";
-import CategoryDrop from "./screens/CategoryDrop";
-import PlantScreen from "./screens/PlantScreen";
+import TherapyScreen from "./App/screens/TherapyScreen";
+import CategoryDrop from "./App/screens/CategoryDrop";
+import PlantScreen from "./App/screens/PlantScreen";
 
 export default class App extends React.Component {
   render() {
