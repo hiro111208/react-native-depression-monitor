@@ -87,7 +87,7 @@ function HomeTabs({ navigation, route }) {
                 },
             })}
             tabBarOptions={{
-                activeTintColor: 'tomato',
+                activeTintColor: '#1999CE',
                 inactiveTintColor: 'gray',
             }}
         >
@@ -100,10 +100,10 @@ function HomeTabs({ navigation, route }) {
 
 const Stack = createStackNavigator();
 
-export default function NavigationDashboard() {
+export default function PatientDashboard() {
     return (
         <NavigationContainer>
-            <Stack.Navigator screenOptions={{gestureEnabled: false}}>
+            <Stack.Navigator screenOptions={{ gestureEnabled: false }}>
                 <Stack.Screen name="Home" component={HomeTabs} />
                 <Stack.Screen options={{ headerShown: false }} name="Sessions" component={SessionsScreen} />
             </Stack.Navigator>
