@@ -78,6 +78,15 @@ exports[`renders correctly 1`] = `
   >
     
   </Text>
+  <Text
+    style={
+      Object {
+        "color": "red",
+      }
+    }
+  >
+    
+  </Text>
   <View
     accessible={true}
     focusable={true}

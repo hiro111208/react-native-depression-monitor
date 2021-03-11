@@ -15,6 +15,7 @@
     "@react-native-firebase/firestore": "^10.8.1",
     "@react-navigation/native": "^5.9.3",
     "@react-navigation/stack": "^5.14.3",
+    "@testing-library/react": "^11.2.5",
     "@unimodules/core": "^7.0.0",
     "expo": "^40.0.1",
     "expo-status-bar": "~1.0.3",
@@ -27,14 +28,34 @@
     "react-native-safe-area-context": "^3.1.9",
     "react-native-screens": "^2.18.0",
     "react-native-web": "~0.13.12",
-    "react-test-renderer": "^17.0.1"
+    "react-test-renderer": "^17.0.1",
+    "react-testing-library": "^8.0.1"
   },
   "devDependencies": {
     "@babel/core": "~7.9.0",
+    "@testing-library/jest-dom": "^5.11.9",
+    "@testing-library/jest-native": "^4.0.1",
+    "@testing-library/react-native": "^7.2.0",
+    "enzyme": "^3.11.0",
+    "enzyme-adapter-react-16": "^1.15.6",
+    "enzyme-to-json": "^3.6.1",
     "jest": "^26.6.3"
   },
   "jest": {
-    "preset": "react-native"
+    "preset": "react-native",
+    "snapshotSerializers": [
+      "enzyme-to-json/serializer"
+    ],
+    "collectCoverageFrom": [
+      "src/**/*.js",
+      "!src/index.js"
+    ],
+    "coverageReporters": [
+      "text"
+    ],
+    "setupFilesAfterEnv": [
+      "./setupTests.js"
+    ]
   },
   "private": true
 }

@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import { StyleSheet, View, Text, TouchableOpacity, TextInput } from 'react-native';
+import { StyleSheet, View, Text, TouchableOpacity, TextInput, Alert } from 'react-native';
 import firebase from '../../firebase.js';
 
 import colors from '../config/colors';
@@ -10,10 +10,14 @@ function ForgotPasswordScreen(props) {
   const [message, setMessage] = useState('');
 
   const forgotPassword=()=>{
+    if(email === '') {
+      Alert.alert('Enter an email!')
+    }else{
       firebase.auth().sendPasswordResetEmail(email).then(() => {
         setMessage('You should have received an email to change your password')
       })
       .catch(error => setMessage(error.message))
+    }
   };
   
   return (
@@ -23,12 +27,14 @@ function ForgotPasswordScreen(props) {
         placeholder="Email"
         value={email}
         onChangeText={(val) => setEmail(val)}
+        testID={'TEST_ID_EMAIL_INPUT'}
       />
 
       <TouchableOpacity
         activeOpacity = { .5 }
         style={styles.submitButton}
         onPress={()=>forgotPassword()}
+        testID={'TEST_ID_FORGOT_BUTTON'}
       >
         <Text style= {styles.submitText}>SUBMIT</Text>
       </TouchableOpacity>
@@ -39,7 +45,7 @@ function ForgotPasswordScreen(props) {
           Back to Login
       </Text>
 
-      <Text style={{color:'red'}}>{message}</Text>
+      <Text testID={'TEST_ID_MESSAGE'} style={{color:'red'}}>{message}</Text>
 
     </View>
   );
