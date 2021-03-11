@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<coverage generated="1615409197660" clover="3.2.0">
+  <project timestamp="1615409197660" name="All files">
+    <metrics statements="33" coveredstatements="30" conditionals="4" coveredconditionals="4" methods="10" coveredmethods="8" elements="47" coveredelements="42" complexity="0" loc="33" ncloc="33" packages="1" files="3" classes="3"/>
+    <file name="BarMarkers.js" path="/Users/alexarmero/Desktop/TERM 2 /Team-Rocket-Large-Group-Project/src/components/BarMarkers.js">
+      <metrics statements="4" coveredstatements="4" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
+      <line num="5" count="6" type="stmt"/>
+      <line num="9" count="6" type="stmt"/>
+      <line num="14" count="6" type="stmt"/>
+      <line num="24" count="6" type="stmt"/>
+    </file>
+    <file name="Index.js" path="/Users/alexarmero/Desktop/TERM 2 /Team-Rocket-Large-Group-Project/src/components/Index.js">
+      <metrics statements="11" coveredstatements="11" conditionals="4" coveredconditionals="4" methods="3" coveredmethods="3"/>
+      <line num="6" count="27" type="stmt"/>
+      <line num="11" count="27" type="stmt"/>
+      <line num="12" count="9" type="cond" truecount="2" falsecount="0"/>
+      <line num="13" count="6" type="stmt"/>
+      <line num="15" count="9" type="stmt"/>
+      <line num="18" count="27" type="stmt"/>
+      <line num="19" count="9" type="cond" truecount="2" falsecount="0"/>
+      <line num="20" count="6" type="stmt"/>
+      <line num="22" count="9" type="stmt"/>
+      <line num="26" count="48" type="stmt"/>
+      <line num="47" count="3" type="stmt"/>
+    </file>
+    <file name="ProgressBar.js" path="/Users/alexarmero/Desktop/TERM 2 /Team-Rocket-Large-Group-Project/src/components/ProgressBar.js">
+      <metrics statements="18" coveredstatements="15" conditionals="0" coveredconditionals="0" methods="6" coveredmethods="4"/>
+      <line num="13" count="6" type="stmt"/>
+      <line num="14" count="6" type="stmt"/>
+      <line num="17" count="6" type="stmt"/>
+      <line num="23" count="6" type="stmt"/>
+      <line num="28" count="6" type="stmt"/>
+      <line num="29" count="0" type="stmt"/>
+      <line num="33" count="6" type="stmt"/>
+      <line num="34" count="6" type="stmt"/>
+      <line num="35" count="6" type="stmt"/>
+      <line num="44" count="6" type="stmt"/>
+      <line num="48" count="0" type="stmt"/>
+      <line num="61" count="0" type="stmt"/>
+      <line num="66" count="6" type="stmt"/>
+      <line num="67" count="6" type="stmt"/>
+      <line num="71" count="6" type="stmt"/>
+      <line num="94" count="6" type="stmt"/>
+      <line num="95" count="6" type="stmt"/>
+      <line num="120" count="6" type="stmt"/>
+    </file>
+  </project>
+</coverage>

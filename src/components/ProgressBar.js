@@ -17,7 +17,7 @@ export default class ProgressBar extends Component {
   static defaultProps = {
     //width of current progress
     nextWidth: 0,
-    segments: 5,
+    segments: 4,
   };
 
   state = {
@@ -43,8 +43,7 @@ export default class ProgressBar extends Component {
   componentDidMount() {
     this.handleLayout;
   }
-
-  render() {
+  componentDidUpdate() {
     //custom Layout animation -> animates bar's width increase
     var CustomLayoutSpring = {
       duration: 1000,
@@ -58,16 +57,22 @@ export default class ProgressBar extends Component {
         springDamping: 0.7,
       },
     };
-
     //set layout animation
     LayoutAnimation.configureNext(CustomLayoutSpring);
+  }
 
+  render() {
     //constants to use
     const barSeparation = this.state.width / this.props.segments;
     const barWidthAfter = barSeparation * this.props.nextWidth;
 
     //array of color interpolations: adjust to nº of Segments
+    //nº of color interpolations = segments + 1 to maintain animations throughout.
     const colorGradient = [
+      this._animatedColor.interpolate({
+        inputRange: [0, 1],
+        outputRange: ["rgb(255,0,0)", "rgb(255,50,0)"],
+      }),
       this._animatedColor.interpolate({
         inputRange: [0, 1],
         outputRange: ["rgb(255,0,0)", "rgb(255,50,0)"],
@@ -87,7 +92,6 @@ export default class ProgressBar extends Component {
     ];
 
     this.animatedValue();
-
     return (
       <View style={styles.barContainer} onLayout={this.handleLayout}>
         <Animated.View
@@ -95,7 +99,7 @@ export default class ProgressBar extends Component {
             styles.bar,
             {
               width: barWidthAfter,
-              backgroundColor: colorGradient[this.props.nextWidth - 1],
+              backgroundColor: colorGradient[this.props.nextWidth],
             },
           ]}
         >
