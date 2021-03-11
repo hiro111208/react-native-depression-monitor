@@ -6,7 +6,7 @@
     "ios": "expo start --ios",
     "web": "expo start --web",
     "eject": "expo eject",
-    "test": "jest --coverage",
+    "test": "jest",
     "clear_jest": "jest --clearCache"
   },
   "dependencies": {
@@ -24,6 +24,8 @@
     "@babel/core": "^7.13.10",
     "@babel/preset-env": "^7.13.10",
     "babel-jest": "^26.6.3",
+    "babel-plugin-transform-class-properties": "^6.24.1",
+    "jest": "^26.6.3",
     "jest-expo": "^40.0.2",
     "jest-expo-enzyme": "^1.0.4",
     "react-test-renderer": "^17.0.1"
@@ -32,18 +34,11 @@
     "preset": "jest-expo-enzyme",
     "verbose": true,
     "transformIgnorePatterns": [
-      [
-        "/node_modules/",
-        "\\.pnp\\.[^\\/]+$"
-      ],
       "node_modules/(?!(jest-)?react-native|react-clone-referenced-element|@react-native-community|expo(nent)?|@expo(nent)?/.*|react-navigation|@react-navigation/.*|@unimodules/.*|unimodules|sentry-expo|native-base|@sentry/.*)"
     ],
     "modulePaths": [
-      "./src/components"
-    ],
-    "transform": {
-      "\\.jsx?$": "babel-jest"
-    }
+      "../../App/src/components/"
+    ]
   },
   "private": true
 }
