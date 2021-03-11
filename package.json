@@ -30,11 +30,18 @@
     "preset": "jest-expo-enzyme",
     "verbose": true,
     "transformIgnorePatterns": [
+      [
+        "/node_modules/",
+        "\\.pnp\\.[^\\/]+$"
+      ],
       "node_modules/(?!(jest-)?react-native|react-clone-referenced-element|@react-native-community|expo(nent)?|@expo(nent)?/.*|react-navigation|@react-navigation/.*|@unimodules/.*|unimodules|sentry-expo|native-base|@sentry/.*)"
     ],
     "modulePaths": [
       "./src/components"
-    ]
+    ],
+    "transform": {
+      "\\.jsx?$": "babel-jest"
+    }
   },
   "private": true
 }
