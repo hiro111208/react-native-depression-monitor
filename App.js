@@ -11,6 +11,7 @@ export default class App extends React.Component {
       <TherapyScreen />
       //<CategoryDrop/>
       //<PlantScreen/>
+      //Shaz is the best
     );
   }
 }
