@@ -1,22 +1,21 @@
 import firebase from '../../firebase.js';
-import React, { useState } from 'react';
+import React from 'react';
 import ForgotPasswordScreen from '../screens/ForgotPasswordScreen';
 import renderer from 'react-test-renderer';
 import { Alert } from 'react-native';
-import {cleanup, render, fireEvent, waitFor, act} from '@testing-library/react-native';
+import {cleanup, render, fireEvent, waitFor} from '@testing-library/react-native';
 import "@testing-library/jest-dom/extend-expect";
 
-//import * as firebasetest from '../mocks/firebase-auth.js';
 
 describe('forgot your password', () => {
     afterEach(cleanup);
 
-it('renders correctly', () => {
+test('renders correctly', () => {
     const tree = renderer.create(<ForgotPasswordScreen />).toJSON();
     expect(tree).toMatchSnapshot();
 });
 
-it('sendPasswordResetEmail should be unsuccessful with no account related to email', async () => 
+test('sendPasswordResetEmail should be unsuccessful with no account related to email', async () => 
 {
     let error = '';
     try {
@@ -27,7 +26,7 @@ it('sendPasswordResetEmail should be unsuccessful with no account related to ema
     expect(error).toEqual('There is no user record corresponding to this identifier. The user may have been deleted.');
 },10000);
 
-it('sendPasswordResetEmail should be successful with email related to registered account', async () => 
+test('sendPasswordResetEmail should be successful with email related to registered account', async () => 
 {
     let error= '';
     await firebase.auth().createUserWithEmailAndPassword('registered@test.com', 'password');
@@ -44,7 +43,7 @@ it('sendPasswordResetEmail should be successful with email related to registered
     expect(["","Exceeded daily quota for resetting passwords."]).toContain(error)
 },10000);
 
-it('Expect to show email required', async()=>{
+test('Expect to show email required', async()=>{
     const { getByTestId } = render(<ForgotPasswordScreen />)
     const emailInput= getByTestId('TEST_ID_EMAIL_INPUT');
     const button= getByTestId('TEST_ID_FORGOT_BUTTON');
@@ -57,7 +56,7 @@ it('Expect to show email required', async()=>{
     })
 },10000)
 
-it('Expect to call sendPasswordResetEmail', async()=>{
+test('Expect to call sendPasswordResetEmail', async()=>{
     const { getByTestId } = render(<ForgotPasswordScreen />);
     const {getByText}= render(<ForgotPasswordScreen />);
     const emailInput= getByTestId('TEST_ID_EMAIL_INPUT');
