@@ -122,10 +122,12 @@ const TherapyScreen = () => {
   function renderWordAnswerArea() {
     return (
       <View style={[styles.answerArea, styles.centering]}>
+        <Text style={styles.text}>Enter the first missing letter</Text>
         <TextInput
           style={styles.input}
           placeholder="enter answer here"
           onChangeText={(value) => checkAnswer(value)}
+          maxLength={1}
           editable={true}
         />
       </View>
