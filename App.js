@@ -1,15 +1,15 @@
-import StatusBar from "expo-status-bar";
 import React from "react";
-import { StyleSheet, Component, View } from "react-native";
+import { StatusBar, StyleSheet, SafeAreaView } from "react-native";
+import Constants from "expo-constants";
 import PauseScreen from "./app/screens/PauseScreen";
 
 export default class App extends React.Component {
   render() {
     return (
       //Uncomment to see different screens one at a time
-      <View style={styles.container}>
+      <SafeAreaView style={[styles.container]}>
         <PauseScreen />
-      </View>
+      </SafeAreaView>
       //<CategoryDrop/>
       //<PlantScreen/>
     );
@@ -18,8 +18,9 @@ export default class App extends React.Component {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    backgroundColor: '#fff',
+    flex: 1, //takes up the entire screen
+    marginTop: Constants.statusBarHeight,
+    backgroundColor: '#FAD8B9',
     alignItems: 'center',
     justifyContent: 'center',
   },
