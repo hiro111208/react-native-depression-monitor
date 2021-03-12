@@ -175,9 +175,21 @@ const TherapyScreen = () => {
   // displays the question of the therapy session
   function renderQuestion() {
     if (loaded) {
-      return <Text style={styles.text}>{items[question].question1}</Text>;
+      return renderQuestionText();
     } else {
       return <Text style={styles.text}>Welcome to the session!</Text>;
+    }
+  }
+
+  function renderQuestionText() {
+    if (isWordAnswer) {
+      return <Text style={styles.text}>{items[question].question1}</Text>;
+    } else {
+      return (
+        <Text style={styles.text}>
+          {items[question].question1} ({items[question].word})
+        </Text>
+      );
     }
   }
 
