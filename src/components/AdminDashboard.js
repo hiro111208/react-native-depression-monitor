@@ -8,8 +8,6 @@ import { Ionicons } from '@expo/vector-icons';
 const Tab = createBottomTabNavigator();
 const HomeStack = createStackNavigator();
 const UsersStack = createStackNavigator();
-const CalendarStack = createStackNavigator();
-const AccountStack = createStackNavigator();
 
 function UserList() {
     return (
@@ -23,14 +21,6 @@ function Therapy() {
     return (
         <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
             <Text>Potentially used to modify the content of therapy sessions</Text>
-        </View>
-    );
-}
-
-function B() {
-    return (
-        <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-            <Text>B!</Text>
         </View>
     );
 }
@@ -51,22 +41,6 @@ function UsersStackScreen() {
     );
 }
 
-function CalendarStackScreen() {
-    return (
-        <CalendarStack.Navigator>
-            <CalendarStack.Screen name="Calendar" component={B} />
-        </CalendarStack.Navigator>
-    );
-}
-
-function AccountStackScreen() {
-    return (
-        <AccountStack.Navigator>
-            <AccountStack.Screen name="Account" component={B} />
-        </AccountStack.Navigator>
-    );
-}
-
 export default function App() {
     return (
         <NavigationContainer>
@@ -79,10 +53,6 @@ export default function App() {
                             iconName = focused ? 'ios-home' : 'ios-home-outline';
                         } else if (route.name === 'Users') {
                             iconName = focused ? 'ios-people' : 'ios-people-outline';
-                        } else if (route.name === 'Calendar') {
-                            iconName = focused ? 'ios-calendar' : 'ios-calendar-outline';
-                        } else if (route.name === 'Account') {
-                            iconName = focused ? 'ios-person' : 'ios-person-outline';
                         }
 
                         // You can return any component that you like here!
@@ -96,8 +66,6 @@ export default function App() {
             >
                 <Tab.Screen name="Home" component={HomeStackScreen} options={{ tabBarLabel: 'Home' }} />
                 <Tab.Screen name="Users" component={UsersStackScreen} options={{ tabBarLabel: 'Users' }} />
-                <Tab.Screen name="Calendar" component={CalendarStackScreen} options={{ tabBarLabel: 'Calendar' }} />
-                <Tab.Screen name="Account" component={AccountStackScreen} options={{ tabBarLabel: 'Account' }} />
             </Tab.Navigator>
         </NavigationContainer>
     );
