@@ -11,10 +11,18 @@ const UsersStack = createStackNavigator();
 const CalendarStack = createStackNavigator();
 const AccountStack = createStackNavigator();
 
-function A() {
+function UserList() {
     return (
         <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-            <Text>A!</Text>
+            <Text>A list of users to check their activity</Text>
+        </View>
+    );
+}
+
+function Therapy() {
+    return (
+        <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+            <Text>Potentially used to modify the content of therapy sessions</Text>
         </View>
     );
 }
@@ -30,7 +38,7 @@ function B() {
 function HomeStackScreen() {
     return (
         <HomeStack.Navigator>
-            <HomeStack.Screen name="Home" component={A} />
+            <HomeStack.Screen name="Home" component={Therapy} />
         </HomeStack.Navigator>
     );
 }
@@ -38,7 +46,7 @@ function HomeStackScreen() {
 function UsersStackScreen() {
     return (
         <UsersStack.Navigator>
-            <UsersStack.Screen name="Users" component={A} />
+            <UsersStack.Screen name="Users" component={UserList} />
         </UsersStack.Navigator>
     );
 }
