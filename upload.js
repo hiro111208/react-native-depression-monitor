@@ -15,12 +15,12 @@ var questions = "";
 questions.forEach(function (obj) {
   db.collection("questions")
     .add({
-      id: obj.id,
       categoryDropped: obj.categoryDropped,
       block: obj.block,
       question: obj.question,
       question1: obj.question1,
       answer1: obj.answer1,
+      word: obj.word,
       question2: obj.question2,
       answer2: obj.answer2,
     })
