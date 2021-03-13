@@ -2,7 +2,6 @@ import * as React from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import { StatusBar } from "expo-status-bar";
-
 import TherapyScreen from "./app/screens/TherapyScreen";
 import CategoryDrop from "./app/screens/CategoryDrop";
 import PlantScreen from "./app/screens/PlantScreen";
@@ -10,6 +9,8 @@ import LoginScreen from "./app/screens/LoginScreen";
 import SignupScreen from "./app/screens/SignupScreen";
 import DashboardScreen from "./app/screens/DashboardScreen";
 import ForgotPasswordScreen from "./app/screens/ForgotPasswordScreen";
+import AdminDashboardScreen from "./app/screens/AdminDashboardScreen";
+import Index from "./app/src/components/Index";
 
 import colors from "./app/config/colors";
 
@@ -51,7 +52,14 @@ function MyStack() {
         component={DashboardScreen}
         options={{ title: "Dashboard" }}
       />
+      <Stack.Screen
+        name="AdminDashboardScreen"
+        component={AdminDashboardScreen}
+        options={{ title: "AdminDashboard" }}
+      />
       <Stack.Screen name="TherapyScreen" component={TherapyScreen} />
+      <Stack.Screen name="PlantScreen" component={PlantScreen} />
+      <Stack.Screen name="CategoryDrop" component={CategoryDrop} />
     </Stack.Navigator>
   );
 }
@@ -69,5 +77,6 @@ export default function App() {
     //<LoginScreen/>
     //<SignupScreen/>
     //<ForgotPasswordScreen/>
+    //<Index></Index> //where progressBar buttons/actions and component are
   );
 }

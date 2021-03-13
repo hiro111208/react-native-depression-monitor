@@ -4,9 +4,8 @@ import firebase from '../../firebase.js';
 
 import colors from '../config/colors';
 
-function DashboardScreen(props) {
+function AdminDashboardScreen(props) {
   const [errorMessage, setErrorMessage] = useState('');
-  const [displayName, setDisplayName] = useState(firebase.auth().currentUser !== null ? firebase.auth().currentUser.displayName : '');
 
   const signOut=()=>{
     firebase.auth().signOut().then(() => {
@@ -19,9 +18,14 @@ function DashboardScreen(props) {
   return (
     <View style={styles.container}>
       <Text style = {styles.textStyle}>
-          Hello, {displayName}
+          Hello, Admin
       </Text>
 
+      <Button
+        color={colors.darkBorder}
+        title="Go to user dashboard"
+        onPress={() => props.navigation.navigate('DashboardScreen')}
+      />
       <Button
         color={colors.darkBorder}
         title="Logout"
@@ -30,7 +34,7 @@ function DashboardScreen(props) {
     </View>
   );
 }
-export default DashboardScreen;
+export default AdminDashboardScreen;
 
 const styles = StyleSheet.create({
   container: {

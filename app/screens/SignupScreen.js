@@ -53,6 +53,7 @@ function SignupScreen(props) {
     firebase.auth().currentUser.sendEmailVerification().then(function() {
       console.log('email verification sent')
       setMessage(`Please verify your email through the link we've sent to: `+ email)
+      setErrorMessage('')
       // Email sent.
     }).catch(function(error) {
       console.log('failed to send email verification')
@@ -61,6 +62,16 @@ function SignupScreen(props) {
       setErrorMessage(error.message)
       // An error happened.
     });
+  }
+
+  //reset all states
+  const reset=()=>{
+    setIsLoading(false)
+    setEmail('')
+    setPassword('')
+    setErrorMessage('')
+    setDisplayName('')
+    setMessage('')
   }
 
   //Render the sign up screen interface
@@ -110,7 +121,7 @@ function SignupScreen(props) {
       {/*Render text button that allows user to go to login screen */}
       <Text 
         style={styles.loginText}
-        onPress={() => props.navigation.navigate('LoginScreen')}>
+        onPress={() => {reset();props.navigation.navigate('LoginScreen')}}>
         Already Registered? Click here to login
       </Text>                          
     </View>  
