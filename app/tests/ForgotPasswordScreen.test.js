@@ -7,15 +7,17 @@ import {cleanup, render, fireEvent, waitFor} from '@testing-library/react-native
 import "@testing-library/jest-dom/extend-expect";
 import { initialWindowMetrics } from 'react-native-safe-area-context';
 
-
+//Test functionality of forgot password screen
 describe('forgot your password', () => {
     afterEach(cleanup);
 
+//Test that all components render correctly
 test('renders correctly', () => {
     const tree = renderer.create(<ForgotPasswordScreen />).toJSON();
     expect(tree).toMatchSnapshot();
 });
 
+//Test that sendPasswordResetEmail fails if the email provided is not associated to an account
 test('sendPasswordResetEmail should be unsuccessful with no account related to email', async () => 
 {
     let error = '';
@@ -27,6 +29,7 @@ test('sendPasswordResetEmail should be unsuccessful with no account related to e
     expect(error).toEqual('There is no user record corresponding to this identifier. The user may have been deleted.');
 },10000);
 
+//Test that sendPasswordResetEmail succeeds if email is associated to an account
 test('sendPasswordResetEmail should be successful with email related to registered account', async () => 
 {
     let error= '';
@@ -44,6 +47,7 @@ test('sendPasswordResetEmail should be successful with email related to register
     expect(["","Exceeded daily quota for resetting passwords."]).toContain(error)
 },10000);
 
+//Test that alert appears if no email is provided
 test('Expect to show email required', async()=>{
     const { getByTestId } = render(<ForgotPasswordScreen />)
     const emailInput= getByTestId('TEST_ID_EMAIL_INPUT');
@@ -57,6 +61,7 @@ test('Expect to show email required', async()=>{
     })
 },10000)
 
+//Test that the sendPasswordResetEmail is called when button is pressed and correct email inputted
 test('Expect to call sendPasswordResetEmail', async()=>{
     const { getByTestId } = render(<ForgotPasswordScreen />);
     const {getByText}= render(<ForgotPasswordScreen />);

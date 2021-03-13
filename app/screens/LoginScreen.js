@@ -4,6 +4,10 @@ import firebase from '../../firebase.js';
 
 import colors from '../config/colors';
 
+/*
+  Screen where users can login to access their dashboards
+*/
+
 function LoginScreen(props) {
 
   const [email, setEmail] = useState('');
@@ -12,6 +16,7 @@ function LoginScreen(props) {
   const [errorMessage, setErrorMessage] = useState('');
   const [isVerified, setIsVerified] = useState(true);
   
+  //Send verification email to user to allow them to login
   const sendVerificationEmail=()=>{
     firebase.auth().currentUser.sendEmailVerification().then(function() {
       console.log('email verification sent')
@@ -24,6 +29,8 @@ function LoginScreen(props) {
     });
   }
 
+  //Verify user credentials with firebase. If user has verified their email 
+  //send user to dashboard if not show button to allow user to send a new verification email
   const userLogin=()=>{
     if(email === '' && password === '') {
       Alert.alert('Enter details to login!')
@@ -55,15 +62,18 @@ function LoginScreen(props) {
     }
   };
 
+  //While loading show preloader
   if(isLoading){
     return(
       <View style={styles.preloader}>
         <ActivityIndicator size="large" color="#9E9E9E"/>
        </View>
      )
-  }    
+  }
+  //Render the login screen interface
   return (
     <View style={styles.container}>  
+    {/*Render input fields for email and password*/}
       <TextInput
         style={styles.inputStyle}
         placeholder="Email"
@@ -80,6 +90,7 @@ function LoginScreen(props) {
       />   
       <Text style={{color:'red'}}>{errorMessage}</Text>
 
+      {/*Render login button which calls userLogin method and checks credentials in input fields*/}
       <TouchableOpacity
         activeOpacity = { .5 }
         style={styles.loginButton}
@@ -88,18 +99,21 @@ function LoginScreen(props) {
           <Text style= {styles.signInText}>SIGN IN</Text>
       </TouchableOpacity>
 
+      {/*Render text to allow user to go to sign up screen*/}
       <Text 
         style={styles.textButton}
         onPress={() => props.navigation.navigate('SignupScreen')}>
         Don't have an account? Click here to signup
       </Text>
 
+      {/*Render text to allow user to go to forgot password screen*/}
       <Text 
         style={styles.textButton}
         onPress={() => props.navigation.navigate('ForgotPasswordScreen')}>
         Forgot your password?
       </Text>
 
+      {/*Render button to send new verification email */}
       <View> 
       {!isVerified
         ? <TouchableOpacity
