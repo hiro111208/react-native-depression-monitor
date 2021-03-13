@@ -58,7 +58,7 @@ const TherapyScreen = () => {
   // View to display when answer is correct
   function renderCorrectAnswerArea() {
     return (
-      <View style={[styles.answerArea, styles.centering]}>
+      <View style={[styles.answerArea, styles.centering, styles.shadowEffect]}>
         <TextInput
           style={[styles.input, styles.correctHighlight]}
           value="Well done!"
@@ -71,10 +71,8 @@ const TherapyScreen = () => {
   // View to display when answer is wrong
   function renderIncorrectAnswerArea() {
     return (
-      <View style={[styles.answerArea, styles.centering]}>
-        <Text styles={styles.text}>
-          The correct answer was {getCorrectAnswer()}
-        </Text>
+      <View style={[styles.answerArea, styles.centering, styles.shadowEffect]}>
+        <Text style={styles.textNote}> The correct answer was "{getCorrectAnswer()}". </Text>
         <TextInput
           style={styles.input}
           value="You can do this!"
@@ -87,7 +85,7 @@ const TherapyScreen = () => {
   // Renders whilst data is being retrieved
   function renderLoadingAnswerArea() {
     return (
-      <View style={[styles.answerArea, styles.centering]}>
+      <View style={[styles.answerArea, styles.centering, styles.shadowEffect]}>
         <TextInput
           style={styles.input}
           placeholder="session loading..."
@@ -100,16 +98,16 @@ const TherapyScreen = () => {
   // Renders format for the answer area to the yes or no question
   function renderChoiceAnswerArea() {
     return (
-      <View style={[styles.answerArea, styles.centering]}>
-        <Text style={styles.text}>{items[question].question2}</Text>
+      <View style={[styles.answerArea, styles.centering, styles.shadowEffect]}>
+        <Text style={styles.textNote}>{items[question].question2}</Text>
         <TouchableOpacity
-          style={[styles.answerButton, styles.centering]}
+          style={[styles.answerButton, styles.centering, styles.shadowEffect]}
           onPress={() => checkAnswer("Yes")}
         >
           <Text style={styles.text}>YES</Text>
         </TouchableOpacity>
         <TouchableOpacity
-          style={[styles.answerButton, styles.centering]}
+          style={[styles.answerButton, styles.centering, styles.shadowEffect]}
           onPress={() => checkAnswer("No")}
         >
           <Text style={styles.text}>NO</Text>
@@ -121,11 +119,11 @@ const TherapyScreen = () => {
   // renders answer area to the missing word question
   function renderWordAnswerArea() {
     return (
-      <View style={[styles.answerArea, styles.centering]}>
-        <Text style={styles.text}>Enter the first missing letter</Text>
+      <View style={[styles.answerArea, styles.centering, styles.shadowEffect]}>
+        <Text style={styles.textNote}>Enter the first missing letter</Text>
         <TextInput
           style={styles.input}
-          placeholder="enter answer here"
+          placeholder="Enter answer here"
           onChangeText={(value) => checkAnswer(value)}
           maxLength={1}
           editable={true}
@@ -179,7 +177,7 @@ const TherapyScreen = () => {
     if (loaded) {
       return renderQuestionText();
     } else {
-      return <Text style={styles.text}>Welcome to the session!</Text>;
+      return <Text style={styles.textNote}>Welcome to the session!</Text>;
     }
   }
 
@@ -221,14 +219,14 @@ const TherapyScreen = () => {
     <KeyboardAvoidingView style={styles.container} behavior="position">
       {/* Button to take a break */}
       <View style={[styles.topAndBottom, styles.centering]}>
-        <TouchableOpacity style={[styles.optButton, styles.centering]}>
+        <TouchableOpacity style={[styles.takeBreakButton, styles.centering, styles.shadowEffect]}>
           <Text style={styles.text}>Take a break</Text>
         </TouchableOpacity>
       </View>
 
       {/* Displays therapy item story and question */}
       <View style={[styles.center, styles.centering]}>
-        <View style={[styles.questionArea, styles.centering]}>
+        <View style={[styles.questionArea, styles.centering, styles.shadowEffect]}>
           {renderQuestion()}
         </View>
       </View>
@@ -239,7 +237,7 @@ const TherapyScreen = () => {
       {/* Button to navigate through the therapy session */}
       <View style={[styles.topAndBottom, styles.centering]}>
         <TouchableOpacity
-          style={[styles.optButton, styles.centering]}
+          style={[styles.optButton, styles.centering, styles.shadowEffect]}
           onPress={() => nextQuestion()}
         >
           <Text style={styles.text}>Next</Text>
@@ -253,21 +251,12 @@ const styles = StyleSheet.create({
   answerButton: {
     height: "75%",
     width: 250,
-    backgroundColor: "#ffd0c1",
+    backgroundColor: "#ffaa78",
     borderRadius: 10,
-    shadowColor: "#000",
-    shadowOffset: {
-      width: 0,
-      height: 2,
-    },
-    shadowOpacity: 0.25,
-    shadowRadius: 3.84,
-    elevation: 5,
-    marginVertical: 5,
   },
   answerArea: {
-    height: "30%",
-    padding: 70,
+    height: "25%",
+    padding: 60,
   },
   center: {
     height: "50%",
@@ -284,34 +273,60 @@ const styles = StyleSheet.create({
   correctHighlight: {
     borderColor: "#c7ffd8",
   },
-  optButton: {
-    height: "70%",
-    width: 150,
-    backgroundColor: "#c7ffd8",
-    borderRadius: 10,
-  },
   input: {
-    height: "75%",
-    width: "100%",
-    backgroundColor: "#ffcccb",
+    height: "100%",
+    width: "90%",
+    backgroundColor: "#ffe2e6",
     borderColor: "#ffffff",
-    borderWidth: 2,
+    borderWidth: 5,
+    borderRadius: 40,
     padding: 8,
     fontSize: 24,
     textAlign: "center",
   },
+  optButton: {
+    height: "80%",
+    width: "70%",
+    backgroundColor: "#a9eed1",
+    borderRadius: 20,
+    padding: 20,
+  },
   questionArea: {
-    width: "80%",
+    width: "85%",
     height: "100%",
-    borderRadius: 8,
-    borderWidth: 4,
+    borderRadius: 50,
+    borderWidth: 10,
     borderColor: "#fff",
     backgroundColor: "#eee",
-    padding: 5,
+    padding: 30,
+  },
+  shadowEffect: {
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
+    elevation: 5,
+    marginVertical: 5,
+  },
+  takeBreakButton:{
+    height: "50%",
+    width: 125,
+    backgroundColor: "#fff",
+    borderRadius: 20,
   },
   text: {
     color: "black",
+    fontSize: 20,
+    textAlign: "center",
+  },
+  textNote: {
+    color: "black",
     fontSize: 18,
+    textAlign: "center",
+    padding: 10
   },
   topAndBottom: {
     height: "10%",

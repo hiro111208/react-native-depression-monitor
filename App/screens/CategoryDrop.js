@@ -4,6 +4,19 @@ import Constants from 'expo-constants';
 import firebase from "../../firebase";
 
 const CategoryDrop = () => {
+
+    const ref = firebase.firestore().collection("progress");
+
+    function chooseOption(chosenCategory){
+        var num = Math.random();
+        if (num<=0.5) {
+            return chosenCategory;
+        }
+        else {
+            return "CONTROL";
+        }
+    }
+
     return (
         <View style={styles.container}>
             
@@ -64,18 +77,6 @@ const CategoryDrop = () => {
             </View>
         </View>
     )
-}
-
-const ref = firebase.firestore().collection("progress");
-
-function chooseOption(chosenCategory){
-    var num = Math.random();
-    if (num<=0.5) {
-        return chosenCategory;
-    }
-    else {
-        return "CONTROL";
-    }
 }
 
 const styles = StyleSheet.create({
