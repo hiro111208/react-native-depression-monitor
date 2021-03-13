@@ -1,7 +1,11 @@
 import * as React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
+import { StatusBar } from "expo-status-bar";
 
+import TherapyScreen from "./App/screens/TherapyScreen";
+import CategoryDrop from "./App/screens/CategoryDrop";
+import PlantScreen from "./App/screens/PlantScreen";
 import LoginScreen from './app/screens/LoginScreen';
 import SignupScreen from './app/screens/SignupScreen';
 import DashboardScreen from './app/screens/DashboardScreen';
@@ -49,14 +53,26 @@ function MyStack() {
          { title: 'Dashboard' }
        }
       />
+      <Stack.Screen 
+       name="TherapyScreen" 
+       component={TherapyScreen} 
+      />
     </Stack.Navigator>
   );
 }
 
 export default function App() {
   return (
-    <NavigationContainer>
-      <MyStack />
-    </NavigationContainer>
+    //<NavigationContainer>
+    //  <MyStack />
+    //</NavigationContainer>
+
+    //Uncomment to see different screens one at a time
+    <TherapyScreen />
+    //<CategoryDrop/>
+    //<PlantScreen/>
+    //<LoginScreen/>
+    //<SignupScreen/>
+    //<ForgotPasswordScreen/>
   );
 }
