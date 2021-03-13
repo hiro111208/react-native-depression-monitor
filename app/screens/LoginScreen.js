@@ -40,31 +40,19 @@ function LoginScreen(props) {
       .auth()
       .signInWithEmailAndPassword(email, password)
       .then((res) => {
-        console.log(res)
-<<<<<<< HEAD
-        console.log('User logged-in successfully!')
-        setIsLoading(false)
-        setEmail('')
-        setPassword('')
-        setErrorMessage('')
-        props.navigation.navigate('DashboardScreen')
         if(firebase.auth().currentUser.email == 'admin@joyapp.com'){
+          reset()
           props.navigation.navigate('AdminDashboardScreen')
         } else{
-          props.navigation.navigate('DashboardScreen')
-=======
-        if(firebase.auth().currentUser.emailVerified){
-          console.log(res)
-          console.log('User logged-in successfully!')
-          setIsLoading(false)
-          setEmail('')
-          setPassword('')
-          props.navigation.navigate('DashboardScreen')
-        }else{
-          setIsLoading(false)
-          setErrorMessage('Your email has not been verfied')
-          setIsVerified(false)
->>>>>>> main
+          if(firebase.auth().currentUser.emailVerified){
+            console.log('User logged-in successfully!')
+            reset()
+            props.navigation.navigate('DashboardScreen')
+          }else{
+            setIsLoading(false)
+            setErrorMessage('Your email has not been verfied')
+            setIsVerified(false)
+          }
         }
       })
       .catch(error => {
@@ -74,6 +62,15 @@ function LoginScreen(props) {
       })
     }
   };
+  
+  //reset all states
+  const reset=()=>{
+    setIsLoading(false)
+    setEmail('')
+    setPassword('')
+    setIsVerified(true)
+    setErrorMessage('')
+  }
 
   //While loading show preloader
   if(isLoading){
@@ -115,14 +112,14 @@ function LoginScreen(props) {
       {/*Render text to allow user to go to sign up screen*/}
       <Text 
         style={styles.textButton}
-        onPress={() => props.navigation.navigate('SignupScreen')}>
+        onPress={() => {reset(); props.navigation.navigate('SignupScreen')}}>
         Don't have an account? Click here to signup
       </Text>
 
       {/*Render text to allow user to go to forgot password screen*/}
       <Text 
         style={styles.textButton}
-        onPress={() => props.navigation.navigate('ForgotPasswordScreen')}>
+        onPress={() => {reset();props.navigation.navigate('ForgotPasswordScreen')}}>
         Forgot your password?
       </Text>
 
