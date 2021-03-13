@@ -82,4 +82,5 @@ export default function App() {
     //<Index></Index> //where progressBar buttons/actions and component are
     //<PatientDashboard />
     //<AdminDashboard />
+  );
 }
