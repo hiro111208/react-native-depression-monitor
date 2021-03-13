@@ -11,7 +11,7 @@ function DashboardScreen(props) {
   const signOut=()=>{
     firebase.auth().signOut().then(() => {
       console.log('Logout successful')
-      props.navigation.navigate('LoginScreen')
+      navigation.popToTop()
     })
     .catch(error => setErrorMessage(error.message))
   };  
