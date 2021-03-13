@@ -5,9 +5,8 @@ import firebase from '../../firebase.js';
 import colors from '../config/colors';
 
 function DashboardScreen(props) {
-  const [uid, setUid] = useState(firebase.auth().currentUser.uid);
   const [errorMessage, setErrorMessage] = useState('');
-  const [displayName, setDisplayName] = useState(firebase.auth().currentUser.displayName);
+  const [displayName, setDisplayName] = useState(firebase.auth().currentUser !== null ? firebase.auth().currentUser.displayName : '');
 
   const signOut=()=>{
     firebase.auth().signOut().then(() => {

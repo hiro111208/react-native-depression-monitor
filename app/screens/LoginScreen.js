@@ -4,16 +4,36 @@ import firebase from '../../firebase.js';
 
 import colors from '../config/colors';
 
+/*
+  Screen where users can login to access their dashboards
+*/
+
 function LoginScreen(props) {
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [isLoading, setIsLoading]= useState(false);
   const [errorMessage, setErrorMessage] = useState('');
+  const [isVerified, setIsVerified] = useState(true);
+  
+  //Send verification email to user to allow them to login
+  const sendVerificationEmail=()=>{
+    firebase.auth().currentUser.sendEmailVerification().then(function() {
+      console.log('email verification sent')
+      setErrorMessage(`Please verify your email through the link we've sent to: ` + email)
+    }).catch(function(error) {
+      console.log('failed to send email verification')
+      console.log(error.code)
+      setIsLoading(false)
+      setErrorMessage(error.message)
+    });
+  }
 
+  //Verify user credentials with firebase. If user has verified their email 
+  //send user to dashboard if not show button to allow user to send a new verification email
   const userLogin=()=>{
     if(email === '' && password === '') {
-      Alert.alert('Enter details to signin!')
+      Alert.alert('Enter details to login!')
     } else {
       setIsLoading(true)
       firebase
@@ -21,6 +41,7 @@ function LoginScreen(props) {
       .signInWithEmailAndPassword(email, password)
       .then((res) => {
         console.log(res)
+<<<<<<< HEAD
         console.log('User logged-in successfully!')
         setIsLoading(false)
         setEmail('')
@@ -31,6 +52,19 @@ function LoginScreen(props) {
           props.navigation.navigate('AdminDashboardScreen')
         } else{
           props.navigation.navigate('DashboardScreen')
+=======
+        if(firebase.auth().currentUser.emailVerified){
+          console.log(res)
+          console.log('User logged-in successfully!')
+          setIsLoading(false)
+          setEmail('')
+          setPassword('')
+          props.navigation.navigate('DashboardScreen')
+        }else{
+          setIsLoading(false)
+          setErrorMessage('Your email has not been verfied')
+          setIsVerified(false)
+>>>>>>> main
         }
       })
       .catch(error => {
@@ -41,15 +75,18 @@ function LoginScreen(props) {
     }
   };
 
+  //While loading show preloader
   if(isLoading){
     return(
       <View style={styles.preloader}>
         <ActivityIndicator size="large" color="#9E9E9E"/>
        </View>
      )
-  }    
+  }
+  //Render the login screen interface
   return (
     <View style={styles.container}>  
+    {/*Render input fields for email and password*/}
       <TextInput
         style={styles.inputStyle}
         placeholder="Email"
@@ -66,6 +103,7 @@ function LoginScreen(props) {
       />   
       <Text style={{color:'red'}}>{errorMessage}</Text>
 
+      {/*Render login button which calls userLogin method and checks credentials in input fields*/}
       <TouchableOpacity
         activeOpacity = { .5 }
         style={styles.loginButton}
@@ -74,17 +112,32 @@ function LoginScreen(props) {
           <Text style= {styles.signInText}>SIGN IN</Text>
       </TouchableOpacity>
 
+      {/*Render text to allow user to go to sign up screen*/}
       <Text 
         style={styles.textButton}
         onPress={() => props.navigation.navigate('SignupScreen')}>
         Don't have an account? Click here to signup
       </Text>
 
+      {/*Render text to allow user to go to forgot password screen*/}
       <Text 
         style={styles.textButton}
         onPress={() => props.navigation.navigate('ForgotPasswordScreen')}>
         Forgot your password?
-      </Text>                            
+      </Text>
+
+      {/*Render button to send new verification email */}
+      <View> 
+      {!isVerified
+        ? <TouchableOpacity
+          activeOpacity = { .5 }
+          style={styles.loginButton}
+          onPress={()=>sendVerificationEmail()}
+        ><Text style= {styles.signInText}>Send verification email</Text>
+        </TouchableOpacity>
+        :
+        null}
+      </View>
     </View>
   );
 }

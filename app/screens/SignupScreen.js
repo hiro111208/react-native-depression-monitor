@@ -4,7 +4,9 @@ import firebase from '../../firebase.js';
 
 import colors from '../config/colors';
 
-
+/*
+  Screen where users can signup to the app. First screen user sees when opening app for first time
+*/
 function SignupScreen(props) {
   
   const [displayName, setDisplayName] = useState('');
@@ -12,7 +14,10 @@ function SignupScreen(props) {
   const [password, setPassword] = useState('');
   const [isLoading, setIsLoading]= useState(false);
   const [errorMessage, setErrorMessage] = useState('');
+  const [message, setMessage] = useState('');
 
+  //Create an account using firebase authentication with the credentials the user has provided. 
+  //If account successfully create send verification email
   const registerUser=()=>{
     if(email === '' && password === '') {
       Alert.alert('Enter details to signup!')
@@ -26,11 +31,14 @@ function SignupScreen(props) {
           displayName: displayName
         })
         console.log('User registered successfully!')
+
+        sendVerificationEmail();
+    
         setIsLoading(false)
         setDisplayName('')
         setEmail('')
         setPassword('')
-        props.navigation.navigate('LoginScreen')
+
       })
       .catch(error => {
         console.log(error.code)
@@ -40,6 +48,22 @@ function SignupScreen(props) {
     }
   };
 
+  //Send verification email to the email the user provided
+  function sendVerificationEmail(){
+    firebase.auth().currentUser.sendEmailVerification().then(function() {
+      console.log('email verification sent')
+      setMessage(`Please verify your email through the link we've sent to: `+ email)
+      // Email sent.
+    }).catch(function(error) {
+      console.log('failed to send email verification')
+      console.log(error.code)
+      setIsLoading(false)
+      setErrorMessage(error.message)
+      // An error happened.
+    });
+  }
+
+  //Render the sign up screen interface
   if(isLoading){
     return(
       <View style={styles.preloader}>
@@ -47,6 +71,7 @@ function SignupScreen(props) {
       </View>
     )
   }    
+  //Render the form where the user can input their details
   return (
     <View style={styles.container}>  
       <TextInput
@@ -68,8 +93,12 @@ function SignupScreen(props) {
         onChangeText={(val) => setPassword(val)}
         maxLength={15}
         secureTextEntry={true}
-      />   
+      />
+      {/*Render error messages or success messages*/}
       <Text style={{color:'red'}}>{errorMessage}</Text>
+      <Text style={{color:'red'}}>{message}</Text>
+
+      {/*Render sign up button that calls registerUser method*/}
       <TouchableOpacity
         activeOpacity = { .5 }
         style={styles.signupButton}
@@ -78,6 +107,7 @@ function SignupScreen(props) {
         <Text style= {styles.signupText}>SIGNUP</Text>
       </TouchableOpacity>
 
+      {/*Render text button that allows user to go to login screen */}
       <Text 
         style={styles.loginText}
         onPress={() => props.navigation.navigate('LoginScreen')}>
