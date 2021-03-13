@@ -1,19 +1,46 @@
 import React from "react";
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
 import { StatusBar, StyleSheet, SafeAreaView } from "react-native";
-import Constants from "expo-constants";
+import { Constants } from "expo-constants";
+
 import PauseScreen from "./app/screens/PauseScreen";
 
-export default class App extends React.Component {
-  render() {
+import colors from '.app/config/colors';
+
+const Stack = createStackNavigator();
+
+function MyStack() {
     return (
-      //Uncomment to see different screens one at a time
-      <SafeAreaView style={[styles.container]}>
-        <PauseScreen />
-      </SafeAreaView>
-      //<CategoryDrop/>
-      //<PlantScreen/>
+      <Stack.Navigator 
+        initialRouteName="PauseScreen" //change to signup/login later
+        screenOptions={{
+            headerLeft: null,
+            headerTitleAlign: 'center',
+            headerStyle: {
+             backgroundColor: colors.darkBorder,
+            },
+            headerTintColor: '#fff',
+            headerTitleStyle: {
+              fontWeight: 'bold',
+            },
+            backgroundColor: '#fad8B9'
+        }}>
+          <Stack.Screen 
+            name="PauseScreen" 
+            component={ PauseScreen } 
+            options={{ title: 'Take a break' }}
+          />   
+        </Stack.Navigator>
     );
-  }
+}
+
+export default function App() {
+  return (
+    <NavigationContainer>
+      <MyStack />
+    </NavigationContainer>
+  );
 }
 
 const styles = StyleSheet.create({
