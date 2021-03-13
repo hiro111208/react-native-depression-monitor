@@ -10,6 +10,8 @@ import {
 } from "react-native";
 import Constants from "expo-constants";
 import firebase from "../../firebase";
+import * as Speech from 'expo-speech';
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
 /**
  * Screen where the therapy session takes place. Users will
@@ -22,6 +24,7 @@ const TherapyScreen = () => {
   const [question, setQuestion] = useState(0);
   const [isCorrect, toggleCorrect] = useState(false);
   const [isIncorrect, toggleIncorrect] = useState(false);
+  const [isReading, setReading]= useState(false);
 
   const ref = firebase.firestore().collection("questions");
   const query = ref
@@ -195,6 +198,17 @@ const TherapyScreen = () => {
       toggleWordAnswer(true);
     }
   }
+  const readButtonAttributes={
+    name: (isReading ? "text-to-speech-off" : "text-to-speech"),
+    handleOnPress(){ loaded ? (!isReading ? Speech.speak(items[question].question1, {language:"en-GB"}) : Speech.stop()) : ""}
+  }
+ 
+  // Renders button that reads text aloud
+  function renderReadTextButton(){
+    if(loaded){ return(
+      <Icon name={readButtonAttributes.name}  size={30} color="white" onPress= {()=> {setReading(!isReading);readButtonAttributes.handleOnPress()}} />
+    )}
+  }
 
   // Resets whether the user is right or wrong for a new question
   function resetStatus() {
@@ -202,14 +216,23 @@ const TherapyScreen = () => {
     toggleIncorrect(false);
   }
 
+
+
   // Returns the whole therapy screen interface
   return (
     <KeyboardAvoidingView style={styles.container} behavior="position">
-      {/* Button to take a break */}
-      <View style={[styles.topAndBottom, styles.centering]}>
+
+      <View style={[styles.topAndBottom, styles.horizontal]}>
+        {/* Button to take a break */}
         <TouchableOpacity style={[styles.optButton, styles.centering]}>
           <Text style={styles.text}>Take a break</Text>
         </TouchableOpacity>
+
+        {/* Button to read text aloud */}
+        <TouchableOpacity  style={styles.readButton} >
+        {renderReadTextButton()}
+        </TouchableOpacity>
+
       </View>
 
       {/* Displays therapy item story and question */}
@@ -262,6 +285,11 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
   },
+  horizontal:{
+    flexDirection: "row",
+    alignItems:"center",
+    justifyContent: "center"
+  },
   container: {
     marginTop: Constants.statusBarHeight,
     flex: 1,
@@ -269,6 +297,15 @@ const styles = StyleSheet.create({
   },
   correctHighlight: {
     borderColor: "#c7ffd8",
+  },
+  readButton:{
+    right: "15%",
+    position: "absolute",
+    backgroundColor: "#ffcccb",
+    width: "10%",
+    height:"45%",
+    alignItems: "center",
+    justifyContent: "center"
   },
   optButton: {
     height: "70%",
