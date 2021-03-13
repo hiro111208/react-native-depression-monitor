@@ -1,6 +1,7 @@
 import React from 'react';
 import { StatusBar, StyleSheet, View, Text, TouchableOpacity } from 'react-native';
 import Constants from 'expo-constants'; 
+import firebase from "../../firebase";
 
 const CategoryDrop = () => {
     return (
@@ -12,49 +13,49 @@ const CategoryDrop = () => {
 
             <View style={styles.bottom}>
 
-                <TouchableOpacity style={styles.bottomItem}>
+                <TouchableOpacity style={styles.bottomItem} onPress={() => chooseOption("SOCIAL")}>
                     <View style={[styles.bottomItemInner, styles.centering]}>
                         <Text style={styles.text}>Social</Text>
                     </View>
                 </TouchableOpacity>
 
-                <TouchableOpacity style={styles.bottomItem}>
+                <TouchableOpacity style={styles.bottomItem} onPress={() => chooseOption("ACADEMIC")}>
                     <View style={[styles.bottomItemInner, styles.centering]}>
                         <Text style={styles.text}>Academic</Text>
                     </View>
                 </TouchableOpacity>
 
-                <TouchableOpacity style={styles.bottomItem}>
+                <TouchableOpacity style={styles.bottomItem} onPress={() => chooseOption("HEALTH")}>
                     <View style={[styles.bottomItemInner, styles.centering]}>
                         <Text style={styles.text}>Mood</Text>
                     </View>
                 </TouchableOpacity>
 
-                <TouchableOpacity style={styles.bottomItem}>
+                <TouchableOpacity style={styles.bottomItem} onPress={() => chooseOption("HEALTH")}>
                     <View style={[styles.bottomItemInner, styles.centering]}>
                         <Text style={styles.text}>Health</Text>
                     </View>
                 </TouchableOpacity>
 
-                <TouchableOpacity style={styles.bottomItem}>
+                <TouchableOpacity style={styles.bottomItem} onPress={() => chooseOption("HOBBIES")}>
                     <View style={[styles.bottomItemInner, styles.centering]}>
                         <Text style={styles.text}>Hobbies</Text>
                     </View>
                 </TouchableOpacity>
 
-                <TouchableOpacity style={styles.bottomItem}>
+                <TouchableOpacity style={styles.bottomItem} onPress={() => chooseOption("FAMILY")}>
                     <View style={[styles.bottomItemInner, styles.centering]}>
                         <Text style={styles.text}>Family</Text>
                     </View>
                 </TouchableOpacity>
 
-                <TouchableOpacity style={styles.bottomItem}>
+                <TouchableOpacity style={styles.bottomItem} onPress={() => chooseOption("WORK")}>
                     <View style={[styles.bottomItemInner, styles.centering]}>
                         <Text style={styles.text}>Work</Text>                        
                     </View>
                 </TouchableOpacity>
 
-                <TouchableOpacity style={styles.bottomItem}>
+                <TouchableOpacity style={styles.bottomItem} onPress={() => chooseOption("RELATIONSHIP")}>
                     <View style={[styles.bottomItemInner, styles.centering]}>
                         <Text style={styles.text}>Relationship</Text>
                     </View>
@@ -63,6 +64,18 @@ const CategoryDrop = () => {
             </View>
         </View>
     )
+}
+
+const ref = firebase.firestore().collection("progress");
+
+function chooseOption(chosenCategory){
+    var num = Math.random();
+    if (num<=0.5) {
+        return chosenCategory;
+    }
+    else {
+        return "CONTROL";
+    }
 }
 
 const styles = StyleSheet.create({
