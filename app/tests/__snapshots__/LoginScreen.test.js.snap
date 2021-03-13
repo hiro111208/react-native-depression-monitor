@@ -119,5 +119,6 @@ exports[`renders correctly 1`] = `
   >
     Forgot your password?
   </Text>
+  <View />
 </View>
 `;

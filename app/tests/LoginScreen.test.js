@@ -6,7 +6,7 @@ import LoginScreen from '../screens/LoginScreen';
 beforeAll(() => {
     jest.setTimeout(10000); //find appropriate timeout after testing
     //await init(); //asynchronous calls 
-    const user = firebase.auth().createUserWithEmailAndPassword('test@login.com', 'password');
+    //const user = firebase.auth().createUserWithEmailAndPassword('test@login.com', 'password');
 });
 
 test('renders correctly', () => {
