@@ -5,6 +5,7 @@ import renderer from 'react-test-renderer';
 import { Alert } from 'react-native';
 import {cleanup, render, fireEvent, waitFor} from '@testing-library/react-native';
 import "@testing-library/jest-dom/extend-expect";
+import { initialWindowMetrics } from 'react-native-safe-area-context';
 
 
 describe('forgot your password', () => {
