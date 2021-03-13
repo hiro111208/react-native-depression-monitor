@@ -1,12 +1,20 @@
-import { StatusBar } from 'expo-status-bar';
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
-import PatientDashboard from './src/components/PatientDashboard';
-import AdminDashboard from './src/components/AdminDashboard';
+import { StatusBar } from "expo-status-bar";
+import React from "react";
+import TherapyScreen from "./App/screens/TherapyScreen";
+import CategoryDrop from "./App/screens/CategoryDrop";
+import PlantScreen from "./App/screens/PlantScreen";
+import PatientDashboard from './dashboards/PatientDashboard';
+import AdminDashboard from './dashboards/AdminDashboard';
 
-export default function App() {
-  return (
-    //<PatientDashboard />
-    <AdminDashboard />
-  );
+export default class App extends React.Component {
+  render() {
+    return (
+      //Uncomment to see different screens one at a time
+      //<TherapyScreen />
+      //<CategoryDrop/>
+      //<PlantScreen/>
+      //<PatientDashboard />
+      <AdminDashboard />
+    );
+  }
 }

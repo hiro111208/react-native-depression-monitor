@@ -8,6 +8,8 @@ import { Ionicons } from '@expo/vector-icons';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createStackNavigator } from '@react-navigation/stack';
 
+import TherapyScreen from "../App/screens/TherapyScreen";
+
 function getHeaderTitle(route) {
     // If the focused route is not found, we need to assume it's the initial screen
     // This can happen during if there hasn't been any navigation inside the screen
@@ -25,7 +27,7 @@ function getHeaderTitle(route) {
 }
 
 
-//Temporary screens to check the tab bar is working.
+//The below three functions are temporary screens to check the tab bar is working.
 function HomeScreen({ navigation }) {
     return (
         <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
@@ -52,6 +54,8 @@ function AccountScreen() {
         </View>
     );
 }
+
+// TherapyScreen is potentially added to below function
 
 function SessionsScreen() {
     return (
