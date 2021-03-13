@@ -5,7 +5,6 @@ import firebase from '../../firebase.js';
 import colors from '../config/colors';
 
 function AdminDashboardScreen(props) {
-  const [uid, setUid] = useState(firebase.auth().currentUser.uid);
   const [errorMessage, setErrorMessage] = useState('');
 
   const signOut=()=>{

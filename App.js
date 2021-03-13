@@ -9,6 +9,8 @@ import LoginScreen from "./app/screens/LoginScreen";
 import SignupScreen from "./app/screens/SignupScreen";
 import DashboardScreen from "./app/screens/DashboardScreen";
 import ForgotPasswordScreen from "./app/screens/ForgotPasswordScreen";
+import AdminDashboardScreen from "./app/screens/AdminDashboardScreen";
+import Index from "./App/src/components/Index";
 
 import colors from "./app/config/colors";
 
@@ -50,7 +52,14 @@ import colors from "./app/config/colors";
          component={DashboardScreen}
          options={{ title: "Dashboard" }}
        />
+      <Stack.Screen
+         name="AdminDashboardScreen"
+         component={AdminDashboardScreen}
+         options={{ title: "AdminDashboard" }}
+       />
        <Stack.Screen name="TherapyScreen" component={TherapyScreen} />
+       <Stack.Screen name="PlantScreen" component={PlantScreen} />
+       <Stack.Screen name="CategoryDrop" component={CategoryDrop} />
      </Stack.Navigator>
    );
  }
@@ -68,5 +77,6 @@ import colors from "./app/config/colors";
      //<LoginScreen/>
      //<SignupScreen/>
      //<ForgotPasswordScreen/>
+     //<Index></Index> //where progressBar buttons/actions and component are
    );
  }
