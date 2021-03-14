@@ -1,9 +1,10 @@
 import * as React from 'react';
-import { View, Text } from 'react-native';
 import { getFocusedRouteNameFromRoute } from '@react-navigation/native';
 import { Ionicons } from '@expo/vector-icons';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import HomeScreen from './HomeScreen';
+import CalendarScreen from './CalendarScreen';
+import AccountScreen from './AccountScreen';
 
 function getHeaderTitle(route) {
     // If the focused route is not found, we need to assume it's the initial screen
@@ -19,23 +20,6 @@ function getHeaderTitle(route) {
         case 'Account':
             return 'Account';
     }
-}
-
-
-function CalendarScreen() {
-    return (
-        <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-            <Text>Calendar!</Text>
-        </View>
-    );
-}
-
-function AccountScreen() {
-    return (
-        <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-            <Text>Account</Text>
-        </View>
-    );
 }
 
 const Tab = createBottomTabNavigator();
