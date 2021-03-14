@@ -20,7 +20,7 @@ function navigateUser(uid, props) {
     .get()
     .then((doc) => {
       if (doc.exists) {
-        userProgress = doc.data();
+        const userProgress = doc.data();
         if (userProgress.categoryDropped == "NONE") {
           props.navigation.navigate("CategoryDrop");
         } else {
