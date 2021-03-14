@@ -4,11 +4,15 @@ import firebase from '../../firebase.js';
 
 import colors from '../config/colors';
 
+/*
+  Screen where users can try to reset their passwords if forgotten
+*/
 function ForgotPasswordScreen(props) {
 
   const [email, setEmail] = useState('');
   const [message, setMessage] = useState('');
 
+  // Send reset password email to the email provided if there is an account associated to it
   const forgotPassword=()=>{
     if(email === '') {
       Alert.alert('Enter an email!')
@@ -20,7 +24,9 @@ function ForgotPasswordScreen(props) {
     }
   };
   
+  //Render forgot password screen interface
   return (
+    //Render field to input user email
     <View style={styles.container}>
       <TextInput
         style={styles.inputStyle}
@@ -30,6 +36,7 @@ function ForgotPasswordScreen(props) {
         testID={'TEST_ID_EMAIL_INPUT'}
       />
 
+    {/*Render button that calls forgotPassword method */}
       <TouchableOpacity
         activeOpacity = { .5 }
         style={styles.submitButton}
@@ -39,12 +46,14 @@ function ForgotPasswordScreen(props) {
         <Text style= {styles.submitText}>SUBMIT</Text>
       </TouchableOpacity>
 
+      {/*Render button that allows user to go back to login screen*/}
       <Text 
         style = {styles.textButton}
         onPress={() => props.navigation.navigate('LoginScreen')}>
           Back to Login
       </Text>
 
+      {/*Render text that shows error or success messages */}
       <Text testID={'TEST_ID_MESSAGE'} style={{color:'red'}}>{message}</Text>
 
     </View>

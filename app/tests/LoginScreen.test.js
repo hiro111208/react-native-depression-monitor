@@ -15,7 +15,6 @@ describe('Testing LoginScreen.js', () => {
         const tree = renderer.create(<LoginScreen />).toJSON();
         expect(tree).toMatchSnapshot();
     });
-
 });
 
 
