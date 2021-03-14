@@ -9,9 +9,27 @@ import {
   ActivityIndicator,
   TouchableOpacity,
 } from "react-native";
-import firebase from "../../firebase.js";
+import firebase from "../../firebase";
 
 import colors from "../config/colors";
+
+const db = firebase.firestore();
+
+function addUserToDatabase(id) {
+  db.collection("users")
+    .doc(id)
+    .set({
+      question: 1,
+      block: 1,
+      categoryDropped: "NONE",
+    })
+    .then(() => {
+      console.log("User added");
+    })
+    .catch((error) => {
+      console.error("Error writing document: ", error);
+    });
+}
 
 /*
   Screen where users can signup to the app. First screen user sees when opening app for first time
@@ -38,6 +56,8 @@ function SignupScreen(props) {
           res.user.updateProfile({
             displayName: displayName,
           });
+
+          addUserToDatabase(res.user.uid);
           console.log(
             "User registered successfully with UID of " + res.user.uid
           );
