@@ -8,7 +8,7 @@ import { Ionicons } from '@expo/vector-icons';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createStackNavigator } from '@react-navigation/stack';
 
-import TherapyScreen from "../app/screens/TherapyScreen";
+import TherapyScreen from "../App/screens/TherapyScreen";
 
 function getHeaderTitle(route) {
     // If the focused route is not found, we need to assume it's the initial screen
