@@ -15,19 +15,52 @@ import colors from "../config/colors";
 
 const db = firebase.firestore();
 
-function addUserToDatabase(id) {
-  db.collection("users")
-    .doc(id)
-    .set({
-      question: 1,
-      block: 1,
-      categoryDropped: "NONE",
-    })
-    .then(() => {
-      console.log("User added");
+function addUserToDatabase(uid) {
+  //Create the ID
+  var id;
+  var docRef = db
+    .collection("general")
+    .doc("userCount")
+    .get()
+    .then((doc) => {
+      if (doc.exists) {
+        id = doc.data().count + 1;
+        console.log(id);
+        //Update user count for extra user
+        db.collection("general")
+          .doc("userCount")
+          .set({
+            count: id,
+          })
+          .then(() => {
+            console.log("Stat updated");
+          })
+          .catch((error) => {
+            console.error("Error writing document: ", error);
+          });
+
+        //Add the user to the database with default values and assigned ID
+        db.collection("users")
+          .doc(uid)
+          .set({
+            question: 1,
+            block: 1,
+            categoryDropped: "NONE",
+            userID: "DB" + id,
+          })
+          .then(() => {
+            console.log("User added");
+          })
+          .catch((error) => {
+            console.error("Error writing document: ", error);
+          });
+      } else {
+        // doc.data() will be undefined in this case
+        console.log("No such document!");
+      }
     })
     .catch((error) => {
-      console.error("Error writing document: ", error);
+      console.log("Error getting document:", error);
     });
 }
 
