@@ -56,10 +56,10 @@ function MyStack() {
         name="AdminDashboard"
         component={AdminDashboard}
       />
-      <Stack.Screen options={{ headerShown: false }} name="Sessions" component={TherapyScreen} />
-      {/* <Stack.Screen name="TherapyScreen" component={TherapyScreen} /> */}
+      <Stack.Screen options={{ headerShown: false }} name="Sessions" component={CategoryDrop} />
+      <Stack.Screen name="TherapyScreen" component={TherapyScreen} />
       <Stack.Screen name="PlantScreen" component={PlantScreen} />
-      <Stack.Screen name="CategoryDrop" component={CategoryDrop} />
+      {/* <Stack.Screen name="CategoryDrop" component={CategoryDrop} /> */}
     </Stack.Navigator>
   );
 }
