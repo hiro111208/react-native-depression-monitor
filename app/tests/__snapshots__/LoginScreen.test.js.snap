@@ -1,0 +1,124 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+<View
+  style={
+    Object {
+      "backgroundColor": "#fff",
+      "display": "flex",
+      "flex": 1,
+      "flexDirection": "column",
+      "justifyContent": "center",
+      "padding": 35,
+    }
+  }
+>
+  <TextInput
+    allowFontScaling={true}
+    onChangeText={[Function]}
+    placeholder="Email"
+    rejectResponderTermination={true}
+    style={
+      Object {
+        "alignSelf": "center",
+        "borderBottomWidth": 1,
+        "borderColor": "#ccc",
+        "marginBottom": 15,
+        "paddingBottom": 15,
+        "width": "100%",
+      }
+    }
+    underlineColorAndroid="transparent"
+    value=""
+  />
+  <TextInput
+    allowFontScaling={true}
+    maxLength={15}
+    onChangeText={[Function]}
+    placeholder="Password"
+    rejectResponderTermination={true}
+    secureTextEntry={true}
+    style={
+      Object {
+        "alignSelf": "center",
+        "borderBottomWidth": 1,
+        "borderColor": "#ccc",
+        "marginBottom": 15,
+        "paddingBottom": 15,
+        "width": "100%",
+      }
+    }
+    underlineColorAndroid="transparent"
+    value=""
+  />
+  <Text
+    style={
+      Object {
+        "color": "red",
+      }
+    }
+  >
+    
+  </Text>
+  <View
+    accessible={true}
+    focusable={true}
+    onClick={[Function]}
+    onResponderGrant={[Function]}
+    onResponderMove={[Function]}
+    onResponderRelease={[Function]}
+    onResponderTerminate={[Function]}
+    onResponderTerminationRequest={[Function]}
+    onStartShouldSetResponder={[Function]}
+    style={
+      Object {
+        "alignSelf": "center",
+        "backgroundColor": "#ffa351ff",
+        "borderRadius": 50,
+        "marginTop": 10,
+        "opacity": 1,
+        "paddingBottom": 15,
+        "paddingTop": 15,
+        "width": 300,
+      }
+    }
+  >
+    <Text
+      style={
+        Object {
+          "color": "white",
+          "fontSize": 15,
+          "textAlign": "center",
+        }
+      }
+    >
+      SIGN IN
+    </Text>
+  </View>
+  <Text
+    onPress={[Function]}
+    style={
+      Object {
+        "color": "#ffa351ff",
+        "marginTop": 25,
+        "textAlign": "center",
+      }
+    }
+  >
+    Don't have an account? Click here to signup
+  </Text>
+  <Text
+    onPress={[Function]}
+    style={
+      Object {
+        "color": "#ffa351ff",
+        "marginTop": 25,
+        "textAlign": "center",
+      }
+    }
+  >
+    Forgot your password?
+  </Text>
+  <View />
+</View>
+`;
