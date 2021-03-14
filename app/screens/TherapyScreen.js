@@ -336,7 +336,7 @@ const styles = StyleSheet.create({
     marginVertical: 5,
   },
   takeBreakButton: {
-    height: "50%",
+    height: "30%",
     width: 125,
     backgroundColor: "#fff",
     borderRadius: 20,
@@ -359,7 +359,8 @@ const styles = StyleSheet.create({
     height: "10%",
   },
   bar: {
-    width: "100%",
+    width: "85%",
+    padding: 10,
   },
 });
 
