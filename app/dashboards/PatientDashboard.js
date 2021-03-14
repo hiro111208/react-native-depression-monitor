@@ -5,6 +5,7 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import HomeScreen from './HomeScreen';
 import CalendarScreen from './CalendarScreen';
 import AccountScreen from './AccountScreen';
+import SchedulingScreen from '../screens/SchedulingScreen';
 
 function getHeaderTitle(route) {
     // If the focused route is not found, we need to assume it's the initial screen
@@ -55,7 +56,7 @@ export default function PatientDashboard({ navigation, route }) {
             }}
         >
             <Tab.Screen name="Home" component={HomeScreen} />
-            <Tab.Screen name="Calendar" component={CalendarScreen} />
+            <Tab.Screen name="Calendar" component={SchedulingScreen} />
             <Tab.Screen name="Account" component={AccountScreen} />
         </Tab.Navigator>
     );

@@ -22,7 +22,7 @@ function MyStack() {
       initialRouteName="SignupScreen"
       screenOptions={{
         gestureEnabled: false,
-        headerLeft: null,
+        //headerLeft: null,
         headerTitleAlign: "center",
         headerStyle: {
           backgroundColor: colors.darkBorder,
