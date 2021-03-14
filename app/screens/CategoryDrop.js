@@ -32,9 +32,7 @@ const CategoryDrop = ({ route, navigation }) => {
       })
       .then(() => {
         console.log("Category successfully dropped");
-        navigation.navigate("PatientDashboard", {
-          user: userProgress,
-        });
+        navigation.navigate("PatientDashboard");
       })
       .catch((error) => {
         console.error("Error writing document: ", error);

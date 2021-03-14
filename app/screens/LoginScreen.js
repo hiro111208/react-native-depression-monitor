@@ -26,9 +26,7 @@ function navigateUser(uid, props) {
             user: userProgress,
           });
         } else {
-          props.navigation.navigate("PatientDashboard", {
-            user: userProgress,
-          });
+          props.navigation.navigate("PatientDashboard");
         }
       } else {
         // doc.data() will be undefined in this case
