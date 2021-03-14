@@ -22,9 +22,13 @@ function navigateUser(uid, props) {
       if (doc.exists) {
         const userProgress = doc.data();
         if (userProgress.categoryDropped == "NONE") {
-          props.navigation.navigate("CategoryDrop");
+          props.navigation.navigate("CategoryDrop", {
+            user: userProgress,
+          });
         } else {
-          props.navigation.navigate("PatientDashboard");
+          props.navigation.navigate("PatientDashboard", {
+            user: userProgress,
+          });
         }
       } else {
         // doc.data() will be undefined in this case

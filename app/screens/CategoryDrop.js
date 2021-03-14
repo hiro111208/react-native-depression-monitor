@@ -9,7 +9,9 @@ import {
 import Constants from "expo-constants";
 import firebase from "../../firebase";
 
-const CategoryDrop = ({ navigation }) => {
+const CategoryDrop = ({ route, navigation }) => {
+  userProgress = route.params.user;
+
   const ref = firebase
     .firestore()
     .collection("users")
@@ -20,22 +22,18 @@ const CategoryDrop = ({ navigation }) => {
     //if (num <= 0.5) {
     chosenCategory = "CONTROL";
     //}
+    userProgress.categoryDropped = chosenCategory;
     ref
       .set({
-        categoryDropped: chosenCategory,
+        userID: userProgress.userID,
+        question: userProgress.question,
+        block: userProgress.block,
+        categoryDropped: userProgress.categoryDropped,
       })
       .then(() => {
         console.log("Category successfully dropped");
-        ref.get().then((doc) => {
-          if (doc.exists) {
-            const userProgress = doc.data();
-            navigation.navigate("PatientDashboard", {
-              user: userProgress,
-            });
-          } else {
-            // doc.data() will be undefined in this case
-            console.log("No such document!");
-          }
+        navigation.navigate("PatientDashboard", {
+          user: userProgress,
         });
       })
       .catch((error) => {
