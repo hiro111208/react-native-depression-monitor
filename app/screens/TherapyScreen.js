@@ -24,9 +24,10 @@ const TherapyScreen = () => {
   const [isCorrect, toggleCorrect] = useState(false);
   const [isIncorrect, toggleIncorrect] = useState(false);
 
+  // currentWidth + 1 / segments = progress bar filled
   state = {
-    currentWidth: -1,
-    segments: 4,
+    currentWidth: -1, // current progress (+1)
+    segments: 18, // maximum progress
   };
 
   const ref = firebase.firestore().collection("questions");
