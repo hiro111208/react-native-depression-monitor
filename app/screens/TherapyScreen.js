@@ -23,29 +23,41 @@ const TherapyScreen = () => {
   const [question, setQuestion] = useState(0);
   const [isCorrect, toggleCorrect] = useState(false);
   const [isIncorrect, toggleIncorrect] = useState(false);
+  const [user, setUser] = useState(undefined);
 
   // currentWidth + 1 / segments = progress bar filled
   state = {
-    currentWidth: -1, // current progress (+1)
+    currentWidth: question - 1, // current progress (+1)
     segments: 18, // maximum progress
   };
 
-  const ref = firebase.firestore().collection("questions");
-  const query = ref
-    .where("categoryDropped", "==", "CONTROL")
-    .where("block", "==", 1)
-    .orderBy("question");
-
-  // Queries from firebase database and stores in list
+  // accesses the user's progress
   function getItems() {
-    query.onSnapshot((querySnapshot) => {
-      const items = [];
-      querySnapshot.forEach((doc) => {
-        items.push(doc.data());
+    const ref = firebase
+      .firestore()
+      .collection("users")
+      .doc(firebase.auth().currentUser.uid);
+    ref
+      .get()
+      .then((doc) => {
+        const ref = firebase.firestore().collection("questions");
+        const query = ref
+          .where("categoryDropped", "==", doc.data().categoryDropped)
+          .where("block", "==", doc.data().block)
+          .orderBy("question");
+        query.onSnapshot((querySnapshot) => {
+          const items = [];
+          querySnapshot.forEach((doc) => {
+            items.push(doc.data());
+          });
+          setItems(items);
+          setLoaded(true);
+          setQuestion(doc.data().question - 1);
+        });
+      })
+      .catch((error) => {
+        console.log("Error getting document:", error);
       });
-      setItems(items);
-      setLoaded(true);
-    });
   }
 
   // Gets therapy content while screen is rendering
