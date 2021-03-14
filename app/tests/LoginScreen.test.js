@@ -3,18 +3,22 @@ import React from 'react';
 import renderer from 'react-test-renderer';
 import LoginScreen from '../screens/LoginScreen';
 
-beforeAll(() => {
-    jest.setTimeout(10000); //find appropriate timeout after testing
-    //await init(); //asynchronous calls 
-    const user = firebase.auth().createUserWithEmailAndPassword('test@login.com', 'password');
+describe('Testing LoginScreen.js', () => {
+
+    beforeAll(() => {
+        jest.setTimeout(10000); //find appropriate timeout after testing
+        //await init(); //asynchronous calls 
+        const user = firebase.auth().createUserWithEmailAndPassword('blueberry@login.com', 'password');
+    });
+
+    test('LoginScreen renders correctly', () => {
+        const tree = renderer.create(<LoginScreen />).toJSON();
+        expect(tree).toMatchSnapshot();
+    });
+
 });
 
-test('renders correctly', () => {
-    const tree = renderer.create(<LoginScreen />).toJSON();
-    expect(tree).toMatchSnapshot();
-});
 
-//tests should cover all branches, but is this unecessary?
 // test('signInWithEmailAndPassword should be unsuccessful with no credentials', async () => 
 // {
 //     let error = '';

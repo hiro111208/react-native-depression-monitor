@@ -1,12 +1,31 @@
-import firebase from '../../firebase.js';
+
 import React from 'react';
 import renderer from 'react-test-renderer';
 import SignUpScreen from '../screens/SignUpScreen';
 
 //snapshot test
-test('renders correctly', () => {
-    const tree = renderer.create(<SignUpScreen />).toJSON();
-    expect(tree).toMatchSnapshot();
+describe('Testing SignUpScreen.js', () => {
+    it('SignUpScreen renders correctly', () => {
+        const tree = renderer.create(<SignUpScreen />).toJSON();
+        expect(tree).toMatchSnapshot();
+    });
+
+    test('Sign Up should work with correct credentials and verification', () => {
+
+    });
+
+    test('Sign Up should not work with correct credentials but no verification', () => {
+
+    });
+
+    test('Sign Up should not work with incorrect email', () => {
+
+    });
+
+    test('Sign Up should not work with incorrect email', () => {
+
+    });
+
 });
 
 // test('signup should work with correct credentials and verification', () => 
