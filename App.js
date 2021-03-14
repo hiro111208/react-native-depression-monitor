@@ -23,7 +23,6 @@ function MyStack() {
     <Stack.Navigator
       initialRouteName="SignupScreen"
       screenOptions={{
-        headerLeft: null,
         headerTitleAlign: "center",
         headerStyle: {
           backgroundColor: colors.darkBorder,
