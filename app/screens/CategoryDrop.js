@@ -10,19 +10,24 @@ import Constants from "expo-constants";
 import firebase from "../../firebase";
 
 const CategoryDrop = ({ route, navigation }) => {
+  // Stores user data passed from the previous screen
   userProgress = route.params.user;
 
+  // Reference to the path of the user's data
   const ref = firebase
     .firestore()
     .collection("users")
     .doc(firebase.auth().currentUser.uid);
 
+  // Drops the category for the user or assigns them to control data set
   function chooseOption(chosenCategory) {
     //var num = Math.random();
     //if (num <= 0.5) {
     chosenCategory = "CONTROL";
     //}
     userProgress.categoryDropped = chosenCategory;
+
+    //Update the database with new category
     ref
       .set({
         userID: userProgress.userID,

@@ -15,6 +15,9 @@ import colors from "../config/colors";
 
 const db = firebase.firestore();
 
+/**
+ * Adds the newly registered user to the database, with a uniquely assigned ID
+ */
 function addUserToDatabase(uid) {
   //Create the ID
   var id;
@@ -26,7 +29,8 @@ function addUserToDatabase(uid) {
       if (doc.exists) {
         id = doc.data().count + 1;
         console.log(id);
-        //Update user count for extra user
+
+        //Update user count for extra user added
         db.collection("general")
           .doc("userCount")
           .set({
@@ -54,8 +58,9 @@ function addUserToDatabase(uid) {
           .catch((error) => {
             console.error("Error writing document: ", error);
           });
-      } else {
-        // doc.data() will be undefined in this case
+      }
+      // doc.data() will be undefined in this case
+      else {
         console.log("No such document!");
       }
     })

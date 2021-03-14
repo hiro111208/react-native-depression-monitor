@@ -14,6 +14,9 @@ import colors from "../config/colors";
 
 const db = firebase.firestore();
 
+/**
+ * Locates the progress of the user based on their uid
+ */
 function navigateUser(uid, props) {
   var docRef = db.collection("users").doc(uid);
   docRef
@@ -21,15 +24,22 @@ function navigateUser(uid, props) {
     .then((doc) => {
       if (doc.exists) {
         const userProgress = doc.data();
+
+        // A category hasn't been dropped
         if (userProgress.categoryDropped == "NONE") {
           props.navigation.navigate("CategoryDrop", {
             user: userProgress,
           });
-        } else {
+        }
+
+        // Proceeds straight to the dashboard (skipping category)
+        else {
           props.navigation.navigate("PatientDashboard");
         }
-      } else {
-        // doc.data() will be undefined in this case
+      }
+
+      // doc.data() will be undefined in this case
+      else {
         console.log("No such document!");
       }
     })
