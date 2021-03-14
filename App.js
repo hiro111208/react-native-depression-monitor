@@ -21,6 +21,7 @@ function MyStack() {
     <Stack.Navigator
       initialRouteName="SignupScreen"
       screenOptions={{
+        gestureEnabled: false,
         headerLeft: null,
         headerTitleAlign: "center",
         headerStyle: {
