@@ -1,30 +1,30 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import { StyleSheet, View, Text, Button } from 'react-native';
 import firebase from "../database/firebase";
 
 import colors from '../config/colors';
 
-function AdminDashboardScreen(props) {
+export default function AdminHomeScreen({ props, navigation }) {
   const [errorMessage, setErrorMessage] = useState('');
 
-  const signOut=()=>{
+  const signOut = () => {
     firebase.auth().signOut().then(() => {
       console.log('Logout successful')
       navigation.popToTop()
     })
-    .catch(error => setErrorMessage(error.message))
-  };  
+      .catch(error => setErrorMessage(error.message))
+  };
 
   return (
     <View style={styles.container}>
-      <Text style = {styles.textStyle}>
-          Hello, Admin
+      <Text style={styles.textStyle}>
+        Hello, Admin
       </Text>
 
       <Button
         color={colors.darkBorder}
         title="Go to user dashboard"
-        onPress={() => props.navigation.navigate('DashboardScreen')}
+        onPress={() => navigation.navigate('PatientDashboard')}
       />
       <Button
         color={colors.darkBorder}
@@ -34,7 +34,6 @@ function AdminDashboardScreen(props) {
     </View>
   );
 }
-export default AdminDashboardScreen;
 
 const styles = StyleSheet.create({
   container: {
