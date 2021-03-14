@@ -9,7 +9,7 @@ import {
   TextInput,
 } from "react-native";
 import Constants from "expo-constants";
-import firebase from "../../firebase";
+import firebase from "../database/firebase";
 
 /**
  * Screen where the therapy session takes place. Users will
