@@ -1,49 +1,34 @@
 import * as React from 'react';
-import { View, Text } from 'react-native';
-import { NavigationContainer } from '@react-navigation/native';
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { createStackNavigator } from '@react-navigation/stack';
+import { getFocusedRouteNameFromRoute } from '@react-navigation/native';
 import { Ionicons } from '@expo/vector-icons';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+
+import AdminHomeScreen from './AdminHomeScreen';
+import AdminUsersScreen from './AdminUsersScreen';
 
 const Tab = createBottomTabNavigator();
-const HomeStack = createStackNavigator();
-const UsersStack = createStackNavigator();
 
-function UserList() {
-    return (
-        <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-            <Text>A list of users to check their activity</Text>
-        </View>
-    );
+function getHeaderTitle(route) {
+    // If the focused route is not found, we need to assume it's the initial screen
+    // This can happen during if there hasn't been any navigation inside the screen
+    // In our case, it's "Home" as that's the first screen inside the navigator
+    const routeName = getFocusedRouteNameFromRoute(route) ?? 'Home';
+
+    switch (routeName) {
+        case 'Home':
+            return 'Home';
+        case 'Users':
+            return 'Users';
+    }
 }
 
-function Therapy() {
-    return (
-        <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-            <Text>Potentially used to modify the content of therapy sessions</Text>
-        </View>
-    );
-}
+export default function AdminDashboard({ navigation, route}) {
+    React.useLayoutEffect(() => {
+        navigation.setOptions({ headerTitle: getHeaderTitle(route) });
+    }, [navigation, route]);
 
-function HomeStackScreen() {
-    return (
-        <HomeStack.Navigator>
-            <HomeStack.Screen name="Home" component={Therapy} />
-        </HomeStack.Navigator>
-    );
-}
 
-function UsersStackScreen() {
     return (
-        <UsersStack.Navigator>
-            <UsersStack.Screen name="Users" component={UserList} />
-        </UsersStack.Navigator>
-    );
-}
-
-export default function App() {
-    return (
-        <NavigationContainer>
             <Tab.Navigator
                 screenOptions={({ route }) => ({
                     tabBarIcon: ({ focused, color, size }) => {
@@ -64,9 +49,8 @@ export default function App() {
                     inactiveTintColor: 'gray',
                 }}
             >
-                <Tab.Screen name="Home" component={HomeStackScreen} options={{ tabBarLabel: 'Home' }} />
-                <Tab.Screen name="Users" component={UsersStackScreen} options={{ tabBarLabel: 'Users' }} />
+                <Tab.Screen name="Home" component={AdminHomeScreen} options={{ tabBarLabel: 'Home' }} />
+                <Tab.Screen name="Users" component={AdminUsersScreen} options={{ tabBarLabel: 'Users' }} />
             </Tab.Navigator>
-        </NavigationContainer>
     );
 }

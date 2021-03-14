@@ -4,7 +4,7 @@ import firebase from '../../firebase.js';
 
 import colors from '../config/colors';
 
-export default function DashboardScreen({ props, navigation }) {
+export default function HomeScreen({ props, navigation }) {
   const [errorMessage, setErrorMessage] = useState('');
   const [displayName, setDisplayName] = useState(firebase.auth().currentUser !== null ? firebase.auth().currentUser.displayName : '');
 
