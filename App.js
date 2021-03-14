@@ -7,10 +7,10 @@ import CategoryDrop from "./app/screens/CategoryDrop";
 import PlantScreen from "./app/screens/PlantScreen";
 import LoginScreen from "./app/screens/LoginScreen";
 import SignupScreen from "./app/screens/SignupScreen";
-import DashboardScreen from "./app/screens/DashboardScreen";
 import ForgotPasswordScreen from "./app/screens/ForgotPasswordScreen";
-import AdminDashboardScreen from "./app/screens/AdminDashboardScreen";
 import Index from "./app/src/components/Index";
+import PatientDashboard from './app/dashboards/PatientDashboard';
+import AdminDashboard from './app/dashboards/AdminDashboard';
 
 import colors from "./app/config/colors";
 
@@ -21,6 +21,7 @@ function MyStack() {
     <Stack.Navigator
       initialRouteName="SignupScreen"
       screenOptions={{
+        gestureEnabled: false,
         headerLeft: null,
         headerTitleAlign: "center",
         headerStyle: {
@@ -48,18 +49,17 @@ function MyStack() {
         options={{ title: "Forgot Password" }}
       />
       <Stack.Screen
-        name="DashboardScreen"
-        component={DashboardScreen}
-        options={{ title: "Dashboard" }}
+        name="PatientDashboard"
+        component={PatientDashboard}
       />
       <Stack.Screen
-        name="AdminDashboardScreen"
-        component={AdminDashboardScreen}
-        options={{ title: "AdminDashboard" }}
+        name="AdminDashboard"
+        component={AdminDashboard}
       />
+      <Stack.Screen options={{ headerShown: false }} name="Sessions" component={CategoryDrop} />
       <Stack.Screen name="TherapyScreen" component={TherapyScreen} />
       <Stack.Screen name="PlantScreen" component={PlantScreen} />
-      <Stack.Screen name="CategoryDrop" component={CategoryDrop} />
+      {/* <Stack.Screen name="CategoryDrop" component={CategoryDrop} /> */}
     </Stack.Navigator>
   );
 }

@@ -43,12 +43,12 @@ function LoginScreen(props) {
       .then((res) => {
         if(firebase.auth().currentUser.email == 'admin@joyapp.com'){
           reset()
-          props.navigation.navigate('AdminDashboardScreen')
+          props.navigation.navigate('AdminDashboard')
         } else{
           if(firebase.auth().currentUser.emailVerified){
             console.log('User logged-in successfully!')
             reset()
-            props.navigation.navigate('DashboardScreen')
+            props.navigation.navigate('PatientDashboard')
           }else{
             setIsLoading(false)
             setErrorMessage('Your email has not been verfied')
