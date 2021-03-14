@@ -8,10 +8,10 @@ import "@testing-library/jest-dom/extend-expect";
 import { initialWindowMetrics } from 'react-native-safe-area-context';
 
 
-describe('Testing ForgottenPasswordScreen.js', () => {
+describe('Testing ForgotPasswordScreen.js', () => {
     afterEach(cleanup);
 
-    test('ForgottenPasswordScreen renders correctly', () => {
+    test('ForgotnPasswordScreen renders correctly', () => {
         const tree = renderer.create(<ForgotPasswordScreen />).toJSON();
         expect(tree).toMatchSnapshot();
     });
