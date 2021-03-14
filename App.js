@@ -9,8 +9,8 @@ import LoginScreen from "./app/screens/LoginScreen";
 import SignupScreen from "./app/screens/SignupScreen";
 import ForgotPasswordScreen from "./app/screens/ForgotPasswordScreen";
 import Index from "./app/src/components/Index";
-import PatientDashboard from './app/dashboards/PatientDashboard';
-import AdminDashboard from './app/dashboards/AdminDashboard';
+import PatientDashboard from "./app/dashboards/PatientDashboard";
+import AdminDashboard from "./app/dashboards/AdminDashboard";
 
 import colors from "./app/config/colors";
 
@@ -48,15 +48,13 @@ function MyStack() {
         component={ForgotPasswordScreen}
         options={{ title: "Forgot Password" }}
       />
+      <Stack.Screen name="PatientDashboard" component={PatientDashboard} />
+      <Stack.Screen name="AdminDashboard" component={AdminDashboard} />
       <Stack.Screen
-        name="PatientDashboard"
-        component={PatientDashboard}
+        options={{ headerShown: false }}
+        name="Sessions"
+        component={CategoryDrop}
       />
-      <Stack.Screen
-        name="AdminDashboard"
-        component={AdminDashboard}
-      />
-      <Stack.Screen options={{ headerShown: false }} name="Sessions" component={CategoryDrop} />
       <Stack.Screen name="TherapyScreen" component={TherapyScreen} />
       <Stack.Screen name="PlantScreen" component={PlantScreen} />
       {/* <Stack.Screen name="CategoryDrop" component={CategoryDrop} /> */}
@@ -66,14 +64,16 @@ function MyStack() {
 
 export default function App() {
   return (
-    //<NavigationContainer><MyStack /></NavigationContainer>
+    <NavigationContainer>
+      <MyStack />
+    </NavigationContainer>
 
     //Uncomment to see different screens one at a time
-    <TherapyScreen />
+    //<TherapyScreen />
     //<CategoryDrop/>
     //<PlantScreen/>
     //<LoginScreen/>
-    //<SignupScreen/>
+    //<SignupScreen />
     //<ForgotPasswordScreen/>
     //<Index></Index> //where progressBar buttons/actions and component are
   );
