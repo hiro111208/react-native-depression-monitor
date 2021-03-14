@@ -10,6 +10,7 @@ import {
 } from "react-native";
 import Constants from "expo-constants";
 import firebase from "../../firebase";
+import ProgressBar from "../src/components/ProgressBar";
 
 /**
  * Screen where the therapy session takes place. Users will
@@ -22,6 +23,11 @@ const TherapyScreen = () => {
   const [question, setQuestion] = useState(0);
   const [isCorrect, toggleCorrect] = useState(false);
   const [isIncorrect, toggleIncorrect] = useState(false);
+
+  state = {
+    currentWidth: -1,
+    segments: 4,
+  };
 
   const ref = firebase.firestore().collection("questions");
   const query = ref
@@ -72,7 +78,10 @@ const TherapyScreen = () => {
   function renderIncorrectAnswerArea() {
     return (
       <View style={[styles.answerArea, styles.centering, styles.shadowEffect]}>
-        <Text style={styles.textNote}> The correct answer was "{getCorrectAnswer()}". </Text>
+        <Text style={styles.textNote}>
+          {" "}
+          The correct answer was "{getCorrectAnswer()}".{" "}
+        </Text>
         <TextInput
           style={styles.input}
           value="You can do this!"
@@ -218,15 +227,27 @@ const TherapyScreen = () => {
   return (
     <KeyboardAvoidingView style={styles.container} behavior="position">
       {/* Button to take a break */}
-      <View style={[styles.topAndBottom, styles.centering]}>
-        <TouchableOpacity style={[styles.takeBreakButton, styles.centering, styles.shadowEffect]}>
+      <View style={[styles.top, styles.centering]}>
+        <ProgressBar
+          segments={this.state.segments}
+          nextWidth={this.state.currentWidth + 1}
+        ></ProgressBar>
+        <TouchableOpacity
+          style={[
+            styles.takeBreakButton,
+            styles.centering,
+            styles.shadowEffect,
+          ]}
+        >
           <Text style={styles.text}>Take a break</Text>
         </TouchableOpacity>
       </View>
 
       {/* Displays therapy item story and question */}
       <View style={[styles.center, styles.centering]}>
-        <View style={[styles.questionArea, styles.centering, styles.shadowEffect]}>
+        <View
+          style={[styles.questionArea, styles.centering, styles.shadowEffect]}
+        >
           {renderQuestion()}
         </View>
       </View>
@@ -235,7 +256,7 @@ const TherapyScreen = () => {
       {renderAnswerArea()}
 
       {/* Button to navigate through the therapy session */}
-      <View style={[styles.topAndBottom, styles.centering]}>
+      <View style={[styles.bottom, styles.centering]}>
         <TouchableOpacity
           style={[styles.optButton, styles.centering, styles.shadowEffect]}
           onPress={() => nextQuestion()}
@@ -259,7 +280,7 @@ const styles = StyleSheet.create({
     padding: 60,
   },
   center: {
-    height: "50%",
+    height: "45%",
   },
   centering: {
     alignItems: "center",
@@ -311,7 +332,7 @@ const styles = StyleSheet.create({
     elevation: 5,
     marginVertical: 5,
   },
-  takeBreakButton:{
+  takeBreakButton: {
     height: "50%",
     width: 125,
     backgroundColor: "#fff",
@@ -326,9 +347,12 @@ const styles = StyleSheet.create({
     color: "black",
     fontSize: 18,
     textAlign: "center",
-    padding: 10
+    padding: 10,
   },
-  topAndBottom: {
+  top: {
+    height: "15%",
+  },
+  bottom: {
     height: "10%",
   },
 });
