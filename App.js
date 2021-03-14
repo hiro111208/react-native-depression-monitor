@@ -11,8 +11,8 @@ import DashboardScreen from "./app/screens/DashboardScreen";
 import ForgotPasswordScreen from "./app/screens/ForgotPasswordScreen";
 import AdminDashboardScreen from "./app/screens/AdminDashboardScreen";
 import Index from "./app/src/components/Index";
-import PatientDashboard from './dashboards/PatientDashboard';
-import AdminDashboard from './dashboards/AdminDashboard';
+import PatientDashboard from './app/dashboards/PatientDashboard';
+import AdminDashboard from './app/dashboards/AdminDashboard';
 
 import colors from "./app/config/colors";
 
