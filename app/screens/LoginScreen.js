@@ -99,7 +99,7 @@ function LoginScreen(props) {
               navigateUser(firebase.auth().currentUser.uid, props);
             } else {
               setIsLoading(false);
-              setErrorMessage("Your email has not been verfied");
+              setErrorMessage("Your email has not been verified");
               setIsVerified(false);
             }
           }
