@@ -1,14 +1,9 @@
 import * as React from 'react';
-import { View, Button, Text } from 'react-native';
-import {
-    NavigationContainer,
-    getFocusedRouteNameFromRoute,
-} from '@react-navigation/native';
+import { View, Text } from 'react-native';
+import { getFocusedRouteNameFromRoute } from '@react-navigation/native';
 import { Ionicons } from '@expo/vector-icons';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { createStackNavigator } from '@react-navigation/stack';
-
-import TherapyScreen from "../screens/TherapyScreen";
+import HomeScreen from './HomeScreen';
 
 function getHeaderTitle(route) {
     // If the focused route is not found, we need to assume it's the initial screen
@@ -27,18 +22,6 @@ function getHeaderTitle(route) {
 }
 
 
-//The below three functions are temporary screens to check the tab bar is working.
-function HomeScreen({ navigation }) {
-    return (
-        <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-            <Button
-                title="Go to Sessions"
-                onPress={() => navigation.navigate('Sessions')}
-            />
-        </View>
-    );
-}
-
 function CalendarScreen() {
     return (
         <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
@@ -50,24 +33,16 @@ function CalendarScreen() {
 function AccountScreen() {
     return (
         <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-            <Text>Account!</Text>
-        </View>
-    );
-}
-
-// TherapyScreen is potentially added to below function
-
-function SessionsScreen() {
-    return (
-        <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-            <Text>Sessions!</Text>
+            <Text>Account</Text>
         </View>
     );
 }
 
 const Tab = createBottomTabNavigator();
 
-function HomeTabs({ navigation, route }) {
+export default function PatientDashboard({ navigation, route }) {
+    
+
     React.useLayoutEffect(() => {
         navigation.setOptions({ headerTitle: getHeaderTitle(route) });
     }, [navigation, route]);
@@ -99,18 +74,5 @@ function HomeTabs({ navigation, route }) {
             <Tab.Screen name="Calendar" component={CalendarScreen} />
             <Tab.Screen name="Account" component={AccountScreen} />
         </Tab.Navigator>
-    );
-}
-
-const Stack = createStackNavigator();
-
-export default function PatientDashboard() {
-    return (
-        <NavigationContainer>
-            <Stack.Navigator screenOptions={{ gestureEnabled: false }}>
-                <Stack.Screen name="Home" component={HomeTabs} />
-                <Stack.Screen options={{ headerShown: false }} name="Sessions" component={SessionsScreen} />
-            </Stack.Navigator>
-        </NavigationContainer>
     );
 }

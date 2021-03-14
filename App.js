@@ -7,7 +7,7 @@ import CategoryDrop from "./app/screens/CategoryDrop";
 import PlantScreen from "./app/screens/PlantScreen";
 import LoginScreen from "./app/screens/LoginScreen";
 import SignupScreen from "./app/screens/SignupScreen";
-import DashboardScreen from "./app/screens/DashboardScreen";
+import DashboardScreen from "./app/dashboards/HomeScreen";
 import ForgotPasswordScreen from "./app/screens/ForgotPasswordScreen";
 import AdminDashboardScreen from "./app/screens/AdminDashboardScreen";
 import Index from "./app/src/components/Index";
@@ -50,16 +50,16 @@ function MyStack() {
         options={{ title: "Forgot Password" }}
       />
       <Stack.Screen
-        name="DashboardScreen"
-        component={DashboardScreen}
-        options={{ title: "Dashboard" }}
+        name="PatientDashboard"
+        component={PatientDashboard}
       />
       <Stack.Screen
         name="AdminDashboardScreen"
         component={AdminDashboardScreen}
         options={{ title: "AdminDashboard" }}
       />
-      <Stack.Screen name="TherapyScreen" component={TherapyScreen} />
+      <Stack.Screen options={{ headerShown: false }} name="Sessions" component={TherapyScreen} />
+      {/* <Stack.Screen name="TherapyScreen" component={TherapyScreen} /> */}
       <Stack.Screen name="PlantScreen" component={PlantScreen} />
       <Stack.Screen name="CategoryDrop" component={CategoryDrop} />
     </Stack.Navigator>
@@ -80,7 +80,6 @@ export default function App() {
     //<SignupScreen/>
     //<ForgotPasswordScreen/>
     //<Index></Index> //where progressBar buttons/actions and component are
-    //<PatientDashboard />
     //<AdminDashboard />
   );
 }
