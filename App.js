@@ -1,18 +1,17 @@
 import * as React from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
-import { StatusBar } from "expo-status-bar";
-import TherapyScreen from "./app/screens/TherapyScreen";
-import CategoryDrop from "./app/screens/CategoryDrop";
-import PlantScreen from "./app/screens/PlantScreen";
-import LoginScreen from "./app/screens/LoginScreen";
-import SignupScreen from "./app/screens/SignupScreen";
-import ForgotPasswordScreen from "./app/screens/ForgotPasswordScreen";
-import Index from "./app/src/components/Index";
-import PatientDashboard from './app/dashboards/PatientDashboard';
-import AdminDashboard from './app/dashboards/AdminDashboard';
+import TherapyScreen from "./App/screens/TherapyScreen";
+import CategoryDrop from "./App/screens/CategoryDrop";
+import PlantScreen from "./App/screens/PlantScreen";
+import LoginScreen from "./App/screens/LoginScreen";
+import SignupScreen from "./App/screens/SignupScreen";
+import ForgotPasswordScreen from "./App/screens/ForgotPasswordScreen";
+import Index from "./App/src/components/Index";
+import PatientDashboard from './App/dashboards/PatientDashboard';
+import AdminDashboard from './App/dashboards/AdminDashboard';
 
-import colors from "./app/config/colors";
+import colors from "./App/config/colors";
 
 const Stack = createStackNavigator();
 
