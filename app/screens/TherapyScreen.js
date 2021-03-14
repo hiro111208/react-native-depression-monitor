@@ -228,10 +228,12 @@ const TherapyScreen = () => {
     <KeyboardAvoidingView style={styles.container} behavior="position">
       {/* Button to take a break */}
       <View style={[styles.top, styles.centering]}>
-        <ProgressBar
-          segments={this.state.segments}
-          nextWidth={this.state.currentWidth + 1}
-        ></ProgressBar>
+        <View style={styles.bar}>
+          <ProgressBar
+            segments={state.segments}
+            nextWidth={state.currentWidth + 1}
+          ></ProgressBar>
+        </View>
         <TouchableOpacity
           style={[
             styles.takeBreakButton,
@@ -354,6 +356,9 @@ const styles = StyleSheet.create({
   },
   bottom: {
     height: "10%",
+  },
+  bar: {
+    width: "100%",
   },
 });
 
