@@ -3,11 +3,12 @@ import renderer from 'react-test-renderer';
 import LoginScreen from '../screens/LoginScreen';
 
 import * as firebase from '../../node_modules/@firebase/testing';
+//require('../../node_modules/@firebase/testing/node_modules/@firebase/auth');
 
 describe('Testing LoginScreen.js', () => {
 
     beforeAll(() => {
-        jest.setTimeout(100); //find appropriate timeout after testing
+        jest.setTimeout(100); //not sure this actually does anything
         //const user = firebase.auth().createUserWithEmailAndPassword('loginTest@login.com', 'password');
         firebase.initializeTestApp({
             projectId: "fireship-tutorial-646fc",
@@ -25,9 +26,9 @@ describe('Testing LoginScreen.js', () => {
     });
 
     test('signInWithEmailAndPassword should work with correct and verified credentials', async () => {
-        //const user = await firebase.signInWithEmailAndPassword("login@test.com", "password");
-        //await firebase.assetSucceeds(user.get());
-        //expect(isAuthenticated()).toBe(true);
+        const user = await firebase.auth().signInWithEmailAndPassword("login@test.com", "password");
+        await firebase.assetSucceeds(user.get());
+        expect(isAuthenticated()).toBe(true);
     });
 });
 
