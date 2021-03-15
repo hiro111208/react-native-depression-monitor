@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { StyleSheet, View, Text, Button } from 'react-native';
+import { StyleSheet, View, Text, Button, Image, TouchableOpacity } from 'react-native';
 import firebase from '../../firebase.js';
 
 import colors from '../config/colors';
@@ -13,19 +13,29 @@ export default function HomeScreen({ props, navigation }) {
 
       <View style={styles.center}>
 
-        <View style={[styles.plantArea, styles.shadowEffect]}>
+        <View style={[styles.welcomeArea, styles.shadowEffect]}>
           <View style={styles.userNote}>
             <Text style={[styles.textStyle]}>Hello there, {displayName}!</Text>
+            <View style={styles.spacer}></View>
+            <View style={[styles.plantImage, styles.centering, styles.shadowEffect]}>
+                    <Image 
+                         style={{ width: '100%', height: '100%' }}
+                         resizeMode="contain"
+                         source={require('../assets/stage_9.png')}
+                    />
+                </View>
             </View>
-            
+            <View style={{height: '35%'}}></View>
+                <TouchableOpacity style={[styles.sessionArea, styles.centering, styles.shadowEffect]} onPress={() => navigation.navigate('Sessions')}>
+                  <Text style={styles.textStyle}>Go to your session</Text>
+                </TouchableOpacity>
           </View>
         </View>
-
-      
     </View>
   );
 }
 
+//onPress={() => navigation.navigate('Sessions')}
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -40,7 +50,7 @@ const styles = StyleSheet.create({
     width: "100%",
     alignItems: 'center'
   },
-  plantArea: {
+  welcomeArea: {
     width: "100%",
     height: "100%",
     borderRadius: 50,
@@ -48,13 +58,20 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   userNote: {
-    height: "40%",
+    height: "30%",
     width: '100%',
     backgroundColor: "#ffeed2",
     alignItems: 'center',
     borderTopStartRadius: 50,
     borderTopEndRadius: 50,
     padding: 20
+  },
+  sessionArea: {
+    height: '20%',
+    width: '90%',
+    backgroundColor: '#ffeed2',
+    padding: 10,
+    borderRadius: 20,
   },
   textStyle: {
     fontSize: 20,
@@ -75,4 +92,19 @@ const styles = StyleSheet.create({
     elevation: 5,
     marginVertical: 5,
   },
+  spacer: {
+    height: '20%'
+  },
+  plantImage: {
+    width: 225,
+    height: 225,
+    borderRadius: 100,
+    borderWidth: 4,
+    borderColor: '#fff',
+    backgroundColor: '#eee',
+  },
+  centering: {
+    alignItems: 'center',
+    justifyContent: 'center'
+  }
 });
