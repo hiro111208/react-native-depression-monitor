@@ -8,7 +8,7 @@ describe('Testing LoginScreen.js', () => {
     beforeAll(() => {
         jest.setTimeout(10000); //find appropriate timeout after testing
         //await init(); //asynchronous calls 
-        const user = firebase.auth().createUserWithEmailAndPassword('blueberry@login.com', 'password');
+        const user = firebase.auth().createUserWithEmailAndPassword('loginTest@login.com', 'password');
     });
 
     test('LoginScreen renders correctly', () => {
@@ -22,7 +22,7 @@ describe('Testing LoginScreen.js', () => {
 // {
 //     let error = '';
 //     try {
-//         await signInWithEmailAndPassword('', '');
+//         await signInWithEmailAndP assword('', '');
 //     } catch (err) {
 //         error = err.toString();
 //     }
