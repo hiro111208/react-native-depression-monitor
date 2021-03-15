@@ -1,96 +1,169 @@
-import React, {useState} from 'react';
-import { StyleSheet, Text, View, TextInput, Button, Alert, ActivityIndicator, TouchableOpacity } from 'react-native';
-import firebase from '../../firebase.js';
+import React, { useState } from "react";
+import {
+  StyleSheet,
+  Text,
+  View,
+  TextInput,
+  Button,
+  Alert,
+  ActivityIndicator,
+  TouchableOpacity,
+} from "react-native";
+import firebase from "../../firebase";
 
-import colors from '../config/colors';
+import colors from "../config/colors";
+
+const db = firebase.firestore();
+
+/**
+ * Adds the newly registered user to the database, with a uniquely assigned ID
+ */
+function addUserToDatabase(uid) {
+  //Create the ID
+  var id;
+  var docRef = db
+    .collection("general")
+    .doc("userCount")
+    .get()
+    .then((doc) => {
+      if (doc.exists) {
+        id = doc.data().count + 1;
+        console.log(id);
+
+        //Update user count for extra user added
+        db.collection("general")
+          .doc("userCount")
+          .set({
+            count: id,
+          })
+          .then(() => {
+            console.log("Stat updated");
+          })
+          .catch((error) => {
+            console.error("Error writing document: ", error);
+          });
+
+        //Add the user to the database with default values and assigned ID
+        db.collection("users")
+          .doc(uid)
+          .set({
+            question: 1,
+            block: 1,
+            categoryDropped: "NONE",
+            userID: id,
+          })
+          .then(() => {
+            console.log("User added");
+          })
+          .catch((error) => {
+            console.error("Error writing document: ", error);
+          });
+      }
+      // doc.data() will be undefined in this case
+      else {
+        console.log("No such document!");
+      }
+    })
+    .catch((error) => {
+      console.log("Error getting document:", error);
+    });
+}
 
 /*
   Screen where users can signup to the app. First screen user sees when opening app for first time
 */
 function SignupScreen(props) {
-  
-  const [displayName, setDisplayName] = useState('');
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [isLoading, setIsLoading]= useState(false);
-  const [errorMessage, setErrorMessage] = useState('');
-  const [message, setMessage] = useState('');
+  const [displayName, setDisplayName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
+  const [message, setMessage] = useState("");
 
-  //Create an account using firebase authentication with the credentials the user has provided. 
+  //Create an account using firebase authentication with the credentials the user has provided.
   //If account successfully create send verification email
-  const registerUser=()=>{
-    if(email === '' && password === '') {
-      Alert.alert('Enter details to signup!')
+  const registerUser = () => {
+    if (email === "" && password === "") {
+      Alert.alert("Enter details to signup!");
     } else {
-      setIsLoading(true)
+      setIsLoading(true);
       firebase
-      .auth()
-      .createUserWithEmailAndPassword(email, password)
-      .then((res) => {
-        res.user.updateProfile({
-          displayName: displayName
+        .auth()
+        .createUserWithEmailAndPassword(email, password)
+        .then((res) => {
+          res.user.updateProfile({
+            displayName: displayName,
+          });
+
+          addUserToDatabase(res.user.uid);
+          console.log(
+            "User registered successfully with UID of " + res.user.uid
+          );
+
+          sendVerificationEmail();
+
+          setIsLoading(false);
+          setDisplayName("");
+          setEmail("");
+          setPassword("");
         })
-        console.log('User registered successfully!')
-
-        sendVerificationEmail();
-    
-        setIsLoading(false)
-        setDisplayName('')
-        setEmail('')
-        setPassword('')
-
-      })
-      .catch(error => {
-        console.log(error.code)
-        setIsLoading(false)
-        setErrorMessage(error.message)
-      })      
+        .catch((error) => {
+          console.log(error.code);
+          setIsLoading(false);
+          setErrorMessage(error.message);
+        });
     }
   };
 
   //Send verification email to the email the user provided
-  function sendVerificationEmail(){
-    firebase.auth().currentUser.sendEmailVerification().then(function() {
-      console.log('email verification sent')
-      setMessage(`Please verify your email through the link we've sent to: `+ email)
-      setErrorMessage('')
-      // Email sent.
-    }).catch(function(error) {
-      console.log('failed to send email verification')
-      console.log(error.code)
-      setIsLoading(false)
-      setErrorMessage(error.message)
-      // An error happened.
-    });
+  function sendVerificationEmail() {
+    firebase
+      .auth()
+      .currentUser.sendEmailVerification()
+      .then(function () {
+        console.log("email verification sent");
+        setMessage(
+          `Please verify your email through the link we've sent to: ` + email
+        );
+        setErrorMessage("");
+        // Email sent.
+      })
+      .catch(function (error) {
+        console.log("failed to send email verification");
+        console.log(error.code);
+        setIsLoading(false);
+        setErrorMessage(error.message);
+        // An error happened.
+      });
   }
 
   //reset all states
-  const reset=()=>{
-    setIsLoading(false)
-    setEmail('')
-    setPassword('')
-    setErrorMessage('')
-    setDisplayName('')
-    setMessage('')
-  }
+  const reset = () => {
+    setIsLoading(false);
+    setEmail("");
+    setPassword("");
+    setErrorMessage("");
+    setDisplayName("");
+    setMessage("");
+  };
 
   //Render the sign up screen interface
-  if(isLoading){
-    return(
+  if (isLoading) {
+    return (
       <View style={styles.preloader}>
-        <ActivityIndicator size="large" color="#9E9E9E"/>
+        <ActivityIndicator size="large" color="#9E9E9E" />
       </View>
-    )
-  }    
+    );
+  }
   //Render the form where the user can input their details
   return (
-    <View style={styles.container}>  
+    <View style={styles.container}>
       <TextInput
         style={styles.inputStyle}
         placeholder="Name"
         value={displayName}
         onChangeText={(val) => setDisplayName(val)}
-      />      
+      />
       <TextInput
         style={styles.inputStyle}
         placeholder="Email"
@@ -106,27 +179,30 @@ function SignupScreen(props) {
         secureTextEntry={true}
       />
       {/*Render error messages or success messages*/}
-      <Text style={{color:'red'}}>{errorMessage}</Text>
-      <Text style={{color:'red'}}>{message}</Text>
+      <Text style={{ color: "red" }}>{errorMessage}</Text>
+      <Text style={{ color: "red" }}>{message}</Text>
 
       {/*Render sign up button that calls registerUser method*/}
       <TouchableOpacity
-        activeOpacity = { .5 }
+        activeOpacity={0.5}
         style={styles.signupButton}
-        onPress={()=>registerUser()}
+        onPress={() => registerUser()}
       >
-        <Text style= {styles.signupText}>SIGNUP</Text>
+        <Text style={styles.signupText}>SIGNUP</Text>
       </TouchableOpacity>
 
       {/*Render text button that allows user to go to login screen */}
-      <Text 
+      <Text
         style={styles.loginText}
-        onPress={() => {reset();props.navigation.navigate('LoginScreen')}}>
+        onPress={() => {
+          reset();
+          props.navigation.navigate("LoginScreen");
+        }}
+      >
         Already Registered? Click here to login
-      </Text>                          
-    </View>  
-  );  
-  
+      </Text>
+    </View>
+  );
 }
 export default SignupScreen;
 
@@ -137,43 +213,43 @@ const styles = StyleSheet.create({
     flexDirection: "column",
     justifyContent: "center",
     padding: 35,
-    backgroundColor: '#fff'
+    backgroundColor: "#fff",
   },
   inputStyle: {
-    width: '100%',
+    width: "100%",
     marginBottom: 15,
     paddingBottom: 15,
     alignSelf: "center",
     borderColor: "#ccc",
-    borderBottomWidth: 1
+    borderBottomWidth: 1,
   },
   loginText: {
     color: colors.darkBorder,
     marginTop: 25,
-    textAlign: 'center'
+    textAlign: "center",
   },
   preloader: {
     left: 0,
     right: 0,
     top: 0,
     bottom: 0,
-    position: 'absolute',
-    alignItems: 'center',
-    justifyContent: 'center',
-    backgroundColor: '#fff'
+    position: "absolute",
+    alignItems: "center",
+    justifyContent: "center",
+    backgroundColor: "#fff",
   },
-  signupButton:{
+  signupButton: {
     width: 300,
     backgroundColor: colors.darkBorder,
     alignSelf: "center",
-    marginTop:10,
-    paddingTop:15,
-    paddingBottom:15,
-    borderRadius:50,
+    marginTop: 10,
+    paddingTop: 15,
+    paddingBottom: 15,
+    borderRadius: 50,
   },
-  signupText:{
-    color: 'white',
-    textAlign: 'center',
-    fontSize: 15
-  }
+  signupText: {
+    color: "white",
+    textAlign: "center",
+    fontSize: 15,
+  },
 });

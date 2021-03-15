@@ -6,6 +6,7 @@ import {
   View,
   KeyboardAvoidingView,
   TouchableOpacity,
+  Alert,
   TextInput,
 } from "react-native";
 import Constants from "expo-constants";
@@ -16,36 +17,51 @@ import ProgressBar from "../src/components/ProgressBar";
  * Screen where the therapy session takes place. Users will
  * answer question stored in Firebase or pause the session.
  */
-const TherapyScreen = () => {
+const TherapyScreen = ({ navigation }) => {
   const [isWordAnswer, toggleWordAnswer] = useState(true);
   const [loaded, setLoaded] = useState(false);
   const [items, setItems] = useState([]);
   const [question, setQuestion] = useState(0);
   const [isCorrect, toggleCorrect] = useState(false);
   const [isIncorrect, toggleIncorrect] = useState(false);
+  const [user, setUser] = useState(undefined);
+
+  const userRef = firebase
+    .firestore()
+    .collection("users")
+    .doc(firebase.auth().currentUser.uid);
 
   // currentWidth + 1 / segments = progress bar filled
   state = {
-    currentWidth: -1, // current progress (+1)
+    currentWidth: question - 1, // current progress (+1)
     segments: 18, // maximum progress
   };
 
-  const ref = firebase.firestore().collection("questions");
-  const query = ref
-    .where("categoryDropped", "==", "CONTROL")
-    .where("block", "==", 1)
-    .orderBy("question");
-
-  // Queries from firebase database and stores in list
+  // accesses the user's progress and gets the questions
   function getItems() {
-    query.onSnapshot((querySnapshot) => {
-      const items = [];
-      querySnapshot.forEach((doc) => {
-        items.push(doc.data());
+    userRef
+      .get()
+      .then((doc) => {
+        setUser(doc.data());
+        const ref = firebase.firestore().collection("questions");
+        const query = ref
+          .where("categoryDropped", "==", doc.data().categoryDropped)
+          .where("block", "==", doc.data().block)
+          .orderBy("question");
+        query.onSnapshot((querySnapshot) => {
+          const items = [];
+          querySnapshot.forEach((doc) => {
+            items.push(doc.data());
+          });
+          setItems(items);
+          setLoaded(true);
+          setQuestion(doc.data().question - 1);
+          setUser(doc.data());
+        });
+      })
+      .catch((error) => {
+        console.log("Error getting document:", error);
       });
-      setItems(items);
-      setLoaded(true);
-    });
   }
 
   // Gets therapy content while screen is rendering
@@ -213,9 +229,39 @@ const TherapyScreen = () => {
       toggleWordAnswer(false);
     } else if (!isWordAnswer && (isCorrect || isIncorrect)) {
       resetStatus();
-      setQuestion(question + 1);
+      saveProgress(user.block, question + 2);
+      incrementQuestion();
       toggleWordAnswer(true);
     }
+  }
+
+  function incrementQuestion() {
+    if (question == 17) {
+      saveProgress(user.block + 1, 1);
+      Alert.alert(
+        "Congratulations",
+        "You have completed therapy set " + user.block,
+        [{ text: "OK", onPress: () => navigation.goBack() }]
+      );
+    } else {
+      setQuestion(question + 1);
+    }
+  }
+
+  function saveProgress(blockI, questionI) {
+    userRef
+      .set({
+        userID: user.userID,
+        question: questionI,
+        block: blockI,
+        categoryDropped: user.categoryDropped,
+      })
+      .then(() => {
+        console.log("Progress saved");
+      })
+      .catch((error) => {
+        console.error("Error saving progress: ", error);
+      });
   }
 
   // Resets whether the user is right or wrong for a new question
