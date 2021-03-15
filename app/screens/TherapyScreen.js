@@ -10,7 +10,7 @@ import {
   TextInput,
 } from "react-native";
 import Constants from "expo-constants";
-import firebase from "../../firebase";
+import firebase from "../database/firebase";
 import ProgressBar from "../src/components/ProgressBar";
 
 /**

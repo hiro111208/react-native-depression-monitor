@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { StyleSheet, View, Text, Button } from 'react-native';
-import firebase from '../../firebase.js';
+import firebase from "../database/firebase";
 
 import colors from '../config/colors';
 

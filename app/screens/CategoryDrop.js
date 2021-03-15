@@ -7,7 +7,7 @@ import {
   TouchableOpacity,
 } from "react-native";
 import Constants from "expo-constants";
-import firebase from "../../firebase";
+import firebase from "../database/firebase";
 
 const CategoryDrop = ({ route, navigation }) => {
   // Stores user data passed from the previous screen

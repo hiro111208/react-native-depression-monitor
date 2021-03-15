@@ -1,10 +1,15 @@
 import React, { useState } from 'react';
 import { View, Text, Button, StyleSheet, TouchableOpacity } from 'react-native';
-import firebase from '../../firebase.js';
 import colors from '../config/colors';
+import firebase from "../database/firebase";
+
 
 export default function AccountScreen({ props, navigation }) {
-    const [displayName, setDisplayName] = useState(firebase.auth().currentUser !== null ? firebase.auth().currentUser.displayName : '');
+  const [displayName, setDisplayName] = useState(
+    firebase.auth().currentUser !== null
+      ? firebase.auth().currentUser.displayName
+      : ""
+  );
 
     const signOut = () => {
         firebase.auth().signOut().then(() => {

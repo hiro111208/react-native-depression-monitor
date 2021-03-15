@@ -9,7 +9,7 @@ import {
   ActivityIndicator,
   TouchableOpacity,
 } from "react-native";
-import firebase from "../../firebase";
+import firebase from "../database/firebase";
 
 import colors from "../config/colors";
 
