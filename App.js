@@ -1,6 +1,10 @@
-import * as React from 'react';
-import { View, Text, Button, Image, alert } from 'react-native';import { NavigationContainer } from "@react-navigation/native";
-import { createStackNavigator, HeaderBackButton } from "@react-navigation/stack";
+import * as React from "react";
+import { View, Text, Button, Image, alert } from "react-native";
+import { NavigationContainer } from "@react-navigation/native";
+import {
+  createStackNavigator,
+  HeaderBackButton,
+} from "@react-navigation/stack";
 import TherapyScreen from "./app/screens/TherapyScreen";
 import CategoryDrop from "./app/screens/CategoryDrop";
 import PlantScreen from "./app/screens/PlantScreen";
@@ -15,12 +19,11 @@ import AdminDashboard from "./app/dashboards/AdminDashboard";
 
 import colors from "./app/config/colors";
 
-import { withNavigation } from 'react-navigation';
-
+import { withNavigation } from "react-navigation";
 
 const Stack = createStackNavigator();
 
-function MyStack(  ) {
+function MyStack() {
   return (
     <Stack.Navigator
       initialRouteName="LoginScreen"
@@ -64,7 +67,7 @@ function MyStack(  ) {
       />
       <Stack.Screen name="PatientDashboard" component={PatientDashboard} />
       <Stack.Screen
-        name="AdminDashboardScreen"
+        name="AdminDashboard"
         component={AdminDashboard}
         options={{ title: "AdminDashboard" }}
       />
@@ -72,13 +75,16 @@ function MyStack(  ) {
         name="SchedulingScreen"
         component={SchedulingScreen}
         options={{
-          title: "Add Schedule", headerLeft: null}}
+          title: "Add Schedule",
+          headerLeft: null,
+        }}
       />
       <Stack.Screen
         name="ScheduleListScreen"
         component={ScheduleListScreen}
         options={{
-          title: "Schedule List"}}
+          title: "Schedule List",
+        }}
       />
 
       <Stack.Screen
