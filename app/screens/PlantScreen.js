@@ -70,9 +70,9 @@ const styles = StyleSheet.create({
     },
     optButton: {
         height: '25%',
-        width: 140,
+        width: "45%",
         backgroundColor: '#94ffd3',
-        borderRadius: 10,
+        borderRadius: 30,
     },
     text: {
         color: "black",

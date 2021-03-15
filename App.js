@@ -69,9 +69,9 @@ export default function App() {
     //<NavigationContainer><MyStack /></NavigationContainer>
 
     //Uncomment to see different screens one at a time
-    <TherapyScreen />
+    //<TherapyScreen />
     //<CategoryDrop/>
-    //<PlantScreen/>
+    <PlantScreen/>
     //<LoginScreen/>
     //<SignupScreen/>
     //<ForgotPasswordScreen/>
