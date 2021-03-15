@@ -51,7 +51,7 @@ function LoginScreen(props) {
             props.navigation.navigate('PatientDashboard')
           }else{
             setIsLoading(false)
-            setErrorMessage('Your email has not been verfied')
+            setErrorMessage('Your email has not been verified')
             setIsVerified(false)
           }
         }
