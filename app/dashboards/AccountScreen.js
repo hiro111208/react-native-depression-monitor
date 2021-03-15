@@ -15,15 +15,17 @@ export default function AccountScreen({ props, navigation }) {
     };
     
     return (
-        <View style={styles.center}>
+        <View style={styles.container}>
+            <View style={styles.center}>
             <View style={[styles.welcomeArea, styles.shadowEffect]}>
                 <View style={[styles.userNote]}>
-                    <Text>Log out informaton here</Text>
+                    <Text>Log out information here</Text>
                 </View>
 
                 <TouchableOpacity style={[styles.logout]} onPress={() => signOut()}>
                     <Text style={styles.textStyle}>Logout</Text>
                 </TouchableOpacity>
+            </View>
             </View>
         </View>
     );
@@ -32,6 +34,13 @@ export default function AccountScreen({ props, navigation }) {
 //onPress={() => signOut()}
 
 const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+        display: "flex",
+        justifyContent: 'center',
+        alignItems: 'center',
+        backgroundColor: '#fff'
+      },
     center: {
         height: "100%",
         width: "100%",
@@ -47,7 +56,7 @@ const styles = StyleSheet.create({
       userNote: {
         height: "80%",
         width: '100%',
-        backgroundColor: "#fed8b1",
+        backgroundColor: "#ffeed2",
         alignItems: 'center',
         borderTopStartRadius: 50,
         borderTopEndRadius: 50,
@@ -56,7 +65,7 @@ const styles = StyleSheet.create({
       logout:{
         height: "20%",
         width: '100%',
-        backgroundColor: "#ffeed2",
+        backgroundColor: "#fed8b1",
         alignItems: 'center',
         borderBottomStartRadius: 50,
         borderBottomEndRadius: 50,
