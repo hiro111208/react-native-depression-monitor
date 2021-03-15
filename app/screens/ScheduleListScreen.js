@@ -12,8 +12,6 @@ import {
 import { ListItem } from "react-native-elements";
 import firebase from "../database/firebase";
 
-import { withNavigation } from "react-navigation";
-
 class ScheduleListScreen extends Component {
   constructor() {
     super();
