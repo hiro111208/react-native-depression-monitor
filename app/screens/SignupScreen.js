@@ -50,7 +50,7 @@ function addUserToDatabase(uid) {
             question: 1,
             block: 1,
             categoryDropped: "NONE",
-            userID: "DB" + id,
+            userID: id,
           })
           .then(() => {
             console.log("User added");
