@@ -1,19 +1,33 @@
-import firebase from '../../firebase.js';
 import React from 'react';
 import renderer from 'react-test-renderer';
 import LoginScreen from '../screens/LoginScreen';
 
+import * as firebase from '../../node_modules/@firebase/testing';
+
 describe('Testing LoginScreen.js', () => {
 
     beforeAll(() => {
-        jest.setTimeout(10000); //find appropriate timeout after testing
-        //await init(); //asynchronous calls 
-        const user = firebase.auth().createUserWithEmailAndPassword('loginTest@login.com', 'password');
+        jest.setTimeout(100); //find appropriate timeout after testing
+        //const user = firebase.auth().createUserWithEmailAndPassword('loginTest@login.com', 'password');
+        firebase.initializeTestApp({
+            projectId: "fireship-tutorial-646fc",
+            auth: { uid: "login-test", email: "login@test.com", password:"password" }
+        });
     });
+
+    afterAll(() => {
+        Promise.all(firebase.apps().map(app => app.delete()))
+    })
 
     test('LoginScreen renders correctly', () => {
         const tree = renderer.create(<LoginScreen />).toJSON();
         expect(tree).toMatchSnapshot();
+    });
+
+    test('signInWithEmailAndPassword should work with correct and verified credentials', async () => {
+        //const user = await firebase.signInWithEmailAndPassword("login@test.com", "password");
+        //await firebase.assetSucceeds(user.get());
+        //expect(isAuthenticated()).toBe(true);
     });
 });
 
@@ -22,7 +36,7 @@ describe('Testing LoginScreen.js', () => {
 // {
 //     let error = '';
 //     try {
-//         await signInWithEmailAndP assword('', '');
+//         await signInWithEmailAndPassword('', '');
 //     } catch (err) {
 //         error = err.toString();
 //     }

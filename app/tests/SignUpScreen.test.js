@@ -1,28 +1,33 @@
-
 import React from 'react';
 import renderer from 'react-test-renderer';
 import SignUpScreen from '../screens/SignUpScreen';
 
-//snapshot test
+import * as firebase from '../../node_modules/@firebase/testing';
+
 describe('Testing SignUpScreen.js', () => {
+
+    beforeAll(() => {
+        jest.setTimeout(100); //find appropriate timeout after testing
+    });
+
     it('SignUpScreen renders correctly', () => {
         const tree = renderer.create(<SignUpScreen />).toJSON();
         expect(tree).toMatchSnapshot();
     });
 
-    test('Sign Up should work with correct credentials and verification', () => {
+    test('Sign Up should work with correct credentials and verification', async () => {
 
     });
 
-    test('Sign Up should not work with correct credentials but no verification', () => {
+    test('Sign Up should not work with correct credentials but no verification', async () => {
 
     });
 
-    test('Sign Up should not work with incorrect email', () => {
+    test('Sign Up should not work with incorrect email', async () => {
 
     });
 
-    test('Sign Up should not work with incorrect email', () => {
+    test('Sign Up should not work with incorrect email', async () => {
 
     });
 
