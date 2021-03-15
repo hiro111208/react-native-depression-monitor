@@ -1,5 +1,12 @@
 import React, { useState } from "react";
-import { StyleSheet, View, Text, Button } from "react-native";
+import {
+  StyleSheet,
+  View,
+  Text,
+  Button,
+  Image,
+  TouchableOpacity,
+} from "react-native";
 import firebase from "../../firebase.js";
 
 import colors from "../config/colors";
@@ -13,13 +20,41 @@ export default function HomeScreen({ route, props, navigation }) {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.textStyle}>Hello, {displayName}</Text>
+      <View style={styles.center}>
+        <View style={[styles.welcomeArea, styles.shadowEffect]}>
+          <View style={styles.userNote}>
+            <Text style={[styles.textStyle]}>Hello there, {displayName}!</Text>
 
-      <Button
-        color={colors.darkBorder}
-        title="Go to Sessions"
-        onPress={() => navigation.navigate("TherapyScreen")}
-      />
+            <View style={styles.spacer}></View>
+
+            <View
+              style={[styles.plantImage, styles.centering, styles.shadowEffect]}
+            >
+              <Image
+                style={{ width: "100%", height: "100%" }}
+                resizeMode="contain"
+                source={require("../assets/stage_9.png")}
+              />
+            </View>
+          </View>
+
+          <View style={{ height: "30%" }}></View>
+
+          <TouchableOpacity
+            style={[styles.sessionArea, styles.centering, styles.shadowEffect]}
+            onPress={() => navigation.navigate("TherapyScreen")}
+          >
+            <Text style={styles.textStyle}>Go to your session</Text>
+          </TouchableOpacity>
+
+          <TouchableOpacity
+            style={[styles.sessionArea, styles.centering, styles.shadowEffect]}
+            onPress={() => navigation.navigate("PlantScreen")}
+          >
+            <Text style={styles.textStyle}>Interact with your plant</Text>
+          </TouchableOpacity>
+        </View>
+      </View>
     </View>
   );
 }
@@ -30,11 +65,66 @@ const styles = StyleSheet.create({
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
-    padding: 35,
+    padding: 25,
     backgroundColor: "#fff",
   },
+  center: {
+    height: "100%",
+    width: "100%",
+    alignItems: "center",
+  },
+  welcomeArea: {
+    width: "100%",
+    height: "100%",
+    borderRadius: 50,
+    backgroundColor: "#fed8b1",
+    alignItems: "center",
+  },
+  userNote: {
+    height: "30%",
+    width: "100%",
+    backgroundColor: "#ffeed2",
+    alignItems: "center",
+    borderTopStartRadius: 50,
+    borderTopEndRadius: 50,
+    padding: 20,
+  },
+  sessionArea: {
+    height: "17%",
+    width: "90%",
+    backgroundColor: "#ffeed2",
+    padding: 10,
+    borderRadius: 20,
+  },
   textStyle: {
-    fontSize: 15,
-    marginBottom: 20,
+    fontSize: 20,
+    fontWeight: "bold",
+    color: "dimgray",
+  },
+  shadowEffect: {
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
+    elevation: 5,
+    marginVertical: 5,
+  },
+  spacer: {
+    height: "20%",
+  },
+  plantImage: {
+    width: 225,
+    height: 225,
+    borderRadius: 100,
+    borderWidth: 4,
+    borderColor: "#fff",
+    backgroundColor: "#eee",
+  },
+  centering: {
+    alignItems: "center",
+    justifyContent: "center",
   },
 });

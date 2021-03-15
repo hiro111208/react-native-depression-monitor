@@ -55,7 +55,11 @@ function MyStack() {
         name="TherapyScreen"
         component={TherapyScreen}
       />
-      <Stack.Screen name="PlantScreen" component={PlantScreen} />
+      <Stack.Screen
+        options={{ headerShown: false }}
+        name="PlantScreen"
+        component={PlantScreen}
+      />
       <Stack.Screen name="CategoryDrop" component={CategoryDrop} />
     </Stack.Navigator>
   );

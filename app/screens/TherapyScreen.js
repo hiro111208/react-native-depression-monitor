@@ -304,6 +304,7 @@ const TherapyScreen = ({ navigation }) => {
       {/* Presents different answer formats */}
       {renderAnswerArea()}
 
+
       {/* Button to navigate through the therapy session */}
       <View style={[styles.bottom, styles.centering]}>
         <TouchableOpacity
@@ -325,11 +326,12 @@ const styles = StyleSheet.create({
     borderRadius: 10,
   },
   answerArea: {
-    height: "25%",
-    padding: 60,
+    height: "30%",
+    padding: 50,
+    flex: 1,
   },
   center: {
-    height: "45%",
+    height: "50%",
   },
   centering: {
     alignItems: "center",
@@ -351,7 +353,7 @@ const styles = StyleSheet.create({
     borderWidth: 5,
     borderRadius: 40,
     padding: 8,
-    fontSize: 24,
+    fontSize: 20,
     textAlign: "center",
   },
   optButton: {
@@ -359,7 +361,8 @@ const styles = StyleSheet.create({
     width: "70%",
     backgroundColor: "#a9eed1",
     borderRadius: 20,
-    padding: 20,
+    position: 'absolute',
+    bottom: 0,
   },
   questionArea: {
     width: "85%",
@@ -389,14 +392,15 @@ const styles = StyleSheet.create({
   },
   text: {
     color: "black",
-    fontSize: 20,
+    fontSize: 18,
     textAlign: "center",
   },
   textNote: {
     color: "black",
-    fontSize: 18,
+    fontSize: 15,
     textAlign: "center",
     padding: 10,
+    flexWrap: "wrap"
   },
   top: {
     height: "15%",
