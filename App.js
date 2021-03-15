@@ -1,6 +1,6 @@
-import * as React from "react";
-import { NavigationContainer } from "@react-navigation/native";
-import { createStackNavigator } from "@react-navigation/stack";
+import * as React from 'react';
+import { View, Text, Button, Image, alert } from 'react-native';import { NavigationContainer } from "@react-navigation/native";
+import { createStackNavigator, HeaderBackButton } from "@react-navigation/stack";
 import TherapyScreen from "./app/screens/TherapyScreen";
 import CategoryDrop from "./app/screens/CategoryDrop";
 import PlantScreen from "./app/screens/PlantScreen";
@@ -22,7 +22,7 @@ function MyStack() {
       initialRouteName="SignupScreen"
       screenOptions={{
         gestureEnabled: false,
-        //headerLeft: null,
+        headerLeft: null,
         headerTitleAlign: "center",
         headerStyle: {
           backgroundColor: colors.darkBorder,
@@ -57,12 +57,16 @@ function MyStack() {
       <Stack.Screen
         name="SchedulingScreen"
         component={SchedulingScreen}
-        options={{ title: "Add Schedule" }}
+        options={{
+          title: "Add Schedule", headerLeft: null}}
       />
       <Stack.Screen
         name="ScheduleListScreen"
         component={ScheduleListScreen}
-        options={{ title: "Schedule List" }}
+        options={{
+          title: "Schedule List", headerLeft: () => (
+            <Button title='Back' onPress={() => navigation.navigate('SchedulingScreen')} />
+            ),}}
       />
       <Stack.Screen name="TherapyScreen" component={TherapyScreen} />
       <Stack.Screen name="PlantScreen" component={PlantScreen} />

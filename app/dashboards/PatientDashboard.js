@@ -3,7 +3,6 @@ import { getFocusedRouteNameFromRoute } from '@react-navigation/native';
 import { Ionicons } from '@expo/vector-icons';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import HomeScreen from './HomeScreen';
-import CalendarScreen from './CalendarScreen';
 import AccountScreen from './AccountScreen';
 import SchedulingScreen from '../screens/SchedulingScreen';
 
