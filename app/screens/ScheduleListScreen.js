@@ -6,6 +6,9 @@ import { StyleSheet, ScrollView, ActivityIndicator, View, Alert } from 'react-na
 import { ListItem } from 'react-native-elements';
 import firebase from '../database/firebase';
 
+import { withNavigation } from 'react-navigation';
+
+
 class ScheduleListScreen extends Component {
 
   constructor() {
@@ -85,21 +88,32 @@ class ScheduleListScreen extends Component {
       )
     }
     return (
-      <ScrollView style={styles.container}>
+      <View style={styles.container}>
+        <ScrollView>
           {
             this.state.scheduleArr.map((item, i) => {
               return (
-                  <ListItem key={i} bottomDivider>
-                    <ListItem.Content>
-                      <ListItem.Title>{this.convertDateTime(item.seconds)}</ListItem.Title>
-                    </ListItem.Content>
-                    <Button onPress={() => this.openTwoButtonAlert(item.key)} title="Delete"></Button>
-                  </ListItem>
+                <ListItem key={i} bottomDivider>
+                  <ListItem.Content>
+                    <ListItem.Title>{this.convertDateTime(item.seconds)}</ListItem.Title>
+                  </ListItem.Content>
+                  <Button onPress={() => this.openTwoButtonAlert(item.key)} title="Delete"></Button>
+                </ListItem>
 
               );
             })
           }
-      </ScrollView>
+        </ScrollView>
+
+        <View>
+          <Button
+            title='Calander'
+            onPress={() => this.props.navigation.goBack()}
+            color="#19AC52"
+          />
+        </View>
+      </View>
+      
     );
   }
 }
@@ -118,7 +132,7 @@ const styles = StyleSheet.create({
     position: 'absolute',
     alignItems: 'center',
     justifyContent: 'center'
-  }
+  },
 })
 
 export default ScheduleListScreen;

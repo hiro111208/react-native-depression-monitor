@@ -15,9 +15,12 @@ import AdminDashboard from "./app/dashboards/AdminDashboard";
 
 import colors from "./app/config/colors";
 
+import { withNavigation } from 'react-navigation';
+
+
 const Stack = createStackNavigator();
 
-function MyStack( {props} ) {
+function MyStack(  ) {
   return (
     <Stack.Navigator
       initialRouteName="SignupScreen"
@@ -65,9 +68,7 @@ function MyStack( {props} ) {
         name="ScheduleListScreen"
         component={ScheduleListScreen}
         options={{
-          title: "Schedule List", headerLeft: () => (
-            <Button title='Back' onPress={() => this.props.navigation.navigate('SchedulingScreen')} />
-            ),}}
+          title: "Schedule List"}}
       />
 
       <Stack.Screen
