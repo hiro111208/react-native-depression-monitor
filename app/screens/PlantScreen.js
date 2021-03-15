@@ -98,7 +98,7 @@ const styles = StyleSheet.create({
         height: '20%',
     },
     plantSpace: {
-        height: '20%',
+        height: '30%',
     },
     plantImage: {
         width: 275,
