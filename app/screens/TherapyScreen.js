@@ -209,7 +209,8 @@ const TherapyScreen = () => {
     setReading(!isReading);
     {if(loaded){
       if (!isReading){
-          try{Speech.speak(items[question].question1)} catch(error){console.log(error)}
+        Speech.getAvailableVoicesAsync();
+          try{Speech.speak(items[question].question1, {language:"en-UK"})} catch(error){console.log(error)}
         }else{
           Speech.stop()
         }
@@ -220,7 +221,7 @@ const TherapyScreen = () => {
   // Renders button that reads text aloud
   function renderReadTextButton(){
     if(loaded){ return(
-      <Icon name={readButtonAttributes.name}  size={30} color="white" onPress={()=> handleReadButtonOnPress()} />
+      <Icon name={readButtonAttributes.name}  size={30} color="white" onPress={()=> handleReadButtonOnPress()}/>
     )}
   }
 
