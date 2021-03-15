@@ -26,7 +26,6 @@ const Tab = createBottomTabNavigator();
 
 export default function PatientDashboard({ navigation, route }) {
 
-
     React.useLayoutEffect(() => {
         navigation.setOptions({ headerTitle: getHeaderTitle(route) });
     }, [navigation, route]);

@@ -31,8 +31,6 @@ export default function AccountScreen({ props, navigation }) {
     );
 }
 
-//onPress={() => signOut()}
-
 const styles = StyleSheet.create({
     container: {
         flex: 1,
@@ -63,7 +61,7 @@ const styles = StyleSheet.create({
         padding: 20
       },
       logout:{
-        height: "20%",
+        height: "25%",
         width: '100%',
         backgroundColor: "#fed8b1",
         alignItems: 'center',
@@ -83,6 +81,8 @@ const styles = StyleSheet.create({
         marginVertical: 5,
       },
       textStyle:{
-          fontSize: 16
+        fontSize: 20,
+        fontWeight: 'bold',
+        color: 'dimgray'
       }
 })
