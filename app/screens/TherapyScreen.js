@@ -204,7 +204,7 @@ const TherapyScreen = () => {
     name: (isReading ? "text-to-speech-off" : "text-to-speech"),
   }
  
-  //Change icon for read text button and either start or stop reading
+  //Either start or stop reading on read aloud button click
   function handleReadButtonOnPress(){
     setReading(!isReading);
     {if(loaded){
