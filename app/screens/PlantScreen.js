@@ -46,7 +46,7 @@ const PlantScreen = () => {
                 </TouchableOpacity>
             </View>
             <View style={[{height: '20%'}, styles.centering]}>
-                <TouchableOpacity style={[styles.homeButton, styles.centering]} >
+                <TouchableOpacity style={[styles.homeButton, styles.centering]}>
                     <Text style={styles.text}>Go to homescreen</Text>
                 </TouchableOpacity>
             </View>
