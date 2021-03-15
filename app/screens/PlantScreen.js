@@ -2,6 +2,7 @@ import React from 'react';
 import { StatusBar, StyleSheet, View, Text, TouchableOpacity, Image } from 'react-native';
 import Constants from 'expo-constants'; 
 
+
 const PlantScreen = () => {
     return (
         <View style={styles.container}>
@@ -36,12 +37,20 @@ const PlantScreen = () => {
                 </View>
             </View>
 
+            <View style={{height: '2%'}}></View>
+
             <View style={[styles.nextSpace, styles.centering]}>
                 <TouchableOpacity style={[styles.optButton, styles.centering]}>
                     <Text style={styles.text}>Water your plant!</Text>
                     <Text style={styles.comment}>-5 coins</Text>
                 </TouchableOpacity>
             </View>
+            <View style={[{height: '20%'}, styles.centering]}>
+                <TouchableOpacity style={[styles.homeButton, styles.centering]} >
+                    <Text style={styles.text}>Go to homescreen</Text>
+                </TouchableOpacity>
+            </View>
+                
 
         </View>
     )
@@ -49,7 +58,6 @@ const PlantScreen = () => {
 
 const styles = StyleSheet.create({
     container: {
-        marginTop: Constants.statusBarHeight,
         flex: 1,
         backgroundColor: '#ffd394'
     },
@@ -69,9 +77,15 @@ const styles = StyleSheet.create({
         marginHorizontal: 5,
     },
     optButton: {
-        height: '25%',
+        height: '50%',
         width: "45%",
         backgroundColor: '#94ffd3',
+        borderRadius: 30,
+    },
+    homeButton: {
+        height: '25%',
+        width: "45%",
+        backgroundColor: '#fff',
         borderRadius: 30,
     },
     text: {
@@ -109,7 +123,7 @@ const styles = StyleSheet.create({
         backgroundColor: '#eee',
     },
     nextSpace: {
-        height: '30%'
+        height: '20%'
     },
     centering: {
         alignItems: 'center',
