@@ -198,24 +198,40 @@ const TherapyScreen = () => {
       toggleWordAnswer(true);
     }
   }
+
+  //Return the icon name for the read text button
   const readButtonAttributes={
     name: (isReading ? "text-to-speech-off" : "text-to-speech"),
-    handleOnPress(){ loaded ? (!isReading ? Speech.speak(items[question].question1, {language:"en-GB"}) : Speech.stop()) : ""}
   }
  
+  //Change icon for read text button and either start or stop reading
+  function handleReadButtonOnPress(){
+    setReading(!isReading);
+    {if(loaded){
+      if (!isReading){
+          try{Speech.speak(items[question].question1)} catch(error){console.log(error)}
+        }else{
+          Speech.stop()
+        }
+      }
+    }
+  }
+
   // Renders button that reads text aloud
   function renderReadTextButton(){
     if(loaded){ return(
-      <Icon name={readButtonAttributes.name}  size={30} color="white" onPress= {()=> {setReading(!isReading);readButtonAttributes.handleOnPress()}} />
+      <Icon name={readButtonAttributes.name}  size={30} color="white" onPress={()=> handleReadButtonOnPress()} />
     )}
   }
 
   // Resets whether the user is right or wrong for a new question
+  // Reset text to speech to stop reading when moving on to next question
   function resetStatus() {
     toggleCorrect(false);
     toggleIncorrect(false);
+    Speech.stop();
+    setReading(false);
   }
-
 
 
   // Returns the whole therapy screen interface
