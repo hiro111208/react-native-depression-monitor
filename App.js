@@ -19,7 +19,7 @@ const Stack = createStackNavigator();
 function MyStack() {
   return (
     <Stack.Navigator
-      initialRouteName="SignupScreen"
+      initialRouteName="LoginScreen"
       screenOptions={{
         gestureEnabled: false,
         headerLeft: null,

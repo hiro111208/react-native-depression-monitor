@@ -22,7 +22,7 @@ export default function AccountScreen({ props, navigation }) {
                     <Text>Log out information here</Text>
                 </View>
 
-                <TouchableOpacity style={[styles.logout]} onPress={() => signOut()}>
+                <TouchableOpacity style={[styles.logout, styles.centering]} onPress={() => signOut()}>
                     <Text style={styles.textStyle}>Logout</Text>
                 </TouchableOpacity>
             </View>
@@ -61,7 +61,7 @@ const styles = StyleSheet.create({
         padding: 20
       },
       logout:{
-        height: "25%",
+        height: "30%",
         width: '100%',
         backgroundColor: "#fed8b1",
         alignItems: 'center',
@@ -83,6 +83,10 @@ const styles = StyleSheet.create({
       textStyle:{
         fontSize: 20,
         fontWeight: 'bold',
-        color: 'dimgray'
+        color: 'dimgray',
+      },
+      centering: {
+        alignContent: 'center',
+        justifyContent: 'center'
       }
 })
