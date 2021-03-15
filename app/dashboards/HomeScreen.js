@@ -14,9 +14,13 @@ export default function HomeScreen({ props, navigation }) {
       <View style={styles.center}>
 
         <View style={[styles.welcomeArea, styles.shadowEffect]}>
+
           <View style={styles.userNote}>
+
             <Text style={[styles.textStyle]}>Hello there, {displayName}!</Text>
+
             <View style={styles.spacer}></View>
+
             <View style={[styles.plantImage, styles.centering, styles.shadowEffect]}>
                     <Image 
                          style={{ width: '100%', height: '100%' }}
@@ -25,17 +29,23 @@ export default function HomeScreen({ props, navigation }) {
                     />
                 </View>
             </View>
-            <View style={{height: '35%'}}></View>
-                <TouchableOpacity style={[styles.sessionArea, styles.centering, styles.shadowEffect]} onPress={() => navigation.navigate('Sessions')}>
-                  <Text style={styles.textStyle}>Go to your session</Text>
-                </TouchableOpacity>
+
+            <View style={{height: '30%'}}></View>
+            
+            <TouchableOpacity style={[styles.sessionArea, styles.centering, styles.shadowEffect]} onPress={() => navigation.navigate('Sessions')}>
+              <Text style={styles.textStyle}>Go to your session</Text>
+            </TouchableOpacity>
+            
+            <TouchableOpacity style={[styles.sessionArea, styles.centering, styles.shadowEffect]} onPress={() => navigation.navigate('PlantScreen')}>
+              <Text style={styles.textStyle}>Interact with your plant</Text>
+            </TouchableOpacity>
+          
           </View>
         </View>
     </View>
   );
 }
 
-//onPress={() => navigation.navigate('Sessions')}
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -67,7 +77,7 @@ const styles = StyleSheet.create({
     padding: 20
   },
   sessionArea: {
-    height: '20%',
+    height: '17%',
     width: '90%',
     backgroundColor: '#ffeed2',
     padding: 10,
@@ -77,9 +87,6 @@ const styles = StyleSheet.create({
     fontSize: 20,
     fontWeight: 'bold',
     color: 'dimgray'
-  },
-  afterNote: {
-    height: '50%'
   },
   shadowEffect: {
     shadowColor: "#000",
