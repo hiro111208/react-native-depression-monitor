@@ -37,6 +37,7 @@
   },
   "devDependencies": {
     "@babel/core": "~7.9.0",
+    "@firebase/testing": "^0.20.11",
     "@testing-library/jest-dom": "^5.11.9",
     "@testing-library/jest-native": "^4.0.1",
     "@testing-library/react-native": "^7.2.0",
