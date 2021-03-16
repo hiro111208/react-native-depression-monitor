@@ -114,7 +114,6 @@ function LoginScreen(props) {
 
   //reset all states
   const reset = () => {
-    setIsLoading(false);
     setEmail("");
     setPassword("");
     setIsVerified(true);

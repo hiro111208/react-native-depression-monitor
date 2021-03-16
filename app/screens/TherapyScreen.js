@@ -243,13 +243,14 @@ const TherapyScreen = ({ navigation }) => {
     name: (isReading ? "text-to-speech-off" : "text-to-speech"),
   }
  
-  //Either start or stop reading on read aloud button click
+  //Either start or stop reading on read text button click
   function handleReadButtonOnPress(){
     setReading(!isReading);
     {if(loaded){
       if (!isReading){
-        Speech.getAvailableVoicesAsync();
-          try{Speech.speak(items[question].question1, {language:"en-UK"})} catch(error){console.log(error)}
+          try{
+            Speech.speak(items[question].question1, {language:"en-US", onDone:()=>setReading(false) }) 
+          }catch(error){console.log(error)}
         }else{
           Speech.stop()
         }
