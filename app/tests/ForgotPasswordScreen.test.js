@@ -1,8 +1,8 @@
-import firebase from "../../firebase.js";
+import firebase from "../database/firebase";
 import React from "react";
 import ForgotPasswordScreen from "../screens/ForgotPasswordScreen";
 import renderer from "react-test-renderer";
-import Alert from "react-native";
+import { Alert } from "react-native";
 import { render, fireEvent, waitFor } from "@testing-library/react-native";
 import "@testing-library/jest-dom/extend-expect";
 import { initialWindowMetrics } from "react-native-safe-area-context";

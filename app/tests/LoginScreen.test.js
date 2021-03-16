@@ -4,7 +4,7 @@ import LoginScreen from "../screens/LoginScreen";
 import { Alert } from "react-native";
 import { render, fireEvent, waitFor } from "@testing-library/react-native";
 
-import firebase from "../../firebase.js"
+import firebase from "../database/firebase"
 //import * as firebaseEmulator from "../../node_modules/@firebase/testing"; //unused firebase emulator import
 
 describe("Testing LoginScreen.js", () => {
@@ -114,7 +114,7 @@ describe("Testing LoginScreen.js", () => {
         
         await waitFor(() => {
             expect(firebase.auth().signInWithEmailAndPassword).toHaveBeenCalled();
-            expect("Your email has not been verfied").toEqual(getByTestId("TEST_ID_MESSAGE").props.children) 
+            expect("Your email has not been verified").toEqual(getByTestId("TEST_ID_MESSAGE").props.children) 
         });
     });
 });

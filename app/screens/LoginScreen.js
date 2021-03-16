@@ -1,91 +1,139 @@
-import React, {useState} from "react";
-import { StyleSheet, Text, View, TextInput, Alert, ActivityIndicator, TouchableOpacity } from "react-native";
-import firebase from "../../firebase.js";
-
+import React, { useState } from "react";
+import {
+  StyleSheet,
+  Text,
+  View,
+  TextInput,
+  Alert,
+  ActivityIndicator,
+  TouchableOpacity,
+} from "react-native";
+import firebase from "../database/firebase";
 import colors from "../config/colors";
 
 /*
   Screen where users can login to access their dashboards
 */
-
 function LoginScreen(props) {
-
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [isLoading, setIsLoading]= useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
   const [isVerified, setIsVerified] = useState(true);
-  
-  //Send verification email to user to allow them to login
-  const sendVerificationEmail=()=>{
-    firebase.auth().currentUser.sendEmailVerification().then(function() {
-      console.log("email verification sent");
-      setErrorMessage(`Please verify your email through the link we've sent to: ` + email);
-    }).catch(function(error) {
-      console.log("failed to send email verification");
-      console.log(error.code);
-      setIsLoading(false);
-      setErrorMessage(error.message);
-    });
-  }
 
-  //Verify user credentials with firebase. 
-  //If user has verified their email, send user to dashboard
-  //If not, show button to allow user to send a new verification email
-  //If email used is admin email redirect to admin dashboard
-  const userLogin = () => {
-    if(email === "" && password === "") {
-      Alert.alert("Enter details to login!");
-    } else {
-      setIsLoading(true)
-      firebase
-      .auth()
-      .signInWithEmailAndPassword(email, password)
-      .then((res) => {
-        if(firebase.auth().currentUser.email == "admin@joyapp.com") {
-          reset();
-          props.navigation.navigate("AdminDashboard");
-        } else {
-          if(firebase.auth().currentUser.emailVerified) {
-            console.log("User logged-in successfully!");
-            reset();
-            props.navigation.navigate("PatientDashboard");
-          } else {
+  const db = firebase.firestore();
+
+  /**
+   * Locates the progress of the user based on their uid
+   */
+  function navigateUser(uid) {
+    var docRef = db.collection("users").doc(uid);
+    docRef
+      .get()
+      .then((doc) => {
+        if (doc.exists) {
+          const userProgress = doc.data();
+
+          // A category hasn't been dropped
+          if (userProgress.categoryDropped == "NONE") {
+            props.navigation.navigate("CategoryDrop", {
+              user: userProgress,
+            });
             setIsLoading(false);
-            setErrorMessage("Your email has not been verfied");
-            setIsVerified(false);
+          }
+
+          // Proceeds straight to the dashboard (skipping category)
+          else {
+            props.navigation.navigate("PatientDashboard");
+            setIsLoading(false);
           }
         }
+
+        // doc.data() will be undefined in this case
+        else {
+          console.log("No such document!");
+        }
       })
-      .catch(error => {
+      .catch((error) => {
+        console.log("Error getting document:", error);
+      });
+  }
+
+  //Send verification email to user to allow them to login
+  const sendVerificationEmail = () => {
+    firebase
+      .auth()
+      .currentUser.sendEmailVerification()
+      .then(function () {
+        console.log("email verification sent");
+        setErrorMessage(
+          `Please verify your email through the link we've sent to: ` + email
+        );
+      })
+      .catch(function (error) {
+        console.log("failed to send email verification");
         console.log(error.code);
         setIsLoading(false);
         setErrorMessage(error.message);
-      })
+      });
+  };
+
+  //Verify user credentials with firebase. If user has verified their email
+  //send user to dashboard if not show button to allow user to send a new verification email
+  //if email used is admin email redirect to admin dashboard
+  const userLogin = () => {
+    if (email === "" && password === "") {
+      Alert.alert("Enter details to login!");
+    } else {
+      setIsLoading(true);
+      firebase
+        .auth()
+        .signInWithEmailAndPassword(email, password)
+        .then((res) => {
+          if (firebase.auth().currentUser.email == "admin@joyapp.com") {
+            reset();
+            props.navigation.navigate("AdminDashboard");
+            setIsLoading(false);
+          } else {
+            if (firebase.auth().currentUser.emailVerified) {
+              console.log("User logged-in successfully!");
+              reset();
+              navigateUser(firebase.auth().currentUser.uid);
+            } else {
+              setIsLoading(false);
+              setErrorMessage("Your email has not been verified");
+              setIsVerified(false);
+            }
+          }
+        })
+        .catch((error) => {
+          console.log(error.code);
+          setIsLoading(false);
+          setErrorMessage(error.message);
+        });
     }
   };
-  
+
   //reset all states
   const reset = () => {
-    setIsLoading(false);
     setEmail("");
     setPassword("");
     setIsVerified(true);
     setErrorMessage("");
-  }
+  };
 
   //While loading show preloader
-  if(isLoading) {
-    return(
+  if (isLoading) {
+    return (
       <View style={styles.preloader}>
-        <ActivityIndicator size="large" color="#9E9E9E"/>
-       </View>
-     )
+        <ActivityIndicator size="large" color="#9E9E9E" />
+      </View>
+    );
   }
   //Render the login screen interface
   return (
-    <View style={styles.container}>  
-    {/*Render input fields for email and password*/}
+    <View style={styles.container}>
+      {/*Render input fields for email and password*/}
       <TextInput
         style={styles.inputStyle}
         placeholder="Email"
@@ -108,7 +156,7 @@ function LoginScreen(props) {
 
       {/*Render login button which calls userLogin method and checks credentials in input fields*/}
       <TouchableOpacity
-        activeOpacity = { .5 }
+        activeOpacity={0.5}
         style={styles.loginButton}
         onPress={()=>userLogin()}
         testID={"TEST_ID_LOGIN_BUTTON"}
@@ -117,18 +165,25 @@ function LoginScreen(props) {
       </TouchableOpacity>
 
       {/*Render text to allow user to go to sign up screen*/}
-      <Text 
+      <Text
         style={styles.textButton}
-        onPress={() => {reset(); props.navigation.navigate("SignupScreen")}}
-        testID={"TEST_ID_SIGNUP_BUTTON"}>
-        Don"t have an account? Click here to signup
+        onPress={() => {
+          reset(); 
+          props.navigation.navigate("SignupScreen");
+        }}
+        testID={"TEST_ID_SIGNUP_BUTTON"}
+        >
       </Text>
 
       {/*Render text to allow user to go to forgot password screen*/}
-      <Text 
+      <Text
         style={styles.textButton}
-        onPress={() => {reset();props.navigation.navigate("ForgotPasswordScreen")}}
-        testID={"TEST_ID_FORGOT_BUTTON"}>
+        onPress={() => {
+          reset();
+          props.navigation.navigate("ForgotPasswordScreen");
+        }}
+        testID={"TEST_ID_FORGOT_BUTTON"}
+        >
         Forgot your password?
       </Text>
 
@@ -158,7 +213,7 @@ const styles = StyleSheet.create({
     flexDirection: "column",
     justifyContent: "center",
     padding: 35,
-    backgroundColor: "#fff"
+    backgroundColor: "#fff",
   },
   inputStyle: {
     width: "100%",
@@ -166,21 +221,21 @@ const styles = StyleSheet.create({
     paddingBottom: 15,
     alignSelf: "center",
     borderColor: "#ccc",
-    borderBottomWidth: 1
+    borderBottomWidth: 1,
   },
-  loginButton:{
+  loginButton: {
     width: 300,
     backgroundColor: colors.darkBorder,
     alignSelf: "center",
-    marginTop:10,
-    paddingTop:15,
-    paddingBottom:15,
-    borderRadius:50,
+    marginTop: 10,
+    paddingTop: 15,
+    paddingBottom: 15,
+    borderRadius: 50,
   },
   textButton: {
     color: colors.darkBorder,
     marginTop: 25,
-    textAlign: "center"
+    textAlign: "center",
   },
   preloader: {
     left: 0,
@@ -190,11 +245,11 @@ const styles = StyleSheet.create({
     position: "absolute",
     alignItems: "center",
     justifyContent: "center",
-    backgroundColor: "#fff"
+    backgroundColor: "#fff",
   },
-  signInText:{
+  signInText: {
     color: "white",
     textAlign: "center",
-    fontSize: 15
-  }
+    fontSize: 15,
+  },
 });

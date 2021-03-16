@@ -4,7 +4,7 @@ import SignUpScreen from "../screens/SignUpScreen";
 import { Alert } from "react-native";
 import { render, fireEvent, waitFor } from "@testing-library/react-native";
 
-import firebase from "../../firebase.js"
+import firebase from "../database/firebase"
 
 describe("Testing SignUpScreen.js", () => {
 
