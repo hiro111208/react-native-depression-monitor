@@ -1,8 +1,6 @@
 import React from "react";
 import renderer from "react-test-renderer";
 import LoginScreen from "../screens/LoginScreen";
-import SignUpScreen from "../screens/SignUpScreen";
-import ForgotPasswordScreen from "../screens/ForgotPasswordScreen";
 import { Alert } from "react-native";
 import { render, fireEvent, waitFor } from "@testing-library/react-native";
 
@@ -119,36 +117,7 @@ describe("Testing LoginScreen.js", () => {
             expect("Your email has not been verfied").toEqual(getByTestId("TEST_ID_MESSAGE").props.children) 
         });
     });
-
-    test("'Don't have an account?...' should navigate to SignUpScreen", async () => {
-        const { getByTestId } = render(<LoginScreen />)
-        const button = getByTestId("TEST_ID_SIGNUP_BUTTON");
-
-        jest.spyOn(firebase.auth(), "signInWithEmailAndPassword");
-        await fireEvent.changeText(emailInput, "login@test.com");
-        await fireEvent.changeText(passwordInput, "password");           
-        await fireEvent.press(button);  
-        
-        await waitFor(() => {
-            expect(firebase.auth().signInWithEmailAndPassword).toHaveBeenCalled();
-            expect("Your email has not been verfied").toEqual(getByTestId("TEST_ID_MESSAGE").props.children) 
-        });
-    });
-
-    test("'Forgot your password?' should navigate to ForgotPasswordScreen", async () => {
-        const { getByTestId } = render(<LoginScreen />)
-        const button = getByTestId("TEST_ID_FORGOT_BUTTON");
-
-        jest.spyOn(firebase.auth(), "signInWithEmailAndPassword");
-        await fireEvent.changeText(emailInput, "login@test.com");
-        await fireEvent.changeText(passwordInput, "password");           
-        await fireEvent.press(button);  
-        
-        await waitFor(() => {
-            expect(firebase.auth().signInWithEmailAndPassword).toHaveBeenCalled();
-            expect("Your email has not been verfied").toEqual(getByTestId("TEST_ID_MESSAGE").props.children) 
-        });
-    });
+});
 
 //currently unused firebase emulator set up and tear down
 // beforeAll(async () => {
@@ -158,7 +127,6 @@ describe("Testing LoginScreen.js", () => {
     //     auth: { uid: "login-test", email: "login@test.com", password:"password" } 
     //});
 // });
-
 
 // afterAll( async () => {
     //Promise.all(firebaseEmulator.apps().map(app => app.delete()))
