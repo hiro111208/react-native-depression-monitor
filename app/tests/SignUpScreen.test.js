@@ -1,17 +1,24 @@
 import React from "react";
 import renderer from "react-test-renderer";
 import SignUpScreen from "../screens/SignUpScreen";
-import Alert from "react-native";
+import { Alert } from "react-native";
 import { render, fireEvent, waitFor } from "@testing-library/react-native";
 
-
-import * as firebase from "../../node_modules/@firebase/testing";
+import firebase from "../../firebase.js"
 
 describe("Testing SignUpScreen.js", () => {
 
     beforeAll(() => {
-        jest.setTimeout(100); //find appropriate timeout after testing
+        jest.setTimeout(10000);
     });
+
+    afterAll( async () => {
+        await firebase.auth().currentUser.delete().catch(error => {
+            credential = firebase.auth.EmailAuthProvider.credential("signup@test.com","password");
+            firebase.auth().currentUser.reauthenticateWithCredential(credential);
+            firebase.auth().currentUser.delete();
+        });
+    })
 
     it("SignUpScreen renders correctly", () => {
         const tree = renderer.create(<SignUpScreen />).toJSON();
@@ -25,83 +32,49 @@ describe("Testing SignUpScreen.js", () => {
         jest.spyOn(Alert, "alert");
         await waitFor(()=> {
             fireEvent.press(button);
-
             expect(Alert.alert).toHaveBeenCalledWith("Enter details to signup!");
         })
     });
 
-    test("Sign Up should be successful with correct credentials and verification", async () => {
-
+    test("Sign Up should be successful with correct credentials", async () => {
+        let error = "";
+        try {
+            await firebase.auth().createUserWithEmailAndPassword("signup@test.com", "password");
+        } catch (err) {
+            error = err.toString();
+        }
+        expect(error).toEqual("");
     });
 
-    test("Sign Up should be unsuccessful with incorrect credentials", async () => {
-
+    test("Sign Up should be unsuccessful with invalid email", async () => {
+        let error = "";
+        try {
+            await firebase.auth().createUserWithEmailAndPassword("incorrectemail", "password");
+        } catch (err) {
+            error = err.toString();
+        }
+        expect(error).toEqual("Error: The email address is badly formatted.");
     });
 
-    test("Sign Up should be unsuccessful with no credentials", async () => {
-
+    test("Sign Up should be unsuccessful with invalid password - too short", async () => {
+        let error = "";
+        try {
+            await firebase.auth().createUserWithEmailAndPassword("signup@test.com", "short");
+        } catch (err) {
+            error = err.toString();
+        }
+        expect(error).toEqual("Error: Password should be at least 6 characters");
     });
 
-    test("Sign Up should be unsuccessful with incorrect email", async () => {
-
+    test("Sign up should be unsuccessful with an email that has already been registered", async () => {
+        let error = "";
+        try {
+            await firebase.auth().createUserWithEmailAndPassword("signup@test.com", "password");
+        } catch(err) {
+            error = err.toString();
+        }
+        expect(error).toEqual("Error: The email address is already in use by another account.");
     });
 
 });
 
-// test("signup should work with correct credentials and verification", () => 
-// {
-//     const user = createUserWithEmailAndPassword("success@signup.com", "password");
-//     //verify the user
-//     expect(user.user).toBeTruthy();
-//     expect(isVerified()).toBe(true);
-//     //test for email and password value?
-// });
-
-// test("signup should not work with correct credentials but no verification", () => 
-// {
-//     let error = "";
-//     try {
-//         createUserWithEmailAndPassword("fail@signup.com", "password");
-//     } catch (err) {
-//         error = err.toString();
-//     }
-//     expect(error).toEqual(`Please verify your email through the link we"ve sent to: fail@signup.com`);
-// });
-
-// test("signup should work not work with invalid email", () => 
-// {
-//     let error = "";
-//     try {
-//          createUserWithEmailAndPassword("fail@signup", "password");
-//     } catch (err) {
-//         error = err.toString();
-//     }
-//     expect(error).toEqual(`failed to send email verification`);
-// });
-
-//test with email that has already been signed up should fail
-//The email address is already in use by another account.
-
-// test("signup should not work with password shorter than 6 characters", async () => 
-// {
-//     let error = "";
-//     try {
-//         await createUserWithEmailAndPassword("tooshort@login.com", "short");
-//     } catch (err) {
-//         error = err.toString();
-//     }
-
-//     expect(error).toEqual("");//error.message?
-// });
-
-// test("signup should not work with password longer than 15 characters", async () => 
-// {
-//     let error = "";
-//     try {
-//         await createUserWithEmailAndPassword("toolong@login.com", "thispasswordistoolong");
-//     } catch (err) {
-//         error = err.toString();
-//     }
-
-//     expect(error).toEqual("");//error.message?
-// });
