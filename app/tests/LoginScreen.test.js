@@ -1,6 +1,8 @@
 import React from "react";
 import renderer from "react-test-renderer";
 import LoginScreen from "../screens/LoginScreen";
+import SignUpScreen from "../screens/SignUpScreen";
+import ForgotPasswordScreen from "../screens/ForgotPasswordScreen";
 import { Alert } from "react-native";
 import { render, fireEvent, waitFor } from "@testing-library/react-native";
 
@@ -10,7 +12,7 @@ import firebase from "../../firebase.js"
 describe("Testing LoginScreen.js", () => {
 
     beforeAll(async () => {
-        jest.setTimeout(1000); 
+        jest.setTimeout(10000); 
         await firebase.auth().createUserWithEmailAndPassword("login@test.com", "password");
     });
 
@@ -27,54 +29,39 @@ describe("Testing LoginScreen.js", () => {
         expect(tree).toMatchSnapshot();
     });
 
-    test("Expect to show enter details", async () => {
-        const { getByTestId } = render(<LoginScreen />)
-        const emailInput= getByTestId("TEST_ID_EMAIL_INPUT");
-        const button= getByTestId("TEST_ID_LOGIN_BUTTON");
+    test("Expect to show enter details alert with no credentials", async () => {
+        const { getByTestId } = render(<LoginScreen />);
+        const button = getByTestId("TEST_ID_LOGIN_BUTTON");
 
         jest.spyOn(Alert, "alert");
-        await waitFor(()=> {
+        await waitFor(() => {
             fireEvent.press(button);
-
             expect(Alert.alert).toHaveBeenCalledWith("Enter details to login!");
         })
-    })
-
-    test("signInWithEmailAndPassword should be unsuccessful with unverified email", async () => {
-        let error = "";
-        // firebase.auth().settings.appVerificationDisabledForTesting = false;
-        try {
-            await firebase.auth().signInWithEmailAndPassword("login@test.com", "password");
-            console.log("Test 1 passed");
-        } catch (err) {
-            error = err.toString(); 
-            console.log("Catch error 1: " + error);
-        }
-        expect(error).toEqual("Error: There is no user record corresponding to this identifier. The user may have been deleted.");
     });
 
     test("signInWithEmailAndPassword should be unsuccessful with incorrect email format", async () => {
         let error = "";
-        // firebase.auth().settings.appVerificationDisabledForTesting = true;
         try {
             await firebase.auth().signInWithEmailAndPassword("notAProperEmail", "password");
-            console.log("Test 2 passed");
+            // console.log("Test 2 passed");
         } catch (err) {
             error = err.toString();
-            console.log("Catch error 2: " + error);
+            // console.log("Catch error 2: " + error);
         }
         expect(error).toEqual("Error: The email address is badly formatted.");
     });
 
-    test("signInWithEmailAndPassword should work with correct and verified credentials", async () => {
+    test("signInWithEmailAndPassword should be successful with correct and verified credentials", async () => {
         let error = "";
         try {
             const newUser = await firebase.auth().signInWithEmailAndPassword("login@test.com", "password");
-            expect(newUser).toBeTruthy();
-            console.log("Test 3 passed");
+            expect(newUser.user).toBeTruthy();
+            // console.log(newUser.user.emailVerified);
+            // console.log("Test 3 passed");
         } catch(err) {
-            console.log("Catch error 3: " + error);
-            error = err;
+            // console.log("Catch error 3: " + error);
+            error = err.toString();
         }
         expect(error).toEqual("");
     });
@@ -98,6 +85,67 @@ describe("Testing LoginScreen.js", () => {
         }
         expect(error).toEqual("Error: The password is invalid or the user does not have a password.");
     });
+
+    test("signInWithEmailAndPassword with incorrect password should display message", async () => {
+        const { getByTestId } = render(<LoginScreen />)
+        const emailInput = getByTestId("TEST_ID_EMAIL_INPUT");
+        const passwordInput = getByTestId("TEST_ID_PASSWORD_INPUT");
+        const button = getByTestId("TEST_ID_LOGIN_BUTTON");
+
+        jest.spyOn(firebase.auth(), "signInWithEmailAndPassword");
+        await fireEvent.changeText(emailInput, "login@test.com");
+        await fireEvent.changeText(passwordInput, "wrongpassword");           
+        await fireEvent.press(button);  
+        
+        await waitFor(() => {
+            expect(firebase.auth().signInWithEmailAndPassword).toHaveBeenCalled();
+            expect("The password is invalid or the user does not have a password.").toEqual(getByTestId("TEST_ID_MESSAGE").props.children) 
+        });
+    });
+
+    test("signInWithEmailAndPassword should be unsuccessful with unverified email", async () => {
+        const { getByTestId } = render(<LoginScreen />)
+        const emailInput = getByTestId("TEST_ID_EMAIL_INPUT");
+        const passwordInput = getByTestId("TEST_ID_PASSWORD_INPUT");
+        const button = getByTestId("TEST_ID_LOGIN_BUTTON");
+
+        jest.spyOn(firebase.auth(), "signInWithEmailAndPassword");
+        await fireEvent.changeText(emailInput, "login@test.com");
+        await fireEvent.changeText(passwordInput, "password");           
+        await fireEvent.press(button);  
+        
+        await waitFor(() => {
+            expect(firebase.auth().signInWithEmailAndPassword).toHaveBeenCalled();
+            expect("Your email has not been verfied").toEqual(getByTestId("TEST_ID_MESSAGE").props.children) 
+        });
+    });
+
+    test("'Don't have an account?...' should navigate to SignUpScreen", async () => {
+
+    });
+
+    test("'Forgot your password?' should navigate to ForgotPasswordScreen", async () => {
+
+    });
+
+    // test("Expect to call sendVerificationEmail", async () => {
+    //     //LoginScreen.isVerified = false;
+    //     console.log(LoginScreen.isVerified);
+    //     const { getByTestId } = render(<LoginScreen />)
+    //     const emailInput = getByTestId("TEST_ID_EMAIL_INPUT");
+    //     const passwordInput = getByTestId("TEST_ID_PASSWORD_INPUT");
+    //     const button = getByTestId("TEST_ID_VERIFY_BUTTON");
+
+    //     jest.spyOn(firebase.auth(), "signInWithEmailAndPassword");
+    //     await fireEvent.changeText(emailInput, "login@test.com");
+    //     await fireEvent.changeText(passwordInput, "password");           
+    //     await fireEvent.press(button);  
+        
+    //     await waitFor(() => {
+    //         expect(firebase.auth().sendPasswordResetEmail).toHaveBeenCalled();
+    //         expect(["You should have received an email to change your password","Exceeded daily quota for resetting passwords."]).toContain(getByTestId("TEST_ID_MESSAGE").props.children) 
+    //     });
+    // });
 
 });
 

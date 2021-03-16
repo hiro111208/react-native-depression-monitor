@@ -33,9 +33,9 @@ function LoginScreen(props) {
   //If user has verified their email, send user to dashboard
   //If not, show button to allow user to send a new verification email
   //If email used is admin email redirect to admin dashboard
-  const userLogin=()=>{
+  const userLogin = () => {
     if(email === "" && password === "") {
-      Alert.alert("Enter details to login!")
+      Alert.alert("Enter details to login!");
     } else {
       setIsLoading(true)
       firebase
@@ -66,7 +66,7 @@ function LoginScreen(props) {
   };
   
   //reset all states
-  const reset=() => {
+  const reset = () => {
     setIsLoading(false);
     setEmail("");
     setPassword("");
@@ -102,7 +102,9 @@ function LoginScreen(props) {
         secureTextEntry={true}
         testID={"TEST_ID_PASSWORD_INPUT"}
       />   
-      <Text style={{color:"red"}}>{errorMessage}</Text>
+
+      {/*Render text that shows error  messages */}
+      <Text testID={"TEST_ID_MESSAGE"} style={{color:"red"}}>{errorMessage}</Text>
 
       {/*Render login button which calls userLogin method and checks credentials in input fields*/}
       <TouchableOpacity
@@ -117,14 +119,16 @@ function LoginScreen(props) {
       {/*Render text to allow user to go to sign up screen*/}
       <Text 
         style={styles.textButton}
-        onPress={() => {reset(); props.navigation.navigate("SignupScreen")}}>
+        onPress={() => {reset(); props.navigation.navigate("SignupScreen")}}
+        testID={"TEST_ID_SIGNUP_BUTTON"}>
         Don"t have an account? Click here to signup
       </Text>
 
       {/*Render text to allow user to go to forgot password screen*/}
       <Text 
         style={styles.textButton}
-        onPress={() => {reset();props.navigation.navigate("ForgotPasswordScreen")}}>
+        onPress={() => {reset();props.navigation.navigate("ForgotPasswordScreen")}}
+        testID={"TEST_ID_FORGOT_BUTTON"}>
         Forgot your password?
       </Text>
 
@@ -135,6 +139,7 @@ function LoginScreen(props) {
           activeOpacity = { .5 }
           style={styles.loginButton}
           onPress={()=>sendVerificationEmail()}
+          testID={"TEST_ID_VERIFY_BUTTON"}
         ><Text style= {styles.signInText}>Send verification email</Text>
         </TouchableOpacity>
         :

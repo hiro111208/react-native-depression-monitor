@@ -46,6 +46,7 @@ exports[`Testing SignUpScreen.js SignUpScreen renders correctly 1`] = `
         "width": "100%",
       }
     }
+    testID="TEST_ID_EMAIL_INPUT"
     underlineColorAndroid="transparent"
     value=""
   />
@@ -66,6 +67,7 @@ exports[`Testing SignUpScreen.js SignUpScreen renders correctly 1`] = `
         "width": "100%",
       }
     }
+    testID="TEST_ID_PASSWORD_INPUT"
     underlineColorAndroid="transparent"
     value=""
   />
@@ -109,6 +111,7 @@ exports[`Testing SignUpScreen.js SignUpScreen renders correctly 1`] = `
         "width": 300,
       }
     }
+    testID="TEST_ID_SIGNUP_BUTTON"
   >
     <Text
       style={

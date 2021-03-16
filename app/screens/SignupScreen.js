@@ -96,6 +96,7 @@ function SignupScreen(props) {
         placeholder="Email"
         value={email}
         onChangeText={(val) => setEmail(val)}
+        testID={"TEST_ID_EMAIL_INPUT"}
       />
       <TextInput
         style={styles.inputStyle}
@@ -104,6 +105,7 @@ function SignupScreen(props) {
         onChangeText={(val) => setPassword(val)}
         maxLength={15}
         secureTextEntry={true}
+        testID={"TEST_ID_PASSWORD_INPUT"}
       />
       {/*Render error messages or success messages*/}
       <Text style={{color:"red"}}>{errorMessage}</Text>
@@ -114,6 +116,7 @@ function SignupScreen(props) {
         activeOpacity = { .5 }
         style={styles.signupButton}
         onPress={()=>registerUser()}
+        testID={"TEST_ID_SIGNUP_BUTTON"}
       >
         <Text style= {styles.signupText}>SIGNUP</Text>
       </TouchableOpacity>

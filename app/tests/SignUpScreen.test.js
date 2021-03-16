@@ -1,6 +1,9 @@
 import React from "react";
 import renderer from "react-test-renderer";
 import SignUpScreen from "../screens/SignUpScreen";
+import Alert from "react-native";
+import { render, fireEvent, waitFor } from "@testing-library/react-native";
+
 
 import * as firebase from "../../node_modules/@firebase/testing";
 
@@ -15,19 +18,31 @@ describe("Testing SignUpScreen.js", () => {
         expect(tree).toMatchSnapshot();
     });
 
-    test("Sign Up should work with correct credentials and verification", async () => {
+    test("Expect to show enter details", async () => {
+        const { getByTestId } = render(<SignUpScreen />);
+        const button= getByTestId("TEST_ID_SIGNUP_BUTTON");
+
+        jest.spyOn(Alert, "alert");
+        await waitFor(()=> {
+            fireEvent.press(button);
+
+            expect(Alert.alert).toHaveBeenCalledWith("Enter details to signup!");
+        })
+    });
+
+    test("Sign Up should be successful with correct credentials and verification", async () => {
 
     });
 
-    test("Sign Up should not work with correct credentials but no verification", async () => {
+    test("Sign Up should be unsuccessful with incorrect credentials", async () => {
 
     });
 
-    test("Sign Up should not work with incorrect email", async () => {
+    test("Sign Up should be unsuccessful with no credentials", async () => {
 
     });
 
-    test("Sign Up should not work with incorrect email", async () => {
+    test("Sign Up should be unsuccessful with incorrect email", async () => {
 
     });
 

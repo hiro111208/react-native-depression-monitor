@@ -2,8 +2,8 @@ import firebase from "../../firebase.js";
 import React from "react";
 import ForgotPasswordScreen from "../screens/ForgotPasswordScreen";
 import renderer from "react-test-renderer";
-import { Alert } from "react-native";
-import {cleanup, render, fireEvent, waitFor} from "@testing-library/react-native";
+import Alert from "react-native";
+import { render, fireEvent, waitFor } from "@testing-library/react-native";
 import "@testing-library/jest-dom/extend-expect";
 import { initialWindowMetrics } from "react-native-safe-area-context";
 
@@ -25,7 +25,7 @@ describe("Testing ForgotPasswordScreen.js", () => {
         expect(error).toEqual("There is no user record corresponding to this identifier. The user may have been deleted.");
     },10000);
 
-    test("sendPasswordResetEmail should be successful with email related to registered account", async () => {
+    test("sendPasswordResetEmail should be successful with a registered email", async () => {
         let error= "";
         await firebase.auth().createUserWithEmailAndPassword("registered@test.com", "password");
         try {
@@ -43,11 +43,11 @@ describe("Testing ForgotPasswordScreen.js", () => {
 
     test("Expect to show email required", async () => {
         const { getByTestId } = render(<ForgotPasswordScreen />)
-        const emailInput= getByTestId("TEST_ID_EMAIL_INPUT");
-        const button= getByTestId("TEST_ID_FORGOT_BUTTON");
+        const emailInput = getByTestId("TEST_ID_EMAIL_INPUT");
+        const button = getByTestId("TEST_ID_FORGOT_BUTTON");
 
         jest.spyOn(Alert, "alert");
-        await waitFor(()=> {
+        await waitFor(() => {
             fireEvent.press(button);
 
             expect(Alert.alert).toHaveBeenCalledWith("Enter an email!");
@@ -56,10 +56,10 @@ describe("Testing ForgotPasswordScreen.js", () => {
 
     test("Expect to call sendPasswordResetEmail", async () => {
         const { getByTestId } = render(<ForgotPasswordScreen />);
-        const {getByText}= render(<ForgotPasswordScreen />);
-        const emailInput= getByTestId("TEST_ID_EMAIL_INPUT");
-        const button= getByTestId("TEST_ID_FORGOT_BUTTON");
-        const message= getByTestId("TEST_ID_MESSAGE");
+        const { getByText } = render(<ForgotPasswordScreen />);
+        const emailInput = getByTestId("TEST_ID_EMAIL_INPUT");
+        const button = getByTestId("TEST_ID_FORGOT_BUTTON");
+        const message = getByTestId("TEST_ID_MESSAGE");
 
         await waitFor(() => button);
         await firebase.auth().createUserWithEmailAndPassword("registered@test.com", "password");

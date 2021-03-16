@@ -59,6 +59,7 @@ exports[`Testing LoginScreen.js LoginScreen renders correctly 1`] = `
         "color": "red",
       }
     }
+    testID="TEST_ID_MESSAGE"
   >
     
   </Text>
@@ -107,6 +108,7 @@ exports[`Testing LoginScreen.js LoginScreen renders correctly 1`] = `
         "textAlign": "center",
       }
     }
+    testID="TEST_ID_SIGNUP_BUTTON"
   >
     Don"t have an account? Click here to signup
   </Text>
@@ -119,6 +121,7 @@ exports[`Testing LoginScreen.js LoginScreen renders correctly 1`] = `
         "textAlign": "center",
       }
     }
+    testID="TEST_ID_FORGOT_BUTTON"
   >
     Forgot your password?
   </Text>
