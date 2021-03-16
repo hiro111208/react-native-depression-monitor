@@ -121,33 +121,34 @@ describe("Testing LoginScreen.js", () => {
     });
 
     test("'Don't have an account?...' should navigate to SignUpScreen", async () => {
+        const { getByTestId } = render(<LoginScreen />)
+        const button = getByTestId("TEST_ID_SIGNUP_BUTTON");
 
+        jest.spyOn(firebase.auth(), "signInWithEmailAndPassword");
+        await fireEvent.changeText(emailInput, "login@test.com");
+        await fireEvent.changeText(passwordInput, "password");           
+        await fireEvent.press(button);  
+        
+        await waitFor(() => {
+            expect(firebase.auth().signInWithEmailAndPassword).toHaveBeenCalled();
+            expect("Your email has not been verfied").toEqual(getByTestId("TEST_ID_MESSAGE").props.children) 
+        });
     });
 
     test("'Forgot your password?' should navigate to ForgotPasswordScreen", async () => {
+        const { getByTestId } = render(<LoginScreen />)
+        const button = getByTestId("TEST_ID_FORGOT_BUTTON");
 
-    });
-
-    // test("Expect to call sendVerificationEmail", async () => {
-    //     //LoginScreen.isVerified = false;
-    //     console.log(LoginScreen.isVerified);
-    //     const { getByTestId } = render(<LoginScreen />)
-    //     const emailInput = getByTestId("TEST_ID_EMAIL_INPUT");
-    //     const passwordInput = getByTestId("TEST_ID_PASSWORD_INPUT");
-    //     const button = getByTestId("TEST_ID_VERIFY_BUTTON");
-
-    //     jest.spyOn(firebase.auth(), "signInWithEmailAndPassword");
-    //     await fireEvent.changeText(emailInput, "login@test.com");
-    //     await fireEvent.changeText(passwordInput, "password");           
-    //     await fireEvent.press(button);  
+        jest.spyOn(firebase.auth(), "signInWithEmailAndPassword");
+        await fireEvent.changeText(emailInput, "login@test.com");
+        await fireEvent.changeText(passwordInput, "password");           
+        await fireEvent.press(button);  
         
-    //     await waitFor(() => {
-    //         expect(firebase.auth().sendPasswordResetEmail).toHaveBeenCalled();
-    //         expect(["You should have received an email to change your password","Exceeded daily quota for resetting passwords."]).toContain(getByTestId("TEST_ID_MESSAGE").props.children) 
-    //     });
-    // });
-
-});
+        await waitFor(() => {
+            expect(firebase.auth().signInWithEmailAndPassword).toHaveBeenCalled();
+            expect("Your email has not been verfied").toEqual(getByTestId("TEST_ID_MESSAGE").props.children) 
+        });
+    });
 
 //currently unused firebase emulator set up and tear down
 // beforeAll(async () => {
