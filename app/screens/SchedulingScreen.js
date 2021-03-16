@@ -210,61 +210,69 @@ class SchedulingScreen extends Component {
           <View>
             <Button
               onPress={this.showDatepicker}
-              title="Select Date and time"
+              title="Select Date"
             />
           </View>
-          {/* {this.state.show && (
+
+          <View>
+            <Button
+             onPress={this.showTimepicker}
+              title="Select Time" />
+          </View>
+
+          {Platform.OS === 'android' && this.state.show && (
             <DateTimePicker
               testID="dateTimePicker"
               value={this.state.date}
-              minimumDate={this.state.mode === 'date' && new Date()} // to prevent user to select past date
+              //minimumDate={this.state.mode === 'date' && new Date()} // to prevent user to select past date
               mode={this.state.mode}
               is24Hour={true}
               display="default"
               onChange={this.onChange}
             />
-          )} */}
+          )}
+          {Platform.IO === 'ios' && 
+            <View style={styles.datepickerGroup}>
+              <View
+                style={{
+                  flex: 1,
+                  justifyContent: "center",
+                  alignContent: "center",
+                }}
+              >
+                <DateTimePicker
+                  testID="datePicker"
+                  value={this.state.date}
+                  mode="date"
+                  minimumDate={this.state.mode === "date" && new Date()} // to prevent user to select past date
+                  is24Hour={true}
+                  display="default"
+                  onChange={this.onChange}
+                />
+              </View>
 
-          <View style={styles.datepickerGroup}>
-            <View
-              style={{
-                flex: 1,
-                justifyContent: "center",
-                alignContent: "center",
-              }}
-            >
-              <DateTimePicker
-                testID="datePicker"
-                value={this.state.date}
-                mode="date"
-                minimumDate={this.state.mode === "date" && new Date()} // to prevent user to select past date
-                is24Hour={true}
-                display="default"
-                onChange={this.onChange}
-              />
-            </View>
+              <Text> </Text>
 
-            <Text> </Text>
-
-            <View
-              style={{
-                width: "50%",
-                flex: 1,
-                justifyContent: "center",
-                alignContent: "center",
-              }}
-            >
-              <DateTimePicker
-                testID="TimePicker"
-                value={this.state.date}
-                mode="time"
-                minimumDate={this.state.mode === "date" && new Date()} // to prevent user to select past date
-                is24Hour={true}
-                display="default"
-                onChange={this.onChange}
-              />
-            </View>
-          </View>
+              <View
+                style={{
+                  width: "50%",
+                  flex: 1,
+                  justifyContent: "center",
+                  alignContent: "center",
+                }}
+              >
+                <DateTimePicker
+                  testID="TimePicker"
+                  value={this.state.date}
+                  mode="time"
+                  minimumDate={this.state.mode === "date" && new Date()} // to prevent user to select past date
+                  is24Hour={true}
+                  display="default"
+                  onChange={this.onChange}
+                />
+              </View>
+            </View>}
+          
         </View>
         <View style={styles.button}>
           <Button
