@@ -93,6 +93,7 @@ function LoginScreen(props) {
           if (firebase.auth().currentUser.email == "admin@joyapp.com") {
             reset();
             props.navigation.navigate("AdminDashboard");
+            setIsLoading(false);
           } else {
             if (firebase.auth().currentUser.emailVerified) {
               console.log("User logged-in successfully!");
