@@ -1,99 +1,116 @@
-import React from 'react';
-import renderer from 'react-test-renderer';
-import LoginScreen from '../screens/LoginScreen';
+import React from "react";
+import renderer from "react-test-renderer";
+import LoginScreen from "../screens/LoginScreen";
+import { Alert } from "react-native";
+import { render, fireEvent, waitFor } from "@testing-library/react-native";
 
-import * as firebase from '../../node_modules/@firebase/testing';
-//require('../../node_modules/@firebase/testing/node_modules/@firebase/auth');
+import firebase from "../../firebase.js"
+//import * as firebaseEmulator from "../../node_modules/@firebase/testing"; //unused firebase emulator import
 
-describe('Testing LoginScreen.js', () => {
+describe("Testing LoginScreen.js", () => {
 
-    beforeAll(() => {
-        jest.setTimeout(100); //not sure this actually does anything
-        //const user = firebase.auth().createUserWithEmailAndPassword('loginTest@login.com', 'password');
-        firebase.initializeTestApp({
-            projectId: "fireship-tutorial-646fc",
-            auth: { uid: "login-test", email: "login@test.com", password:"password" }
-        });
+    beforeAll(async () => {
+        jest.setTimeout(1000); 
+        await firebase.auth().createUserWithEmailAndPassword("login@test.com", "password");
     });
 
-    afterAll(() => {
-        Promise.all(firebase.apps().map(app => app.delete()))
+    afterAll(async () => {
+        await firebase.auth().currentUser.delete().catch(error => {
+            credential = firebase.auth.EmailAuthProvider.credential("login@test.com","password");
+            firebase.auth().currentUser.reauthenticateWithCredential(credential);
+            firebase.auth().currentUser.delete();
+        });
     })
 
-    test('LoginScreen renders correctly', () => {
+    test("LoginScreen renders correctly", () => {
         const tree = renderer.create(<LoginScreen />).toJSON();
         expect(tree).toMatchSnapshot();
     });
 
-    test('signInWithEmailAndPassword should work with correct and verified credentials', async () => {
-        const user = await firebase.auth().signInWithEmailAndPassword("login@test.com", "password");
-        await firebase.assetSucceeds(user.get());
-        expect(isAuthenticated()).toBe(true);
+    test("Expect to show enter details", async () => {
+        const { getByTestId } = render(<LoginScreen />)
+        const emailInput= getByTestId("TEST_ID_EMAIL_INPUT");
+        const button= getByTestId("TEST_ID_LOGIN_BUTTON");
+
+        jest.spyOn(Alert, "alert");
+        await waitFor(()=> {
+            fireEvent.press(button);
+
+            expect(Alert.alert).toHaveBeenCalledWith("Enter details to login!");
+        })
+    })
+
+    test("signInWithEmailAndPassword should be unsuccessful with unverified email", async () => {
+        let error = "";
+        // firebase.auth().settings.appVerificationDisabledForTesting = false;
+        try {
+            await firebase.auth().signInWithEmailAndPassword("login@test.com", "password");
+            console.log("Test 1 passed");
+        } catch (err) {
+            error = err.toString(); 
+            console.log("Catch error 1: " + error);
+        }
+        expect(error).toEqual("Error: There is no user record corresponding to this identifier. The user may have been deleted.");
     });
+
+    test("signInWithEmailAndPassword should be unsuccessful with incorrect email format", async () => {
+        let error = "";
+        // firebase.auth().settings.appVerificationDisabledForTesting = true;
+        try {
+            await firebase.auth().signInWithEmailAndPassword("notAProperEmail", "password");
+            console.log("Test 2 passed");
+        } catch (err) {
+            error = err.toString();
+            console.log("Catch error 2: " + error);
+        }
+        expect(error).toEqual("Error: The email address is badly formatted.");
+    });
+
+    test("signInWithEmailAndPassword should work with correct and verified credentials", async () => {
+        let error = "";
+        try {
+            const newUser = await firebase.auth().signInWithEmailAndPassword("login@test.com", "password");
+            expect(newUser).toBeTruthy();
+            console.log("Test 3 passed");
+        } catch(err) {
+            console.log("Catch error 3: " + error);
+            error = err;
+        }
+        expect(error).toEqual("");
+    });
+
+    test("signInWithEmailAndPassword should be unsuccessful with no credentials", async () => {
+        let error = "";
+        try {
+            await firebase.auth().signInWithEmailAndPassword("", "");
+        } catch (err) {
+            error = err.toString();
+        }
+        expect(error).toEqual("Error: The email address is badly formatted.");
+    }); 
+
+    test("signInWithEmailAndPassword should be unsuccessful with incorrect password", async () => {
+        let error = "";
+        try {
+            await firebase.auth().signInWithEmailAndPassword("login@test.com", "incorrect");
+        } catch (err) {
+            error = err.toString();
+        }
+        expect(error).toEqual("Error: The password is invalid or the user does not have a password.");
+    });
+
 });
 
-
-// test('signInWithEmailAndPassword should be unsuccessful with no credentials', async () => 
-// {
-//     let error = '';
-//     try {
-//         await signInWithEmailAndPassword('', '');
-//     } catch (err) {
-//         error = err.toString();
-//     }
-//     expect(error).toEqual('Enter details to login!');
+//currently unused firebase emulator set up and tear down
+// beforeAll(async () => {
+    //Firebase emulator set-up, not currently in use
+    // firebaseEmulator.initializeTestApp({
+    //     projectId: "fireship-tutorial-646fc",
+    //     auth: { uid: "login-test", email: "login@test.com", password:"password" } 
+    //});
 // });
 
-// test('signInWithEmailAndPassword should be unsuccessful with incorrect email', async () => 
-// {
-//     let error = '';
-//     try {
-//         await signInWithEmailAndPassword('notSignedUp@login.com', 'password');
-//     } catch (err) {
-//         error = err.toString();
-//     }
 
-//     expect(error).toEqual();//error.message?
-// });
-
-// test('signInWithEmailAndPassword should be unsuccessful with incorrect credentail combination', async () => {
-//     let error = '';
-//     try {
-//         await signInWithEmailAndPassword('test@login.com', 'incorrect');
-//     } catch (err) {
-//         error = err.toString();
-//     }
-
-//     expect(error).toEqual();//error.message?
-// });
-
-//is this test useless?
-// test('signInWithEmailAndPassword should be unsuccessful with incorrect email', async () => {
-//     let error = '';
-//     try {
-//         await signInWithEmailAndPassword('incorrect@login', 'password');
-//     } catch (err) {
-//         error = err.toString();
-//     }
-
-//     expect(error).toEqual();//error.message?
-// });
-
-// test('signInWithEmailAndPassword should be unsuccessful with unverified email', async () => {
-//     let error = '';
-//     try {
-//         await signInWithEmailAndPassword('unverified@login.com', 'password');
-//     } catch (err) {
-//         error = err.toString(); //error.message?
-//     }
-
-//     expect(error).toEqual('Your email has not been verified');//error.message?
-// });
-
-// test('signInWithEmailAndPassword should be successful with correct credentials', async () => 
-// {
-//     //should verify the user here (not above since test is used as an unverified email)
-//     const user = await signInWithEmailAndPassword('test@login.com', 'password');
-//     expect(user.user).toBeTruthy();
-//     expect(isAuthenticated()).toBe(true);
-// });
+// afterAll( async () => {
+    //Promise.all(firebaseEmulator.apps().map(app => app.delete()))
+// })

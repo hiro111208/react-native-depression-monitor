@@ -1,26 +1,26 @@
-import React, {useState} from 'react';
-import { StyleSheet, Text, View, TextInput, Button, Alert, ActivityIndicator, TouchableOpacity } from 'react-native';
-import firebase from '../../firebase.js';
+import React, {useState} from "react";
+import { StyleSheet, Text, View, TextInput, Button, Alert, ActivityIndicator, TouchableOpacity } from "react-native";
+import firebase from "../../firebase.js";
 
-import colors from '../config/colors';
+import colors from "../config/colors";
 
 /*
   Screen where users can signup to the app. First screen user sees when opening app for first time
 */
 function SignupScreen(props) {
   
-  const [displayName, setDisplayName] = useState('');
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [displayName, setDisplayName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const [isLoading, setIsLoading]= useState(false);
-  const [errorMessage, setErrorMessage] = useState('');
-  const [message, setMessage] = useState('');
+  const [errorMessage, setErrorMessage] = useState("");
+  const [message, setMessage] = useState("");
 
   //Create an account using firebase authentication with the credentials the user has provided. 
   //If account successfully create send verification email
   const registerUser=()=>{
-    if(email === '' && password === '') {
-      Alert.alert('Enter details to signup!')
+    if(email === "" && password === "") {
+      Alert.alert("Enter details to signup!")
     } else {
       setIsLoading(true)
       firebase
@@ -30,14 +30,14 @@ function SignupScreen(props) {
         res.user.updateProfile({
           displayName: displayName
         })
-        console.log('User registered successfully!')
+        console.log("User registered successfully!")
 
         sendVerificationEmail();
     
         setIsLoading(false)
-        setDisplayName('')
-        setEmail('')
-        setPassword('')
+        setDisplayName("")
+        setEmail("")
+        setPassword("")
 
       })
       .catch(error => {
@@ -51,12 +51,12 @@ function SignupScreen(props) {
   //Send verification email to the email the user provided
   function sendVerificationEmail(){
     firebase.auth().currentUser.sendEmailVerification().then(function() {
-      console.log('email verification sent')
-      setMessage(`Please verify your email through the link we've sent to: `+ email)
-      setErrorMessage('')
+      console.log("email verification sent")
+      setMessage(`Please verify your email through the link we"ve sent to: `+ email)
+      setErrorMessage("")
       // Email sent.
     }).catch(function(error) {
-      console.log('failed to send email verification')
+      console.log("failed to send email verification")
       console.log(error.code)
       setIsLoading(false)
       setErrorMessage(error.message)
@@ -67,11 +67,11 @@ function SignupScreen(props) {
   //reset all states
   const reset=()=>{
     setIsLoading(false)
-    setEmail('')
-    setPassword('')
-    setErrorMessage('')
-    setDisplayName('')
-    setMessage('')
+    setEmail("")
+    setPassword("")
+    setErrorMessage("")
+    setDisplayName("")
+    setMessage("")
   }
 
   //Render the sign up screen interface
@@ -106,8 +106,8 @@ function SignupScreen(props) {
         secureTextEntry={true}
       />
       {/*Render error messages or success messages*/}
-      <Text style={{color:'red'}}>{errorMessage}</Text>
-      <Text style={{color:'red'}}>{message}</Text>
+      <Text style={{color:"red"}}>{errorMessage}</Text>
+      <Text style={{color:"red"}}>{message}</Text>
 
       {/*Render sign up button that calls registerUser method*/}
       <TouchableOpacity
@@ -121,7 +121,7 @@ function SignupScreen(props) {
       {/*Render text button that allows user to go to login screen */}
       <Text 
         style={styles.loginText}
-        onPress={() => {reset();props.navigation.navigate('LoginScreen')}}>
+        onPress={() => {reset();props.navigation.navigate("LoginScreen")}}>
         Already Registered? Click here to login
       </Text>                          
     </View>  
@@ -137,10 +137,10 @@ const styles = StyleSheet.create({
     flexDirection: "column",
     justifyContent: "center",
     padding: 35,
-    backgroundColor: '#fff'
+    backgroundColor: "#fff"
   },
   inputStyle: {
-    width: '100%',
+    width: "100%",
     marginBottom: 15,
     paddingBottom: 15,
     alignSelf: "center",
@@ -150,17 +150,17 @@ const styles = StyleSheet.create({
   loginText: {
     color: colors.darkBorder,
     marginTop: 25,
-    textAlign: 'center'
+    textAlign: "center"
   },
   preloader: {
     left: 0,
     right: 0,
     top: 0,
     bottom: 0,
-    position: 'absolute',
-    alignItems: 'center',
-    justifyContent: 'center',
-    backgroundColor: '#fff'
+    position: "absolute",
+    alignItems: "center",
+    justifyContent: "center",
+    backgroundColor: "#fff"
   },
   signupButton:{
     width: 300,
@@ -172,8 +172,8 @@ const styles = StyleSheet.create({
     borderRadius:50,
   },
   signupText:{
-    color: 'white',
-    textAlign: 'center',
+    color: "white",
+    textAlign: "center",
     fontSize: 15
   }
 });
