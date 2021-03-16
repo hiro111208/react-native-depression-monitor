@@ -202,7 +202,7 @@ class SchedulingScreen extends Component {
               alignItems: "center",
               resizeMode: "center",
               height: Dimensions.get("window").height / 2,
-              width: Dimensions.get("window").width - 20,
+              width: Dimensions.get("window").width,
             }}
             source={require("../assets/stage_9.png")}
           />
