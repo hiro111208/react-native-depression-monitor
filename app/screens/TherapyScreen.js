@@ -38,6 +38,10 @@ const TherapyScreen = ({ navigation }) => {
   var correct1 = false;
   var correct2 = false;
 
+  // store saved values
+  var store1 = 0;
+  var store2 = 0;
+
   const userRef = firebase
     .firestore()
     .collection("users")
@@ -244,13 +248,13 @@ const TherapyScreen = ({ navigation }) => {
 
   function endTimer(isRight) {
     if (isWordAnswer) {
-      time1 = Date.now() - time1;
+      store1 = Date.now() - time1;
       correct1 = isRight;
-      console.log("Question 1 answered in " + time1);
+      console.log("Question 1 answered in " + store1);
     } else {
-      time2 = Date.now() - time2;
+      this.props.store2 = Date.now() - time2;
       correct2 = isRight;
-      console.log("Question 2 answered in " + time2);
+      console.log("Question 2 answered in " + store2);
     }
   }
 
@@ -281,8 +285,8 @@ const TherapyScreen = ({ navigation }) => {
       resetStatus();
       toggleWordAnswer(false);
     } else if (!isWordAnswer && (isCorrect || isIncorrect)) {
-      resetStatus();
       saveProgress(user.block, question + 2);
+      resetStatus();
       incrementQuestion();
       toggleWordAnswer(true);
     }
@@ -352,6 +356,7 @@ const TherapyScreen = ({ navigation }) => {
       })
       .then(() => {
         console.log("Progress saved");
+        addAnswer(store1, correct1, store2, correct2);
       })
       .catch((error) => {
         console.error("Error saving progress: ", error);
@@ -385,7 +390,6 @@ const TherapyScreen = ({ navigation }) => {
     toggleIncorrect(false);
     Speech.stop();
     setReading(false);
-    addAnswer(time1, correct1, time2, correct2);
   }
 
   // Returns the whole therapy screen interface
