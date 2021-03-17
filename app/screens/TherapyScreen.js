@@ -15,6 +15,10 @@ import Icon from "react-native-vector-icons/MaterialCommunityIcons";
 import firebase from "../database/firebase";
 import ProgressBar from "../src/components/ProgressBar";
 
+// store saved values
+var store1 = 0;
+var store2 = 0;
+
 /**
  * Screen where the therapy session takes place. Users will
  * answer question stored in Firebase or pause the session.
@@ -37,10 +41,6 @@ const TherapyScreen = ({ navigation }) => {
   // calculate correctness of the user
   var correct1 = false;
   var correct2 = false;
-
-  // store saved values
-  var store1 = 0;
-  var store2 = 0;
 
   const userRef = firebase
     .firestore()
@@ -252,7 +252,7 @@ const TherapyScreen = ({ navigation }) => {
       correct1 = isRight;
       console.log("Question 1 answered in " + store1);
     } else {
-      this.props.store2 = Date.now() - time2;
+      store2 = Date.now() - time2;
       correct2 = isRight;
       console.log("Question 2 answered in " + store2);
     }
@@ -364,6 +364,8 @@ const TherapyScreen = ({ navigation }) => {
   }
 
   function addAnswer(q1, a1, q2, a2) {
+    console.log(q1);
+    console.log(q2);
     answerRef
       .add({
         userID: user.userID,
