@@ -28,6 +28,7 @@ const TherapyScreen = ({ navigation }) => {
   const [isIncorrect, toggleIncorrect] = useState(false);
   const [isReading, setReading] = useState(false);
   const [user, setUser] = useState(undefined);
+  const [finished, setFinished] = useState(false);
 
   const userRef = firebase
     .firestore()
@@ -58,13 +59,21 @@ const TherapyScreen = ({ navigation }) => {
           });
           setItems(items);
           setLoaded(true);
-          setQuestion(doc.data().question - 1);
           setUser(doc.data());
+          checkItems(doc);
         });
       })
       .catch((error) => {
         console.log("Error getting document:", error);
       });
+  }
+
+  function checkItems(doc) {
+    if (items.length > 0) {
+      setQuestion(doc.data().question - 1);
+    } else {
+      setFinished(true);
+    }
   }
 
   // Gets therapy content while screen is rendering
@@ -203,7 +212,13 @@ const TherapyScreen = ({ navigation }) => {
 
   // displays the question of the therapy session
   function renderQuestion() {
-    if (loaded) {
+    if (finished) {
+      return (
+        <Text style={styles.textNote}>
+          Congratulations! You have completed all therapy sessions!
+        </Text>
+      );
+    } else if (loaded) {
       return renderQuestionText();
     } else {
       return <Text style={styles.textNote}>Welcome to the session!</Text>;
