@@ -30,6 +30,14 @@ const TherapyScreen = ({ navigation }) => {
   const [user, setUser] = useState(undefined);
   const [finished, setFinished] = useState(false);
 
+  // calculate the response times of the user
+  var time1 = 0;
+  var time2 = 0;
+
+  // calculate correctness of the user
+  var correct1 = false;
+  var correct2 = false;
+
   const userRef = firebase
     .firestore()
     .collection("users")
@@ -52,29 +60,20 @@ const TherapyScreen = ({ navigation }) => {
           .where("categoryDropped", "==", doc.data().categoryDropped)
           .where("block", "==", doc.data().block)
           .orderBy("question");
+        if (doc.data().block == 5) setFinished(true); // Only 4 therapy sessions to complete
         query.onSnapshot((querySnapshot) => {
           const items = [];
           querySnapshot.forEach((doc) => {
             items.push(doc.data());
           });
           setItems(items);
-          setUser(doc.data());
-          checkItems(doc);
+          setLoaded(true);
+          setQuestion(doc.data().question - 1);
         });
       })
       .catch((error) => {
         console.log("Error getting document:", error);
       });
-  }
-
-  function checkItems(doc) {
-    if (items.length > 0) {
-      setQuestion(doc.data().question - 1);
-      setLoaded(true);
-      setFinished(false);
-    } else {
-      setFinished(true);
-    }
   }
 
   // Gets therapy content while screen is rendering
@@ -228,6 +227,7 @@ const TherapyScreen = ({ navigation }) => {
 
   // renders the question item and the correct word once the word answer is given
   function renderQuestionText() {
+    startTimer();
     if (isWordAnswer) {
       return <Text style={styles.text}>{items[question].question1}</Text>;
     } else {
@@ -236,6 +236,16 @@ const TherapyScreen = ({ navigation }) => {
           {items[question].question1} ({items[question].word})
         </Text>
       );
+    }
+  }
+
+  function startTimer() {
+    if (isWordAnswer) {
+      time1 = Date.now();
+      console.log(time1);
+    } else {
+      time2 = Date.now();
+      console.log(time2);
     }
   }
 
