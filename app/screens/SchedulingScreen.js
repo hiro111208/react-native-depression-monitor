@@ -276,7 +276,7 @@ class SchedulingScreen extends Component {
         </View>
         <View style={styles.button}>
           <Button
-            title="Add Schedule"
+            title="Add Session"
             onPress={() => this.validateAppointment()}
             color="#19AC52"
           />
