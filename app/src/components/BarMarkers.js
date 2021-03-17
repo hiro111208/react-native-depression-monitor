@@ -5,7 +5,7 @@ import { StyleSheet, View } from "react-native";
 function BarMarkers(props) {
   const markers = [];
   for (var i = 0; i < props.bars ; i++) {
-    markers.push(<View style={styles.bar} left={props.separation * i}></View>);
+    markers.push(<View key={i} style={styles.bar} left={props.separation * i}></View>);
   }
   return <View style={styles.barContainer}>{markers}</View>;
 }
