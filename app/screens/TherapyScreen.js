@@ -43,6 +43,8 @@ const TherapyScreen = ({ navigation }) => {
     .collection("users")
     .doc(firebase.auth().currentUser.uid);
 
+  const answerRef = firebase.firestore().collection("answers");
+
   // currentWidth + 1 / segments = progress bar filled
   state = {
     currentWidth: question - 1, // current progress (+1)
@@ -356,6 +358,26 @@ const TherapyScreen = ({ navigation }) => {
       });
   }
 
+  function addAnswer(q1, a1, q2, a2) {
+    answerRef
+      .add({
+        userID: user.userID,
+        question: question + 1,
+        categoryDropped: user.categoryDropped,
+        sessionNumber: user.block,
+        question1Time: q1,
+        question1IsCorrect: a1,
+        question2Time: q2,
+        question2IsCorrect: a2,
+      })
+      .then(() => {
+        console.log("Answer added");
+      })
+      .catch((error) => {
+        console.error("Error adding answer: ", error);
+      });
+  }
+
   // Resets whether the user is right or wrong for a new question
   // Reset text to speech to stop reading when moving on to next question
   function resetStatus() {
@@ -363,6 +385,7 @@ const TherapyScreen = ({ navigation }) => {
     toggleIncorrect(false);
     Speech.stop();
     setReading(false);
+    addAnswer(time1, correct1, time2, correct2);
   }
 
   // Returns the whole therapy screen interface
