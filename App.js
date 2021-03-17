@@ -5,6 +5,7 @@ import {
   createStackNavigator,
   HeaderBackButton,
 } from "@react-navigation/stack";
+<<<<<<< Updated upstream
 import TherapyScreen from "./app/screens/TherapyScreen";
 import CategoryDrop from "./app/screens/CategoryDrop";
 import PlantScreen from "./app/screens/PlantScreen";
@@ -19,6 +20,23 @@ import AdminDashboard from "./app/dashboards/AdminDashboard";
 
 import colors from "./app/config/colors";
 
+=======
+// import TherapyScreen from "./app/screens/TherapyScreen";
+// import CategoryDrop from "./app/screens/CategoryDrop";
+// import PlantScreen from "./app/screens/PlantScreen";
+// import LoginScreen from "./app/screens/LoginScreen";
+// import SignupScreen from "./app/screens/SignupScreen";
+// import ForgotPasswordScreen from "./app/screens/ForgotPasswordScreen";
+// import SchedulingScreen from "./app/screens/SchedulingScreen";
+// import ScheduleListScreen from "./app/screens/ScheduleListScreen";
+// import Index from "./app/src/components/Index";
+// import PatientDashboard from "./app/dashboards/PatientDashboard";
+// import AdminDashboard from "./app/dashboards/AdminDashboard";
+import PauseScreen from "./app/screens/PauseScreen";
+
+import colors from "./app/config/colors";
+
+>>>>>>> Stashed changes
 import { withNavigation } from "react-navigation";
 
 const Stack = createStackNavigator();
@@ -26,7 +44,11 @@ const Stack = createStackNavigator();
 function MyStack() {
   return (
     <Stack.Navigator
+<<<<<<< Updated upstream
       initialRouteName="LoginScreen"
+=======
+      initialRouteName="PauseScreen" //"LoginScreen"
+>>>>>>> Stashed changes
       screenOptions={{
         gestureEnabled: false,
         headerLeft: null,
@@ -50,7 +72,11 @@ function MyStack() {
         },
       }}
     >
+<<<<<<< Updated upstream
       <Stack.Screen
+=======
+      {/* <Stack.Screen
+>>>>>>> Stashed changes
         name="SignupScreen"
         component={SignupScreen}
         options={{ title: "Signup" }}
@@ -97,7 +123,20 @@ function MyStack() {
         name="PlantScreen"
         component={PlantScreen}
       />
+<<<<<<< Updated upstream
       <Stack.Screen name="CategoryDrop" component={CategoryDrop} />
+=======
+      <Stack.Screen 
+        name="CategoryDrop" 
+        component={CategoryDrop} 
+      /> */}
+      <Stack.Screen 
+        name="PauseScreen" 
+        component={ PauseScreen } 
+        options={{ title: "Take a break" }}
+      />   
+
+>>>>>>> Stashed changes
     </Stack.Navigator>
   );
 }

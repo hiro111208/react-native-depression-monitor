@@ -161,7 +161,9 @@ function LoginScreen(props) {
         onPress={()=>userLogin()}
         testID={"TEST_ID_LOGIN_BUTTON"}
       >
-          <Text style= {styles.signInText}>LOG IN</Text>
+        <Text style= {styles.signInText}>
+          LOG IN
+        </Text>
       </TouchableOpacity>
 
       {/*Render text to allow user to go to sign up screen*/}
@@ -173,6 +175,7 @@ function LoginScreen(props) {
         }}
         testID={"TEST_ID_SIGNUP_BUTTON"}
         >
+        Don't have an account? Click here to signup
       </Text>
 
       {/*Render text to allow user to go to forgot password screen*/}
@@ -191,11 +194,14 @@ function LoginScreen(props) {
       <View> 
       {!isVerified
         ? <TouchableOpacity
-          activeOpacity = { .5 }
-          style={styles.loginButton}
-          onPress={()=>sendVerificationEmail()}
-          testID={"TEST_ID_VERIFY_BUTTON"}
-        ><Text style= {styles.signInText}>Send verification email</Text>
+            activeOpacity = { 0.5 }
+            style={styles.loginButton}
+            onPress={()=>sendVerificationEmail()}
+            testID={"TEST_ID_VERIFY_BUTTON"}
+          >
+          <Text style= {styles.signInText}>
+            Send verification email
+          </Text>
         </TouchableOpacity>
         :
         null}
