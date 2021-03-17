@@ -343,7 +343,7 @@ const TherapyScreen = ({ navigation }) => {
           </TouchableOpacity>
 
           {/* Button to read text aloud */}
-          <TouchableOpacity style={styles.readButton}>
+          <TouchableOpacity style={[styles.readButton, styles.centering]}>
             {renderReadTextButton()}
           </TouchableOpacity>
         </View>
@@ -412,8 +412,6 @@ const styles = StyleSheet.create({
     backgroundColor: "#ffcccb",
     width: "10%",
     height: "100%",
-    alignItems: "center",
-    justifyContent: "center",
   },
   optButton: {
     height: "70%",
