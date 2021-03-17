@@ -16,6 +16,7 @@ export default class BarMarkers extends Component {
         <View style={styles.bar} left={this.props.separation * 1}></View>
         <View style={styles.bar} left={this.props.separation * 2}></View>
         <View style={styles.bar} left={this.props.separation * 3}></View>
+        <View style={styles.bar} left={this.props.separation * 4}></View>
       </View>
     );
   }

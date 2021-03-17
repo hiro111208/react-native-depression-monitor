@@ -1,0 +1,23 @@
+import React from "react";
+import UserDashboard from "./UserDashboard";
+import { NavigationContainer } from "@react-navigation/native";
+import { createStackNavigator } from "@react-navigation/stack";
+import UserInfo from "./UserInfo";
+
+function Stack() {
+  const userList = createStackNavigator();
+  return (
+    <NavigationContainer>
+      <userList.Navigator
+        screenOptions={{
+          headerShown: false,
+        }}
+      >
+        <userList.Screen name="UserDashboard" component={UserDashboard} />
+        <userList.Screen name="UserInfo" component={UserInfo} />
+      </userList.Navigator>
+    </NavigationContainer>
+  );
+}
+
+export default Stack;
