@@ -58,7 +58,6 @@ const TherapyScreen = ({ navigation }) => {
             items.push(doc.data());
           });
           setItems(items);
-          setLoaded(true);
           setUser(doc.data());
           checkItems(doc);
         });
@@ -71,6 +70,7 @@ const TherapyScreen = ({ navigation }) => {
   function checkItems(doc) {
     if (items.length > 0) {
       setQuestion(doc.data().question - 1);
+      setLoaded(true);
     } else {
       setFinished(true);
     }
@@ -238,8 +238,16 @@ const TherapyScreen = ({ navigation }) => {
     }
   }
 
-  // Advances to the next screen of the therapy session
+  // Advances to the next screen of the therapy session or back to patient dashboard
   function nextQuestion() {
+    if (finished) {
+      navigation.goBack();
+    } else {
+      updateQuestion();
+    }
+  }
+
+  function updateQuestion() {
     if (!isCorrect) {
       toggleIncorrect(true);
     }
