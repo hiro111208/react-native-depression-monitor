@@ -4,7 +4,7 @@ import { StyleSheet, View } from "react-native";
 //Progress bar dividers
 function BarMarkers(props) {
   const markers = [];
-  for (var i = 0; i < props.bars - 1; i++) {
+  for (var i = 0; i < props.bars ; i++) {
     markers.push(<View style={styles.bar} left={props.separation * i}></View>);
   }
   return <View style={styles.barContainer}>{markers}</View>;
