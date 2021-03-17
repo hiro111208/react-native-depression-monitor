@@ -10,8 +10,8 @@ import {
   TextInput,
 } from "react-native";
 import Constants from "expo-constants";
-import * as Speech from 'expo-speech';
-import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+import * as Speech from "expo-speech";
+import Icon from "react-native-vector-icons/MaterialCommunityIcons";
 import firebase from "../database/firebase";
 import ProgressBar from "../src/components/ProgressBar";
 
@@ -26,7 +26,7 @@ const TherapyScreen = ({ navigation }) => {
   const [question, setQuestion] = useState(0);
   const [isCorrect, toggleCorrect] = useState(false);
   const [isIncorrect, toggleIncorrect] = useState(false);
-  const [isReading, setReading]= useState(false);
+  const [isReading, setReading] = useState(false);
   const [user, setUser] = useState(undefined);
 
   const userRef = firebase
@@ -210,6 +210,7 @@ const TherapyScreen = ({ navigation }) => {
     }
   }
 
+  // renders the question item and the correct word once the word answer is given
   function renderQuestionText() {
     if (isWordAnswer) {
       return <Text style={styles.text}>{items[question].question1}</Text>;
@@ -239,34 +240,48 @@ const TherapyScreen = ({ navigation }) => {
   }
 
   //Return the icon name for the read text button
-  const readButtonAttributes={
-    name: (isReading ? "text-to-speech-off" : "text-to-speech"),
-  }
- 
+  const readButtonAttributes = {
+    name: isReading ? "text-to-speech-off" : "text-to-speech",
+  };
+
   //Either start or stop reading on read text button click
-  function handleReadButtonOnPress(){
+  function handleReadButtonOnPress() {
     setReading(!isReading);
-    {if(loaded){
-      if (!isReading){
-          try{
-            Speech.speak(items[question].question1, {language:"en-US", onDone:()=>setReading(false) }) 
-          }catch(error){console.log(error)}
-        }else{
-          Speech.stop()
+    {
+      if (loaded) {
+        if (!isReading) {
+          try {
+            Speech.speak(items[question].question1, {
+              language: "en-US",
+              onDone: () => setReading(false),
+            });
+          } catch (error) {
+            console.log(error);
+          }
+        } else {
+          Speech.stop();
         }
       }
     }
   }
 
   // Renders button that reads text aloud
-  function renderReadTextButton(){
-    if(loaded){ return(
-      <Icon name={readButtonAttributes.name}  size={30} color="white" onPress={()=> handleReadButtonOnPress()}/>
-    )}
+  function renderReadTextButton() {
+    if (loaded) {
+      return (
+        <Icon
+          name={readButtonAttributes.name}
+          size={30}
+          color="white"
+          onPress={() => handleReadButtonOnPress()}
+        />
+      );
+    }
   }
-  
+
+  // Updates the question index, until the session ends.
   function incrementQuestion() {
-    if (question == 17) {
+    if (question == items) {
       saveProgress(user.block + 1, 1);
       Alert.alert(
         "Congratulations",
@@ -303,13 +318,11 @@ const TherapyScreen = ({ navigation }) => {
     setReading(false);
   }
 
-
   // Returns the whole therapy screen interface
   return (
     <KeyboardAvoidingView style={styles.container} behavior="position">
-      {/* Button to take a break */}
+      {/* Progress bar of the therapy session */}
       <View style={[styles.top, styles.centering]}>
-
         <View style={styles.bar}>
           <ProgressBar
             segments={state.segments}
@@ -317,7 +330,8 @@ const TherapyScreen = ({ navigation }) => {
           ></ProgressBar>
         </View>
 
-        <View style= {styles.horizontal}>
+        {/* Pause button to take a break */}
+        <View style={styles.horizontal}>
           <TouchableOpacity
             style={[
               styles.takeBreakButton,
@@ -329,8 +343,8 @@ const TherapyScreen = ({ navigation }) => {
           </TouchableOpacity>
 
           {/* Button to read text aloud */}
-          <TouchableOpacity  style={styles.readButton} >
-          {renderReadTextButton()}
+          <TouchableOpacity style={styles.readButton}>
+            {renderReadTextButton()}
           </TouchableOpacity>
         </View>
       </View>
@@ -344,9 +358,8 @@ const TherapyScreen = ({ navigation }) => {
         </View>
       </View>
 
-      {/* Presents different answer formats */}
+      {/* Presents different answer formats for the subquestions*/}
       {renderAnswerArea()}
-
 
       {/* Button to navigate through the therapy session */}
       <View style={[styles.bottom, styles.centering]}>
@@ -382,8 +395,8 @@ const styles = StyleSheet.create({
   },
   horizontal: {
     flexDirection: "row",
-    alignItems:"center",
-    justifyContent: "center"
+    alignItems: "center",
+    justifyContent: "center",
   },
   container: {
     marginTop: Constants.statusBarHeight,
@@ -393,14 +406,14 @@ const styles = StyleSheet.create({
   correctHighlight: {
     borderColor: "#c7ffd8",
   },
-  readButton:{
+  readButton: {
     left: "35%",
     position: "absolute",
     backgroundColor: "#ffcccb",
     width: "10%",
-    height:"100%",
+    height: "100%",
     alignItems: "center",
-    justifyContent: "center"
+    justifyContent: "center",
   },
   optButton: {
     height: "70%",
@@ -424,7 +437,7 @@ const styles = StyleSheet.create({
     width: "70%",
     backgroundColor: "#a9eed1",
     borderRadius: 20,
-    position: 'absolute',
+    position: "absolute",
     bottom: 0,
   },
   questionArea: {
@@ -463,7 +476,7 @@ const styles = StyleSheet.create({
     fontSize: 15,
     textAlign: "center",
     padding: 10,
-    flexWrap: "wrap"
+    flexWrap: "wrap",
   },
   top: {
     height: "15%",
