@@ -239,6 +239,18 @@ const TherapyScreen = ({ navigation }) => {
     }
   }
 
+  function endTimer(isRight) {
+    if (isWordAnswer) {
+      time1 = Date.now() - time1;
+      correct1 = isRight;
+      console.log("Question 1 answered in " + time1);
+    } else {
+      time2 = Date.now() - time2;
+      correct2 = isRight;
+      console.log("Question 2 answered in " + time2);
+    }
+  }
+
   function startTimer() {
     if (isWordAnswer) {
       time1 = Date.now();
@@ -346,6 +358,7 @@ const TherapyScreen = ({ navigation }) => {
   // Resets whether the user is right or wrong for a new question
   // Reset text to speech to stop reading when moving on to next question
   function resetStatus() {
+    endTimer(isCorrect);
     toggleCorrect(false);
     toggleIncorrect(false);
     Speech.stop();
