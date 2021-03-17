@@ -208,6 +208,7 @@ const TherapyScreen = ({ navigation }) => {
     } else {
       checkChoiceAnswer(value);
     }
+    endTimer(isCorrect);
   }
 
   // displays the question of the therapy session
@@ -358,7 +359,6 @@ const TherapyScreen = ({ navigation }) => {
   // Resets whether the user is right or wrong for a new question
   // Reset text to speech to stop reading when moving on to next question
   function resetStatus() {
-    endTimer(isCorrect);
     toggleCorrect(false);
     toggleIncorrect(false);
     Speech.stop();
