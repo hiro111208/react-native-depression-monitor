@@ -296,7 +296,7 @@ const TherapyScreen = ({ navigation }) => {
 
   // Updates the question index, until the session ends.
   function incrementQuestion() {
-    if (question == items) {
+    if (question == 17) {
       saveProgress(user.block + 1, 1);
       Alert.alert(
         "Congratulations",
