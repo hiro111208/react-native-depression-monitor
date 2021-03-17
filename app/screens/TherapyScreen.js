@@ -331,7 +331,7 @@ const TherapyScreen = ({ navigation }) => {
         </View>
 
         {/* Pause button to take a break */}
-        <View style={styles.horizontal}>
+        <View style={[styles.horizontal, styles.centering]}>
           <TouchableOpacity
             style={[
               styles.takeBreakButton,
@@ -386,15 +386,17 @@ const styles = StyleSheet.create({
     padding: 50,
     flex: 1,
   },
+  bar: {
+    width: "85%",
+    padding: 10,
+  },
+  bottom: {
+    height: "10%",
+  },
   center: {
     height: "50%",
   },
   centering: {
-    alignItems: "center",
-    justifyContent: "center",
-  },
-  horizontal: {
-    flexDirection: "row",
     alignItems: "center",
     justifyContent: "center",
   },
@@ -406,18 +408,8 @@ const styles = StyleSheet.create({
   correctHighlight: {
     borderColor: "#c7ffd8",
   },
-  readButton: {
-    left: "35%",
-    position: "absolute",
-    backgroundColor: "#ffcccb",
-    width: "10%",
-    height: "100%",
-  },
-  optButton: {
-    height: "70%",
-    width: 150,
-    backgroundColor: "#c7ffd8",
-    borderRadius: 10,
+  horizontal: {
+    flexDirection: "row",
   },
   input: {
     height: "100%",
@@ -446,6 +438,13 @@ const styles = StyleSheet.create({
     borderColor: "#fff",
     backgroundColor: "#eee",
     padding: 30,
+  },
+  readButton: {
+    left: "35%",
+    position: "absolute",
+    backgroundColor: "#ffcccb",
+    width: "10%",
+    height: "100%",
   },
   shadowEffect: {
     shadowColor: "#000",
@@ -478,13 +477,6 @@ const styles = StyleSheet.create({
   },
   top: {
     height: "15%",
-  },
-  bottom: {
-    height: "10%",
-  },
-  bar: {
-    width: "85%",
-    padding: 10,
   },
 });
 
