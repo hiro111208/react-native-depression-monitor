@@ -71,6 +71,7 @@ const TherapyScreen = ({ navigation }) => {
     if (items.length > 0) {
       setQuestion(doc.data().question - 1);
       setLoaded(true);
+      setFinished(false);
     } else {
       setFinished(true);
     }
