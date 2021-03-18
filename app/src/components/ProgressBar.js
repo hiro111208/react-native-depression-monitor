@@ -3,6 +3,7 @@ import {
   Animated,
   StyleSheet,
   View,
+  UIManager,
   LayoutAnimation,
   Text,
 } from "react-native";
@@ -12,6 +13,10 @@ export default class ProgressBar extends Component {
   constructor() {
     super();
     this._animatedColor = new Animated.Value(0);
+    // Enable LayoutAnimation under Android
+    if (Platform.OS === "android") {
+      UIManager.setLayoutAnimationEnabledExperimental(true);
+    }
   }
 
   static defaultProps = {
