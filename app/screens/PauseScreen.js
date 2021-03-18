@@ -53,7 +53,7 @@ export default function PauseScreen({ props, navigation }) {
 
                     <TouchableOpacity
                         style={[styles.remindButton]}
-                        onPress={() => navigation.navigate("TestScreen") } //replace with 
+                        onPress={() => navigation.navigate("TherapyScreen") } //record the time
                     >
                     </TouchableOpacity>
                 </SafeAreaView>
