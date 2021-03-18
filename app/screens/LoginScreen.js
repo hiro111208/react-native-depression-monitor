@@ -12,42 +12,6 @@ import firebase from "../database/firebase";
 
 import colors from "../config/colors";
 
-const db = firebase.firestore();
-
-/**
- * Locates the progress of the user based on their uid
- */
-function navigateUser(uid, props) {
-  var docRef = db.collection("users").doc(uid);
-  docRef
-    .get()
-    .then((doc) => {
-      if (doc.exists) {
-        const userProgress = doc.data();
-
-        // A category hasn't been dropped
-        if (userProgress.categoryDropped == "NONE") {
-          props.navigation.navigate("CategoryDrop", {
-            user: userProgress,
-          });
-        }
-
-        // Proceeds straight to the dashboard (skipping category)
-        else {
-          props.navigation.navigate("PatientDashboard");
-        }
-      }
-
-      // doc.data() will be undefined in this case
-      else {
-        console.log("No such document!");
-      }
-    })
-    .catch((error) => {
-      console.log("Error getting document:", error);
-    });
-}
-
 /*
   Screen where users can login to access their dashboards
 */
@@ -58,6 +22,43 @@ function LoginScreen(props) {
   const [errorMessage, setErrorMessage] = useState("");
   const [isVerified, setIsVerified] = useState(true);
 
+  const db = firebase.firestore();
+
+  /**
+   * Locates the progress of the user based on their uid
+   */
+  function navigateUser(uid) {
+    var docRef = db.collection("users").doc(uid);
+    docRef
+      .get()
+      .then((doc) => {
+        if (doc.exists) {
+          const userProgress = doc.data();
+
+          // A category hasn't been dropped
+          if (userProgress.categoryDropped == "NONE") {
+            props.navigation.navigate("CategoryDrop", {
+              user: userProgress,
+            });
+            setIsLoading(false);
+          }
+
+          // Proceeds straight to the dashboard (skipping category)
+          else {
+            props.navigation.navigate("PatientDashboard");
+            setIsLoading(false);
+          }
+        }
+
+        // doc.data() will be undefined in this case
+        else {
+          console.log("No such document!");
+        }
+      })
+      .catch((error) => {
+        console.log("Error getting document:", error);
+      });
+  }
   //Send verification email to user to allow them to login
   const sendVerificationEmail = () => {
     firebase
@@ -92,11 +93,12 @@ function LoginScreen(props) {
           if (firebase.auth().currentUser.email == "admin@joyapp.com") {
             reset();
             props.navigation.navigate("AdminDashboard");
+            setIsLoading(false);
           } else {
             if (firebase.auth().currentUser.emailVerified) {
               console.log("User logged-in successfully!");
               reset();
-              navigateUser(firebase.auth().currentUser.uid, props);
+              navigateUser(firebase.auth().currentUser.uid);
             } else {
               setIsLoading(false);
               setErrorMessage("Your email has not been verified");
@@ -114,7 +116,6 @@ function LoginScreen(props) {
 
   //reset all states
   const reset = () => {
-    setIsLoading(false);
     setEmail("");
     setPassword("");
     setIsVerified(true);
