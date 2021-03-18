@@ -10,6 +10,8 @@ import {
   TextInput,
 } from "react-native";
 import Constants from "expo-constants";
+import * as Speech from 'expo-speech';
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import firebase from "../database/firebase";
 import ProgressBar from "../src/components/ProgressBar";
 
@@ -24,6 +26,7 @@ const TherapyScreen = ({ navigation }) => {
   const [question, setQuestion] = useState(0);
   const [isCorrect, toggleCorrect] = useState(false);
   const [isIncorrect, toggleIncorrect] = useState(false);
+  const [isReading, setReading]= useState(false);
   const [user, setUser] = useState(undefined);
 
   const userRef = firebase
@@ -235,6 +238,33 @@ const TherapyScreen = ({ navigation }) => {
     }
   }
 
+  //Return the icon name for the read text button
+  const readButtonAttributes={
+    name: (isReading ? "text-to-speech-off" : "text-to-speech"),
+  }
+ 
+  //Either start or stop reading on read text button click
+  function handleReadButtonOnPress(){
+    setReading(!isReading);
+    {if(loaded){
+      if (!isReading){
+          try{
+            Speech.speak(items[question].question1, {language:"en-US", onDone:()=>setReading(false) }) 
+          }catch(error){console.log(error)}
+        }else{
+          Speech.stop()
+        }
+      }
+    }
+  }
+
+  // Renders button that reads text aloud
+  function renderReadTextButton(){
+    if(loaded){ return(
+      <Icon name={readButtonAttributes.name}  size={30} color="white" onPress={()=> handleReadButtonOnPress()}/>
+    )}
+  }
+  
   function incrementQuestion() {
     if (question == 17) {
       saveProgress(user.block + 1, 1);
@@ -265,31 +295,44 @@ const TherapyScreen = ({ navigation }) => {
   }
 
   // Resets whether the user is right or wrong for a new question
+  // Reset text to speech to stop reading when moving on to next question
   function resetStatus() {
     toggleCorrect(false);
     toggleIncorrect(false);
+    Speech.stop();
+    setReading(false);
   }
+
 
   // Returns the whole therapy screen interface
   return (
     <KeyboardAvoidingView style={styles.container} behavior="position">
       {/* Button to take a break */}
       <View style={[styles.top, styles.centering]}>
+
         <View style={styles.bar}>
           <ProgressBar
             segments={state.segments}
             nextWidth={state.currentWidth + 1}
           ></ProgressBar>
         </View>
-        <TouchableOpacity
-          style={[
-            styles.takeBreakButton,
-            styles.centering,
-            styles.shadowEffect,
-          ]}
-        >
-          <Text style={styles.text}>Take a break</Text>
-        </TouchableOpacity>
+
+        <View style= {styles.horizontal}>
+          <TouchableOpacity
+            style={[
+              styles.takeBreakButton,
+              styles.centering,
+              styles.shadowEffect,
+            ]}
+          >
+            <Text style={styles.text}>Take a break</Text>
+          </TouchableOpacity>
+
+          {/* Button to read text aloud */}
+          <TouchableOpacity  style={styles.readButton} >
+          {renderReadTextButton()}
+          </TouchableOpacity>
+        </View>
       </View>
 
       {/* Displays therapy item story and question */}
@@ -337,6 +380,11 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
   },
+  horizontal: {
+    flexDirection: "row",
+    alignItems:"center",
+    justifyContent: "center"
+  },
   container: {
     marginTop: Constants.statusBarHeight,
     flex: 1,
@@ -344,6 +392,21 @@ const styles = StyleSheet.create({
   },
   correctHighlight: {
     borderColor: "#c7ffd8",
+  },
+  readButton:{
+    left: "35%",
+    position: "absolute",
+    backgroundColor: "#ffcccb",
+    width: "10%",
+    height:"100%",
+    alignItems: "center",
+    justifyContent: "center"
+  },
+  optButton: {
+    height: "70%",
+    width: 150,
+    backgroundColor: "#c7ffd8",
+    borderRadius: 10,
   },
   input: {
     height: "100%",
@@ -385,7 +448,7 @@ const styles = StyleSheet.create({
     marginVertical: 5,
   },
   takeBreakButton: {
-    height: "30%",
+    height: "50%",
     width: 125,
     backgroundColor: "#fff",
     borderRadius: 20,
