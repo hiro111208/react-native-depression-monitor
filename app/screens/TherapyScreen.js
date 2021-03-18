@@ -15,9 +15,11 @@ import Icon from "react-native-vector-icons/MaterialCommunityIcons";
 import firebase from "../database/firebase";
 import ProgressBar from "../src/components/ProgressBar";
 
-// store saved values
-var store1 = 0;
-var store2 = 0;
+// must be outside the therapy screen to not reset
+var time1 = 0; //word answer time
+var time2 = 0; //yes or no answer time
+var correct1 = false;
+var correct2 = false;
 
 /**
  * Screen where the therapy session takes place. Users will
@@ -33,14 +35,7 @@ const TherapyScreen = ({ navigation }) => {
   const [isReading, setReading] = useState(false);
   const [user, setUser] = useState(undefined);
   const [finished, setFinished] = useState(false);
-
-  // calculate the response times of the user
-  var time1 = 0;
-  var time2 = 0;
-
-  // calculate correctness of the user
-  var correct1 = false;
-  var correct2 = false;
+  const [timerStarted, setTimerStarted] = useState(false);
 
   const userRef = firebase
     .firestore()
@@ -234,7 +229,9 @@ const TherapyScreen = ({ navigation }) => {
 
   // renders the question item and the correct word once the word answer is given
   function renderQuestionText() {
-    startTimer();
+    if (!timerStarted) {
+      startTimer();
+    }
     if (isWordAnswer) {
       return <Text style={styles.text}>{items[question].question1}</Text>;
     } else {
@@ -248,23 +245,25 @@ const TherapyScreen = ({ navigation }) => {
 
   function endTimer(isRight) {
     if (isWordAnswer) {
-      store1 = Date.now() - time1;
+      time1 = Date.now() - time1;
       correct1 = isRight;
-      console.log("Question 1 answered in " + store1);
+      console.log("time1 " + time1);
+      console.log("now " + Date.now());
     } else {
-      store2 = Date.now() - time2;
+      time2 = Date.now() - time2;
       correct2 = isRight;
-      console.log("Question 2 answered in " + store2);
+      console.log("Question 2 answered in " + time2);
     }
   }
 
   function startTimer() {
+    setTimerStarted(true);
     if (isWordAnswer) {
       time1 = Date.now();
-      console.log(time1);
+      console.log("time 1");
     } else {
       time2 = Date.now();
-      console.log(time2);
+      console.log("time 2");
     }
   }
 
@@ -356,7 +355,7 @@ const TherapyScreen = ({ navigation }) => {
       })
       .then(() => {
         console.log("Progress saved");
-        addAnswer(store1, correct1, store2, correct2);
+        addAnswer(time1, correct1, time2, correct2);
       })
       .catch((error) => {
         console.error("Error saving progress: ", error);
@@ -392,6 +391,7 @@ const TherapyScreen = ({ navigation }) => {
     toggleIncorrect(false);
     Speech.stop();
     setReading(false);
+    setTimerStarted(false);
   }
 
   // Returns the whole therapy screen interface
