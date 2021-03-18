@@ -1,38 +1,118 @@
-import React from "react";
-import { NavigationContainer } from '@react-navigation/native';
-import { createStackNavigator } from '@react-navigation/stack';
-import { StatusBar, StyleSheet, SafeAreaView } from "react-native";
-import { Constants } from "expo-constants";
-
+import * as React from "react";
+import { View, Text, Button, Image, alert } from "react-native";
+import { NavigationContainer } from "@react-navigation/native";
+import {
+  createStackNavigator,
+  HeaderBackButton,
+} from "@react-navigation/stack";
+// import TherapyScreen from "./app/screens/TherapyScreen";
+// import CategoryDrop from "./app/screens/CategoryDrop";
+// import PlantScreen from "./app/screens/PlantScreen";
+// import LoginScreen from "./app/screens/LoginScreen";
+// import SignupScreen from "./app/screens/SignupScreen";
+// import ForgotPasswordScreen from "./app/screens/ForgotPasswordScreen";
+// import SchedulingScreen from "./app/screens/SchedulingScreen";
+// import ScheduleListScreen from "./app/screens/ScheduleListScreen";
+// import Index from "./app/src/components/Index";
+// import PatientDashboard from "./app/dashboards/PatientDashboard";
+// import AdminDashboard from "./app/dashboards/AdminDashboard";
 import PauseScreen from "./app/screens/PauseScreen";
+import TestScreen from "./app/screens/TestScreen";
 
-import colors from '.app/config/colors';
+import colors from "./app/config/colors";
+
+import { withNavigation } from "react-navigation";
 
 const Stack = createStackNavigator();
 
 function MyStack() {
-    return (
-      <Stack.Navigator 
-        initialRouteName="PauseScreen" //change to signup/login later
-        screenOptions={{
-            headerLeft: null,
-            headerTitleAlign: 'center',
-            headerStyle: {
-             backgroundColor: colors.darkBorder,
-            },
-            headerTintColor: '#fff',
-            headerTitleStyle: {
-              fontWeight: 'bold',
-            },
-            backgroundColor: '#fad8B9'
-        }}>
-          <Stack.Screen 
-            name="PauseScreen" 
-            component={ PauseScreen } 
-            options={{ title: 'Take a break' }}
-          />   
-        </Stack.Navigator>
-    );
+  return (
+    <Stack.Navigator
+      initialRouteName="PauseScreen" //"LoginScreen"
+      screenOptions={{
+        gestureEnabled: false,
+        headerLeft: null,
+        headerTitleAlign: "center",
+        headerStyle: {
+          backgroundColor: colors.darkBorder,
+          borderBottomLeftRadius: 50,
+          borderBottomRightRadius: 50,
+          shadowColor: "#000",
+          shadowOffset: {
+            width: 0,
+            height: 2,
+          },
+          shadowOpacity: 0.25,
+          shadowRadius: 3.84,
+          elevation: 5,
+        },
+        headerTintColor: "#fff",
+        headerTitleStyle: {
+          fontWeight: "bold",
+        },
+      }}
+    >
+      {/* <Stack.Screen
+        name="SignupScreen"
+        component={SignupScreen}
+        options={{ title: "Signup" }}
+      />
+      <Stack.Screen
+        name="LoginScreen"
+        component={LoginScreen}
+        options={{ title: "Login" }}
+      />
+      <Stack.Screen
+        name="ForgotPasswordScreen"
+        component={ForgotPasswordScreen}
+        options={{ title: "Forgot Password" }}
+      />
+      <Stack.Screen name="PatientDashboard" component={PatientDashboard} />
+      <Stack.Screen
+        name="AdminDashboard"
+        component={AdminDashboard}
+        options={{ title: "AdminDashboard" }}
+      />
+      <Stack.Screen
+        name="SchedulingScreen"
+        component={SchedulingScreen}
+        options={{
+          title: "Add Schedule",
+          headerLeft: null,
+        }}
+      />
+      <Stack.Screen
+        name="ScheduleListScreen"
+        component={ScheduleListScreen}
+        options={{ title: "Schedule List" }}
+      />
+
+      <Stack.Screen
+        options={{ headerShown: false }}
+        name="TherapyScreen"
+        component={TherapyScreen}
+      /> */}
+      {/* <Stack.Screen
+        options={{ headerShown: false }}
+        name="PlantScreen"
+        component={PlantScreen}
+      />
+      <Stack.Screen 
+      name="CategoryDrop" 
+      component={CategoryDrop} 
+      /> */}
+      <Stack.Screen
+        name="PauseScreen"
+        component={PauseScreen}
+        options={{ title: "Take a break" }}
+      />
+      <Stack.Screen
+      name="TestScreen"
+      component={TestScreen}
+      options={{ title: "Test home" }}
+    />
+    </Stack.Navigator>
+  );
 }
 
 export default function App() {
@@ -40,15 +120,17 @@ export default function App() {
     <NavigationContainer>
       <MyStack />
     </NavigationContainer>
+
+    //Uncomment to see different screens one at a time
+    //<TherapyScreen />
+    //<CategoryDrop/>
+    //<PlantScreen/>
+    //<LoginScreen/>
+    //<SignupScreen/>
+    // <SchedulingScreen/>
+    //<SignupScreen />
+    //<ForgotPasswordScreen/>
+    //<PauseScreen/>
+    //<Index></Index> //where progressBar buttons/actions and component are
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1, //takes up the entire screen
-    marginTop: Constants.statusBarHeight,
-    backgroundColor: '#FAD8B9',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
