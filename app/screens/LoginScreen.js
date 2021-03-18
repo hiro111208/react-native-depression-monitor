@@ -138,6 +138,7 @@ function LoginScreen(props) {
         style={styles.inputStyle}
         placeholder="Email"
         value={email}
+        keyboardType="email-address"
         onChangeText={(userEmail) => setEmail(userEmail)}
         testID={"TEST_ID_EMAIL_INPUT"}
       />

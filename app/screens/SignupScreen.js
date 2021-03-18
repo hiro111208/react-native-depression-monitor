@@ -10,9 +10,9 @@ import {
   TouchableOpacity,
 } from "react-native";
 import firebase from "../database/firebase";
-
+import Icon from 'react-native-vector-icons/AntDesign';
+import { Tooltip } from 'react-native-elements';
 import colors from "../config/colors";
-
 const db = firebase.firestore();
 
 /**
@@ -160,7 +160,7 @@ function SignupScreen(props) {
     <View style={styles.container}>
       <TextInput
         style={styles.inputStyle}
-        placeholder="Name"
+        placeholder="First Name"
         value={displayName}
         onChangeText={(val) => setDisplayName(val)}
       />
@@ -168,18 +168,34 @@ function SignupScreen(props) {
         style={styles.inputStyle}
         placeholder="Email"
         value={email}
+        keyboardType="email-address"
         onChangeText={(val) => setEmail(val)}
         testID={"TEST_ID_EMAIL_INPUT"}
       />
-      <TextInput
-        style={styles.inputStyle}
-        placeholder="Password"
-        value={password}
-        onChangeText={(val) => setPassword(val)}
-        maxLength={15}
-        secureTextEntry={true}
-        testID={"TEST_ID_PASSWORD_INPUT"}
-      />
+      <View style={[styles.inputStyle ,styles.passwordSection]}>
+        <TextInput
+          //style={styles.inputStyle}
+          placeholder="Password"
+          value={password}
+          onChangeText={(val) => setPassword(val)}
+          maxLength={15}
+          autoCorrect={false}
+          secureTextEntry={true}
+          testID={"TEST_ID_PASSWORD_INPUT"}
+        /> 
+        <Tooltip 
+          style={styles.passwordTooltip} 
+          withOverlay={false} 
+          backgroundColor={colors.darkBorder} 
+          width={300}
+          height={80}
+          popover={<Text style={styles.passwordInformation}>
+            Password must be 6 to 15 characters long. Can contain any alphaneumeric or special character.
+            </Text>}>
+          <Icon name="questioncircleo"  size={22} color="#ccc"/>
+        </Tooltip>
+        
+      </View>
       {/*Render error messages or success messages*/}
       <Text style={{ color: "red" }}>{errorMessage}</Text>
       <Text style={{ color: "red" }}>{message}</Text>
@@ -230,6 +246,19 @@ const styles = StyleSheet.create({
     color: colors.darkBorder,
     marginTop: 25,
     textAlign: "center",
+  },
+  passwordSection: {
+    flexDirection:"row",
+    alignItems: "center",
+    justifyContent: "space-between"
+  },
+  passwordInformation: {
+    color:'white'
+  },
+  passwordTooltip: {
+    backgroundColor:colors.darkBorder,
+    width:300,
+    height:60
   },
   preloader: {
     left: 0,
