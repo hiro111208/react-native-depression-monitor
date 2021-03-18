@@ -231,7 +231,7 @@ class SchedulingScreen extends Component {
               onChange={this.onChange}
             />
           )}
-          {Platform.IO === 'ios' && 
+          {Platform.OS === 'ios' && 
             <View style={styles.datepickerGroup}>
               <View
                 style={{
@@ -265,7 +265,7 @@ class SchedulingScreen extends Component {
                   testID="TimePicker"
                   value={this.state.date}
                   mode="time"
-                  minimumDate={this.state.mode === "date" && new Date()} // to prevent user to select past date
+                  //minimumDate={this.state.mode === "date" && new Date()} // to prevent user to select past date
                   is24Hour={true}
                   display="default"
                   onChange={this.onChange}
