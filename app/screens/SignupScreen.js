@@ -174,7 +174,6 @@ function SignupScreen(props) {
       />
       <View style={[styles.inputStyle ,styles.passwordSection]}>
         <TextInput
-          //style={styles.inputStyle}
           placeholder="Password"
           value={password}
           onChangeText={(val) => setPassword(val)}
@@ -183,6 +182,7 @@ function SignupScreen(props) {
           secureTextEntry={true}
           testID={"TEST_ID_PASSWORD_INPUT"}
         /> 
+        {/*Render tooltip with password criteria*/}
         <Tooltip 
           style={styles.passwordTooltip} 
           withOverlay={false} 
