@@ -192,6 +192,10 @@ const TherapyScreen = ({ navigation }) => {
   function checkWordAnswer(value) {
     if (value.toLowerCase() == items[question].answer1) {
       toggleCorrect(true);
+      correct1 = true;
+    } else {
+      toggleIncorrect(false);
+      correct1 = false;
     }
   }
 
@@ -199,8 +203,10 @@ const TherapyScreen = ({ navigation }) => {
   function checkChoiceAnswer(value) {
     if (value.toLowerCase() == items[question].answer2) {
       toggleCorrect(true);
+      correct2 = true;
     } else {
       toggleIncorrect(true);
+      correct2 = false;
     }
   }
 
@@ -211,7 +217,7 @@ const TherapyScreen = ({ navigation }) => {
     } else {
       checkChoiceAnswer(value);
     }
-    endTimer(isCorrect);
+    endTimer();
   }
 
   // displays the question of the therapy session
@@ -245,15 +251,13 @@ const TherapyScreen = ({ navigation }) => {
     }
   }
 
-  function endTimer(isRight) {
+  function endTimer() {
     if (isWordAnswer) {
       store1 = Date.now() - time1;
-      correct1 = isRight;
       console.log("time1 " + time1);
       console.log("now " + Date.now());
     } else {
       store2 = Date.now() - time2;
-      correct2 = isRight;
       console.log("Question 2 answered in " + store2);
     }
   }
