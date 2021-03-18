@@ -17,6 +17,10 @@ import Index from "./app/src/components/Index";
 import PatientDashboard from "./app/dashboards/PatientDashboard";
 import AdminDashboard from "./app/dashboards/AdminDashboard";
 
+import AddTherapyQuestionScreen from './app/screens/AddTherapyQuestionScreen';
+import TherapyQuestionScreen from './app/screens/TherapyQuestionScreen';
+import TherapyQuestionDetailScreen from './app/screens/TherapyQuestionDetailScreen';
+
 import colors from "./app/config/colors";
 
 import { withNavigation } from "react-navigation";
@@ -104,9 +108,9 @@ function MyStack() {
 
 export default function App() {
   return (
-    <NavigationContainer>
-      <MyStack />
-    </NavigationContainer>
+    //<NavigationContainer>
+    //  <MyStack />
+    //</NavigationContainer>
 
     //Uncomment to see different screens one at a time
     //<TherapyScreen />
@@ -118,5 +122,34 @@ export default function App() {
     //<SignupScreen />
     //<ForgotPasswordScreen/>
     //<Index></Index> //where progressBar buttons/actions and component are
+    <NavigationContainer>
+      <Stack.Navigator
+      screenOptions={{
+          headerStyle: {
+            backgroundColor: '#621FF7',
+          },
+          headerTintColor: '#fff',
+          headerTitleStyle: {
+            fontWeight: 'bold',
+          },
+        }}
+      >
+      <Stack.Screen 
+        name="AddTherapyQuestionScreen" 
+        component={AddTherapyQuestionScreen} 
+        options={{ title: 'Add TherapyQuestion' }}
+      />
+      <Stack.Screen 
+        name="TherapyQuestionScreen" 
+        component={TherapyQuestionScreen} 
+        options={{ title: 'TherapyQuestions List' }}
+      />
+      <Stack.Screen 
+       name="TherapyQuestionDetailScreen" 
+       component={TherapyQuestionDetailScreen} 
+       options={{ title: 'TherapyQuestion Detail' }}
+      />
+    </Stack.Navigator>
+    </NavigationContainer>
   );
 }
