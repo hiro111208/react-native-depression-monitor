@@ -20,6 +20,8 @@ var time1 = 0; //word answer time
 var time2 = 0; //yes or no answer time
 var correct1 = false;
 var correct2 = false;
+var store1 = 0;
+var store2 = 0;
 
 /**
  * Screen where the therapy session takes place. Users will
@@ -245,14 +247,14 @@ const TherapyScreen = ({ navigation }) => {
 
   function endTimer(isRight) {
     if (isWordAnswer) {
-      time1 = Date.now() - time1;
+      store1 = Date.now() - time1;
       correct1 = isRight;
       console.log("time1 " + time1);
       console.log("now " + Date.now());
     } else {
-      time2 = Date.now() - time2;
+      store2 = Date.now() - time2;
       correct2 = isRight;
-      console.log("Question 2 answered in " + time2);
+      console.log("Question 2 answered in " + store2);
     }
   }
 
@@ -284,6 +286,7 @@ const TherapyScreen = ({ navigation }) => {
       resetStatus();
       toggleWordAnswer(false);
     } else if (!isWordAnswer && (isCorrect || isIncorrect)) {
+      addAnswer(store1, correct1, store2, correct2);
       saveProgress(user.block, question + 2);
       resetStatus();
       incrementQuestion();
@@ -355,7 +358,6 @@ const TherapyScreen = ({ navigation }) => {
       })
       .then(() => {
         console.log("Progress saved");
-        addAnswer(time1, correct1, time2, correct2);
       })
       .catch((error) => {
         console.error("Error saving progress: ", error);
