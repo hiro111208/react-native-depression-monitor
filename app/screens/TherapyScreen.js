@@ -251,17 +251,16 @@ const TherapyScreen = ({ navigation }) => {
     }
   }
 
+  // calculates the response time and stores it in milliseconds
   function endTimer() {
     if (isWordAnswer) {
       store1 = Date.now() - time1;
-      console.log("time1 " + time1);
-      console.log("now " + Date.now());
     } else {
       store2 = Date.now() - time2;
-      console.log("Question 2 answered in " + store2);
     }
   }
 
+  // records timestamp in milliseconds (will not reset if already set)
   function startTimer() {
     setTimerStarted(true);
     if (isWordAnswer) {
@@ -282,6 +281,7 @@ const TherapyScreen = ({ navigation }) => {
     }
   }
 
+  // moves to the next question of the therapy session
   function updateQuestion() {
     if (!isCorrect) {
       toggleIncorrect(true);
@@ -352,6 +352,7 @@ const TherapyScreen = ({ navigation }) => {
     }
   }
 
+  // writes the progress of the user so the question isn't repeated
   function saveProgress(blockI, questionI) {
     userRef
       .set({
@@ -368,6 +369,7 @@ const TherapyScreen = ({ navigation }) => {
       });
   }
 
+  // add the data related to the user's response
   function addAnswer(q1, a1, q2, a2) {
     console.log(q1);
     console.log(q2);
