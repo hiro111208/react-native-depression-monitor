@@ -194,7 +194,7 @@ const TherapyScreen = ({ navigation }) => {
       toggleCorrect(true);
       correct1 = true;
     } else {
-      toggleIncorrect(false);
+      toggleIncorrect(true);
       correct1 = false;
     }
   }
