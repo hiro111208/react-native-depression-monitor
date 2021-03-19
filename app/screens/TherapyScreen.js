@@ -402,7 +402,7 @@ const TherapyScreen = ({ navigation }) => {
     setTimerStarted(false);
   }
 
-  // Can only take a break when all the questions have been answered
+  // Can only press button when all the questions have been answered
   function checkDisabled() {
     if (!isWordAnswer && (isCorrect || isIncorrect)) {
       return false;
@@ -417,6 +417,15 @@ const TherapyScreen = ({ navigation }) => {
       return "Take a break";
     } else {
       return "Good Luck!";
+    }
+  }
+
+  // Sets text for the next question button when disabled
+  function setNextText() {
+    if (!loaded || isCorrect || isIncorrect) {
+      return "Next";
+    } else {
+      return "Question " + user.question;
     }
   }
 
@@ -470,8 +479,9 @@ const TherapyScreen = ({ navigation }) => {
         <TouchableOpacity
           style={[styles.optButton, styles.centering, styles.shadowEffect]}
           onPress={() => nextQuestion()}
+          disabled={checkDisabled()}
         >
-          <Text style={styles.text}>Next</Text>
+          <Text style={styles.text}>{setNextText()}</Text>
         </TouchableOpacity>
       </View>
     </KeyboardAvoidingView>
