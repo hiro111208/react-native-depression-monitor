@@ -130,7 +130,7 @@ class ScheduleListScreen extends Component {
 
         <View>
           <Button
-            title="Calander"
+            title="Go back"
             onPress={() => this.props.navigation.goBack()}
             color="#19AC52"
           />

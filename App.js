@@ -65,10 +65,7 @@ function MyStack() {
         component={ForgotPasswordScreen}
         options={{ title: "Forgot Password" }}
       />
-      <Stack.Screen 
-      name="PatientDashboard" 
-      component={PatientDashboard} 
-      />
+      <Stack.Screen name="PatientDashboard" component={PatientDashboard} />
       <Stack.Screen
         name="AdminDashboard"
         component={AdminDashboard}
@@ -104,10 +101,7 @@ function MyStack() {
         name="PlantScreen"
         component={PlantScreen}
       />
-      <Stack.Screen 
-        name="CategoryDrop" 
-        component={CategoryDrop} 
-      /> 
+      <Stack.Screen name="CategoryDrop" component={CategoryDrop} />
     </Stack.Navigator>
   );
 }
