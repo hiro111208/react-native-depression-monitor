@@ -216,7 +216,7 @@ class SchedulingScreen extends Component {
 
           <View>
             <Button
-             onPress={this.showTimepicker}
+              onPress={this.showTimepicker}
               title="Select Time" />
           </View>
 
