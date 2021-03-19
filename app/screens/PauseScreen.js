@@ -7,6 +7,7 @@ import {
     TouchableOpacity, 
     Dimensions
 } from 'react-native';
+import Emoji from 'react-native-emoji';
 
 // Constant measurements depending on device screen size
 const winWidth = Dimensions.get("window").width;
@@ -21,10 +22,24 @@ const messages =
     "Enjoy your break! Remember to come and water your plant."
 ];
 
+const emojis =
+[
+    <Emoji name="seedling" style={{fontSize: 30}} />,
+    <Emoji name="herb" style={{fontSize: 30}} />,
+    <Emoji name="sunflower" style={{fontSize: 30}} />,
+    <Emoji name="sun_with_face" style={{fontSize: 30}} />
+];
+
 /* Generate a random message from the messages array */
 function generateMessage() {
     return (
         messages[Math.floor(Math.random()*messages.length)]
+    );
+}
+
+function generateEmoji() {
+    return (
+        emojis[Math.floor(Math.random()*emojis.length)]
     );
 }
 
@@ -34,7 +49,7 @@ export default function PauseScreen({ props, navigation }) {
         <SafeAreaView style={styles.container}>
             <SafeAreaView style={[styles.center, styles.area]}>
                 <SafeAreaView style={styles.messageArea}>
-                    <Text style={[styles.text, styles.message]}>{ generateMessage() }</Text>
+                    <Text style={[styles.text, styles.message]}>{ generateMessage() } { generateEmoji() } </Text>
                 </SafeAreaView>
                 <SafeAreaView style={styles.centering}>
                     <Image
