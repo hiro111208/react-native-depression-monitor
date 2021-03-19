@@ -150,8 +150,8 @@ const styles = StyleSheet.create({
   },
   bottomItem: {
     width: "50%",
-    height: "22%",
-    padding: 5,
+    height: "20%",
+    padding: 10,
   },
   bottomItemInner: {
     flex: 1,
