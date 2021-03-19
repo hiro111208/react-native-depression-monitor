@@ -403,8 +403,17 @@ const TherapyScreen = ({ navigation }) => {
   }
 
   // Can only press button when all the questions have been answered
-  function checkDisabled() {
+  function checkDisabledForPause() {
     if (!isWordAnswer && (isCorrect || isIncorrect)) {
+      return false;
+    } else {
+      return true;
+    }
+  }
+
+  // Can only press button when all the questions have been answered
+  function checkDisabledForNext() {
+    if (isCorrect || isIncorrect) {
       return false;
     } else {
       return true;
@@ -425,7 +434,7 @@ const TherapyScreen = ({ navigation }) => {
     if (!loaded || isCorrect || isIncorrect) {
       return "Next";
     } else {
-      return "Question " + user.question;
+      return "Question " + (question + 1);
     }
   }
 
@@ -450,7 +459,7 @@ const TherapyScreen = ({ navigation }) => {
               styles.shadowEffect,
             ]}
             onPress={() => navigation.navigate("PauseScreen")}
-            disabled={checkDisabled()}
+            disabled={checkDisabledForPause()}
           >
             <Text style={styles.text}>{setDisabledText()}</Text>
           </TouchableOpacity>
@@ -479,7 +488,7 @@ const TherapyScreen = ({ navigation }) => {
         <TouchableOpacity
           style={[styles.optButton, styles.centering, styles.shadowEffect]}
           onPress={() => nextQuestion()}
-          disabled={checkDisabled()}
+          disabled={checkDisabledForNext()}
         >
           <Text style={styles.text}>{setNextText()}</Text>
         </TouchableOpacity>
