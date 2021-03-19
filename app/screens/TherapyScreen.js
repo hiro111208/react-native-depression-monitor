@@ -402,6 +402,24 @@ const TherapyScreen = ({ navigation }) => {
     setTimerStarted(false);
   }
 
+  // Can only take a break when all the questions have been answered
+  function checkDisabled() {
+    if (!isWordAnswer && (isCorrect || isIncorrect)) {
+      return false;
+    } else {
+      return true;
+    }
+  }
+
+  // Sets text for the button if it is disabled
+  function setDisabledText() {
+    if (!isWordAnswer && (isCorrect || isIncorrect)) {
+      return "Take a break";
+    } else {
+      return "Good Luck!";
+    }
+  }
+
   // Returns the whole therapy screen interface
   return (
     <KeyboardAvoidingView style={styles.container} behavior="position">
@@ -423,8 +441,9 @@ const TherapyScreen = ({ navigation }) => {
               styles.shadowEffect,
             ]}
             onPress={() => navigation.navigate("PauseScreen")}
+            disabled={checkDisabled()}
           >
-            <Text style={styles.text}>Take a break</Text>
+            <Text style={styles.text}>{setDisabledText()}</Text>
           </TouchableOpacity>
 
           {/* Button to read text aloud */}
