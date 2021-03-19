@@ -16,7 +16,7 @@ import ScheduleListScreen from "./app/screens/ScheduleListScreen";
 import Index from "./app/src/components/Index";
 import PatientDashboard from "./app/dashboards/PatientDashboard";
 import AdminDashboard from "./app/dashboards/AdminDashboard";
-//import PauseScreen from "./app/screens/PauseScreen";
+import PauseScreen from "./app/screens/PauseScreen";
 import colors from "./app/config/colors";
 
 import { withNavigation } from "react-navigation";
@@ -50,8 +50,7 @@ function MyStack() {
         },
       }}
     >
-
-       <Stack.Screen
+      <Stack.Screen
         name="SignupScreen"
         component={SignupScreen}
         options={{ title: "Signup" }}
@@ -83,9 +82,7 @@ function MyStack() {
       <Stack.Screen
         name="ScheduleListScreen"
         component={ScheduleListScreen}
-        options={{
-          title: "Schedule List",
-        }}
+        options={{ title: "Schedule List" }}
       />
 
       <Stack.Screen
@@ -94,21 +91,17 @@ function MyStack() {
         component={TherapyScreen}
       />
       <Stack.Screen
+        name="PauseScreen"
+        component={PauseScreen}
+        options={{ headerShown: false }}
+      />
+
+      <Stack.Screen
         options={{ headerShown: false }}
         name="PlantScreen"
         component={PlantScreen}
       />
-      <Stack.Screen 
-        name="CategoryDrop" 
-        component={CategoryDrop} 
-      /> 
-      {/*<Stack.Screen 
-        name="PauseScreen" 
-        component={ PauseScreen } 
-        options={{ title: "Take a break" }}
-      />   
-      */}
-
+      <Stack.Screen name="CategoryDrop" component={CategoryDrop} />
     </Stack.Navigator>
   );
 }
@@ -128,6 +121,7 @@ export default function App() {
     // <SchedulingScreen/>
     //<SignupScreen />
     //<ForgotPasswordScreen/>
+    //<PauseScreen/>
     //<Index></Index> //where progressBar buttons/actions and component are
   );
 }

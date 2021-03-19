@@ -3,6 +3,7 @@ import {
   Animated,
   StyleSheet,
   View,
+  UIManager,
   LayoutAnimation,
   Text,
 } from "react-native";
@@ -12,6 +13,10 @@ export default class ProgressBar extends Component {
   constructor() {
     super();
     this._animatedColor = new Animated.Value(0);
+    // Enable LayoutAnimation under Android
+    if (Platform.OS === "android") {
+      UIManager.setLayoutAnimationEnabledExperimental(true);
+    }
   }
 
   static defaultProps = {
@@ -29,20 +34,11 @@ export default class ProgressBar extends Component {
     this.setState({ width: nativeEvent.layout.width });
   };
 
-  //animate gradual color change
-  animatedValue = () => {
-    this._animatedColor.setValue(0);
-    Animated.timing(this._animatedColor, {
-      toValue: 1,
-      duration: 200,
-      useNativeDriver: false,
-    }).start();
-  };
-
   //calculate container width on mount
   componentDidMount() {
     this.handleLayout;
   }
+
   componentDidUpdate() {
     //custom Layout animation -> animates bar's width increase
     var CustomLayoutSpring = {
@@ -59,82 +55,99 @@ export default class ProgressBar extends Component {
     };
     //set layout animation
     LayoutAnimation.configureNext(CustomLayoutSpring);
+
+    //animate gradual color change
+    this._animatedColor.setValue(0);
+    Animated.timing(this._animatedColor, {
+      toValue: 1,
+      duration: 200,
+      useNativeDriver: false,
+    }).start();
   }
 
   render() {
     //constants to use
     const barSeparation = this.state.width / this.props.segments;
     const barWidthAfter = barSeparation * this.props.nextWidth;
+    const colorChangeUnit =
+      (255 / this.props.segments) * this.props.nextWidth - 1;
+    const colorChangeUnitAfter =
+      (255 / this.props.segments) * this.props.nextWidth;
 
-    //array of color interpolations: adjust to nº of Segments
-    //nº of color interpolations = segments + 1 to maintain animations throughout.
-    const colorGradient = [
-      this._animatedColor.interpolate({
-        inputRange: [0, 1],
-        outputRange: ["rgb(255,0,0)", "rgb(255,50,0)"],
-      }),
-      this._animatedColor.interpolate({
-        inputRange: [0, 1],
-        outputRange: ["rgb(255,0,0)", "rgb(255,50,0)"],
-      }),
-      this._animatedColor.interpolate({
-        inputRange: [0, 1],
-        outputRange: ["rgb(255,50,0)", "rgb(100,170,0)"],
-      }),
-      this._animatedColor.interpolate({
-        inputRange: [0, 1],
-        outputRange: ["rgb(100,170,0)", "rgb(0,170,0)"],
-      }),
-      this._animatedColor.interpolate({
-        inputRange: [0, 1],
-        outputRange: ["rgb(0,170,0)", "rgb(0,255,0)"],
-      }),
-    ];
-
-    this.animatedValue();
     return (
-      <View style={styles.barContainer} onLayout={this.handleLayout}>
-        <Animated.View
-          style={[
-            styles.bar,
-            {
-              width: barWidthAfter,
-              backgroundColor: colorGradient[this.props.nextWidth],
-            },
-          ]}
-        >
-          <View>
-            <BarMarkers
-              bars={this.props.segments}
-              separation={barSeparation}
-            ></BarMarkers>
+      <View flexDirection={"row"} style={styles.shadow}>
+        <View flexDirection={"column"} flex={1}>
+          <View style={styles.barContainer} onLayout={this.handleLayout}>
+            <Animated.View
+              style={[
+                styles.bar,
+                {
+                  width: barWidthAfter,
+                  backgroundColor: this._animatedColor.interpolate({
+                    inputRange: [0, 1],
+                    outputRange: [
+                      `rgb(${255 - colorChangeUnit},${0 + colorChangeUnit},0)`,
+                      `rgb(${255 - colorChangeUnitAfter},${
+                        0 + colorChangeUnitAfter
+                      },0)`,
+                    ],
+                  }),
+                },
+              ]}
+            >
+              <View>
+                <BarMarkers
+                  bars={this.props.segments}
+                  separation={barSeparation}
+                ></BarMarkers>
+              </View>
+            </Animated.View>
           </View>
-        </Animated.View>
-        <View justifyContent={"center"} alignItems={"center"}>
-          <Text>{Math.floor((barWidthAfter / this.state.width) * 100)}%</Text>
+        </View>
+        <View marginLeft={10} style={styles.progress} padding={1}>
+          <Text style={{ height: 15, width: 30, fontSize: 11 }}>
+            {" "}
+            {Math.floor((barWidthAfter / this.state.width) * 100)}%
+          </Text>
         </View>
       </View>
     );
   }
 }
+
 const styles = StyleSheet.create({
+  shadow: {
+    shadowColor: "#000",
+    shadowOpacity: 0.3,
+    shadowRadius: 5,
+  },
   barContainer: {
     opacity: 1,
     borderWidth: 1,
     backgroundColor: "white",
-    height: 20,
-    borderRadius: 20,
+    height: 15,
+    borderRadius: 7,
     overflow: "hidden",
   },
   bar: {
     opacity: 0.7,
     backgroundColor: "green",
     height: 20,
-    borderRadius: 20,
+    borderRadius: 7,
     position: "absolute",
     left: 0,
     top: 0,
     bottom: 0,
     maxWidth: "100%",
+  },
+  progress: {
+    opacity: 1,
+    borderWidth: 1,
+    textAlign: "center",
+    alignItems: "center",
+    padding: 3,
+    height: 15,
+    backgroundColor: "#FFF",
+    borderRadius: 20,
   },
 });
