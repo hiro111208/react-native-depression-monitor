@@ -2,23 +2,24 @@ import React, {useState} from 'react';
 import { StyleSheet, View, Text, TouchableOpacity, TextInput, Alert } from 'react-native';
 import firebase from "../database/firebase";
 
-import colors from '../config/colors';
+import colors from "../config/colors";
 
 /*
   Screen where users can try to reset their passwords if forgotten
 */
+
 function ForgotPasswordScreen(props) {
 
-  const [email, setEmail] = useState('');
-  const [message, setMessage] = useState('');
+  const [email, setEmail] = useState("");
+  const [message, setMessage] = useState("");
 
   // Send reset password email to the email provided if there is an account associated to it
-  const forgotPassword=()=>{
-    if(email === '') {
-      Alert.alert('Enter an email!')
-    }else{
+  const forgotPassword=() => {
+    if(email === "") {
+      Alert.alert("Enter an email!");
+    } else {
       firebase.auth().sendPasswordResetEmail(email).then(() => {
-        setMessage('You should have received an email to change your password')
+        setMessage("You should have received an email to change your password");
       })
       .catch(error => setMessage(error.message))
     }
@@ -33,7 +34,7 @@ function ForgotPasswordScreen(props) {
         placeholder="Email"
         value={email}
         onChangeText={(val) => setEmail(val)}
-        testID={'TEST_ID_EMAIL_INPUT'}
+        testID={"TEST_ID_EMAIL_INPUT"}
       />
 
     {/*Render button that calls forgotPassword method */}
@@ -41,7 +42,7 @@ function ForgotPasswordScreen(props) {
         activeOpacity = { .5 }
         style={styles.submitButton}
         onPress={()=>forgotPassword()}
-        testID={'TEST_ID_FORGOT_BUTTON'}
+        testID={"TEST_ID_FORGOT_BUTTON"}
       >
         <Text style= {styles.submitText}>SUBMIT</Text>
       </TouchableOpacity>
@@ -49,12 +50,12 @@ function ForgotPasswordScreen(props) {
       {/*Render button that allows user to go back to login screen*/}
       <Text 
         style = {styles.textButton}
-        onPress={() => props.navigation.navigate('LoginScreen')}>
+        onPress={() => props.navigation.navigate("LoginScreen")}>
           Back to Login
       </Text>
 
       {/*Render text that shows error or success messages */}
-      <Text testID={'TEST_ID_MESSAGE'} style={{color:'red'}}>{message}</Text>
+      <Text testID={"TEST_ID_MESSAGE"} style={{color:"red"}}>{message}</Text>
 
     </View>
   );
@@ -65,10 +66,10 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     display: "flex",
-    justifyContent: 'center',
-    alignItems: 'center',
+    justifyContent: "center",
+    alignItems: "center",
     padding: 35,
-    backgroundColor: '#fff'
+    backgroundColor: "#fff"
   },
   submitButton:{
     width: 300,
@@ -80,12 +81,12 @@ const styles = StyleSheet.create({
     borderRadius:50,
   },
   submitText:{
-    color: 'white',
-    textAlign: 'center',
+    color: "white",
+    textAlign: "center",
     fontSize: 15
   },
   inputStyle: {
-    width: '100%',
+    width: "100%",
     marginBottom: 15,
     paddingBottom: 15,
     alignSelf: "center",
@@ -95,7 +96,7 @@ const styles = StyleSheet.create({
   textButton: {
     color: colors.darkBorder,
     marginTop: 25,
-    textAlign: 'center'
+    textAlign: "center"
   },
   textStyle: {
     fontSize: 15,
