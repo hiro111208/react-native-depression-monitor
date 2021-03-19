@@ -422,6 +422,7 @@ const TherapyScreen = ({ navigation }) => {
               styles.centering,
               styles.shadowEffect,
             ]}
+            onPress={() => navigation.navigate("PauseScreen")}
           >
             <Text style={styles.text}>Take a break</Text>
           </TouchableOpacity>
