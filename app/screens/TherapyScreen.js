@@ -431,7 +431,7 @@ const TherapyScreen = ({ navigation }) => {
 
   // Sets text for the next question button when disabled
   function setNextText() {
-    if (!loaded || isCorrect || isIncorrect) {
+    if (!loaded || finished || isCorrect || isIncorrect) {
       return "Next";
     } else {
       return "Question " + (question + 1);
