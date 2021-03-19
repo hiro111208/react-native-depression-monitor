@@ -29,7 +29,7 @@
     "react-dom": "16.13.1",
     "react-native": "https://github.com/expo/react-native/archive/sdk-39.0.4.tar.gz",
     "react-native-dashboard": "^0.0.5",
-    "react-native-elements": "^3.3.0",
+    "react-native-elements": "^3.3.2",
     "react-native-gesture-handler": "~1.10.3",
     "react-native-reanimated": "^1.13.2",
     "react-native-safe-area-context": "3.1.9",
@@ -43,6 +43,7 @@
   },
   "devDependencies": {
     "@babel/core": "~7.9.0",
+    "@firebase/testing": "^0.20.11",
     "@testing-library/jest-dom": "^5.11.9",
     "@testing-library/jest-native": "^4.0.1",
     "@testing-library/react-native": "^7.2.0",
@@ -50,7 +51,8 @@
     "enzyme-adapter-react-16": "^1.15.6",
     "enzyme-to-json": "^3.6.1",
     "jest": "^26.6.3",
-    "jest-expo": "^40.0.2"
+    "jest-expo": "^40.0.2",
+    "react-simple-tooltip": "^2.6.2"
   },
   "jest": {
     "preset": "react-native",

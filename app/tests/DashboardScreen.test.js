@@ -1,4 +1,4 @@
-import firebase from '../../firebase.js';
+import firebase from '../database/firebase';
 import React from 'react';
 import renderer from 'react-test-renderer';
 import DashboardScreen from '../screens/DashboardScreen';

@@ -16,7 +16,7 @@ import ScheduleListScreen from "./app/screens/ScheduleListScreen";
 import Index from "./app/src/components/Index";
 import PatientDashboard from "./app/dashboards/PatientDashboard";
 import AdminDashboard from "./app/dashboards/AdminDashboard";
-
+//import PauseScreen from "./app/screens/PauseScreen";
 import colors from "./app/config/colors";
 
 import { withNavigation } from "react-navigation";
@@ -50,7 +50,8 @@ function MyStack() {
         },
       }}
     >
-      <Stack.Screen
+
+       <Stack.Screen
         name="SignupScreen"
         component={SignupScreen}
         options={{ title: "Signup" }}
@@ -97,7 +98,17 @@ function MyStack() {
         name="PlantScreen"
         component={PlantScreen}
       />
-      <Stack.Screen name="CategoryDrop" component={CategoryDrop} />
+      <Stack.Screen 
+        name="CategoryDrop" 
+        component={CategoryDrop} 
+      /> 
+      {/*<Stack.Screen 
+        name="PauseScreen" 
+        component={ PauseScreen } 
+        options={{ title: "Take a break" }}
+      />   
+      */}
+
     </Stack.Navigator>
   );
 }

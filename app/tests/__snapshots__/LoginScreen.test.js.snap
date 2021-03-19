@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`renders correctly 1`] = `
+exports[`Testing LoginScreen.js LoginScreen renders correctly 1`] = `
 <View
   style={
     Object {
@@ -28,6 +28,7 @@ exports[`renders correctly 1`] = `
         "width": "100%",
       }
     }
+    testID="TEST_ID_EMAIL_INPUT"
     underlineColorAndroid="transparent"
     value=""
   />
@@ -48,6 +49,7 @@ exports[`renders correctly 1`] = `
         "width": "100%",
       }
     }
+    testID="TEST_ID_PASSWORD_INPUT"
     underlineColorAndroid="transparent"
     value=""
   />
@@ -57,6 +59,7 @@ exports[`renders correctly 1`] = `
         "color": "red",
       }
     }
+    testID="TEST_ID_MESSAGE"
   >
     
   </Text>
@@ -82,6 +85,7 @@ exports[`renders correctly 1`] = `
         "width": 300,
       }
     }
+    testID="TEST_ID_LOGIN_BUTTON"
   >
     <Text
       style={
@@ -92,7 +96,7 @@ exports[`renders correctly 1`] = `
         }
       }
     >
-      SIGN IN
+      LOG IN
     </Text>
   </View>
   <Text
@@ -104,9 +108,8 @@ exports[`renders correctly 1`] = `
         "textAlign": "center",
       }
     }
-  >
-    Don't have an account? Click here to signup
-  </Text>
+    testID="TEST_ID_SIGNUP_BUTTON"
+  />
   <Text
     onPress={[Function]}
     style={
@@ -116,6 +119,7 @@ exports[`renders correctly 1`] = `
         "textAlign": "center",
       }
     }
+    testID="TEST_ID_FORGOT_BUTTON"
   >
     Forgot your password?
   </Text>

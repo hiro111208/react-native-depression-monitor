@@ -16,3 +16,9 @@ node_modules
 
 # macOS
 .DS_Store
+app/tests/LoginScreen.test.js
+firebase-debug.log
+app/tests/LoginScreen.test.js
+yarn-error.log
+yarn-error.log
+yarn-error.log
