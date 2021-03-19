@@ -10,7 +10,7 @@ import {
   TouchableOpacity,
 } from "react-native";
 import firebase from "../database/firebase";
-import Icon from 'react-native-vector-icons/AntDesign';
+import { AntDesign } from '@expo/vector-icons';
 import { Tooltip } from 'react-native-elements';
 import colors from "../config/colors";
 const db = firebase.firestore();
@@ -192,7 +192,7 @@ function SignupScreen(props) {
           popover={<Text style={styles.passwordInformation}>
             Password must be 6 to 15 characters long. Can contain any alphaneumeric or special character.
             </Text>}>
-          <Icon name="questioncircleo"  size={22} color="#ccc"/>
+          <AntDesign name="questioncircleo"  size={22} color="#ccc"/>
         </Tooltip>
         
       </View>

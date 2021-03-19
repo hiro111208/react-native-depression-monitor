@@ -11,7 +11,7 @@ import {
 } from "react-native";
 import Constants from "expo-constants";
 import * as Speech from 'expo-speech';
-import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+import { MaterialCommunityIcons } from '@expo/vector-icons';
 import firebase from "../database/firebase";
 import ProgressBar from "../src/components/ProgressBar";
 
@@ -261,7 +261,7 @@ const TherapyScreen = ({ navigation }) => {
   // Renders button that reads text aloud
   function renderReadTextButton(){
     if(loaded){ return(
-      <Icon name={readButtonAttributes.name}  size={30} color="white" onPress={()=> handleReadButtonOnPress()}/>
+      <MaterialCommunityIcons name={readButtonAttributes.name}  size={30} color="white" onPress={()=> handleReadButtonOnPress()}/>
     )}
   }
   
