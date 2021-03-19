@@ -18,12 +18,15 @@ const messages =
     "Well done! Return to the session when you are ready.",
     "Look forward to seeing you after your break. Well done!",
     "Pause. Breathe. Keep going.\nYou can do it!",
+    "Enjoy your break! Remember to come and water your plant."
 ];
 
 /* Generate a random message from the messages array */
-const randomMessage = (
-     messages[Math.floor(Math.random()*messages.length)]
-);
+function generateMessage() {
+    return (
+        messages[Math.floor(Math.random()*messages.length)]
+    );
+}
 
 export default function PauseScreen({ props, navigation }) {
   
@@ -31,13 +34,13 @@ export default function PauseScreen({ props, navigation }) {
         <SafeAreaView style={styles.container}>
             <SafeAreaView style={[styles.center, styles.area]}>
                 <SafeAreaView style={styles.messageArea}>
-                    <Text style={[styles.text, styles.message]}>{ randomMessage }</Text>
+                    <Text style={[styles.text, styles.message]}>{ generateMessage() }</Text>
                 </SafeAreaView>
                 <SafeAreaView style={styles.centering}>
                     <Image
-                            style={styles.image}
-                            resizeMode="contain"
-                            source={require('../assets/pause.png')}
+                        style={styles.image}
+                        resizeMode="contain"
+                        source={require('../assets/pause.png')}
                     />
                 </SafeAreaView>
 
@@ -46,16 +49,11 @@ export default function PauseScreen({ props, navigation }) {
                 <SafeAreaView style={styles.centering, styles.buttonArea}>
                     <TouchableOpacity
                         style={[styles.backButton, styles.shadowEffect]}
-                        onPress={() => navigation.navigate("TestScreen") }
+                        onPress={() => navigation.navigate("TherapyScreen")} //implement timer/record the current time
                     >
                         <Text style={[styles.text, styles.backText]}>Back to the session</Text>
                     </TouchableOpacity>
 
-                    <TouchableOpacity
-                        style={[styles.remindButton]}
-                        onPress={() => navigation.navigate("TherapyScreen") } //record the time
-                    >
-                    </TouchableOpacity>
                 </SafeAreaView>
             </SafeAreaView>
         </SafeAreaView>
@@ -68,7 +66,7 @@ const styles = StyleSheet.create( {
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
-        backgroundColor: "#fff",
+        backgroundColor: "#fff7ed",
     },
     center: {
         height: "100%",
@@ -119,7 +117,7 @@ const styles = StyleSheet.create( {
     backButton: {  
         height: "9%",
         width: "70%",
-        backgroundColor: "#ffeed2",
+        backgroundColor: "#fecc91",
         padding: 10,
         borderRadius: 20,
         justifyContent: "center",

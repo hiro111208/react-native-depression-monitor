@@ -5,20 +5,18 @@ import {
   createStackNavigator,
   HeaderBackButton,
 } from "@react-navigation/stack";
-// import TherapyScreen from "./app/screens/TherapyScreen";
-// import CategoryDrop from "./app/screens/CategoryDrop";
-// import PlantScreen from "./app/screens/PlantScreen";
-// import LoginScreen from "./app/screens/LoginScreen";
-// import SignupScreen from "./app/screens/SignupScreen";
-// import ForgotPasswordScreen from "./app/screens/ForgotPasswordScreen";
-// import SchedulingScreen from "./app/screens/SchedulingScreen";
-// import ScheduleListScreen from "./app/screens/ScheduleListScreen";
-// import Index from "./app/src/components/Index";
-// import PatientDashboard from "./app/dashboards/PatientDashboard";
-// import AdminDashboard from "./app/dashboards/AdminDashboard";
+import TherapyScreen from "./app/screens/TherapyScreen";
+import CategoryDrop from "./app/screens/CategoryDrop";
+import PlantScreen from "./app/screens/PlantScreen";
+import LoginScreen from "./app/screens/LoginScreen";
+import SignupScreen from "./app/screens/SignupScreen";
+import ForgotPasswordScreen from "./app/screens/ForgotPasswordScreen";
+import SchedulingScreen from "./app/screens/SchedulingScreen";
+import ScheduleListScreen from "./app/screens/ScheduleListScreen";
+import Index from "./app/src/components/Index";
+import PatientDashboard from "./app/dashboards/PatientDashboard";
+import AdminDashboard from "./app/dashboards/AdminDashboard";
 import PauseScreen from "./app/screens/PauseScreen";
-import TestScreen from "./app/screens/TestScreen";
-
 import colors from "./app/config/colors";
 
 import { withNavigation } from "react-navigation";
@@ -28,7 +26,7 @@ const Stack = createStackNavigator();
 function MyStack() {
   return (
     <Stack.Navigator
-      initialRouteName="PauseScreen" //"LoginScreen"
+      initialRouteName="LoginScreen"
       screenOptions={{
         gestureEnabled: false,
         headerLeft: null,
@@ -52,7 +50,7 @@ function MyStack() {
         },
       }}
     >
-      {/* <Stack.Screen
+      <Stack.Screen
         name="SignupScreen"
         component={SignupScreen}
         options={{ title: "Signup" }}
@@ -67,7 +65,10 @@ function MyStack() {
         component={ForgotPasswordScreen}
         options={{ title: "Forgot Password" }}
       />
-      <Stack.Screen name="PatientDashboard" component={PatientDashboard} />
+      <Stack.Screen 
+      name="PatientDashboard" 
+      component={PatientDashboard} 
+      />
       <Stack.Screen
         name="AdminDashboard"
         component={AdminDashboard}
@@ -91,26 +92,22 @@ function MyStack() {
         options={{ headerShown: false }}
         name="TherapyScreen"
         component={TherapyScreen}
-      /> */}
-      {/* <Stack.Screen
+      />
+      <Stack.Screen
+        name="PauseScreen"
+        component={PauseScreen}
+        options={{ headerShown: false }}
+      />
+
+      <Stack.Screen
         options={{ headerShown: false }}
         name="PlantScreen"
         component={PlantScreen}
       />
       <Stack.Screen 
-      name="CategoryDrop" 
-      component={CategoryDrop} 
-      /> */}
-      <Stack.Screen
-        name="PauseScreen"
-        component={PauseScreen}
-        options={{ title: "Take a break" }}
-      />
-      <Stack.Screen
-      name="TestScreen"
-      component={TestScreen}
-      options={{ title: "Test home" }}
-    />
+        name="CategoryDrop" 
+        component={CategoryDrop} 
+      /> 
     </Stack.Navigator>
   );
 }
