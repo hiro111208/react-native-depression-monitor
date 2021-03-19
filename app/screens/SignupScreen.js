@@ -110,7 +110,21 @@ function SignupScreen(props) {
         .catch((error) => {
           console.log(error.code);
           setIsLoading(false);
-          setErrorMessage(error.message);
+
+          switch(error.code) {
+            case "auth/email-already-in-use":
+              setErrorMessage(`An account for '${email}' already exists. Please verify your email or log in.`)
+              break;
+            case "auth/invalid-email":
+              setErrorMessage(`Please sign up using a valid email.`);
+              break;
+            case "auth/weak-password":
+              setErrorMessage(`Your password is too short! Tap the question mark for more details.`);
+              break;
+            default:
+              setErrorMessage(error.message);
+              break;
+          }
         });
     }
   };
@@ -122,7 +136,7 @@ function SignupScreen(props) {
       .currentUser.sendEmailVerification()
       .then(function () {
         console.log("email verification sent");
-        setMessage(
+        setErrorMessage(
           `Please verify your email through the link we've sent to: ` + email
         );
         setErrorMessage("");

@@ -103,7 +103,7 @@ function LoginScreen(props) {
                   setIsLoading(false);
                   setErrorMessage("Your email has not been verified");
                   setIsVerified(false);
-                }
+              }
             }
         })
         .catch((error) => {
