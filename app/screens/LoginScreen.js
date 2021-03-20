@@ -67,11 +67,11 @@ function LoginScreen(props) {
       .then(function () {
         console.log("email verification sent");
         setErrorMessage(
-          `Please verify your email through the link we've sent to: ` + email
+          `Please verify your email through the link we've sent to: ${email}`
         );
       })
       .catch(function (error) {
-        console.log("failed to send email verification");
+        //console.log("failed to send email verification");
         console.log(error.code);
         setIsLoading(false);
         setErrorMessage(error.message);
@@ -95,21 +95,35 @@ function LoginScreen(props) {
             props.navigation.navigate("AdminDashboard");
             setIsLoading(false);
           } else {
-            if (firebase.auth().currentUser.emailVerified) {
-              console.log("User logged-in successfully!");
-              reset();
-              navigateUser(firebase.auth().currentUser.uid);
-            } else {
-              setIsLoading(false);
-              setErrorMessage("Your email has not been verified");
-              setIsVerified(false);
+              if (firebase.auth().currentUser.emailVerified) {
+                console.log("User logged-in successfully!");
+                reset();
+                navigateUser(firebase.auth().currentUser.uid);
+              } else {
+                  setIsLoading(false);
+                  setErrorMessage("Your email has not been verified");
+                  setIsVerified(false);
+              }
             }
-          }
         })
         .catch((error) => {
           console.log(error.code);
           setIsLoading(false);
-          setErrorMessage(error.message);
+
+          switch(error.code) {
+            case "auth/invalid-email":
+              setErrorMessage(`Please enter a valid email.`);
+              break;
+            case "auth/wrong-password":
+              setErrorMessage(`Incorrect password for '${email}'.`);
+              break;
+            case "auth/user-not-found":
+              setErrorMessage(`No account for '${email}' exists, please sign up with this email.`);
+              break;
+            default:
+              setErrorMessage(error.message);
+              break;
+          }
         });
     }
   };
@@ -172,7 +186,7 @@ function LoginScreen(props) {
         style={styles.textButton}
         onPress={() => {
           reset(); 
-          props.navigation.navigate("SignupScreen");
+          props.navigation.navigate("SignUpScreen");
         }}
         testID={"TEST_ID_SIGNUP_BUTTON"}
         >
@@ -225,10 +239,11 @@ const styles = StyleSheet.create({
   inputStyle: {
     width: "100%",
     marginBottom: 15,
-    paddingBottom: 15,
+    marginTop: 15,
+    paddingBottom: 20,
     alignSelf: "center",
     borderColor: "#ccc",
-    borderBottomWidth: 1,
+    borderBottomWidth: 1.5,
   },
   loginButton: {
     width: 300,

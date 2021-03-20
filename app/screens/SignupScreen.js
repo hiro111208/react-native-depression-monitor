@@ -8,14 +8,16 @@ import {
   Alert,
   ActivityIndicator,
   TouchableOpacity,
+  Image,
 } from "react-native";
 import firebase from "../database/firebase";
-import Icon from 'react-native-vector-icons/AntDesign';
 import { Tooltip } from 'react-native-elements';
+
 import colors from "../config/colors";
+
 const db = firebase.firestore();
 
-/**
+/*
  * Adds the newly registered user to the database, with a uniquely assigned ID
  */
 function addUserToDatabase(uid) {
@@ -72,7 +74,7 @@ function addUserToDatabase(uid) {
 /*
   Screen where users can signup to the app. First screen user sees when opening app for first time
 */
-function SignupScreen(props) {
+function SignUpScreen(props) {
   const [displayName, setDisplayName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -110,7 +112,21 @@ function SignupScreen(props) {
         .catch((error) => {
           console.log(error.code);
           setIsLoading(false);
-          setErrorMessage(error.message);
+
+          switch(error.code) {
+            case "auth/email-already-in-use":
+              setErrorMessage(`An account for '${email}' already exists. Please verify your email or log in.`)
+              break;
+            case "auth/invalid-email":
+              setErrorMessage(`Please sign up using a valid email.`);
+              break;
+            case "auth/weak-password":
+              setErrorMessage(`Your password is too short! Tap the question mark for more details.`);
+              break;
+            default:
+              setErrorMessage(error.message);
+              break;
+          }
         });
     }
   };
@@ -122,7 +138,7 @@ function SignupScreen(props) {
       .currentUser.sendEmailVerification()
       .then(function () {
         console.log("email verification sent");
-        setMessage(
+        setErrorMessage(
           `Please verify your email through the link we've sent to: ` + email
         );
         setErrorMessage("");
@@ -192,7 +208,13 @@ function SignupScreen(props) {
           popover={<Text style={styles.passwordInformation}>
             Password must be 6 to 15 characters long. Can contain any alphaneumeric or special character.
             </Text>}>
-          <Icon name="questioncircleo"  size={22} color="#ccc"/>
+              <View style={styles.helpArea}>
+                <Image 
+                  style={styles.image}
+                  resizeMode="contain"
+                  source={require("../assets/question_mark.png")}
+                />
+              </ View>
         </Tooltip>
         
       </View>
@@ -223,7 +245,7 @@ function SignupScreen(props) {
     </View>
   );
 }
-export default SignupScreen;
+export default SignUpScreen;
 
 const styles = StyleSheet.create({
   container: {
@@ -237,10 +259,11 @@ const styles = StyleSheet.create({
   inputStyle: {
     width: "100%",
     marginBottom: 15,
-    paddingBottom: 15,
+    marginTop: 15,
+    paddingBottom: 20,
     alignSelf: "center",
     borderColor: "#ccc",
-    borderBottomWidth: 1,
+    borderBottomWidth: 1.5,
   },
   loginText: {
     color: colors.darkBorder,
@@ -284,4 +307,12 @@ const styles = StyleSheet.create({
     textAlign: "center",
     fontSize: 15,
   },
+  image: {
+    height: 22,
+  },
+  helpArea: {
+    flexDirection: "row",
+    justifyContent: "flex-end",
+    textAlign: "right"
+  }
 });

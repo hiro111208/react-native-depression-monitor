@@ -15,6 +15,7 @@ exports[`Testing LoginScreen.js LoginScreen renders correctly 1`] = `
 >
   <TextInput
     allowFontScaling={true}
+    keyboardType="email-address"
     onChangeText={[Function]}
     placeholder="Email"
     rejectResponderTermination={true}
@@ -109,7 +110,9 @@ exports[`Testing LoginScreen.js LoginScreen renders correctly 1`] = `
       }
     }
     testID="TEST_ID_SIGNUP_BUTTON"
-  />
+  >
+    Don't have an account? Click here to signup
+  </Text>
   <Text
     onPress={[Function]}
     style={

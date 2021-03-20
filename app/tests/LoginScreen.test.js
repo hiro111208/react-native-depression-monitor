@@ -97,7 +97,7 @@ describe("Testing LoginScreen.js", () => {
         
         await waitFor(() => {
             expect(firebase.auth().signInWithEmailAndPassword).toHaveBeenCalled();
-            expect("The password is invalid or the user does not have a password.").toEqual(getByTestId("TEST_ID_MESSAGE").props.children) 
+            expect("Incorrect password for 'login@test.com'.").toEqual(getByTestId("TEST_ID_MESSAGE").props.children) 
         });
     });
 

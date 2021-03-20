@@ -18,9 +18,9 @@ describe("Testing SignUpScreen.js", () => {
             firebase.auth().currentUser.reauthenticateWithCredential(credential);
             firebase.auth().currentUser.delete();
         });
-    })
+    });
 
-    it("SignUpScreen renders correctly", () => {
+    it("SignupScreen renders correctly", () => {
         const tree = renderer.create(<SignUpScreen />).toJSON();
         expect(tree).toMatchSnapshot();
     });
