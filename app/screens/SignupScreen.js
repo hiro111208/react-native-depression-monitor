@@ -11,9 +11,10 @@ import {
   Image,
 } from "react-native";
 import firebase from "../database/firebase";
-// import { AntDesign } from '@expo/vector-icons';
 import { Tooltip } from 'react-native-elements';
+
 import colors from "../config/colors";
+
 const db = firebase.firestore();
 
 /*
