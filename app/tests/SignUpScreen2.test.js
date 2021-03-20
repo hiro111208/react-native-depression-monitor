@@ -6,7 +6,7 @@ import { render, fireEvent, waitFor } from "@testing-library/react-native";
 
 import firebase from "../database/firebase"
 
-describe("Testing SignUpScreen.js", () => {
+describe("Testing SignupScreen.js", () => {
 
     beforeAll(() => {
         jest.setTimeout(10000);
@@ -18,9 +18,9 @@ describe("Testing SignUpScreen.js", () => {
             firebase.auth().currentUser.reauthenticateWithCredential(credential);
             firebase.auth().currentUser.delete();
         });
-    });
+    })
 
-    it("SignupScreen renders correctly", () => {
+    it("SignUpScreen renders correctly", () => {
         const tree = renderer.create(<SignUpScreen />).toJSON();
         expect(tree).toMatchSnapshot();
     });

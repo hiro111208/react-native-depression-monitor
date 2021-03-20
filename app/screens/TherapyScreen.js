@@ -8,10 +8,10 @@ import {
   TouchableOpacity,
   Alert,
   TextInput,
+  Image,
 } from "react-native";
 import Constants from "expo-constants";
 import * as Speech from "expo-speech";
-import Icon from "react-native-vector-icons/MaterialCommunityIcons";
 import firebase from "../database/firebase";
 import ProgressBar from "../src/components/ProgressBar";
 
@@ -298,10 +298,12 @@ const TherapyScreen = ({ navigation }) => {
     }
   }
 
-  //Return the icon name for the read text button
-  const readButtonAttributes = {
-    name: isReading ? "text-to-speech-off" : "text-to-speech",
-  };
+  //Navigate to the pause screen and stop the text to speech
+  function handlePauseButton() {
+    setReading(false);
+    Speech.stop();
+    navigation.navigate("PauseScreen")
+  }
 
   //Either start or stop reading on read text button click
   function handleReadButtonOnPress() {
@@ -327,14 +329,23 @@ const TherapyScreen = ({ navigation }) => {
   // Renders button that reads text aloud
   function renderReadTextButton() {
     if (loaded) {
-      return (
-        <Icon
-          name={readButtonAttributes.name}
-          size={30}
-          color="white"
-          onPress={() => handleReadButtonOnPress()}
-        />
-      );
+        if (isReading) {
+            return (
+              <Image 
+                resizeMode="contain"
+                style={styles.textToSpeech}
+                source={require("../assets/text_to_speech_off.png")}
+              />
+            );
+        } else {
+            return (
+               <Image 
+                  resizeMode="contain"
+                  style={styles.textToSpeech}
+                  source={require("../assets/text_to_speech_on.png")}
+                />
+            );
+        }
     }
   }
 
@@ -458,14 +469,17 @@ const TherapyScreen = ({ navigation }) => {
               styles.centering,
               styles.shadowEffect,
             ]}
-            onPress={() => navigation.navigate("PauseScreen")}
+            onPress={() => handlePauseButton()}//navigation.navigate("PauseScreen")}
             disabled={checkDisabledForPause()}
           >
             <Text style={styles.text}>{setDisabledText()}</Text>
           </TouchableOpacity>
 
           {/* Button to read text aloud */}
-          <TouchableOpacity style={[styles.readButton, styles.centering]}>
+          <TouchableOpacity 
+            style={[styles.readButton, styles.centering]}
+            onPress={() => handleReadButtonOnPress()}
+          >
             {renderReadTextButton()}
           </TouchableOpacity>
         </View>
@@ -601,6 +615,9 @@ const styles = StyleSheet.create({
   top: {
     height: "15%",
   },
+  textToSpeech: {
+    width: 35,
+  }
 });
 
 export default TherapyScreen;

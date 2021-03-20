@@ -9,7 +9,7 @@ import TherapyScreen from "./app/screens/TherapyScreen";
 import CategoryDrop from "./app/screens/CategoryDrop";
 import PlantScreen from "./app/screens/PlantScreen";
 import LoginScreen from "./app/screens/LoginScreen";
-import SignupScreen from "./app/screens/SignupScreen";
+import SignUpScreen from "./app/screens/SignUpScreen";
 import ForgotPasswordScreen from "./app/screens/ForgotPasswordScreen";
 import SchedulingScreen from "./app/screens/SchedulingScreen";
 import ScheduleListScreen from "./app/screens/ScheduleListScreen";
@@ -51,9 +51,9 @@ function MyStack() {
       }}
     >
       <Stack.Screen
-        name="SignupScreen"
-        component={SignupScreen}
-        options={{ title: "Signup" }}
+        name="SignUpScreen"
+        component={SignUpScreen}
+        options={{ title: "SignUp" }}
       />
       <Stack.Screen
         name="LoginScreen"
@@ -117,9 +117,9 @@ export default function App() {
     //<CategoryDrop/>
     //<PlantScreen/>
     //<LoginScreen/>
-    //<SignupScreen/>
+    //<SignUpScreen/>
     // <SchedulingScreen/>
-    //<SignupScreen />
+    //<SignUpScreen />
     //<ForgotPasswordScreen/>
     //<PauseScreen/>
     //<Index></Index> //where progressBar buttons/actions and component are
