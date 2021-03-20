@@ -469,7 +469,7 @@ const TherapyScreen = ({ navigation }) => {
               styles.centering,
               styles.shadowEffect,
             ]}
-            onPress={() => handlePauseButton()}//navigation.navigate("PauseScreen")}
+            onPress={() => handlePauseButton()}
             disabled={checkDisabledForPause()}
           >
             <Text style={styles.text}>{setDisabledText()}</Text>
