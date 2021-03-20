@@ -53,7 +53,7 @@ describe("Testing SignUpScreen.js", () => {
         } catch (err) {
             error = err.toString();
         }
-        expect(error).toEqual("Please sign up using a valid email.");
+        expect(error).toEqual("Error: The email address is badly formatted.");
     });
 
     test("Sign Up should be unsuccessful with invalid password - too short", async () => {
@@ -63,7 +63,7 @@ describe("Testing SignUpScreen.js", () => {
         } catch (err) {
             error = err.toString();
         }
-        expect(error).toEqual("Your password is too short! Tap the question mark for more details.");
+        expect(error).toEqual("Error: Password should be at least 6 characters");
     });
 
     test("Sign up should be unsuccessful with an email that has already been registered", async () => {
@@ -73,7 +73,7 @@ describe("Testing SignUpScreen.js", () => {
         } catch(err) {
             error = err.toString();
         }
-        expect(error).toEqual("An account for 'signup@test.com' already exists. Please verify your email or log in.");
+        expect(error).toEqual("Error: The email address is already in use by another account.");
     });
 
 });
