@@ -239,10 +239,11 @@ const styles = StyleSheet.create({
   inputStyle: {
     width: "100%",
     marginBottom: 15,
-    paddingBottom: 15,
+    marginTop: 15,
+    paddingBottom: 20,
     alignSelf: "center",
     borderColor: "#ccc",
-    borderBottomWidth: 1,
+    borderBottomWidth: 1.5,
   },
   loginButton: {
     width: 300,
