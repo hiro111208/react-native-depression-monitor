@@ -22,10 +22,10 @@ const messages = [
 ];
 
 const emojis = [
-  <Emoji name="seedling" style={{ fontSize: 30 }} />,
-  <Emoji name="herb" style={{ fontSize: 30 }} />,
-  <Emoji name="sunflower" style={{ fontSize: 30 }} />,
-  <Emoji name="sun_with_face" style={{ fontSize: 30 }} />,
+  <Emoji name="seedling" style={{ fontSize: 25 }} />,
+  <Emoji name="herb" style={{ fontSize: 25 }} />,
+  <Emoji name="sunflower" style={{ fontSize: 25 }} />,
+  <Emoji name="sun_with_face" style={{ fontSize: 25 }} />,
 ];
 
 /* Generate a random message from the messages array */
