@@ -47,6 +47,29 @@ const PlantScreen = ({ navigation, route }) => {
     }
   }
 
+  function renderWaterPlantButton() {
+    if (user.level < 9) {
+      return (
+        <TouchableOpacity
+          onPress={() => waterPlant()}
+          style={[styles.optButton, styles.centering, styles.shadowEffect]}
+        >
+          <Text style={styles.text}>Water your plant!</Text>
+          <Text style={styles.comment}>-5 coins</Text>
+        </TouchableOpacity>
+      );
+    } else {
+      return (
+        <TouchableOpacity
+          style={[styles.optButton, styles.centering, styles.shadowEffect]}
+        >
+          <Text style={styles.text}>You reached max level!</Text>
+          <Text style={styles.comment}>well done!</Text>
+        </TouchableOpacity>
+      );
+    }
+  }
+
   return (
     <View style={styles.container}>
       <View style={[styles.middle, styles.shadowEffect]}>
@@ -86,13 +109,7 @@ const PlantScreen = ({ navigation, route }) => {
         </View>
 
         <View style={[styles.nextSpace, styles.centering]}>
-          <TouchableOpacity
-            onPress={() => waterPlant()}
-            style={[styles.optButton, styles.centering, styles.shadowEffect]}
-          >
-            <Text style={styles.text}>Water your plant!</Text>
-            <Text style={styles.comment}>-5 coins</Text>
-          </TouchableOpacity>
+          {renderWaterPlantButton()}
         </View>
 
         <View style={{ height: "2%" }}></View>
