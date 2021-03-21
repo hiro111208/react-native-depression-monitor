@@ -9,7 +9,9 @@ import {
 } from "react-native";
 import Constants from "expo-constants";
 
-const PlantScreen = ({ navigation }) => {
+const PlantScreen = ({ navigation, route }) => {
+  var user = route.params.currentUser;
+
   return (
     <View style={styles.container}>
       <View style={[styles.middle, styles.shadowEffect]}>
@@ -23,7 +25,7 @@ const PlantScreen = ({ navigation }) => {
                 styles.shadowEffect,
               ]}
             >
-              <Text style={styles.text}>13</Text>
+              <Text style={styles.text}>{user.coins}</Text>
             </View>
           </View>
         </View>
