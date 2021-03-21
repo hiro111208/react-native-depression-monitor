@@ -30,8 +30,9 @@ export default function HomeScreen({ route, props, navigation }) {
       .doc(firebase.auth().currentUser.uid)
       .get()
       .then((doc) => {
-        const level = doc.data.level;
+        const level = doc.data().level;
         updatePath(level);
+        console.log(level);
       })
       .catch((error) => {
         console.log("Error getting document:", error);
@@ -40,35 +41,33 @@ export default function HomeScreen({ route, props, navigation }) {
 
   function updatePath(lvl) {
     switch (lvl) {
-      case "1":
+      case 1:
         setPlant(require("../assets/stage_1.png"));
         break;
-      case "2":
+      case 2:
         setPlant(require("../assets/stage_2.png"));
         break;
-      case "3":
+      case 3:
         setPlant(require("../assets/stage_3.png"));
         break;
-      case "4":
+      case 4:
         setPlant(require("../assets/stage_4.png"));
         break;
-      case "5":
+      case 5:
         setPlant(require("../assets/stage_5.png"));
         break;
-      case "6":
+      case 6:
         setPlant(require("../assets/stage_6.png"));
         break;
-      case "7":
+      case 7:
         setPlant(require("../assets/stage_7.png"));
         break;
-      case "8":
+      case 8:
         setPlant(require("../assets/stage_8.png"));
         break;
-      case "9":
+      case 9:
         setPlant(require("../assets/stage_9.png"));
         break;
-      default:
-        setPlant(require("../assets/stage_9.png"));
     }
   }
 
