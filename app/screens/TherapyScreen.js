@@ -302,7 +302,7 @@ const TherapyScreen = ({ navigation }) => {
   function handlePauseButton() {
     setReading(false);
     Speech.stop();
-    navigation.navigate("PauseScreen")
+    navigation.navigate("PauseScreen");
   }
 
   //Either start or stop reading on read text button click
@@ -329,23 +329,23 @@ const TherapyScreen = ({ navigation }) => {
   // Renders button that reads text aloud
   function renderReadTextButton() {
     if (loaded) {
-        if (isReading) {
-            return (
-              <Image 
-                resizeMode="contain"
-                style={styles.textToSpeech}
-                source={require("../assets/text_to_speech_off.png")}
-              />
-            );
-        } else {
-            return (
-               <Image 
-                  resizeMode="contain"
-                  style={styles.textToSpeech}
-                  source={require("../assets/text_to_speech_on.png")}
-                />
-            );
-        }
+      if (isReading) {
+        return (
+          <Image
+            resizeMode="contain"
+            style={styles.textToSpeech}
+            source={require("../assets/text_to_speech_off.png")}
+          />
+        );
+      } else {
+        return (
+          <Image
+            resizeMode="contain"
+            style={styles.textToSpeech}
+            source={require("../assets/text_to_speech_on.png")}
+          />
+        );
+      }
     }
   }
 
@@ -371,6 +371,8 @@ const TherapyScreen = ({ navigation }) => {
         question: questionI,
         block: blockI,
         categoryDropped: user.categoryDropped,
+        level: user.level,
+        coins: user.coins,
       })
       .then(() => {
         console.log("Progress saved");
@@ -476,7 +478,7 @@ const TherapyScreen = ({ navigation }) => {
           </TouchableOpacity>
 
           {/* Button to read text aloud */}
-          <TouchableOpacity 
+          <TouchableOpacity
             style={[styles.readButton, styles.centering]}
             onPress={() => handleReadButtonOnPress()}
           >
@@ -617,7 +619,7 @@ const styles = StyleSheet.create({
   },
   textToSpeech: {
     width: 35,
-  }
+  },
 });
 
 export default TherapyScreen;
