@@ -13,23 +13,33 @@ const PlantScreen = ({ navigation }) => {
   return (
     <View style={styles.container}>
       <View style={[styles.middle, styles.shadowEffect]}>
-        <View style={{ height: '5%'}}></View>
+        <View style={{ height: "5%" }}></View>
         <View style={[styles.top, styles.centering]}>
           <View style={[styles.topItem, styles.centering]}>
-            <View style={[styles.featureButton, styles.centering, styles.shadowEffect]}>
+            <View
+              style={[
+                styles.featureButton,
+                styles.centering,
+                styles.shadowEffect,
+              ]}
+            >
               <Text style={styles.text}>13</Text>
             </View>
           </View>
         </View>
 
         <View style={[styles.message, styles.centering]}>
-          <Text style={[styles.textStyle]}>Keep going! {"\n"}You're almost there!</Text>
+          <Text style={[styles.textStyle]}>
+            Keep going! {"\n"}You're almost there!
+          </Text>
         </View>
 
         <View style={{ height: "2%" }}></View>
 
         <View style={[styles.plantSpace, styles.centering]}>
-          <View style={[styles.plantImage, styles.centering, styles.shadowEffect]}>
+          <View
+            style={[styles.plantImage, styles.centering, styles.shadowEffect]}
+          >
             <Image
               style={{ width: 225, height: 225 }}
               resizeMode="contain"
@@ -39,7 +49,9 @@ const PlantScreen = ({ navigation }) => {
         </View>
 
         <View style={[styles.nextSpace, styles.centering]}>
-          <TouchableOpacity style={[styles.optButton, styles.centering, styles.shadowEffect]}>
+          <TouchableOpacity
+            style={[styles.optButton, styles.centering, styles.shadowEffect]}
+          >
             <Text style={styles.text}>Water your plant!</Text>
             <Text style={styles.comment}>-5 coins</Text>
           </TouchableOpacity>
@@ -47,7 +59,7 @@ const PlantScreen = ({ navigation }) => {
 
         <View style={{ height: "2%" }}></View>
 
-        <View style={[{ height: "9%", width: '100%'}, styles.centering]}>
+        <View style={[{ height: "9%", width: "100%" }, styles.centering]}>
           <TouchableOpacity
             style={[styles.homeButton, styles.centering]}
             onPress={() => navigation.goBack()}
@@ -69,7 +81,7 @@ const styles = StyleSheet.create({
     padding: 30,
     backgroundColor: "#fff",
   },
-  middle:{
+  middle: {
     width: "100%",
     height: "90%",
     borderRadius: 40,
@@ -132,8 +144,8 @@ const styles = StyleSheet.create({
     height: "40%",
   },
   plantImage: {
-    width: '100%',
-    height: '100%',
+    width: "100%",
+    height: "100%",
     borderRadius: 100,
     borderWidth: 4,
     borderColor: "#fff",
@@ -141,7 +153,7 @@ const styles = StyleSheet.create({
   },
   nextSpace: {
     height: "20%",
-    width: "100%"
+    width: "100%",
   },
   centering: {
     alignItems: "center",
