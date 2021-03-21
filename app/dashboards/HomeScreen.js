@@ -12,6 +12,7 @@ import firebase from "../database/firebase";
 import colors from "../config/colors";
 
 export default function HomeScreen({ route, props, navigation }) {
+  const [user, setUser] = useState(undefined);
   const [plant, setPlant] = useState(require("../assets/stage_1.png"));
   const [displayName, setDisplayName] = useState(
     firebase.auth().currentUser !== null
@@ -30,6 +31,7 @@ export default function HomeScreen({ route, props, navigation }) {
       .doc(firebase.auth().currentUser.uid)
       .get()
       .then((doc) => {
+        setUser(doc.data());
         const level = doc.data().level;
         updatePath(level);
         console.log(level);
@@ -102,7 +104,9 @@ export default function HomeScreen({ route, props, navigation }) {
 
           <TouchableOpacity
             style={[styles.sessionArea, styles.centering, styles.shadowEffect]}
-            onPress={() => navigation.navigate("PlantScreen")}
+            onPress={() =>
+              navigation.navigate("PlantScreen", { currentUser: user })
+            }
           >
             <Text style={styles.textStyle}>Interact with your plant</Text>
           </TouchableOpacity>
