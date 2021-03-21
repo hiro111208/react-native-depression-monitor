@@ -9,7 +9,7 @@ export default class TherapyQuestionScreen extends Component {
 
   constructor() {
     super();
-    this.firestoreRef = firebase.firestore().collection('questions');
+    this.firestoreRef = firebase.firestore().collection('questions').orderBy('block', 'asc').orderBy('categoryDropped', 'asc').orderBy('question', 'asc');
     this.state = {
       isLoading: true,
       questionArr: []
@@ -64,23 +64,25 @@ export default class TherapyQuestionScreen extends Component {
     }    
     return (
       <ScrollView style={styles.container}>
-          <View>
-  {
-    this.state.questionArr.map((l, i) => (
-      <ListItem key={i} bottomDivider
-      onPress={() => {
-        this.props.navigation.navigate('TherapyQuestionDetailScreen', {
-          questionkey: l.key
-        });
-      }}>
-        <ListItem.Content>
-          <ListItem.Title>{l.categoryDropped}</ListItem.Title>
-          <ListItem.Subtitle>{l.block}</ListItem.Subtitle>
+          {
+            this.state.questionArr.map((item, i) => {
+              return (
+                <ListItem
+                  key={i}
+                  chevron
+                  bottomDivider
+                  onPress={() => {
+                    this.props.navigation.navigate('TherapyQuestionDetailScreen', {
+                      questionkey: item.key
+                    });
+                  }}>
+                    <ListItem.Content>
+          <ListItem.Title>{item.categoryDropped} {item.block}-{item.question}</ListItem.Title>
         </ListItem.Content>
-      </ListItem>
-    ))
-  }
-</View>
+                  </ListItem>
+              );
+            })
+          }
       </ScrollView>
     );
   }
@@ -89,7 +91,7 @@ export default class TherapyQuestionScreen extends Component {
 const styles = StyleSheet.create({
   container: {
    flex: 1,
-   paddingBottom: 22
+   paddingBottom: 22,
   },
   preloader: {
     left: 0,
