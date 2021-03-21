@@ -12,6 +12,13 @@ import Constants from "expo-constants";
 const PlantScreen = ({ navigation, route }) => {
   var user = route.params.currentUser;
 
+  function waterPlant() {
+    if (user.coins >= 5) {
+      user.coins += -5;
+      user.level += 1;
+    }
+  }
+
   return (
     <View style={styles.container}>
       <View style={[styles.middle, styles.shadowEffect]}>
@@ -52,6 +59,7 @@ const PlantScreen = ({ navigation, route }) => {
 
         <View style={[styles.nextSpace, styles.centering]}>
           <TouchableOpacity
+            onPress={() => waterPlant()}
             style={[styles.optButton, styles.centering, styles.shadowEffect]}
           >
             <Text style={styles.text}>Water your plant!</Text>
