@@ -20,38 +20,30 @@ const PlantScreen = ({ navigation, route }) => {
       user.coins += -5;
       user.level += 1;
       setCoins(user.coins);
+      setPlant(getPlant());
     }
   }
 
   function getPlant() {
     switch (user.level) {
       case 1:
-        setPlant(require("../assets/stage_1.png"));
-        break;
+        return require("../assets/stage_1.png");
       case 2:
-        setPlant(require("../assets/stage_2.png"));
-        break;
+        return require("../assets/stage_2.png");
       case 3:
-        setPlant(require("../assets/stage_3.png"));
-        break;
+        return require("../assets/stage_3.png");
       case 4:
-        setPlant(require("../assets/stage_4.png"));
-        break;
+        return require("../assets/stage_4.png");
       case 5:
-        setPlant(require("../assets/stage_5.png"));
-        break;
+        return require("../assets/stage_5.png");
       case 6:
-        setPlant(require("../assets/stage_6.png"));
-        break;
+        return require("../assets/stage_6.png");
       case 7:
-        setPlant(require("../assets/stage_7.png"));
-        break;
+        return require("../assets/stage_7.png");
       case 8:
-        setPlant(require("../assets/stage_8.png"));
-        break;
+        return require("../assets/stage_8.png");
       case 9:
-        setPlant(require("../assets/stage_9.png"));
-        break;
+        return require("../assets/stage_9.png");
     }
   }
 
@@ -88,7 +80,7 @@ const PlantScreen = ({ navigation, route }) => {
             <Image
               style={{ width: 225, height: 225 }}
               resizeMode="contain"
-              source={require("../assets/stage_9.png")}
+              source={plant}
             />
           </View>
         </View>
