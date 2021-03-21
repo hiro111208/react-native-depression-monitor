@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   StatusBar,
   StyleSheet,
@@ -11,11 +11,13 @@ import Constants from "expo-constants";
 
 const PlantScreen = ({ navigation, route }) => {
   var user = route.params.currentUser;
+  const [coins, setCoins] = useState(user.coins);
 
   function waterPlant() {
     if (user.coins >= 5) {
       user.coins += -5;
       user.level += 1;
+      setCoins(user.coins);
     }
   }
 
@@ -32,7 +34,7 @@ const PlantScreen = ({ navigation, route }) => {
                 styles.shadowEffect,
               ]}
             >
-              <Text style={styles.text}>{user.coins}</Text>
+              <Text style={styles.text}>{coins}</Text>
             </View>
           </View>
         </View>
