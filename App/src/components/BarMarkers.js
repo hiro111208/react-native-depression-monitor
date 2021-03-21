@@ -1,27 +1,16 @@
-import React, { Component } from "react";
+import React, { useState } from "react";
 import { StyleSheet, View } from "react-native";
 
-export default class BarMarkers extends Component {
-  static defaultProps = {
-    separation: 0,
-    bars: 4,
-  };
-  state = {
-    bar: [],
-  };
-
-  render() {
-    return (
-      <View style={styles.barContainer}>
-        <View style={styles.bar} left={this.props.separation * 1}></View>
-        <View style={styles.bar} left={this.props.separation * 2}></View>
-        <View style={styles.bar} left={this.props.separation * 3}></View>
-        <View style={styles.bar} left={this.props.separation * 4}></View>
-      </View>
+//Progress bar dividers
+function BarMarkers(props) {
+  const markers = [];
+  for (var i = 0; i < props.bars + 1; i++) {
+    markers.push(
+      <View key={i} style={styles.bar} left={props.separation * i}></View>
     );
   }
+  return <View style={styles.barContainer}>{markers}</View>;
 }
-
 const styles = StyleSheet.create({
   barContainer: {
     width: "100%",
@@ -31,7 +20,10 @@ const styles = StyleSheet.create({
   },
   bar: {
     width: 1,
+    opacity: 0.5,
     flexDirection: "column",
     backgroundColor: "black",
   },
 });
+
+export default BarMarkers;

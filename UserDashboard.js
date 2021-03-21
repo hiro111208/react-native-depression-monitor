@@ -14,8 +14,9 @@ import {
 import filter from "lodash.filter";
 import firebase from "./firebase";
 import ProgressBar from "./App/src/components/ProgressBar";
+import { LineChart, Grid } from "react-native-svg-charts";
 
-function UserDashboard(props) {
+function UserDashboard(props, { navigation, route }) {
   const scrollY = React.useRef(new Animated.Value(0)).current;
   // const opacityLevel = React.useRef(new Animated.Value(0)).current;
   const spacing = 10;
@@ -112,16 +113,13 @@ function UserDashboard(props) {
       >
         <View
           style={{
-            flexDirection: "row",
-            shadowColor: "#000",
-            width: 80,
-            height: 50,
-            marginTop: 20,
+            width: 150,
+            height: 35,
+            marginTop: 50,
             shadowOffset: {
               width: 0,
               height: 10,
             },
-            textAlign: "center",
             padding: 10,
             shadowOpacity: 0.4,
             shadowRadius: 20,
@@ -129,16 +127,21 @@ function UserDashboard(props) {
             borderRadius: 10,
           }}
         >
-          <Text style={{ fontSize: 15, fontWeight: "700" }}>
-            Users: {userCount}
+          <Text
+            adjustsFontSizeToFit={true}
+            numberOfLines={1}
+            style={{
+              fontSize: 15,
+              fontWeight: "700",
+            }}
+          >
+            Total Nº Users : {userCount}
           </Text>
         </View>
         <Animated.FlatList
           ListHeaderComponent={renderHeader}
           data={items}
-          keyExtractor={(item) => {
-            item.userID;
-          }}
+          keyExtractor={(item, index) => index.toString()}
           onScroll={Animated.event(
             [{ nativeEvent: { contentOffset: { y: scrollY } } }],
             {
@@ -155,35 +158,54 @@ function UserDashboard(props) {
             //   outputRange: [1, 1, 1, 0],
             // });
             return (
-              <Animated.View
-                key={item.userID}
-                style={styles.listComponent}
-                // transform={[scale]}
+              <TouchableOpacity
+                key={index}
+                onPress={() =>
+                  props.navigation.navigate("UserInfo", {
+                    user: item.userID,
+                    block: item.block,
+                  })
+                }
               >
-                <View flex={1}>
-                  <View flexDirection={"row"}>
-                    <TouchableOpacity
-                      onClick={() => props.navigation.navigate("UserInfo")}
-                      // {
-                      //   id: item.userID,
-                      //   info: item,
-                    >
-                      <Text style={{ fontSize: 22, fontWeight: "700" }}>
-                        DB{item.userID}
+                <Animated.View
+                  style={styles.listComponent}
+                  // transform={[scale]}
+                >
+                  <View flex={1}>
+                    <View flexDirection={"row"}>
+                      <TouchableOpacity
+                        onPress={() =>
+                          props.navigation.navigate("UserInfo", {
+                            user: item.userID,
+                            block: item.block,
+                          })
+                        }
+                      >
+                        <Text style={{ fontSize: 22, fontWeight: "700" }}>
+                          DB{item.userID}
+                        </Text>
+                      </TouchableOpacity>
+                      <Text style={{ fontSize: 10, fontWeight: "300" }}>
+                        User
                       </Text>
-                    </TouchableOpacity>
-                    <Text style={{ fontSize: 10, fontWeight: "300" }}>
-                      User
-                    </Text>
+                    </View>
                   </View>
-                </View>
-                <View width={200} marginLeft={10}>
-                  <Text style={{ fontSize: 10, fontWeight: "300" }}>
-                    Current Block: {item.block}
-                  </Text>
-                  <ProgressBar nextWidth={item.block}></ProgressBar>
-                </View>
-              </Animated.View>
+
+                  <View width={200} marginLeft={10}>
+                    {item.block < 5 && (
+                      <Text style={{ fontSize: 10, fontWeight: "300" }}>
+                        Current Block: {item.block}
+                      </Text>
+                    )}
+                    {item.block === 5 && (
+                      <Text style={{ fontSize: 10, fontWeight: "300" }}>
+                        All Sessions Completed!
+                      </Text>
+                    )}
+                    <ProgressBar nextWidth={item.block - 1}></ProgressBar>
+                  </View>
+                </Animated.View>
+              </TouchableOpacity>
             );
           }}
         ></Animated.FlatList>
