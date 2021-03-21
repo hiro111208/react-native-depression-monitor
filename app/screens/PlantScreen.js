@@ -60,12 +60,10 @@ const PlantScreen = ({ navigation, route }) => {
       );
     } else {
       return (
-        <TouchableOpacity
-          style={[styles.optButton, styles.centering, styles.shadowEffect]}
-        >
+        <View style={[styles.optButton, styles.centering, styles.shadowEffect]}>
           <Text style={styles.text}>You reached max level!</Text>
           <Text style={styles.comment}>well done!</Text>
-        </TouchableOpacity>
+        </View>
       );
     }
   }
