@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   StyleSheet,
   View,
@@ -18,6 +18,25 @@ export default function HomeScreen({ route, props, navigation }) {
       ? firebase.auth().currentUser.displayName
       : ""
   );
+
+  useEffect(() => {
+    getLevel();
+  }, []);
+
+  function getLevel() {
+    firebase
+      .firestore()
+      .collection("users")
+      .doc(firebase.auth.currentUser.uid)
+      .get()
+      .then((doc) => {
+        const level = doc.data.level;
+        updatePath();
+      })
+      .catch((error) => {
+        console.log("Error getting document:", error);
+      });
+  }
 
   return (
     <View style={styles.container}>
