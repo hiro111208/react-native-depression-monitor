@@ -34,8 +34,8 @@ const CategoryDrop = ({ route, navigation }) => {
         question: userProgress.question,
         block: userProgress.block,
         categoryDropped: userProgress.categoryDropped,
-        level: userProgress.level,
-        coins: userProgress.coins,
+        level: 1,
+        coins: 0,
       })
       .then(() => {
         console.log("Category successfully dropped");
