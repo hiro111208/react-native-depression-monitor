@@ -87,28 +87,6 @@ export default class TherapyQuestionDetailScreen extends Component {
     });
   }
 
-  deleteTherapyQuestion() {
-    const dbRef = firebase.firestore().collection('questions').doc(this.props.route.params.questionkey)
-      dbRef.delete().then((res) => {
-          console.log('Item removed from database')
-          this.props.navigation.navigate('TherapyQuestionScreen');
-      })
-  }
-
-  openTwoButtonAlert=()=>{
-    Alert.alert(
-      'Delete TherapyQuestion',
-      'Are you sure?',
-      [
-        {text: 'Yes', onPress: () => this.deleteTherapyQuestion()},
-        {text: 'No', onPress: () => console.log('No item was removed'), style: 'cancel'},
-      ],
-      { 
-        cancelable: true 
-      }
-    );
-  }
-
   render() {
     if(this.state.isLoading){
       return(
@@ -121,37 +99,23 @@ export default class TherapyQuestionDetailScreen extends Component {
       <ScrollView style={styles.container}>
         <View style={styles.inputGroup}>
           <TextInput
-              placeholder={'answer1'}
-              value={this.state.answer1}
-              onChangeText={(val) => this.inputValueUpdate(val, 'answer1')}
-          />
-        </View>
-        <View style={styles.inputGroup}>
-          <TextInput
-              placeholder={'answer2'}
-              value={this.state.answer2}
-              onChangeText={(val) => this.inputValueUpdate(val, 'answer2')}
+              placeholder={'categoryDropped'}
+              value={this.state.categoryDropped}
+              editable={false}
           />
         </View>
         <View style={styles.inputGroup}>
           <TextInput
               placeholder={'block'}
-              value={this.state.block}
-              onChangeText={(val) => this.inputValueUpdate(val, 'block')}
-          />
-        </View>
-        <View style={styles.inputGroup}>
-          <TextInput
-              placeholder={'categoryDropped'}
-              value={this.state.categoryDropped}
-              onChangeText={(val) => this.inputValueUpdate(val, 'categoryDropped')}
+              value={this.state.block.toString()}
+              editable={false}
           />
         </View>
         <View style={styles.inputGroup}>
           <TextInput
               placeholder={'question'}
-              value={this.state.question}
-              onChangeText={(val) => this.inputValueUpdate(val, 'question')}
+              value={this.state.question.toString()}
+              editable={false}
           />
         </View>
         <View style={styles.inputGroup}>
@@ -165,6 +129,20 @@ export default class TherapyQuestionDetailScreen extends Component {
         </View>
         <View style={styles.inputGroup}>
           <TextInput
+              placeholder={'word'}
+              value={this.state.word}
+              onChangeText={(val) => this.inputValueUpdate(val, 'word')}
+          />
+        </View>
+        <View style={styles.inputGroup}>
+          <TextInput
+              placeholder={'answer1'}
+              value={this.state.answer1}
+              onChangeText={(val) => this.inputValueUpdate(val, 'answer1')}
+          />
+        </View>
+        <View style={styles.inputGroup}>
+          <TextInput
               multiline={true}
               numberOfLines={4}
               placeholder={'question2'}
@@ -174,9 +152,9 @@ export default class TherapyQuestionDetailScreen extends Component {
         </View>
         <View style={styles.inputGroup}>
           <TextInput
-              placeholder={'word'}
-              value={this.state.word}
-              onChangeText={(val) => this.inputValueUpdate(val, 'word')}
+              placeholder={'answer2'}
+              value={this.state.answer2}
+              onChangeText={(val) => this.inputValueUpdate(val, 'answer2')}
           />
         </View>
         <View style={styles.button}>
@@ -186,13 +164,6 @@ export default class TherapyQuestionDetailScreen extends Component {
             color="#19AC52"
           />
           </View>
-         <View>
-          <Button
-            title='Delete'
-            onPress={this.openTwoButtonAlert}
-            color="#E37399"
-          />
-        </View>
       </ScrollView>
     );
   }

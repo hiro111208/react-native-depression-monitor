@@ -64,23 +64,23 @@ export default class TherapyQuestionScreen extends Component {
     }    
     return (
       <ScrollView style={styles.container}>
-          <View>
-  {
-    this.state.questionArr.map((l, i) => (
-      <ListItem key={i} bottomDivider
-      onPress={() => {
-        this.props.navigation.navigate('TherapyQuestionDetailScreen', {
-          questionkey: l.key
-        });
-      }}>
-        <ListItem.Content>
-          <ListItem.Title>{l.categoryDropped}</ListItem.Title>
-          <ListItem.Subtitle>{l.block}</ListItem.Subtitle>
-        </ListItem.Content>
-      </ListItem>
-    ))
-  }
-</View>
+          {
+            this.state.questionArr.map((item, i) => {
+              return (
+                <ListItem
+                  key={i}
+                  chevron
+                  bottomDivider
+                  title={item.categoryDropped}
+                  subtitle={item.question.toString()}
+                  onPress={() => {
+                    this.props.navigation.navigate('TherapyQuestionDetailScreen', {
+                      questionkey: item.key
+                    });
+                  }}/>
+              );
+            })
+          }
       </ScrollView>
     );
   }

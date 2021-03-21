@@ -17,7 +17,6 @@ import Index from "./app/src/components/Index";
 import PatientDashboard from "./app/dashboards/PatientDashboard";
 import AdminDashboard from "./app/dashboards/AdminDashboard";
 
-import AddTherapyQuestionScreen from './app/screens/AddTherapyQuestionScreen';
 import TherapyQuestionScreen from './app/screens/TherapyQuestionScreen';
 import TherapyQuestionDetailScreen from './app/screens/TherapyQuestionDetailScreen';
 
@@ -134,11 +133,6 @@ export default function App() {
           },
         }}
       >
-      <Stack.Screen 
-        name="AddTherapyQuestionScreen" 
-        component={AddTherapyQuestionScreen} 
-        options={{ title: 'Add TherapyQuestion' }}
-      />
       <Stack.Screen 
         name="TherapyQuestionScreen" 
         component={TherapyQuestionScreen} 
