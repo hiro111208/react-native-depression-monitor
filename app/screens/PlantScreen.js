@@ -11,13 +11,47 @@ import Constants from "expo-constants";
 
 const PlantScreen = ({ navigation, route }) => {
   var user = route.params.currentUser;
+
   const [coins, setCoins] = useState(user.coins);
+  const [plant, setPlant] = useState(getPlant());
 
   function waterPlant() {
     if (user.coins >= 5) {
       user.coins += -5;
       user.level += 1;
       setCoins(user.coins);
+    }
+  }
+
+  function getPlant() {
+    switch (user.level) {
+      case 1:
+        setPlant(require("../assets/stage_1.png"));
+        break;
+      case 2:
+        setPlant(require("../assets/stage_2.png"));
+        break;
+      case 3:
+        setPlant(require("../assets/stage_3.png"));
+        break;
+      case 4:
+        setPlant(require("../assets/stage_4.png"));
+        break;
+      case 5:
+        setPlant(require("../assets/stage_5.png"));
+        break;
+      case 6:
+        setPlant(require("../assets/stage_6.png"));
+        break;
+      case 7:
+        setPlant(require("../assets/stage_7.png"));
+        break;
+      case 8:
+        setPlant(require("../assets/stage_8.png"));
+        break;
+      case 9:
+        setPlant(require("../assets/stage_9.png"));
+        break;
     }
   }
 
