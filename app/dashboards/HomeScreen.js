@@ -12,6 +12,7 @@ import firebase from "../database/firebase";
 import colors from "../config/colors";
 
 export default function HomeScreen({ route, props, navigation }) {
+  const [plant, setPlant] = useState(require("../assets/stage_1.png"));
   const [displayName, setDisplayName] = useState(
     firebase.auth().currentUser !== null
       ? firebase.auth().currentUser.displayName
@@ -33,7 +34,7 @@ export default function HomeScreen({ route, props, navigation }) {
               <Image
                 style={{ width: "100%", height: "100%" }}
                 resizeMode="contain"
-                source={require("../assets/stage_9.png")}
+                source={plant}
               />
             </View>
           </View>
