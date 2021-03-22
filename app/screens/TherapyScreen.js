@@ -357,9 +357,8 @@ const TherapyScreen = ({ navigation }) => {
         "Congratulations",
         "You have completed therapy set " +
           user.block +
-          "\n You have earned 5 coins to grow your plant."[
-            { text: "OK", onPress: () => navigation.goBack() }
-          ]
+          "! You have earned 5 coins to grow your plant.",
+        [{ text: "OK", onPress: () => navigation.goBack() }]
       );
     } else {
       setQuestion(question + 1);
