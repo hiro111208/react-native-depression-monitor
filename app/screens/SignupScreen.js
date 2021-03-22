@@ -11,7 +11,7 @@ import {
   Image,
 } from "react-native";
 import firebase from "../database/firebase";
-import { Tooltip } from 'react-native-elements';
+import { Tooltip } from "react-native-elements";
 
 import colors from "../config/colors";
 
@@ -115,7 +115,7 @@ function SignUpScreen(props) {
 
           switch(error.code) {
             case "auth/email-already-in-use":
-              setErrorMessage(`An account for '${email}' already exists. Please verify your email or log in.`)
+              setErrorMessage(`An account for "${email}" already exists. Please verify your email or log in.`)
               break;
             case "auth/invalid-email":
               setErrorMessage(`Please sign up using a valid email.`);
@@ -139,7 +139,7 @@ function SignUpScreen(props) {
       .then(function () {
         console.log("email verification sent");
         setErrorMessage(
-          `Please verify your email through the link we've sent to: ` + email
+          `Please verify your email through the link we've sent to: ${email}`
         );
         // Email sent.
       })
@@ -187,7 +187,7 @@ function SignUpScreen(props) {
         onChangeText={(val) => setEmail(val)}
         testID={"TEST_ID_EMAIL_INPUT"}
       />
-      <View style={[styles.inputStyle ,styles.passwordSection]}>
+      <View style={[styles.inputStyle, styles.passwordSection]}>
         <TextInput
           placeholder="Password"
           value={password}
@@ -225,7 +225,7 @@ function SignUpScreen(props) {
       <TouchableOpacity
         activeOpacity={0.5}
         style={styles.signupButton}
-        onPress={()=>registerUser()}
+        onPress={() => registerUser()}
         testID={"TEST_ID_SIGNUP_BUTTON"}
       >
         <Text style={styles.signupText}>SIGNUP</Text>
@@ -275,7 +275,7 @@ const styles = StyleSheet.create({
     justifyContent: "space-between"
   },
   passwordInformation: {
-    color:'white'
+    color:"white"
   },
   passwordTooltip: {
     backgroundColor:colors.darkBorder,
