@@ -210,8 +210,9 @@ function SignUpScreen(props) {
           backgroundColor={colors.darkBorder} 
           width={300}
           height={80}
-          popover={<Text style={styles.passwordInformation}>
-            Password must be 6 to 15 characters long. Can contain any alphaneumeric or special character.
+          popover={
+            <Text style={styles.passwordInformation}>
+              Password must be 6 to 15 characters long. Can contain any alphaneumeric or special character.
             </Text>}>
               <View style={styles.helpArea}>
                 <Image 
