@@ -14,7 +14,8 @@ export default class TherapyQuestionScreen extends Component {
     this.firestoreRef = firebase.firestore().collection('questions').orderBy('block', 'asc').orderBy('categoryDropped', 'asc').orderBy('question', 'asc');
     this.state = {
       isLoading: true,
-      questionArr: []
+      questionArr: [],
+      filteredArr: []
     };
   }
 
@@ -28,6 +29,7 @@ export default class TherapyQuestionScreen extends Component {
 
   getCollection = (querySnapshot) => {
     const questionArr = [];
+    const filteredArr = [];
     querySnapshot.forEach((res) => {
       const { answer1,
         answer2,
@@ -49,11 +51,29 @@ export default class TherapyQuestionScreen extends Component {
         question2,
         word,
       });
+      filteredArr.push({
+        key: res.id,
+        res,
+        answer1,
+        answer2,
+        block,
+        categoryDropped,
+        question,
+        question1,
+        question2,
+        word,
+      });
     });
     this.setState({
       questionArr,
+      filteredArr,
       isLoading: false,
     });
+  }
+
+  filterCollection(categoryDropped){
+    //this.componentDidMount()
+    this.setState({filteredArr: this.state.questionArr.filter(questionArr => questionArr.categoryDropped === categoryDropped)})
   }
 
   render() {
@@ -66,9 +86,27 @@ export default class TherapyQuestionScreen extends Component {
     }
     return (
       <View style={styles.container}>
+        <DropDownPicker
+          items={[
+            { label: 'CONTROL', value: 'CONTROL' },
+            { label: 'SOCIAL', value: 'SOCIAL' },
+            { label: 'ACADEMIC', value: 'ACADEMIC' },
+            { label: 'MOOD', value: 'HEALTH' },
+            { label: 'HEALTH', value: 'HEALTH' },
+            { label: 'HOBBIES', value: 'HOBBIES' },
+            { label: 'FAMILY', value: 'FAMILY' },
+            { label: 'WORK', value: 'WORK' },
+            { label: 'RELATIONSHIP', value: 'RELATIONSHIP' },
+          ]}
+          placeholder="Select a category"
+          defaultIndex={0}
+          containerStyle={{ height: 40 }}
+          //onChangeItem={item => console.log(item.label, item.value)}
+          onChangeItem={(item) => this.filterCollection(item.value)}
+        />
         <ScrollView style={styles.container}>
           {
-            this.state.questionArr.map((item, i) => {
+            this.state.filteredArr.map((item, i) => {
               return (
                 <ListItem
                   key={i}
