@@ -5,6 +5,8 @@ import { StyleSheet, ScrollView, ActivityIndicator, View } from 'react-native';
 import { ListItem } from 'react-native-elements'
 import firebase from '../database/firebase';
 
+import DropDownPicker from 'react-native-dropdown-picker';
+
 export default class TherapyQuestionScreen extends Component {
 
   constructor() {
@@ -104,5 +106,5 @@ const styles = StyleSheet.create({
     position: 'absolute',
     alignItems: 'center',
     justifyContent: 'center'
-  }
+  },
 })

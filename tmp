@@ -172,3 +172,27 @@ const pickerSelectStyles = StyleSheet.create({
       />
     </Stack.Navigator>
     </NavigationContainer>
+
+    filterCollection(){
+    this.componentDidMount()
+    this.setState({questionArr: []})
+  }
+
+  <DropDownPicker
+          items={[
+            { label: 'CONTROL', value: 'CONTROL' },
+            { label: 'CONTROL', value: 'CONTROL' },
+            { label: 'CONTROL', value: 'CONTROL' },
+            { label: 'CONTROL', value: 'CONTROL' },
+            { label: 'CONTROL', value: 'CONTROL' },
+            { label: 'CONTROL', value: 'CONTROL' },
+            { label: 'CONTROL', value: 'CONTROL' },
+            { label: 'CONTROL', value: 'CONTROL' },
+            { label: 'CONTROL', value: 'CONTROL' },
+          ]}
+          placeholder="Select a category"
+          defaultIndex={0}
+          containerStyle={{ height: 40 }}
+          //onChangeItem={item => console.log(item.label, item.value)}
+          onChangeItem={() => this.filterCollection()}
+        />

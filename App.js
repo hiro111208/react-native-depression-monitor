@@ -107,9 +107,9 @@ function MyStack() {
 
 export default function App() {
   return (
-    <NavigationContainer>
-      <MyStack />
-    </NavigationContainer>
+    //<NavigationContainer>
+    //  <MyStack />
+    //</NavigationContainer>
 
     //Uncomment to see different screens one at a time
     //<TherapyScreen />
@@ -121,5 +121,29 @@ export default function App() {
     //<SignupScreen />
     //<ForgotPasswordScreen/>
     //<Index></Index> //where progressBar buttons/actions and component are
+    <NavigationContainer>
+      <Stack.Navigator
+      screenOptions={{
+          headerStyle: {
+            backgroundColor: '#621FF7',
+          },
+          headerTintColor: '#fff',
+          headerTitleStyle: {
+            fontWeight: 'bold',
+          },
+        }}
+      >
+      <Stack.Screen 
+        name="TherapyQuestionScreen" 
+        component={TherapyQuestionScreen} 
+        options={{ title: 'TherapyQuestions List' }}
+      />
+      <Stack.Screen 
+       name="TherapyQuestionDetailScreen" 
+       component={TherapyQuestionDetailScreen} 
+       options={{ title: 'TherapyQuestion Detail' }}
+      />
+    </Stack.Navigator>
+    </NavigationContainer>
   );
 }
