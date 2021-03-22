@@ -355,8 +355,11 @@ const TherapyScreen = ({ navigation }) => {
       saveProgress(user.block + 1, 1);
       Alert.alert(
         "Congratulations",
-        "You have completed therapy set " + user.block,
-        [{ text: "OK", onPress: () => navigation.goBack() }]
+        "You have completed therapy set " +
+          user.block +
+          "\n You have earned 5 coins to grow your plant."[
+            { text: "OK", onPress: () => navigation.goBack() }
+          ]
       );
     } else {
       setQuestion(question + 1);
