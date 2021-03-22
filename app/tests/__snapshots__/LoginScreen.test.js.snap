@@ -22,10 +22,11 @@ exports[`Testing LoginScreen.js LoginScreen renders correctly 1`] = `
     style={
       Object {
         "alignSelf": "center",
-        "borderBottomWidth": 1,
+        "borderBottomWidth": 1.5,
         "borderColor": "#ccc",
         "marginBottom": 15,
-        "paddingBottom": 15,
+        "marginTop": 15,
+        "paddingBottom": 20,
         "width": "100%",
       }
     }
@@ -43,10 +44,11 @@ exports[`Testing LoginScreen.js LoginScreen renders correctly 1`] = `
     style={
       Object {
         "alignSelf": "center",
-        "borderBottomWidth": 1,
+        "borderBottomWidth": 1.5,
         "borderColor": "#ccc",
         "marginBottom": 15,
-        "paddingBottom": 15,
+        "marginTop": 15,
+        "paddingBottom": 20,
         "width": "100%",
       }
     }

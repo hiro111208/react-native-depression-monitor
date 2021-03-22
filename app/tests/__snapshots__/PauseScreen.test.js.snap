@@ -1,6 +1,5 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-
 exports[`PauseScreen renders correctly 1`] = `
 <RCTSafeAreaView
   emulateUnlessSupported={true}
@@ -58,17 +57,17 @@ exports[`PauseScreen renders correctly 1`] = `
           ]
         }
       >
-        Well done! Return to the session when you are ready.
-        
+        Enjoy your break! Remember to come and water your plant.
+         
         <Text
           style={
             Object {
               "color": "#000",
-              "fontSize": 30,
+              "fontSize": 25,
             }
           }
         >
-          🌻
+          🌱
         </Text>
          
       </Text>
