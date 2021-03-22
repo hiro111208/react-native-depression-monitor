@@ -367,7 +367,7 @@ const TherapyScreen = ({ navigation }) => {
   }
 
   // writes the progress of the user so the question isn't repeated
-  function saveProgress(blockI, questionI) {
+  function saveProgress(blockI, questionI, coinsI) {
     userRef
       .set({
         userID: user.userID,
@@ -375,7 +375,7 @@ const TherapyScreen = ({ navigation }) => {
         block: blockI,
         categoryDropped: user.categoryDropped,
         level: user.level,
-        coins: user.coins,
+        coins: user.coins + coinsI,
       })
       .then(() => {
         console.log("Progress saved");
