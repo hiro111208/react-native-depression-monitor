@@ -11,7 +11,7 @@ import firebase from "../database/firebase";
 
 const CategoryDrop = ({ route, navigation }) => {
   // Stores user data passed from the previous screen
-  userProgress = route.params.user;
+  const userProgress = route.params.user;
 
   // Reference to the path of the user's data
   const ref = firebase
@@ -34,6 +34,8 @@ const CategoryDrop = ({ route, navigation }) => {
         question: userProgress.question,
         block: userProgress.block,
         categoryDropped: userProgress.categoryDropped,
+        level: 1,
+        coins: 0,
       })
       .then(() => {
         console.log("Category successfully dropped");

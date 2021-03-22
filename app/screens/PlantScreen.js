@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   StatusBar,
   StyleSheet,
@@ -8,49 +8,138 @@ import {
   Image,
 } from "react-native";
 import Constants from "expo-constants";
+import firebase from "../database/firebase";
 
-const PlantScreen = ({ navigation }) => {
+const PlantScreen = ({ navigation, route }) => {
+  var user = route.params.currentUser;
+
+  const [coins, setCoins] = useState(user.coins);
+  const [plant, setPlant] = useState(getPlant());
+
+  function waterPlant() {
+    if (user.coins >= 5) {
+      user.coins += -5;
+      user.level += 1;
+      setCoins(user.coins);
+      setPlant(getPlant());
+    }
+  }
+
+  function getPlant() {
+    switch (user.level) {
+      case 1:
+        return require("../assets/stage_1.png");
+      case 2:
+        return require("../assets/stage_2.png");
+      case 3:
+        return require("../assets/stage_3.png");
+      case 4:
+        return require("../assets/stage_4.png");
+      case 5:
+        return require("../assets/stage_5.png");
+      case 6:
+        return require("../assets/stage_6.png");
+      case 7:
+        return require("../assets/stage_7.png");
+      case 8:
+        return require("../assets/stage_8.png");
+      case 9:
+        return require("../assets/stage_9.png");
+    }
+  }
+
+  function renderWaterPlantButton() {
+    if (user.level < 9) {
+      return (
+        <TouchableOpacity
+          onPress={() => waterPlant()}
+          style={[styles.optButton, styles.centering, styles.shadowEffect]}
+        >
+          <Text style={styles.text}>Water your plant!</Text>
+          <Text style={styles.comment}>-5 coins</Text>
+        </TouchableOpacity>
+      );
+    } else {
+      return (
+        <View style={[styles.optButton, styles.centering, styles.shadowEffect]}>
+          <Text style={styles.text}>You reached max level!</Text>
+          <Text style={styles.comment}>well done!</Text>
+        </View>
+      );
+    }
+  }
+
+  function saveProgress() {
+    firebase
+      .firestore()
+      .collection("users")
+      .doc(firebase.auth().currentUser.uid)
+      .set({
+        userID: user.userID,
+        question: user.question,
+        block: user.block,
+        categoryDropped: user.categoryDropped,
+        level: user.level,
+        coins: user.coins,
+      })
+      .then(() => {
+        console.log("Progress saved");
+        route.params.onGoBack();
+        navigation.goBack();
+      })
+      .catch((error) => {
+        console.error("Error saving progress: ", error);
+      });
+  }
+
   return (
     <View style={styles.container}>
       <View style={[styles.middle, styles.shadowEffect]}>
-        <View style={{ height: '5%'}}></View>
+        <View style={{ height: "5%" }}></View>
         <View style={[styles.top, styles.centering]}>
           <View style={[styles.topItem, styles.centering]}>
-            <View style={[styles.featureButton, styles.centering, styles.shadowEffect]}>
-              <Text style={styles.text}>13</Text>
+            <View
+              style={[
+                styles.featureButton,
+                styles.centering,
+                styles.shadowEffect,
+              ]}
+            >
+              <Text style={styles.text}>{coins}</Text>
             </View>
           </View>
         </View>
 
         <View style={[styles.message, styles.centering]}>
-          <Text style={[styles.textStyle]}>Keep going! {"\n"}You're almost there!</Text>
+          <Text style={[styles.textStyle]}>
+            Keep going! {"\n"}You're almost there!
+          </Text>
         </View>
 
         <View style={{ height: "2%" }}></View>
 
         <View style={[styles.plantSpace, styles.centering]}>
-          <View style={[styles.plantImage, styles.centering, styles.shadowEffect]}>
+          <View
+            style={[styles.plantImage, styles.centering, styles.shadowEffect]}
+          >
             <Image
               style={{ width: 225, height: 225 }}
               resizeMode="contain"
-              source={require("../assets/stage_9.png")}
+              source={plant}
             />
           </View>
         </View>
 
         <View style={[styles.nextSpace, styles.centering]}>
-          <TouchableOpacity style={[styles.optButton, styles.centering, styles.shadowEffect]}>
-            <Text style={styles.text}>Water your plant!</Text>
-            <Text style={styles.comment}>-5 coins</Text>
-          </TouchableOpacity>
+          {renderWaterPlantButton()}
         </View>
 
         <View style={{ height: "2%" }}></View>
 
-        <View style={[{ height: "9%", width: '100%'}, styles.centering]}>
+        <View style={[{ height: "9%", width: "100%" }, styles.centering]}>
           <TouchableOpacity
             style={[styles.homeButton, styles.centering]}
-            onPress={() => navigation.goBack()}
+            onPress={() => saveProgress()}
           >
             <Text style={styles.textStyle}>Return Home</Text>
           </TouchableOpacity>
@@ -69,7 +158,7 @@ const styles = StyleSheet.create({
     padding: 30,
     backgroundColor: "#fff",
   },
-  middle:{
+  middle: {
     width: "100%",
     height: "90%",
     borderRadius: 40,
@@ -132,8 +221,8 @@ const styles = StyleSheet.create({
     height: "40%",
   },
   plantImage: {
-    width: '100%',
-    height: '100%',
+    width: "100%",
+    height: "100%",
     borderRadius: 100,
     borderWidth: 4,
     borderColor: "#fff",
@@ -141,7 +230,7 @@ const styles = StyleSheet.create({
   },
   nextSpace: {
     height: "20%",
-    width: "100%"
+    width: "100%",
   },
   centering: {
     alignItems: "center",

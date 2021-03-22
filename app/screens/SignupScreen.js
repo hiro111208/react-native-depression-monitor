@@ -11,7 +11,7 @@ import {
   Image,
 } from "react-native";
 import firebase from "../database/firebase";
-import { Tooltip } from 'react-native-elements';
+import { Tooltip } from "react-native-elements";
 
 import colors from "../config/colors";
 
@@ -53,6 +53,8 @@ function addUserToDatabase(uid) {
             block: 1,
             categoryDropped: "NONE",
             userID: id,
+            level: 1,
+            coins: 0,
           })
           .then(() => {
             console.log("User added");
@@ -113,15 +115,19 @@ function SignUpScreen(props) {
           console.log(error.code);
           setIsLoading(false);
 
-          switch(error.code) {
+          switch (error.code) {
             case "auth/email-already-in-use":
-              setErrorMessage(`An account for '${email}' already exists. Please verify your email or log in.`)
+              setErrorMessage(
+                `An account for '${email}' already exists. Please verify your email or log in.`
+              );
               break;
             case "auth/invalid-email":
               setErrorMessage(`Please sign up using a valid email.`);
               break;
             case "auth/weak-password":
-              setErrorMessage(`Your password is too short! Tap the question mark for more details.`);
+              setErrorMessage(
+                `Your password is too short! Tap the question mark for more details.`
+              );
               break;
             default:
               setErrorMessage(error.message);
@@ -188,7 +194,7 @@ function SignUpScreen(props) {
         onChangeText={(val) => setEmail(val)}
         testID={"TEST_ID_EMAIL_INPUT"}
       />
-      <View style={[styles.inputStyle ,styles.passwordSection]}>
+      <View style={[styles.inputStyle, styles.passwordSection]}>
         <TextInput
           placeholder="Password"
           value={password}
@@ -197,26 +203,29 @@ function SignUpScreen(props) {
           autoCorrect={false}
           secureTextEntry={true}
           testID={"TEST_ID_PASSWORD_INPUT"}
-        /> 
+        />
         {/*Render tooltip with password criteria*/}
-        <Tooltip 
-          style={styles.passwordTooltip} 
-          withOverlay={false} 
-          backgroundColor={colors.darkBorder} 
+        <Tooltip
+          style={styles.passwordTooltip}
+          withOverlay={false}
+          backgroundColor={colors.darkBorder}
           width={300}
           height={80}
-          popover={<Text style={styles.passwordInformation}>
-            Password must be 6 to 15 characters long. Can contain any alphaneumeric or special character.
-            </Text>}>
-              <View style={styles.helpArea}>
-                <Image 
-                  style={styles.image}
-                  resizeMode="contain"
-                  source={require("../assets/question_mark.png")}
-                />
-              </ View>
+          popover={
+            <Text style={styles.passwordInformation}>
+              Password must be 6 to 15 characters long. Can contain any
+              alphaneumeric or special character.
+            </Text>
+          }
+        >
+          <View style={styles.helpArea}>
+            <Image
+              style={styles.image}
+              resizeMode="contain"
+              source={require("../assets/question_mark.png")}
+            />
+          </View>
         </Tooltip>
-        
       </View>
       {/*Render error messages or success messages*/}
       <Text style={{ color: "red" }}>{errorMessage}</Text>
@@ -226,7 +235,7 @@ function SignUpScreen(props) {
       <TouchableOpacity
         activeOpacity={0.5}
         style={styles.signupButton}
-        onPress={()=>registerUser()}
+        onPress={() => registerUser()}
         testID={"TEST_ID_SIGNUP_BUTTON"}
       >
         <Text style={styles.signupText}>SIGNUP</Text>
@@ -271,17 +280,17 @@ const styles = StyleSheet.create({
     textAlign: "center",
   },
   passwordSection: {
-    flexDirection:"row",
+    flexDirection: "row",
     alignItems: "center",
-    justifyContent: "space-between"
+    justifyContent: "space-between",
   },
   passwordInformation: {
-    color:'white'
+    color: "white",
   },
   passwordTooltip: {
-    backgroundColor:colors.darkBorder,
-    width:300,
-    height:60
+    backgroundColor: colors.darkBorder,
+    width: 300,
+    height: 60,
   },
   preloader: {
     left: 0,
@@ -313,6 +322,6 @@ const styles = StyleSheet.create({
   helpArea: {
     flexDirection: "row",
     justifyContent: "flex-end",
-    textAlign: "right"
-  }
+    textAlign: "right",
+  },
 });

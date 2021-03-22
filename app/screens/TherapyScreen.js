@@ -27,7 +27,7 @@ var store2 = 0;
  * Screen where the therapy session takes place. Users will
  * answer question stored in Firebase or pause the session.
  */
-const TherapyScreen = ({ navigation }) => {
+const TherapyScreen = ({ navigation, route }) => {
   const [isWordAnswer, toggleWordAnswer] = useState(true);
   const [loaded, setLoaded] = useState(false);
   const [items, setItems] = useState([]);
@@ -291,7 +291,7 @@ const TherapyScreen = ({ navigation }) => {
       toggleWordAnswer(false);
     } else if (!isWordAnswer && (isCorrect || isIncorrect)) {
       addAnswer(store1, correct1, store2, correct2);
-      saveProgress(user.block, question + 2);
+      saveProgress(user.block, question + 2, 0);
       resetStatus();
       incrementQuestion();
       toggleWordAnswer(true);
@@ -302,7 +302,7 @@ const TherapyScreen = ({ navigation }) => {
   function handlePauseButton() {
     setReading(false);
     Speech.stop();
-    navigation.navigate("PauseScreen")
+    navigation.navigate("PauseScreen");
   }
 
   //Either start or stop reading on read text button click
@@ -329,33 +329,36 @@ const TherapyScreen = ({ navigation }) => {
   // Renders button that reads text aloud
   function renderReadTextButton() {
     if (loaded) {
-        if (isReading) {
-            return (
-              <Image 
-                resizeMode="contain"
-                style={styles.textToSpeech}
-                source={require("../assets/text_to_speech_off.png")}
-              />
-            );
-        } else {
-            return (
-               <Image 
-                  resizeMode="contain"
-                  style={styles.textToSpeech}
-                  source={require("../assets/text_to_speech_on.png")}
-                />
-            );
-        }
+      if (isReading) {
+        return (
+          <Image
+            resizeMode="contain"
+            style={styles.textToSpeech}
+            source={require("../assets/text_to_speech_off.png")}
+          />
+        );
+      } else {
+        return (
+          <Image
+            resizeMode="contain"
+            style={styles.textToSpeech}
+            source={require("../assets/text_to_speech_on.png")}
+          />
+        );
+      }
     }
   }
 
   // Updates the question index, until the session ends.
   function incrementQuestion() {
     if (question == 17) {
-      saveProgress(user.block + 1, 1);
+      saveProgress(user.block + 1, 1, 5);
+      route.params.onGoBack();
       Alert.alert(
         "Congratulations",
-        "You have completed therapy set " + user.block,
+        "You have completed therapy set " +
+          user.block +
+          "! You have earned 5 coins to grow your plant.",
         [{ text: "OK", onPress: () => navigation.goBack() }]
       );
     } else {
@@ -364,13 +367,15 @@ const TherapyScreen = ({ navigation }) => {
   }
 
   // writes the progress of the user so the question isn't repeated
-  function saveProgress(blockI, questionI) {
+  function saveProgress(blockI, questionI, coinsI) {
     userRef
       .set({
         userID: user.userID,
         question: questionI,
         block: blockI,
         categoryDropped: user.categoryDropped,
+        level: user.level,
+        coins: user.coins + coinsI,
       })
       .then(() => {
         console.log("Progress saved");
@@ -476,7 +481,7 @@ const TherapyScreen = ({ navigation }) => {
           </TouchableOpacity>
 
           {/* Button to read text aloud */}
-          <TouchableOpacity 
+          <TouchableOpacity
             style={[styles.readButton, styles.centering]}
             onPress={() => handleReadButtonOnPress()}
           >
@@ -617,7 +622,7 @@ const styles = StyleSheet.create({
   },
   textToSpeech: {
     width: 35,
-  }
+  },
 });
 
 export default TherapyScreen;
