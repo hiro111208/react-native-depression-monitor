@@ -27,7 +27,7 @@ var store2 = 0;
  * Screen where the therapy session takes place. Users will
  * answer question stored in Firebase or pause the session.
  */
-const TherapyScreen = ({ navigation }) => {
+const TherapyScreen = ({ navigation, route }) => {
   const [isWordAnswer, toggleWordAnswer] = useState(true);
   const [loaded, setLoaded] = useState(false);
   const [items, setItems] = useState([]);
@@ -353,6 +353,7 @@ const TherapyScreen = ({ navigation }) => {
   function incrementQuestion() {
     if (question == 17) {
       saveProgress(user.block + 1, 1, 5);
+      route.params.onGoBack();
       Alert.alert(
         "Congratulations",
         "You have completed therapy set " +
