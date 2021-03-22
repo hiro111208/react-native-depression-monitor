@@ -34,7 +34,6 @@ export default function HomeScreen({ route, props, navigation }) {
         setUser(doc.data());
         const level = doc.data().level;
         updatePath(level);
-        console.log(level);
       })
       .catch((error) => {
         console.log("Error getting document:", error);
