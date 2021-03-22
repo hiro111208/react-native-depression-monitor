@@ -113,15 +113,21 @@ function SignUpScreen(props) {
           console.log(error.code);
           setIsLoading(false);
 
-          switch(error.code) {
+          switch (error.code) {
             case "auth/email-already-in-use":
-              setErrorMessage(`An account for "${email}" already exists. Please verify your email or log in.`)
+              setErrorMessage(
+                `An account for "${email}" already exists. Please verify your email or log in.`
+              );
               break;
             case "auth/invalid-email":
-              setErrorMessage(`Please sign up using a valid email.`);
+              setErrorMessage(
+                `Please sign up using a valid email.`
+              );
               break;
             case "auth/weak-password":
-              setErrorMessage(`Your password is too short! Tap the question mark for more details.`);
+              setErrorMessage(
+                `Your password is too short! Tap the question mark for more details.`
+              );
               break;
             default:
               setErrorMessage(error.message);
