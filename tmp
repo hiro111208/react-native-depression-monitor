@@ -9,7 +9,7 @@ export default class TherapyQuestionScreen extends Component {
 
   constructor() {
     super();
-    this.firestoreRef = firebase.firestore().collection('questions');
+    this.firestoreRef = firebase.firestore().collection('questions').orderBy('block', 'asc').orderBy('categoryDropped', 'asc').orderBy('question', 'asc');
     this.state = {
       isLoading: true,
       questionArr: []
@@ -20,7 +20,7 @@ export default class TherapyQuestionScreen extends Component {
     this.unsubscribe = this.firestoreRef.onSnapshot(this.getCollection);
   }
 
-  componentWillUnmount(){
+  componentWillUnmount() {
     this.unsubscribe();
   }
 
@@ -51,19 +51,20 @@ export default class TherapyQuestionScreen extends Component {
     this.setState({
       questionArr,
       isLoading: false,
-   });
+    });
   }
 
   render() {
-    if(this.state.isLoading){
-      return(
+    if (this.state.isLoading) {
+      return (
         <View style={styles.preloader}>
-          <ActivityIndicator size="large" color="#9E9E9E"/>
+          <ActivityIndicator size="large" color="#9E9E9E" />
         </View>
       )
-    }    
+    }
     return (
-      <ScrollView style={styles.container}>
+      <View style={styles.container}>
+        <ScrollView style={styles.container}>
           {
             this.state.questionArr.map((item, i) => {
               return (
@@ -71,25 +72,29 @@ export default class TherapyQuestionScreen extends Component {
                   key={i}
                   chevron
                   bottomDivider
-                  title={item.categoryDropped}
-                  subtitle={item.question.toString()}
                   onPress={() => {
                     this.props.navigation.navigate('TherapyQuestionDetailScreen', {
                       questionkey: item.key
                     });
-                  }}/>
+                  }}>
+                  <ListItem.Content>
+                    <ListItem.Title>{item.categoryDropped} {item.block}-{item.question}</ListItem.Title>
+                  </ListItem.Content>
+                </ListItem>
               );
             })
           }
-      </ScrollView>
+        </ScrollView>
+      </View>
+
     );
   }
 }
 
 const styles = StyleSheet.create({
   container: {
-   flex: 1,
-   paddingBottom: 22
+    flex: 1,
+    paddingBottom: 22,
   },
   preloader: {
     left: 0,
@@ -101,3 +106,44 @@ const styles = StyleSheet.create({
     justifyContent: 'center'
   }
 })
+
+<View style={{ marginTop: 60 }}>
+        <Text style={{ marginVertical: 20, marginLeft: 30 }}>Category</Text>
+        <RNPickerSelect
+          onValueChange={(value) => console.log(value)}
+          items={[
+            { label: 'Java', value: 'java' },
+            { label: 'JavaScript', value: 'js' }
+          ]}
+          style={pickerSelectStyles}
+          placeholder={{ label: 'Choose', value: '' }}
+        />
+      </View>
+
+const pickerSelectStyles = StyleSheet.create({
+  inputIOS: {
+    fontSize: 16,
+    paddingVertical: 12,
+    paddingHorizontal: 10,
+    borderWidth: 1,
+    borderColor: '#789',
+    borderRadius: 4,
+    color: '#789',
+    paddingRight: 30, // to ensure the text is never behind the icon
+    width: 300,
+    marginLeft: 30
+  },
+  inputAndroid: {
+    fontSize: 16,
+    paddingHorizontal: 10,
+    paddingVertical: 8,
+    borderWidth: 0.5,
+    borderColor: '#789',
+    borderRadius: 8,
+    color: 'black',
+    paddingRight: 30, // to ensure the text is never behind the icon
+    width: 280,
+    marginLeft: 30,
+    backgroundColor:'#eee'
+  },
+});

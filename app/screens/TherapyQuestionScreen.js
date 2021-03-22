@@ -20,7 +20,7 @@ export default class TherapyQuestionScreen extends Component {
     this.unsubscribe = this.firestoreRef.onSnapshot(this.getCollection);
   }
 
-  componentWillUnmount(){
+  componentWillUnmount() {
     this.unsubscribe();
   }
 
@@ -51,19 +51,20 @@ export default class TherapyQuestionScreen extends Component {
     this.setState({
       questionArr,
       isLoading: false,
-   });
+    });
   }
 
   render() {
-    if(this.state.isLoading){
-      return(
+    if (this.state.isLoading) {
+      return (
         <View style={styles.preloader}>
-          <ActivityIndicator size="large" color="#9E9E9E"/>
+          <ActivityIndicator size="large" color="#9E9E9E" />
         </View>
       )
-    }    
+    }
     return (
-      <ScrollView style={styles.container}>
+      <View style={styles.container}>
+        <ScrollView style={styles.container}>
           {
             this.state.questionArr.map((item, i) => {
               return (
@@ -76,22 +77,24 @@ export default class TherapyQuestionScreen extends Component {
                       questionkey: item.key
                     });
                   }}>
-                    <ListItem.Content>
-          <ListItem.Title>{item.categoryDropped} {item.block}-{item.question}</ListItem.Title>
-        </ListItem.Content>
-                  </ListItem>
+                  <ListItem.Content>
+                    <ListItem.Title>{item.categoryDropped} {item.block}-{item.question}</ListItem.Title>
+                  </ListItem.Content>
+                </ListItem>
               );
             })
           }
-      </ScrollView>
+        </ScrollView>
+      </View>
+
     );
   }
 }
 
 const styles = StyleSheet.create({
   container: {
-   flex: 1,
-   paddingBottom: 22,
+    flex: 1,
+    paddingBottom: 22,
   },
   preloader: {
     left: 0,
