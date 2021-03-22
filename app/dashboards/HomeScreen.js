@@ -70,6 +70,8 @@ export default function HomeScreen({ route, props, navigation }) {
       case 9:
         setPlant(require("../assets/stage_9.png"));
         break;
+      default:
+        setPlant(require("../assets/stage_9.png"));
     }
   }
 
