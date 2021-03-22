@@ -291,7 +291,7 @@ const TherapyScreen = ({ navigation }) => {
       toggleWordAnswer(false);
     } else if (!isWordAnswer && (isCorrect || isIncorrect)) {
       addAnswer(store1, correct1, store2, correct2);
-      saveProgress(user.block, question + 2);
+      saveProgress(user.block, question + 2, 0);
       resetStatus();
       incrementQuestion();
       toggleWordAnswer(true);
@@ -352,7 +352,7 @@ const TherapyScreen = ({ navigation }) => {
   // Updates the question index, until the session ends.
   function incrementQuestion() {
     if (question == 17) {
-      saveProgress(user.block + 1, 1);
+      saveProgress(user.block + 1, 1, 5);
       Alert.alert(
         "Congratulations",
         "You have completed therapy set " +
