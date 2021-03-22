@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   StyleSheet,
   View,
@@ -12,11 +12,71 @@ import firebase from "../database/firebase";
 import colors from "../config/colors";
 
 export default function HomeScreen({ route, props, navigation }) {
+  const [user, setUser] = useState(undefined);
+  const [plant, setPlant] = useState(require("../assets/stage_1.png"));
   const [displayName, setDisplayName] = useState(
     firebase.auth().currentUser !== null
       ? firebase.auth().currentUser.displayName
       : ""
   );
+
+  useEffect(() => {
+    getLevel();
+  }, []);
+
+  function getLevel() {
+    firebase
+      .firestore()
+      .collection("users")
+      .doc(firebase.auth().currentUser.uid)
+      .get()
+      .then((doc) => {
+        setUser(doc.data());
+        const level = doc.data().level;
+        updatePath(level);
+      })
+      .catch((error) => {
+        console.log("Error getting document:", error);
+      });
+  }
+
+  function updatePath(lvl) {
+    switch (lvl) {
+      case 1:
+        setPlant(require("../assets/stage_1.png"));
+        break;
+      case 2:
+        setPlant(require("../assets/stage_2.png"));
+        break;
+      case 3:
+        setPlant(require("../assets/stage_3.png"));
+        break;
+      case 4:
+        setPlant(require("../assets/stage_4.png"));
+        break;
+      case 5:
+        setPlant(require("../assets/stage_5.png"));
+        break;
+      case 6:
+        setPlant(require("../assets/stage_6.png"));
+        break;
+      case 7:
+        setPlant(require("../assets/stage_7.png"));
+        break;
+      case 8:
+        setPlant(require("../assets/stage_8.png"));
+        break;
+      case 9:
+        setPlant(require("../assets/stage_9.png"));
+        break;
+      default:
+        setPlant(require("../assets/stage_9.png"));
+    }
+  }
+
+  function refresh() {
+    getLevel();
+  }
 
   return (
     <View style={styles.container}>
@@ -33,7 +93,7 @@ export default function HomeScreen({ route, props, navigation }) {
               <Image
                 style={{ width: "100%", height: "100%" }}
                 resizeMode="contain"
-                source={require("../assets/stage_9.png")}
+                source={plant}
               />
             </View>
           </View>
@@ -42,14 +102,23 @@ export default function HomeScreen({ route, props, navigation }) {
 
           <TouchableOpacity
             style={[styles.sessionArea, styles.centering, styles.shadowEffect]}
-            onPress={() => navigation.navigate("TherapyScreen")}
+            onPress={() =>
+              navigation.navigate("TherapyScreen", {
+                onGoBack: () => refresh(),
+              })
+            }
           >
             <Text style={styles.textStyle}>Go to your session</Text>
           </TouchableOpacity>
 
           <TouchableOpacity
             style={[styles.sessionArea, styles.centering, styles.shadowEffect]}
-            onPress={() => navigation.navigate("PlantScreen")}
+            onPress={() =>
+              navigation.navigate("PlantScreen", {
+                currentUser: user,
+                onGoBack: () => refresh(),
+              })
+            }
           >
             <Text style={styles.textStyle}>Interact with your plant</Text>
           </TouchableOpacity>

@@ -9,7 +9,7 @@ import {
 } from "react-native";
 import Emoji from "react-native-emoji";
 
-// Constant measurements depending on device screen size
+/* Constant measurements depending on device screen size */
 const winWidth = Dimensions.get("window").width;
 const winHeight = Dimensions.get("window").height;
 

@@ -1,5 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+
 exports[`PauseScreen renders correctly 1`] = `
 <RCTSafeAreaView
   emulateUnlessSupported={true}
@@ -57,9 +58,8 @@ exports[`PauseScreen renders correctly 1`] = `
           ]
         }
       >
-        Pause. Breathe. Keep going.
-You can do it!
-         
+        Well done! Return to the session when you are ready.
+        
         <Text
           style={
             Object {
