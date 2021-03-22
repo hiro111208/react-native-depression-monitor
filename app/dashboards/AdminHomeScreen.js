@@ -1,31 +1,26 @@
-import React, { useState } from 'react';
-import { StyleSheet, View, Text, Button } from 'react-native';
+import React, { useState } from "react";
+import { StyleSheet, View, Text, Button } from "react-native";
 import firebase from "../database/firebase";
 
-import colors from '../config/colors';
+import colors from "../config/colors";
 
 export default function AdminHomeScreen({ props, navigation }) {
-  const [errorMessage, setErrorMessage] = useState('');
+  const [errorMessage, setErrorMessage] = useState("");
 
   const signOut = () => {
-    firebase.auth().signOut().then(() => {
-      console.log('Logout successful')
-      navigation.popToTop()
-    })
-      .catch(error => setErrorMessage(error.message))
+    firebase
+      .auth()
+      .signOut()
+      .then(() => {
+        console.log("Logout successful");
+        navigation.popToTop();
+      })
+      .catch((error) => setErrorMessage(error.message));
   };
 
   return (
     <View style={styles.container}>
-      <Text style={styles.textStyle}>
-        Hello, Admin
-      </Text>
-
-      <Button
-        color={colors.darkBorder}
-        title="Go to user dashboard"
-        onPress={() => navigation.navigate('PatientDashboard')}
-      />
+      <Text style={styles.textStyle}>Hello, Admin</Text>
       <Button
         color={colors.darkBorder}
         title="Logout"
@@ -39,13 +34,13 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     display: "flex",
-    justifyContent: 'center',
-    alignItems: 'center',
+    justifyContent: "center",
+    alignItems: "center",
     padding: 35,
-    backgroundColor: '#fff'
+    backgroundColor: "#fff",
   },
   textStyle: {
     fontSize: 15,
-    marginBottom: 20
-  }
+    marginBottom: 20,
+  },
 });
