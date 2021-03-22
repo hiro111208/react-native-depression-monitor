@@ -73,6 +73,10 @@ export default function HomeScreen({ route, props, navigation }) {
     }
   }
 
+  function refresh() {
+    console.log("Page refreshed");
+  }
+
   return (
     <View style={styles.container}>
       <View style={styles.center}>
@@ -105,7 +109,10 @@ export default function HomeScreen({ route, props, navigation }) {
           <TouchableOpacity
             style={[styles.sessionArea, styles.centering, styles.shadowEffect]}
             onPress={() =>
-              navigation.navigate("PlantScreen", { currentUser: user })
+              navigation.navigate("PlantScreen", {
+                currentUser: user,
+                onGoBack: () => refresh(),
+              })
             }
           >
             <Text style={styles.textStyle}>Interact with your plant</Text>

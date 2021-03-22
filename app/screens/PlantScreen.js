@@ -84,6 +84,7 @@ const PlantScreen = ({ navigation, route }) => {
       })
       .then(() => {
         console.log("Progress saved");
+        route.params.onGoBack();
         navigation.goBack();
       })
       .catch((error) => {
