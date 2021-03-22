@@ -147,3 +147,28 @@ const pickerSelectStyles = StyleSheet.create({
     backgroundColor:'#eee'
   },
 });
+
+<NavigationContainer>
+      <Stack.Navigator
+      screenOptions={{
+          headerStyle: {
+            backgroundColor: '#621FF7',
+          },
+          headerTintColor: '#fff',
+          headerTitleStyle: {
+            fontWeight: 'bold',
+          },
+        }}
+      >
+      <Stack.Screen 
+        name="TherapyQuestionScreen" 
+        component={TherapyQuestionScreen} 
+        options={{ title: 'TherapyQuestions List' }}
+      />
+      <Stack.Screen 
+       name="TherapyQuestionDetailScreen" 
+       component={TherapyQuestionDetailScreen} 
+       options={{ title: 'TherapyQuestion Detail' }}
+      />
+    </Stack.Navigator>
+    </NavigationContainer>
