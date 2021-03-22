@@ -8,6 +8,7 @@ import {
   Image,
 } from "react-native";
 import Constants from "expo-constants";
+import firebase from "../database/firebase";
 
 const PlantScreen = ({ navigation, route }) => {
   var user = route.params.currentUser;
@@ -68,6 +69,28 @@ const PlantScreen = ({ navigation, route }) => {
     }
   }
 
+  function saveProgress() {
+    firebase
+      .firestore()
+      .collection("users")
+      .doc(firebase.auth().currentUser.uid)
+      .set({
+        userID: user.userID,
+        question: user.question,
+        block: user.block,
+        categoryDropped: user.categoryDropped,
+        level: user.level,
+        coins: user.coins,
+      })
+      .then(() => {
+        console.log("Progress saved");
+        navigation.goBack();
+      })
+      .catch((error) => {
+        console.error("Error saving progress: ", error);
+      });
+  }
+
   return (
     <View style={styles.container}>
       <View style={[styles.middle, styles.shadowEffect]}>
@@ -115,7 +138,7 @@ const PlantScreen = ({ navigation, route }) => {
         <View style={[{ height: "9%", width: "100%" }, styles.centering]}>
           <TouchableOpacity
             style={[styles.homeButton, styles.centering]}
-            onPress={() => navigation.goBack()}
+            onPress={() => saveProgress()}
           >
             <Text style={styles.textStyle}>Return Home</Text>
           </TouchableOpacity>
