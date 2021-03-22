@@ -74,7 +74,7 @@ export default function HomeScreen({ route, props, navigation }) {
   }
 
   function refresh() {
-    console.log("Page refreshed");
+    getLevel();
   }
 
   return (
