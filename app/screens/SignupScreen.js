@@ -4,7 +4,6 @@ import {
   Text,
   View,
   TextInput,
-  Button,
   Alert,
   ActivityIndicator,
   TouchableOpacity,
@@ -53,8 +52,6 @@ function addUserToDatabase(uid) {
             block: 1,
             categoryDropped: "NONE",
             userID: id,
-            level: 1,
-            coins: 0,
           })
           .then(() => {
             console.log("User added");
@@ -99,6 +96,7 @@ function SignUpScreen(props) {
             displayName: displayName,
           });
 
+          // adds the user to the user collection of firebase
           addUserToDatabase(res.user.uid);
           console.log(
             "User registered successfully with UID of " + res.user.uid
@@ -106,6 +104,7 @@ function SignUpScreen(props) {
 
           sendVerificationEmail();
 
+          // clear data inside text fields
           setIsLoading(false);
           setDisplayName("");
           setEmail("");
@@ -115,10 +114,11 @@ function SignUpScreen(props) {
           console.log(error.code);
           setIsLoading(false);
 
+          // displays an error message above the log in button according to the error
           switch (error.code) {
             case "auth/email-already-in-use":
               setErrorMessage(
-                `An account for '${email}' already exists. Please verify your email or log in.`
+                `An account for "${email}" already exists. Please verify your email or log in.`
               );
               break;
             case "auth/invalid-email":
@@ -130,7 +130,8 @@ function SignUpScreen(props) {
               );
               break;
             default:
-              setErrorMessage(error.message);
+              setErrorMessage("Sorry, an error has occurred.");
+              console.log(error.message);
               break;
           }
         });
@@ -145,9 +146,8 @@ function SignUpScreen(props) {
       .then(function () {
         console.log("email verification sent");
         setErrorMessage(
-          `Please verify your email through the link we've sent to: ` + email
+          `Please verify your email through the link we've sent to: ${email}`
         );
-        setErrorMessage("");
         // Email sent.
       })
       .catch(function (error) {
@@ -177,6 +177,7 @@ function SignUpScreen(props) {
       </View>
     );
   }
+
   //Render the form where the user can input their details
   return (
     <View style={styles.container}>
@@ -318,6 +319,7 @@ const styles = StyleSheet.create({
   },
   image: {
     height: 22,
+    width: 44,
   },
   helpArea: {
     flexDirection: "row",

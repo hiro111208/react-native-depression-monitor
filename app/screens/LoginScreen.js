@@ -186,7 +186,7 @@ function LoginScreen(props) {
         style={styles.textButton}
         onPress={() => {
           reset(); 
-          props.navigation.navigate("SignUpScreen");
+          props.navigation.navigate("SignupScreen");
         }}
         testID={"TEST_ID_SIGNUP_BUTTON"}
         >
