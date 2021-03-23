@@ -71,8 +71,8 @@ export default class TherapyQuestionScreen extends Component {
     });
   }
 
-  filterCollection(categoryDropped){
-    this.setState({filteredArr: this.state.questionArr.filter(questionArr => questionArr.block === categoryDropped)})
+  filterCollection(categoryDropped) {
+    this.setState({ filteredArr: this.state.questionArr.filter(questionArr => questionArr.block === categoryDropped) })
   }
 
   render() {
@@ -84,7 +84,7 @@ export default class TherapyQuestionScreen extends Component {
       )
     }
     return (
-      <View style={styles.container}>
+      <View style={[styles.container]}>
         <DropDownPicker
           items={[
             { label: 'CONTROL', value: 1 },
@@ -97,13 +97,29 @@ export default class TherapyQuestionScreen extends Component {
             { label: 'WORK', value: 'WORK' },
             { label: 'RELATIONSHIP', value: 'RELATIONSHIP' },
           ]}
-          placeholder="Select a category"
+          placeholder="Select a category!"
           defaultIndex={0}
-          containerStyle={{ height: 40 }}
-          //onChangeItem={item => console.log(item.label, item.value)}
           onChangeItem={(item) => this.filterCollection(item.value)}
+          containerStyle={{ width: "80%", height: "10%", }}
+          selectedLabelStyle={{
+            color: '#39739d',
+            fontWeight: "bold",
+            fontSize: 20
+          }}
+          placeholderStyle={{
+            fontWeight: 'bold',
+            fontSize: 20
+          }}
+          style={{
+            borderTopLeftRadius: 10, borderTopRightRadius: 10,
+            borderBottomLeftRadius: 10, borderBottomRightRadius: 10,
+
+          }}
+          dropDownStyle={{
+            borderBottomLeftRadius: 20, borderBottomRightRadius: 20,
+          }}
         />
-        <ScrollView style={styles.container}>
+        <ScrollView style={styles.scrollView}>
           {
             this.state.filteredArr.map((item, i) => {
               return (
@@ -116,7 +132,7 @@ export default class TherapyQuestionScreen extends Component {
                       questionkey: item.key
                     });
                   }}>
-                  <ListItem.Content style={styles.scrollView}>
+                  <ListItem.Content style={{ alignItems: 'center', }}>
                     <ListItem.Title>{item.categoryDropped} {item.block}-{item.question}</ListItem.Title>
                   </ListItem.Content>
                 </ListItem>
@@ -134,6 +150,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     paddingBottom: 22,
+    justifyContent: 'center'
   },
   preloader: {
     left: 0,
@@ -146,6 +163,11 @@ const styles = StyleSheet.create({
   },
   scrollView: {
     flex: 1,
-    alignItems: 'center',
+    paddingBottom: 22,
+  },
+  dropdown: {
+    flex: 1,
+    paddingBottom: 10,
+    fontWeight: "bold",
   }
 })
