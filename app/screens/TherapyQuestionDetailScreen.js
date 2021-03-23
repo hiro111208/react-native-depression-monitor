@@ -65,6 +65,7 @@ export default class TherapyQuestionDetailScreen extends Component {
       question2: this.state.question2,
       word: this.state.word,
     }).then((docRef) => {
+      Alert.alert(`${this.state.categoryDropped} ${this.state.block}-${this.state.question} changed!`);
       this.setState({
         key: '',
         answer1: '',
