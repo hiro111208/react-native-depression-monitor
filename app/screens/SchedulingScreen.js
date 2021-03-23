@@ -193,7 +193,15 @@ class SchedulingScreen extends Component {
       );
     }
     return (
-      <ScrollView style={styles.container}>
+      <View style={styles.container}>
+        <View style={[styles.center, styles.shadowEffect]}></View>
+      </View>
+    );
+  }
+}
+
+{
+  /* <ScrollView style={styles.container}>
         <View style={styles.inputGroup}>
           <Image
             style={{
@@ -286,16 +294,34 @@ class SchedulingScreen extends Component {
             color="#19AC52"
           />
         </View>
-      </ScrollView>
-    );
-  }
+      </ScrollView> */
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    padding: 35,
-    backgroundColor: "#ffd390",
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    padding: 25,
+    backgroundColor: "#fff",
+  },
+  center: {
+    height: "100%",
+    width: "100%",
+    backgroundColor: "#fed8b1",
+    borderRadius: 50,
+  },
+  shadowEffect: {
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
+    elevation: 5,
+    marginVertical: 5,
   },
   inputGroup: {
     flex: 1,
