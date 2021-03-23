@@ -72,8 +72,7 @@ export default class TherapyQuestionScreen extends Component {
   }
 
   filterCollection(categoryDropped){
-    //this.componentDidMount()
-    this.setState({filteredArr: this.state.questionArr.filter(questionArr => questionArr.categoryDropped === categoryDropped)})
+    this.setState({filteredArr: this.state.questionArr.filter(questionArr => questionArr.block === categoryDropped)})
   }
 
   render() {
@@ -88,10 +87,10 @@ export default class TherapyQuestionScreen extends Component {
       <View style={styles.container}>
         <DropDownPicker
           items={[
-            { label: 'CONTROL', value: 'CONTROL' },
-            { label: 'SOCIAL', value: 'SOCIAL' },
-            { label: 'ACADEMIC', value: 'ACADEMIC' },
-            { label: 'MOOD', value: 'HEALTH' },
+            { label: 'CONTROL', value: 1 },
+            { label: 'SOCIAL', value: 2 },
+            { label: 'ACADEMIC', value: 3 },
+            { label: 'MOOD', value: 4 },
             { label: 'HEALTH', value: 'HEALTH' },
             { label: 'HOBBIES', value: 'HOBBIES' },
             { label: 'FAMILY', value: 'FAMILY' },
@@ -117,7 +116,7 @@ export default class TherapyQuestionScreen extends Component {
                       questionkey: item.key
                     });
                   }}>
-                  <ListItem.Content>
+                  <ListItem.Content style={styles.scrollView}>
                     <ListItem.Title>{item.categoryDropped} {item.block}-{item.question}</ListItem.Title>
                   </ListItem.Content>
                 </ListItem>
@@ -145,4 +144,8 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center'
   },
+  scrollView: {
+    flex: 1,
+    alignItems: 'center',
+  }
 })
