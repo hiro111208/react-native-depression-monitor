@@ -1,7 +1,13 @@
 // screens/TherapyQuestionScreen.js
 
 import React, { Component } from 'react';
-import { StyleSheet, ScrollView, ActivityIndicator, View, Button } from 'react-native';
+import {
+  StyleSheet,
+  ScrollView,
+  ActivityIndicator,
+  View,
+  Button
+} from 'react-native';
 import { ListItem } from 'react-native-elements'
 import firebase from '../database/firebase';
 
@@ -11,7 +17,12 @@ export default class TherapyQuestionScreen extends Component {
 
   constructor() {
     super();
-    this.firestoreRef = firebase.firestore().collection('questions').orderBy('block', 'asc').orderBy('categoryDropped', 'asc').orderBy('question', 'asc');
+    this.firestoreRef = firebase
+      .firestore()
+      .collection('questions')
+      .orderBy('block', 'asc')
+      .orderBy('categoryDropped', 'asc')
+      .orderBy('question', 'asc');
     this.state = {
       isLoading: true,
       questionArr: [],
@@ -133,7 +144,9 @@ export default class TherapyQuestionScreen extends Component {
                     });
                   }}>
                   <ListItem.Content style={{ alignItems: 'center', }}>
-                    <ListItem.Title>{item.categoryDropped} {item.block}-{item.question}</ListItem.Title>
+                    <ListItem.Title>
+                      {item.categoryDropped} {item.block}-{item.question}
+                    </ListItem.Title>
                   </ListItem.Content>
                 </ListItem>
               );

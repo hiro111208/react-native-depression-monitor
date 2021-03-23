@@ -1,7 +1,16 @@
 // screens/TherapyQuestionDetailScreen.js
 
 import React, { Component } from 'react';
-import { Alert, Button, StyleSheet, TextInput, ScrollView, ActivityIndicator, View, Text } from 'react-native';
+import {
+  Alert,
+  Button,
+  StyleSheet,
+  TextInput,
+  ScrollView,
+  ActivityIndicator,
+  View,
+  Text
+} from 'react-native';
 import firebase from '../database/firebase';
 
 export default class TherapyQuestionDetailScreen extends Component {
@@ -22,7 +31,11 @@ export default class TherapyQuestionDetailScreen extends Component {
   }
 
   componentDidMount() {
-    const dbRef = firebase.firestore().collection('questions').doc(this.props.route.params.questionkey)
+    const dbRef = firebase
+      .firestore()
+      .collection('questions')
+      .doc(this.props.route.params.questionkey)
+
     dbRef.get().then((res) => {
       if (res.exists) {
         const question = res.data();
@@ -99,11 +112,15 @@ export default class TherapyQuestionDetailScreen extends Component {
     return (
       <View style={styles.container}>
         <View style={styles.title}>
-          <Text style={styles.title}>{this.state.categoryDropped} {this.state.block}-{this.state.question}</Text>
+          <Text style={styles.title}>
+            {this.state.categoryDropped} {this.state.block}-{this.state.question}
+          </Text>
         </View>
         <ScrollView style={styles.container}>
           <View>
-            <Text style={{fontWeight: "bold"}}>Question 1:</Text>
+            <Text style={{ fontWeight: "bold" }}>
+              Question 1:
+            </Text>
           </View>
           <View style={styles.inputGroup}>
             <TextInput
@@ -118,7 +135,9 @@ export default class TherapyQuestionDetailScreen extends Component {
             <Text />
           </View>
           <View>
-            <Text style={{fontWeight: "bold"}}>Word:</Text>
+            <Text style={{ fontWeight: "bold" }}>
+              Word:
+            </Text>
           </View>
           <View style={styles.inputGroup}>
             <TextInput
@@ -131,7 +150,9 @@ export default class TherapyQuestionDetailScreen extends Component {
             <Text />
           </View>
           <View>
-            <Text style={{fontWeight: "bold"}}>Answer 1:</Text>
+            <Text style={{ fontWeight: "bold" }}>
+              Answer 1:
+            </Text>
           </View>
           <View style={styles.inputGroup}>
             <TextInput
@@ -144,7 +165,9 @@ export default class TherapyQuestionDetailScreen extends Component {
             <Text />
           </View>
           <View>
-            <Text style={{fontWeight: "bold"}}>Question 2:</Text>
+            <Text style={{ fontWeight: "bold" }}>
+              Question 2:
+            </Text>
           </View>
           <View style={styles.inputGroup}>
             <TextInput
@@ -159,7 +182,9 @@ export default class TherapyQuestionDetailScreen extends Component {
             <Text />
           </View>
           <View>
-            <Text style={{fontWeight: "bold"}}>Answer 2:</Text>
+            <Text style={{ fontWeight: "bold" }}>
+              Answer 2:
+            </Text>
           </View>
           <View style={styles.inputGroup}>
             <TextInput
