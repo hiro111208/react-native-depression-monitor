@@ -20,6 +20,7 @@ import AdminDashboard from "./app/dashboards/AdminDashboard";
 import TherapyQuestionScreen from './app/screens/TherapyQuestionScreen';
 import TherapyQuestionDetailScreen from './app/screens/TherapyQuestionDetailScreen';
 
+import PauseScreen from "./app/screens/PauseScreen";
 import colors from "./app/config/colors";
 
 import { withNavigation } from "react-navigation";
@@ -56,7 +57,7 @@ function MyStack() {
       <Stack.Screen
         name="SignupScreen"
         component={SignupScreen}
-        options={{ title: "Signup" }}
+        options={{ title: "SignUp" }}
       />
       <Stack.Screen
         name="LoginScreen"
@@ -85,9 +86,7 @@ function MyStack() {
       <Stack.Screen
         name="ScheduleListScreen"
         component={ScheduleListScreen}
-        options={{
-          title: "Schedule List",
-        }}
+        options={{ title: "Schedule List" }}
       />
 
       <Stack.Screen
@@ -95,6 +94,12 @@ function MyStack() {
         name="TherapyScreen"
         component={TherapyScreen}
       />
+      <Stack.Screen
+        name="PauseScreen"
+        component={PauseScreen}
+        options={{ headerShown: false }}
+      />
+
       <Stack.Screen
         options={{ headerShown: false }}
         name="PlantScreen"
@@ -107,9 +112,9 @@ function MyStack() {
 
 export default function App() {
   return (
-    //<NavigationContainer>
-    //  <MyStack />
-    //</NavigationContainer>
+    <NavigationContainer>
+      <MyStack />
+    </NavigationContainer>
 
     //Uncomment to see different screens one at a time
     //<TherapyScreen />
@@ -120,30 +125,8 @@ export default function App() {
     // <SchedulingScreen/>
     //<SignupScreen />
     //<ForgotPasswordScreen/>
+    //<PauseScreen/>
     //<Index></Index> //where progressBar buttons/actions and component are
-    <NavigationContainer>
-      <Stack.Navigator
-      screenOptions={{
-          headerStyle: {
-            backgroundColor: '#621FF7',
-          },
-          headerTintColor: '#fff',
-          headerTitleStyle: {
-            fontWeight: 'bold',
-          },
-        }}
-      >
-      <Stack.Screen 
-        name="TherapyQuestionScreen" 
-        component={TherapyQuestionScreen} 
-        options={{ title: 'TherapyQuestions List' }}
-      />
-      <Stack.Screen 
-       name="TherapyQuestionDetailScreen" 
-       component={TherapyQuestionDetailScreen} 
-       options={{ title: 'TherapyQuestion Detail' }}
-      />
-    </Stack.Navigator>
-    </NavigationContainer>
+    
   );
 }

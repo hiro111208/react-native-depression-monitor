@@ -8,28 +8,43 @@ import {
   TouchableOpacity,
   Alert,
   TextInput,
+  Image,
 } from "react-native";
 import Constants from "expo-constants";
+import * as Speech from "expo-speech";
 import firebase from "../database/firebase";
 import ProgressBar from "../src/components/ProgressBar";
+
+// must be outside the therapy screen to not reset
+var time1 = 0; //word answer time
+var time2 = 0; //yes or no answer time
+var correct1 = false;
+var correct2 = false;
+var store1 = 0;
+var store2 = 0;
 
 /**
  * Screen where the therapy session takes place. Users will
  * answer question stored in Firebase or pause the session.
  */
-const TherapyScreen = ({ navigation }) => {
+const TherapyScreen = ({ navigation, route }) => {
   const [isWordAnswer, toggleWordAnswer] = useState(true);
   const [loaded, setLoaded] = useState(false);
   const [items, setItems] = useState([]);
   const [question, setQuestion] = useState(0);
   const [isCorrect, toggleCorrect] = useState(false);
   const [isIncorrect, toggleIncorrect] = useState(false);
+  const [isReading, setReading] = useState(false);
   const [user, setUser] = useState(undefined);
+  const [finished, setFinished] = useState(false);
+  const [timerStarted, setTimerStarted] = useState(false);
 
   const userRef = firebase
     .firestore()
     .collection("users")
     .doc(firebase.auth().currentUser.uid);
+
+  const answerRef = firebase.firestore().collection("answers");
 
   // currentWidth + 1 / segments = progress bar filled
   state = {
@@ -48,6 +63,7 @@ const TherapyScreen = ({ navigation }) => {
           .where("categoryDropped", "==", doc.data().categoryDropped)
           .where("block", "==", doc.data().block)
           .orderBy("question");
+        if (doc.data().block == 5) setFinished(true); // Only 4 therapy sessions to complete
         query.onSnapshot((querySnapshot) => {
           const items = [];
           querySnapshot.forEach((doc) => {
@@ -56,7 +72,6 @@ const TherapyScreen = ({ navigation }) => {
           setItems(items);
           setLoaded(true);
           setQuestion(doc.data().question - 1);
-          setUser(doc.data());
         });
       })
       .catch((error) => {
@@ -177,6 +192,10 @@ const TherapyScreen = ({ navigation }) => {
   function checkWordAnswer(value) {
     if (value.toLowerCase() == items[question].answer1) {
       toggleCorrect(true);
+      correct1 = true;
+    } else {
+      toggleIncorrect(true);
+      correct1 = false;
     }
   }
 
@@ -184,8 +203,10 @@ const TherapyScreen = ({ navigation }) => {
   function checkChoiceAnswer(value) {
     if (value.toLowerCase() == items[question].answer2) {
       toggleCorrect(true);
+      correct2 = true;
     } else {
       toggleIncorrect(true);
+      correct2 = false;
     }
   }
 
@@ -196,18 +217,29 @@ const TherapyScreen = ({ navigation }) => {
     } else {
       checkChoiceAnswer(value);
     }
+    endTimer();
   }
 
   // displays the question of the therapy session
   function renderQuestion() {
-    if (loaded) {
+    if (finished) {
+      return (
+        <Text style={styles.textNote}>
+          Congratulations! You have completed all therapy sessions!
+        </Text>
+      );
+    } else if (loaded) {
       return renderQuestionText();
     } else {
       return <Text style={styles.textNote}>Welcome to the session!</Text>;
     }
   }
 
+  // renders the question item and the correct word once the word answer is given
   function renderQuestionText() {
+    if (!timerStarted) {
+      startTimer();
+    }
     if (isWordAnswer) {
       return <Text style={styles.text}>{items[question].question1}</Text>;
     } else {
@@ -219,8 +251,38 @@ const TherapyScreen = ({ navigation }) => {
     }
   }
 
-  // Advances to the next screen of the therapy session
+  // calculates the response time and stores it in milliseconds
+  function endTimer() {
+    if (isWordAnswer) {
+      store1 = Date.now() - time1;
+    } else {
+      store2 = Date.now() - time2;
+    }
+  }
+
+  // records timestamp in milliseconds (will not reset if already set)
+  function startTimer() {
+    setTimerStarted(true);
+    if (isWordAnswer) {
+      time1 = Date.now();
+      console.log("time 1");
+    } else {
+      time2 = Date.now();
+      console.log("time 2");
+    }
+  }
+
+  // Advances to the next screen of the therapy session or back to patient dashboard
   function nextQuestion() {
+    if (finished) {
+      navigation.goBack();
+    } else {
+      updateQuestion();
+    }
+  }
+
+  // moves to the next question of the therapy session
+  function updateQuestion() {
     if (!isCorrect) {
       toggleIncorrect(true);
     }
@@ -228,19 +290,75 @@ const TherapyScreen = ({ navigation }) => {
       resetStatus();
       toggleWordAnswer(false);
     } else if (!isWordAnswer && (isCorrect || isIncorrect)) {
+      addAnswer(store1, correct1, store2, correct2);
+      saveProgress(user.block, question + 2, 0);
       resetStatus();
-      saveProgress(user.block, question + 2);
       incrementQuestion();
       toggleWordAnswer(true);
     }
   }
 
+  //Navigate to the pause screen and stop the text to speech
+  function handlePauseButton() {
+    setReading(false);
+    Speech.stop();
+    navigation.navigate("PauseScreen");
+  }
+
+  //Either start or stop reading on read text button click
+  function handleReadButtonOnPress() {
+    setReading(!isReading);
+    {
+      if (loaded) {
+        if (!isReading) {
+          try {
+            Speech.speak(items[question].question1, {
+              language: "en-US",
+              onDone: () => setReading(false),
+            });
+          } catch (error) {
+            console.log(error);
+          }
+        } else {
+          Speech.stop();
+        }
+      }
+    }
+  }
+
+  // Renders button that reads text aloud
+  function renderReadTextButton() {
+    if (loaded) {
+      if (isReading) {
+        return (
+          <Image
+            resizeMode="contain"
+            style={styles.textToSpeech}
+            source={require("../assets/text_to_speech_off.png")}
+          />
+        );
+      } else {
+        return (
+          <Image
+            resizeMode="contain"
+            style={styles.textToSpeech}
+            source={require("../assets/text_to_speech_on.png")}
+          />
+        );
+      }
+    }
+  }
+
+  // Updates the question index, until the session ends.
   function incrementQuestion() {
     if (question == 17) {
-      saveProgress(user.block + 1, 1);
+      saveProgress(user.block + 1, 1, 5);
+      route.params.onGoBack();
       Alert.alert(
         "Congratulations",
-        "You have completed therapy set " + user.block,
+        "You have completed therapy set " +
+          user.block +
+          "! You have earned 5 coins to grow your plant.",
         [{ text: "OK", onPress: () => navigation.goBack() }]
       );
     } else {
@@ -248,13 +366,16 @@ const TherapyScreen = ({ navigation }) => {
     }
   }
 
-  function saveProgress(blockI, questionI) {
+  // writes the progress of the user so the question isn't repeated
+  function saveProgress(blockI, questionI, coinsI) {
     userRef
       .set({
         userID: user.userID,
         question: questionI,
         block: blockI,
         categoryDropped: user.categoryDropped,
+        level: user.level,
+        coins: user.coins + coinsI,
       })
       .then(() => {
         console.log("Progress saved");
@@ -264,16 +385,79 @@ const TherapyScreen = ({ navigation }) => {
       });
   }
 
+  // add the data related to the user's response
+  function addAnswer(q1, a1, q2, a2) {
+    console.log(q1);
+    console.log(q2);
+    answerRef
+      .add({
+        userID: user.userID,
+        question: question + 1,
+        categoryDropped: user.categoryDropped,
+        sessionNumber: user.block,
+        question1Time: q1,
+        question1IsCorrect: a1,
+        question2Time: q2,
+        question2IsCorrect: a2,
+      })
+      .then(() => {
+        console.log("Answer added");
+      })
+      .catch((error) => {
+        console.error("Error adding answer: ", error);
+      });
+  }
+
   // Resets whether the user is right or wrong for a new question
+  // Reset text to speech to stop reading when moving on to next question
   function resetStatus() {
     toggleCorrect(false);
     toggleIncorrect(false);
+    Speech.stop();
+    setReading(false);
+    setTimerStarted(false);
+  }
+
+  // Can only press button when all the questions have been answered
+  function checkDisabledForPause() {
+    if (!isWordAnswer && (isCorrect || isIncorrect)) {
+      return false;
+    } else {
+      return true;
+    }
+  }
+
+  // Can only press button when all the questions have been answered
+  function checkDisabledForNext() {
+    if (isCorrect || isIncorrect) {
+      return false;
+    } else {
+      return true;
+    }
+  }
+
+  // Sets text for the button if it is disabled
+  function setDisabledText() {
+    if (!isWordAnswer && (isCorrect || isIncorrect)) {
+      return "Take a break";
+    } else {
+      return "Good Luck!";
+    }
+  }
+
+  // Sets text for the next question button when disabled
+  function setNextText() {
+    if (!loaded || finished || isCorrect || isIncorrect) {
+      return "Next";
+    } else {
+      return "Question " + (question + 1);
+    }
   }
 
   // Returns the whole therapy screen interface
   return (
     <KeyboardAvoidingView style={styles.container} behavior="position">
-      {/* Button to take a break */}
+      {/* Progress bar of the therapy session */}
       <View style={[styles.top, styles.centering]}>
         <View style={styles.bar}>
           <ProgressBar
@@ -281,15 +465,29 @@ const TherapyScreen = ({ navigation }) => {
             nextWidth={state.currentWidth + 1}
           ></ProgressBar>
         </View>
-        <TouchableOpacity
-          style={[
-            styles.takeBreakButton,
-            styles.centering,
-            styles.shadowEffect,
-          ]}
-        >
-          <Text style={styles.text}>Take a break</Text>
-        </TouchableOpacity>
+
+        {/* Pause button to take a break */}
+        <View style={[styles.horizontal, styles.centering]}>
+          <TouchableOpacity
+            style={[
+              styles.takeBreakButton,
+              styles.centering,
+              styles.shadowEffect,
+            ]}
+            onPress={() => handlePauseButton()}
+            disabled={checkDisabledForPause()}
+          >
+            <Text style={styles.text}>{setDisabledText()}</Text>
+          </TouchableOpacity>
+
+          {/* Button to read text aloud */}
+          <TouchableOpacity
+            style={[styles.readButton, styles.centering]}
+            onPress={() => handleReadButtonOnPress()}
+          >
+            {renderReadTextButton()}
+          </TouchableOpacity>
+        </View>
       </View>
 
       {/* Displays therapy item story and question */}
@@ -301,17 +499,17 @@ const TherapyScreen = ({ navigation }) => {
         </View>
       </View>
 
-      {/* Presents different answer formats */}
+      {/* Presents different answer formats for the subquestions*/}
       {renderAnswerArea()}
-
 
       {/* Button to navigate through the therapy session */}
       <View style={[styles.bottom, styles.centering]}>
         <TouchableOpacity
           style={[styles.optButton, styles.centering, styles.shadowEffect]}
           onPress={() => nextQuestion()}
+          disabled={checkDisabledForNext()}
         >
-          <Text style={styles.text}>Next</Text>
+          <Text style={styles.text}>{setNextText()}</Text>
         </TouchableOpacity>
       </View>
     </KeyboardAvoidingView>
@@ -330,6 +528,13 @@ const styles = StyleSheet.create({
     padding: 50,
     flex: 1,
   },
+  bar: {
+    width: "85%",
+    padding: 10,
+  },
+  bottom: {
+    height: "10%",
+  },
   center: {
     height: "50%",
   },
@@ -344,6 +549,9 @@ const styles = StyleSheet.create({
   },
   correctHighlight: {
     borderColor: "#c7ffd8",
+  },
+  horizontal: {
+    flexDirection: "row",
   },
   input: {
     height: "100%",
@@ -361,7 +569,7 @@ const styles = StyleSheet.create({
     width: "70%",
     backgroundColor: "#a9eed1",
     borderRadius: 20,
-    position: 'absolute',
+    position: "absolute",
     bottom: 0,
   },
   questionArea: {
@@ -372,6 +580,13 @@ const styles = StyleSheet.create({
     borderColor: "#fff",
     backgroundColor: "#eee",
     padding: 30,
+  },
+  readButton: {
+    left: "35%",
+    position: "absolute",
+    backgroundColor: "#ffcccb",
+    width: "10%",
+    height: "100%",
   },
   shadowEffect: {
     shadowColor: "#000",
@@ -385,7 +600,7 @@ const styles = StyleSheet.create({
     marginVertical: 5,
   },
   takeBreakButton: {
-    height: "30%",
+    height: "50%",
     width: 125,
     backgroundColor: "#fff",
     borderRadius: 20,
@@ -400,17 +615,13 @@ const styles = StyleSheet.create({
     fontSize: 15,
     textAlign: "center",
     padding: 10,
-    flexWrap: "wrap"
+    flexWrap: "wrap",
   },
   top: {
     height: "15%",
   },
-  bottom: {
-    height: "10%",
-  },
-  bar: {
-    width: "85%",
-    padding: 10,
+  textToSpeech: {
+    width: 35,
   },
 });
 

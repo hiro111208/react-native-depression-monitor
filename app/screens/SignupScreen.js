@@ -4,18 +4,19 @@ import {
   Text,
   View,
   TextInput,
-  Button,
   Alert,
   ActivityIndicator,
   TouchableOpacity,
+  Image,
 } from "react-native";
 import firebase from "../database/firebase";
+import { Tooltip } from "react-native-elements";
 
 import colors from "../config/colors";
 
 const db = firebase.firestore();
 
-/**
+/*
  * Adds the newly registered user to the database, with a uniquely assigned ID
  */
 function addUserToDatabase(uid) {
@@ -72,7 +73,7 @@ function addUserToDatabase(uid) {
 /*
   Screen where users can signup to the app. First screen user sees when opening app for first time
 */
-function SignupScreen(props) {
+function SignUpScreen(props) {
   const [displayName, setDisplayName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -95,6 +96,7 @@ function SignupScreen(props) {
             displayName: displayName,
           });
 
+          // adds the user to the user collection of firebase
           addUserToDatabase(res.user.uid);
           console.log(
             "User registered successfully with UID of " + res.user.uid
@@ -102,6 +104,7 @@ function SignupScreen(props) {
 
           sendVerificationEmail();
 
+          // clear data inside text fields
           setIsLoading(false);
           setDisplayName("");
           setEmail("");
@@ -110,7 +113,27 @@ function SignupScreen(props) {
         .catch((error) => {
           console.log(error.code);
           setIsLoading(false);
-          setErrorMessage(error.message);
+
+          // displays an error message above the log in button according to the error
+          switch (error.code) {
+            case "auth/email-already-in-use":
+              setErrorMessage(
+                `An account for "${email}" already exists. Please verify your email or log in.`
+              );
+              break;
+            case "auth/invalid-email":
+              setErrorMessage(`Please sign up using a valid email.`);
+              break;
+            case "auth/weak-password":
+              setErrorMessage(
+                `Your password is too short! Tap the question mark for more details.`
+              );
+              break;
+            default:
+              setErrorMessage("Sorry, an error has occurred.");
+              console.log(error.message);
+              break;
+          }
         });
     }
   };
@@ -122,10 +145,9 @@ function SignupScreen(props) {
       .currentUser.sendEmailVerification()
       .then(function () {
         console.log("email verification sent");
-        setMessage(
-          `Please verify your email through the link we've sent to: ` + email
+        setErrorMessage(
+          `Please verify your email through the link we've sent to: ${email}`
         );
-        setErrorMessage("");
         // Email sent.
       })
       .catch(function (error) {
@@ -155,12 +177,13 @@ function SignupScreen(props) {
       </View>
     );
   }
+
   //Render the form where the user can input their details
   return (
     <View style={styles.container}>
       <TextInput
         style={styles.inputStyle}
-        placeholder="Name"
+        placeholder="First Name"
         value={displayName}
         onChangeText={(val) => setDisplayName(val)}
       />
@@ -168,16 +191,43 @@ function SignupScreen(props) {
         style={styles.inputStyle}
         placeholder="Email"
         value={email}
+        keyboardType="email-address"
         onChangeText={(val) => setEmail(val)}
+        testID={"TEST_ID_EMAIL_INPUT"}
       />
-      <TextInput
-        style={styles.inputStyle}
-        placeholder="Password"
-        value={password}
-        onChangeText={(val) => setPassword(val)}
-        maxLength={15}
-        secureTextEntry={true}
-      />
+      <View style={[styles.inputStyle, styles.passwordSection]}>
+        <TextInput
+          placeholder="Password"
+          value={password}
+          onChangeText={(val) => setPassword(val)}
+          maxLength={15}
+          autoCorrect={false}
+          secureTextEntry={true}
+          testID={"TEST_ID_PASSWORD_INPUT"}
+        />
+        {/*Render tooltip with password criteria*/}
+        <Tooltip
+          style={styles.passwordTooltip}
+          withOverlay={false}
+          backgroundColor={colors.darkBorder}
+          width={300}
+          height={80}
+          popover={
+            <Text style={styles.passwordInformation}>
+              Password must be 6 to 15 characters long. Can contain any
+              alphaneumeric or special character.
+            </Text>
+          }
+        >
+          <View style={styles.helpArea}>
+            <Image
+              style={styles.image}
+              resizeMode="contain"
+              source={require("../assets/question_mark.png")}
+            />
+          </View>
+        </Tooltip>
+      </View>
       {/*Render error messages or success messages*/}
       <Text style={{ color: "red" }}>{errorMessage}</Text>
       <Text style={{ color: "red" }}>{message}</Text>
@@ -187,6 +237,7 @@ function SignupScreen(props) {
         activeOpacity={0.5}
         style={styles.signupButton}
         onPress={() => registerUser()}
+        testID={"TEST_ID_SIGNUP_BUTTON"}
       >
         <Text style={styles.signupText}>SIGNUP</Text>
       </TouchableOpacity>
@@ -204,7 +255,7 @@ function SignupScreen(props) {
     </View>
   );
 }
-export default SignupScreen;
+export default SignUpScreen;
 
 const styles = StyleSheet.create({
   container: {
@@ -218,15 +269,29 @@ const styles = StyleSheet.create({
   inputStyle: {
     width: "100%",
     marginBottom: 15,
-    paddingBottom: 15,
+    marginTop: 15,
+    paddingBottom: 20,
     alignSelf: "center",
     borderColor: "#ccc",
-    borderBottomWidth: 1,
+    borderBottomWidth: 1.5,
   },
   loginText: {
     color: colors.darkBorder,
     marginTop: 25,
     textAlign: "center",
+  },
+  passwordSection: {
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-between",
+  },
+  passwordInformation: {
+    color: "white",
+  },
+  passwordTooltip: {
+    backgroundColor: colors.darkBorder,
+    width: 300,
+    height: 60,
   },
   preloader: {
     left: 0,
@@ -251,5 +316,14 @@ const styles = StyleSheet.create({
     color: "white",
     textAlign: "center",
     fontSize: 15,
+  },
+  image: {
+    height: 22,
+    width: 44,
+  },
+  helpArea: {
+    flexDirection: "row",
+    justifyContent: "flex-end",
+    textAlign: "right",
   },
 });
