@@ -1,7 +1,7 @@
 // screens/TherapyQuestionScreen.js
 
 import React, { Component } from 'react';
-import { StyleSheet, ScrollView, ActivityIndicator, View } from 'react-native';
+import { StyleSheet, ScrollView, ActivityIndicator, View, Button } from 'react-native';
 import { ListItem } from 'react-native-elements'
 import firebase from '../database/firebase';
 
@@ -140,6 +140,13 @@ export default class TherapyQuestionScreen extends Component {
             })
           }
         </ScrollView>
+        <View>
+          <Button
+            title="Go back"
+            onPress={() => this.props.navigation.navigate('AdminDashboard')}
+            color="#19AC52"
+          />
+        </View>
       </View>
 
     );

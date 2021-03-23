@@ -106,6 +106,16 @@ function MyStack() {
         component={PlantScreen}
       />
       <Stack.Screen name="CategoryDrop" component={CategoryDrop} />
+      <Stack.Screen 
+        name="TherapyQuestionScreen" 
+        component={TherapyQuestionScreen} 
+        options={{ title: 'Therapy Questions' }}
+      />
+      <Stack.Screen 
+       name="TherapyQuestionDetailScreen" 
+       component={TherapyQuestionDetailScreen} 
+       options={{ title: 'Question Detail' }}
+      />
     </Stack.Navigator>
   );
 }
@@ -127,6 +137,5 @@ export default function App() {
     //<ForgotPasswordScreen/>
     //<PauseScreen/>
     //<Index></Index> //where progressBar buttons/actions and component are
-    
   );
 }
