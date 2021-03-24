@@ -164,6 +164,8 @@ const styles = StyleSheet.create({
     borderRadius: 40,
     backgroundColor: "#fed8b1",
     alignItems: "center",
+    borderWidth: 5,
+    borderColor: "#ffeed2",
   },
   featureButton: {
     height: "100%",

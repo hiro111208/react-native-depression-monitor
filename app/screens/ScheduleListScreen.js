@@ -1,7 +1,8 @@
 // screens/ScheduleListScreen.js
 
 import React, { Component } from "react";
-import { Button } from "react-native";
+import { Button, Text } from "react-native";
+import { TouchableOpacity } from "react-native";
 import {
   StyleSheet,
   ScrollView,
@@ -110,6 +111,39 @@ class ScheduleListScreen extends Component {
     }
     return (
       <View style={styles.container}>
+        <View style={styles.center}>
+          <View>
+            {this.state.scheduleArr.map((item, i) => {
+              return (
+                <ListItem
+                  containerStyle={{ backgroundColor: "#fed8b1" }}
+                  style={{ width: 250 }}
+                  key={i}
+                  bottomDivider
+                >
+                  <ListItem.Content>
+                    <ListItem.Title>
+                      {this.convertDateTime(item.seconds)}
+                    </ListItem.Title>
+                  </ListItem.Content>
+                  <TouchableOpacity
+                    style={[styles.deleteButton, styles.centering]}
+                    onPress={() => this.openTwoButtonAlert(item.key)}
+                  >
+                    <Text>Delete</Text>
+                  </TouchableOpacity>
+                </ListItem>
+              );
+            })}
+          </View>
+        </View>
+      </View>
+    );
+  }
+}
+
+{
+  /* <View style={styles.container}>
         <ScrollView>
           {this.state.scheduleArr.map((item, i) => {
             return (
@@ -135,16 +169,36 @@ class ScheduleListScreen extends Component {
             color="#19AC52"
           />
         </View>
-      </View>
-    );
-  }
+      </View> */
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    paddingBottom: 22,
-    backgroundColor: "#ffd390",
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    padding: 30,
+    backgroundColor: "#fff",
+  },
+  center: {
+    width: "100%",
+    height: "100%",
+    borderRadius: 40,
+    backgroundColor: "#fed8b1",
+    alignItems: "center",
+    borderWidth: 5,
+    borderColor: "#ffeed2",
+  },
+  centering: {
+    alignItems: "center",
+    //justifyContent: "center",
+  },
+  deleteButton: {
+    height: "60%",
+    width: "30%",
+    backgroundColor: "#ffeed2",
+    borderRadius: 10,
   },
   preloader: {
     left: 0,
