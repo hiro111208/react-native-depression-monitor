@@ -275,7 +275,7 @@ class SchedulingScreen extends Component {
             </TouchableOpacity>
           </View>
 
-          <View style={[{ height: "30%" }, styles.centering]}>
+          <View style={[{ height: "20%" }, styles.centering]}>
             <View style={[styles.calendarImage, styles.centering]}>
               <Image
                 style={{ width: 125, height: 125 }}
@@ -285,7 +285,11 @@ class SchedulingScreen extends Component {
             </View>
           </View>
 
-          <View style={styles.bottomBorder}></View>
+          <View style={[{ height: "10%" }, styles.centering]}>
+            <TouchableOpacity style={styles.bottomBorder}>
+              <Text style={styles.scheduleText}>Schedule List</Text>
+            </TouchableOpacity>
+          </View>
         </View>
       </View>
     );
@@ -408,6 +412,11 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     color: "dimgray",
   },
+  scheduleText: {
+    fontSize: 15,
+    fontWeight: "bold",
+    color: "dimgray",
+  },
   inputGroup: {
     flex: 1,
     padding: 0,
@@ -435,7 +444,15 @@ const styles = StyleSheet.create({
     justifyContent: "space-evenly",
     alignItems: "center",
   },
-  bottomBorder: {},
+  bottomBorder: {
+    height: "100%",
+    width: "40%",
+    backgroundColor: "#fff",
+    alignItems: "center",
+    justifyContent: "center",
+    borderRadius: 50,
+    backgroundColor: "#ffeed2",
+  },
 });
 
 export default SchedulingScreen;
