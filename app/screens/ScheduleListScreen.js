@@ -111,13 +111,16 @@ class ScheduleListScreen extends Component {
     }
     return (
       <View style={styles.container}>
-        <View style={styles.center}>
+        <View style={[styles.center, styles.shadowEffect]}>
           <View>
             {this.state.scheduleArr.map((item, i) => {
               return (
                 <ListItem
-                  containerStyle={{ backgroundColor: "#fed8b1" }}
-                  style={{ width: 250 }}
+                  containerStyle={{
+                    backgroundColor: "#fed8b1",
+                    flex: 1,
+                  }}
+                  style={{ width: 250, height: 70 }}
                   key={i}
                   bottomDivider
                 >
@@ -127,7 +130,12 @@ class ScheduleListScreen extends Component {
                     </ListItem.Title>
                   </ListItem.Content>
                   <TouchableOpacity
-                    style={[styles.deleteButton, styles.centering]}
+                    style={[
+                      styles.centering,
+                      styles.deleteButton,
+                      styles.shadowEffect,
+                      { alignItems: "center" },
+                    ]}
                     onPress={() => this.openTwoButtonAlert(item.key)}
                   >
                     <Text>Delete</Text>
@@ -135,6 +143,26 @@ class ScheduleListScreen extends Component {
                 </ListItem>
               );
             })}
+          </View>
+          <View style={{ height: "10%" }}></View>
+          <View
+            style={[
+              {
+                height: "10%",
+                width: "100%",
+                position: "absolute",
+                bottom: 10,
+                left: 0,
+              },
+              styles.centering,
+            ]}
+          >
+            <TouchableOpacity
+              onPress={() => this.props.navigation.goBack()}
+              style={[styles.backButton, styles.centering, styles.shadowEffect]}
+            >
+              <Text style={styles.backText}>Go back</Text>
+            </TouchableOpacity>
           </View>
         </View>
       </View>
@@ -192,13 +220,35 @@ const styles = StyleSheet.create({
   },
   centering: {
     alignItems: "center",
-    //justifyContent: "center",
+    justifyContent: "center",
+  },
+  backButton: {
+    height: "90%",
+    width: "40%",
+    backgroundColor: "#ffeed2",
+    borderRadius: 50,
+  },
+  backText: {
+    fontSize: 15,
+    fontWeight: "bold",
+    color: "dimgray",
   },
   deleteButton: {
     height: "60%",
     width: "30%",
     backgroundColor: "#ffeed2",
     borderRadius: 10,
+  },
+  shadowEffect: {
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
+    elevation: 5,
+    marginVertical: 5,
   },
   preloader: {
     left: 0,
