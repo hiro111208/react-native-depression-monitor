@@ -101,7 +101,6 @@ function MyStack() {
         component={PlantScreen}
       />
       <Stack.Screen name="CategoryDrop" component={CategoryDrop} />
-      <Stack.Screen name="SupportRessources" component={SupportRessources} />
     </Stack.Navigator>
   );
 }
