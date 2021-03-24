@@ -185,6 +185,10 @@ class SchedulingScreen extends Component {
       });
   }
 
+  onPressButton = () => {
+    this.setState({ visibility: true });
+  };
+
   render() {
     if (this.state.isLoading) {
       return (
@@ -196,20 +200,71 @@ class SchedulingScreen extends Component {
     return (
       <View style={[styles.container]}>
         <View style={[styles.center, styles.shadowEffect]}>
-          <View style={{ height: "65%" }}>
-            <View style={{ height: "10%" }}></View>
-            <View style={{ height: "10%" }}>
-              <TouchableOpacity
-                onPress={this.showDatepicker}
-                style={[styles.selectButton, styles.centering]}
-              >
-                <Text style={styles.textStyle}>Select Date</Text>
-              </TouchableOpacity>
-            </View>
+          <View style={{ height: "10%" }}></View>
 
-            <Button onPress={this.showTimepicker} title="Select Time" />
-            {/* Include other functions here */}
+          <View style={[{ height: "8%", flexDirection: "row" }]}>
+            <View style={{ width: "20%" }}></View>
+            <Text style={styles.textStyle}>Select a date:</Text>
           </View>
+
+          <View style={{ height: "10%", flexDirection: "row" }}>
+            <View
+              style={{
+                height: "100%",
+                width: "33%",
+              }}
+            ></View>
+            <View
+              style={[
+                {
+                  width: "33%",
+                },
+              ]}
+            >
+              <DateTimePicker
+                style={{ width: 300 }}
+                testID="datePicker"
+                value={this.state.date}
+                mode="date"
+                minimumDate={this.state.mode === "date" && new Date()} // to prevent user to select past date
+                is24Hour={true}
+                display="default"
+                onChange={this.onChange}
+              />
+            </View>
+          </View>
+
+          <View style={[{ height: "8%", flexDirection: "row" }]}>
+            <View style={{ width: "20%" }}></View>
+            <Text style={styles.textStyle}>Select a time:</Text>
+          </View>
+
+          <View style={{ height: "10%", flexDirection: "row" }}>
+            <View
+              style={{
+                height: "10%",
+                width: "33%",
+              }}
+            ></View>
+            <View
+              style={{
+                height: "10%",
+                width: "33%",
+              }}
+            >
+              <DateTimePicker
+                style={{ width: 300 }}
+                testID="TimePicker"
+                value={this.state.date}
+                mode="time"
+                //minimumDate={this.state.mode === "date" && new Date()} // to prevent user to select past date
+                is24Hour={true}
+                display="default"
+                onChange={this.onChange}
+              />
+            </View>
+          </View>
+
           <View style={[{ height: "40%" }, styles.centering]}>
             <View style={[styles.calendarImage, styles.centering]}>
               <Image
@@ -227,16 +282,6 @@ class SchedulingScreen extends Component {
 
 {
   /* <ScrollView style={styles.container}>
-            <Button
-              onPress={this.showDatepicker}
-              title="Select Date"
-            />
-          </View>
-          <View>
-            <Button
-              onPress={this.showTimepicker}
-              title="Select Time" />
-          </View>
 
           {Platform.OS === 'android' && this.state.show && (
             <DateTimePicker
