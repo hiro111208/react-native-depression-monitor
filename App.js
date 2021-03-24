@@ -84,7 +84,6 @@ function MyStack() {
         component={ScheduleListScreen}
         options={{ title: "Schedule List" }}
       />
-
       <Stack.Screen
         options={{ headerShown: false }}
         name="TherapyScreen"
@@ -102,6 +101,7 @@ function MyStack() {
         component={PlantScreen}
       />
       <Stack.Screen name="CategoryDrop" component={CategoryDrop} />
+      <Stack.Screen name="SupportRessources" component={SupportRessources} />
     </Stack.Navigator>
   );
 }

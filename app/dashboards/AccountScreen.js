@@ -31,6 +31,19 @@ export default function AccountScreen({ props, navigation }) {
                     <Text style={styles.textStyle}>Logout</Text>
                 </TouchableOpacity>
             </View>
+
+            <Text/>
+            <Text/>
+
+            <View style={[styles.welcomeArea, styles.shadowEffect]}>
+                <View style={[styles.userNote]}>
+                    <Text>Support Ressources and research authors</Text>
+                </View>
+
+                <TouchableOpacity style={[styles.logout, styles.centering]} onPress={() => signOut()}>
+                    <Text style={styles.textStyle}>Support Ressources</Text>
+                </TouchableOpacity>
+            </View>
             </View>
         </View>
     );
@@ -52,7 +65,7 @@ const styles = StyleSheet.create({
       },
       welcomeArea: {
         width: "100%",
-        height: "50%",
+        height: "45%",
         borderRadius: 50,
         alignItems: 'center',
       },

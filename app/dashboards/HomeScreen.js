@@ -10,6 +10,54 @@ import {
 import firebase from "../database/firebase";
 
 import colors from "../config/colors";
+import { Alert, Platform } from 'react-native'
+import * as Permissions from 'expo-permissions';
+import { Linking } from 'expo';
+import * as Notifications from "expo-notifications";
+//import firebase from firebase;
+import Constants from "expo-constants";
+
+
+const registerForPushNotificationsAsync = async()=> {
+  let token;// undefined initially
+  if (Constants.isDevice) {
+    const { status: existingStatus } = await Notifications.getPermissionsAsync();
+    let finalStatus = existingStatus;
+    if (existingStatus !== 'granted') {
+      const { status } = await Notifications.requestPermissionsAsync();// if permission to get notification is not granted then we ask the permission
+      finalStatus = status;
+    }
+    if (finalStatus !== 'granted') {
+      alert('Failed to get push token for push notification!');
+      return;
+    }
+    token = (await Notifications.getExpoPushTokenAsync()).data;
+    console.log(token);
+  } else {
+    alert('Must use physical device for Push Notifications');
+  }
+
+  // save the users token in firebase
+ if (token){//makes sure there is a token to add to firebase
+   const res = await firebase
+   .firestore()
+   .collection('users')
+   .doc(firebase.auth().currentUser.uid)
+   .set({token},{merge:true})
+ }
+
+  if (Platform.OS === 'android') {
+    Notifications.setNotificationChannelAsync('default', {
+      name: 'default',
+      importance: Notifications.AndroidImportance.MAX,
+      vibrationPattern: [0, 250, 250, 250],
+      lightColor: '#FF231F7C',
+    });
+  }
+
+  return token;
+}
+
 
 export default function HomeScreen({ route, props, navigation }) {
   const [user, setUser] = useState(undefined);
