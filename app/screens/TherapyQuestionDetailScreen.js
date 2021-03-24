@@ -78,7 +78,7 @@ export default class TherapyQuestionDetailScreen extends Component {
       question2: this.state.question2,
       word: this.state.word,
     }).then((docRef) => {
-      Alert.alert(`${this.state.categoryDropped} ${this.state.block}-${this.state.question} changed!`);
+      Alert.alert(`${this.state.categoryDropped} ${this.state.block}-${this.state.question} updated!`);
       this.setState({
         key: '',
         answer1: '',
@@ -203,6 +203,13 @@ export default class TherapyQuestionDetailScreen extends Component {
               color="#19AC52"
             />
           </View>
+          <View>
+          <Button
+            title="Go back"
+            onPress={() => this.props.navigation.goBack()}
+            color="#19AC52"
+          />
+        </View>
         </ScrollView>
       </View>
     );

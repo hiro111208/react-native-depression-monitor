@@ -83,7 +83,7 @@ export default class TherapyQuestionScreen extends Component {
   }
 
   filterCollection(categoryDropped) {
-    this.setState({ filteredArr: this.state.questionArr.filter(questionArr => questionArr.block === categoryDropped) })
+    this.setState({ filteredArr: this.state.questionArr.filter(questionArr => questionArr.categoryDropped === categoryDropped) })
   }
 
   render() {
@@ -98,10 +98,10 @@ export default class TherapyQuestionScreen extends Component {
       <View style={[styles.container]}>
         <DropDownPicker
           items={[
-            { label: 'CONTROL', value: 1 },
-            { label: 'SOCIAL', value: 2 },
-            { label: 'ACADEMIC', value: 3 },
-            { label: 'MOOD', value: 4 },
+            { label: 'CONTROL', value: 'CONTROL' },
+            { label: 'SOCIAL', value: 'SOCIAL' },
+            { label: 'ACADEMIC', value: 'ACADEMIC' },
+            { label: 'MOOD', value: 'HEALTH' },
             { label: 'HEALTH', value: 'HEALTH' },
             { label: 'HOBBIES', value: 'HOBBIES' },
             { label: 'FAMILY', value: 'FAMILY' },
