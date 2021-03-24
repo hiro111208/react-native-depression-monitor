@@ -193,8 +193,19 @@ class SchedulingScreen extends Component {
       );
     }
     return (
-      <View style={styles.container}>
-        <View style={[styles.center, styles.shadowEffect]}></View>
+      <View style={[styles.container]}>
+        <View style={[styles.center, styles.shadowEffect]}>
+          <View style={{ height: "65%" }}></View>
+          <View style={[{ height: "40%" }, styles.centering]}>
+            <View style={[styles.calendarImage, styles.centering]}>
+              <Image
+                style={{ width: 150, height: 150 }}
+                resizeMode="contain"
+                source={require("../assets/sapling.png")}
+              />
+            </View>
+          </View>
+        </View>
       </View>
     );
   }
@@ -312,6 +323,10 @@ const styles = StyleSheet.create({
     backgroundColor: "#fed8b1",
     borderRadius: 50,
   },
+  centering: {
+    alignItems: "center",
+    justifyContent: "center",
+  },
   shadowEffect: {
     shadowColor: "#000",
     shadowOffset: {
@@ -322,6 +337,10 @@ const styles = StyleSheet.create({
     shadowRadius: 3.84,
     elevation: 5,
     marginVertical: 5,
+  },
+  calendarImage: {
+    width: "100%",
+    height: "100%",
   },
   inputGroup: {
     flex: 1,
