@@ -18,6 +18,7 @@ import {
 import DateTimePicker from "@react-native-community/datetimepicker";
 import firebase from "../database/firebase";
 import moment from "moment";
+import { TouchableOpacity } from "react-native";
 
 class SchedulingScreen extends Component {
   constructor() {
@@ -195,7 +196,20 @@ class SchedulingScreen extends Component {
     return (
       <View style={[styles.container]}>
         <View style={[styles.center, styles.shadowEffect]}>
-          <View style={{ height: "65%" }}></View>
+          <View style={{ height: "65%" }}>
+            <View style={{ height: "10%" }}></View>
+            <View style={{ height: "10%" }}>
+              <TouchableOpacity
+                onPress={this.showDatepicker}
+                style={[styles.selectButton, styles.centering]}
+              >
+                <Text style={styles.textStyle}>Select Date</Text>
+              </TouchableOpacity>
+            </View>
+
+            <Button onPress={this.showTimepicker} title="Select Time" />
+            {/* Include other functions here */}
+          </View>
           <View style={[{ height: "40%" }, styles.centering]}>
             <View style={[styles.calendarImage, styles.centering]}>
               <Image
@@ -213,26 +227,11 @@ class SchedulingScreen extends Component {
 
 {
   /* <ScrollView style={styles.container}>
-        <View style={styles.inputGroup}>
-          <Image
-            style={{
-              flex: 1,
-              justifyContent: "center",
-              alignItems: "center",
-              resizeMode: "center",
-              height: Dimensions.get("window").height / 2,
-              width: Dimensions.get("window").width,
-            }}
-            source={require("../assets/stage_9.png")}
-          />
-
-          <View>
             <Button
               onPress={this.showDatepicker}
               title="Select Date"
             />
           </View>
-
           <View>
             <Button
               onPress={this.showTimepicker}
@@ -341,6 +340,16 @@ const styles = StyleSheet.create({
   calendarImage: {
     width: "100%",
     height: "100%",
+  },
+  selectButton: {
+    height: "100%",
+    width: "100%",
+    backgroundColor: "#ffeed2",
+  },
+  textStyle: {
+    fontSize: 20,
+    fontWeight: "bold",
+    color: "dimgray",
   },
   inputGroup: {
     flex: 1,
