@@ -265,15 +265,27 @@ class SchedulingScreen extends Component {
             </View>
           </View>
 
-          <View style={[{ height: "40%" }, styles.centering]}>
+          <View style={{ height: "5%" }}></View>
+          <View style={{ height: "10%" }}>
+            <TouchableOpacity
+              onPress={() => this.validateAppointment()}
+              style={[styles.selectButton, styles.centering]}
+            >
+              <Text style={styles.textStyle}>Add Session</Text>
+            </TouchableOpacity>
+          </View>
+
+          <View style={[{ height: "30%" }, styles.centering]}>
             <View style={[styles.calendarImage, styles.centering]}>
               <Image
-                style={{ width: 150, height: 150 }}
+                style={{ width: 125, height: 125 }}
                 resizeMode="contain"
                 source={require("../assets/sapling.png")}
               />
             </View>
           </View>
+
+          <View style={styles.bottomBorder}></View>
         </View>
       </View>
     );
@@ -423,6 +435,7 @@ const styles = StyleSheet.create({
     justifyContent: "space-evenly",
     alignItems: "center",
   },
+  bottomBorder: {},
 });
 
 export default SchedulingScreen;
