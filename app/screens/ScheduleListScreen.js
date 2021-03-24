@@ -170,36 +170,6 @@ class ScheduleListScreen extends Component {
   }
 }
 
-{
-  /* <View style={styles.container}>
-        <ScrollView>
-          {this.state.scheduleArr.map((item, i) => {
-            return (
-              <ListItem key={i} bottomDivider>
-                <ListItem.Content>
-                  <ListItem.Title>
-                    {this.convertDateTime(item.seconds)}
-                  </ListItem.Title>
-                </ListItem.Content>
-                <Button
-                  onPress={() => this.openTwoButtonAlert(item.key)}
-                  title="Delete"
-                ></Button>
-              </ListItem>
-            );
-          })}
-        </ScrollView>
-
-        <View>
-          <Button
-            title="Go back"
-            onPress={() => this.props.navigation.goBack()}
-            color="#19AC52"
-          />
-        </View>
-      </View> */
-}
-
 const styles = StyleSheet.create({
   container: {
     flex: 1,
