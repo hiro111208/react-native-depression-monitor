@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { ImageBackground, AppRegistry, ScrollView, View, StyleSheet, Text , Linking,Image} from 'react-native'
+import { AntDesign } from '@expo/vector-icons';
 
 export default class App extends Component {
   render() {
@@ -8,7 +9,7 @@ export default class App extends Component {
       <ScrollView style={styles.container}>
         <View style={styles.boxLarge}>
           <ImageBackground style={styles.boxLarge} source={require('./mat.png')}>
-        <Text/>
+          <AntDesign name="leftcircleo" size={24} color="black" />
         <Text/>
         
         <Text style={styles.main}> Support Ressources </Text>
@@ -166,6 +167,7 @@ const styles = StyleSheet.create({
     height: 80,
     margin: 10,
   },
+
   logo :{
     width: 400,
     height: 100,
