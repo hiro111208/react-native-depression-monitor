@@ -185,10 +185,6 @@ class SchedulingScreen extends Component {
       });
   }
 
-  onPressButton = () => {
-    this.setState({ visibility: true });
-  };
-
   render() {
     if (this.state.isLoading) {
       return (
