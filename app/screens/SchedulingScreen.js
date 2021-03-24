@@ -270,11 +270,7 @@ class SchedulingScreen extends Component {
           <View style={[{ height: "10%" }, styles.centering]}>
             <TouchableOpacity
               onPress={() => this.validateAppointment()}
-              style={[
-                styles.selectButton,
-                styles.centering,
-                styles.shadowEffect,
-              ]}
+              style={[styles.selectButton, styles.centering]}
             >
               <Text style={styles.textStyle}>Add Session</Text>
             </TouchableOpacity>
@@ -418,9 +414,9 @@ const styles = StyleSheet.create({
   },
   selectButton: {
     height: "100%",
-    width: "70%",
+    width: "100%",
     backgroundColor: "#ffeed2",
-    borderRadius: 50,
+    //borderRadius: 50,
   },
   textStyle: {
     fontSize: 18,
