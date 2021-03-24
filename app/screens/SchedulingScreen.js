@@ -200,9 +200,9 @@ class SchedulingScreen extends Component {
     return (
       <View style={[styles.container]}>
         <View style={[styles.center, styles.shadowEffect]}>
-          <View style={{ height: "10%" }}></View>
+          <View style={{ height: "7%" }}></View>
 
-          <View style={[{ height: "8%", flexDirection: "row" }]}>
+          <View style={[{ height: "6%", flexDirection: "row" }]}>
             <View style={{ width: "20%" }}></View>
             <Text style={styles.textStyle}>Select a date:</Text>
           </View>
@@ -234,7 +234,7 @@ class SchedulingScreen extends Component {
             </View>
           </View>
 
-          <View style={[{ height: "8%", flexDirection: "row" }]}>
+          <View style={[{ height: "6%", flexDirection: "row" }]}>
             <View style={{ width: "20%" }}></View>
             <Text style={styles.textStyle}>Select a time:</Text>
           </View>
@@ -265,17 +265,24 @@ class SchedulingScreen extends Component {
             </View>
           </View>
 
-          <View style={{ height: "5%" }}></View>
-          <View style={{ height: "10%" }}>
+          <View style={{ height: "2%" }}></View>
+
+          <View style={[{ height: "10%" }, styles.centering]}>
             <TouchableOpacity
               onPress={() => this.validateAppointment()}
-              style={[styles.selectButton, styles.centering]}
+              style={[
+                styles.selectButton,
+                styles.centering,
+                styles.shadowEffect,
+              ]}
             >
               <Text style={styles.textStyle}>Add Session</Text>
             </TouchableOpacity>
           </View>
 
-          <View style={[{ height: "20%" }, styles.centering]}>
+          <View style={{ height: "10%" }}></View>
+
+          <View style={[{ height: "25%" }, styles.centering]}>
             <View style={[styles.calendarImage, styles.centering]}>
               <Image
                 style={{ width: 125, height: 125 }}
@@ -286,7 +293,12 @@ class SchedulingScreen extends Component {
           </View>
 
           <View style={[{ height: "10%" }, styles.centering]}>
-            <TouchableOpacity style={styles.bottomBorder}>
+            <TouchableOpacity
+              onPress={() =>
+                this.props.navigation.navigate("ScheduleListScreen")
+              }
+              style={[styles.bottomBorder, styles.shadowEffect]}
+            >
               <Text style={styles.scheduleText}>Schedule List</Text>
             </TouchableOpacity>
           </View>
@@ -382,6 +394,8 @@ const styles = StyleSheet.create({
     width: "100%",
     backgroundColor: "#fed8b1",
     borderRadius: 50,
+    borderWidth: 5,
+    borderColor: "#ffeed2",
   },
   centering: {
     alignItems: "center",
@@ -404,11 +418,12 @@ const styles = StyleSheet.create({
   },
   selectButton: {
     height: "100%",
-    width: "100%",
+    width: "70%",
     backgroundColor: "#ffeed2",
+    borderRadius: 50,
   },
   textStyle: {
-    fontSize: 20,
+    fontSize: 18,
     fontWeight: "bold",
     color: "dimgray",
   },
