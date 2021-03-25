@@ -10,6 +10,9 @@ import {
 import { ListItem } from "react-native-elements";
 import firebase from "../database/firebase";
 
+/**
+ * Page that displays all of the scheduled notifications for the patient
+ */
 class ScheduleListScreen extends Component {
   constructor() {
     super();
@@ -23,14 +26,17 @@ class ScheduleListScreen extends Component {
     };
   }
 
+  // Rerenders the page with all the schedules
   componentDidMount() {
     this.unsubscribe = this.firestoreRef.onSnapshot(this.getCollection);
   }
 
+  // Unsubscribe all trigerred actions when a component is unmounted
   componentWillUnmount() {
     this.unsubscribe();
   }
 
+  // Retrieves the schedule data from firebase
   getCollection = (querySnapshot) => {
     const scheduleArr = [];
     querySnapshot.forEach((res) => {
@@ -48,6 +54,7 @@ class ScheduleListScreen extends Component {
     });
   };
 
+  // Present the schedules in a readable format
   convertDateTime(ss) {
     let date_ob = new Date(ss * 1000);
     let date = ("0" + date_ob.getDate()).slice(-2);
@@ -71,6 +78,7 @@ class ScheduleListScreen extends Component {
     );
   }
 
+  // Returns an alert upon deleting a schedule
   openTwoButtonAlert = (id) => {
     Alert.alert(
       "Delete Schedule",
