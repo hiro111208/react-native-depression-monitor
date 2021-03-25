@@ -211,7 +211,7 @@ class SchedulingScreen extends Component {
               <DateTimePicker
                 testID="DatePicker"
                 value={this.state.date}
-                mode="date"
+                mode={this.state.mode}
                 is24Hour={true}
                 display="default"
                 onChange={this.onChange}
