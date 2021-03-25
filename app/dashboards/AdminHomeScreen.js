@@ -26,7 +26,9 @@ export default function AdminHomeScreen({ props, navigation }) {
         <View style={{ height: "10%" }}></View>
 
         <View style={[{ height: "40%" }, styles.centering]}>
-          <Text style={styles.helloFont}>Hello, admin!</Text>
+          <Text style={[styles.fontStyle, { fontSize: 25 }]}>
+            Hello, admin!
+          </Text>
           <Image
             style={{ width: 200, height: 200 }}
             resizeMode="contain"
@@ -39,16 +41,23 @@ export default function AdminHomeScreen({ props, navigation }) {
             onPress={() => navigation.navigate("TherapyQuestionScreen")}
             style={[styles.centering, styles.optButton, styles.cover]}
           >
-            <Text style={[styles.optFont, styles.centering]}>
+            <Text
+              style={[styles.fontStyle, styles.centering, { fontSize: 18 }]}
+            >
               Therapy Question Management
             </Text>
           </TouchableOpacity>
         </View>
 
+        <View style={{ height: "22%" }}></View>
+
         <View style={[{ height: "10%" }, styles.centering]}>
           <TouchableOpacity
-            style={[styles.bottomButton, styles.shadowEffect]}
-          ></TouchableOpacity>
+            onPress={() => signOut()}
+            style={[styles.bottomButton, styles.shadowEffect, styles.centering]}
+          >
+            <Text style={[styles.fontStyle, { fontSize: 17 }]}>Log out</Text>
+          </TouchableOpacity>
         </View>
       </View>
     </View>
@@ -77,6 +86,8 @@ const styles = StyleSheet.create({
     width: "40%",
     borderRadius: 50,
     backgroundColor: "#ffeed2",
+    position: "absolute",
+    bottom: 0,
   },
   center: {
     backgroundColor: "#fed8b1",
@@ -98,13 +109,7 @@ const styles = StyleSheet.create({
     height: "100%",
     width: "100%",
   },
-  helloFont: {
-    fontSize: 25,
-    fontWeight: "bold",
-    color: "dimgray",
-  },
-  optFont: {
-    fontSize: 18,
+  fontStyle: {
     fontWeight: "bold",
     color: "dimgray",
   },
