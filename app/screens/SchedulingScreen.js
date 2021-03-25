@@ -27,7 +27,7 @@ class SchedulingScreen extends Component {
     this.state = {
       isLoading: false,
       date: new Date(),
-      mode: 'date',
+      mode: "date",
       show: false,
     };
   }
@@ -35,13 +35,11 @@ class SchedulingScreen extends Component {
   onChange = (event, selectedDate) => {
     const showFlag = Platform.OS === "ios";
     this.setState({ show: showFlag });
-    console.log("selectedDate +++", selectedDate);
     this.setState({ date: selectedDate || date });
   };
 
   showMode = (currentMode) => {
     this.setState({ show: true, mode: currentMode });
-
   };
 
   showDatepicker = () => {
@@ -86,9 +84,7 @@ class SchedulingScreen extends Component {
         scheduleDateTime: date,
         userID: firebase.auth().currentUser.uid,
       })
-      .then((res) => {
-        console.log(res);
-      })
+      .then((res) => {})
       .catch((err) => {
         console.error("Error found: ", err);
         this.setState({
@@ -205,17 +201,17 @@ class SchedulingScreen extends Component {
 
           {Platform.OS === "android" && (
             <Button onPress={this.showMode} title="Select Date" />
-            )}
+          )}
 
           {Platform.OS === "android" && this.state.show && (
-              <DateTimePicker
-                testID="DatePicker"
-                value={this.state.date}
-                mode={this.state.mode}
-                is24Hour={true}
-                display="default"
-                onChange={this.onChange}
-              />
+            <DateTimePicker
+              testID="DatePicker"
+              value={this.state.date}
+              mode={this.state.mode}
+              is24Hour={true}
+              display="default"
+              onChange={this.onChange}
+            />
           )}
 
           {Platform.OS === "ios" && (
@@ -253,37 +249,35 @@ class SchedulingScreen extends Component {
 
           {Platform.OS === "android" && (
             <Button onPress={this.showTimepicker} title="Select Time" />
-            )}
-            
-            {Platform.OS === "ios" && (
-            <View style={{ height: "10%", flexDirection: "row" }}>
-            <View
-              style={{
-                height: "10%",
-                width: "33%",
-              }}
-            ></View>
-            <View
-              style={{
-                height: "10%",
-                width: "33%",
-              }}
-            >
-              <DateTimePicker
-                style={{ width: 300 }}
-                testID="TimePicker"
-                value={this.state.date}
-                mode="time"
-                //minimumDate={this.state.mode === "date" && new Date()} // to prevent user to select past date
-                is24Hour={true}
-                display="default"
-                onChange={this.onChange}
-              />
-            </View>
-          </View>
-            )}
+          )}
 
-          
+          {Platform.OS === "ios" && (
+            <View style={{ height: "10%", flexDirection: "row" }}>
+              <View
+                style={{
+                  height: "10%",
+                  width: "33%",
+                }}
+              ></View>
+              <View
+                style={{
+                  height: "10%",
+                  width: "33%",
+                }}
+              >
+                <DateTimePicker
+                  style={{ width: 300 }}
+                  testID="TimePicker"
+                  value={this.state.date}
+                  mode="time"
+                  //minimumDate={this.state.mode === "date" && new Date()} // to prevent user to select past date
+                  is24Hour={true}
+                  display="default"
+                  onChange={this.onChange}
+                />
+              </View>
+            </View>
+          )}
 
           <View style={{ height: "2%" }}></View>
 
