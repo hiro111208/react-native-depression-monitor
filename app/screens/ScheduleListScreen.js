@@ -98,14 +98,14 @@ class ScheduleListScreen extends Component {
   render() {
     if (this.state.isLoading) {
       return (
-        <View style={styles.preloader}>
+        <View style={[styles.preloader, styles.centering]}>
           <ActivityIndicator size="large" color="#9E9E9E" />
         </View>
       );
     }
     return (
-      <View style={styles.container}>
-        <View style={[styles.center, styles.shadowEffect]}>
+      <View style={[styles.container, styles.centering]}>
+        <View style={[styles.center, styles.cover, styles.shadowEffect]}>
           <View>
             {this.state.scheduleArr.map((item, i) => {
               return (
@@ -139,18 +139,7 @@ class ScheduleListScreen extends Component {
             })}
           </View>
           <View style={{ height: "10%" }}></View>
-          <View
-            style={[
-              {
-                height: "10%",
-                width: "100%",
-                position: "absolute",
-                bottom: 10,
-                left: 0,
-              },
-              styles.centering,
-            ]}
-          >
+          <View style={[styles.backContainer, styles.centering]}>
             <TouchableOpacity
               onPress={() => this.props.navigation.goBack()}
               style={[styles.backButton, styles.centering, styles.shadowEffect]}
@@ -168,19 +157,19 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     display: "flex",
-    justifyContent: "center",
-    alignItems: "center",
     padding: 30,
     backgroundColor: "#fff",
   },
   center: {
-    width: "100%",
-    height: "100%",
     borderRadius: 40,
     backgroundColor: "#fed8b1",
     alignItems: "center",
     borderWidth: 5,
     borderColor: "#ffeed2",
+  },
+  cover: {
+    width: "100%",
+    height: "100%",
   },
   centering: {
     alignItems: "center",
@@ -191,6 +180,13 @@ const styles = StyleSheet.create({
     width: "40%",
     backgroundColor: "#ffeed2",
     borderRadius: 50,
+  },
+  backContainer: {
+    height: "10%",
+    width: "100%",
+    position: "absolute",
+    bottom: 10,
+    left: 0,
   },
   backText: {
     fontSize: 15,
@@ -220,8 +216,6 @@ const styles = StyleSheet.create({
     top: 0,
     bottom: 0,
     position: "absolute",
-    alignItems: "center",
-    justifyContent: "center",
   },
 });
 
