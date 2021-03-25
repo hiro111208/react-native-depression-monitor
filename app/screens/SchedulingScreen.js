@@ -324,11 +324,11 @@ class SchedulingScreen extends Component {
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    display: "flex",
-    padding: 25,
-    backgroundColor: "#fff",
+  bottomBorder: {
+    height: "100%",
+    width: "40%",
+    borderRadius: 50,
+    backgroundColor: "#ffeed2",
   },
   center: {
     backgroundColor: "#fed8b1",
@@ -336,13 +336,29 @@ const styles = StyleSheet.create({
     borderWidth: 5,
     borderColor: "#ffeed2",
   },
+  centering: {
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  container: {
+    flex: 1,
+    display: "flex",
+    padding: 25,
+    backgroundColor: "#fff",
+  },
   cover: {
     height: "100%",
     width: "100%",
   },
-  centering: {
-    alignItems: "center",
-    justifyContent: "center",
+  fontStyle: {
+    fontWeight: "bold",
+    color: "dimgray",
+  },
+  scheduleText: {
+    fontSize: 15,
+  },
+  selectButton: {
+    backgroundColor: "#ffeed2",
   },
   shadowEffect: {
     shadowColor: "#000",
@@ -355,24 +371,8 @@ const styles = StyleSheet.create({
     elevation: 5,
     marginVertical: 5,
   },
-  selectButton: {
-    backgroundColor: "#ffeed2",
-  },
   textStyle: {
     fontSize: 18,
-  },
-  scheduleText: {
-    fontSize: 15,
-  },
-  fontStyle: {
-    fontWeight: "bold",
-    color: "dimgray",
-  },
-  bottomBorder: {
-    height: "100%",
-    width: "40%",
-    borderRadius: 50,
-    backgroundColor: "#ffeed2",
   },
 });
 
