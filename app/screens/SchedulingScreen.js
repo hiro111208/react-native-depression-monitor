@@ -1,6 +1,6 @@
 // screens/SchedulingScreen.js
 
-import React, { Component } from "react";
+import React, { Component, Fragment } from "react";
 
 import {
   Button,
@@ -204,14 +204,23 @@ class SchedulingScreen extends Component {
           </View>
 
           {Platform.OS === "android" && this.state.show && (
-            <DateTimePicker
-              testID="dateTimePicker"
-              value={this.state.date}
-              mode={this.state.mode}
-              is24Hour={true}
-              display="default"
-              onChange={this.onChange}
-            />
+            <Fragment>
+              <View>
+                <Button onPress={this.showDatepicker} title="Select Date" />
+              </View>
+
+              <View>
+                <Button onPress={this.showTimepicker} title="Select Time" />
+              </View>
+              <DateTimePicker
+                testID="dateTimePicker"
+                value={this.state.date}
+                mode={this.state.mode}
+                is24Hour={true}
+                display="default"
+                onChange={this.onChange}
+              />
+            </Fragment>
           )}
 
           {Platform.OS === "ios" && (
