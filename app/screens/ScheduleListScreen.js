@@ -162,27 +162,6 @@ class ScheduleListScreen extends Component {
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    display: "flex",
-    padding: 30,
-    backgroundColor: "#fff",
-  },
-  center: {
-    borderRadius: 40,
-    backgroundColor: "#fed8b1",
-    alignItems: "center",
-    borderWidth: 5,
-    borderColor: "#ffeed2",
-  },
-  cover: {
-    width: "100%",
-    height: "100%",
-  },
-  centering: {
-    alignItems: "center",
-    justifyContent: "center",
-  },
   backButton: {
     height: "90%",
     width: "40%",
@@ -201,11 +180,39 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     color: "dimgray",
   },
+  center: {
+    borderRadius: 40,
+    backgroundColor: "#fed8b1",
+    alignItems: "center",
+    borderWidth: 5,
+    borderColor: "#ffeed2",
+  },
+  centering: {
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  container: {
+    flex: 1,
+    display: "flex",
+    padding: 30,
+    backgroundColor: "#fff",
+  },
+  cover: {
+    width: "100%",
+    height: "100%",
+  },
   deleteButton: {
     height: "60%",
     width: "30%",
     backgroundColor: "#ffeed2",
     borderRadius: 10,
+  },
+  preloader: {
+    left: 0,
+    right: 0,
+    top: 0,
+    bottom: 0,
+    position: "absolute",
   },
   shadowEffect: {
     shadowColor: "#000",
@@ -217,13 +224,6 @@ const styles = StyleSheet.create({
     shadowRadius: 3.84,
     elevation: 5,
     marginVertical: 5,
-  },
-  preloader: {
-    left: 0,
-    right: 0,
-    top: 0,
-    bottom: 0,
-    position: "absolute",
   },
 });
 
