@@ -4,6 +4,7 @@ import firebase from "../database/firebase";
 
 import colors from "../config/colors";
 import { TouchableOpacity } from "react-native";
+import { Touchable } from "react-native";
 
 export default function AdminHomeScreen({ props, navigation }) {
   const [errorMessage, setErrorMessage] = useState("");
@@ -43,6 +44,12 @@ export default function AdminHomeScreen({ props, navigation }) {
             </Text>
           </TouchableOpacity>
         </View>
+
+        <View style={[{ height: "10%" }, styles.centering]}>
+          <TouchableOpacity
+            style={[styles.bottomButton, styles.shadowEffect]}
+          ></TouchableOpacity>
+        </View>
       </View>
     </View>
   );
@@ -65,6 +72,12 @@ export default function AdminHomeScreen({ props, navigation }) {
 }
 
 const styles = StyleSheet.create({
+  bottomButton: {
+    height: "100%",
+    width: "40%",
+    borderRadius: 50,
+    backgroundColor: "#ffeed2",
+  },
   center: {
     backgroundColor: "#fed8b1",
     borderRadius: 50,
