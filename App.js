@@ -18,6 +18,7 @@ import PatientDashboard from "./app/dashboards/PatientDashboard";
 import AdminDashboard from "./app/dashboards/AdminDashboard";
 import PauseScreen from "./app/screens/PauseScreen";
 import colors from "./app/config/colors";
+import SupportRessources from "./app/screens/SupportRessources";
 
 import { withNavigation } from "react-navigation";
 
@@ -101,6 +102,7 @@ function MyStack() {
         component={PlantScreen}
       />
       <Stack.Screen name="CategoryDrop" component={CategoryDrop} />
+      <Stack.Screen name="SupportRessources" component={SupportRessources} />
     </Stack.Navigator>
   );
 }

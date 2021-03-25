@@ -46,6 +46,7 @@ const registerForPushNotificationsAsync = async()=> {
    .set({token},{merge:true})
  }
 
+
   if (Platform.OS === 'android') {
     Notifications.setNotificationChannelAsync('default', {
       name: 'default',
@@ -57,6 +58,10 @@ const registerForPushNotificationsAsync = async()=> {
 
   return token;
 }
+
+
+
+
 
 
 export default function HomeScreen({ route, props, navigation }) {

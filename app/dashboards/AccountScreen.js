@@ -40,7 +40,7 @@ export default function AccountScreen({ props, navigation }) {
                     <Text>Support Ressources and research authors</Text>
                 </View>
 
-                <TouchableOpacity style={[styles.logout, styles.centering]} onPress={() => signOut()}>
+                <TouchableOpacity style={[styles.logout, styles.centering]} onPress={() => navigation.navigate("SupportRessources")}>
                     <Text style={styles.textStyle}>Support Ressources</Text>
                 </TouchableOpacity>
             </View>

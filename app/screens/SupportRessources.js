@@ -3,13 +3,15 @@ import { ImageBackground, AppRegistry, ScrollView, View, StyleSheet, Text , Link
 import { AntDesign } from '@expo/vector-icons';
 
 export default class App extends Component {
-  render() {
+  render({navigation}) {
     return (
       <View ststyle={styles.container}>
       <ScrollView style={styles.container}>
         <View style={styles.boxLarge}>
           <ImageBackground style={styles.boxLarge} source={require('./mat.png')}>
-          <AntDesign name="leftcircleo" size={24} color="black" />
+          <AntDesign name="leftcircleo" size={24} color="black" 
+          onPress={() => navigation.goBack()}
+          />
         <Text/>
         
         <Text style={styles.main}> Support Ressources </Text>
