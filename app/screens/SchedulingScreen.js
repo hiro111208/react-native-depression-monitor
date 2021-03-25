@@ -203,33 +203,33 @@ class SchedulingScreen extends Component {
             <Text style={styles.textStyle}>Select a date:</Text>
           </View>
 
-          <View style={{ height: "10%", flexDirection: "row" }}>
-            <View
-              style={{
-                height: "100%",
-                width: "33%",
-              }}
-            ></View>
-            <View
-              style={[
-                {
+          {Platform.OS === "android" && this.state.show && (
+            <DateTimePicker
+              testID="dateTimePicker"
+              value={this.state.date}
+              mode={this.state.mode}
+              is24Hour={true}
+              display="default"
+              onChange={this.onChange}
+            />
+          )}
+
+          {Platform.OS === "ios" && (
+            <View style={{ height: "10%", flexDirection: "row" }}>
+              <View
+                style={{
+                  height: "100%",
                   width: "33%",
-                },
-              ]}
-            >
-              {Platform.OS === "android" && this.state.show && (
+                }}
+              ></View>
+              <View
+                style={[
+                  {
+                    width: "40%",
+                  },
+                ]}
+              >
                 <DateTimePicker
-                  testID="dateTimePicker"
-                  value={this.state.date}
-                  mode={this.state.mode}
-                  is24Hour={true}
-                  display="default"
-                  onChange={this.onChange}
-                />
-              )}
-              {Platform.OS === "ios" && (
-                <DateTimePicker
-                  style={{ width: 300 }}
                   testID="datePicker"
                   value={this.state.date}
                   mode="date"
@@ -238,9 +238,9 @@ class SchedulingScreen extends Component {
                   display="default"
                   onChange={this.onChange}
                 />
-              )}
+              </View>
             </View>
-          </View>
+          )}
 
           <View style={[{ height: "6%", flexDirection: "row" }]}>
             <View style={{ width: "20%" }}></View>
