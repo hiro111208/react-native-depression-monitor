@@ -207,18 +207,15 @@ class SchedulingScreen extends Component {
             <Button onPress={this.showDatepicker} title="Select Date" />
             )}
 
-
           {Platform.OS === "android" && this.state.show && (
-            <Fragment>
               <DateTimePicker
-                testID="dateTimePicker"
+                testID="datePicker"
                 value={this.state.date}
                 mode={this.state.mode}
                 is24Hour={true}
                 display="default"
                 onChange={this.onChange}
               />
-            </Fragment>
           )}
 
           {Platform.OS === "ios" && (
@@ -254,7 +251,24 @@ class SchedulingScreen extends Component {
             <Text style={styles.textStyle}>Select a time:</Text>
           </View>
 
-          <View style={{ height: "10%", flexDirection: "row" }}>
+          {Platform.OS === "android" && (
+            <Button onPress={this.showTimepicker} title="Select Time" />
+            )}
+
+{Platform.OS === "android" && this.state.show && (
+            <DateTimePicker
+            testID="TimePicker"
+            value={this.state.date}
+            mode="time"
+            //minimumDate={this.state.mode === "date" && new Date()} // to prevent user to select past date
+            is24Hour={true}
+            display="default"
+            onChange={this.onChange}
+          />
+            )}
+
+{Platform.OS === "ios" && (
+            <View style={{ height: "10%", flexDirection: "row" }}>
             <View
               style={{
                 height: "10%",
@@ -279,6 +293,9 @@ class SchedulingScreen extends Component {
               />
             </View>
           </View>
+            )}
+
+          
 
           <View style={{ height: "2%" }}></View>
 
