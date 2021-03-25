@@ -203,15 +203,13 @@ class SchedulingScreen extends Component {
             <Text style={styles.textStyle}>Select a date:</Text>
           </View>
 
+          {Platform.OS === "android" && (
+            <Button onPress={this.showDatepicker} title="Select Date" />
+            )}
+
+
           {Platform.OS === "android" && this.state.show && (
             <Fragment>
-              <View>
-                <Button onPress={this.showDatepicker} title="Select Date" />
-              </View>
-
-              <View>
-                <Button onPress={this.showTimepicker} title="Select Time" />
-              </View>
               <DateTimePicker
                 testID="dateTimePicker"
                 value={this.state.date}
