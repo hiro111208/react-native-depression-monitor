@@ -52,8 +52,8 @@ class SchedulingScreen extends Component {
   };
 
   // Stores the scheduled time in firestore for the user
-  storeUser() {
-    if (this.state.date === "") {
+  storeUser(date) {
+    if (date === "") {
       alert("Pick date and time, please!");
     } else {
       this.setState({
@@ -61,7 +61,7 @@ class SchedulingScreen extends Component {
       });
       this.dbRef
         .add({
-          scheduleDateTime: this.state.date,
+          scheduleDateTime: date,
           userID: firebase.auth().currentUser.uid,
         })
         .then((res) => {
@@ -80,22 +80,6 @@ class SchedulingScreen extends Component {
     }
   }
 
-  // Stores the first appointment for the user
-  storeFirstAppointment = (date) => {
-    this.dbRef
-      .add({
-        scheduleDateTime: date,
-        userID: firebase.auth().currentUser.uid,
-      })
-      .then((res) => {})
-      .catch((err) => {
-        console.error("Error found: ", err);
-        this.setState({
-          isLoading: false,
-        });
-      });
-  };
-
   // method call on book first appointment
   onFirstAppointment = () => {
     const { date } = this.state;
@@ -108,7 +92,7 @@ class SchedulingScreen extends Component {
       addWeekArray.push(nowtoWeek);
     }
     for (let i = 0; i < addWeekArray.length; i++) {
-      this.storeFirstAppointment(addWeekArray[i]);
+      this.storeUser(addWeekArray[i]);
     }
     this.setState({
       isLoading: false,
@@ -132,7 +116,7 @@ class SchedulingScreen extends Component {
     }
     const isValidtoGo = await diffArray.every((el) => el >= 47);
     if (String(isValidtoGo).trim() === "true") {
-      this.storeUser();
+      this.storeUser(this.state.date);
     } else {
       alert(
         "You cannot book appointments that are consecutive or on the same day, please select another date."
