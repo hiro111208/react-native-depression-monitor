@@ -1,24 +1,18 @@
-// screens/SchedulingScreen.js
-
 import React, { Component } from "react";
-
 import {
   Button,
   StyleSheet,
   Image,
-  Dimensions,
   Text,
-  ScrollView,
   ActivityIndicator,
   View,
   Platform,
   Alert,
+  TouchableOpacity,
 } from "react-native";
-
 import DateTimePicker from "@react-native-community/datetimepicker";
 import firebase from "../database/firebase";
 import moment from "moment";
-import { TouchableOpacity } from "react-native";
 
 class SchedulingScreen extends Component {
   constructor() {
@@ -270,7 +264,6 @@ class SchedulingScreen extends Component {
                   testID="TimePicker"
                   value={this.state.date}
                   mode="time"
-                  //minimumDate={this.state.mode === "date" && new Date()} // to prevent user to select past date
                   is24Hour={true}
                   display="default"
                   onChange={this.onChange}
