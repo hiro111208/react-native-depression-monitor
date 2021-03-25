@@ -131,17 +131,39 @@ export default class TherapyQuestionScreen extends Component {
               }}
               placeholderStyle={{
                 fontSize: 18,
+                fontWeight: "bold",
+                color: "dimgray",
               }}
               style={{
-                borderTopLeftRadius: 10,
-                borderTopRightRadius: 10,
-                borderBottomLeftRadius: 10,
-                borderBottomRightRadius: 10,
-              }}
-              dropDownStyle={{
+                borderTopLeftRadius: 20,
+                borderTopRightRadius: 20,
                 borderBottomLeftRadius: 20,
                 borderBottomRightRadius: 20,
-                backgroundColor: "#fed8b1",
+                backgroundColor: "#ffeed2",
+                borderWidth: 0,
+                shadowColor: "#000",
+                shadowOffset: {
+                  width: 0,
+                  height: 2,
+                },
+                shadowOpacity: 0.25,
+                shadowRadius: 3.84,
+                elevation: 1,
+                marginVertical: 2,
+              }}
+              dropDownStyle={{
+                backgroundColor: "#ffeed2",
+                borderBottomLeftRadius: 20,
+                borderBottomRightRadius: 20,
+                shadowColor: "#000",
+                shadowOffset: {
+                  width: 0,
+                  height: 2,
+                },
+                shadowOpacity: 0.25,
+                shadowRadius: 3.84,
+                elevation: 1,
+                marginVertical: 2,
               }}
             />
           </View>
