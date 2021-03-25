@@ -1,14 +1,11 @@
-// screens/ScheduleListScreen.js
-
 import React, { Component } from "react";
-import { Button, Text } from "react-native";
-import { TouchableOpacity } from "react-native";
 import {
   StyleSheet,
-  ScrollView,
   ActivityIndicator,
   View,
   Alert,
+  Text,
+  TouchableOpacity,
 } from "react-native";
 import { ListItem } from "react-native-elements";
 import firebase from "../database/firebase";
@@ -38,7 +35,6 @@ class ScheduleListScreen extends Component {
     const scheduleArr = [];
     querySnapshot.forEach((res) => {
       const { scheduleDateTime } = res.data();
-      console.log(res.data());
       scheduleArr.push({
         key: res.id,
         res,
@@ -83,7 +79,6 @@ class ScheduleListScreen extends Component {
         { text: "Yes", onPress: () => this.deleteSchedule(id) },
         {
           text: "No",
-          onPress: () => console.log("No item was removed"),
           style: "cancel",
         },
       ],
@@ -96,7 +91,6 @@ class ScheduleListScreen extends Component {
   deleteSchedule(id) {
     const dbRef = firebase.firestore().collection("schedule").doc(id);
     dbRef.delete().then((res) => {
-      console.log("Item removed from db +++++++");
       this.props.navigation.navigate("ScheduleListScreen");
     });
   }
