@@ -1,32 +1,31 @@
 // screens/TherapyQuestionScreen.js
 
-import React, { Component } from 'react';
+import React, { Component } from "react";
 import {
   StyleSheet,
   ScrollView,
   ActivityIndicator,
   View,
-  Button
-} from 'react-native';
-import { ListItem } from 'react-native-elements'
-import firebase from '../database/firebase';
+  Button,
+} from "react-native";
+import { ListItem } from "react-native-elements";
+import firebase from "../database/firebase";
 
-import DropDownPicker from 'react-native-dropdown-picker';
+import DropDownPicker from "react-native-dropdown-picker";
 
 export default class TherapyQuestionScreen extends Component {
-
   constructor() {
     super();
     this.firestoreRef = firebase
       .firestore()
-      .collection('questions')
-      .orderBy('block', 'asc')
-      .orderBy('categoryDropped', 'asc')
-      .orderBy('question', 'asc');
+      .collection("questions")
+      .orderBy("block", "asc")
+      .orderBy("categoryDropped", "asc")
+      .orderBy("question", "asc");
     this.state = {
       isLoading: true,
       questionArr: [],
-      filteredArr: []
+      filteredArr: [],
     };
   }
 
@@ -42,14 +41,16 @@ export default class TherapyQuestionScreen extends Component {
     const questionArr = [];
     const filteredArr = [];
     querySnapshot.forEach((res) => {
-      const { answer1,
+      const {
+        answer1,
         answer2,
         block,
         categoryDropped,
         question,
         question1,
         question2,
-        word } = res.data();
+        word,
+      } = res.data();
       questionArr.push({
         key: res.id,
         res,
@@ -80,10 +81,14 @@ export default class TherapyQuestionScreen extends Component {
       filteredArr,
       isLoading: false,
     });
-  }
+  };
 
   filterCollection(categoryDropped) {
-    this.setState({ filteredArr: this.state.questionArr.filter(questionArr => questionArr.categoryDropped === categoryDropped) })
+    this.setState({
+      filteredArr: this.state.questionArr.filter(
+        (questionArr) => questionArr.categoryDropped === categoryDropped
+      ),
+    });
   }
 
   render() {
@@ -92,10 +97,62 @@ export default class TherapyQuestionScreen extends Component {
         <View style={styles.preloader}>
           <ActivityIndicator size="large" color="#9E9E9E" />
         </View>
-      )
+      );
     }
     return (
-      <View style={[styles.container]}>
+      <View style={[styles.container, styles.centering]}>
+        <View style={[styles.center, styles.cover, styles.shadowEffect]}>
+          <View
+            style={[
+              { position: "absolute", top: 0, width: "100%" },
+              styles.centering,
+            ]}
+          >
+            <DropDownPicker
+              items={[
+                { label: "CONTROL", value: "CONTROL" },
+                { label: "SOCIAL", value: "SOCIAL" },
+                { label: "ACADEMIC", value: "ACADEMIC" },
+                { label: "MOOD", value: "HEALTH" },
+                { label: "HEALTH", value: "HEALTH" },
+                { label: "HOBBIES", value: "HOBBIES" },
+                { label: "FAMILY", value: "FAMILY" },
+                { label: "WORK", value: "WORK" },
+                { label: "RELATIONSHIP", value: "RELATIONSHIP" },
+              ]}
+              placeholder="Select a category!"
+              defaultIndex={0}
+              onChangeItem={(item) => this.filterCollection(item.value)}
+              containerStyle={{ width: "80%", height: "10%" }}
+              selectedLabelStyle={{
+                color: "#39739d",
+                fontWeight: "bold",
+                fontSize: 20,
+              }}
+              placeholderStyle={{
+                fontSize: 18,
+              }}
+              style={{
+                borderTopLeftRadius: 10,
+                borderTopRightRadius: 10,
+                borderBottomLeftRadius: 10,
+                borderBottomRightRadius: 10,
+              }}
+              dropDownStyle={{
+                borderBottomLeftRadius: 20,
+                borderBottomRightRadius: 20,
+                backgroundColor: "#fed8b1",
+              }}
+            />
+          </View>
+        </View>
+      </View>
+    );
+  }
+}
+
+{
+  /*<View style={[styles.container]}>
         <DropDownPicker
           items={[
             { label: 'CONTROL', value: 'CONTROL' },
@@ -160,26 +217,49 @@ export default class TherapyQuestionScreen extends Component {
             color="#19AC52"
           />
         </View>
-      </View>
-
-    );
-  }
+      </View>*/
 }
 
 const styles = StyleSheet.create({
+  center: {
+    backgroundColor: "#fed8b1",
+    borderRadius: 50,
+    borderWidth: 5,
+    borderColor: "#ffeed2",
+  },
+  centering: {
+    alignItems: "center",
+    justifyContent: "center",
+  },
   container: {
     flex: 1,
-    paddingBottom: 22,
-    justifyContent: 'center'
+    display: "flex",
+    padding: 25,
+    backgroundColor: "#fff",
+  },
+  cover: {
+    height: "100%",
+    width: "100%",
   },
   preloader: {
     left: 0,
     right: 0,
     top: 0,
     bottom: 0,
-    position: 'absolute',
-    alignItems: 'center',
-    justifyContent: 'center'
+    position: "absolute",
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  shadowEffect: {
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
+    elevation: 5,
+    marginVertical: 5,
   },
   scrollView: {
     flex: 1,
@@ -189,5 +269,5 @@ const styles = StyleSheet.create({
     flex: 1,
     paddingBottom: 10,
     fontWeight: "bold",
-  }
-})
+  },
+});
