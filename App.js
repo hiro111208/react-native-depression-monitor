@@ -17,6 +17,7 @@ import Index from "./app/src/components/Index";
 import PatientDashboard from "./app/dashboards/PatientDashboard";
 import AdminDashboard from "./app/dashboards/AdminDashboard";
 import PauseScreen from "./app/screens/PauseScreen";
+import LogFeelingScreen from "./app/screens/LogFeelingScreen"
 import colors from "./app/config/colors";
 
 import { withNavigation } from "react-navigation";
@@ -102,6 +103,7 @@ function MyStack() {
         component={PlantScreen}
       />
       <Stack.Screen name="CategoryDrop" component={CategoryDrop} />
+      <Stack.Screen name="LogFeeling" component={LogFeelingScreen} />
     </Stack.Navigator>
   );
 }
