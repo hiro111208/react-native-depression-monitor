@@ -27,7 +27,7 @@ class SchedulingScreen extends Component {
     this.state = {
       isLoading: false,
       date: new Date(),
-      mode: "",
+      mode: 'date',
       show: false,
     };
   }
@@ -40,8 +40,8 @@ class SchedulingScreen extends Component {
   };
 
   showMode = (currentMode) => {
-    this.setState({ show: true });
-    this.setState({ mode: currentMode });
+    this.setState({ show: true, mode: currentMode });
+
   };
 
   showDatepicker = () => {
@@ -204,14 +204,14 @@ class SchedulingScreen extends Component {
           </View>
 
           {Platform.OS === "android" && (
-            <Button onPress={this.showDatepicker} title="Select Date" />
+            <Button onPress={this.showMode} title="Select Date" />
             )}
 
           {Platform.OS === "android" && this.state.show && (
               <DateTimePicker
-                testID="datePicker"
+                testID="DatePicker"
                 value={this.state.date}
-                mode={this.state.mode}
+                mode="date"
                 is24Hour={true}
                 display="default"
                 onChange={this.onChange}
@@ -253,18 +253,6 @@ class SchedulingScreen extends Component {
 
           {Platform.OS === "android" && (
             <Button onPress={this.showTimepicker} title="Select Time" />
-            )}
-            
-            {Platform.OS === "android" && this.state.show && (
-            <DateTimePicker
-            testID="TimePicker"
-            value={this.state.date}
-            mode="time"
-            //minimumDate={this.state.mode === "date" && new Date()} // to prevent user to select past date
-            is24Hour={true}
-            display="default"
-            onChange={this.onChange}
-          />
             )}
             
             {Platform.OS === "ios" && (
