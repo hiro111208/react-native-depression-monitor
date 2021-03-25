@@ -1247,12 +1247,12 @@
     "@firebase/util" "0.3.4"
     "tslib" "^1.11.1"
 
-"@firebase/app-types@0.6.1":
+"@firebase/app-types@0.6.1", "@firebase/app-types@0.x":
   "integrity" "sha512-L/ZnJRAq7F++utfuoTKX4CLBG5YR7tFO3PLzG1/oXXKEezJ0kRL3CMRoueBEmTCzVb/6SIs2Qlaw++uDgi5Xyg=="
   "resolved" "https://registry.npmjs.org/@firebase/app-types/-/app-types-0.6.1.tgz"
   "version" "0.6.1"
 
-"@firebase/app@0.6.10":
+"@firebase/app@0.6.10", "@firebase/app@0.x":
   "integrity" "sha512-USg/AbgqBERhY0LayrKmmp7pka08WPa7OlFI46kaNW1pA2mUNf/ifTaxhCr2hGg/eWI0zPhpbEvtGQhSJ/QqWg=="
   "resolved" "https://registry.npmjs.org/@firebase/app/-/app-0.6.10.tgz"
   "version" "0.6.10"
@@ -1598,7 +1598,7 @@
     "firebase" "7.18.0"
     "request" "2.88.2"
 
-"@firebase/util@0.3.1":
+"@firebase/util@0.3.1", "@firebase/util@0.x":
   "integrity" "sha512-zjVd9rfL08dRRdZILFn1RZTHb1euCcnD9N/9P56gdBcm2bvT5XsCC4G6t5toQBpE/H/jYe5h6MZMqfLu3EQLXw=="
   "resolved" "https://registry.npmjs.org/@firebase/util/-/util-0.3.1.tgz"
   "version" "0.3.1"
@@ -9297,7 +9297,7 @@
     "prop-types" "^15.6.0"
     "react-timer-mixin" "^0.13.4"
 
-"react-native@https://github.com/expo/react-native/archive/sdk-39.0.4.tar.gz":
+"react-native@*", "react-native@https://github.com/expo/react-native/archive/sdk-39.0.4.tar.gz":
   "integrity" "sha512-SHhcKW3LF+6Lx8zEbFNeWEuLKcSLv3seeKhEctdfl8Ey19HWdCzQMlDDKhFELBeyLFjrzhpvl4jVTM4h/Sw+YQ=="
   "resolved" "https://github.com/expo/react-native/archive/sdk-39.0.4.tar.gz"
   "version" "0.63.2"
@@ -9406,7 +9406,7 @@
   "resolved" "https://registry.npmjs.org/react-timer-mixin/-/react-timer-mixin-0.13.4.tgz"
   "version" "0.13.4"
 
-"react@17.0.1":
+"react@*", "react@^15.0.0 || ^16.0.0", "react@>=16.3.0", "react@16.13.1", "react@17.0.1":
   "integrity" "sha512-lG9c9UuMHdcAexXtigOZLX8exLWkW0Ku29qPRU8uhF2R9BN96dLCt0psvzPLlHc5OWkgymP3qwTRgbnw5BKx3w=="
   "resolved" "https://registry.npmjs.org/react/-/react-17.0.1.tgz"
   "version" "17.0.1"
