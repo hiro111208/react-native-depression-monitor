@@ -14,6 +14,9 @@ import DateTimePicker from "@react-native-community/datetimepicker";
 import firebase from "../database/firebase";
 import moment from "moment";
 
+/**
+ * Screen to allow patients to schedule notifications
+ */
 class SchedulingScreen extends Component {
   constructor() {
     super();
@@ -26,24 +29,29 @@ class SchedulingScreen extends Component {
     };
   }
 
+  // Updates the date selected depending on user input
   onChange = (event, selectedDate) => {
     const showFlag = Platform.OS === "ios";
     this.setState({ show: showFlag });
     this.setState({ date: selectedDate || date });
   };
 
+  // Sets the show mode
   showMode = (currentMode) => {
     this.setState({ show: true, mode: currentMode });
   };
 
+  // Presents the pop up to select the date
   showDatepicker = () => {
     this.showMode("date");
   };
 
+  // Present the pop up to select the time
   showTimepicker = () => {
     this.showMode("time");
   };
 
+  // Stores the scheduled time in firestore for the user
   storeUser() {
     if (this.state.date === "") {
       alert("Pick date and time, please!");
@@ -72,6 +80,7 @@ class SchedulingScreen extends Component {
     }
   }
 
+  // Stores the first appointment for the user
   storeFirstAppointment = (date) => {
     this.dbRef
       .add({
@@ -131,7 +140,7 @@ class SchedulingScreen extends Component {
     }
   };
 
-  // fetch data of  ScheduleList to validate appointment date
+  // fetch data of ScheduleList to validate appointment date
   getCollection = async (querySnapshot) => {
     const scheduleArr = [];
 
@@ -144,7 +153,8 @@ class SchedulingScreen extends Component {
         seconds: scheduleDateTime.seconds,
       });
     });
-    // first appointment functionality
+
+    // Automatically schedules all appointments if the scheduler array has no contents
     if (scheduleArr.length === 0) {
       Alert.alert(
         "First appointment",
