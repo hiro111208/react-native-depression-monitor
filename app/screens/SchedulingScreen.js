@@ -184,13 +184,15 @@ class SchedulingScreen extends Component {
       );
     }
     return (
-      <View style={[styles.container]}>
-        <View style={[styles.center, styles.shadowEffect]}>
+      <View style={[styles.container, styles.centering]}>
+        <View style={[styles.center, styles.shadowEffect, styles.cover]}>
           <View style={{ height: "7%" }}></View>
 
           <View style={[{ height: "6%", flexDirection: "row" }]}>
             <View style={{ width: "20%" }}></View>
-            <Text style={styles.textStyle}>Select a date:</Text>
+            <Text style={[styles.textStyle, styles.fontStyle]}>
+              Select a date:
+            </Text>
           </View>
 
           {Platform.OS === "android" && (
@@ -238,7 +240,9 @@ class SchedulingScreen extends Component {
 
           <View style={[{ height: "6%", flexDirection: "row" }]}>
             <View style={{ width: "20%" }}></View>
-            <Text style={styles.textStyle}>Select a time:</Text>
+            <Text style={[styles.textStyle, styles.fontStyle]}>
+              Select a time:
+            </Text>
           </View>
 
           {Platform.OS === "android" && (
@@ -277,16 +281,18 @@ class SchedulingScreen extends Component {
           <View style={[{ height: "10%" }, styles.centering]}>
             <TouchableOpacity
               onPress={() => this.validateAppointment()}
-              style={[styles.selectButton, styles.centering]}
+              style={[styles.selectButton, styles.cover, styles.centering]}
             >
-              <Text style={styles.textStyle}>Add Session</Text>
+              <Text style={[styles.textStyle, styles.fontStyle]}>
+                Add Session
+              </Text>
             </TouchableOpacity>
           </View>
 
           <View style={{ height: "10%" }}></View>
 
           <View style={[{ height: "25%" }, styles.centering]}>
-            <View style={[styles.calendarImage, styles.centering]}>
+            <View style={[styles.cover, styles.centering]}>
               <Image
                 style={{ width: 125, height: 125 }}
                 resizeMode="contain"
@@ -300,9 +306,15 @@ class SchedulingScreen extends Component {
               onPress={() =>
                 this.props.navigation.navigate("ScheduleListScreen")
               }
-              style={[styles.bottomBorder, styles.shadowEffect]}
+              style={[
+                styles.bottomBorder,
+                styles.centering,
+                styles.shadowEffect,
+              ]}
             >
-              <Text style={styles.scheduleText}>Schedule List</Text>
+              <Text style={[styles.scheduleText, styles.fontStyle]}>
+                Schedule List
+              </Text>
             </TouchableOpacity>
           </View>
         </View>
@@ -315,18 +327,18 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     display: "flex",
-    justifyContent: "center",
-    alignItems: "center",
     padding: 25,
     backgroundColor: "#fff",
   },
   center: {
-    height: "100%",
-    width: "100%",
     backgroundColor: "#fed8b1",
     borderRadius: 50,
     borderWidth: 5,
     borderColor: "#ffeed2",
+  },
+  cover: {
+    height: "100%",
+    width: "100%",
   },
   centering: {
     alignItems: "center",
@@ -343,31 +355,22 @@ const styles = StyleSheet.create({
     elevation: 5,
     marginVertical: 5,
   },
-  calendarImage: {
-    width: "100%",
-    height: "100%",
-  },
   selectButton: {
-    height: "100%",
-    width: "100%",
     backgroundColor: "#ffeed2",
   },
   textStyle: {
     fontSize: 18,
-    fontWeight: "bold",
-    color: "dimgray",
   },
   scheduleText: {
     fontSize: 15,
+  },
+  fontStyle: {
     fontWeight: "bold",
     color: "dimgray",
   },
   bottomBorder: {
     height: "100%",
     width: "40%",
-    backgroundColor: "#fff",
-    alignItems: "center",
-    justifyContent: "center",
     borderRadius: 50,
     backgroundColor: "#ffeed2",
   },
