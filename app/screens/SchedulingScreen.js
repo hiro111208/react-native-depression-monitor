@@ -254,8 +254,8 @@ class SchedulingScreen extends Component {
           {Platform.OS === "android" && (
             <Button onPress={this.showTimepicker} title="Select Time" />
             )}
-
-{Platform.OS === "android" && this.state.show && (
+            
+            {Platform.OS === "android" && this.state.show && (
             <DateTimePicker
             testID="TimePicker"
             value={this.state.date}
@@ -266,8 +266,8 @@ class SchedulingScreen extends Component {
             onChange={this.onChange}
           />
             )}
-
-{Platform.OS === "ios" && (
+            
+            {Platform.OS === "ios" && (
             <View style={{ height: "10%", flexDirection: "row" }}>
             <View
               style={{
