@@ -102,12 +102,9 @@ export default class TherapyQuestionScreen extends Component {
     return (
       <View style={[styles.container, styles.centering]}>
         <View style={[styles.center, styles.cover, styles.shadowEffect]}>
-          <View
-            style={[
-              { position: "absolute", top: 0, width: "100%" },
-              styles.centering,
-            ]}
-          >
+          <View style={{ height: "3%" }}></View>
+
+          <View style={[{ height: "10%" }, styles.centering]}>
             <DropDownPicker
               items={[
                 { label: "CONTROL", value: "CONTROL" },
@@ -123,9 +120,9 @@ export default class TherapyQuestionScreen extends Component {
               placeholder="Select a category!"
               defaultIndex={0}
               onChangeItem={(item) => this.filterCollection(item.value)}
-              containerStyle={{ width: "80%", height: "10%" }}
+              containerStyle={{ width: "80%", height: "100%" }}
               selectedLabelStyle={{
-                color: "#39739d",
+                color: "#dimgrey",
                 fontWeight: "bold",
                 fontSize: 20,
               }}
@@ -167,6 +164,39 @@ export default class TherapyQuestionScreen extends Component {
               }}
             />
           </View>
+
+          <View style={{ height: "3%" }}></View>
+
+          <View style={[styles.centering, { height: "70%" }]}>
+            <ScrollView style={[styles.scrollView, { width: "90%" }]}>
+              {this.state.filteredArr.map((item, i) => {
+                return (
+                  <ListItem
+                    containerStyle={{
+                      backgroundColor: "#fed8b1",
+                    }}
+                    key={i}
+                    chevron
+                    bottomDivider
+                    onPress={() => {
+                      this.props.navigation.navigate(
+                        "TherapyQuestionDetailScreen",
+                        {
+                          questionkey: item.key,
+                        }
+                      );
+                    }}
+                  >
+                    <ListItem.Content style={{ alignItems: "center" }}>
+                      <ListItem.Title>
+                        {item.categoryDropped} {item.block}-{item.question}
+                      </ListItem.Title>
+                    </ListItem.Content>
+                  </ListItem>
+                );
+              })}
+            </ScrollView>
+          </View>
         </View>
       </View>
     );
@@ -174,41 +204,47 @@ export default class TherapyQuestionScreen extends Component {
 }
 
 {
-  /*<View style={[styles.container]}>
-        <DropDownPicker
-          items={[
-            { label: 'CONTROL', value: 'CONTROL' },
-            { label: 'SOCIAL', value: 'SOCIAL' },
-            { label: 'ACADEMIC', value: 'ACADEMIC' },
-            { label: 'MOOD', value: 'HEALTH' },
-            { label: 'HEALTH', value: 'HEALTH' },
-            { label: 'HOBBIES', value: 'HOBBIES' },
-            { label: 'FAMILY', value: 'FAMILY' },
-            { label: 'WORK', value: 'WORK' },
-            { label: 'RELATIONSHIP', value: 'RELATIONSHIP' },
-          ]}
-          placeholder="Select a category!"
-          defaultIndex={0}
-          onChangeItem={(item) => this.filterCollection(item.value)}
-          containerStyle={{ width: "80%", height: "10%", }}
-          selectedLabelStyle={{
-            color: '#39739d',
-            fontWeight: "bold",
-            fontSize: 20
-          }}
-          placeholderStyle={{
-            fontWeight: 'bold',
-            fontSize: 20
-          }}
-          style={{
-            borderTopLeftRadius: 10, borderTopRightRadius: 10,
-            borderBottomLeftRadius: 10, borderBottomRightRadius: 10,
+  /* 
 
-          }}
-          dropDownStyle={{
-            borderBottomLeftRadius: 20, borderBottomRightRadius: 20,
-          }}
-        />
+  <View style={{ height: "16%" }}></View>
+
+          <View style={[styles.centering, { height: "70%" }]}>
+            <ScrollView style={[styles.scrollView, { width: "90%" }]}>
+              {this.state.filteredArr.map((item, i) => {
+                return (
+                  <ListItem
+                    containerStyle={{
+                      backgroundColor: "#fed8b1",
+                    }}
+                    key={i}
+                    chevron
+                    bottomDivider
+                    onPress={() => {
+                      this.props.navigation.navigate(
+                        "TherapyQuestionDetailScreen",
+                        {
+                          questionkey: item.key,
+                        }
+                      );
+                    }}
+                  >
+                    <ListItem.Content style={{ alignItems: "center" }}>
+                      <ListItem.Title>
+                        {item.categoryDropped} {item.block}-{item.question}
+                      </ListItem.Title>
+                    </ListItem.Content>
+                  </ListItem>
+                );
+              })}
+            </ScrollView>
+          </View>
+
+*/
+}
+
+{
+  /*<View style={[styles.container]}>
+        
         <ScrollView style={styles.scrollView}>
           {
             this.state.filteredArr.map((item, i) => {
