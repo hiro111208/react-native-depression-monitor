@@ -217,16 +217,28 @@ class SchedulingScreen extends Component {
                 },
               ]}
             >
-              <DateTimePicker
-                style={{ width: 300 }}
-                testID="datePicker"
-                value={this.state.date}
-                mode="date"
-                minimumDate={this.state.mode === "date" && new Date()} // to prevent user to select past date
-                is24Hour={true}
-                display="default"
-                onChange={this.onChange}
-              />
+              {Platform.OS === "android" && this.state.show && (
+                <DateTimePicker
+                  testID="dateTimePicker"
+                  value={this.state.date}
+                  mode={this.state.mode}
+                  is24Hour={true}
+                  display="default"
+                  onChange={this.onChange}
+                />
+              )}
+              {Platform.OS === "ios" && (
+                <DateTimePicker
+                  style={{ width: 300 }}
+                  testID="datePicker"
+                  value={this.state.date}
+                  mode="date"
+                  minimumDate={this.state.mode === "date" && new Date()} // to prevent user to select past date
+                  is24Hour={true}
+                  display="default"
+                  onChange={this.onChange}
+                />
+              )}
             </View>
           </View>
 
