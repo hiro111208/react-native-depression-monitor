@@ -218,114 +218,83 @@ export default class TherapyQuestionScreen extends Component {
           </Fragment>
           )}
 
-{Platform.OS === 'android' && (
+          {Platform.OS === 'android' && (
             <Fragment>
-            <View style={[{ height: "10%", zIndex: 5 }, styles.centering]}>
-            <DropDownPicker
-              items={[
-                { label: "CONTROL", value: "CONTROL" },
-                { label: "SOCIAL", value: "SOCIAL" },
-                { label: "ACADEMIC", value: "ACADEMIC" },
-                { label: "MOOD", value: "HEALTH" },
-                { label: "HEALTH", value: "HEALTH" },
-                { label: "HOBBIES", value: "HOBBIES" },
-                { label: "FAMILY", value: "FAMILY" },
-                { label: "WORK", value: "WORK" },
-                { label: "RELATIONSHIP", value: "RELATIONSHIP" },
-              ]}
-              placeholder="Select a category!"
-              defaultIndex={0}
-              onChangeItem={(item) => this.filterCollection(item.value)}
-              containerStyle={{ width: "80%", height: "100%" }}
-              selectedLabelStyle={{
-                color: "dimgrey",
+              <View style={[{height: '100%', width: '100%', paddingBottom: '10%'}, styles.centering]}>
+              <DropDownPicker
+          items={[
+            { label: 'CONTROL', value: 'CONTROL' },
+            { label: 'SOCIAL', value: 'SOCIAL' },
+            { label: 'ACADEMIC', value: 'ACADEMIC' },
+            { label: 'MOOD', value: 'HEALTH' },
+            { label: 'HEALTH', value: 'HEALTH' },
+            { label: 'HOBBIES', value: 'HOBBIES' },
+            { label: 'FAMILY', value: 'FAMILY' },
+            { label: 'WORK', value: 'WORK' },
+            { label: 'RELATIONSHIP', value: 'RELATIONSHIP' },
+          ]}
+          placeholder="Select a category!"
+          defaultIndex={0}
+          onChangeItem={(item) => this.filterCollection(item.value)}
+          containerStyle={{ width: "80%", height: "10%", }}
+          selectedLabelStyle={{
+            color: "dimgrey",
                 fontWeight: "bold",
                 fontSize: 20,
-              }}
-              placeholderStyle={{
-                fontSize: 18,
+          }}
+          placeholderStyle={{
+            fontSize: 18,
                 fontWeight: "bold",
                 color: "dimgray",
-              }}
-              style={{
-                borderTopLeftRadius: 20,
+          }}
+          style={{
+            borderTopLeftRadius: 20,
                 borderTopRightRadius: 20,
                 borderBottomLeftRadius: 20,
                 borderBottomRightRadius: 20,
                 backgroundColor: "#ffeed2",
                 borderWidth: 0,
-                shadowColor: "#000",
-                shadowOffset: {
-                  width: 0,
-                  height: 2,
-                },
-                shadowOpacity: 0.25,
-                shadowRadius: 3.84,
-                elevation: 1,
-                marginVertical: 2,
-              }}
-              dropDownStyle={{
-                backgroundColor: "#ffeed2",
-                borderBottomLeftRadius: 20,
-                borderBottomRightRadius: 20,
-                shadowColor: "#000",
-                shadowOffset: {
-                  width: 0,
-                  height: 2,
-                },
-                shadowOpacity: 0.25,
-                shadowRadius: 3.84,
-                elevation: 2,
-                marginVertical: 2,
-              }}
-            />
-          </View>
+          }}
+          dropDownStyle={{
+            backgroundColor: '#ffeed2',
+            borderBottomLeftRadius: 20, borderBottomRightRadius: 20,
+          }}
+        />
+        
+        <ScrollView style={{ width: "90%", height: '90%', padding: 10 }}>
+          {
+            this.state.filteredArr.map((item, i) => {
+              return (
+                <ListItem containerStyle={{
+                  backgroundColor: "#fed8b1",
+                }}
+                  key={i}
+                  chevron
+                  bottomDivider
+                  onPress={() => {
+                    this.props.navigation.navigate('TherapyQuestionDetailScreen', {
+                      questionkey: item.key
+                    });
+                  }}>
+                  <ListItem.Content style={{ alignItems: 'center', }}>
+                    <ListItem.Title>
+                      {item.categoryDropped} {item.block}-{item.question}
+                    </ListItem.Title>
+                  </ListItem.Content>
+                </ListItem>
+              );
+            })
+          }
+        </ScrollView>
 
-          <View style={[styles.centering, { height: "70%" }]}>
-            <ScrollView style={[styles.scrollView, { width: "90%" }]}>
-              {this.state.filteredArr.map((item, i) => {
-                return (
-                  <ListItem
-                    containerStyle={{
-                      backgroundColor: "#fed8b1",
-                    }}
-                    key={i}
-                    chevron
-                    bottomDivider
-                    onPress={() => {
-                      this.props.navigation.navigate(
-                        "TherapyQuestionDetailScreen",
-                        {
-                          questionkey: item.key,
-                        }
-                      );
-                    }}
-                  >
-                    <ListItem.Content style={{ alignItems: "center" }}>
-                      <ListItem.Title>
-                        {item.categoryDropped} {item.block}-{item.question}
-                      </ListItem.Title>
-                    </ListItem.Content>
-                  </ListItem>
-                );
-              })}
-            </ScrollView>
-          </View>
-
-          <View style={{ height: "7%" }}></View>
-
-          <View style={[{ height: "9%" }, styles.centering]}>
-            <TouchableOpacity
-              onPress={() => this.props.navigation.navigate("AdminDashboard")}
-              style={[
-                styles.bottomButton,
-                styles.shadowEffect,
-                styles.centering,
-              ]}
-            >
-              <Text style={[styles.fontStyle, { fontSize: 17 }]}>Go Back</Text>
-            </TouchableOpacity>
-          </View>
+        <View>
+          <Button 
+            title="Go back"
+            onPress={() => this.props.navigation.navigate('AdminDashboard')}
+            color={'#ffa351ff'}
+          />
+        </View>
+              </View>
           </Fragment>
           )}
           
