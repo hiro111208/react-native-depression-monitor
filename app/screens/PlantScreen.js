@@ -74,14 +74,13 @@ const PlantScreen = ({ navigation, route }) => {
       .firestore()
       .collection("users")
       .doc(firebase.auth().currentUser.uid)
-      .set({
-        userID: user.userID,
-        question: user.question,
-        block: user.block,
-        categoryDropped: user.categoryDropped,
-        level: user.level,
-        coins: user.coins,
-      })
+      .set(
+        {
+          level: user.level,
+          coins: user.coins,
+        },
+        { merge: true }
+      )
       .then(() => {
         console.log("Progress saved");
         route.params.onGoBack();
