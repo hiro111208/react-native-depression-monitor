@@ -4,7 +4,7 @@ Software Name: `HUG - Help U Grow`
 
 ## Authors
 
-- Dana Alsuwailem
+- Dana Alsuwailem (K1897404)
 - Alexander Armero Saura (k19017186)
 - Crystal Chan (K19001568)
 - Julianne Diaz (K19013932)
@@ -17,6 +17,12 @@ Software Name: `HUG - Help U Grow`
 ## Source Code References
 
 ## Deployment
+
+This app was deployed at:
+
+## Installation
+
+Here are the steps to install the app.
 
 ### Admin Account
 
