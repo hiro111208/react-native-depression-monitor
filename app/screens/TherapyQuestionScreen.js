@@ -118,7 +118,7 @@ export default class TherapyQuestionScreen extends Component {
                     { label: "HOBBIES", value: "HOBBIES" },
                     { label: "FAMILY", value: "FAMILY" },
                     { label: "WORK", value: "WORK" },
-                    { label: "RELATIONSHIP", value: "RELATIONSHIP" },
+                    { label: "RELATIONSHIPS", value: "RELATIONSHIPS" },
                   ]}
                   placeholder="Select a category!"
                   defaultIndex={0}

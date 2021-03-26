@@ -17,11 +17,13 @@ import Index from "./app/src/components/Index";
 import PatientDashboard from "./app/dashboards/PatientDashboard";
 import AdminDashboard from "./app/dashboards/AdminDashboard";
 
-import TherapyQuestionScreen from './app/screens/TherapyQuestionScreen';
-import TherapyQuestionDetailScreen from './app/screens/TherapyQuestionDetailScreen';
+import TherapyQuestionScreen from "./app/screens/TherapyQuestionScreen";
+import TherapyQuestionDetailScreen from "./app/screens/TherapyQuestionDetailScreen";
 
 import PauseScreen from "./app/screens/PauseScreen";
 import colors from "./app/config/colors";
+import SupportResources from "./app/screens/SupportResources";
+import AccountScreen from "./app/dashboards/AccountScreen";
 
 import { withNavigation } from "react-navigation";
 
@@ -88,7 +90,6 @@ function MyStack() {
         component={ScheduleListScreen}
         options={{ title: "Schedule List" }}
       />
-
       <Stack.Screen
         options={{ headerShown: false }}
         name="TherapyScreen"
@@ -106,16 +107,22 @@ function MyStack() {
         component={PlantScreen}
       />
       <Stack.Screen name="CategoryDrop" component={CategoryDrop} />
-      <Stack.Screen 
-        name="TherapyQuestionScreen" 
-        component={TherapyQuestionScreen} 
-        options={{ title: 'Therapy Questions' }}
+      <Stack.Screen
+        name="TherapyQuestionScreen"
+        component={TherapyQuestionScreen}
+        options={{ title: "Therapy Questions" }}
       />
-      <Stack.Screen 
-       name="TherapyQuestionDetailScreen" 
-       component={TherapyQuestionDetailScreen} 
-       options={{ title: 'Question Detail' }}
+      <Stack.Screen
+        name="TherapyQuestionDetailScreen"
+        component={TherapyQuestionDetailScreen}
+        options={{ title: "Question Detail" }}
       />
+      <Stack.Screen
+        options={{ headerShown: false }}
+        name="SupportResources"
+        component={SupportResources}
+      />
+      <Stack.Screen name="AccountScreen" component={AccountScreen} />
     </Stack.Navigator>
   );
 }
@@ -125,17 +132,5 @@ export default function App() {
     <NavigationContainer>
       <MyStack />
     </NavigationContainer>
-
-    //Uncomment to see different screens one at a time
-    //<TherapyScreen />
-    //<CategoryDrop/>
-    //<PlantScreen/>
-    //<LoginScreen/>
-    //<SignupScreen/>
-    // <SchedulingScreen/>
-    //<SignupScreen />
-    //<ForgotPasswordScreen/>
-    //<PauseScreen/>
-    //<Index></Index> //where progressBar buttons/actions and component are
   );
 }
