@@ -17,7 +17,7 @@ const SupportRessources = ({ navigation }) => {
         <View style={[styles.boxLarge, styles.boxMargin]}>
           <ImageBackground
             style={[styles.boxLarge, styles.boxMargin]}
-            source={require("./mat.png")}
+            source={require("../assets/mat.png")}
           >
             <AntDesign
               name="leftcircleo"
