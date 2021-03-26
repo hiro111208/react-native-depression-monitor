@@ -137,18 +137,18 @@ const SupportRessources = ({ navigation }) => {
             The research for this project was done by:{" "}
           </Text>
           <Text />
-          <Text style={styles.tit}> -Jenny Yiend</Text>
-          <Text style={styles.tit}> -Jong-Sun Lee</Text>
-          <Text style={styles.tit}> -Sinem Tekes</Text>
-          <Text style={styles.tit}> -Louise Atkins</Text>
-          <Text style={styles.tit}> -Andrew Mathews</Text>
-          <Text style={styles.tit}> -Manouk Vrinten</Text>
-          <Text style={styles.tit}> -Christian Ferragamo</Text>
-          <Text style={styles.tit}> -Sukhwinder Shergill</Text>
+          <Text style={styles.smallTitle}> -Jenny Yiend</Text>
+          <Text style={styles.smallTitle}> -Jong-Sun Lee</Text>
+          <Text style={styles.smallTitle}> -Sinem Tekes</Text>
+          <Text style={styles.smallTitle}> -Louise Atkins</Text>
+          <Text style={styles.smallTitle}> -Andrew Mathews</Text>
+          <Text style={styles.smallTitle}> -Manouk Vrinten</Text>
+          <Text style={styles.smallTitle}> -Christian Ferragamo</Text>
+          <Text style={styles.smallTitle}> -Sukhwinder Shergill</Text>
           <Text />
           <Text />
           <Text style={styles.main}> In an academic paper entitled:</Text>
-          <Text style={styles.tit}>
+          <Text style={styles.smallTitle}>
             Modifying Interpretation in a ClinicallyDepressed Sample Using
             ‘Cognitive BiasModification-Errors’: A Double BlindRandomised
             Controlled Trial
@@ -207,7 +207,7 @@ const styles = StyleSheet.create({
     fontSize: 20,
     textDecorationLine: "underline",
   },
-  tit: {
+  smallTitle: {
     color: "white",
     fontSize: 15,
     margin: 2,
