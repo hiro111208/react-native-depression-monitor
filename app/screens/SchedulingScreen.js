@@ -1,24 +1,22 @@
-// screens/SchedulingScreen.js
-
 import React, { Component } from "react";
-
 import {
   Button,
   StyleSheet,
   Image,
-  Dimensions,
   Text,
-  ScrollView,
   ActivityIndicator,
   View,
   Platform,
   Alert,
+  TouchableOpacity,
 } from "react-native";
-
 import DateTimePicker from "@react-native-community/datetimepicker";
 import firebase from "../database/firebase";
 import moment from "moment";
 
+/**
+ * Screen to allow patients to schedule notifications
+ */
 class SchedulingScreen extends Component {
   constructor() {
     super();
@@ -26,33 +24,36 @@ class SchedulingScreen extends Component {
     this.state = {
       isLoading: false,
       date: new Date(),
-      mode: "",
+      mode: "date",
       show: false,
     };
   }
 
+  // Updates the date selected depending on user input
   onChange = (event, selectedDate) => {
     const showFlag = Platform.OS === "ios";
     this.setState({ show: showFlag });
-    console.log("selectedDate +++", selectedDate);
     this.setState({ date: selectedDate || date });
   };
 
+  // Sets the show mode
   showMode = (currentMode) => {
-    this.setState({ show: true });
-    this.setState({ mode: currentMode });
+    this.setState({ show: true, mode: currentMode });
   };
 
+  // Presents the pop up to select the date
   showDatepicker = () => {
     this.showMode("date");
   };
 
+  // Present the pop up to select the time
   showTimepicker = () => {
     this.showMode("time");
   };
 
-  storeUser() {
-    if (this.state.date === "") {
+  // Stores the scheduled time in firestore for the user
+  storeUser(date) {
+    if (date === "") {
       alert("Pick date and time, please!");
     } else {
       this.setState({
@@ -60,7 +61,7 @@ class SchedulingScreen extends Component {
       });
       this.dbRef
         .add({
-          scheduleDateTime: this.state.date,
+          scheduleDateTime: date,
           userID: firebase.auth().currentUser.uid,
         })
         .then((res) => {
@@ -79,23 +80,6 @@ class SchedulingScreen extends Component {
     }
   }
 
-  storeFirstAppointment = (date) => {
-    this.dbRef
-      .add({
-        scheduleDateTime: date,
-        userID: firebase.auth().currentUser.uid,
-      })
-      .then((res) => {
-        console.log(res);
-      })
-      .catch((err) => {
-        console.error("Error found: ", err);
-        this.setState({
-          isLoading: false,
-        });
-      });
-  };
-
   // method call on book first appointment
   onFirstAppointment = () => {
     const { date } = this.state;
@@ -108,7 +92,7 @@ class SchedulingScreen extends Component {
       addWeekArray.push(nowtoWeek);
     }
     for (let i = 0; i < addWeekArray.length; i++) {
-      this.storeFirstAppointment(addWeekArray[i]);
+      this.storeUser(addWeekArray[i]);
     }
     this.setState({
       isLoading: false,
@@ -132,7 +116,7 @@ class SchedulingScreen extends Component {
     }
     const isValidtoGo = await diffArray.every((el) => el >= 47);
     if (String(isValidtoGo).trim() === "true") {
-      this.storeUser();
+      this.storeUser(this.state.date);
     } else {
       alert(
         "You cannot book appointments that are consecutive or on the same day, please select another date."
@@ -140,7 +124,7 @@ class SchedulingScreen extends Component {
     }
   };
 
-  // fetch data of  ScheduleList to validate appointment date
+  // fetch data of ScheduleList to validate appointment date
   getCollection = async (querySnapshot) => {
     const scheduleArr = [];
 
@@ -153,7 +137,8 @@ class SchedulingScreen extends Component {
         seconds: scheduleDateTime.seconds,
       });
     });
-    // first appointment functionality
+
+    // Automatically schedules all appointments if the scheduler array has no contents
     if (scheduleArr.length === 0) {
       Alert.alert(
         "First appointment",
@@ -193,52 +178,46 @@ class SchedulingScreen extends Component {
       );
     }
     return (
-      <ScrollView style={styles.container}>
-        <View style={styles.inputGroup}>
-          <Image
-            style={{
-              flex: 1,
-              justifyContent: "center",
-              alignItems: "center",
-              resizeMode: "center",
-              height: Dimensions.get("window").height / 2,
-              width: Dimensions.get("window").width,
-            }}
-            source={require("../assets/stage_9.png")}
-          />
+      <View style={[styles.container, styles.centering]}>
+        <View style={[styles.center, styles.shadowEffect, styles.cover]}>
+          <View style={{ height: "7%" }}></View>
 
-          <View>
-            <Button
-              onPress={this.showDatepicker}
-              title="Select Date"
-            />
+          <View style={[{ height: "6%", flexDirection: "row" }]}>
+            <View style={{ width: "20%" }}></View>
+            <Text style={[styles.textStyle, styles.fontStyle]}>
+              Select a date:
+            </Text>
           </View>
 
-          <View>
-            <Button
-              onPress={this.showTimepicker}
-              title="Select Time" />
-          </View>
+          {Platform.OS === "android" && (
+            <Button onPress={this.showMode} title="Select Date" />
+          )}
 
-          {Platform.OS === 'android' && this.state.show && (
+          {Platform.OS === "android" && this.state.show && (
             <DateTimePicker
-              testID="dateTimePicker"
+              testID="DatePicker"
               value={this.state.date}
-              //minimumDate={this.state.mode === 'date' && new Date()} // to prevent user to select past date
               mode={this.state.mode}
               is24Hour={true}
               display="default"
               onChange={this.onChange}
             />
           )}
-          {Platform.OS === 'ios' && 
-            <View style={styles.datepickerGroup}>
+
+          {Platform.OS === "ios" && (
+            <View style={{ height: "10%", flexDirection: "row" }}>
               <View
                 style={{
-                  flex: 1,
-                  justifyContent: "center",
-                  alignContent: "center",
+                  height: "100%",
+                  width: "33%",
                 }}
+              ></View>
+              <View
+                style={[
+                  {
+                    width: "40%",
+                  },
+                ]}
               >
                 <DateTimePicker
                   testID="datePicker"
@@ -250,79 +229,144 @@ class SchedulingScreen extends Component {
                   onChange={this.onChange}
                 />
               </View>
+            </View>
+          )}
 
-              <Text> </Text>
+          <View style={[{ height: "6%", flexDirection: "row" }]}>
+            <View style={{ width: "20%" }}></View>
+            <Text style={[styles.textStyle, styles.fontStyle]}>
+              Select a time:
+            </Text>
+          </View>
 
+          {Platform.OS === "android" && (
+            <Button onPress={this.showTimepicker} title="Select Time" />
+          )}
+
+          {Platform.OS === "ios" && (
+            <View style={{ height: "10%", flexDirection: "row" }}>
               <View
                 style={{
-                  width: "50%",
-                  flex: 1,
-                  justifyContent: "center",
-                  alignContent: "center",
+                  height: "10%",
+                  width: "33%",
+                }}
+              ></View>
+              <View
+                style={{
+                  height: "10%",
+                  width: "33%",
                 }}
               >
                 <DateTimePicker
+                  style={{ width: 300 }}
                   testID="TimePicker"
                   value={this.state.date}
                   mode="time"
-                  //minimumDate={this.state.mode === "date" && new Date()} // to prevent user to select past date
                   is24Hour={true}
                   display="default"
                   onChange={this.onChange}
                 />
               </View>
-            </View>}
-          
+            </View>
+          )}
+
+          <View style={{ height: "2%" }}></View>
+
+          <View style={[{ height: "10%" }, styles.centering]}>
+            <TouchableOpacity
+              onPress={() => this.validateAppointment()}
+              style={[styles.selectButton, styles.cover, styles.centering]}
+            >
+              <Text style={[styles.textStyle, styles.fontStyle]}>
+                Add Session
+              </Text>
+            </TouchableOpacity>
+          </View>
+
+          <View style={{ height: "10%" }}></View>
+
+          <View style={[{ height: "25%" }, styles.centering]}>
+            <View style={[styles.cover, styles.centering]}>
+              <Image
+                style={{ width: 125, height: 125 }}
+                resizeMode="contain"
+                source={require("../assets/sapling.png")}
+              />
+            </View>
+          </View>
+
+          <View style={[{ height: "10%" }, styles.centering]}>
+            <TouchableOpacity
+              onPress={() =>
+                this.props.navigation.navigate("ScheduleListScreen")
+              }
+              style={[
+                styles.bottomBorder,
+                styles.centering,
+                styles.shadowEffect,
+              ]}
+            >
+              <Text style={[styles.scheduleText, styles.fontStyle]}>
+                Schedule List
+              </Text>
+            </TouchableOpacity>
+          </View>
         </View>
-        <View style={styles.button}>
-          <Button
-            title="Add Session"
-            onPress={() => this.validateAppointment()}
-            color="#19AC52"
-          />
-          <Button
-            title="Schedule List"
-            onPress={() => this.props.navigation.navigate("ScheduleListScreen")}
-            color="#19AC52"
-          />
-        </View>
-      </ScrollView>
+      </View>
     );
   }
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    padding: 35,
-    backgroundColor: "#ffd390",
+  bottomBorder: {
+    height: "100%",
+    width: "40%",
+    borderRadius: 50,
+    backgroundColor: "#ffeed2",
   },
-  inputGroup: {
-    flex: 1,
-    padding: 0,
-    marginBottom: 15,
-    borderBottomWidth: 1,
-    borderBottomColor: "#cccccc",
+  center: {
+    backgroundColor: "#fed8b1",
+    borderRadius: 50,
+    borderWidth: 5,
+    borderColor: "#ffeed2",
   },
-  preloader: {
-    left: 0,
-    right: 0,
-    top: 0,
-    bottom: 0,
-    position: "absolute",
+  centering: {
     alignItems: "center",
     justifyContent: "center",
   },
-  button: {
+  container: {
     flex: 1,
-    flexDirection: "row",
-    justifyContent: "space-around",
+    display: "flex",
+    padding: 25,
+    backgroundColor: "#fff",
   },
-  datepickerGroup: {
-    flex: 1,
-    flexDirection: "row",
-    justifyContent: "space-evenly",
-    alignItems: "center",
+  cover: {
+    height: "100%",
+    width: "100%",
+  },
+  fontStyle: {
+    fontWeight: "bold",
+    color: "dimgray",
+  },
+  scheduleText: {
+    fontSize: 15,
+  },
+  selectButton: {
+    backgroundColor: "#ffeed2",
+  },
+  shadowEffect: {
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
+    elevation: 5,
+    marginVertical: 5,
+  },
+  textStyle: {
+    fontSize: 18,
   },
 });
 
