@@ -1,76 +1,143 @@
-import React, { Component, useState, useEffect } from "react";
-import { StyleSheet, View, Text, TouchableOpacity, Alert } from "react-native";
-import { Table, TableWrapper, Row, Cell } from "react-native-table-component";
+import React, { useEffect, useRef } from "react";
+
+import { StyleSheet, View } from "react-native";
+
+import { Table, Rows, Row } from "react-native-table-component";
 
 function UserTable(props) {
-  const { tableHead, setTableHead } = useState([]);
-  const { tableData, setTableData } = useState([]);
-  var data = [["1"], ["2"], ["3"], ["4"]];
-  const dataHead = [["Session", "Avg Time Q1", "Avg Time Q2", " NºErrors"]];
-  const avg1 = props.average1;
-  const avg2 = props.average2;
+  const data = [["º 1"], ["º 2"], ["º 3"], ["º 4"]];
+  const dataHead = ["Batch", "AvgTimeQ1", "AvgTimeQ2", "NºErrors"];
+  // const average1 = props.average1;
+  // const average2 = props.average2;
+  //variables to store averages in one decimal format
 
-  for (let i = 0; i < 4; i++) {
-    data.concat(avg1[i]);
-    data.concat(avg2[i]);
-  }
+  // store averages in string format
+  const setData = () => {
+    const average1 = props.average1;
+    const average2 = props.average2;
+    const roundedData1 = [];
+    const roundedData2 = [];
+    console.log(props.average1);
+    console.log(props.average2);
+    console.log("passed");
+    console.log(average1);
+    console.log(average2);
 
-  function setData() {
-    setTableData(data);
-    setTableData(dataHead);
-  }
+    for (let i = 0; i < 4; i++) {
+      roundedData1.push(`${average1[i]}`.length);
+      roundedData2.push(`${average2[i]}`.length);
+    }
+    //format averages and push to table data
+    for (let i = 0; i < 4; i++) {
+      if (average1[i] !== 0) {
+        data[i].push(
+          `${(average1[i] / Math.pow(10, roundedData1[i] - 1)).toFixed(
+            1
+          )}  (ms/10^${roundedData2[i] - 1})`
+        );
+      } else {
+        data[i].push(0);
+      }
 
-  useEffect(() => {
-    setData;
-  }, []);
+      if (average2[i] !== 0) {
+        data[i].push(
+          `${(average2[i] / Math.pow(10, roundedData2[i] - 1)).toFixed(
+            1
+          )}  (ms/10^${roundedData2[i] - 1})`
+        );
+      } else {
+        data[i].push(0);
+      }
 
-  const alertIndex = (index) => {
-    Alert.alert(`This is row ${index + 1}`);
+      data[i].push(props.errorNum[i]);
+    }
   };
 
-  const element = (data, index) => (
-    <TouchableOpacity onPress={() => alertIndex(index)}>
-      <View style={styles.btn}>
-        <Text style={styles.btnText}>button</Text>
-      </View>
-    </TouchableOpacity>
-  );
+  useComponentWillMount(() => setData());
 
   return (
-    <View style={styles.tableContainer}>
-      <Table borderStyle={{ borderWidth: 0.2, borderColor: "#000" }}>
-        <Row
-          data={dataHead}
-          style={styles.tablehead}
-          textStyle={styles.tabletext}
-        />
-        {data.map((rowData, index) => (
-          <TableWrapper key={index} style={styles.row}>
-            {rowData.map((cellData, cellIndex) => (
-              <Cell
-                key={cellIndex}
-                data={cellIndex === 3 ? element(cellData, index) : cellData}
-                textStyle={styles.text2}
-              />
-            ))}
-          </TableWrapper>
-        ))}
-      </Table>
+    <View>
+      <View style={styles.container}>
+        <Table
+          borderStyle={{
+            borderWidth: 0.3,
+            borderColor: "black",
+          }}
+        >
+          {/* <Rows
+            data={dataHead}
+            style={styles.HeadStyle}
+            textStyle={styles.headerText}
+            overflow="hidden"
+          /> */}
+          <Row
+            data={dataHead}
+            style={styles.HeadStyle}
+            textStyle={styles.TableText}
+          />
+          <Rows data={data} textStyle={styles.TableText} />
+        </Table>
+      </View>
     </View>
   );
 }
-export default UserTable;
 
 const styles = StyleSheet.create({
-  tableContainer: {
-    flex: 1,
-    padding: 16,
-    paddingTop: 30,
-    backgroundColor: "#fff",
+  container: {
+    padding: 10,
+    borderWidth: 0.4,
+    backgroundColor: "transparent",
+    borderRadius: 15,
+    shadowOffset: {
+      width: 2,
+      height: 2,
+    },
+    textAlign: "center",
+    padding: 10,
+    shadowOpacity: 0.2,
+    shadowRadius: 1,
+    backgroundColor: "white",
+    borderRadius: 10,
   },
-  tablehead: { height: 40, backgroundColor: "#808B97" },
-  tabletext: { margin: 6 },
-  row: { flexDirection: "row", backgroundColor: "#FFF1C1" },
-  btn: { width: 58, height: 18, backgroundColor: "#78B7BB", borderRadius: 2 },
-  btnText: { textAlign: "center", color: "#fff" },
+  HeadStyle: {
+    height: 30,
+    justifyContent: "center",
+    alignContent: "center",
+    backgroundColor: "#f4cbcb",
+  },
+  label: {
+    marginTop: 3,
+    fontSize: 6,
+    fontWeight: "300",
+  },
+  labelText: {
+    marginTop: 3,
+    fontSize: 7,
+    fontWeight: "300",
+  },
+  TableText: {
+    fontSize: 10,
+    fontWeight: "300",
+    margin: 5,
+    padding: 5,
+  },
+  headerText: {
+    fontStyle: "italic",
+    alignContent: "center",
+    fontSize: 12,
+
+    fontWeight: "300",
+    margin: -5,
+    padding: 10,
+  },
 });
+
+export default UserTable;
+
+//Store Props before child mount to remove undefined values
+const useComponentWillMount = (func) => {
+  const willMount = useRef(true);
+  if (willMount.current) {
+    func();
+  }
+};

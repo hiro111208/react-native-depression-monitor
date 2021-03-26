@@ -1,4 +1,5 @@
-import React, { Component, useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
+
 import {
   StatusBar,
   Animated,
@@ -6,35 +7,65 @@ import {
   View,
   Dimensions,
   StyleSheet,
-  TextInput,
   ImageBackground,
   TouchableOpacity,
 } from "react-native";
 
-import filter from "lodash.filter";
-import firebase from "./firebase";
-import ProgressBar from "./App/src/components/ProgressBar";
-import { LineChart, Grid } from "react-native-svg-charts";
+import firebase from "../../../firebase";
+import ProgressBar from "./ProgressBar";
+import { TextInput } from "react-native-gesture-handler";
 
-function UserDashboard(props, { navigation, route }) {
-  const scrollY = React.useRef(new Animated.Value(0)).current;
-  // const opacityLevel = React.useRef(new Animated.Value(0)).current;
-  const spacing = 10;
-  const ITEM_SIZE = 65 + spacing;
-
+function UserDashboard(props) {
   const [searchQuery, setSearchQuery] = useState("");
-
-  const [loaded, setLoaded] = useState(false);
   const [items, setItems] = useState([]);
   const [userCount, setUserCount] = useState(0);
   const [filterList, setFilterList] = useState([]);
-  const [activeFilter, setActiveFilter] = useState([]);
-
-  const ref = firebase.firestore().collection("users");
-  //Default database display format
-  const query = ref.orderBy("block");
 
   // Queries from firebase database and stores in list
+  const ref = firebase.firestore().collection("users");
+  //Default database display format
+  const query = ref.orderBy("userID");
+
+  const onChange = (text) => {
+    // Check if searched text is not blank
+    if (text) {
+      // Inserted text is not blank
+      // Filter the items
+      // Update items
+      const newData = items.filter(function (item) {
+        //allow filtering by block number // id number // full id
+        const itemIDData = `DB${item.userID}`
+          ? `DB${item.userID}`.toUpperCase()
+          : "".toUpperCase();
+        const textData = text.toUpperCase();
+        const itemBlockData = item.block.toString()
+          ? item.block.toString()
+          : "".toUpperCase();
+        const itemIDNumberData = item.userID
+          ? item.userID.toString().toUpperCase()
+          : "".toUpperCase();
+
+        return (
+          itemIDData.indexOf(textData) > -1 ||
+          itemBlockData.indexOf(textData) > -1 ||
+          itemIDNumberData.indexOf(textData) > -1
+        );
+      });
+      setItems(newData);
+      setSearchQuery(text);
+    } else {
+      // Inserted text is blank
+      // Update items with filterList
+      setItems(filterList);
+      setSearchQuery(text);
+    }
+  };
+
+  //upon Mount get UserList
+  useEffect(() => {
+    getItems();
+  }, []);
+
   function getItems() {
     query.onSnapshot((querySnapshot) => {
       const items = [];
@@ -44,59 +75,15 @@ function UserDashboard(props, { navigation, route }) {
       setItems(items);
       setFilterList(items);
       setUserCount(items.length);
-      setLoaded(true);
     });
   }
 
-  // Gets therapy content while screen is renderings
-  useEffect(() => {
-    getItems();
-  }, []);
-
-  function renderHeader() {
-    return (
-      <View
-        style={{
-          backgroundColor: "#fff",
-          padding: 10,
-          marginVertical: 10,
-          borderRadius: 20,
-        }}
-      >
-        <TextInput
-          autoCapitalize="none"
-          autoCorrect={false}
-          clearButtonMode="always"
-          value={searchQuery}
-          onChangeText={(queryText) => handleSearch(queryText)}
-          placeholder="Search"
-          style={{ backgroundColor: "#fff", paddingHorizontal: 20 }}
-        />
-      </View>
-    );
-  }
-
-  const handleSearch = (text) => {
-    const formattedQuery = text.toLowerCase();
-    const filteredData = filter(filterList, (user) => {
-      return contains(user, formattedQuery);
-    });
-    setItems(filteredData);
-    setSearchQuery(text);
-  };
-
-  const contains = (user, searchQuery) => {
-    if (user.includes(searchQuery)) {
-      return true;
-    }
-    return false;
-  };
   const { width, height } = Dimensions.get("window");
 
   return (
     <View>
       <ImageBackground
-        source={require("./App/images/OrangeLogo.jpeg")}
+        source={require("../../images/OrangeLogo.jpeg")}
         style={{
           absoluteFillObject: true,
           shadowColor: "#000",
@@ -106,7 +93,7 @@ function UserDashboard(props, { navigation, route }) {
             width: 0,
             height: 10,
           },
-          padding: spacing,
+          padding: 10,
           shadowOpacity: 0.3,
           shadowRadius: 20,
         }}
@@ -115,7 +102,7 @@ function UserDashboard(props, { navigation, route }) {
           style={{
             width: 150,
             height: 35,
-            marginTop: 50,
+            marginTop: 20,
             shadowOffset: {
               width: 0,
               height: 10,
@@ -138,25 +125,24 @@ function UserDashboard(props, { navigation, route }) {
             Total Nº Users : {userCount}
           </Text>
         </View>
+        <TextInput
+          style={styles.searchBar}
+          round
+          searchIcon={{ size: 24 }}
+          onChangeText={(text) => onChange(text)}
+          clearButtonMode={"always"}
+          placeholder="Search by ID or Block Number"
+          value={searchQuery}
+        />
+
         <Animated.FlatList
-          ListHeaderComponent={renderHeader}
           data={items}
           keyExtractor={(item, index) => index.toString()}
-          onScroll={Animated.event(
-            [{ nativeEvent: { contentOffset: { y: scrollY } } }],
-            {
-              useNativeDriver: true,
-            }
-          )}
           contentContainerStyle={{
             paddingTop: StatusBar.currentHeight || 42,
-            padding: spacing,
+            padding: 10,
           }}
           renderItem={({ item, index }) => {
-            // const scale = scrollY.interpolate({
-            //   inputRange: [-1, 0, ITEM_SIZE * index, ITEM_SIZE * (index + 5)],
-            //   outputRange: [1, 1, 1, 0],
-            // });
             return (
               <TouchableOpacity
                 key={index}
@@ -167,10 +153,7 @@ function UserDashboard(props, { navigation, route }) {
                   })
                 }
               >
-                <Animated.View
-                  style={styles.listComponent}
-                  // transform={[scale]}
-                >
+                <Animated.View style={styles.listComponent}>
                   <View flex={1}>
                     <View flexDirection={"row"}>
                       <TouchableOpacity
@@ -214,6 +197,7 @@ function UserDashboard(props, { navigation, route }) {
     </View>
   );
 }
+
 const styles = StyleSheet.create({
   listComponent: {
     flexDirection: "row",
@@ -229,5 +213,24 @@ const styles = StyleSheet.create({
     backgroundColor: "#FFF",
     borderRadius: 10,
   },
+  searchBar: {
+    justifyContent: "center",
+    alignItems: "center",
+    textAlign: "center",
+    fontSize: 22,
+    marginTop: 20,
+    marginBottom: 0,
+    height: 50,
+    backgroundColor: "white",
+    borderRadius: 20,
+    shadowColor: "#000",
+
+    shadowOffset: {
+      width: 10,
+      height: 10,
+      borderRadius: 20,
+    },
+  },
 });
+
 export default UserDashboard;

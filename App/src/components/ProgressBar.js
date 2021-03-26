@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import Platform from "react-native";
 import {
   Animated,
   StyleSheet,
@@ -12,11 +13,11 @@ import BarMarkers from "./BarMarkers";
 export default class ProgressBar extends Component {
   constructor() {
     super();
-    this._animatedColor = new Animated.Value(0);
-    // Enable LayoutAnimation under Android
     if (Platform.OS === "android") {
       UIManager.setLayoutAnimationEnabledExperimental(true);
     }
+    this._animatedColor = new Animated.Value(0);
+    // Enable LayoutAnimation under Android
   }
 
   static defaultProps = {
