@@ -14,9 +14,9 @@ const SupportRessources = ({ navigation }) => {
   return (
     <View ststyle={styles.container}>
       <ScrollView style={styles.container}>
-        <View style={styles.boxLarge}>
+        <View style={[styles.boxLarge, styles.boxMargin]}>
           <ImageBackground
-            style={styles.boxLarge}
+            style={[styles.boxLarge, styles.boxMargin]}
             source={require("./mat.png")}
           >
             <AntDesign
@@ -46,7 +46,7 @@ const SupportRessources = ({ navigation }) => {
         </View>
 
         <ScrollView horizontal>
-          <View style={styles.boxSmall}>
+          <View style={[styles.boxSmall, styles.boxMargin]}>
             <Text style={styles.title}>NHS:</Text>
             <Text
               style={styles.hyperlinkStyle}
@@ -68,7 +68,7 @@ const SupportRessources = ({ navigation }) => {
             />
           </View>
 
-          <View style={styles.boxSmall}>
+          <View style={[styles.boxSmall, styles.boxMargin]}>
             <Text style={styles.title}>Bipolar UK:</Text>
             <Text
               style={styles.hyperlinkStyle}
@@ -86,7 +86,7 @@ const SupportRessources = ({ navigation }) => {
             </Text>
           </View>
 
-          <View style={styles.boxSmall}>
+          <View style={[styles.boxSmall, styles.boxMargin]}>
             <Text style={styles.title}>Calmzone:</Text>
             <Text
               style={styles.hyperlinkStyle}
@@ -103,7 +103,7 @@ const SupportRessources = ({ navigation }) => {
             </Text>
           </View>
 
-          <View style={styles.boxSmall}>
+          <View style={[styles.boxSmall, styles.boxMargin]}>
             <Text style={styles.title}>Samaritans:</Text>
             <Text
               style={styles.hyperlinkStyle}
@@ -122,7 +122,7 @@ const SupportRessources = ({ navigation }) => {
             </Text>
           </View>
 
-          <View style={styles.boxSmall}>
+          <View style={[styles.boxSmall, styles.boxMargin]}>
             <Text style={styles.title}>WLM:</Text>
             <Text>highburycounselling@wlm.org.uk</Text>
             <Text>
@@ -132,7 +132,7 @@ const SupportRessources = ({ navigation }) => {
             </Text>
           </View>
         </ScrollView>
-        <View style={styles.boxLarge}>
+        <View style={[styles.boxLarge, styles.boxMargin]}>
           <Text style={styles.main}>
             The research for this project was done by:{" "}
           </Text>
@@ -160,22 +160,20 @@ const SupportRessources = ({ navigation }) => {
 };
 
 const styles = StyleSheet.create({
-  container: {
-    marginTop: 10,
-  },
   boxSmall: {
+    marginLeft: 10,
     width: 180,
     height: 180,
-    marginBottom: 10,
-    marginRight: 10,
     backgroundColor: "skyblue",
   },
   boxLarge: {
     width: 380,
     height: 350,
+    backgroundColor: "#ffa351",
+  },
+  boxMargin: {
     marginBottom: 10,
     marginRight: 10,
-    backgroundColor: "#ffa351",
   },
   bigWhite: {
     margin: 15,
@@ -183,6 +181,9 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     color: "white",
     fontFamily: "sans-serif-condensed",
+  },
+  container: {
+    marginTop: 10,
   },
   main: {
     color: "white",
