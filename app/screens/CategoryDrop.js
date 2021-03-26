@@ -21,10 +21,10 @@ const CategoryDrop = ({ route, navigation }) => {
 
   // Drops the category for the user or assigns them to control data set
   function chooseOption(chosenCategory) {
-    //var num = Math.random();
-    //if (num <= 0.5) {
-    chosenCategory = "CONTROL";
-    //}
+    var num = Math.random();
+    if (num <= 0.5) {
+      chosenCategory = "CONTROL";
+    }
     userProgress.categoryDropped = chosenCategory;
 
     //Update the database with new category
@@ -38,7 +38,9 @@ const CategoryDrop = ({ route, navigation }) => {
         coins: 0,
       })
       .then(() => {
-        console.log("Category successfully dropped");
+        console.log(
+          "Category successfully dropped" + userProgress.categoryDropped
+        );
         navigation.navigate("PatientDashboard");
       })
       .catch((error) => {
