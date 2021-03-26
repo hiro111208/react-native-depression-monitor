@@ -14,8 +14,6 @@ Software Name: `HUG - Help U Grow`
 - Shehzad Haleem (k19014449)
 - Mordecai Sassoon (K1923079)
 
-## Source Code References
-
 ## Deployment
 
 This app was deployed at:
@@ -28,3 +26,5 @@ Here are the steps to install the app.
 
 Username: `admin@joyapp.com`
 Password: `AdminP4ssw0rd`
+
+## References
