@@ -104,7 +104,7 @@ export default class TherapyQuestionScreen extends Component {
         <View style={[styles.center, styles.cover, styles.shadowEffect]}>
           <View style={{ height: "3%" }}></View>
 
-          <View style={[{ height: "10%" }, styles.centering]}>
+          <View style={[{ height: "10%", zIndex: 5 }, styles.centering]}>
             <DropDownPicker
               items={[
                 { label: "CONTROL", value: "CONTROL" },
@@ -159,13 +159,11 @@ export default class TherapyQuestionScreen extends Component {
                 },
                 shadowOpacity: 0.25,
                 shadowRadius: 3.84,
-                elevation: 1,
+                elevation: 2,
                 marginVertical: 2,
               }}
             />
           </View>
-
-          <View style={{ height: "3%" }}></View>
 
           <View style={[styles.centering, { height: "70%" }]}>
             <ScrollView style={[styles.scrollView, { width: "90%" }]}>
