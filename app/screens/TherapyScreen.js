@@ -369,14 +369,15 @@ const TherapyScreen = ({ navigation, route }) => {
   // writes the progress of the user so the question isn't repeated
   function saveProgress(blockI, questionI, coinsI) {
     userRef
-      .set({
-        userID: user.userID,
-        question: questionI,
-        block: blockI,
-        categoryDropped: user.categoryDropped,
-        level: user.level,
-        coins: user.coins + coinsI,
-      })
+      .set(
+        {
+          question: questionI,
+          block: blockI,
+          coins: user.coins + coinsI,
+          lastActive: new Date(),
+        },
+        { merge: true }
+      )
       .then(() => {
         console.log("Progress saved");
       })
