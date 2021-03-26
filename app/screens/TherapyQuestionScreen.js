@@ -1,6 +1,6 @@
 // screens/TherapyQuestionScreen.js
 
-import React, { Component } from "react";
+import React, { Component, Fragment } from "react";
 import {
   StyleSheet,
   ScrollView,
@@ -9,6 +9,7 @@ import {
   Button,
   TouchableOpacity,
   Text,
+  Platform,
 } from "react-native";
 import { ListItem } from "react-native-elements";
 import firebase from "../database/firebase";
@@ -106,7 +107,9 @@ export default class TherapyQuestionScreen extends Component {
         <View style={[styles.center, styles.cover, styles.shadowEffect]}>
           <View style={{ height: "3%" }}></View>
 
-          <View style={[{ height: "10%", zIndex: 5 }, styles.centering]}>
+          {Platform.OS === 'ios' && (
+            <Fragment>
+            <View style={[{ height: "10%", zIndex: 5 }, styles.centering]}>
             <DropDownPicker
               items={[
                 { label: "CONTROL", value: "CONTROL" },
@@ -212,6 +215,120 @@ export default class TherapyQuestionScreen extends Component {
               <Text style={[styles.fontStyle, { fontSize: 17 }]}>Go Back</Text>
             </TouchableOpacity>
           </View>
+          </Fragment>
+          )}
+
+{Platform.OS === 'android' && (
+            <Fragment>
+            <View style={[{ height: "10%", zIndex: 5 }, styles.centering]}>
+            <DropDownPicker
+              items={[
+                { label: "CONTROL", value: "CONTROL" },
+                { label: "SOCIAL", value: "SOCIAL" },
+                { label: "ACADEMIC", value: "ACADEMIC" },
+                { label: "MOOD", value: "HEALTH" },
+                { label: "HEALTH", value: "HEALTH" },
+                { label: "HOBBIES", value: "HOBBIES" },
+                { label: "FAMILY", value: "FAMILY" },
+                { label: "WORK", value: "WORK" },
+                { label: "RELATIONSHIP", value: "RELATIONSHIP" },
+              ]}
+              placeholder="Select a category!"
+              defaultIndex={0}
+              onChangeItem={(item) => this.filterCollection(item.value)}
+              containerStyle={{ width: "80%", height: "100%" }}
+              selectedLabelStyle={{
+                color: "dimgrey",
+                fontWeight: "bold",
+                fontSize: 20,
+              }}
+              placeholderStyle={{
+                fontSize: 18,
+                fontWeight: "bold",
+                color: "dimgray",
+              }}
+              style={{
+                borderTopLeftRadius: 20,
+                borderTopRightRadius: 20,
+                borderBottomLeftRadius: 20,
+                borderBottomRightRadius: 20,
+                backgroundColor: "#ffeed2",
+                borderWidth: 0,
+                shadowColor: "#000",
+                shadowOffset: {
+                  width: 0,
+                  height: 2,
+                },
+                shadowOpacity: 0.25,
+                shadowRadius: 3.84,
+                elevation: 1,
+                marginVertical: 2,
+              }}
+              dropDownStyle={{
+                backgroundColor: "#ffeed2",
+                borderBottomLeftRadius: 20,
+                borderBottomRightRadius: 20,
+                shadowColor: "#000",
+                shadowOffset: {
+                  width: 0,
+                  height: 2,
+                },
+                shadowOpacity: 0.25,
+                shadowRadius: 3.84,
+                elevation: 2,
+                marginVertical: 2,
+              }}
+            />
+          </View>
+
+          <View style={[styles.centering, { height: "70%" }]}>
+            <ScrollView style={[styles.scrollView, { width: "90%" }]}>
+              {this.state.filteredArr.map((item, i) => {
+                return (
+                  <ListItem
+                    containerStyle={{
+                      backgroundColor: "#fed8b1",
+                    }}
+                    key={i}
+                    chevron
+                    bottomDivider
+                    onPress={() => {
+                      this.props.navigation.navigate(
+                        "TherapyQuestionDetailScreen",
+                        {
+                          questionkey: item.key,
+                        }
+                      );
+                    }}
+                  >
+                    <ListItem.Content style={{ alignItems: "center" }}>
+                      <ListItem.Title>
+                        {item.categoryDropped} {item.block}-{item.question}
+                      </ListItem.Title>
+                    </ListItem.Content>
+                  </ListItem>
+                );
+              })}
+            </ScrollView>
+          </View>
+
+          <View style={{ height: "7%" }}></View>
+
+          <View style={[{ height: "9%" }, styles.centering]}>
+            <TouchableOpacity
+              onPress={() => this.props.navigation.navigate("AdminDashboard")}
+              style={[
+                styles.bottomButton,
+                styles.shadowEffect,
+                styles.centering,
+              ]}
+            >
+              <Text style={[styles.fontStyle, { fontSize: 17 }]}>Go Back</Text>
+            </TouchableOpacity>
+          </View>
+          </Fragment>
+          )}
+          
         </View>
       </View>
     );
