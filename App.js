@@ -103,7 +103,11 @@ function MyStack() {
         component={PlantScreen}
       />
       <Stack.Screen name="CategoryDrop" component={CategoryDrop} />
-      <Stack.Screen name="SupportResources" component={SupportResources} />
+      <Stack.Screen
+        options={{ headerShown: false }}
+        name="SupportResources"
+        component={SupportResources}
+      />
       <Stack.Screen name="AccountScreen" component={AccountScreen} />
     </Stack.Navigator>
   );
