@@ -1,9 +1,10 @@
-import React, { Component } from 'react'
+import React, { Component, useState } from 'react'
 import { ImageBackground, AppRegistry, ScrollView, View, StyleSheet, Text , Linking,Image} from 'react-native'
 import { AntDesign } from '@expo/vector-icons';
+import firebase from "../database/firebase";
 
-export default class App extends Component {
-  render({navigation}) {
+
+const SupportRessources = ({ navigation, route }) => {
     return (
       <View ststyle={styles.container}>
       <ScrollView style={styles.container}>
@@ -123,7 +124,7 @@ export default class App extends Component {
       </View>
     )
   }
-}
+
 
 const styles = StyleSheet.create({
   container: {
@@ -180,5 +181,6 @@ const styles = StyleSheet.create({
     margin: 2
   }
 
-})
+});
+
 export default SupportRessources;

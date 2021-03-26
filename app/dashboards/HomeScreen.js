@@ -18,48 +18,6 @@ import * as Notifications from "expo-notifications";
 import Constants from "expo-constants";
 
 
-const registerForPushNotificationsAsync = async()=> {
-  let token;// undefined initially
-  if (Constants.isDevice) {
-    const { status: existingStatus } = await Notifications.getPermissionsAsync();
-    let finalStatus = existingStatus;
-    if (existingStatus !== 'granted') {
-      const { status } = await Notifications.requestPermissionsAsync();// if permission to get notification is not granted then we ask the permission
-      finalStatus = status;
-    }
-    if (finalStatus !== 'granted') {
-      alert('Failed to get push token for push notification!');
-      return;
-    }
-    token = (await Notifications.getExpoPushTokenAsync()).data;
-    console.log(token);
-  } else {
-    alert('Must use physical device for Push Notifications');
-  }
-
-  // save the users token in firebase
- if (token){//makes sure there is a token to add to firebase
-   const res = await firebase
-   .firestore()
-   .collection('users')
-   .doc(firebase.auth().currentUser.uid)
-   .set({token},{merge:true})
- }
-
-
-  if (Platform.OS === 'android') {
-    Notifications.setNotificationChannelAsync('default', {
-      name: 'default',
-      importance: Notifications.AndroidImportance.MAX,
-      vibrationPattern: [0, 250, 250, 250],
-      lightColor: '#FF231F7C',
-    });
-  }
-
-  return token;
-}
-
-
 
 
 
@@ -131,7 +89,78 @@ export default function HomeScreen({ route, props, navigation }) {
     getLevel();
   }
 
+///
+
+
+
+useEffect(() => {
+  (async () => {
+    const user = await firebase
+    .firestore()
+    .collection("users")
+    .doc(firebase.auth().currentUser.uid)
+    .get();
+  })();
+});
+
+useEffect (() => {
+  (() => registerForPushNotificationsAsync())();
+}, []);
+
+const registerForPushNotificationsAsync = async()=> {
+  let token;// undefined initially
+  if (Constants.isDevice) {
+    const { status: existingStatus } = await Permissions.getAsync(Permissions.NOTIFICATIONS);
+  let finalStatus = existingStatus;
+  if (existingStatus !== "granted") {
+    const { status } = await Permissions.askAsync(Permissions.NOTIFICATIONS);
+    finalStatus = status;
+  }
+  if (finalStatus !== "granted") {
+    return false;
+  }
+    token = (await Notifications.getExpoPushTokenAsync()).data;
+    console.log(token);
+  } else {
+    alert('Must use physical device for Push Notifications');
+  }
+  // save the users token in firebase
+ if (token){//makes sure there is a token to add to firebase
+   const res = await firebase
+   .firestore()
+   .collection('users')
+   .doc(firebase.auth().currentUser.uid)
+   .set({token},{merge:true})
+ }
+
+
+  if (Platform.OS === 'android') {
+    Notifications.setNotificationChannelAsync('default', {
+      name: 'default',
+      importance: Notifications.AndroidImportance.MAX,
+      vibrationPattern: [0, 250, 250, 250],
+      lightColor: '#FF231F7C',
+    });
+  }
+
+  return token;
+}
+
+
+
+
+
+
+
+
+
+
+///
+
+
   return (
+
+
     <View style={styles.container}>
       <View style={styles.center}>
         <View style={[styles.welcomeArea, styles.shadowEffect]}>

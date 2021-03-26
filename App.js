@@ -19,6 +19,7 @@ import AdminDashboard from "./app/dashboards/AdminDashboard";
 import PauseScreen from "./app/screens/PauseScreen";
 import colors from "./app/config/colors";
 import SupportRessources from "./app/screens/SupportRessources";
+import AccountScreen from "./app/dashboards/AccountScreen";
 
 import { withNavigation } from "react-navigation";
 
@@ -103,6 +104,7 @@ function MyStack() {
       />
       <Stack.Screen name="CategoryDrop" component={CategoryDrop} />
       <Stack.Screen name="SupportRessources" component={SupportRessources} />
+      <Stack.Screen name="AccountScreen" component={AccountScreen} />
     </Stack.Navigator>
   );
 }
@@ -124,5 +126,8 @@ export default function App() {
     //<ForgotPasswordScreen/>
     //<PauseScreen/>
     //<Index></Index> //where progressBar buttons/actions and component are
+
+
+    
   );
 }
