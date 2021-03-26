@@ -7,6 +7,8 @@ import {
   ActivityIndicator,
   View,
   Button,
+  TouchableOpacity,
+  Text,
 } from "react-native";
 import { ListItem } from "react-native-elements";
 import firebase from "../database/firebase";
@@ -195,6 +197,21 @@ export default class TherapyQuestionScreen extends Component {
               })}
             </ScrollView>
           </View>
+
+          <View style={{ height: "7%" }}></View>
+
+          <View style={[{ height: "9%" }, styles.centering]}>
+            <TouchableOpacity
+              onPress={() => this.props.navigation.navigate("AdminDashboard")}
+              style={[
+                styles.bottomButton,
+                styles.shadowEffect,
+                styles.centering,
+              ]}
+            >
+              <Text style={[styles.fontStyle, { fontSize: 17 }]}>Go Back</Text>
+            </TouchableOpacity>
+          </View>
         </View>
       </View>
     );
@@ -277,6 +294,14 @@ export default class TherapyQuestionScreen extends Component {
 }
 
 const styles = StyleSheet.create({
+  bottomButton: {
+    height: "100%",
+    width: "40%",
+    borderRadius: 50,
+    backgroundColor: "#ffeed2",
+    position: "absolute",
+    bottom: 0,
+  },
   center: {
     backgroundColor: "#fed8b1",
     borderRadius: 50,
@@ -296,6 +321,15 @@ const styles = StyleSheet.create({
   cover: {
     height: "100%",
     width: "100%",
+  },
+  dropdown: {
+    flex: 1,
+    paddingBottom: 10,
+    fontWeight: "bold",
+  },
+  fontStyle: {
+    fontWeight: "bold",
+    color: "dimgray",
   },
   preloader: {
     left: 0,
@@ -320,10 +354,5 @@ const styles = StyleSheet.create({
   scrollView: {
     flex: 1,
     paddingBottom: 22,
-  },
-  dropdown: {
-    flex: 1,
-    paddingBottom: 10,
-    fontWeight: "bold",
   },
 });
