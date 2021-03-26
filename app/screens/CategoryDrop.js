@@ -29,14 +29,12 @@ const CategoryDrop = ({ route, navigation }) => {
 
     //Update the database with new category
     ref
-      .set({
-        userID: userProgress.userID,
-        question: userProgress.question,
-        block: userProgress.block,
-        categoryDropped: userProgress.categoryDropped,
-        level: 1,
-        coins: 0,
-      })
+      .set(
+        {
+          categoryDropped: userProgress.categoryDropped,
+        },
+        { merge: true }
+      )
       .then(() => {
         console.log(
           "Category successfully dropped" + userProgress.categoryDropped
