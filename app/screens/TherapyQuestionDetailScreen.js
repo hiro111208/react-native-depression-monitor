@@ -237,109 +237,6 @@ export default class TherapyQuestionDetailScreen extends Component {
   }
 }
 
-{
-  /* 
-<View style={styles.container}>
-        
-        <ScrollView style={styles.container}>
-          <View>
-            <Text style={{ fontWeight: "bold" }}>
-              Question 1:
-            </Text>
-          </View>
-          <View style={styles.inputGroup}>
-            <TextInput
-              multiline={true}
-              numberOfLines={4}
-              placeholder={'question1'}
-              value={this.state.question1}
-              onChangeText={(val) => this.inputValueUpdate(val, 'question1')}
-            />
-          </View>
-          <View>
-            <Text />
-          </View>
-          <View>
-            <Text style={{ fontWeight: "bold" }}>
-              Word:
-            </Text>
-          </View>
-          <View style={styles.inputGroup}>
-            <TextInput
-              placeholder={'word'}
-              value={this.state.word}
-              onChangeText={(val) => this.inputValueUpdate(val, 'word')}
-            />
-          </View>
-          <View>
-            <Text />
-          </View>
-          <View>
-            <Text style={{ fontWeight: "bold" }}>
-              Answer 1:
-            </Text>
-          </View>
-          <View style={styles.inputGroup}>
-            <TextInput
-              placeholder={'answer1'}
-              value={this.state.answer1}
-              onChangeText={(val) => this.inputValueUpdate(val, 'answer1')}
-            />
-          </View>
-          <View>
-            <Text />
-          </View>
-          <View>
-            <Text style={{ fontWeight: "bold" }}>
-              Question 2:
-            </Text>
-          </View>
-          <View style={styles.inputGroup}>
-            <TextInput
-              multiline={true}
-              numberOfLines={4}
-              placeholder={'question2'}
-              value={this.state.question2}
-              onChangeText={(val) => this.inputValueUpdate(val, 'question2')}
-            />
-          </View>
-          <View>
-            <Text />
-          </View>
-          <View>
-            <Text style={{ fontWeight: "bold" }}>
-              Answer 2:
-            </Text>
-          </View>
-          <View style={styles.inputGroup}>
-            <TextInput
-              placeholder={'answer2'}
-              value={this.state.answer2}
-              onChangeText={(val) => this.inputValueUpdate(val, 'answer2')}
-            />
-          </View>
-          <View>
-            <Text />
-          </View>
-          <View style={styles.button}>
-            <Button
-              title='Update'
-              onPress={() => this.updateTherapyQuestion()}
-              color="#19AC52"
-            />
-          </View>
-          <View>
-          <Button
-            title="Go back"
-            onPress={() => this.props.navigation.goBack()}
-            color="#19AC52"
-          />
-        </View>
-        </ScrollView>
-      </View>
-*/
-}
-
 const styles = StyleSheet.create({
   bottomButton: {
     height: "100%",
@@ -378,6 +275,13 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     color: "dimgray",
   },
+  inputGroup: {
+    flex: 1,
+    padding: 0,
+    marginBottom: 15,
+    borderBottomWidth: 1,
+    borderBottomColor: "#cccccc",
+  },
   optButton: {
     backgroundColor: "#ffeed2",
   },
@@ -407,24 +311,5 @@ const styles = StyleSheet.create({
     alignItems: "center",
     fontSize: 20,
     fontWeight: "bold",
-  },
-  inputGroup: {
-    flex: 1,
-    padding: 0,
-    marginBottom: 15,
-    borderBottomWidth: 1,
-    borderBottomColor: "#cccccc",
-  },
-  preloader: {
-    left: 0,
-    right: 0,
-    top: 0,
-    bottom: 0,
-    position: "absolute",
-    alignItems: "center",
-    justifyContent: "center",
-  },
-  button: {
-    marginBottom: 7,
   },
 });

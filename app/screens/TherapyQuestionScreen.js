@@ -124,7 +124,7 @@ export default class TherapyQuestionScreen extends Component {
               onChangeItem={(item) => this.filterCollection(item.value)}
               containerStyle={{ width: "80%", height: "100%" }}
               selectedLabelStyle={{
-                color: "#dimgrey",
+                color: "dimgrey",
                 fontWeight: "bold",
                 fontSize: 20,
               }}
@@ -218,81 +218,6 @@ export default class TherapyQuestionScreen extends Component {
   }
 }
 
-{
-  /* 
-
-  <View style={{ height: "16%" }}></View>
-
-          <View style={[styles.centering, { height: "70%" }]}>
-            <ScrollView style={[styles.scrollView, { width: "90%" }]}>
-              {this.state.filteredArr.map((item, i) => {
-                return (
-                  <ListItem
-                    containerStyle={{
-                      backgroundColor: "#fed8b1",
-                    }}
-                    key={i}
-                    chevron
-                    bottomDivider
-                    onPress={() => {
-                      this.props.navigation.navigate(
-                        "TherapyQuestionDetailScreen",
-                        {
-                          questionkey: item.key,
-                        }
-                      );
-                    }}
-                  >
-                    <ListItem.Content style={{ alignItems: "center" }}>
-                      <ListItem.Title>
-                        {item.categoryDropped} {item.block}-{item.question}
-                      </ListItem.Title>
-                    </ListItem.Content>
-                  </ListItem>
-                );
-              })}
-            </ScrollView>
-          </View>
-
-*/
-}
-
-{
-  /*<View style={[styles.container]}>
-        
-        <ScrollView style={styles.scrollView}>
-          {
-            this.state.filteredArr.map((item, i) => {
-              return (
-                <ListItem
-                  key={i}
-                  chevron
-                  bottomDivider
-                  onPress={() => {
-                    this.props.navigation.navigate('TherapyQuestionDetailScreen', {
-                      questionkey: item.key
-                    });
-                  }}>
-                  <ListItem.Content style={{ alignItems: 'center', }}>
-                    <ListItem.Title>
-                      {item.categoryDropped} {item.block}-{item.question}
-                    </ListItem.Title>
-                  </ListItem.Content>
-                </ListItem>
-              );
-            })
-          }
-        </ScrollView>
-        <View>
-          <Button
-            title="Go back"
-            onPress={() => this.props.navigation.navigate('AdminDashboard')}
-            color="#19AC52"
-          />
-        </View>
-      </View>*/
-}
-
 const styles = StyleSheet.create({
   bottomButton: {
     height: "100%",
@@ -350,9 +275,5 @@ const styles = StyleSheet.create({
     shadowRadius: 3.84,
     elevation: 5,
     marginVertical: 5,
-  },
-  scrollView: {
-    flex: 1,
-    paddingBottom: 22,
   },
 });

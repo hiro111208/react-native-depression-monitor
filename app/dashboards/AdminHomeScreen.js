@@ -64,22 +64,6 @@ export default function AdminHomeScreen({ props, navigation }) {
   );
 }
 
-{
-  /* <View style={styles.container}>
-      <Text style={styles.textStyle}>Hello, Admin</Text>
-      <Button
-        color={colors.darkBorder}
-        title="Go to therapy question mangement"
-        onPress={() => navigation.navigate('TherapyQuestionScreen')}
-      />
-      <Button
-        color={colors.darkBorder}
-        title="Logout"
-        onPress={() => signOut()}
-      />
-    </View> */
-}
-
 const styles = StyleSheet.create({
   bottomButton: {
     height: "100%",
