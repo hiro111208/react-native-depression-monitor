@@ -32,6 +32,7 @@ const CategoryDrop = ({ route, navigation }) => {
       .set(
         {
           categoryDropped: userProgress.categoryDropped,
+          lastActive: new Date(),
         },
         { merge: true }
       )
