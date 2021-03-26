@@ -39,8 +39,8 @@ export default function FeelingsSlider(props) {
     <View style={styles.root}>
         <MarkSlider
           style={styles.sliderStyle}
-          step={25}
-          max={100}
+          step={1}
+          max={5}
           marks={marks}
           onChange={value => onChange({ value })}
         />

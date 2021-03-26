@@ -11,7 +11,8 @@ import {
 } from "react-native";
 import Constants from "expo-constants";
 import firebase from "../database/firebase";
-import {FeelingsRadioButtons, selectedFeeling} from "../src/components/FeelingsRadioButtons";
+import FeelingsRadioButtons from "../src/components/FeelingsRadioButtons";
+import {selectedFeeling} from "../src/components/FeelingsRadioButtons";
 import FeelingsSlider from "../src/components/FeelingsSlider";
 const db = firebase.firestore();
 
@@ -20,11 +21,13 @@ const db = firebase.firestore();
  * log their feelings before and after their thearapy
  */
 function LogFeelingScreen(props) {
+  const [overallFeeling, setOverallFeeling] = useState("");
+
   const [feelingState, setFeelingState] = useState({
-    paranoid: 0,
-    anxious: 0,
-    sad: 0,
-    friendly: 0,
+    paranoid: 1,
+    anxious: 1,
+    sad: 1,
+    friendly: 1,
   });
 //const [overallEmotion, setOverallEmotion]= useState("")
 
@@ -89,10 +92,11 @@ function LogFeelingScreen(props) {
     console.log(feelings.paranoid)
     console.log(feelings.paranoid)
     console.log(feelings.paranoid)
+    console.log(selectedFeeling)
     db.collection("feelings")
       .doc()
       .set({
-        overall: selectedFeeling,
+        overall: overallFeeling,
         paranoid: feelings.paranoid,
         friendly: feelings.friendly,
         sad: feelings.sad,
@@ -115,7 +119,8 @@ function LogFeelingScreen(props) {
       </View>
       <View style={styles.feelingBox}>
         <TouchableOpacity style={styles.centering}>
-          <FeelingsRadioButtons />
+          <FeelingsRadioButtons 
+            />
         </TouchableOpacity>
       </View>
 
@@ -169,6 +174,8 @@ function LogFeelingScreen(props) {
     /* Radio Button */
   }
 }
+
+export default LogFeelingScreen;
 
 const styles = StyleSheet.create({
   answerButton: {
@@ -246,4 +253,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default LogFeelingScreen;
+
