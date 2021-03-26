@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "289064122528",
+    "project_id": "fireship-tutorial-646fc",
+    "storage_bucket": "fireship-tutorial-646fc.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:289064122528:android:14be8af02e18dbf89071c5",
+        "android_client_info": {
+          "package_name": "host.exp.Exponent"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "289064122528-krf4vpal04nc56dtd5gu2ie6lh89n522.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA63E60yVle8Teizk0I9umtvGyBC3IWGfg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "289064122528-krf4vpal04nc56dtd5gu2ie6lh89n522.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
