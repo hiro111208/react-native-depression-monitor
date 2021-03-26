@@ -114,20 +114,5 @@ export default function App() {
     <NavigationContainer>
       <MyStack />
     </NavigationContainer>
-
-    //Uncomment to see different screens one at a time
-    //<TherapyScreen />
-    //<CategoryDrop/>
-    //<PlantScreen/>
-    //<LoginScreen/>
-    //<SignupScreen/>
-    // <SchedulingScreen/>
-    //<SignupScreen />
-    //<ForgotPasswordScreen/>
-    //<PauseScreen/>
-    //<Index></Index> //where progressBar buttons/actions and component are
-
-
-    
   );
 }
