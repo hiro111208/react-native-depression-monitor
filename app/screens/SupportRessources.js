@@ -185,28 +185,27 @@ const styles = StyleSheet.create({
   container: {
     marginTop: 10,
   },
+  hyperlinkStyle: {
+    color: "blue",
+  },
+  logo: {
+    width: 400,
+    height: 100,
+  },
   main: {
     color: "white",
     textAlign: "center",
     fontSize: 17,
-  },
-  title: {
-    color: "white",
-    fontSize: 20,
-    textDecorationLine: "underline",
-  },
-  hyperlinkStyle: {
-    color: "blue",
   },
   tinyLogo: {
     width: 160,
     height: 80,
     margin: 10,
   },
-
-  logo: {
-    width: 400,
-    height: 100,
+  title: {
+    color: "white",
+    fontSize: 20,
+    textDecorationLine: "underline",
   },
   tit: {
     color: "white",
