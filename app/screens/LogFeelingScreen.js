@@ -22,63 +22,17 @@ const db = firebase.firestore();
  */
 function LogFeelingScreen(props) {
   const [overallFeeling, setOverallFeeling] = useState("");
-
-  const [feelingState, setFeelingState] = useState({
-    paranoid: 1,
-    anxious: 1,
-    sad: 1,
-    friendly: 1,
-  });
-//const [overallEmotion, setOverallEmotion]= useState("")
-
-/*   function getFeelings() {
-    let feelingScore = {};
-    console.log(feelingState);
-    for (const key in feelingState) {
-      const value = feelingState[key];
-      if (value == 0) {
-        feelingScore[key] = 1;
-      } else if (value == 25) {
-        feelingScore[key] = 2;
-      } else if (value == 50) {
-        feelingScore[key] = 3;
-      } else if (value == 75) {
-        feelingScore[key] = 4;
-      } else if (value == 100) {
-        feelingScore[key] = 5;
-      }
-    }
-    return feelingScore;
-  } */
-  /* function handleOnClickContinue() {
-    const id = firebase.auth().currentUser.uid;
-    if (id != -1) {
-      let feelings = getFeelings();
-      // console.log(feelings);
-      feelings.userID = id;
-      const feeling = {
-        ...feelings,
-      };
-      db.collection("feelings")
-        .doc()
-        .set({
-          feeling,
-        })
-        .then(() => {
-          console.log("Stat updated");
-        })
-        .catch((error) => {
-          console.error("Error writing document: ", error);
-        });
-    }
-  } */
+  const [paranoid, setParanoid] = useState(1);
+  const [anxious, setAnxious] = useState(1);
+  const [sad, setSad] = useState(1);
+  const [friendly, setFriendly] = useState(1);
 
   function getUserID() {
     db.collection("users")
       .doc(firebase.auth().currentUser.uid)
       .get()
       .then((doc) => {
-        return doc.userID;
+        return doc.data().userID;
       })
       .catch((error) => {
         console.log("Error getting document:", error);
@@ -87,20 +41,20 @@ function LogFeelingScreen(props) {
 
 
   function saveFeelings(){
-    let feelings = feelingState;
-    console.log(feelings.paranoid)
-    console.log(feelings.paranoid)
-    console.log(feelings.paranoid)
-    console.log(feelings.paranoid)
-    console.log(selectedFeeling)
+    console.log(paranoid)
+    console.log(sad)
+    console.log(anxious)
+    console.log(friendly)
+    console.log(overallFeeling)
+    console.log(getUserID())
     db.collection("feelings")
       .doc()
       .set({
         overall: overallFeeling,
-        paranoid: feelings.paranoid,
-        friendly: feelings.friendly,
-        sad: feelings.sad,
-        anxious: feelings.anxious,
+        paranoid: paranoid,
+        friendly: friendly,
+        sad: sad,
+        anxious: anxious,
         userID: getUserID()
       })
       .then(() => {
@@ -120,7 +74,8 @@ function LogFeelingScreen(props) {
       <View style={styles.feelingBox}>
         <TouchableOpacity style={styles.centering}>
           <FeelingsRadioButtons 
-            />
+            setOverallFeeling={setOverallFeeling}
+          />
         </TouchableOpacity>
       </View>
 
@@ -128,36 +83,28 @@ function LogFeelingScreen(props) {
         <View style={styles.topAndBottom}>
           <Text style={styles.text}>Paranoid</Text>
           <FeelingsSlider
-            setFeelingState={setFeelingState}
-            feelingName={"paranoid"}
-            feelingState={feelingState}
+            setFeelingState={setParanoid}
           />
         </View>
 
         <View style={styles.topAndBottom}>
           <Text style={styles.text}>Anxious</Text>
           <FeelingsSlider
-            setFeelingState={setFeelingState}
-            feelingName={"anxious"}
-            feelingState={feelingState}
+            setFeelingState={setAnxious}
           />
         </View>
 
         <View style={styles.topAndBottom}>
           <Text style={styles.text}>Sad</Text>
           <FeelingsSlider
-            setFeelingState={setFeelingState}
-            feelingName={"sad"}
-            feelingState={feelingState}
+            setFeelingState={setSad}
           />
         </View>
 
         <View style={styles.topAndBottom}>
           <Text style={styles.text}>Friendly</Text>
           <FeelingsSlider
-            setFeelingState={setFeelingState}
-            feelingName={"friendly"}
-            feelingState={feelingState}
+            setFeelingState={setFriendly}
           />
         </View>
       </View>

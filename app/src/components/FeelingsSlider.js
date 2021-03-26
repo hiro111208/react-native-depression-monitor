@@ -25,16 +25,6 @@ const marks = [
   },
 ];
 export default function FeelingsSlider(props) {
-  const [selectedValue, setSelectValue] = useState("");
-  const { setFeelingState, feelingName, feelingState } = props;
-
-  const onChange = (value) => {
-    setSelectValue(value);
-    setFeelingState({
-      ...feelingState,
-      [`${feelingName}`]: selectedValue,
-    });
-  };
   return (
     <View style={styles.root}>
         <MarkSlider
@@ -42,7 +32,7 @@ export default function FeelingsSlider(props) {
           step={1}
           max={5}
           marks={marks}
-          onChange={value => onChange({ value })}
+          onChange={value => props.setFeelingState(value)}
         />
     </View>
   );

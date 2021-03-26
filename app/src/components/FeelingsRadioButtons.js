@@ -7,7 +7,6 @@ import happy from "../../assets/images/happy.png";
 import veryHappy from "../../assets/images/veryHappy.png";
 
 const FeelingsRadioButtons = (props) => {
-  //const [selectedFeeling, setSelectedFeeling] = useState(""); 
   var feelings = ["VeryHappy", "Happy", "Neutral", "Sad", "VerySad"];
   return (
     <View>
