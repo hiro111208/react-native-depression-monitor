@@ -1,0 +1,812 @@
+[
+ {
+   "categoryDropped": "RELATIONSHIPS",
+   "block": 1,
+   "question": 1,
+   "question1": "You sit down to have your appraisal with your line manager.  They show you your  feedback scores and tell you that they are good scores but the scores aren't quite as high as you would have hoped for.  You decide your feedback scores are still p-ea-ing",
+   "answer1": "l",
+   "word": "pleasing",
+   "question2": "Are you unhappy with the feedback scores you obtained?",
+   "answer2": "no"
+ },
+ {
+   "categoryDropped": "RELATIONSHIPS",
+   "block": 1,
+   "question": 2,
+   "question1": "You remember your parents  making fun of you when you were younger when you did not know something.  When you ask your colleagues a question at work, you assume that everyone will think that what you have asked is re-son-b-e",
+   "answer1": "a",
+   "word": "reasonable",
+   "question2": "Did your colleagues think that your question was ridiculous?",
+   "answer2": "no"
+ },
+ {
+   "categoryDropped": "RELATIONSHIPS",
+   "block": 1,
+   "question": 3,
+   "question1": "You attend a conference where you know it is important to network. You feel a little uncomfortable introducing yourself to new people but you manage to arrange to meet  2 people.  Despite your shyness you decide your efforts at networking were u-e-ul",
+   "answer1": "s",
+   "word": "useful",
+   "question2": "Did you network effectively despite your shyness?",
+   "answer2": "yes"
+ },
+ {
+   "categoryDropped": "RELATIONSHIPS",
+   "block": 1,
+   "question": 4,
+   "question1": "You are walking down a corridor at work.  You smile at your boss who is walking towards you but they continue walking  and do not smile back.  You think this because he is di-tr-cted",
+   "answer1": "s",
+   "word": "distracted",
+   "question2": "Was your boss preoccupied?",
+   "answer2": "yes"
+ },
+ {
+   "categoryDropped": "RELATIONSHIPS",
+   "block": 1,
+   "question": 5,
+   "question1": "You decide to ring your parents to share some good news.  When you speak to them you are excited and keen to talk but they ask if you could phone back later.  You think that your parents must be b-sy",
+   "answer1": "u",
+   "word": "busy",
+   "question2": "Are your parents too busy to talk right now?",
+   "answer2": "yes"
+ },
+ {
+   "categoryDropped": "RELATIONSHIPS",
+   "block": 1,
+   "question": 6,
+   "question1": "You bump into a friend on the high street whilst on your lunch break. They stop for a chat but seem a little curt with you and you consider why.  You wonder if it is because they feel i-l",
+   "answer1": "l",
+   "word": "ill",
+   "question2": "Did your friend not want to speak with you?",
+   "answer2": "no"
+ },
+ {
+   "categoryDropped": "RELATIONSHIPS",
+   "block": 1,
+   "question": 7,
+   "question1": "You plan to start a new exercise regime today. However, you go to bed without doing any exercise. You think you never begin any new tasks because you have no t-me",
+   "answer1": "i",
+   "word": "time",
+   "question2": "Were you too busy to do any exercise?",
+   "answer2": "yes"
+ },
+ {
+   "categoryDropped": "RELATIONSHIPS",
+   "block": 1,
+   "question": 8,
+   "question1": "You know that you get worried before exams. You have a really important exam coming up and you feel more nervous than usual. You feel that your nerves will begin to su-si-e",
+   "answer1": "b",
+   "word": "subside",
+   "question2": "Do you expect to be able to cope with your anxiety?",
+   "answer2": "yes"
+ },
+ {
+   "categoryDropped": "RELATIONSHIPS",
+   "block": 1,
+   "question": 9,
+   "question1": "You are performing the lead role in a local play, which you have been practising  for many months. On the opening night you remember almost all of your lines but stumble over one. You think the audience will think your performance is o-ay",
+   "answer1": "k",
+   "word": "okay",
+   "question2": "Are you unhappy with your performance?",
+   "answer2": "no"
+ },
+ {
+   "categoryDropped": "RELATIONSHIPS",
+   "block": 1,
+   "question": 10,
+   "question1": "You are following a new recipe.  When you try the food you have cooked you don't like it. You view everything you cook as an e-p-riment",
+   "answer1": "x",
+   "word": "experiment",
+   "question2": "Was it a mistake to try the new recipe?",
+   "answer2": "no"
+ },
+ {
+   "categoryDropped": "RELATIONSHIPS",
+   "block": 1,
+   "question": 11,
+   "question1": "Your're nervous as you're playing your favourite instrument to your friends. You make one small slip. This makes you think your music skills must be dev-lo-ing",
+   "answer1": "e",
+   "word": "developing",
+   "question2": "Did you play poorly?",
+   "answer2": "no"
+ },
+ {
+   "categoryDropped": "RELATIONSHIPS",
+   "block": 1,
+   "question": 12,
+   "question1": "You are playing sports with your sibling. They beat and you aren't surprised as they always were better at sport than you. You think about education and work and you decide that generally you're  su-er-or",
+   "answer1": "p",
+   "word": "superior",
+   "question2": "Are you better than your sibling at some things?",
+   "answer2": "yes"
+ },
+ {
+   "categoryDropped": "RELATIONSHIPS",
+   "block": 1,
+   "question": 13,
+   "question1": "Your are planning a dinner party for your friend's birthday Your starter and main look and taste fantastic, but your cake fails to rise and  looks burnt. You think your friends find your efforts sat-sf-ct-ry",
+   "answer1": "i",
+   "word": "satisfactory",
+   "question2": "Was your dinner party a success?",
+   "answer2": "yes"
+ },
+ {
+   "categoryDropped": "RELATIONSHIPS",
+   "block": 1,
+   "question": 14,
+   "question1": "You have arranged to meet with a friend at 7pm. Your friend doesn't turn up as planned and you conclude that they are l-te",
+   "answer1": "a",
+   "word": "late",
+   "question2": "Do you think you friend didn't turn up to meet you on purpose?",
+   "answer2": "no"
+ },
+ {
+   "categoryDropped": "RELATIONSHIPS",
+   "block": 1,
+   "question": 15,
+   "question1": "You have been depressed in the past. You wonder how this  now impacts on your ability to do your job and also your relationships You conclude that depression in the past will be uni-fl-enti-l",
+   "answer1": "n",
+   "word": "uninfluential",
+   "question2": "Does your past depression impact negatively on your daily life?",
+   "answer2": "no"
+ },
+ {
+   "categoryDropped": "RELATIONSHIPS",
+   "block": 1,
+   "question": 16,
+   "question1": "You are normally fit and healthy. Last week you noticed an unusual sensation in your body and were concerned about what it might be. You now think that it is probably t-i-ial",
+   "answer1": "r",
+   "word": "trivial",
+   "question2": "Is the sensation something to be very worried about?",
+   "answer2": "no"
+ },
+ {
+   "categoryDropped": "RELATIONSHIPS",
+   "block": 1,
+   "question": 17,
+   "question1": "You are sitting an important exam at college. You work through the paper answering the questions, but realise you can't answer the last question. You think that your performance in the exam will lead to a  se-on- -lass",
+   "answer1": "c",
+   "word": "second class",
+   "question2": "Do you expect to do badly in the exam?",
+   "answer2": "no"
+ },
+ {
+   "categoryDropped": "RELATIONSHIPS",
+   "block": 1,
+   "question": 18,
+   "question1": "When you recieve your 1st University exam results, you are disappointed to see you haven't done as well as you hoped. You consider the long term consequences and forsee a future that is u-affected",
+   "answer1": "n",
+   "word": "unaffected",
+   "question2": "Do you think your results will have no effect on your future plans?",
+   "answer2": "yes"
+ },
+ {
+   "categoryDropped": "RELATIONSHIPS",
+   "block": 2,
+   "question": 1,
+   "question1": "You are starting a new job. On your first day you are really nervous and make a few silly mistakes.  You tell yourself that in this job you will be re-o-nized",
+   "answer1": "c",
+   "word": "recognized",
+   "question2": "Do you expect your new job to become worse?",
+   "answer2": "no"
+ },
+ {
+   "categoryDropped": "RELATIONSHIPS",
+   "block": 2,
+   "question": 2,
+   "question1": "You are a liked and respected employee. Your boss has trusted you with a large and important project. You are slightly behind schedule and wonder if you will p-og-ess",
+   "answer1": "r",
+   "word": "progress",
+   "question2": "Do you think your boss will fire you?",
+   "answer2": "no"
+ },
+ {
+   "categoryDropped": "RELATIONSHIPS",
+   "block": 2,
+   "question": 3,
+   "question1": "You have to take an exam before a new company will employ you. You have revised hard but aren't sure how well you will do.  When the results are given you are told you've passed and you think this was r-a-suring",
+   "answer1": "e",
+   "word": "reassuring",
+   "question2": "Was passing the exam down to luck?",
+   "answer2": "no"
+ },
+ {
+   "categoryDropped": "RELATIONSHIPS",
+   "block": 2,
+   "question": 4,
+   "question1": "You are following a new recipe. When you try the food you have cooked you don't like it. You view everything you cook as an  o-por-unity",
+   "answer1": "p",
+   "word": "opportunity",
+   "question2": "Was it a mistake to try the new recipe?",
+   "answer2": "no"
+ },
+ {
+   "categoryDropped": "RELATIONSHIPS",
+   "block": 2,
+   "question": 5,
+   "question1": "You have just published a selection of short stories. The stories receive positive, glowing reviews in many magazines, but you receive a very negative review in one newspaper. You consider the negative review to be non-ense",
+   "answer1": "s",
+   "word": "nonsense",
+   "question2": "Do you think the negative review is inaccurate?",
+   "answer2": "yes"
+ },
+ {
+   "categoryDropped": "RELATIONSHIPS",
+   "block": 2,
+   "question": 6,
+   "question1": "You are persuaded to join a quiz team in a tournament. You are asked very difficult questions and you get most of them right. You conclude that your performance was a-e-uate",
+   "answer1": "d",
+   "word": "adequate",
+   "question2": "Were you dissatisfied with your performance in the quiz tournament?",
+   "answer2": "no"
+ },
+ {
+   "categoryDropped": "RELATIONSHIPS",
+   "block": 2,
+   "question": 7,
+   "question1": "You have just had your portrait painted and your family tell you how good you look. You brush aside the compliments. You think to yourself that the painting must be flat-er-ng",
+   "answer1": "t",
+   "word": "flattering",
+   "question2": "Does the portrait look like you?",
+   "answer2": "yes"
+ },
+ {
+   "categoryDropped": "RELATIONSHIPS",
+   "block": 2,
+   "question": 8,
+   "question1": "You sit down to talk with your family about how you ultimately see your life turning out You wonder whether things will go well or badly for you. You know things haven't always been great and you forsee a future that is en-oyab-e",
+   "answer1": "j",
+   "word": "enjoyable",
+   "question2": "Do you think you have a bad future ahead of you?",
+   "answer2": "no"
+ },
+ {
+   "categoryDropped": "RELATIONSHIPS",
+   "block": 2,
+   "question": 9,
+   "question1": "You remember your parents making fun of you when you were younger when you did not know something. When you ask your colleagues a question at work, you assume that everyone will think that what you have asked is cre-i-able",
+   "answer1": "d",
+   "word": "creditable",
+   "question2": "Did your colleagues think your question was ridiculous?",
+   "answer2": "no"
+ },
+ {
+   "categoryDropped": "RELATIONSHIPS",
+   "block": 2,
+   "question": 10,
+   "question1": "You have an important dinner to attend and you want to look your best. You have been eating healthy and doing daily exercise for the last 6 months and you have bought a new outfit. You put on your new oufit and look in the mirror and you think all your efforts were ad-q-ate",
+   "answer1": "e",
+   "word": "adequate",
+   "question2": "Does your new outfit look good on you?",
+   "answer2": "yes"
+ },
+ {
+   "categoryDropped": "RELATIONSHIPS",
+   "block": 2,
+   "question": 11,
+   "question1": "You have just had a silly argument with your closest friend. In anger they said they didn't care about you anymore. You think that your relationship with your friend can be re-air-d",
+   "answer1": "p",
+   "word": "repaired",
+   "question2": "Has your relationship with your friend been damaged?",
+   "answer2": "no"
+ },
+ {
+   "categoryDropped": "RELATIONSHIPS",
+   "block": 2,
+   "question": 12,
+   "question1": "You phone a friend and when they don't answer you leave a message. After a few days they haven't returned your call. You conclude that they haven't called back because they are a-ay",
+   "answer1": "w",
+   "word": "away",
+   "question2": "Is it difficult for your friend to return your call?",
+   "answer2": "yes"
+ },
+ {
+   "categoryDropped": "RELATIONSHIPS",
+   "block": 2,
+   "question": 13,
+   "question1": "You recognise that life is full of ups and downs. When you evaluate and reflect on your experiences,  you decide that your life is mostly sa-is-ac-ory",
+   "answer1": "t",
+   "word": "satisfactory",
+   "question2": "Is your life completely awful?",
+   "answer2": "no"
+ },
+ {
+   "categoryDropped": "RELATIONSHIPS",
+   "block": 2,
+   "question": 14,
+   "question1": "You spend some time reflecting on your self and how  worries have affected your life. You consider your prospects for the future. You know that your worries will be u-ne-essary",
+   "answer1": "n",
+   "word": "unnecessary",
+   "question2": "Do you expect that your worries will be completely disabling?",
+   "answer2": "no"
+ },
+ {
+   "categoryDropped": "RELATIONSHIPS",
+   "block": 2,
+   "question": 15,
+   "question1": "You have had a tiring day at work.  On your way home you suddenly get a sharp pain in the back of your head. You think to yourself that it is t-ivi-l",
+   "answer1": "r",
+   "word": "trivial",
+   "question2": "Do you think the pain in your head will disappear shortly?",
+   "answer2": "yes"
+ },
+ {
+   "categoryDropped": "RELATIONSHIPS",
+   "block": 2,
+   "question": 16,
+   "question1": "You failed an exam in the past when you were ill. You are now feeling well and have to re-take the examination. You think that in everything you try you will p-ss",
+   "answer1": "a",
+   "word": "pass",
+   "question2": "Do you expect to fail the exam the second time around?",
+   "answer2": "no"
+ },
+ {
+   "categoryDropped": "RELATIONSHIPS",
+   "block": 2,
+   "question": 17,
+   "question1": "You know that you get worried before exams. You have a really important exam coming up and feel more nervous than usual. You feel that your nerves will soon st-p",
+   "answer1": "o",
+   "word": "stop",
+   "question2": "Do you expect to be able to cope with your anxiety?",
+   "answer2": "yes"
+ },
+ {
+   "categoryDropped": "RELATIONSHIPS",
+   "block": 2,
+   "question": 18,
+   "question1": "You have recently enrolled on an evening course.  You get your first assignment back and you have received an average mark. You think to yourself that you might as well try h-rder",
+   "answer1": "a",
+   "word": "try harder",
+   "question2": "Do you think you might as well give up the evening course?",
+   "answer2": "no"
+ },
+ {
+   "categoryDropped": "RELATIONSHIPS",
+   "block": 3,
+   "question": 1,
+   "question1": "Your boss has asked you to give a presentation to some clients who are coming to your office. You are a little concerned about the presentation so spend some time preparing. You think that your performance will be  p-ofess-on-l",
+   "answer1": "r",
+   "word": "professional",
+   "question2": "Do you expect to give a good presentation?",
+   "answer2": "yes"
+ },
+ {
+   "categoryDropped": "RELATIONSHIPS",
+   "block": 3,
+   "question": 2,
+   "question1": "You have been working extremely hard on a new project at work, but your progress   has been delayed by other people. One day your boss asks to speak to you about your progress. You conclude that overall he thinks your standard of work is pr-gres-i-g",
+   "answer1": "o",
+   "word": "progressing",
+   "question2": "Does your boss think you are making good progress?",
+   "answer2": "yes"
+ },
+ {
+   "categoryDropped": "RELATIONSHIPS",
+   "block": 3,
+   "question": 3,
+   "question1": "You are in a team review meeting. You are expected to contribute to the meeting  and feel somewhat anxious about this. Reflecting later you think that your performance in the meeting was  e-ce-lent",
+   "answer1": "x",
+   "word": "excellent",
+   "question2": "Was your performance in the meeting badly affected by your nerves?",
+   "answer2": "no"
+ },
+ {
+   "categoryDropped": "RELATIONSHIPS",
+   "block": 3,
+   "question": 4,
+   "question1": "You are performing the lead role in a local play, which you have been  practising for many months. On the opening night you remember almost all your lines but  stumble over one. You think the audience will think your performance is poli-h-d",
+   "answer1": "s",
+   "word": "polished",
+   "question2": "Are you unhappy with your performance?",
+   "answer2": "no"
+ },
+ {
+   "categoryDropped": "RELATIONSHIPS",
+   "block": 3,
+   "question": 5,
+   "question1": "You have published a selection of short stories. The stories receive positive, glowing reviews in many magazines but you receive a very negative review in one newspaper. You conclude that your story book is  re-om-end-ble",
+   "answer1": "c",
+   "word": "recommendable",
+   "question2": "Do you think the negative review is inaccurate?",
+   "answer2": "yes"
+ },
+ {
+   "categoryDropped": "RELATIONSHIPS",
+   "block": 3,
+   "question": 6,
+   "question1": "You attend a public lecture on something you are passionate about. You would like to ask the speaker a question and think about raising your hand. You expect that if you ask your question you will sound in-ellig-nt",
+   "answer1": "t",
+   "word": "intelligent",
+   "question2": "Will the speaker think your question is stupid?",
+   "answer2": "no"
+ },
+ {
+   "categoryDropped": "RELATIONSHIPS",
+   "block": 3,
+   "question": 7,
+   "question1": "Your first born has just received their results back from their school exams. When they hand you the grade sheets you discover they have failed. You believe that in the future they will i-pr-ve",
+   "answer1": "m",
+   "word": "improve",
+   "question2": "Do you blame yourself for your child's poor exam results?",
+   "answer2": "no"
+ },
+ {
+   "categoryDropped": "RELATIONSHIPS",
+   "block": 3,
+   "question": 8,
+   "question1": "You are preparing a dinner party for your mother's birthday. Your starter and main course look and taste fantastic, but your cake fails to rise and looks burnt. You think your family find your efforts pr-isewo-thy",
+   "answer1": "a",
+   "word": "praiseworthy",
+   "question2": "Was your dinner party a success?",
+   "answer2": "yes"
+ },
+ {
+   "categoryDropped": "RELATIONSHIPS",
+   "block": 3,
+   "question": 9,
+   "question1": "It is very important that you keep your house clean and tidy all of the time for  the sake of your family. Today you cleaned the house, but you notice some dust  and dirt. You know that your family will be h-ppy",
+   "answer1": "a",
+   "word": "happy",
+   "question2": "Are your family pleased about your clean house?",
+   "answer2": "yes"
+ },
+ {
+   "categoryDropped": "RELATIONSHIPS",
+   "block": 3,
+   "question": 10,
+   "question1": "When walking home in the dark last year, a stranger tried to steal your moblie phone. Since that night, you have often wondered if all strangers are dangerous and threatening and you decide this thought is ir-at-onal",
+   "answer1": "r",
+   "word": "irrational",
+   "question2": "Do you think all strangers you see in the street will try and rob you?",
+   "answer2": "no"
+ },
+ {
+   "categoryDropped": "RELATIONSHIPS",
+   "block": 3,
+   "question": 11,
+   "question1": "You will soon be going on holiday with your friends. You want to look your best on the beach so decide to try and eat a healthy diet. When you look in the mirror you wonder if your efforts are worth it as you always look att-act-ve",
+   "answer1": "r",
+   "word": "attractive",
+   "question2": "Did you think that you looked awful?",
+   "answer2": "no"
+ },
+ {
+   "categoryDropped": "RELATIONSHIPS",
+   "block": 3,
+   "question": 12,
+   "question1": "At a dinner party, a number of different people come up to talk to you.  You wonder what these people think about you and what you should say You think that they are in-eres-ed",
+   "answer1": "t",
+   "word": "interested",
+   "question2": "Did the other guests enjoy talking to you?",
+   "answer2": "yes"
+ },
+ {
+   "categoryDropped": "RELATIONSHIPS",
+   "block": 3,
+   "question": 13,
+   "question1": "You have been stressed at work and at home lately and you are now feeling anxious and depressed. You think to the future and how things might be in 6 months time. You decide that your life will be  b-i-hter",
+   "answer1": "r",
+   "word": "brighter",
+   "question2": "Are you hopeful for the future?",
+   "answer2": "yes"
+ },
+ {
+   "categoryDropped": "RELATIONSHIPS",
+   "block": 3,
+   "question": 14,
+   "question1": "Your doctor asks you to complete a daily diary of how you feel in the next week.  You manage to complete 6 out of the 7 days. When you show your diary to your doctor at the next appointment, he thinks that you will soon be ha-py",
+   "answer1": "p",
+   "word": "happy",
+   "question2": "Is your doctor disappointed with how much of the diary you completed?",
+   "answer2": "no"
+ },
+ {
+   "categoryDropped": "RELATIONSHIPS",
+   "block": 3,
+   "question": 15,
+   "question1": "You have felt panicky recently and have sought help. You consider whether they may get worse and lead to problems in your job and marriage. You think the frequency and intensity of your attacks are likely to ce-se",
+   "answer1": "a",
+   "word": "cease",
+   "question2": "Do you think your panic attacks are going to get worse?",
+   "answer2": "no"
+ },
+ {
+   "categoryDropped": "RELATIONSHIPS",
+   "block": 3,
+   "question": 16,
+   "question1": "You have recently enrolled on an evening course. You get your first assignment back and you received an average mark. You think to yourself that you will e-c-l",
+   "answer1": "x",
+   "word": "excel",
+   "question2": "Do you think you might as well give up the evening course?",
+   "answer2": "no"
+ },
+ {
+   "categoryDropped": "RELATIONSHIPS",
+   "block": 3,
+   "question": 17,
+   "question1": "You have very high standards for your work at University. You think that all your assignments should be perfect and you realise that the one you have just completed isn't perfect. You think to yourself you are ex-uis-te",
+   "answer1": "q",
+   "word": "exquisite",
+   "question2": "Are you really disappointed with all your University work?",
+   "answer2": "no"
+ },
+ {
+   "categoryDropped": "RELATIONSHIPS",
+   "block": 3,
+   "question": 18,
+   "question1": "When you receive your 1st year University exam results,you are disappointed to see you haven't done as well as you hoped. You consider the long term consequences and forsee a future that is full of o-ti-ism",
+   "answer1": "p",
+   "word": "optimism",
+   "question2": "Do you think your results will have no effect on your future plans?",
+   "answer2": "yes"
+ },
+ {
+   "categoryDropped": "RELATIONSHIPS",
+   "block": 4,
+   "question": 1,
+   "question1": "In a meeting at work your boss singles you out and asks you to take on a new role with lots of responsibility and tasks to complete. You are a little surprised and nervous. You expect that in this new role you will be pe-f-ct",
+   "answer1": "r",
+   "word": "perfect",
+   "question2": "Do you think you will do well in your new role?",
+   "answer2": "yes"
+ },
+ {
+   "categoryDropped": "RELATIONSHIPS",
+   "block": 4,
+   "question": 2,
+   "question1": "You are a well praised and respected employee. Your boss has trusted you with a large and important project. You are slightly behind schedule and wonder if you will still be p-a-sed",
+   "answer1": "r",
+   "word": "praised",
+   "question2": "Do you think your boss will fire you?",
+   "answer2": "no"
+ },
+ {
+   "categoryDropped": "RELATIONSHIPS",
+   "block": 4,
+   "question": 3,
+   "question1": "You apply for a new job and get it. After a  few months in the post you realise you don't like it and need to change again. This change will make your life hap-ier",
+   "answer1": "p",
+   "word": "happier",
+   "question2": "Was taking the new job a great idea?",
+   "answer2": "yes"
+ },
+ {
+   "categoryDropped": "RELATIONSHIPS",
+   "block": 4,
+   "question": 4,
+   "question1": "You are performing the lead role in a local play, which you have been practising  for many months. On the opening night you remember almost all of your lines but stumble over one. You think the audience will think your performance is m-r-ellous",
+   "answer1": "a",
+   "word": "marvellous",
+   "question2": "Are you unhappy with your performance?",
+   "answer2": "no"
+ },
+ {
+   "categoryDropped": "RELATIONSHIPS",
+   "block": 4,
+   "question": 5,
+   "question1": "You are persuaded to join a quiz team in a tournament. You are asked very difficult questions and you get most of them right. You conclude that your performance was st-ong",
+   "answer1": "r",
+   "word": "strong",
+   "question2": "Were you dissatisfied with your performance in the quiz tournament?",
+   "answer2": "no"
+ },
+ {
+   "categoryDropped": "RELATIONSHIPS",
+   "block": 4,
+   "question": 6,
+   "question1": "You have a go at putting up a shelf in your kitchen. When you have finished the job it doesn't look fully straight. Overall your practical skills are ex-e-lent",
+   "answer1": "c",
+   "word": "excellent",
+   "question2": "Are you always bad at DIY?",
+   "answer2": "no"
+ },
+ {
+   "categoryDropped": "RELATIONSHIPS",
+   "block": 4,
+   "question": 7,
+   "question1": "You sit down to talk with your family about how you ultimately see your life turning out. You wonder whether things will go well or badly for you. You know things haven't always been great but you forsee a future that is opt-m-stic",
+   "answer1": "i",
+   "word": "optimistic",
+   "question2": "Do you think you have a bad future ahead of you?",
+   "answer2": "no"
+ },
+ {
+   "categoryDropped": "RELATIONSHIPS",
+   "block": 4,
+   "question": 8,
+   "question1": "You decide to ring your family to share some good news. When you speak to  them you are excited and keen to talk, but they ask if you could phone back later. You think that your family must be in-er-sted",
+   "answer1": "t",
+   "word": "interested",
+   "question2": "Are your family too busy to talk right now?",
+   "answer2": "yes"
+ },
+ {
+   "categoryDropped": "RELATIONSHIPS",
+   "block": 4,
+   "question": 9,
+   "question1": "You will soon be going on holiday with your family. You want to  look your best on the beach so decide to try and eat a healthy diet. When you look in the mirror you wonder if your efforts are worth it as you look gr-at",
+   "answer1": "e",
+   "word": "great",
+   "question2": "Do you think you look awful?",
+   "answer2": "no"
+ },
+ {
+   "categoryDropped": "RELATIONSHIPS",
+   "block": 4,
+   "question": 10,
+   "question1": "For the first time you are able to walk into a corwded room and successfully face a difficult situation, which has made you anxious and panicky in the past. You think that it was all down to dete-mi-at-on",
+   "answer1": "r",
+   "word": "determination",
+   "question2": "Did you feel composed as you entered the room?",
+   "answer2": "yes"
+ },
+ {
+   "categoryDropped": "RELATIONSHIPS",
+   "block": 4,
+   "question": 11,
+   "question1": "You sometimes feel anxious in social situations because you believe that people might  find you weird or odd. When you look around the room at people, their attitude toward you is fr-en-ly",
+   "answer1": "i",
+   "word": "friendly",
+   "question2": "Are the people in the room behaving as if you are completely normal?",
+   "answer2": "yes"
+ },
+ {
+   "categoryDropped": "RELATIONSHIPS",
+   "block": 4,
+   "question": 12,
+   "question1": "Your best friend invites you to lunch. Over coffee you start to have a deep and meaningful conversation about you lives, achievements and goals. You think that everyone else's life sounds wonderful and that yours is completely fa-ulo-s",
+   "answer1": "b",
+   "word": "fabulous",
+   "question2": "Are you satisfied with how your life has been?",
+   "answer2": "yes"
+ },
+ {
+   "categoryDropped": "RELATIONSHIPS",
+   "block": 4,
+   "question": 13,
+   "question1": "Your doctor asks you to complete a daily diary of how you feel over the next week. You manage to complete 6 out of 7 days. When you show your  diary to your doctor at the next appointment, you can tell he thinks you are ex-mp-ary",
+   "answer1": "e",
+   "word": "exemplary",
+   "question2": "Is your doctor dissapointed with how much of the diary you completed?",
+   "answer2": "no"
+ },
+ {
+   "categoryDropped": "RELATIONSHIPS",
+   "block": 4,
+   "question": 14,
+   "question1": "You have been stressed at work and at home lately and you are now feeling anxious and depressed. You think to the future and how things might be in 6 months time. You decide your life will be ha-p-er",
+   "answer1": "p",
+   "word": "happier",
+   "question2": "Are you hopeful for the future?",
+   "answer2": "yes"
+ },
+ {
+   "categoryDropped": "RELATIONSHIPS",
+   "block": 4,
+   "question": 15,
+   "question1": "You know that you're an anxious person and you've been feeling particularly bad in recent weeks. You approach your boss to discuss how you feel. Your boss listens carefully. You can instantly tell that you will so-n be h-ppier",
+   "answer1": "o",
+   "word": "soon be happier",
+   "question2": "Do you think you will feel better?",
+   "answer2": "yes"
+ },
+ {
+   "categoryDropped": "RELATIONSHIPS",
+   "block": 4,
+   "question": 16,
+   "question1": "You receive your results from your recent exams. You see that you have  gained a high mark for the first exam. You consider whether that was a result you deserved. You decide that you got that mark because you are o-tsta-di-g",
+   "answer1": "u",
+   "word": "outstanding",
+   "question2": "Are you satisfied with the mark you received?",
+   "answer2": "yes"
+ },
+ {
+   "categoryDropped": "RELATIONSHIPS",
+   "block": 4,
+   "question": 17,
+   "question1": "You are sitting an important exam at college. You work through the paper answering the questions but realise you cannot answer the last one. You think that your performance in the exam will lead to a di-tinc-ion",
+   "answer1": "s",
+   "word": "distinction",
+   "question2": "Do you expect to do badly in the exam?",
+   "answer2": "no"
+ },
+ {
+   "categoryDropped": "RELATIONSHIPS",
+   "block": 4,
+   "question": 18,
+   "question1": "You failed an exam in the past when you were ill. You are now feeling well and have to re-take the examination. You think that in everything you try you will be su-ces-ful",
+   "answer1": "c",
+   "word": "successful",
+   "question2": "Do you expect to fail the exam the second time around?",
+   "answer2": "no"
+ },
+ {
+   "categoryDropped": "",
+   "block": null,
+   "question": null,
+   "question1": "For the first time you are able to walk into a corwded room and successfully face a difficult situation, which has made you anxious and panicky in the past. You think that it was all down to dete-mi-at-on",
+   "answer1": "",
+   "word": "",
+   "question2": "",
+   "answer2": ""
+ },
+ {
+   "categoryDropped": "",
+   "block": null,
+   "question": null,
+   "question1": "You sometimes feel anxious in social situations because you believe that people might  find you weird or odd. When you look around the room at people, their attitude toward you is fr-en-ly",
+   "answer1": "",
+   "word": "",
+   "question2": "",
+   "answer2": ""
+ },
+ {
+   "categoryDropped": "",
+   "block": null,
+   "question": null,
+   "question1": "Your best friend invites you to lunch. Over coffee you start to have a deep and meaningful conversation about you lives, achievements and goals. You think that everyone else's life sounds wonderful and that yours is completely fa-ulo-s",
+   "answer1": "",
+   "word": "",
+   "question2": "",
+   "answer2": ""
+ },
+ {
+   "categoryDropped": "",
+   "block": null,
+   "question": null,
+   "question1": "Your doctor asks you to complete a daily diary of how you feel over the next week. You manage to complete 6 out of 7 days. When you show your  diary to your doctor at the next appointment, you can tell he thinks you are ex-mp-ary",
+   "answer1": "",
+   "word": "",
+   "question2": "",
+   "answer2": ""
+ },
+ {
+   "categoryDropped": "",
+   "block": null,
+   "question": null,
+   "question1": "You have been stressed at work and at home lately and you are now feeling anxious and depressed. You think to the future and how things might be in 6 months time. You decide your life will be ha-p-er",
+   "answer1": "",
+   "word": "",
+   "question2": "",
+   "answer2": ""
+ },
+ {
+   "categoryDropped": "",
+   "block": null,
+   "question": null,
+   "question1": "You know that you're an anxious person and you've been feeling particularly bad in recent weeks. You approach your boss to discuss how you feel. Your boss listens carefully. You can instantly tell that you will so-n be h-ppier",
+   "answer1": "",
+   "word": "",
+   "question2": "",
+   "answer2": ""
+ },
+ {
+   "categoryDropped": "",
+   "block": null,
+   "question": null,
+   "question1": "You receive your results from your recent exams. You see that you have  gained a high mark for the first exam. You consider whether that was a result you deserved. You decide that you got that mark because you are o-tsta-di-g",
+   "answer1": "",
+   "word": "",
+   "question2": "",
+   "answer2": ""
+ },
+ {
+   "categoryDropped": "",
+   "block": null,
+   "question": null,
+   "question1": "You are sitting an important exam at college. You work through the paper answering the questions but realise you cannot answer the last one. You think that your performance in the exam will lead to a di-tinc-ion",
+   "answer1": "",
+   "word": "",
+   "question2": "",
+   "answer2": ""
+ },
+ {
+   "categoryDropped": "",
+   "block": null,
+   "question": null,
+   "question1": "You failed an exam in the past when you were ill. You are now feeling well and have to re-take the examination. You think that in everything you try you will be su-ces-ful",
+   "answer1": "",
+   "word": "",
+   "question2": "",
+   "answer2": ""
+ }
+]
