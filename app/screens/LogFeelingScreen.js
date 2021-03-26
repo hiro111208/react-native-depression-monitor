@@ -14,7 +14,6 @@ import firebase from "../database/firebase";
 import FeelingsRadioButtons from "../src/components/FeelingsRadioButtons";
 import {selectedFeeling} from "../src/components/FeelingsRadioButtons";
 import FeelingsSlider from "../src/components/FeelingsSlider";
-const db = firebase.firestore();
 
 /**
  * Screen where the user logs their feelings. Users will
@@ -26,28 +25,36 @@ function LogFeelingScreen(props) {
   const [anxious, setAnxious] = useState(1);
   const [sad, setSad] = useState(1);
   const [friendly, setFriendly] = useState(1);
+  const [user, setUser] = useState(undefined);
 
-  function getUserID() {
-    db.collection("users")
+  function getUser() {
+    firebase
+      .firestore()
+      .collection("users")
       .doc(firebase.auth().currentUser.uid)
-      .get()
+      .get()      
       .then((doc) => {
-        return doc.data().userID;
+        setUser(doc.data());
       })
       .catch((error) => {
         console.log("Error getting document:", error);
       });
   }
-
+  
+  useEffect(() => {
+    getUser();
+  }, []);
 
   function saveFeelings(){
+    getUser();
     console.log(paranoid)
     console.log(sad)
     console.log(anxious)
     console.log(friendly)
     console.log(overallFeeling)
-    console.log(getUserID())
-    db.collection("feelings")
+    console.log(user.userID)
+    console.log(firebase.auth().currentUser.uid)
+    firebase.firestore().collection("feelings")
       .doc()
       .set({
         overall: overallFeeling,
@@ -55,7 +62,7 @@ function LogFeelingScreen(props) {
         friendly: friendly,
         sad: sad,
         anxious: anxious,
-        userID: getUserID()
+        userID: user.userID
       })
       .then(() => {
         console.log("Feelings saved");
