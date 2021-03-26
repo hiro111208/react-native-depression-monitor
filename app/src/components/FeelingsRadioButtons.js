@@ -5,6 +5,7 @@ import sad from "../../assets/images/sad.png";
 import neutral from "../../assets/images/neutral.png";
 import happy from "../../assets/images/happy.png";
 import veryHappy from "../../assets/images/veryHappy.png";
+import colors from "../../config/colors";
 
 const FeelingsRadioButtons = (props) => {
   var feelings = ["VeryHappy", "Happy", "Neutral", "Sad", "VerySad"];
@@ -74,7 +75,10 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "space-between",
-    backgroundColor: "white"
+    backgroundColor: "white",
+    borderRadius: 50,
+    borderColor: colors.darkBorder,
+    borderWidth: 2,
   },
   logo: {
     width: 50,

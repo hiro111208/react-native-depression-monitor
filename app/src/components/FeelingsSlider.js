@@ -1,27 +1,21 @@
 import React, { useState, useEffect } from "react";
 import { View, StyleSheet } from "react-native";
 import MarkSlider from 'react-native-mark-slider';
+import colors from "../../config/colors";
+
 
 const marks = [
   {
     value: 1,
-    label: "Not at all",
-  },
-  {
-    value: 2,
-    label: "",
+    name: "Not at all",
   },
   {
     value: 3,
-    label: "Somewhat",
-  },
-  {
-    value: 4,
-    label: "",
+    name: "Somewhat",
   },
   {
     value: 5,
-    label: "Very much",
+    name: "Very much",
   },
 ];
 export default function FeelingsSlider(props) {
@@ -31,8 +25,12 @@ export default function FeelingsSlider(props) {
           style={styles.sliderStyle}
           step={1}
           max={5}
+          min={1}
           marks={marks}
-          onChange={value => props.setFeelingState(value)}
+          minimumTrackTintColor="#ffd390"
+          //maximumTrackTintColor= 
+          thumbTintColor={colors.darkBorder}
+          onSlidingComplete={value => props.setFeelingState(value)}
         />
     </View>
   );
@@ -40,11 +38,10 @@ export default function FeelingsSlider(props) {
 
 const styles = StyleSheet.create({
   sliderStyle: {
-    fontSize: 8,
-    color: 'black',
   },
   root: {
-    justifyContent: 'center',
-    width: '100%'
+    //justifyContent: 'center',
+    //alignItems: 'center',
+    width: '85%'
   },
 });

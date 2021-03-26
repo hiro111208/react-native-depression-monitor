@@ -14,6 +14,7 @@ import firebase from "../database/firebase";
 import FeelingsRadioButtons from "../src/components/FeelingsRadioButtons";
 import {selectedFeeling} from "../src/components/FeelingsRadioButtons";
 import FeelingsSlider from "../src/components/FeelingsSlider";
+import colors from "../config/colors";
 
 /**
  * Screen where the user logs their feelings. Users will
@@ -27,7 +28,7 @@ function LogFeelingScreen(props) {
   const [friendly, setFriendly] = useState(1);
   const [user, setUser] = useState(undefined);
 
-  function getUser() {
+   function getUser() {
     firebase
       .firestore()
       .collection("users")
@@ -39,7 +40,7 @@ function LogFeelingScreen(props) {
       .catch((error) => {
         console.log("Error getting document:", error);
       });
-  }
+  } 
   
   useEffect(() => {
     getUser();
@@ -79,12 +80,12 @@ function LogFeelingScreen(props) {
         <Text style={styles.text}>How are you feeling?</Text>
       </View>
 
-      <View style={styles.feelingBox}>
-          <FeelingsRadioButtons 
-            setOverallFeeling={setOverallFeeling}
-            overallFeeling={overallFeeling}
-          />
-      </View>
+      
+      <FeelingsRadioButtons 
+        setOverallFeeling={setOverallFeeling}
+        overallFeeling={overallFeeling}
+      />
+      
 
       <View style={styles.slidersContainer}>
         <View style={styles.topAndBottom}>
@@ -116,11 +117,13 @@ function LogFeelingScreen(props) {
         </View>
       </View>
 
-      <View style={styles.centering}>
-        <TouchableOpacity style={styles.optButton}>
-          <Button title="Continue" onPress={() => {saveFeelings(); props.navigation.navigate("TherapyScreen")} } />
+        <TouchableOpacity 
+         style={styles.optButton}
+         onPress={() => {saveFeelings(); props.navigation.navigate("TherapyScreen")} }
+         >
+          <Text style={styles.continueButton} >Continue</Text>
         </TouchableOpacity>
-      </View>
+
     </KeyboardAvoidingView>
   );
 
@@ -132,6 +135,10 @@ function LogFeelingScreen(props) {
 export default LogFeelingScreen;
 
 const styles = StyleSheet.create({
+  container: {
+    alignItems: "center",
+    //justifyContent: "center"
+  },
   answerButton: {
     height: "75%",
     width: 250,
@@ -162,13 +169,20 @@ const styles = StyleSheet.create({
     borderColor: "#c7ffd8",
   },
   optButton: {
-    width: 150,
+    width: "40%",
+    height: "5%",
     backgroundColor: "#c7ffd8",
-    borderRadius: 10,
+    borderRadius: 20,
+    alignSelf:"center",
+    alignItems: "center",
+    justifyContent: "center"
   },
   slidersContainer: {
-    backgroundColor: "#c7ffd8",
-    borderRadius: 10,
+    backgroundColor: "white",
+    borderRadius: 50,
+    paddingTop: 20,
+    borderColor: colors.darkBorder,
+    borderWidth:2
   },
   input: {
     height: "75%",
@@ -190,20 +204,25 @@ const styles = StyleSheet.create({
     padding: 5,
   },
   text: {
-    color: "black",
+    color: "grey",
     fontSize: 18,
+    fontWeight: 'bold',
     textAlign: "center",
   },
   topAndBottom: {
     marginTop: 10,
+    justifyContent: "center",
+    alignItems: 'center'
   },
   centering: {
     alignItems: "center",
   },
-  feelingBox: {
-    backgroundColor: "white",
-    borderRadius: 10,
-  },
+  continueButton: {
+    color: "black",
+    fontSize: 20,
+    //fontWeight: 'bold',
+    textAlign: "center",
+  }
 });
 
 

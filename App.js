@@ -105,7 +105,7 @@ function MyStack() {
       <Stack.Screen
         name="LogFeelingScreen"
         component={LogFeelingScreen}
-        options={{ title: "Log my feelings" }}
+        options={{ title: "Log your feelings" }}
       />
       <Stack.Screen name="CategoryDrop" component={CategoryDrop} />
     </Stack.Navigator>
@@ -114,10 +114,10 @@ function MyStack() {
 
 export default function App() {
   return (
-    <NavigationContainer>
-      <MyStack />
-    </NavigationContainer>
-
+    // <NavigationContainer>
+    //  <MyStack />
+     //</NavigationContainer> */}
+    <LogFeelingScreen/>
     //Uncomment to see different screens one at a time
     //<TherapyScreen />
     //<CategoryDrop/>
@@ -125,6 +125,7 @@ export default function App() {
     //<LoginScreen/>
     //<SignupScreen/>
     // <SchedulingScreen/>
+    
     //<SignupScreen />
     //<ForgotPasswordScreen/>
     //<PauseScreen/>
