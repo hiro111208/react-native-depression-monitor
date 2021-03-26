@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { View, StyleSheet, TouchableOpacity, Image } from "react-native";
 import verySad from "../../assets/images/verySad.png";
 import sad from "../../assets/images/sad.png";
@@ -8,34 +8,26 @@ import veryHappy from "../../assets/images/veryHappy.png";
 
 const FeelingsRadioButtons = (props) => {
   var feelings = ["VeryHappy", "Happy", "Neutral", "Sad", "VerySad"];
+
+checkSelected=(feeling)=>{
+  {(props.overallFeeling==feeling) ? {borderWidth:1, borderColor:'rgba(0,0,0,0.2)'} : ""}
+}
+
   return (
     <View>
       <View style={styles.radio}>
-        <TouchableOpacity
-          onPress={() => {
-            props.setOverallFeeling("VeryHappy");
-          }}
-        >
-          <Image style={styles.logo} source={veryHappy} />
-        </TouchableOpacity>
 
         <TouchableOpacity
+          style= {(props.overallFeeling=="VerySad") ? styles.button : ""}
           onPress={() => {
-            props.setOverallFeeling("Happy");
+            props.setOverallFeeling("VerySad");
           }}
         >
-          <Image style={styles.logo} source={happy} />
+          <Image style={styles.logo} source={verySad} />
         </TouchableOpacity>
-
+        
         <TouchableOpacity
-          onPress={() => {
-            props.setOverallFeeling("Neutral");
-          }}
-        >
-          <Image style={styles.logo} source={neutral} />
-        </TouchableOpacity>
-
-        <TouchableOpacity
+          style= {(props.overallFeeling=="Sad") ? styles.button : ""}
           onPress={() => {
             props.setOverallFeeling("Sad");
           }}
@@ -44,12 +36,33 @@ const FeelingsRadioButtons = (props) => {
         </TouchableOpacity>
 
         <TouchableOpacity
+          style= {(props.overallFeeling=="Neutral") ? styles.button : ""}
           onPress={() => {
-            props.setOverallFeeling("VerySad");
+            props.setOverallFeeling("Neutral");
           }}
         >
-          <Image style={styles.logo} source={verySad} />
+          <Image style={styles.logo} source={neutral} />
         </TouchableOpacity>
+
+        <TouchableOpacity
+          style= {(props.overallFeeling=="Happy") ? styles.button : ""}
+          onPress={() => {
+            props.setOverallFeeling("Happy");
+          }}
+        >
+          <Image style={styles.logo} source={happy} />
+        </TouchableOpacity>
+
+        <TouchableOpacity
+          style={(props.overallFeeling=="VeryHappy") ? styles.button : ""}
+
+          onPress={() => {
+            props.setOverallFeeling("VeryHappy");
+          }}
+        >
+          <Image style={styles.logo} source={veryHappy} />
+        </TouchableOpacity>
+
       </View>
     </View>
   );
@@ -57,22 +70,22 @@ const FeelingsRadioButtons = (props) => {
 
 const styles = StyleSheet.create({
   radio: {
-    paddingVertical: 5,
+    padding: 10,
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "space-between",
-  },
-  img: {
-    resizeMode: "contain",
-    flex: 1,
-    aspectRatio: 1, // Your aspect ratio
-    // marginHorizontal: 25,
+    backgroundColor: "white"
   },
   logo: {
-    width: 25,
-    height: 25,
-    marginHorizontal: 30
+    width: 50,
+    height: 50,
+    marginHorizontal: 5
   },
+  button:{
+    borderWidth:2, 
+    borderColor:'rgba(0,0,0,0.2)',
+    borderRadius:50,
+  }
 });
 
 export default FeelingsRadioButtons;

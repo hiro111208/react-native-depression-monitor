@@ -78,12 +78,12 @@ function LogFeelingScreen(props) {
       <View style={styles.centering}>
         <Text style={styles.text}>How are you feeling?</Text>
       </View>
+
       <View style={styles.feelingBox}>
-        <TouchableOpacity style={styles.centering}>
           <FeelingsRadioButtons 
             setOverallFeeling={setOverallFeeling}
+            overallFeeling={overallFeeling}
           />
-        </TouchableOpacity>
       </View>
 
       <View style={styles.slidersContainer}>
@@ -201,8 +201,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   feelingBox: {
-    width: '100%',
-    backgroundColor: "#c7ffd8",
+    backgroundColor: "white",
     borderRadius: 10,
   },
 });
