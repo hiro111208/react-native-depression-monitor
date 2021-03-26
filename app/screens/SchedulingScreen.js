@@ -142,7 +142,7 @@ class SchedulingScreen extends Component {
     if (scheduleArr.length === 0) {
       Alert.alert(
         "First appointment",
-        "Hello, would like to schedule your appointment at the same day and time every week for 4 weeks",
+        "Hello, would you like to schedule your appointment at the same day and time every week for 4 weeks?",
         [
           { text: "OK", onPress: async () => await this.onFirstAppointment() },
           {

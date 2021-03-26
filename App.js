@@ -16,6 +16,10 @@ import ScheduleListScreen from "./app/screens/ScheduleListScreen";
 import Index from "./app/src/components/Index";
 import PatientDashboard from "./app/dashboards/PatientDashboard";
 import AdminDashboard from "./app/dashboards/AdminDashboard";
+
+import TherapyQuestionScreen from "./app/screens/TherapyQuestionScreen";
+import TherapyQuestionDetailScreen from "./app/screens/TherapyQuestionDetailScreen";
+
 import PauseScreen from "./app/screens/PauseScreen";
 import colors from "./app/config/colors";
 import SupportResources from "./app/screens/SupportResources";
@@ -103,6 +107,16 @@ function MyStack() {
         component={PlantScreen}
       />
       <Stack.Screen name="CategoryDrop" component={CategoryDrop} />
+      <Stack.Screen
+        name="TherapyQuestionScreen"
+        component={TherapyQuestionScreen}
+        options={{ title: "Therapy Questions" }}
+      />
+      <Stack.Screen
+        name="TherapyQuestionDetailScreen"
+        component={TherapyQuestionDetailScreen}
+        options={{ title: "Question Detail" }}
+      />
       <Stack.Screen
         options={{ headerShown: false }}
         name="SupportResources"
