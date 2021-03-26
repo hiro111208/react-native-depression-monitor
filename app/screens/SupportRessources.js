@@ -26,7 +26,6 @@ const SupportRessources = ({ navigation }) => {
               onPress={() => navigation.goBack()}
             />
             <Text />
-
             <Text style={styles.main}> Support Ressources </Text>
             <Text />
             <Text />
@@ -35,7 +34,6 @@ const SupportRessources = ({ navigation }) => {
               𝘈𝘴𝘬𝘪𝘯𝘨 𝘧𝘰𝘳 𝘩𝘦𝘭𝘱 𝘥𝘰𝘦𝘴𝘯'𝘵 𝘮𝘢𝘬𝘦 𝘺𝘰𝘶 𝘸𝘦𝘢𝘬- 𝘪𝘵 𝘳𝘦𝘷𝘦𝘢𝘭𝘴 𝘴𝘵𝘳𝘦𝘯𝘨𝘵𝘩 𝘦𝘷𝘦𝘯
               𝘸𝘩𝘦𝘯 𝘺𝘰𝘶 𝘥𝘰𝘯'𝘵 𝘧𝘦𝘦𝘭 𝘴𝘵𝘳𝘰𝘯𝘨{" "}
             </Text>
-
             <Text />
             <Text />
             <Text />
@@ -82,10 +80,9 @@ const SupportRessources = ({ navigation }) => {
             </Text>
             <Text />
             <Text>
-              {" "}
               Supply a range of information leaflets, books and tapes. Network
               of self help groups for people with manic depression, relatives
-              and friends.{" "}
+              and friends.
             </Text>
           </View>
 
@@ -137,7 +134,6 @@ const SupportRessources = ({ navigation }) => {
         </ScrollView>
         <View style={styles.boxLarge}>
           <Text style={styles.main}>
-            {" "}
             The research for this project was done by:{" "}
           </Text>
           <Text />
@@ -149,12 +145,10 @@ const SupportRessources = ({ navigation }) => {
           <Text style={styles.tit}> -Manouk Vrinten</Text>
           <Text style={styles.tit}> -Christian Ferragamo</Text>
           <Text style={styles.tit}> -Sukhwinder Shergill</Text>
-
           <Text />
           <Text />
           <Text style={styles.main}> In an academic paper entitled:</Text>
           <Text style={styles.tit}>
-            {" "}
             Modifying Interpretation in a ClinicallyDepressed Sample Using
             ‘Cognitive BiasModification-Errors’: A Double BlindRandomised
             Controlled Trial
