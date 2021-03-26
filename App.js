@@ -18,7 +18,7 @@ import PatientDashboard from "./app/dashboards/PatientDashboard";
 import AdminDashboard from "./app/dashboards/AdminDashboard";
 import PauseScreen from "./app/screens/PauseScreen";
 import colors from "./app/config/colors";
-import SupportRessources from "./app/screens/SupportRessources";
+import SupportResources from "./app/screens/SupportResources";
 import AccountScreen from "./app/dashboards/AccountScreen";
 
 import { withNavigation } from "react-navigation";
@@ -103,7 +103,7 @@ function MyStack() {
         component={PlantScreen}
       />
       <Stack.Screen name="CategoryDrop" component={CategoryDrop} />
-      <Stack.Screen name="SupportRessources" component={SupportRessources} />
+      <Stack.Screen name="SupportResources" component={SupportResources} />
       <Stack.Screen name="AccountScreen" component={AccountScreen} />
     </Stack.Navigator>
   );
