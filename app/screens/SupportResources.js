@@ -174,13 +174,13 @@ const styles = StyleSheet.create({
   boxMargin: {
     marginBottom: 10,
     marginRight: 10,
+    padding: 5,
   },
   bigWhite: {
     margin: 15,
     fontSize: 25,
     fontWeight: "bold",
     color: "white",
-    fontFamily: "sans-serif-condensed",
   },
   container: {
     marginTop: 10,
