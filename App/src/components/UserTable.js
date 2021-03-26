@@ -1,4 +1,5 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
+import { Platform } from "react-native";
 
 import { StyleSheet, View } from "react-native";
 
@@ -7,22 +8,24 @@ import { Table, Rows, Row } from "react-native-table-component";
 function UserTable(props) {
   const data = [["º 1"], ["º 2"], ["º 3"], ["º 4"]];
   const dataHead = ["Batch", "AvgTimeQ1", "AvgTimeQ2", "NºErrors"];
-  // const average1 = props.average1;
-  // const average2 = props.average2;
-  //variables to store averages in one decimal format
 
-  // store averages in string format
+  const { average1, setAverage1 } = useState([]);
+  const { average2, setAverage2 } = useState([]);
+
   const setData = () => {
     const average1 = props.average1;
     const average2 = props.average2;
+    //variables to store averages in one decimal format
     const roundedData1 = [];
     const roundedData2 = [];
-    console.log(props.average1);
-    console.log(props.average2);
-    console.log("passed");
-    console.log(average1);
-    console.log(average2);
+    for (let i = 0; i < 4; i++) {
+      console.log(props.average1);
+      console.log(props.average2);
+      roundedData1.push(`${props.average1[i]}`.length);
+      roundedData2.push(`${props.average2[i]}`.length);
+    }
 
+    // store averages in string format
     for (let i = 0; i < 4; i++) {
       roundedData1.push(`${average1[i]}`.length);
       roundedData2.push(`${average2[i]}`.length);
@@ -53,8 +56,9 @@ function UserTable(props) {
     }
   };
 
-  useComponentWillMount(() => setData());
+  // useComponentWillMount(() => setData());
 
+  useEffect(() => {}, [setData()]);
   return (
     <View>
       <View style={styles.container}>

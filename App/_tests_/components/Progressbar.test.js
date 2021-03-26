@@ -15,6 +15,6 @@ describe("Testing ProgressBar.js", () => {
 
   it("ProgressBar renders with width progress of 0 ", () => {
     const wrapper = mount(<ProgressBar />);
-    expect(wrapper.props().nextWidth).toEqual(0);
+    expect(wrapper.props().nextWidth).toBe(0);
   });
 });
