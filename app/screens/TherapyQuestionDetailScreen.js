@@ -1,6 +1,7 @@
 // screens/TherapyQuestionDetailScreen.js
 
 import React, { Component } from "react";
+import { TouchableOpacity } from "react-native";
 import {
   Alert,
   Button,
@@ -128,7 +129,7 @@ export default class TherapyQuestionDetailScreen extends Component {
           </View>
 
           <View style={styles.centering}>
-            <ScrollView style={{ height: "85%", width: "80%" }}>
+            <ScrollView style={{ height: "70%", width: "80%" }}>
               <View>
                 <Text style={{ fontWeight: "bold" }}>Question 1:</Text>
               </View>
@@ -199,24 +200,36 @@ export default class TherapyQuestionDetailScreen extends Component {
                   onChangeText={(val) => this.inputValueUpdate(val, "answer2")}
                 />
               </View>
-              <View>
-                <Text />
-              </View>
-              <View style={styles.button}>
-                <Button
-                  title="Update"
-                  onPress={() => this.updateTherapyQuestion()}
-                  color="#19AC52"
-                />
-              </View>
-              <View>
-                <Button
-                  title="Go back"
-                  onPress={() => this.props.navigation.goBack()}
-                  color="#19AC52"
-                />
-              </View>
             </ScrollView>
+          </View>
+
+          <View style={[{ height: "8%" }, styles.centering]}>
+            <TouchableOpacity
+              onPress={() => this.updateTherapyQuestion()}
+              style={[
+                styles.bottomButton,
+                styles.shadowEffect,
+                styles.centering,
+              ]}
+            >
+              <Text style={[styles.fontStyle, { fontSize: 17 }]}>Update</Text>
+            </TouchableOpacity>
+          </View>
+
+          <View style={{ height: "2%" }}></View>
+
+          <View style={[{ height: "10%" }, styles.centering]}>
+            <TouchableOpacity
+              onPress={() => this.props.navigation.goBack()}
+              style={[
+                styles.optButton,
+                styles.cover,
+                styles.centering,
+                { borderBottomLeftRadius: 40, borderBottomRightRadius: 40 },
+              ]}
+            >
+              <Text style={[styles.fontStyle, { fontSize: 17 }]}>Go Back</Text>
+            </TouchableOpacity>
           </View>
         </View>
       </View>
@@ -364,6 +377,9 @@ const styles = StyleSheet.create({
   fontStyle: {
     fontWeight: "bold",
     color: "dimgray",
+  },
+  optButton: {
+    backgroundColor: "#ffeed2",
   },
   preloader: {
     left: 0,
