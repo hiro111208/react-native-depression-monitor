@@ -63,7 +63,8 @@ function LogFeelingScreen(navigation, route) {
         friendly: friendly,
         sad: sad,
         anxious: anxious,
-        userID: user.userID
+        userID: user.userID,
+        timeStamp: new Date()
       })
       .then(() => {
         console.log("Feelings saved");
