@@ -18,9 +18,12 @@ const marks = [
     name: "Very much",
   },
 ];
+
+//These sliders are used in the LogFeelingScreen to allow users express the extent they feel an emotion
 export default function FeelingsSlider(props) {
 
   return (
+    //Render the slider 
     <View style={styles.root}>
         <MarkSlider
           style={styles.sliderStyle}
@@ -38,11 +41,7 @@ export default function FeelingsSlider(props) {
 }
 
 const styles = StyleSheet.create({
-  sliderStyle: {
-  },
   root: {
-    //justifyContent: 'center',
-    //alignItems: 'center',
     width: '85%'
   },
 });

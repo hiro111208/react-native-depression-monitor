@@ -1,27 +1,18 @@
 import React, { useState, useEffect } from "react";
 import {
-  Button,
-  StatusBar,
   StyleSheet,
   Text,
   View,
-  KeyboardAvoidingView,
   TouchableOpacity,
-  TextInput,
   Alert
 } from "react-native";
-import Constants from "expo-constants";
 import firebase from "../database/firebase";
 import FeelingsRadioButtons from "../src/components/FeelingsRadioButtons";
-import {selectedFeeling} from "../src/components/FeelingsRadioButtons";
 import FeelingsSlider from "../src/components/FeelingsSlider";
-import forceUpdate from "../src/components/FeelingsSlider";
 import colors from "../config/colors";
-import { color } from "react-native-reanimated";
-
 /**
  * Screen where the user logs their feelings. Users will
- * log their feelings before and after their thearapy
+ * log their feelings before and after their therapy
  */
 function LogFeelingScreen({ navigation, route }) {
   const [overallFeeling, setOverallFeeling] = useState("");
@@ -31,6 +22,7 @@ function LogFeelingScreen({ navigation, route }) {
   const [friendly, setFriendly] = useState(1);
   const [user, setUser] = useState(undefined);
 
+  //Get userID corresponding to current user
    function getUser() {
     firebase
       .firestore()
@@ -49,6 +41,7 @@ function LogFeelingScreen({ navigation, route }) {
     getUser();
   }, []);
 
+  //Reset all states
   const reset=()=>{
     setAnxious(1)
     setParanoid(1)
@@ -58,15 +51,9 @@ function LogFeelingScreen({ navigation, route }) {
     setUser(undefined)
   }
 
+  //Store the user's feelings in the database
   function saveFeelings(){
     getUser();
-    console.log(paranoid)
-    console.log(sad)
-    console.log(anxious)
-    console.log(friendly)
-    console.log(overallFeeling)
-    console.log(user.userID)
-    console.log(firebase.auth().currentUser.uid)
     firebase.firestore().collection("feelings")
       .doc()
       .set({
@@ -86,6 +73,8 @@ function LogFeelingScreen({ navigation, route }) {
       });
   }
 
+  //Handle when continue button is pressed
+  //Go to either therapy screen or patient dashboard depending on whether therapy has started or ended
   function handleOnContinuePress(){
     if(overallFeeling === "") {
       Alert.alert("Please fill in how you are feeling!");
@@ -105,18 +94,22 @@ function LogFeelingScreen({ navigation, route }) {
     }
   }
 
+  //Render the log feelings screen
   return (
     <View style={styles.container}>
 
+    {/* Render header  */}
       <View style={styles.header}>
         <Text style={styles.headerText} >How are you feeling?</Text>
       </View>
-
+    
+    {/* Render feeling emojis as radio buttons */}
       <FeelingsRadioButtons 
         setOverallFeeling={setOverallFeeling}
         overallFeeling={overallFeeling}
       />
 
+    {/* Render sliders for each emotion */}
       <View style={styles.slidersContainer}>
         <View style={styles.topAndBottom}>
           <Text style={styles.text}>Paranoid</Text>
@@ -151,6 +144,7 @@ function LogFeelingScreen({ navigation, route }) {
         </View>
       </View>
 
+      {/* Render Continue button  */}
         <TouchableOpacity 
          style={styles.continueButton}
          onPress={() => {handleOnContinuePress()}}
@@ -160,10 +154,6 @@ function LogFeelingScreen({ navigation, route }) {
 
     </View>
   );
-
-  {
-    /* Radio Button */
-  }
 }
 
 export default LogFeelingScreen;

@@ -7,13 +7,16 @@ import happy from "../../assets/images/happy.png";
 import veryHappy from "../../assets/images/veryHappy.png";
 import colors from "../../config/colors";
 
+
+//These are the buttons displayed on the LogFeelingScreen
 const FeelingsRadioButtons = (props) => {
   var feelings = ["VeryHappy", "Happy", "Neutral", "Sad", "VerySad"];
 
   return (
-    <View>
       <View style={styles.radio}>
-
+        {/* Render emojis for each feeling as buttons
+          If selected the button will appear with a ring around it
+         */}
         <TouchableOpacity
           style= {(props.overallFeeling=="VerySad") ? styles.selected : ""}
           onPress={() => {
@@ -61,7 +64,6 @@ const FeelingsRadioButtons = (props) => {
         </TouchableOpacity>
 
       </View>
-    </View>
   );
 };
 
