@@ -46,6 +46,15 @@ function LogFeelingScreen({ navigation, route }) {
     getUser();
   }, []);
 
+  const reset=()=>{
+    setAnxious(1)
+    setParanoid(1)
+    setFriendly(1)
+    setOverallFeeling("")
+    setSad(1)
+    setUser(undefined)
+  }
+
   function saveFeelings(){
     getUser();
     console.log(paranoid)
@@ -115,12 +124,16 @@ function LogFeelingScreen({ navigation, route }) {
         <TouchableOpacity 
          style={styles.optButton}
          onPress={() => {
-           if (route.params.cameFrom === "HomeScreem") {
-            saveFeelings(); navigation.navigate("TherapyScreen", {
-              onGoBack: () => refresh(),
+           if (route.params.cameFrom === "HomeScreen") {
+            saveFeelings();
+            reset();
+            navigation.navigate("TherapyScreen", {
+              onGoBack: () => route.params.onGoBack(),
               })
            } else {
-             saveFeelings(); navigation.navigate("HomeScreen") 
+            saveFeelings(); 
+            reset();
+            navigation.navigate("HomeScreen") 
            }
           }}
          >

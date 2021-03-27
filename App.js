@@ -16,6 +16,7 @@ import ScheduleListScreen from "./app/screens/ScheduleListScreen";
 import Index from "./app/src/components/Index";
 import PatientDashboard from "./app/dashboards/PatientDashboard";
 import AdminDashboard from "./app/dashboards/AdminDashboard";
+import HomeScreen from "./app/dashboards/HomeScreen";
 
 import TherapyQuestionScreen from "./app/screens/TherapyQuestionScreen";
 import TherapyQuestionDetailScreen from "./app/screens/TherapyQuestionDetailScreen";
@@ -129,6 +130,7 @@ function MyStack() {
         component={SupportResources}
       />
       <Stack.Screen name="AccountScreen" component={AccountScreen} />
+      <Stack.Screen options={{ headerShown: false }} name="HomeScreen" component={HomeScreen} />
     </Stack.Navigator>
   );
 }

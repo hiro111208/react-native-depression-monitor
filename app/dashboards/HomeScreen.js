@@ -188,6 +188,7 @@ const registerForPushNotificationsAsync = async()=> {
               if(user.question===1){
                 navigation.navigate("LogFeelingScreen", {
                 cameFrom: "HomeScreen",
+                onGoBack: () => refresh(),
                 })
               }else{
                 navigation.navigate("TherapyScreen", {
