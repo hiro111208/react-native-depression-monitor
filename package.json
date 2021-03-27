@@ -57,10 +57,18 @@
     "enzyme-to-json": "^3.6.1",
     "jest": "^26.6.3",
     "jest-expo": "^40.0.2",
+    "jest-expo-enzyme": "^1.0.4",
     "react-simple-tooltip": "^2.6.2"
   },
   "jest": {
-    "preset": "react-native",
+    "preset": [
+      "react-native",
+      "jest-expo-enzyme"
+    ],
+    "verbose": true,
+    "transformIgnorePatterns": [
+      "node_modules/(?!(jest-)?react-native|react-clone-referenced-element|@react-native-community|expo(nent)?|@expo(nent)?/.*|react-navigation|@react-navigation/.*|@unimodules/.*|unimodules|sentry-expo|native-base|@sentry/.*)"
+    ],
     "snapshotSerializers": [
       "enzyme-to-json/serializer"
     ],
