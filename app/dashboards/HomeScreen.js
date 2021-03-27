@@ -187,7 +187,7 @@ const registerForPushNotificationsAsync = async()=> {
             onPress={() => {
               if(user.question===1){
                 navigation.navigate("LogFeelingScreen"), {
-                cameFrom: "HomeScreen"
+                cameFrom: "HomeScreen",
                 }
               }else{
                 navigation.navigate("TherapyScreen", {

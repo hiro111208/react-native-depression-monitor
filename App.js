@@ -110,7 +110,7 @@ function MyStack() {
       <Stack.Screen
         name="LogFeelingScreen"
         component={LogFeelingScreen}
-        options={{ title: "Log your feelings" }}
+        options={{ title: "How are you feeling?" }}
       />
       <Stack.Screen name="CategoryDrop" component={CategoryDrop} />
       <Stack.Screen
