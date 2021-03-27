@@ -20,7 +20,7 @@ import colors from "../config/colors";
  * Screen where the user logs their feelings. Users will
  * log their feelings before and after their thearapy
  */
-function LogFeelingScreen(props) {
+function LogFeelingScreen(navigation, route) {
   const [overallFeeling, setOverallFeeling] = useState("");
   const [paranoid, setParanoid] = useState(1);
   const [anxious, setAnxious] = useState(1);
@@ -119,7 +119,15 @@ function LogFeelingScreen(props) {
 
         <TouchableOpacity 
          style={styles.optButton}
-         onPress={() => {saveFeelings(); props.navigation.navigate("TherapyScreen")} }
+         onPress={() => {
+           if (route.props.cameFrom == "HomeScreem") {
+            saveFeelings(); navigation.navigate("TherapyScreen", {
+              onGoBack: () => refresh(),
+              })
+           } else {
+             saveFeelings(); navigation.navigate("HomeScreen") 
+           }
+          }}
          >
           <Text style={styles.continueButton} >Continue</Text>
         </TouchableOpacity>

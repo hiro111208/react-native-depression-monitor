@@ -114,10 +114,10 @@ function MyStack() {
 
 export default function App() {
   return (
-    // <NavigationContainer>
-    //  <MyStack />
-     //</NavigationContainer> */}
-    <LogFeelingScreen/>
+     <NavigationContainer>
+      <MyStack />
+     </NavigationContainer> 
+    //<LogFeelingScreen/>
     //Uncomment to see different screens one at a time
     //<TherapyScreen />
     //<CategoryDrop/>
