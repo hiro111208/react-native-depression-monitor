@@ -107,7 +107,11 @@ function LogFeelingScreen({ navigation, route }) {
 
   return (
     <View style={styles.container}>
-      <View style={styles.header}><Text style={styles.headerText} >How are you feeling?</Text></View>
+
+      <View style={styles.header}>
+        <Text style={styles.headerText} >How are you feeling?</Text>
+      </View>
+
       <FeelingsRadioButtons 
         setOverallFeeling={setOverallFeeling}
         overallFeeling={overallFeeling}
@@ -148,10 +152,10 @@ function LogFeelingScreen({ navigation, route }) {
       </View>
 
         <TouchableOpacity 
-         style={styles.optButton}
+         style={styles.continueButton}
          onPress={() => {handleOnContinuePress()}}
          >
-          <Text style={styles.continueButton} >Continue</Text>
+          <Text style={styles.continueText} >Continue</Text>
         </TouchableOpacity>
 
     </View>
@@ -172,26 +176,25 @@ const styles = StyleSheet.create({
   },
   header:{
     backgroundColor: colors.darkBorder,
-    height: "10%",
+    height: "12%",
     width: "100%",
     alignItems: "center",
     justifyContent: "center",
     borderBottomLeftRadius: 50,
     borderBottomRightRadius: 50,
+    alignSelf:"flex-start",
+    paddingTop:30
   },
   container: {
     alignItems: "center",
     height: '100%',
-    justifyContent: "space-around",
+    justifyContent: "space-between",
     backgroundColor: "#ffd390",
-    //paddingBottom:"5%"
+    paddingBottom:"5%"
   },
-  correctHighlight: {
-    borderColor: "#c7ffd8",
-  },
-  optButton: {
+  continueButton: {
     width: "40%",
-    height: "5%",
+    height: "6%",
     backgroundColor: "#c7ffd8",
     borderRadius: 20,
     alignSelf:"center",
@@ -217,7 +220,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: 'center'
   },
-  continueButton: {
+  continueText: {
     color: "black",
     fontSize: 20,
     textAlign: "center",

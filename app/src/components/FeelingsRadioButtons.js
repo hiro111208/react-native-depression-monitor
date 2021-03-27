@@ -10,16 +10,12 @@ import colors from "../../config/colors";
 const FeelingsRadioButtons = (props) => {
   var feelings = ["VeryHappy", "Happy", "Neutral", "Sad", "VerySad"];
 
-checkSelected=(feeling)=>{
-  {(props.overallFeeling==feeling) ? {borderWidth:1, borderColor:'rgba(0,0,0,0.2)'} : ""}
-}
-
   return (
     <View>
       <View style={styles.radio}>
 
         <TouchableOpacity
-          style= {(props.overallFeeling=="VerySad") ? styles.button : ""}
+          style= {(props.overallFeeling=="VerySad") ? styles.selected : ""}
           onPress={() => {
             props.setOverallFeeling("VerySad");
           }}
@@ -28,7 +24,7 @@ checkSelected=(feeling)=>{
         </TouchableOpacity>
         
         <TouchableOpacity
-          style= {(props.overallFeeling=="Sad") ? styles.button : ""}
+          style= {(props.overallFeeling=="Sad") ? styles.selected : ""}
           onPress={() => {
             props.setOverallFeeling("Sad");
           }}
@@ -37,7 +33,7 @@ checkSelected=(feeling)=>{
         </TouchableOpacity>
 
         <TouchableOpacity
-          style= {(props.overallFeeling=="Neutral") ? styles.button : ""}
+          style= {(props.overallFeeling=="Neutral") ? styles.selected : ""}
           onPress={() => {
             props.setOverallFeeling("Neutral");
           }}
@@ -46,7 +42,7 @@ checkSelected=(feeling)=>{
         </TouchableOpacity>
 
         <TouchableOpacity
-          style= {(props.overallFeeling=="Happy") ? styles.button : ""}
+          style= {(props.overallFeeling=="Happy") ? styles.selected : ""}
           onPress={() => {
             props.setOverallFeeling("Happy");
           }}
@@ -55,7 +51,7 @@ checkSelected=(feeling)=>{
         </TouchableOpacity>
 
         <TouchableOpacity
-          style={(props.overallFeeling=="VeryHappy") ? styles.button : ""}
+          style={(props.overallFeeling=="VeryHappy") ? styles.selected : ""}
 
           onPress={() => {
             props.setOverallFeeling("VeryHappy");
@@ -84,12 +80,13 @@ const styles = StyleSheet.create({
   logo: {
     width: 50,
     height: 50,
-    marginHorizontal: 5
+    marginHorizontal: 7,
+    marginVertical:7
   },
-  button:{
+  selected:{
     borderWidth:2, 
     borderColor:'rgba(0,0,0,0.2)',
-    borderRadius:50,
+    borderRadius:100,
   }
 });
 
