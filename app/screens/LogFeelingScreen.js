@@ -100,7 +100,7 @@ function LogFeelingScreen({ navigation, route }) {
   return (
     <View style={styles.container}>
       {/* Render header  */}
-      <View style={styles.header}>
+      <View style={[styles.header, styles.centering]}>
         <Text style={styles.headerText}>How are you feeling?</Text>
       </View>
 
@@ -112,7 +112,7 @@ function LogFeelingScreen({ navigation, route }) {
 
       {/* Render sliders for each emotion */}
       <ScrollView style={styles.slidersContainer}>
-        <View style={styles.topAndBottom}>
+        <View style={[styles.topAndBottom, styles.centering]}>
           <Text style={styles.text}>Paranoid</Text>
           <FeelingsSlider
             setFeelingState={setParanoid}
@@ -120,17 +120,17 @@ function LogFeelingScreen({ navigation, route }) {
           />
         </View>
 
-        <View style={styles.topAndBottom}>
+        <View style={[styles.topAndBottom, styles.centering]}>
           <Text style={styles.text}>Anxious</Text>
           <FeelingsSlider setFeelingState={setAnxious} feelingState={anxious} />
         </View>
 
-        <View style={styles.topAndBottom}>
+        <View style={[styles.topAndBottom, styles.centering]}>
           <Text style={styles.text}>Sad</Text>
           <FeelingsSlider setFeelingState={setSad} feelingState={sad} />
         </View>
 
-        <View style={styles.topAndBottom}>
+        <View style={[styles.topAndBottom, styles.centering]}>
           <Text style={styles.text}>Friendly</Text>
           <FeelingsSlider
             setFeelingState={setFriendly}
@@ -141,7 +141,7 @@ function LogFeelingScreen({ navigation, route }) {
 
       {/* Render Continue button  */}
       <TouchableOpacity
-        style={styles.continueButton}
+        style={[styles.continueButton, styles.centering]}
         onPress={() => {
           handleOnContinuePress();
         }}
@@ -160,12 +160,14 @@ const styles = StyleSheet.create({
     fontSize: 20,
     fontWeight: "bold",
   },
+  centering: {
+    alignItems: "center",
+    justifyContent: "center",
+  },
   header: {
     backgroundColor: colors.darkBorder,
     height: "12%",
     width: "100%",
-    alignItems: "center",
-    justifyContent: "center",
     borderBottomLeftRadius: 50,
     borderBottomRightRadius: 50,
     alignSelf: "flex-start",
@@ -184,8 +186,6 @@ const styles = StyleSheet.create({
     backgroundColor: "#c7ffd8",
     borderRadius: 20,
     alignSelf: "center",
-    alignItems: "center",
-    justifyContent: "center",
   },
   slidersContainer: {
     backgroundColor: "white",
@@ -203,8 +203,6 @@ const styles = StyleSheet.create({
   },
   topAndBottom: {
     marginTop: 10,
-    justifyContent: "center",
-    alignItems: "center",
   },
   continueText: {
     color: "black",
