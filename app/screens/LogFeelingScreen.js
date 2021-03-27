@@ -4,7 +4,8 @@ import {
   Text,
   View,
   TouchableOpacity,
-  Alert
+  Alert,
+  ScrollView,
 } from "react-native";
 import firebase from "../database/firebase";
 import FeelingsRadioButtons from "../src/components/FeelingsRadioButtons";
@@ -23,38 +24,40 @@ function LogFeelingScreen({ navigation, route }) {
   const [user, setUser] = useState(undefined);
 
   //Get userID corresponding to current user
-   function getUser() {
+  function getUser() {
     firebase
       .firestore()
       .collection("users")
       .doc(firebase.auth().currentUser.uid)
-      .get()      
+      .get()
       .then((doc) => {
         setUser(doc.data());
       })
       .catch((error) => {
         console.log("Error getting document:", error);
       });
-  } 
-  
+  }
+
   useEffect(() => {
     getUser();
   }, []);
 
   //Reset all states
-  const reset=()=>{
-    setAnxious(1)
-    setParanoid(1)
-    setFriendly(1)
-    setOverallFeeling("")
-    setSad(1)
-    setUser(undefined)
-  }
+  const reset = () => {
+    setAnxious(1);
+    setParanoid(1);
+    setFriendly(1);
+    setOverallFeeling("");
+    setSad(1);
+    setUser(undefined);
+  };
 
   //Store the user's feelings in the database
-  function saveFeelings(){
+  function saveFeelings() {
     getUser();
-    firebase.firestore().collection("feelings")
+    firebase
+      .firestore()
+      .collection("feelings")
       .doc()
       .set({
         overall: overallFeeling,
@@ -63,7 +66,7 @@ function LogFeelingScreen({ navigation, route }) {
         sad: sad,
         anxious: anxious,
         userID: user.userID,
-        timeStamp: new Date()
+        timeStamp: new Date(),
       })
       .then(() => {
         console.log("Feelings saved");
@@ -75,42 +78,40 @@ function LogFeelingScreen({ navigation, route }) {
 
   //Handle when continue button is pressed
   //Go to either therapy screen or patient dashboard depending on whether therapy has started or ended
-  function handleOnContinuePress(){
-    if(overallFeeling === "") {
+  function handleOnContinuePress() {
+    if (overallFeeling === "") {
       Alert.alert("Please fill in how you are feeling!");
-    }
-    else{
+    } else {
       if (route.params.cameFrom === "HomeScreen") {
         saveFeelings();
         reset();
         navigation.navigate("TherapyScreen", {
           onGoBack: () => route.params.onGoBack(),
-          })
-       } else {
-        saveFeelings(); 
+        });
+      } else {
+        saveFeelings();
         reset();
-        navigation.navigate("PatientDashboard") 
-       }
+        navigation.navigate("PatientDashboard");
+      }
     }
   }
 
   //Render the log feelings screen
   return (
     <View style={styles.container}>
-
-    {/* Render header  */}
+      {/* Render header  */}
       <View style={styles.header}>
-        <Text style={styles.headerText} >How are you feeling?</Text>
+        <Text style={styles.headerText}>How are you feeling?</Text>
       </View>
-    
-    {/* Render feeling emojis as radio buttons */}
-      <FeelingsRadioButtons 
+
+      {/* Render feeling emojis as radio buttons */}
+      <FeelingsRadioButtons
         setOverallFeeling={setOverallFeeling}
         overallFeeling={overallFeeling}
       />
 
-    {/* Render sliders for each emotion */}
-      <View style={styles.slidersContainer}>
+      {/* Render sliders for each emotion */}
+      <ScrollView style={styles.slidersContainer}>
         <View style={styles.topAndBottom}>
           <Text style={styles.text}>Paranoid</Text>
           <FeelingsSlider
@@ -121,18 +122,12 @@ function LogFeelingScreen({ navigation, route }) {
 
         <View style={styles.topAndBottom}>
           <Text style={styles.text}>Anxious</Text>
-          <FeelingsSlider
-            setFeelingState={setAnxious}
-            feelingState={anxious}
-          />
+          <FeelingsSlider setFeelingState={setAnxious} feelingState={anxious} />
         </View>
 
         <View style={styles.topAndBottom}>
           <Text style={styles.text}>Sad</Text>
-          <FeelingsSlider
-            setFeelingState={setSad}
-            feelingState={sad}
-          />
+          <FeelingsSlider setFeelingState={setSad} feelingState={sad} />
         </View>
 
         <View style={styles.topAndBottom}>
@@ -142,16 +137,17 @@ function LogFeelingScreen({ navigation, route }) {
             feelingState={friendly}
           />
         </View>
-      </View>
+      </ScrollView>
 
       {/* Render Continue button  */}
-        <TouchableOpacity 
-         style={styles.continueButton}
-         onPress={() => {handleOnContinuePress()}}
-         >
-          <Text style={styles.continueText} >Continue</Text>
-        </TouchableOpacity>
-
+      <TouchableOpacity
+        style={styles.continueButton}
+        onPress={() => {
+          handleOnContinuePress();
+        }}
+      >
+        <Text style={styles.continueText}>Continue</Text>
+      </TouchableOpacity>
     </View>
   );
 }
@@ -159,12 +155,12 @@ function LogFeelingScreen({ navigation, route }) {
 export default LogFeelingScreen;
 
 const styles = StyleSheet.create({
-  headerText:{
-    color:"white",
-    fontSize:20,
+  headerText: {
+    color: "white",
+    fontSize: 20,
     fontWeight: "bold",
   },
-  header:{
+  header: {
     backgroundColor: colors.darkBorder,
     height: "12%",
     width: "100%",
@@ -172,49 +168,47 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     borderBottomLeftRadius: 50,
     borderBottomRightRadius: 50,
-    alignSelf:"flex-start",
-    paddingTop:30
+    alignSelf: "flex-start",
+    paddingTop: 30,
   },
   container: {
     alignItems: "center",
-    height: '100%',
+    height: "100%",
     justifyContent: "space-between",
     backgroundColor: "#ffd390",
-    paddingBottom:"5%"
+    paddingBottom: "5%",
   },
   continueButton: {
     width: "40%",
     height: "6%",
     backgroundColor: "#c7ffd8",
     borderRadius: 20,
-    alignSelf:"center",
+    alignSelf: "center",
     alignItems: "center",
-    justifyContent: "center"
+    justifyContent: "center",
   },
   slidersContainer: {
     backgroundColor: "white",
     borderRadius: 50,
     paddingTop: 20,
     borderColor: colors.darkBorder,
-    borderWidth:2,
-    width:"100%"
+    borderWidth: 2,
+    width: "100%",
   },
   text: {
     color: "grey",
     fontSize: 18,
-    fontWeight: 'bold',
+    fontWeight: "bold",
     textAlign: "center",
   },
   topAndBottom: {
     marginTop: 10,
     justifyContent: "center",
-    alignItems: 'center'
+    alignItems: "center",
   },
   continueText: {
     color: "black",
     fontSize: 20,
     textAlign: "center",
-  }
+  },
 });
-
-
