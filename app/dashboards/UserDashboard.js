@@ -11,7 +11,7 @@ import {
   TouchableOpacity,
 } from "react-native";
 
-import firebase from "../../../firebase";
+import firebase from "../database/firebase";
 import ProgressBar from "../src/components/ProgressBar";
 import { TextInput } from "react-native-gesture-handler";
 
@@ -94,7 +94,7 @@ function UserDashboard(props) {
   return (
     <View>
       <ImageBackground
-        source={require("../../images/OrangeLogo.jpeg")}
+        source={require("../images/OrangeLogo.jpeg")}
         style={{
           absoluteFillObject: true,
           shadowColor: "#000",

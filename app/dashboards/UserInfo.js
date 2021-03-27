@@ -7,9 +7,9 @@ import {
   ImageBackground,
   TouchableOpacity,
 } from "react-native";
-import * as shape from "d3-shape";
+// import * as shape from "d3-shape";
 
-import firebase from "../../../firebase";
+import firebase from "../database/firebase";
 import ProgressBar from "../src/components/ProgressBar";
 import UserTable from "./UserTable";
 import { LineChart, XAxis, YAxis } from "react-native-svg-charts";
@@ -141,7 +141,7 @@ export default class UserInfo extends Component {
 
     return (
       <ImageBackground
-        source={require("../../images/OrangeLogo.jpeg")}
+        source={require("../images/OrangeLogo.jpeg")}
         style={{
           shadowColor: "#000",
           height: "100%",

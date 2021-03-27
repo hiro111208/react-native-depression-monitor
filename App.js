@@ -13,7 +13,6 @@ import SignupScreen from "./app/screens/SignupScreen";
 import ForgotPasswordScreen from "./app/screens/ForgotPasswordScreen";
 import SchedulingScreen from "./app/screens/SchedulingScreen";
 import ScheduleListScreen from "./app/screens/ScheduleListScreen";
-import Index from "./app/src/components/Index";
 import PatientDashboard from "./app/dashboards/PatientDashboard";
 import AdminDashboard from "./app/dashboards/AdminDashboard";
 

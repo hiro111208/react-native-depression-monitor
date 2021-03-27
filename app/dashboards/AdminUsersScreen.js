@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { StyleSheet, View, Text, Button } from "react-native";
-import Stack from "./Stack;";
-
+import AdminUserList from "./AdminUserList";
 export default function AdminUsersScreen() {
-  return <Stack />;
+  return <AdminUserList />;
 }

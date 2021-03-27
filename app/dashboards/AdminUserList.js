@@ -4,7 +4,7 @@ import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import UserInfo from "./UserInfo";
 
-function Stack() {
+const AdminUserList = () => {
   const userList = createStackNavigator();
   return (
     <NavigationContainer>
@@ -18,6 +18,6 @@ function Stack() {
       </userList.Navigator>
     </NavigationContainer>
   );
-}
+};
 
 export default Stack;

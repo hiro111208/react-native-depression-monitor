@@ -1,9 +1,8 @@
 {
-  "main": "node_modules/expo/AppEntry.js",
   "scripts": {
-    "start": "expo start",
-    "android": "expo start --android",
-    "ios": "expo start --ios",
+    "start": "react-native start",
+    "android": "react-native run-android",
+    "ios": "react-native run-ios",
     "web": "expo start --web",
     "eject": "expo eject",
     "test": "jest"
@@ -33,7 +32,6 @@
     "react-dom": "16.13.1",
     "react-native": "https://github.com/expo/react-native/archive/sdk-39.0.4.tar.gz",
     "react-native-dropdown-picker": "^4.0.2",
-    "react-native-elements": "^3.3.0",
     "react-native-emoji": "^1.8.0",
     "react-native-gesture-handler": "~1.10.3",
     "react-native-reanimated": "^1.13.2",
@@ -44,7 +42,14 @@
     "react-navigation": "^4.4.4",
     "react-navigation-stack": "^2.10.3",
     "react-test-renderer": "^17.0.1",
-    "react-testing-library": "^8.0.1"
+    "react-testing-library": "^8.0.1",
+    "expo-splash-screen": "~0.8.0",
+    "expo-updates": "~0.4.0",
+    "react-data-bouncer": "^2.0.0",
+    "react-native-elements": "^3.3.2",
+    "react-native-svg": "^12.1.0",
+    "react-native-svg-charts": "^5.4.0",
+    "react-native-table-component": "^1.2.1"
   },
   "devDependencies": {
     "@babel/core": "~7.9.0",
@@ -61,27 +66,14 @@
     "react-simple-tooltip": "^2.6.2"
   },
   "jest": {
-    "preset": [
-      "react-native",
-      "jest-expo-enzyme"
-    ],
+    "preset": "jest-expo-enzyme",
     "verbose": true,
     "transformIgnorePatterns": [
       "node_modules/(?!(jest-)?react-native|react-clone-referenced-element|@react-native-community|expo(nent)?|@expo(nent)?/.*|react-navigation|@react-navigation/.*|@unimodules/.*|unimodules|sentry-expo|native-base|@sentry/.*)"
     ],
-    "snapshotSerializers": [
-      "enzyme-to-json/serializer"
+    "modulePaths": [
+      "./App/src/components"
     ],
-    "collectCoverageFrom": [
-      "src/**/*.js",
-      "!src/index.js"
-    ],
-    "coverageReporters": [
-      "text"
-    ],
-    "setupFilesAfterEnv": [
-      "./setupTests.js"
-    ]
-  },
-  "private": true
+    "testEnvironment": "jest-environment-jsdom-fifteen"
+  }
 }
