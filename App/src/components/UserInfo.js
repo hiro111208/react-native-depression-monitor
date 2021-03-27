@@ -25,16 +25,19 @@ export default class UserInfo extends Component {
       averageTimePerBlockQ2: [],
       currentUser: route.params.user,
       currentBlock: route.params.block,
+      lastActive: `${route.params.lastActive
+        .toDate()
+        .toString()
+        .slice(0, 25)}${route.params.lastActive
+        .toDate()
+        .toString()
+        .slice(35, 38)}`,
       errorsPerSession: [],
     };
   }
-  getParams = () => {
-    this.state.currentUser = route.params.user;
-    this.state.currentBlock = route.params.block;
-  };
 
   // get User data and response time averages
-  getItemsAndAverages = () => {
+  getItemsAndAverages() {
     const ref = firebase.firestore().collection("answers");
     const query = ref.where("userID", "==", this.state.currentUser);
 
@@ -87,11 +90,12 @@ export default class UserInfo extends Component {
       this.setState({ averageTimePerBlockQ1: avg1Temp });
       this.setState({ averageTimePerBlockQ2: avg2Temp });
     });
-  };
+  }
 
-  useComponentWillMount = () => getParams();
+  useComponentWillMount = () => {};
   //Fetch upon mount
   componentDidMount() {
+    // this.getParams();
     this.getItemsAndAverages();
   }
 
@@ -214,6 +218,26 @@ export default class UserInfo extends Component {
               DB{this.state.currentUser}
             </Text>
             <Text style={{ fontSize: 10, fontWeight: "300" }}>User</Text>
+            <View left={120}>
+              <Text
+                style={{
+                  fontSize: 12,
+                  fontWeight: "300",
+                  paddingLeft: 10,
+                }}
+              >
+                Last Active:
+              </Text>
+              <Text
+                style={{
+                  fontSize: 8,
+                  fontWeight: "800",
+                  paddingLeft: 10,
+                }}
+              >
+                {this.state.lastActive}
+              </Text>
+            </View>
           </View>
           <View flex={1.375} padding={5} marginBottom={30}>
             <UserTable

@@ -20,7 +20,10 @@ function UserDashboard(props) {
   const [items, setItems] = useState([]);
   const [userCount, setUserCount] = useState(0);
   const [filterList, setFilterList] = useState([]);
-
+  const [active, setActive] = useState(["active", "inactive"]);
+  const [activeColor, setActiveColor] = useState(["#00b225", "#e12800"]);
+  //milliseconds in 2 weeks
+  const FORTNIGHT = 1209600000;
   // Queries from firebase database and stores in list
   const ref = firebase.firestore().collection("users");
   //Default database display format
@@ -61,6 +64,14 @@ function UserDashboard(props) {
     }
   };
 
+  const isActive = (timestamp) => {
+    const TimeNow = Date.now();
+    if (TimeNow - timestamp >= FORTNIGHT) {
+      return 1;
+    } else {
+      return 0;
+    }
+  };
   //upon Mount get UserList
   useEffect(() => {
     getItems();
@@ -150,6 +161,7 @@ function UserDashboard(props) {
                   props.navigation.navigate("UserInfo", {
                     user: item.userID,
                     block: item.block,
+                    lastActive: item.lastActive,
                   })
                 }
               >
@@ -161,6 +173,7 @@ function UserDashboard(props) {
                           props.navigation.navigate("UserInfo", {
                             user: item.userID,
                             block: item.block,
+                            lastActive: item.lastActive,
                           })
                         }
                       >
@@ -168,8 +181,21 @@ function UserDashboard(props) {
                           DB{item.userID}
                         </Text>
                       </TouchableOpacity>
+
                       <Text style={{ fontSize: 10, fontWeight: "300" }}>
-                        User
+                        User:
+                        <Text
+                          style={{
+                            color:
+                              activeColor[isActive(item.lastActive.toMillis())],
+                            padding: 10,
+                            fontSize: 10,
+                            fontWeight: "900",
+                          }}
+                        >
+                          {" "}
+                          {active[isActive(item.lastActive.toMillis())]}
+                        </Text>
                       </Text>
                     </View>
                   </View>

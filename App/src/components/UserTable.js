@@ -6,37 +6,29 @@ import { StyleSheet, View } from "react-native";
 import { Table, Rows, Row } from "react-native-table-component";
 
 function UserTable(props) {
-  const data = [["º 1"], ["º 2"], ["º 3"], ["º 4"]];
   const dataHead = ["Batch", "AvgTimeQ1", "AvgTimeQ2", "NºErrors"];
 
-  const { average1, setAverage1 } = useState([]);
-  const { average2, setAverage2 } = useState([]);
-
   const setData = () => {
+    const data = [["º 1"], ["º 2"], ["º 3"], ["º 4"]];
     const average1 = props.average1;
     const average2 = props.average2;
     //variables to store averages in one decimal format
     const roundedData1 = [];
     const roundedData2 = [];
-    for (let i = 0; i < 4; i++) {
-      console.log(props.average1);
-      console.log(props.average2);
-      roundedData1.push(`${props.average1[i]}`.length);
-      roundedData2.push(`${props.average2[i]}`.length);
-    }
 
     // store averages in string format
     for (let i = 0; i < 4; i++) {
       roundedData1.push(`${average1[i]}`.length);
       roundedData2.push(`${average2[i]}`.length);
     }
+
     //format averages and push to table data
     for (let i = 0; i < 4; i++) {
       if (average1[i] !== 0) {
         data[i].push(
           `${(average1[i] / Math.pow(10, roundedData1[i] - 1)).toFixed(
             1
-          )}  (ms/10^${roundedData2[i] - 1})`
+          )}  (seconds/10^${roundedData2[i] - 1})`
         );
       } else {
         data[i].push(0);
@@ -46,7 +38,7 @@ function UserTable(props) {
         data[i].push(
           `${(average2[i] / Math.pow(10, roundedData2[i] - 1)).toFixed(
             1
-          )}  (ms/10^${roundedData2[i] - 1})`
+          )}  (seconds/10^${roundedData2[i] - 1})`
         );
       } else {
         data[i].push(0);
@@ -54,6 +46,7 @@ function UserTable(props) {
 
       data[i].push(props.errorNum[i]);
     }
+    return data;
   };
 
   // useComponentWillMount(() => setData());
@@ -79,7 +72,7 @@ function UserTable(props) {
             style={styles.HeadStyle}
             textStyle={styles.TableText}
           />
-          <Rows data={data} textStyle={styles.TableText} />
+          <Rows data={setData()} textStyle={styles.TableText} />
         </Table>
       </View>
     </View>
