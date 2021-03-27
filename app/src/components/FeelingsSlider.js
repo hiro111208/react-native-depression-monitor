@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import { View, StyleSheet } from "react-native";
-import { baseProps } from "react-native-gesture-handler/lib/typescript/handlers/gestureHandlers";
 import MarkSlider from 'react-native-mark-slider';
 import colors from "../../config/colors";
 

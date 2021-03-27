@@ -79,6 +79,7 @@ const styles = StyleSheet.create({
     borderRadius: 50,
     borderColor: colors.darkBorder,
     borderWidth: 2,
+    width: "95%"
   },
   logo: {
     width: 50,

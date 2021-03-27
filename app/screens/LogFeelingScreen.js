@@ -17,6 +17,7 @@ import {selectedFeeling} from "../src/components/FeelingsRadioButtons";
 import FeelingsSlider from "../src/components/FeelingsSlider";
 import forceUpdate from "../src/components/FeelingsSlider";
 import colors from "../config/colors";
+import { color } from "react-native-reanimated";
 
 /**
  * Screen where the user logs their feelings. Users will
@@ -105,12 +106,12 @@ function LogFeelingScreen({ navigation, route }) {
   }
 
   return (
-    <KeyboardAvoidingView behavior={Platform.OS === "ios" ? "padding" : "height"} style={styles.container}>
+    <View style={styles.container}>
+      <View style={styles.header}><Text style={styles.headerText} >How are you feeling?</Text></View>
       <FeelingsRadioButtons 
         setOverallFeeling={setOverallFeeling}
         overallFeeling={overallFeeling}
       />
-      
 
       <View style={styles.slidersContainer}>
         <View style={styles.topAndBottom}>
@@ -153,7 +154,7 @@ function LogFeelingScreen({ navigation, route }) {
           <Text style={styles.continueButton} >Continue</Text>
         </TouchableOpacity>
 
-    </KeyboardAvoidingView>
+    </View>
   );
 
   {
@@ -164,35 +165,26 @@ function LogFeelingScreen({ navigation, route }) {
 export default LogFeelingScreen;
 
 const styles = StyleSheet.create({
+  headerText:{
+    color:"white",
+    fontSize:20,
+    fontWeight: "bold",
+  },
+  header:{
+    backgroundColor: colors.darkBorder,
+    height: "10%",
+    width: "100%",
+    alignItems: "center",
+    justifyContent: "center",
+    borderBottomLeftRadius: 50,
+    borderBottomRightRadius: 50,
+  },
   container: {
     alignItems: "center",
-    //justifyContent: "center"
-  },
-  answerButton: {
-    height: "75%",
-    width: 250,
-    backgroundColor: "#ffd0c1",
-    borderRadius: 10,
-    shadowColor: "#000",
-    shadowOffset: {
-      width: 0,
-      height: 2,
-    },
-    shadowOpacity: 0.25,
-    shadowRadius: 3.84,
-    elevation: 5,
-    marginVertical: 5,
-  },
-  answerArea: {
-    height: "30%",
-    padding: 70,
-  },
-  container: {
-    // marginTop: Constants.statusBarHeight,
     height: '100%',
     justifyContent: "space-around",
-    // flex: 1,
     backgroundColor: "#ffd390",
+    //paddingBottom:"5%"
   },
   correctHighlight: {
     borderColor: "#c7ffd8",
@@ -211,26 +203,8 @@ const styles = StyleSheet.create({
     borderRadius: 50,
     paddingTop: 20,
     borderColor: colors.darkBorder,
-    borderWidth:2
-  },
-  input: {
-    height: "75%",
-    width: "100%",
-    backgroundColor: "#ffcccb",
-    borderColor: "#ffffff",
-    borderWidth: 2,
-    padding: 8,
-    fontSize: 24,
-    textAlign: "center",
-  },
-  questionArea: {
-    width: "80%",
-    height: "100%",
-    borderRadius: 8,
-    borderWidth: 4,
-    borderColor: "#fff",
-    backgroundColor: "#eee",
-    padding: 5,
+    borderWidth:2,
+    width:"100%"
   },
   text: {
     color: "grey",
@@ -243,13 +217,9 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: 'center'
   },
-  centering: {
-    alignItems: "center",
-  },
   continueButton: {
     color: "black",
     fontSize: 20,
-    //fontWeight: 'bold',
     textAlign: "center",
   }
 });
