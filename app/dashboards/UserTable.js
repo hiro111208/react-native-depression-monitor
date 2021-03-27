@@ -27,7 +27,7 @@ function UserTable(props) {
         data[i].push(
           `${(average1[i] / Math.pow(10, roundedData1[i] - 1)).toFixed(
             1
-          )}  (seconds/10^${roundedData2[i] - 1})`
+          )}(s/10^${roundedData2[i] - 1})`
         );
       } else {
         data[i].push(0);
@@ -37,7 +37,7 @@ function UserTable(props) {
         data[i].push(
           `${(average2[i] / Math.pow(10, roundedData2[i] - 1)).toFixed(
             1
-          )}  (seconds/10^${roundedData2[i] - 1})`
+          )}(s/10^${roundedData2[i] - 1})`
         );
       } else {
         data[i].push(0);
@@ -112,7 +112,7 @@ const styles = StyleSheet.create({
     fontWeight: "300",
   },
   TableText: {
-    fontSize: 10,
+    fontSize: 8,
     fontWeight: "300",
     margin: 5,
     padding: 5,

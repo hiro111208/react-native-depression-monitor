@@ -26,9 +26,8 @@ import AccountScreen from "./app/dashboards/AccountScreen";
 
 import { withNavigation } from "react-navigation";
 
-const Stack = createStackNavigator();
-
 function MyStack() {
+  const Stack = createStackNavigator();
   return (
     <Stack.Navigator
       initialRouteName="LoginScreen"

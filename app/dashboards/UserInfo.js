@@ -7,7 +7,7 @@ import {
   ImageBackground,
   TouchableOpacity,
 } from "react-native";
-// import * as shape from "d3-shape";
+import * as shape from "d3-shape";
 
 import firebase from "../database/firebase";
 import ProgressBar from "../src/components/ProgressBar";
@@ -92,7 +92,6 @@ export default class UserInfo extends Component {
     });
   }
 
-  useComponentWillMount = () => {};
   //Fetch upon mount
   componentDidMount() {
     // this.getParams();
@@ -140,19 +139,13 @@ export default class UserInfo extends Component {
     };
 
     return (
-      <ImageBackground
-        source={require("../images/OrangeLogo.jpeg")}
-        style={{
-          shadowColor: "#000",
-          height: "100%",
-          width: "100%",
-          shadowOffset: {
-            width: 0,
-            height: 10,
-          },
-          shadowOpacity: 0.3,
-          shadowRadius: 20,
-        }}
+      <View
+        marginTop={3}
+        height={"100%"}
+        backgroundColor={"#ffbe7bff"}
+        borderRadius={20}
+        borderColor={"#ffa351ff"}
+        borderWidth={3}
       >
         <TouchableOpacity
           adjustsFontSizeToFit={true}
@@ -218,7 +211,7 @@ export default class UserInfo extends Component {
               DB{this.state.currentUser}
             </Text>
             <Text style={{ fontSize: 10, fontWeight: "300" }}>User</Text>
-            <View left={120}>
+            <View left={80}>
               <Text
                 style={{
                   fontSize: 12,
@@ -275,6 +268,7 @@ export default class UserInfo extends Component {
                   fill: "grey",
                   fontSize: 10,
                 }}
+                numberOfTicks={4}
                 formatLabel={(value) =>
                   `${value / Math.pow(10, value.toString().length - 1)}`
                 }
@@ -339,6 +333,7 @@ export default class UserInfo extends Component {
                   fill: "grey",
                   fontSize: 10,
                 }}
+                numberOfTicks={5}
                 formatLabel={(value) =>
                   `${value / Math.pow(10, value.toString().length - 1)}`
                 }
@@ -348,7 +343,8 @@ export default class UserInfo extends Component {
           <View
             flex={0.25}
             style={styles.shadow}
-            padding={10}
+            paddingBottom={20}
+            paddingHorizontal={20}
             marginTop={20}
             justifyContents={"center"}
             borderWidth={0.4}
@@ -364,10 +360,11 @@ export default class UserInfo extends Component {
                 All Sessions Completed!
               </Text>
             )}
+
             <ProgressBar nextWidth={this.state.currentBlock - 1}></ProgressBar>
           </View>
         </View>
-      </ImageBackground>
+      </View>
     );
   }
 }

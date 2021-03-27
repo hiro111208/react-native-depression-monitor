@@ -92,134 +92,124 @@ function UserDashboard(props) {
   const { width, height } = Dimensions.get("window");
 
   return (
-    <View>
-      <ImageBackground
-        source={require("../images/OrangeLogo.jpeg")}
+    <View
+      margin={10}
+      backgroundColor={"#ffbe7bff"}
+      borderRadius={20}
+      borderColor={"#ffa351ff"}
+      borderWidth={3}
+    >
+      <View
         style={{
-          absoluteFillObject: true,
-          shadowColor: "#000",
-          height: height,
-          width: width,
+          width: 150,
+          height: 35,
+          marginTop: 20,
           shadowOffset: {
             width: 0,
             height: 10,
           },
           padding: 10,
-          shadowOpacity: 0.3,
+          shadowOpacity: 0.4,
           shadowRadius: 20,
+          backgroundColor: "#FFF",
+          borderRadius: 10,
         }}
       >
-        <View
+        <Text
+          adjustsFontSizeToFit={true}
+          numberOfLines={1}
           style={{
-            width: 150,
-            height: 35,
-            marginTop: 20,
-            shadowOffset: {
-              width: 0,
-              height: 10,
-            },
-            padding: 10,
-            shadowOpacity: 0.4,
-            shadowRadius: 20,
-            backgroundColor: "#FFF",
-            borderRadius: 10,
+            fontSize: 15,
+            fontWeight: "700",
           }}
         >
-          <Text
-            adjustsFontSizeToFit={true}
-            numberOfLines={1}
-            style={{
-              fontSize: 15,
-              fontWeight: "700",
-            }}
-          >
-            Total Nº Users : {userCount}
-          </Text>
-        </View>
-        <TextInput
-          style={styles.searchBar}
-          round
-          searchIcon={{ size: 24 }}
-          onChangeText={(text) => onChange(text)}
-          clearButtonMode={"always"}
-          placeholder="Search by ID or Block Number"
-          value={searchQuery}
-        />
+          Total Nº Users : {userCount}
+        </Text>
+      </View>
+      <TextInput
+        style={styles.searchBar}
+        round
+        searchIcon={{ size: 24 }}
+        onChangeText={(text) => onChange(text)}
+        clearButtonMode={"always"}
+        placeholder="Search by ID or Block Number"
+        value={searchQuery}
+      />
 
-        <Animated.FlatList
-          data={items}
-          keyExtractor={(item, index) => index.toString()}
-          contentContainerStyle={{
-            paddingTop: StatusBar.currentHeight || 42,
-            padding: 10,
-          }}
-          renderItem={({ item, index }) => {
-            return (
-              <TouchableOpacity
-                key={index}
-                onPress={() =>
-                  props.navigation.navigate("UserInfo", {
-                    user: item.userID,
-                    block: item.block,
-                    lastActive: item.lastActive,
-                  })
-                }
-              >
-                <Animated.View style={styles.listComponent}>
-                  <View flex={1}>
-                    <View flexDirection={"row"}>
-                      <TouchableOpacity
-                        onPress={() =>
-                          props.navigation.navigate("UserInfo", {
-                            user: item.userID,
-                            block: item.block,
-                            lastActive: item.lastActive,
-                          })
-                        }
+      <Animated.FlatList
+        data={items}
+        keyExtractor={(item, index) => index.toString()}
+        contentContainerStyle={{
+          paddingTop: StatusBar.currentHeight || 42,
+          padding: 10,
+        }}
+        renderItem={({ item, index }) => {
+          return (
+            <TouchableOpacity
+              key={index}
+              onPress={() =>
+                props.navigation.navigate("UserInfo", {
+                  user: item.userID,
+                  block: item.block,
+                  lastActive: item.lastActive,
+                })
+              }
+            >
+              <Animated.View style={styles.listComponent}>
+                <View flex={1}>
+                  <View flexDirection={"row"}>
+                    <TouchableOpacity
+                      onPress={() =>
+                        props.navigation.navigate("UserInfo", {
+                          user: item.userID,
+                          block: item.block,
+                          lastActive: item.lastActive,
+                        })
+                      }
+                    >
+                      <Text style={{ fontSize: 22, fontWeight: "700" }}>
+                        DB{item.userID}
+                      </Text>
+                    </TouchableOpacity>
+
+                    <Text style={{ fontSize: 10, fontWeight: "300" }}>
+                      User:
+                      <Text
+                        style={{
+                          color:
+                            activeColor[isActive(item.lastActive.toMillis())],
+                          padding: 10,
+                          fontSize: 10,
+                          fontWeight: "900",
+                        }}
                       >
-                        <Text style={{ fontSize: 22, fontWeight: "700" }}>
-                          DB{item.userID}
-                        </Text>
-                      </TouchableOpacity>
-
-                      <Text style={{ fontSize: 10, fontWeight: "300" }}>
-                        User:
-                        <Text
-                          style={{
-                            color:
-                              activeColor[isActive(item.lastActive.toMillis())],
-                            padding: 10,
-                            fontSize: 10,
-                            fontWeight: "900",
-                          }}
-                        >
-                          {" "}
-                          {active[isActive(item.lastActive.toMillis())]}
-                        </Text>
+                        {" "}
+                        {active[isActive(item.lastActive.toMillis())]}
                       </Text>
-                    </View>
+                    </Text>
                   </View>
+                </View>
 
-                  <View width={200} marginLeft={10}>
-                    {item.block < 5 && (
-                      <Text style={{ fontSize: 10, fontWeight: "300" }}>
-                        Current Block: {item.block}
-                      </Text>
-                    )}
-                    {item.block === 5 && (
-                      <Text style={{ fontSize: 10, fontWeight: "300" }}>
-                        All Sessions Completed!
-                      </Text>
-                    )}
-                    <ProgressBar nextWidth={item.block - 1}></ProgressBar>
-                  </View>
-                </Animated.View>
-              </TouchableOpacity>
-            );
-          }}
-        ></Animated.FlatList>
-        <StatusBar hidden />
-      </ImageBackground>
+                <View width={200} marginLeft={10}>
+                  {item.block < 5 && (
+                    <Text style={{ fontSize: 10, fontWeight: "300" }}>
+                      Current Block: {item.block}
+                    </Text>
+                  )}
+                  {item.block === 5 && (
+                    <Text style={{ fontSize: 10, fontWeight: "300" }}>
+                      All Sessions Completed!
+                    </Text>
+                  )}
+                  <ProgressBar nextWidth={item.block - 1}></ProgressBar>
+                </View>
+              </Animated.View>
+            </TouchableOpacity>
+          );
+        }}
+      ></Animated.FlatList>
+
+      <StatusBar hidden />
     </View>
   );
 }
@@ -260,3 +250,20 @@ const styles = StyleSheet.create({
 });
 
 export default UserDashboard;
+
+// <ImageBackground
+// source={require("../images/OrangeLogo.jpeg")}
+// style={{
+//   absoluteFillObject: true,
+//   shadowColor: "#000",
+//   height: height,
+//   width: width,
+//   shadowOffset: {
+//     width: 0,
+//     height: 10,
+//   },
+//   padding: 10,
+//   shadowOpacity: 0.3,
+//   shadowRadius: 20,
+// }}
+// ></ImageBackground>

@@ -7,7 +7,7 @@ import UserInfo from "./UserInfo";
 const AdminUserList = () => {
   const userList = createStackNavigator();
   return (
-    <NavigationContainer>
+    <NavigationContainer independent={true}>
       <userList.Navigator
         screenOptions={{
           headerShown: false,
@@ -20,4 +20,4 @@ const AdminUserList = () => {
   );
 };
 
-export default Stack;
+export default AdminUserList;
