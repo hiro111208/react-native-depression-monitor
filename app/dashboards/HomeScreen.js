@@ -186,9 +186,9 @@ const registerForPushNotificationsAsync = async()=> {
             style={[styles.sessionArea, styles.centering, styles.shadowEffect]}
             onPress={() => {
               if(user.question===1){
-                navigation.navigate("LogFeelingScreen"), {
+                navigation.navigate("LogFeelingScreen", {
                 cameFrom: "HomeScreen",
-                }
+                })
               }else{
                 navigation.navigate("TherapyScreen", {
                 onGoBack: () => refresh(),

@@ -115,7 +115,7 @@ function LogFeelingScreen({ navigation, route }) {
         <TouchableOpacity 
          style={styles.optButton}
          onPress={() => {
-           if (route.params.cameFrom == "HomeScreem") {
+           if (route.params.cameFrom === "HomeScreem") {
             saveFeelings(); navigation.navigate("TherapyScreen", {
               onGoBack: () => refresh(),
               })
