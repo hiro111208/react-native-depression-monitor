@@ -13,7 +13,6 @@ import SignupScreen from "./app/screens/SignupScreen";
 import ForgotPasswordScreen from "./app/screens/ForgotPasswordScreen";
 import SchedulingScreen from "./app/screens/SchedulingScreen";
 import ScheduleListScreen from "./app/screens/ScheduleListScreen";
-import Index from "./app/src/components/Index";
 import PatientDashboard from "./app/dashboards/PatientDashboard";
 import AdminDashboard from "./app/dashboards/AdminDashboard";
 
@@ -21,6 +20,7 @@ import TherapyQuestionScreen from "./app/screens/TherapyQuestionScreen";
 import TherapyQuestionDetailScreen from "./app/screens/TherapyQuestionDetailScreen";
 
 import PauseScreen from "./app/screens/PauseScreen";
+import LogFeelingScreen from "./app/screens/LogFeelingScreen";
 import colors from "./app/config/colors";
 import SupportResources from "./app/screens/SupportResources";
 import AccountScreen from "./app/dashboards/AccountScreen";
@@ -105,6 +105,11 @@ function MyStack() {
         options={{ headerShown: false }}
         name="PlantScreen"
         component={PlantScreen}
+      />
+      <Stack.Screen
+        name="LogFeelingScreen"
+        component={LogFeelingScreen}
+        options={{ headerShown: false }}
       />
       <Stack.Screen name="CategoryDrop" component={CategoryDrop} />
       <Stack.Screen
