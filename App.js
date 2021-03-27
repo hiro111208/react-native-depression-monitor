@@ -130,7 +130,6 @@ function MyStack() {
         component={SupportResources}
       />
       <Stack.Screen name="AccountScreen" component={AccountScreen} />
-      <Stack.Screen options={{ headerShown: false }} name="HomeScreen" component={HomeScreen} />
     </Stack.Navigator>
   );
 }

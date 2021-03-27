@@ -133,7 +133,7 @@ function LogFeelingScreen({ navigation, route }) {
            } else {
             saveFeelings(); 
             reset();
-            navigation.navigate("HomeScreen") 
+            navigation.navigate("PatientDashboard") 
            }
           }}
          >
