@@ -8,12 +8,14 @@ import {
   KeyboardAvoidingView,
   TouchableOpacity,
   TextInput,
+  Alert
 } from "react-native";
 import Constants from "expo-constants";
 import firebase from "../database/firebase";
 import FeelingsRadioButtons from "../src/components/FeelingsRadioButtons";
 import {selectedFeeling} from "../src/components/FeelingsRadioButtons";
 import FeelingsSlider from "../src/components/FeelingsSlider";
+import forceUpdate from "../src/components/FeelingsSlider";
 import colors from "../config/colors";
 
 /**
@@ -83,6 +85,25 @@ function LogFeelingScreen({ navigation, route }) {
       });
   }
 
+  function handleOnContinuePress(){
+    if(overallFeeling === "") {
+      Alert.alert("Please fill in how you are feeling!");
+    }
+    else{
+      if (route.params.cameFrom === "HomeScreen") {
+        saveFeelings();
+        reset();
+        navigation.navigate("TherapyScreen", {
+          onGoBack: () => route.params.onGoBack(),
+          })
+       } else {
+        saveFeelings(); 
+        reset();
+        navigation.navigate("PatientDashboard") 
+       }
+    }
+  }
+
   return (
     <KeyboardAvoidingView behavior={Platform.OS === "ios" ? "padding" : "height"} style={styles.container}>
       <FeelingsRadioButtons 
@@ -96,6 +117,7 @@ function LogFeelingScreen({ navigation, route }) {
           <Text style={styles.text}>Paranoid</Text>
           <FeelingsSlider
             setFeelingState={setParanoid}
+            feelingState={paranoid}
           />
         </View>
 
@@ -103,6 +125,7 @@ function LogFeelingScreen({ navigation, route }) {
           <Text style={styles.text}>Anxious</Text>
           <FeelingsSlider
             setFeelingState={setAnxious}
+            feelingState={anxious}
           />
         </View>
 
@@ -110,6 +133,7 @@ function LogFeelingScreen({ navigation, route }) {
           <Text style={styles.text}>Sad</Text>
           <FeelingsSlider
             setFeelingState={setSad}
+            feelingState={sad}
           />
         </View>
 
@@ -117,25 +141,14 @@ function LogFeelingScreen({ navigation, route }) {
           <Text style={styles.text}>Friendly</Text>
           <FeelingsSlider
             setFeelingState={setFriendly}
+            feelingState={friendly}
           />
         </View>
       </View>
 
         <TouchableOpacity 
          style={styles.optButton}
-         onPress={() => {
-           if (route.params.cameFrom === "HomeScreen") {
-            saveFeelings();
-            reset();
-            navigation.navigate("TherapyScreen", {
-              onGoBack: () => route.params.onGoBack(),
-              })
-           } else {
-            saveFeelings(); 
-            reset();
-            navigation.navigate("PatientDashboard") 
-           }
-          }}
+         onPress={() => {handleOnContinuePress()}}
          >
           <Text style={styles.continueButton} >Continue</Text>
         </TouchableOpacity>

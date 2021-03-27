@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { View, StyleSheet } from "react-native";
+import { baseProps } from "react-native-gesture-handler/lib/typescript/handlers/gestureHandlers";
 import MarkSlider from 'react-native-mark-slider';
 import colors from "../../config/colors";
 
@@ -19,6 +20,7 @@ const marks = [
   },
 ];
 export default function FeelingsSlider(props) {
+
   return (
     <View style={styles.root}>
         <MarkSlider
@@ -26,9 +28,9 @@ export default function FeelingsSlider(props) {
           step={1}
           max={5}
           min={1}
+          value= {props.feelingState}
           marks={marks}
           minimumTrackTintColor="#ffd390"
-          //maximumTrackTintColor= 
           thumbTintColor={colors.darkBorder}
           onSlidingComplete={value => props.setFeelingState(value)}
         />
