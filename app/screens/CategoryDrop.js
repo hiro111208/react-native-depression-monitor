@@ -21,24 +21,25 @@ const CategoryDrop = ({ route, navigation }) => {
 
   // Drops the category for the user or assigns them to control data set
   function chooseOption(chosenCategory) {
-    //var num = Math.random();
-    //if (num <= 0.5) {
-    chosenCategory = "CONTROL";
-    //}
+    var num = Math.random();
+    if (num <= 0.5) {
+      chosenCategory = "CONTROL";
+    }
     userProgress.categoryDropped = chosenCategory;
 
     //Update the database with new category
     ref
-      .set({
-        userID: userProgress.userID,
-        question: userProgress.question,
-        block: userProgress.block,
-        categoryDropped: userProgress.categoryDropped,
-        level: 1,
-        coins: 0,
-      })
+      .set(
+        {
+          categoryDropped: userProgress.categoryDropped,
+          lastActive: new Date(),
+        },
+        { merge: true }
+      )
       .then(() => {
-        console.log("Category successfully dropped");
+        console.log(
+          "Category successfully dropped" + userProgress.categoryDropped
+        );
         navigation.navigate("PatientDashboard");
       })
       .catch((error) => {
