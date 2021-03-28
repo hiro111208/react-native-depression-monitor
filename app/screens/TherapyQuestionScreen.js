@@ -121,20 +121,12 @@ export default class TherapyQuestionScreen extends Component {
                     { label: "WORK", value: "WORK" },
                     { label: "RELATIONSHIPS", value: "RELATIONSHIPS" },
                   ]}
-                  placeholder="Select a category!"
+                  placeholder="Select a category"
                   defaultIndex={0}
                   onChangeItem={(item) => this.filterCollection(item.value)}
                   containerStyle={{ width: "80%", height: "100%" }}
-                  selectedLabelStyle={{
-                    color: "dimgrey",
-                    fontWeight: "bold",
-                    fontSize: 20,
-                  }}
-                  placeholderStyle={{
-                    fontSize: 18,
-                    fontWeight: "bold",
-                    color: "dimgray",
-                  }}
+                  selectedLabelStyle={indexStyles.textGrey}
+                  placeholderStyle={indexStyles.textGrey}
                   style={{
                     borderTopLeftRadius: 20,
                     borderTopRightRadius: 20,
@@ -213,7 +205,7 @@ export default class TherapyQuestionScreen extends Component {
                     indexStyles.centering,
                   ]}
                 >
-                  <Text style={[styles.fontStyle, { fontSize: 17 }]}>
+                  <Text style={[indexStyles.textGrey, { fontSize: 17 }]}>
                     Go Back
                   </Text>
                 </TouchableOpacity>
@@ -250,11 +242,7 @@ export default class TherapyQuestionScreen extends Component {
                     fontWeight: "bold",
                     fontSize: 20,
                   }}
-                  placeholderStyle={{
-                    fontSize: 18,
-                    fontWeight: "bold",
-                    color: "dimgray",
-                  }}
+                  placeholderStyle={indexStyles.textGrey}
                   style={{
                     borderTopLeftRadius: 20,
                     borderTopRightRadius: 20,
@@ -348,10 +336,6 @@ const styles = StyleSheet.create({
     flex: 1,
     paddingBottom: 10,
     fontWeight: "bold",
-  },
-  fontStyle: {
-    fontWeight: "bold",
-    color: "dimgray",
   },
   preloader: {
     left: 0,

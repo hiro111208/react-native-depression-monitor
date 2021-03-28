@@ -62,7 +62,7 @@ export default function PauseScreen({ props, navigation }) {
             style={[styles.backButton, indexStyles.shadowEffect]}
             onPress={() => navigation.navigate("TherapyScreen")} //implement timer/record the current time
           >
-            <Text style={[styles.text, styles.backText]}>
+            <Text style={[styles.text, indexStyles.textGrey]}>
               Back to the session
             </Text>
           </TouchableOpacity>
@@ -86,9 +86,6 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   text: {
-    fontWeight: "bold",
-    textAlign: "center",
-    color: "#4a4b4b",
     maxWidth: winWidth / 1.3,
     lineHeight: winHeight / 27,
     letterSpacing: winWidth / 400,
@@ -121,9 +118,5 @@ const styles = StyleSheet.create({
     padding: 10,
     borderRadius: 20,
     justifyContent: "center",
-  },
-  backText: {
-    fontSize: 18,
-    color: "dimgray",
   },
 });

@@ -111,7 +111,7 @@ const PlantScreen = ({ navigation, route }) => {
         </View>
 
         <View style={[styles.message, indexStyles.centering]}>
-          <Text style={[styles.textStyle]}>
+          <Text style={[indexStyles.textGrey]}>
             Keep going! {"\n"}You're almost there!
           </Text>
         </View>
@@ -141,7 +141,7 @@ const PlantScreen = ({ navigation, route }) => {
             style={[styles.homeButton, indexStyles.centering]}
             onPress={() => saveProgress()}
           >
-            <Text style={styles.textStyle}>Return Home</Text>
+            <Text style={indexStyles.textGrey}>Return Home</Text>
           </TouchableOpacity>
         </View>
       </View>
@@ -183,11 +183,6 @@ const styles = StyleSheet.create({
     height: "100%",
     width: "100%",
     backgroundColor: "#ffeed2",
-  },
-  textStyle: {
-    fontSize: 20,
-    fontWeight: "bold",
-    color: "dimgray",
   },
   comment: {
     color: "dodgerblue",

@@ -122,7 +122,7 @@ export default class TherapyQuestionDetailScreen extends Component {
         <View style={[styles.center, styles.cover, indexStyles.shadowEffect]}>
           <View style={{ height: "10%" }}>
             <View style={styles.title}>
-              <Text style={[styles.fontStyle, { fontSize: 20 }]}>
+              <Text style={[indexStyles.textGrey]}>
                 {this.state.categoryDropped} {this.state.block}-
                 {this.state.question}
               </Text>
@@ -213,7 +213,7 @@ export default class TherapyQuestionDetailScreen extends Component {
                 indexStyles.centering,
               ]}
             >
-              <Text style={[styles.fontStyle, { fontSize: 17 }]}>Update</Text>
+              <Text style={[indexStyles.textGrey, { fontSize: 17 }]}>Update</Text>
             </TouchableOpacity>
           </View>
 
@@ -229,7 +229,7 @@ export default class TherapyQuestionDetailScreen extends Component {
                 { borderBottomLeftRadius: 40, borderBottomRightRadius: 40 },
               ]}
             >
-              <Text style={[styles.fontStyle, { fontSize: 17 }]}>Go Back</Text>
+              <Text style={[indexStyles.textGrey, { fontSize: 17 }]}>Go Back</Text>
             </TouchableOpacity>
           </View>
         </View>
@@ -267,10 +267,6 @@ const styles = StyleSheet.create({
     flex: 1,
     paddingBottom: 10,
     fontWeight: "bold",
-  },
-  fontStyle: {
-    fontWeight: "bold",
-    color: "dimgray",
   },
   inputGroup: {
     flex: 1,

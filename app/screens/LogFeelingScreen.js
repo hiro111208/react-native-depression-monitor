@@ -115,7 +115,7 @@ function LogFeelingScreen({ navigation, route }) {
       {/* Render sliders for each emotion */}
       <ScrollView style={styles.slidersContainer}>
         <View style={[styles.topAndBottom, indexStyles.centering]}>
-          <Text style={styles.text}>Paranoid</Text>
+          <Text style={indexStyles.textGrey}>Paranoid</Text>
           <FeelingsSlider
             setFeelingState={setParanoid}
             feelingState={paranoid}
@@ -123,17 +123,17 @@ function LogFeelingScreen({ navigation, route }) {
         </View>
 
         <View style={[styles.topAndBottom, indexStyles.centering]}>
-          <Text style={styles.text}>Anxious</Text>
+          <Text style={indexStyles.textGrey}>Anxious</Text>
           <FeelingsSlider setFeelingState={setAnxious} feelingState={anxious} />
         </View>
 
         <View style={[styles.topAndBottom, indexStyles.centering]}>
-          <Text style={styles.text}>Sad</Text>
+          <Text style={indexStyles.textGrey}>Sad</Text>
           <FeelingsSlider setFeelingState={setSad} feelingState={sad} />
         </View>
 
         <View style={[styles.topAndBottom, indexStyles.centering]}>
-          <Text style={styles.text}>Friendly</Text>
+          <Text style={indexStyles.textGrey}>Friendly</Text>
           <FeelingsSlider
             setFeelingState={setFriendly}
             feelingState={friendly}
@@ -192,12 +192,6 @@ const styles = StyleSheet.create({
     borderColor: colors.darkBorder,
     borderWidth: 2,
     width: "100%",
-  },
-  text: {
-    color: "grey",
-    fontSize: 18,
-    fontWeight: "bold",
-    textAlign: "center",
   },
   topAndBottom: {
     marginTop: 10,

@@ -27,7 +27,7 @@ export default function AdminHomeScreen({ props, navigation }) {
         <View style={{ height: "10%" }}></View>
 
         <View style={[{ height: "40%" }, indexStyles.centering]}>
-          <Text style={[styles.fontStyle, { fontSize: 25 }]}>
+          <Text style={[indexStyles.textGrey, { fontSize: 25 }]}>
             Hello, admin!
           </Text>
           <Image
@@ -43,7 +43,7 @@ export default function AdminHomeScreen({ props, navigation }) {
             style={[indexStyles.centering, styles.optButton, styles.cover]}
           >
             <Text
-              style={[styles.fontStyle, indexStyles.centering, { fontSize: 18 }]}
+              style={[indexStyles.textGrey, indexStyles.centering, { fontSize: 18 }]}
             >
               Therapy Question Management
             </Text>
@@ -57,7 +57,7 @@ export default function AdminHomeScreen({ props, navigation }) {
             onPress={() => signOut()}
             style={[styles.bottomButton, indexStyles.shadowEffect, indexStyles.centering]}
           >
-            <Text style={[styles.fontStyle, { fontSize: 17 }]}>Log out</Text>
+            <Text style={[indexStyles.textGrey, { fontSize: 17 }]}>Log out</Text>
           </TouchableOpacity>
         </View>
       </View>
@@ -89,10 +89,6 @@ const styles = StyleSheet.create({
   cover: {
     height: "100%",
     width: "100%",
-  },
-  fontStyle: {
-    fontWeight: "bold",
-    color: "dimgray",
   },
   optButton: {
     backgroundColor: "#ffeed2",

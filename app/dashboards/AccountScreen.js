@@ -34,7 +34,7 @@ export default function AccountScreen({ props, navigation }) {
             style={[styles.logout, indexStyles.centering]}
             onPress={() => signOut()}
           >
-            <Text style={styles.textStyle}>Logout</Text>
+            <Text style={indexStyles.textGrey}>Logout</Text>
           </TouchableOpacity>
         </View>
 
@@ -50,7 +50,7 @@ export default function AccountScreen({ props, navigation }) {
             style={[styles.logout, indexStyles.centering]}
             onPress={() => navigation.navigate("SupportResources")}
           >
-            <Text style={styles.textStyle}>Support Resources</Text>
+            <Text style={indexStyles.textGrey}>Support Resources</Text>
           </TouchableOpacity>
         </View>
       </View>
@@ -95,10 +95,5 @@ const styles = StyleSheet.create({
     borderBottomStartRadius: 50,
     borderBottomEndRadius: 50,
     padding: 20,
-  },
-  textStyle: {
-    fontSize: 20,
-    fontWeight: "bold",
-    color: "dimgray",
   },
 });

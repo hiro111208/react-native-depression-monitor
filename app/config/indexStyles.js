@@ -14,3 +14,11 @@ export const shadowEffect = {
     elevation: 5,
     marginVertical: 5,
 };
+
+export const textGrey = {
+    fontSize: 20,
+    fontWeight: "bold",
+    textAlign: "center",
+    color: "dimgray",
+    flexWrap: "wrap",
+};

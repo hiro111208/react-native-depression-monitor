@@ -150,7 +150,7 @@ export default function HomeScreen({ route, props, navigation }) {
       <View style={styles.center}>
         <View style={[styles.welcomeArea, indexStyles.shadowEffect]}>
           <View style={styles.userNote}>
-            <Text style={[styles.textStyle]}>Hello there, {displayName}!</Text>
+            <Text style={[indexStyles.textGrey]}>Hello there, {displayName}!</Text>
 
             <View style={styles.spacer}></View>
 
@@ -190,7 +190,7 @@ export default function HomeScreen({ route, props, navigation }) {
               }
             }}
           >
-            <Text style={styles.textStyle}>Go to your session</Text>
+            <Text style={indexStyles.textGrey}>Go to your session</Text>
           </TouchableOpacity>
 
           <TouchableOpacity
@@ -206,7 +206,7 @@ export default function HomeScreen({ route, props, navigation }) {
               })
             }
           >
-            <Text style={styles.textStyle}>Interact with your plant</Text>
+            <Text style={indexStyles.textGrey}>Interact with your plant</Text>
           </TouchableOpacity>
         </View>
       </View>
@@ -250,11 +250,6 @@ const styles = StyleSheet.create({
     backgroundColor: "#ffeed2",
     padding: 10,
     borderRadius: 20,
-  },
-  textStyle: {
-    fontSize: 20,
-    fontWeight: "bold",
-    color: "dimgray",
   },
   spacer: {
     height: "20%",

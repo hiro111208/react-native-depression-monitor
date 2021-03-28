@@ -185,7 +185,7 @@ class SchedulingScreen extends Component {
 
           <View style={[{ height: "6%", flexDirection: "row" }]}>
             <View style={{ width: "20%" }}></View>
-            <Text style={[styles.textStyle, styles.fontStyle]}>
+            <Text style={[indexStyles.textGrey, { fontSize: 18 }]}>
               Select a date:
             </Text>
           </View>
@@ -235,7 +235,7 @@ class SchedulingScreen extends Component {
 
           <View style={[{ height: "6%", flexDirection: "row" }]}>
             <View style={{ width: "20%" }}></View>
-            <Text style={[styles.textStyle, styles.fontStyle]}>
+            <Text style={[indexStyles.textGrey, { fontSize: 18 }]}>
               Select a time:
             </Text>
           </View>
@@ -278,7 +278,7 @@ class SchedulingScreen extends Component {
               onPress={() => this.validateAppointment()}
               style={[styles.selectButton, styles.cover, indexStyles.centering]}
             >
-              <Text style={[styles.textStyle, styles.fontStyle]}>
+              <Text style={[indexStyles.textGrey, { fontSize: 18 }]}>
                 Add Session
               </Text>
             </TouchableOpacity>
@@ -307,7 +307,7 @@ class SchedulingScreen extends Component {
                 indexStyles.shadowEffect,
               ]}
             >
-              <Text style={[styles.scheduleText, styles.fontStyle]}>
+              <Text style={[indexStyles.textGrey, { fontSize: 15 }]}>
                 Schedule List
               </Text>
             </TouchableOpacity>
@@ -341,18 +341,8 @@ const styles = StyleSheet.create({
     height: "100%",
     width: "100%",
   },
-  fontStyle: {
-    fontWeight: "bold",
-    color: "dimgray",
-  },
-  scheduleText: {
-    fontSize: 15,
-  },
   selectButton: {
     backgroundColor: "#ffeed2",
-  },
-  textStyle: {
-    fontSize: 18,
   },
 });
 
