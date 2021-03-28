@@ -4,56 +4,55 @@ import { ScrollView } from "react-native";
 import { SafeAreaView, View, Text, StyleSheet } from "react-native";
 import ProgressBar from "../src/components/ProgressBar";
 
-function getDateToString() {
-  const date = new Date();
-  const calender = date.toString().substr(4, 11);
-  const time = date.toString().substr(15, 6);
-  return calender + "  @ " + time;
-}
-
-function renderData() {
-  return (
-    <View style={styles.oval}>
-      <Text style={styles.dateText}>{getDateToString()}</Text>
-    </View>
-  );
-}
-
-function renderStats() {
-  return (
-    <View style={styles.largeOval}>
-      <View style={styles.bars}>
-        <Text style={styles.overallText}>DB8 felt very happy!</Text>
-        <Text style={styles.statText}>Anxious</Text>
-        <ProgressBar
-          style={styles.progressBar}
-          segments={5}
-          nextWidth={0}
-        ></ProgressBar>
-        <Text style={styles.statText}>Friendly</Text>
-        <ProgressBar
-          style={styles.progressBar}
-          segments={5}
-          nextWidth={0}
-        ></ProgressBar>
-        <Text style={styles.statText}>Paranoid</Text>
-        <ProgressBar
-          style={styles.progressBar}
-          segments={5}
-          nextWidth={0}
-        ></ProgressBar>
-        <Text style={styles.statText}>Sad</Text>
-        <ProgressBar
-          style={styles.progressBar}
-          segments={5}
-          nextWidth={0}
-        ></ProgressBar>
-      </View>
-    </View>
-  );
-}
-
 const AdminFeelingsLog = () => {
+  function getDateToString() {
+    const date = new Date();
+    const calender = date.toString().substr(4, 11);
+    const time = date.toString().substr(15, 6);
+    return calender + "  @ " + time;
+  }
+
+  function renderData() {
+    return (
+      <View style={styles.oval}>
+        <Text style={styles.dateText}>{getDateToString()}</Text>
+      </View>
+    );
+  }
+
+  function renderStats() {
+    return (
+      <View style={styles.largeOval}>
+        <View style={styles.bars}>
+          <Text style={styles.overallText}>DB8 felt very happy!</Text>
+          <Text style={styles.statText}>Anxious</Text>
+          <ProgressBar
+            style={styles.progressBar}
+            segments={5}
+            nextWidth={0}
+          ></ProgressBar>
+          <Text style={styles.statText}>Friendly</Text>
+          <ProgressBar
+            style={styles.progressBar}
+            segments={5}
+            nextWidth={0}
+          ></ProgressBar>
+          <Text style={styles.statText}>Paranoid</Text>
+          <ProgressBar
+            style={styles.progressBar}
+            segments={5}
+            nextWidth={0}
+          ></ProgressBar>
+          <Text style={styles.statText}>Sad</Text>
+          <ProgressBar
+            style={styles.progressBar}
+            segments={5}
+            nextWidth={0}
+          ></ProgressBar>
+        </View>
+      </View>
+    );
+  }
   return (
     <SafeAreaView style={styles.container}>
       <ScrollView style={styles.data}>
