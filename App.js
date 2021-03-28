@@ -50,7 +50,7 @@ function MyStack() {
           shadowRadius: 3.84,
           elevation: 5,
         },
-        headerTintColor: "#fff",
+        headerTintColor: "white",
         headerTitleStyle: {
           fontWeight: "bold",
         },

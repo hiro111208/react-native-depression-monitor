@@ -251,7 +251,7 @@ const styles = StyleSheet.create({
     flex: 1,
     display: "flex",
     padding: 30,
-    backgroundColor: "#fff",
+    backgroundColor: "white",
   },
   cover: {
     width: "100%",

@@ -158,7 +158,7 @@ const styles = StyleSheet.create({
   },
   bottomItemInner: {
     flex: 1,
-    backgroundColor: "#fff",
+    backgroundColor: "white",
     borderRadius: 10,
     shadowColor: "#000",
     shadowOffset: {

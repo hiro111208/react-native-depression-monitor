@@ -156,7 +156,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     padding: 30,
-    backgroundColor: "#fff",
+    backgroundColor: "white",
   },
   middle: {
     width: "100%",
@@ -211,7 +211,7 @@ const styles = StyleSheet.create({
     height: "100%",
     borderRadius: 100,
     borderWidth: 4,
-    borderColor: "#fff",
+    borderColor: "white",
     backgroundColor: "#eee",
   },
   nextSpace: {

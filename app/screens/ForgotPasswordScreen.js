@@ -69,7 +69,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     padding: 35,
-    backgroundColor: "#fff"
+    backgroundColor: "white"
   },
   submitButton:{
     width: 300,

@@ -555,7 +555,7 @@ const styles = StyleSheet.create({
     height: "100%",
     width: "90%",
     backgroundColor: "#ffe2e6",
-    borderColor: "#ffffff",
+    borderColor: "white",
     borderWidth: 5,
     borderRadius: 40,
     padding: 8,
@@ -575,7 +575,7 @@ const styles = StyleSheet.create({
     height: "100%",
     borderRadius: 50,
     borderWidth: 10,
-    borderColor: "#fff",
+    borderColor: "white",
     backgroundColor: "#eee",
     padding: 30,
   },
@@ -589,7 +589,7 @@ const styles = StyleSheet.create({
   takeBreakButton: {
     height: "50%",
     width: 125,
-    backgroundColor: "#fff",
+    backgroundColor: "white",
     borderRadius: 20,
   },
   text: {

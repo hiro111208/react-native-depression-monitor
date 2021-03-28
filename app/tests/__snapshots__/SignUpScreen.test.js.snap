@@ -4,7 +4,7 @@ exports[`Testing SignUpScreen.js SignupScreen renders correctly 1`] = `
 <View
   style={
     Object {
-      "backgroundColor": "#fff",
+      "backgroundColor": "white",
       "display": "flex",
       "flex": 1,
       "flexDirection": "column",
