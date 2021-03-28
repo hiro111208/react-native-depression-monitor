@@ -55,7 +55,7 @@ export default function AdminHomeScreen({ props, navigation }) {
         <View style={[{ height: "10%" }, indexStyles.centering]}>
           <TouchableOpacity
             onPress={() => signOut()}
-            style={[styles.bottomButton, indexStyles.shadowEffect, indexStyles.centering]}
+            style={[indexStyles.roundButton, indexStyles.shadowEffect, indexStyles.centering]}
           >
             <Text style={[indexStyles.textGrey, { fontSize: 17 }]}>Log out</Text>
           </TouchableOpacity>
@@ -66,14 +66,6 @@ export default function AdminHomeScreen({ props, navigation }) {
 }
 
 const styles = StyleSheet.create({
-  bottomButton: {
-    height: "100%",
-    width: "40%",
-    borderRadius: 50,
-    backgroundColor: "#ffeed2",
-    position: "absolute",
-    bottom: 0,
-  },
   optButton: {
     backgroundColor: "#ffeed2",
   },

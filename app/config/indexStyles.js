@@ -55,6 +55,15 @@ export const cover = {
     width: "100%",
 };
 
+export const roundButton = {
+    height: "100%",
+    width: "40%",
+    borderRadius: 50,
+    backgroundColor: "#ffeed2",
+    position: "absolute",
+    bottom: 0,
+}
+
 // styles used in the login, signup and forgot password screens
 export const textWhite = {
     color: "white",

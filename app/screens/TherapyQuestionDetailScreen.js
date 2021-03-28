@@ -208,7 +208,7 @@ export default class TherapyQuestionDetailScreen extends Component {
             <TouchableOpacity
               onPress={() => this.updateTherapyQuestion()}
               style={[
-                styles.bottomButton,
+                indexStyles.roundButton,
                 indexStyles.shadowEffect,
                 indexStyles.centering,
               ]}
@@ -239,14 +239,6 @@ export default class TherapyQuestionDetailScreen extends Component {
 }
 
 const styles = StyleSheet.create({
-  bottomButton: {
-    height: "100%",
-    width: "40%",
-    borderRadius: 50,
-    backgroundColor: "#ffeed2",
-    position: "absolute",
-    bottom: 0,
-  },
   dropdown: {
     flex: 1,
     paddingBottom: 10,
