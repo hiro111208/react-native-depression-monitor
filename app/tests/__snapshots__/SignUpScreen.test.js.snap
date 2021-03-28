@@ -21,7 +21,7 @@ exports[`Testing SignUpScreen.js SignupScreen renders correctly 1`] = `
     style={
       Object {
         "alignSelf": "center",
-        "borderBottomWidth": 1.5,
+        "borderBottomWidth": 1,
         "borderColor": "#ccc",
         "marginBottom": 15,
         "marginTop": 15,
@@ -41,7 +41,7 @@ exports[`Testing SignUpScreen.js SignupScreen renders correctly 1`] = `
     style={
       Object {
         "alignSelf": "center",
-        "borderBottomWidth": 1.5,
+        "borderBottomWidth": 1,
         "borderColor": "#ccc",
         "marginBottom": 15,
         "marginTop": 15,
@@ -58,7 +58,7 @@ exports[`Testing SignUpScreen.js SignupScreen renders correctly 1`] = `
       Array [
         Object {
           "alignSelf": "center",
-          "borderBottomWidth": 1.5,
+          "borderBottomWidth": 1,
           "borderColor": "#ccc",
           "marginBottom": 15,
           "marginTop": 15,
@@ -123,6 +123,7 @@ exports[`Testing SignUpScreen.js SignupScreen renders correctly 1`] = `
             style={
               Object {
                 "height": 22,
+                "width": 44,
               }
             }
           />
@@ -186,6 +187,7 @@ exports[`Testing SignUpScreen.js SignupScreen renders correctly 1`] = `
                   style={
                     Object {
                       "height": 22,
+                      "width": 44,
                     }
                   }
                 />

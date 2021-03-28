@@ -4,7 +4,7 @@ exports[`Testing LoginScreen.js LoginScreen renders correctly 1`] = `
 <View
   style={
     Object {
-      "backgroundColor": "#fff",
+      "backgroundColor": "white",
       "display": "flex",
       "flex": 1,
       "flexDirection": "column",
@@ -22,7 +22,7 @@ exports[`Testing LoginScreen.js LoginScreen renders correctly 1`] = `
     style={
       Object {
         "alignSelf": "center",
-        "borderBottomWidth": 1.5,
+        "borderBottomWidth": 1,
         "borderColor": "#ccc",
         "marginBottom": 15,
         "marginTop": 15,
@@ -44,7 +44,7 @@ exports[`Testing LoginScreen.js LoginScreen renders correctly 1`] = `
     style={
       Object {
         "alignSelf": "center",
-        "borderBottomWidth": 1.5,
+        "borderBottomWidth": 1,
         "borderColor": "#ccc",
         "marginBottom": 15,
         "marginTop": 15,
