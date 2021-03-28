@@ -22,7 +22,7 @@ export default function AdminHomeScreen({ props, navigation }) {
   };
 
   return (
-    <View style={[styles.container]}>
+    <View style={[indexStyles.containerWhite]}>
       <View style={[styles.center, indexStyles.shadowEffect, styles.cover]}>
         <View style={{ height: "10%" }}></View>
 
@@ -79,12 +79,6 @@ const styles = StyleSheet.create({
     borderRadius: 50,
     borderWidth: 5,
     borderColor: "#ffeed2",
-  },
-  container: {
-    flex: 1,
-    display: "flex",
-    padding: 25,
-    backgroundColor: "white",
   },
   cover: {
     height: "100%",

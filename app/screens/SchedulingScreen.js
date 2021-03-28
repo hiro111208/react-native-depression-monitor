@@ -179,7 +179,7 @@ class SchedulingScreen extends Component {
       );
     }
     return (
-      <View style={[styles.container, indexStyles.centering]}>
+      <View style={[indexStyles.containerWhite, indexStyles.centering]}>
         <View style={[styles.center, indexStyles.shadowEffect, styles.cover]}>
           <View style={{ height: "7%" }}></View>
 
@@ -330,12 +330,6 @@ const styles = StyleSheet.create({
     borderRadius: 50,
     borderWidth: 5,
     borderColor: "#ffeed2",
-  },
-  container: {
-    flex: 1,
-    display: "flex",
-    padding: 25,
-    backgroundColor: "white",
   },
   cover: {
     height: "100%",

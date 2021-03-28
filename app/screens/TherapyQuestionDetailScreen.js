@@ -118,7 +118,7 @@ export default class TherapyQuestionDetailScreen extends Component {
       );
     }
     return (
-      <View style={[styles.container, indexStyles.centering]}>
+      <View style={[indexStyles.containerWhite, indexStyles.centering]}>
         <View style={[styles.center, styles.cover, indexStyles.shadowEffect]}>
           <View style={{ height: "10%" }}>
             <View style={styles.title}>
@@ -252,12 +252,6 @@ const styles = StyleSheet.create({
     borderRadius: 50,
     borderWidth: 5,
     borderColor: "#ffeed2",
-  },
-  container: {
-    flex: 1,
-    display: "flex",
-    padding: 25,
-    backgroundColor: "white",
   },
   cover: {
     height: "100%",

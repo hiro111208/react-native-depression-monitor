@@ -36,6 +36,13 @@ export const userNote = {
     width: "100%",
 };
 
+export const containerWhite = {
+    flex: 1,
+    display: "flex",
+    padding: 25,
+    backgroundColor: "white",
+};
+
 // styles used in the login, signup and forgot password screens
 export const textWhite = {
     color: "white",

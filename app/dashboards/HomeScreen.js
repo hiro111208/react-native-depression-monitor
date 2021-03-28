@@ -146,7 +146,7 @@ export default function HomeScreen({ route, props, navigation }) {
   ///
 
   return (
-    <View style={[styles.container, indexStyles.centering]}>
+    <View style={[indexStyles.containerWhite, indexStyles.centering]}>
       <View style={styles.center}>
         <View style={[styles.welcomeArea, indexStyles.shadowEffect]}>
           <View style={[styles.userNoteHeight, indexStyles.userNote]}>
@@ -215,12 +215,6 @@ export default function HomeScreen({ route, props, navigation }) {
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    display: "flex",
-    padding: 25,
-    backgroundColor: "white",
-  },
   center: {
     height: "100%",
     width: "100%",
