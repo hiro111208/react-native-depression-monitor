@@ -23,7 +23,7 @@ export default function AdminHomeScreen({ props, navigation }) {
 
   return (
     <View style={[indexStyles.containerWhite]}>
-      <View style={[indexStyles.containerOrange, indexStyles.shadowEffect, styles.cover]}>
+      <View style={[indexStyles.containerOrange, indexStyles.shadowEffect, indexStyles.cover]}>
         <View style={{ height: "10%" }}></View>
 
         <View style={[{ height: "40%" }, indexStyles.centering]}>
@@ -40,7 +40,7 @@ export default function AdminHomeScreen({ props, navigation }) {
         <View style={{ height: "15%" }}>
           <TouchableOpacity
             onPress={() => navigation.navigate("TherapyQuestionScreen")}
-            style={[indexStyles.centering, styles.optButton, styles.cover]}
+            style={[indexStyles.centering, styles.optButton, indexStyles.cover]}
           >
             <Text
               style={[indexStyles.textGrey, indexStyles.centering, { fontSize: 18 }]}
@@ -73,10 +73,6 @@ const styles = StyleSheet.create({
     backgroundColor: "#ffeed2",
     position: "absolute",
     bottom: 0,
-  },
-  cover: {
-    height: "100%",
-    width: "100%",
   },
   optButton: {
     backgroundColor: "#ffeed2",

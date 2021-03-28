@@ -24,7 +24,7 @@ export default function AccountScreen({ props, navigation }) {
 
   return (
     <View style={[styles.container, indexStyles.centering]}>
-      <View style={styles.center}>
+      <View style={[styles.center, indexStyles.cover]}>
         <View style={[styles.welcomeArea, indexStyles.shadowEffect]}>
           <View style={[styles.userNoteHeight, indexStyles.userNote]}>
             <Text>Log out information here</Text>
@@ -65,8 +65,6 @@ const styles = StyleSheet.create({
     backgroundColor: "white",
   },
   center: {
-    height: "100%",
-    width: "100%",
     alignItems: "center",
     padding: 25,
   },

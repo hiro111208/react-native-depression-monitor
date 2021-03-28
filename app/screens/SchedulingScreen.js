@@ -180,7 +180,7 @@ class SchedulingScreen extends Component {
     }
     return (
       <View style={[indexStyles.containerWhite, indexStyles.centering]}>
-        <View style={[indexStyles.containerOrange, indexStyles.shadowEffect, styles.cover]}>
+        <View style={[indexStyles.containerOrange, indexStyles.shadowEffect, indexStyles.cover]}>
           <View style={{ height: "7%" }}></View>
 
           <View style={[{ height: "6%", flexDirection: "row" }]}>
@@ -276,7 +276,7 @@ class SchedulingScreen extends Component {
           <View style={[{ height: "10%" }, indexStyles.centering]}>
             <TouchableOpacity
               onPress={() => this.validateAppointment()}
-              style={[styles.selectButton, styles.cover, indexStyles.centering]}
+              style={[styles.selectButton, indexStyles.cover, indexStyles.centering]}
             >
               <Text style={[indexStyles.textGrey, { fontSize: 18 }]}>
                 Add Session
@@ -287,7 +287,7 @@ class SchedulingScreen extends Component {
           <View style={{ height: "10%" }}></View>
 
           <View style={[{ height: "25%" }, indexStyles.centering]}>
-            <View style={[styles.cover, indexStyles.centering]}>
+            <View style={[indexStyles.cover, indexStyles.centering]}>
               <Image
                 style={{ width: 125, height: 125 }}
                 resizeMode="contain"
@@ -324,10 +324,6 @@ const styles = StyleSheet.create({
     width: "40%",
     borderRadius: 50,
     backgroundColor: "#ffeed2",
-  },
-  cover: {
-    height: "100%",
-    width: "100%",
   },
   selectButton: {
     backgroundColor: "#ffeed2",

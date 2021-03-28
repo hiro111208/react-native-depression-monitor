@@ -138,7 +138,7 @@ const PlantScreen = ({ navigation, route }) => {
 
         <View style={[{ height: "9%", width: "100%" }, indexStyles.centering]}>
           <TouchableOpacity
-            style={[styles.homeButton, indexStyles.centering]}
+            style={[styles.homeButton, indexStyles.centering, indexStyles.cover]}
             onPress={() => saveProgress()}
           >
             <Text style={indexStyles.textGrey}>Return Home</Text>
@@ -178,8 +178,6 @@ const styles = StyleSheet.create({
     borderRadius: 30,
   },
   homeButton: {
-    height: "100%",
-    width: "100%",
     backgroundColor: "#ffeed2",
   },
   comment: {

@@ -41,7 +41,7 @@ function generateEmoji() {
 export default function PauseScreen({ props, navigation }) {
   return (
     <SafeAreaView style={styles.container}>
-      <SafeAreaView style={[styles.center, styles.area]}>
+      <SafeAreaView style={[styles.center, styles.area, indexStyles.cover]}>
         <SafeAreaView style={styles.messageArea}>
           <Text style={[styles.text, styles.message]}>
             {generateMessage()} {generateEmoji()}{" "}
@@ -57,7 +57,7 @@ export default function PauseScreen({ props, navigation }) {
 
         <SafeAreaView style={{ height: "7%" }}></SafeAreaView>
 
-        <SafeAreaView style={(indexStyles.centering, styles.buttonArea)}>
+        <SafeAreaView style={(indexStyles.centering, styles.buttonArea, indexStyles.cover)}>
           <TouchableOpacity
             style={[styles.backButton, indexStyles.shadowEffect]}
             onPress={() => navigation.navigate("TherapyScreen")} //implement timer/record the current time
@@ -81,8 +81,6 @@ const styles = StyleSheet.create({
     backgroundColor: "#fff7ed",
   },
   center: {
-    height: "100%",
-    width: "100%",
     alignItems: "center",
   },
   text: {
@@ -107,8 +105,6 @@ const styles = StyleSheet.create({
     maxHeight: winHeight / 2.5,
   },
   buttonArea: {
-    width: "100%",
-    height: "100%",
     alignItems: "center",
   },
   backButton: {

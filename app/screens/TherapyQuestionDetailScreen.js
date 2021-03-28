@@ -119,7 +119,7 @@ export default class TherapyQuestionDetailScreen extends Component {
     }
     return (
       <View style={[indexStyles.containerWhite, indexStyles.centering]}>
-        <View style={[indexStyles.containerOrange, styles.cover, indexStyles.shadowEffect]}>
+        <View style={[indexStyles.containerOrange, indexStyles.cover, indexStyles.shadowEffect]}>
           <View style={{ height: "10%" }}>
             <View style={styles.title}>
               <Text style={[indexStyles.textGrey]}>
@@ -224,7 +224,7 @@ export default class TherapyQuestionDetailScreen extends Component {
               onPress={() => this.props.navigation.goBack()}
               style={[
                 styles.optButton,
-                styles.cover,
+                indexStyles.cover,
                 indexStyles.centering,
                 { borderBottomLeftRadius: 40, borderBottomRightRadius: 40 },
               ]}
@@ -246,10 +246,6 @@ const styles = StyleSheet.create({
     backgroundColor: "#ffeed2",
     position: "absolute",
     bottom: 0,
-  },
-  cover: {
-    height: "100%",
-    width: "100%",
   },
   dropdown: {
     flex: 1,

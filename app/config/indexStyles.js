@@ -50,6 +50,11 @@ export const containerOrange = {
     borderColor: "#ffeed2",
 };
 
+export const cover = {
+    height: "100%",
+    width: "100%",
+};
+
 // styles used in the login, signup and forgot password screens
 export const textWhite = {
     color: "white",
