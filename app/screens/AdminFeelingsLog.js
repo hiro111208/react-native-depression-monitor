@@ -90,13 +90,19 @@ const styles = StyleSheet.create({
   },
   largeOval: {
     width: "90%",
-    height: 250,
+    height: 300,
     borderRadius: 50,
     borderColor: "black",
     padding: 10,
     borderWidth: 5,
     backgroundColor: "transparent",
     alignSelf: "center",
+  },
+  statText: {
+    fontWeight: "bold",
+    fontSize: 20,
+    paddingLeft: 10,
+    paddingVertical: 5,
   },
 });
 
