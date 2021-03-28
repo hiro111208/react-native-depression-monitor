@@ -70,7 +70,7 @@ const AdminFeelingsLog = () => {
     <SafeAreaView style={styles.container}>
       <ScrollView style={styles.data}>
         {feelingsLog.map((logItem, index) => (
-          <View style={styles.item}>
+          <View id={index} style={styles.item}>
             <View style={styles.oval}>
               <Text style={styles.dateText}>{getDateToString()}</Text>
             </View>
