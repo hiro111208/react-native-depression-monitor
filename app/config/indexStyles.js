@@ -27,6 +27,15 @@ export const textGrey = {
     flexWrap: "wrap",
 };
 
+export const userNote = {
+    backgroundColor: "#ffeed2",
+    alignItems: "center",
+    borderTopStartRadius: 50,
+    borderTopEndRadius: 50,
+    padding: 20,
+    width: "100%",
+};
+
 // styles used in the login, signup and forgot password screens
 export const textWhite = {
     color: "white",

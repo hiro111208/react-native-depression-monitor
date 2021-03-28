@@ -149,7 +149,7 @@ export default function HomeScreen({ route, props, navigation }) {
     <View style={[styles.container, indexStyles.centering]}>
       <View style={styles.center}>
         <View style={[styles.welcomeArea, indexStyles.shadowEffect]}>
-          <View style={styles.userNote}>
+          <View style={[styles.userNoteHeight, indexStyles.userNote]}>
             <Text style={[indexStyles.textGrey]}>Hello there, {displayName}!</Text>
 
             <View style={styles.spacer}></View>
@@ -233,14 +233,8 @@ const styles = StyleSheet.create({
     backgroundColor: "#fed8b1",
     alignItems: "center",
   },
-  userNote: {
+  userNoteHeight: {
     height: "30%",
-    width: "100%",
-    backgroundColor: "#ffeed2",
-    alignItems: "center",
-    borderTopStartRadius: 50,
-    borderTopEndRadius: 50,
-    padding: 20,
   },
   sessionArea: {
     height: "17%",

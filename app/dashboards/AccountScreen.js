@@ -26,7 +26,7 @@ export default function AccountScreen({ props, navigation }) {
     <View style={[styles.container, indexStyles.centering]}>
       <View style={styles.center}>
         <View style={[styles.welcomeArea, indexStyles.shadowEffect]}>
-          <View style={[styles.userNote]}>
+          <View style={[styles.userNoteHeight, indexStyles.userNote]}>
             <Text>Log out information here</Text>
           </View>
 
@@ -42,7 +42,7 @@ export default function AccountScreen({ props, navigation }) {
         <Text />
 
         <View style={[styles.welcomeArea, indexStyles.shadowEffect]}>
-          <View style={[styles.userNote]}>
+          <View style={[styles.userNoteHeight, indexStyles.userNote]}>
             <Text>Support Resources and research authors</Text>
           </View>
 
@@ -76,14 +76,8 @@ const styles = StyleSheet.create({
     borderRadius: 50,
     alignItems: "center",
   },
-  userNote: {
+  userNoteHeight: {
     height: "80%",
-    width: "100%",
-    backgroundColor: "#ffeed2",
-    alignItems: "center",
-    borderTopStartRadius: 50,
-    borderTopEndRadius: 50,
-    padding: 20,
   },
   logout: {
     height: "30%",
