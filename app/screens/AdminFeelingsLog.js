@@ -18,7 +18,7 @@ const feelingsRef = firebase
 
 const AdminFeelingsLog = () => {
   const [loading, setLoading] = useState(false);
-  const [feelingsLog, setFeelingsLog] = useState([]);
+  const [feelingsLog, setFeelingsLog] = useState([1, 2]);
 
   // accesses the user's progress and gets the questions
   function getFeelingsData() {
@@ -97,8 +97,42 @@ const AdminFeelingsLog = () => {
   return (
     <SafeAreaView style={styles.container}>
       <ScrollView style={styles.data}>
-        {renderData()}
-        {renderStats()}
+        {feelingsLog.map((logItem, index) => (
+          <View style={styles.item}>
+            <View style={styles.oval}>
+              <Text style={styles.dateText}>{getDateToString()}</Text>
+            </View>
+            <View style={styles.largeOval}>
+              <View style={styles.bars}>
+                <Text style={styles.overallText}>DB8 felt very happy!</Text>
+                <Text style={styles.statText}>Anxious</Text>
+                <ProgressBar
+                  style={styles.progressBar}
+                  segments={5}
+                  nextWidth={0}
+                ></ProgressBar>
+                <Text style={styles.statText}>Friendly</Text>
+                <ProgressBar
+                  style={styles.progressBar}
+                  segments={5}
+                  nextWidth={0}
+                ></ProgressBar>
+                <Text style={styles.statText}>Paranoid</Text>
+                <ProgressBar
+                  style={styles.progressBar}
+                  segments={5}
+                  nextWidth={0}
+                ></ProgressBar>
+                <Text style={styles.statText}>Sad</Text>
+                <ProgressBar
+                  style={styles.progressBar}
+                  segments={5}
+                  nextWidth={0}
+                ></ProgressBar>
+              </View>
+            </View>
+          </View>
+        ))}
       </ScrollView>
     </SafeAreaView>
   );
@@ -159,6 +193,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     backgroundColor: "#ffbe7bff",
   },
+  item: { paddingVertical: 15 },
 });
 
 export default AdminFeelingsLog;
