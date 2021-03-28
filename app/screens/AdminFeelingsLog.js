@@ -85,25 +85,25 @@ const AdminFeelingsLog = () => {
                 <ProgressBar
                   style={styles.progressBar}
                   segments={5}
-                  nextWidth={0}
+                  nextWidth={logItem.anxious + 1}
                 ></ProgressBar>
                 <Text style={styles.statText}>Friendly</Text>
                 <ProgressBar
                   style={styles.progressBar}
                   segments={5}
-                  nextWidth={0}
+                  nextWidth={logItem.friendly + 1}
                 ></ProgressBar>
                 <Text style={styles.statText}>Paranoid</Text>
                 <ProgressBar
                   style={styles.progressBar}
                   segments={5}
-                  nextWidth={0}
+                  nextWidth={logItem.paranoid + 1}
                 ></ProgressBar>
                 <Text style={styles.statText}>Sad</Text>
                 <ProgressBar
                   style={styles.progressBar}
                   segments={5}
-                  nextWidth={0}
+                  nextWidth={logItem.sad + 1}
                 ></ProgressBar>
               </View>
             </View>
