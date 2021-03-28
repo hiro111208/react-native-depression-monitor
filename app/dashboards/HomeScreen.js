@@ -10,15 +10,12 @@ import {
 import firebase from "../database/firebase";
 import * as indexStyles from "../config/indexStyles";
 import colors from "../config/colors";
-import indexStyles from "../config/indexStyles";
-import { Alert, Platform } from 'react-native'
-import * as Permissions from 'expo-permissions';
-import { Linking } from 'expo';
+import { Alert, Platform } from "react-native";
+import * as Permissions from "expo-permissions";
+import { Linking } from "expo";
 import * as Notifications from "expo-notifications";
 //import firebase from firebase;
 import Constants from "expo-constants";
-
-
 
 export default function HomeScreen({ route, props, navigation }) {
   const [user, setUser] = useState(undefined);
@@ -87,78 +84,68 @@ export default function HomeScreen({ route, props, navigation }) {
     getLevel();
   }
 
-///
+  ///
 
+  useEffect(() => {
+    (async () => {
+      const user = await firebase
+        .firestore()
+        .collection("users")
+        .doc(firebase.auth().currentUser.uid)
+        .get();
+    })();
+  });
 
+  useEffect(() => {
+    (() => registerForPushNotificationsAsync())();
+  }, []);
 
-useEffect(() => {
-  (async () => {
-    const user = await firebase
-    .firestore()
-    .collection("users")
-    .doc(firebase.auth().currentUser.uid)
-    .get();
-  })();
-});
+  const registerForPushNotificationsAsync = async () => {
+    let token; // undefined initially
+    if (Constants.isDevice) {
+      const { status: existingStatus } = await Permissions.getAsync(
+        Permissions.NOTIFICATIONS
+      );
+      let finalStatus = existingStatus;
+      if (existingStatus !== "granted") {
+        const { status } = await Permissions.askAsync(
+          Permissions.NOTIFICATIONS
+        );
+        finalStatus = status;
+      }
+      if (finalStatus !== "granted") {
+        return false;
+      }
+      token = (await Notifications.getExpoPushTokenAsync()).data;
+      console.log(token);
+    } else {
+      alert("Must use physical device for Push Notifications");
+    }
+    // save the users token in firebase
+    if (token) {
+      //makes sure there is a token to add to firebase
+      const res = await firebase
+        .firestore()
+        .collection("users")
+        .doc(firebase.auth().currentUser.uid)
+        .set({ token }, { merge: true });
+    }
 
-useEffect (() => {
-  (() => registerForPushNotificationsAsync())();
-}, []);
+    if (Platform.OS === "android") {
+      Notifications.setNotificationChannelAsync("default", {
+        name: "default",
+        importance: Notifications.AndroidImportance.MAX,
+        vibrationPattern: [0, 250, 250, 250],
+        lightColor: "#FF231F7C",
+      });
+    }
 
-const registerForPushNotificationsAsync = async()=> {
-  let token;// undefined initially
-  if (Constants.isDevice) {
-    const { status: existingStatus } = await Permissions.getAsync(Permissions.NOTIFICATIONS);
-  let finalStatus = existingStatus;
-  if (existingStatus !== "granted") {
-    const { status } = await Permissions.askAsync(Permissions.NOTIFICATIONS);
-    finalStatus = status;
-  }
-  if (finalStatus !== "granted") {
-    return false;
-  }
-    token = (await Notifications.getExpoPushTokenAsync()).data;
-    console.log(token);
-  } else {
-    alert('Must use physical device for Push Notifications');
-  }
-  // save the users token in firebase
- if (token){//makes sure there is a token to add to firebase
-   const res = await firebase
-   .firestore()
-   .collection('users')
-   .doc(firebase.auth().currentUser.uid)
-   .set({token},{merge:true})
- }
+    return token;
+  };
 
-
-  if (Platform.OS === 'android') {
-    Notifications.setNotificationChannelAsync('default', {
-      name: 'default',
-      importance: Notifications.AndroidImportance.MAX,
-      vibrationPattern: [0, 250, 250, 250],
-      lightColor: '#FF231F7C',
-    });
-  }
-
-  return token;
-}
-
-
-
-
-
-
-
-
-
-
-///
-
+  ///
 
   return (
-
-
     <View style={styles.container}>
       <View style={styles.center}>
         <View style={[styles.welcomeArea, styles.shadowEffect]}>
@@ -168,7 +155,11 @@ const registerForPushNotificationsAsync = async()=> {
             <View style={styles.spacer}></View>
 
             <View
-              style={[styles.plantImage, indexStyles.centering, styles.shadowEffect]}
+              style={[
+                styles.plantImage,
+                indexStyles.centering,
+                styles.shadowEffect,
+              ]}
             >
               <Image
                 style={{ width: "100%", height: "100%" }}
@@ -181,17 +172,21 @@ const registerForPushNotificationsAsync = async()=> {
           <View style={{ height: "30%" }}></View>
 
           <TouchableOpacity
-            style={[styles.sessionArea, indexStyles.centering, styles.shadowEffect]}
+            style={[
+              styles.sessionArea,
+              indexStyles.centering,
+              styles.shadowEffect,
+            ]}
             onPress={() => {
-              if(user.question===1){
+              if (user.question === 1) {
                 navigation.navigate("LogFeelingScreen", {
-                cameFrom: "HomeScreen",
-                onGoBack: () => refresh(),
-                })
-              }else{
+                  cameFrom: "HomeScreen",
+                  onGoBack: () => refresh(),
+                });
+              } else {
                 navigation.navigate("TherapyScreen", {
-                onGoBack: () => refresh(),
-                })
+                  onGoBack: () => refresh(),
+                });
               }
             }}
           >
@@ -199,7 +194,11 @@ const registerForPushNotificationsAsync = async()=> {
           </TouchableOpacity>
 
           <TouchableOpacity
-            style={[styles.sessionArea, indexStyles.centering, styles.shadowEffect]}
+            style={[
+              styles.sessionArea,
+              indexStyles.centering,
+              styles.shadowEffect,
+            ]}
             onPress={() =>
               navigation.navigate("PlantScreen", {
                 currentUser: user,

@@ -135,7 +135,6 @@ const CategoryDrop = ({ route, navigation }) => {
 
 const styles = StyleSheet.create({
   container: {
-    marginTop: Constants.statusBarHeight,
     flex: 1,
     backgroundColor: "#ffd394",
   },
