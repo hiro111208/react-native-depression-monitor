@@ -43,10 +43,10 @@ const AdminFeelingsLog = () => {
       });
   }
 
-  function getDateToString() {
-    const date = new Date();
-    const calender = date.toString().substr(4, 11);
-    const time = date.toString().substr(15, 6);
+  function getDateToString(dateAndTime) {
+    console.log(dateAndTime);
+    const calender = dateAndTime.toString().substr(0, 15);
+    const time = dateAndTime.toString().substr(16, 5);
     return calender + "  @ " + time;
   }
 
@@ -72,7 +72,9 @@ const AdminFeelingsLog = () => {
         {feelingsLog.map((logItem, index) => (
           <View id={index} style={styles.item}>
             <View style={styles.oval}>
-              <Text style={styles.dateText}>{getDateToString()}</Text>
+              <Text style={styles.dateText}>
+                {getDateToString(logItem.timeStamp.toDate())}
+              </Text>
             </View>
             <View style={styles.largeOval}>
               <View style={styles.bars}>
