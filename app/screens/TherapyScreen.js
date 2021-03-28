@@ -359,7 +359,7 @@ const TherapyScreen = ({ navigation, route }) => {
         "You have completed therapy set " +
           user.block +
           "! You have earned 5 coins to grow your plant.",
-        [{ text: "OK", onPress: () => navigation.goBack() }]
+        [{ text: "OK", onPress: () => navigation.navigate("LogFeelingScreen", {cameFrom: "TherapyScreen"}) }]
       );
     } else {
       setQuestion(question + 1);
