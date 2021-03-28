@@ -103,7 +103,7 @@ export default class TherapyQuestionScreen extends Component {
     }
     return (
       <View style={[indexStyles.containerWhite, indexStyles.centering]}>
-        <View style={[styles.center, styles.cover, indexStyles.shadowEffect]}>
+        <View style={[indexStyles.containerOrange, styles.cover, indexStyles.shadowEffect]}>
           <View style={{ height: "3%" }}></View>
 
           {Platform.OS === "ios" && (
@@ -315,12 +315,6 @@ const styles = StyleSheet.create({
     backgroundColor: "#ffeed2",
     position: "absolute",
     bottom: 0,
-  },
-  center: {
-    backgroundColor: "#fed8b1",
-    borderRadius: 50,
-    borderWidth: 5,
-    borderColor: "#ffeed2",
   },
   cover: {
     height: "100%",

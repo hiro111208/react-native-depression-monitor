@@ -43,6 +43,13 @@ export const containerWhite = {
     backgroundColor: "white",
 };
 
+export const containerOrange = {
+    backgroundColor: "#fed8b1",
+    borderRadius: 50,
+    borderWidth: 5,
+    borderColor: "#ffeed2",
+};
+
 // styles used in the login, signup and forgot password screens
 export const textWhite = {
     color: "white",

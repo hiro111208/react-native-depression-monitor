@@ -23,7 +23,7 @@ export default function AdminHomeScreen({ props, navigation }) {
 
   return (
     <View style={[indexStyles.containerWhite]}>
-      <View style={[styles.center, indexStyles.shadowEffect, styles.cover]}>
+      <View style={[indexStyles.containerOrange, indexStyles.shadowEffect, styles.cover]}>
         <View style={{ height: "10%" }}></View>
 
         <View style={[{ height: "40%" }, indexStyles.centering]}>
@@ -73,12 +73,6 @@ const styles = StyleSheet.create({
     backgroundColor: "#ffeed2",
     position: "absolute",
     bottom: 0,
-  },
-  center: {
-    backgroundColor: "#fed8b1",
-    borderRadius: 50,
-    borderWidth: 5,
-    borderColor: "#ffeed2",
   },
   cover: {
     height: "100%",

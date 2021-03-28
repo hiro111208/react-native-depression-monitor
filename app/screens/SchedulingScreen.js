@@ -180,7 +180,7 @@ class SchedulingScreen extends Component {
     }
     return (
       <View style={[indexStyles.containerWhite, indexStyles.centering]}>
-        <View style={[styles.center, indexStyles.shadowEffect, styles.cover]}>
+        <View style={[indexStyles.containerOrange, indexStyles.shadowEffect, styles.cover]}>
           <View style={{ height: "7%" }}></View>
 
           <View style={[{ height: "6%", flexDirection: "row" }]}>
@@ -324,12 +324,6 @@ const styles = StyleSheet.create({
     width: "40%",
     borderRadius: 50,
     backgroundColor: "#ffeed2",
-  },
-  center: {
-    backgroundColor: "#fed8b1",
-    borderRadius: 50,
-    borderWidth: 5,
-    borderColor: "#ffeed2",
   },
   cover: {
     height: "100%",
