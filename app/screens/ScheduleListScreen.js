@@ -173,7 +173,7 @@ scheduleNotification4 = async () => {
     }
     return (
       <View style={[styles.container, indexStyles.centering]}>
-        <View style={[styles.center, styles.cover, styles.shadowEffect]}>
+        <View style={[styles.center, styles.cover, indexStyles.shadowEffect]}>
           <View>
             {this.state.scheduleArr.map((item, i) => {
               return (
@@ -195,7 +195,7 @@ scheduleNotification4 = async () => {
                     style={[
                       indexStyles.centering,
                       styles.deleteButton,
-                      styles.shadowEffect,
+                      indexStyles.shadowEffect,
                       { alignItems: "center" },
                     ]}
                     onPress={() => this.openTwoButtonAlert(item.key)}
@@ -210,7 +210,7 @@ scheduleNotification4 = async () => {
           <View style={[styles.backContainer, indexStyles.centering]}>
             <TouchableOpacity
               onPress={() => this.props.navigation.goBack()}
-              style={[styles.backButton, indexStyles.centering, styles.shadowEffect]}
+              style={[styles.backButton, indexStyles.centering, indexStyles.shadowEffect]}
             >
               <Text style={styles.backText}>Go back</Text>
             </TouchableOpacity>
@@ -269,17 +269,6 @@ const styles = StyleSheet.create({
     top: 0,
     bottom: 0,
     position: "absolute",
-  },
-  shadowEffect: {
-    shadowColor: "#000",
-    shadowOffset: {
-      width: 0,
-      height: 2,
-    },
-    shadowOpacity: 0.25,
-    shadowRadius: 3.84,
-    elevation: 5,
-    marginVertical: 5,
   },
 });
 

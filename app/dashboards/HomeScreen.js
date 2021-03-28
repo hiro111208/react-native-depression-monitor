@@ -148,7 +148,7 @@ export default function HomeScreen({ route, props, navigation }) {
   return (
     <View style={styles.container}>
       <View style={styles.center}>
-        <View style={[styles.welcomeArea, styles.shadowEffect]}>
+        <View style={[styles.welcomeArea, indexStyles.shadowEffect]}>
           <View style={styles.userNote}>
             <Text style={[styles.textStyle]}>Hello there, {displayName}!</Text>
 
@@ -158,7 +158,7 @@ export default function HomeScreen({ route, props, navigation }) {
               style={[
                 styles.plantImage,
                 indexStyles.centering,
-                styles.shadowEffect,
+                indexStyles.shadowEffect,
               ]}
             >
               <Image
@@ -175,7 +175,7 @@ export default function HomeScreen({ route, props, navigation }) {
             style={[
               styles.sessionArea,
               indexStyles.centering,
-              styles.shadowEffect,
+              indexStyles.shadowEffect,
             ]}
             onPress={() => {
               if (user.question === 1) {
@@ -197,7 +197,7 @@ export default function HomeScreen({ route, props, navigation }) {
             style={[
               styles.sessionArea,
               indexStyles.centering,
-              styles.shadowEffect,
+              indexStyles.shadowEffect,
             ]}
             onPress={() =>
               navigation.navigate("PlantScreen", {
@@ -255,17 +255,6 @@ const styles = StyleSheet.create({
     fontSize: 20,
     fontWeight: "bold",
     color: "dimgray",
-  },
-  shadowEffect: {
-    shadowColor: "#000",
-    shadowOffset: {
-      width: 0,
-      height: 2,
-    },
-    shadowOpacity: 0.25,
-    shadowRadius: 3.84,
-    elevation: 5,
-    marginVertical: 5,
   },
   spacer: {
     height: "20%",

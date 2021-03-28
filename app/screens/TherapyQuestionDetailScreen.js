@@ -119,7 +119,7 @@ export default class TherapyQuestionDetailScreen extends Component {
     }
     return (
       <View style={[styles.container, indexStyles.centering]}>
-        <View style={[styles.center, styles.cover, styles.shadowEffect]}>
+        <View style={[styles.center, styles.cover, indexStyles.shadowEffect]}>
           <View style={{ height: "10%" }}>
             <View style={styles.title}>
               <Text style={[styles.fontStyle, { fontSize: 20 }]}>
@@ -209,7 +209,7 @@ export default class TherapyQuestionDetailScreen extends Component {
               onPress={() => this.updateTherapyQuestion()}
               style={[
                 styles.bottomButton,
-                styles.shadowEffect,
+                indexStyles.shadowEffect,
                 indexStyles.centering,
               ]}
             >
@@ -290,17 +290,6 @@ const styles = StyleSheet.create({
     position: "absolute",
     alignItems: "center",
     justifyContent: "center",
-  },
-  shadowEffect: {
-    shadowColor: "#000",
-    shadowOffset: {
-      width: 0,
-      height: 2,
-    },
-    shadowOpacity: 0.25,
-    shadowRadius: 3.84,
-    elevation: 5,
-    marginVertical: 5,
   },
   title: {
     padding: 10,

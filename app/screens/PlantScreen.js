@@ -54,7 +54,7 @@ const PlantScreen = ({ navigation, route }) => {
       return (
         <TouchableOpacity
           onPress={() => waterPlant()}
-          style={[styles.optButton, indexStyles.centering, styles.shadowEffect]}
+          style={[styles.optButton, indexStyles.centering, indexStyles.shadowEffect]}
         >
           <Text style={styles.text}>Water your plant!</Text>
           <Text style={styles.comment}>-5 coins</Text>
@@ -62,7 +62,7 @@ const PlantScreen = ({ navigation, route }) => {
       );
     } else {
       return (
-        <View style={[styles.optButton, indexStyles.centering, styles.shadowEffect]}>
+        <View style={[styles.optButton, indexStyles.centering, indexStyles.shadowEffect]}>
           <Text style={styles.text}>You reached max level!</Text>
           <Text style={styles.comment}>well done!</Text>
         </View>
@@ -94,7 +94,7 @@ const PlantScreen = ({ navigation, route }) => {
 
   return (
     <View style={styles.container}>
-      <View style={[styles.middle, styles.shadowEffect]}>
+      <View style={[styles.middle, indexStyles.shadowEffect]}>
         <View style={{ height: "5%" }}></View>
         <View style={[styles.top, indexStyles.centering]}>
           <View style={[styles.topItem, indexStyles.centering]}>
@@ -102,7 +102,7 @@ const PlantScreen = ({ navigation, route }) => {
               style={[
                 styles.featureButton,
                 indexStyles.centering,
-                styles.shadowEffect,
+                indexStyles.shadowEffect,
               ]}
             >
               <Text style={styles.text}>{coins}</Text>
@@ -120,7 +120,7 @@ const PlantScreen = ({ navigation, route }) => {
 
         <View style={[styles.plantSpace, indexStyles.centering]}>
           <View
-            style={[styles.plantImage, indexStyles.centering, styles.shadowEffect]}
+            style={[styles.plantImage, indexStyles.centering, indexStyles.shadowEffect]}
           >
             <Image
               style={{ width: 225, height: 225 }}
@@ -188,17 +188,6 @@ const styles = StyleSheet.create({
     fontSize: 20,
     fontWeight: "bold",
     color: "dimgray",
-  },
-  shadowEffect: {
-    shadowColor: "#000",
-    shadowOffset: {
-      width: 0,
-      height: 2,
-    },
-    shadowOpacity: 0.25,
-    shadowRadius: 3.84,
-    elevation: 5,
-    marginHorizontal: 5,
   },
   comment: {
     color: "dodgerblue",

@@ -97,7 +97,7 @@ const TherapyScreen = ({ navigation, route }) => {
   // View to display when answer is correct
   function renderCorrectAnswerArea() {
     return (
-      <View style={[styles.answerArea, indexStyles.centering, styles.shadowEffect]}>
+      <View style={[styles.answerArea, indexStyles.centering, indexStyles.shadowEffect]}>
         <TextInput
           style={[styles.input, styles.correctHighlight]}
           value="Well done!"
@@ -110,7 +110,7 @@ const TherapyScreen = ({ navigation, route }) => {
   // View to display when answer is wrong
   function renderIncorrectAnswerArea() {
     return (
-      <View style={[styles.answerArea, indexStyles.centering, styles.shadowEffect]}>
+      <View style={[styles.answerArea, indexStyles.centering, indexStyles.shadowEffect]}>
         <Text style={styles.textNote}>
           {" "}
           The correct answer was "{getCorrectAnswer()}".{" "}
@@ -127,7 +127,7 @@ const TherapyScreen = ({ navigation, route }) => {
   // Renders whilst data is being retrieved
   function renderLoadingAnswerArea() {
     return (
-      <View style={[styles.answerArea, indexStyles.centering, styles.shadowEffect]}>
+      <View style={[styles.answerArea, indexStyles.centering, indexStyles.shadowEffect]}>
         <TextInput
           style={styles.input}
           placeholder="session loading..."
@@ -140,16 +140,16 @@ const TherapyScreen = ({ navigation, route }) => {
   // Renders format for the answer area to the yes or no question
   function renderChoiceAnswerArea() {
     return (
-      <View style={[styles.answerArea, indexStyles.centering, styles.shadowEffect]}>
+      <View style={[styles.answerArea, indexStyles.centering, indexStyles.shadowEffect]}>
         <Text style={styles.textNote}>{items[question].question2}</Text>
         <TouchableOpacity
-          style={[styles.answerButton, indexStyles.centering, styles.shadowEffect]}
+          style={[styles.answerButton, indexStyles.centering, indexStyles.shadowEffect]}
           onPress={() => checkAnswer("Yes")}
         >
           <Text style={styles.text}>YES</Text>
         </TouchableOpacity>
         <TouchableOpacity
-          style={[styles.answerButton, indexStyles.centering, styles.shadowEffect]}
+          style={[styles.answerButton, indexStyles.centering, indexStyles.shadowEffect]}
           onPress={() => checkAnswer("No")}
         >
           <Text style={styles.text}>NO</Text>
@@ -161,7 +161,7 @@ const TherapyScreen = ({ navigation, route }) => {
   // renders answer area to the missing word question
   function renderWordAnswerArea() {
     return (
-      <View style={[styles.answerArea, indexStyles.centering, styles.shadowEffect]}>
+      <View style={[styles.answerArea, indexStyles.centering, indexStyles.shadowEffect]}>
         <Text style={styles.textNote}>Enter the first missing letter</Text>
         <TextInput
           style={styles.input}
@@ -474,7 +474,7 @@ const TherapyScreen = ({ navigation, route }) => {
             style={[
               styles.takeBreakButton,
               indexStyles.centering,
-              styles.shadowEffect,
+              indexStyles.shadowEffect,
             ]}
             onPress={() => handlePauseButton()}
             disabled={checkDisabledForPause()}
@@ -495,7 +495,7 @@ const TherapyScreen = ({ navigation, route }) => {
       {/* Displays therapy item story and question */}
       <View style={[styles.center, indexStyles.centering]}>
         <View
-          style={[styles.questionArea, indexStyles.centering, styles.shadowEffect]}
+          style={[styles.questionArea, indexStyles.centering, indexStyles.shadowEffect]}
         >
           {renderQuestion()}
         </View>
@@ -507,7 +507,7 @@ const TherapyScreen = ({ navigation, route }) => {
       {/* Button to navigate through the therapy session */}
       <View style={[styles.bottom, indexStyles.centering]}>
         <TouchableOpacity
-          style={[styles.optButton, indexStyles.centering, styles.shadowEffect]}
+          style={[styles.optButton, indexStyles.centering, indexStyles.shadowEffect]}
           onPress={() => nextQuestion()}
           disabled={checkDisabledForNext()}
         >
@@ -585,17 +585,6 @@ const styles = StyleSheet.create({
     backgroundColor: "#ffcccb",
     width: "10%",
     height: "100%",
-  },
-  shadowEffect: {
-    shadowColor: "#000",
-    shadowOffset: {
-      width: 0,
-      height: 2,
-    },
-    shadowOpacity: 0.25,
-    shadowRadius: 3.84,
-    elevation: 5,
-    marginVertical: 5,
   },
   takeBreakButton: {
     height: "50%",

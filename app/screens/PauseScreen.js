@@ -59,7 +59,7 @@ export default function PauseScreen({ props, navigation }) {
 
         <SafeAreaView style={(indexStyles.centering, styles.buttonArea)}>
           <TouchableOpacity
-            style={[styles.backButton, styles.shadowEffect]}
+            style={[styles.backButton, indexStyles.shadowEffect]}
             onPress={() => navigation.navigate("TherapyScreen")} //implement timer/record the current time
           >
             <Text style={[styles.text, styles.backText]}>
@@ -108,17 +108,6 @@ const styles = StyleSheet.create({
   image: {
     marginTop: winHeight / 20,
     maxHeight: winHeight / 2.5,
-  },
-  shadowEffect: {
-    shadowColor: "#000",
-    shadowOffset: {
-      width: 0,
-      height: 2,
-    },
-    shadowOpacity: 0.2,
-    shadowRadius: 3,
-    elevation: 5,
-    marginVertical: 5,
   },
   buttonArea: {
     width: "100%",

@@ -25,7 +25,7 @@ export default function AccountScreen({ props, navigation }) {
   return (
     <View style={styles.container}>
       <View style={styles.center}>
-        <View style={[styles.welcomeArea, styles.shadowEffect]}>
+        <View style={[styles.welcomeArea, indexStyles.shadowEffect]}>
           <View style={[styles.userNote]}>
             <Text>Log out information here</Text>
           </View>
@@ -41,7 +41,7 @@ export default function AccountScreen({ props, navigation }) {
         <Text />
         <Text />
 
-        <View style={[styles.welcomeArea, styles.shadowEffect]}>
+        <View style={[styles.welcomeArea, indexStyles.shadowEffect]}>
           <View style={[styles.userNote]}>
             <Text>Support Resources and research authors</Text>
           </View>
@@ -95,17 +95,6 @@ const styles = StyleSheet.create({
     borderBottomStartRadius: 50,
     borderBottomEndRadius: 50,
     padding: 20,
-  },
-  shadowEffect: {
-    shadowColor: "#000",
-    shadowOffset: {
-      width: 0,
-      height: 2,
-    },
-    shadowOpacity: 0.25,
-    shadowRadius: 3.84,
-    elevation: 5,
-    marginVertical: 5,
   },
   textStyle: {
     fontSize: 20,

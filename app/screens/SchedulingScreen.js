@@ -180,7 +180,7 @@ class SchedulingScreen extends Component {
     }
     return (
       <View style={[styles.container, indexStyles.centering]}>
-        <View style={[styles.center, styles.shadowEffect, styles.cover]}>
+        <View style={[styles.center, indexStyles.shadowEffect, styles.cover]}>
           <View style={{ height: "7%" }}></View>
 
           <View style={[{ height: "6%", flexDirection: "row" }]}>
@@ -304,7 +304,7 @@ class SchedulingScreen extends Component {
               style={[
                 styles.bottomBorder,
                 indexStyles.centering,
-                styles.shadowEffect,
+                indexStyles.shadowEffect,
               ]}
             >
               <Text style={[styles.scheduleText, styles.fontStyle]}>
@@ -350,17 +350,6 @@ const styles = StyleSheet.create({
   },
   selectButton: {
     backgroundColor: "#ffeed2",
-  },
-  shadowEffect: {
-    shadowColor: "#000",
-    shadowOffset: {
-      width: 0,
-      height: 2,
-    },
-    shadowOpacity: 0.25,
-    shadowRadius: 3.84,
-    elevation: 5,
-    marginVertical: 5,
   },
   textStyle: {
     fontSize: 18,
