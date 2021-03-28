@@ -184,11 +184,18 @@ const registerForPushNotificationsAsync = async()=> {
 
           <TouchableOpacity
             style={[styles.sessionArea, styles.centering, styles.shadowEffect]}
-            onPress={() =>
-              navigation.navigate("TherapyScreen", {
+            onPress={() => {
+              if(user.question===1){
+                navigation.navigate("LogFeelingScreen", {
+                cameFrom: "HomeScreen",
                 onGoBack: () => refresh(),
-              })
-            }
+                })
+              }else{
+                navigation.navigate("TherapyScreen", {
+                onGoBack: () => refresh(),
+                })
+              }
+            }}
           >
             <Text style={styles.textStyle}>Go to your session</Text>
           </TouchableOpacity>
