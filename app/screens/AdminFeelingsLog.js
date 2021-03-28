@@ -1,9 +1,19 @@
+import { getNextTriggerDateAsync } from "expo-notifications";
 import React from "react";
 import { ScrollView } from "react-native";
 import { SafeAreaView, View, Text, StyleSheet } from "react-native";
 
+function getTestDate() {
+  const date = new Date();
+  return date.toString().substr(4, 20);
+}
+
 function renderData() {
-  return <View style={styles.oval}></View>;
+  return (
+    <View style={styles.oval}>
+      <Text> {getTestDate()}</Text>
+    </View>
+  );
 }
 
 const AdminFeelingsLog = () => {
