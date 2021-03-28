@@ -25,9 +25,7 @@ function UserTable(props) {
     for (let i = 0; i < 4; i++) {
       if (average1[i] !== 0) {
         data[i].push(
-          `${(average1[i] / Math.pow(10, roundedData1[i] - 1)).toFixed(
-            1
-          )}(s/10^${roundedData2[i] - 1})`
+          `${(average1[i] / Math.pow(10, roundedData1[i] - 1)).toFixed(1)}(s)`
         );
       } else {
         data[i].push(0);
@@ -35,9 +33,7 @@ function UserTable(props) {
 
       if (average2[i] !== 0) {
         data[i].push(
-          `${(average2[i] / Math.pow(10, roundedData2[i] - 1)).toFixed(
-            1
-          )}(s/10^${roundedData2[i] - 1})`
+          `${(average2[i] / Math.pow(10, roundedData2[i] - 1)).toFixed(1)}(s)`
         );
       } else {
         data[i].push(0);
