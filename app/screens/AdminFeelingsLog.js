@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { ScrollView } from "react-native";
 import {
   SafeAreaView,
@@ -13,12 +13,17 @@ import firebase from "../database/firebase";
 const feelingsRef = firebase
   .firestore()
   .collection("feelings")
-  .where("userID", "==", "8")
+  .where("userID", "==", 8)
   .orderBy("timeStamp");
 
 const AdminFeelingsLog = () => {
-  const [loading, setLoading] = useState(false);
-  const [feelingsLog, setFeelingsLog] = useState([1, 2]);
+  const [loading, setLoading] = useState(true);
+  const [feelingsLog, setFeelingsLog] = useState([]);
+
+  // Gets therapy content while screen is rendering
+  useEffect(() => {
+    getFeelingsData();
+  }, []);
 
   // accesses the user's progress and gets the questions
   function getFeelingsData() {
