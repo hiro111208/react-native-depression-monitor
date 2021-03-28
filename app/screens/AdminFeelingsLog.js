@@ -23,25 +23,26 @@ function renderStats() {
   return (
     <View style={styles.largeOval}>
       <View style={styles.bars}>
-        <Text style={styles.statText}>Test</Text>
+        <Text style={styles.overallText}>DB8 felt very happy!</Text>
+        <Text style={styles.statText}>Anxious</Text>
         <ProgressBar
           style={styles.progressBar}
           segments={5}
           nextWidth={0}
         ></ProgressBar>
-        <Text style={styles.statText}>Test</Text>
+        <Text style={styles.statText}>Friendly</Text>
         <ProgressBar
           style={styles.progressBar}
           segments={5}
           nextWidth={0}
         ></ProgressBar>
-        <Text style={styles.statText}>Test</Text>
+        <Text style={styles.statText}>Paranoid</Text>
         <ProgressBar
           style={styles.progressBar}
           segments={5}
           nextWidth={0}
         ></ProgressBar>
-        <Text style={styles.statText}>Test</Text>
+        <Text style={styles.statText}>Sad</Text>
         <ProgressBar
           style={styles.progressBar}
           segments={5}
@@ -77,7 +78,7 @@ const styles = StyleSheet.create({
   },
   dateText: {
     fontWeight: "bold",
-    fontSize: 20,
+    fontSize: 24,
   },
   oval: {
     width: "100%",
@@ -99,10 +100,14 @@ const styles = StyleSheet.create({
     alignSelf: "center",
   },
   statText: {
-    fontWeight: "bold",
     fontSize: 20,
     paddingLeft: 10,
-    paddingVertical: 5,
+    paddingVertical: 7,
+  },
+  overallText: {
+    paddingVertical: 10,
+    alignSelf: "center",
+    fontSize: 20,
   },
 });
 
