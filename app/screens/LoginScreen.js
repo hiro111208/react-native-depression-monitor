@@ -177,7 +177,7 @@ function LoginScreen(props) {
         onPress={()=>userLogin()}
         testID={"TEST_ID_LOGIN_BUTTON"}
       >
-        <Text style= {styles.signInText}>
+        <Text style= {indexStyles.textWhite}>
           LOG IN
         </Text>
       </TouchableOpacity>
@@ -215,7 +215,7 @@ function LoginScreen(props) {
             onPress={()=>sendVerificationEmail()}
             testID={"TEST_ID_VERIFY_BUTTON"}
           >
-          <Text style= {styles.signInText}>
+          <Text style= {indexStyles.textWhite}>
             Send verification email
           </Text>
         </TouchableOpacity>
@@ -259,10 +259,5 @@ const styles = StyleSheet.create({
     color: colors.darkBorder,
     marginTop: 25,
     textAlign: "center",
-  },
-  signInText: {
-    color: "white",
-    textAlign: "center",
-    fontSize: 15,
   },
 });

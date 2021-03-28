@@ -3,6 +3,7 @@ import { StyleSheet, View, Text, TouchableOpacity, TextInput, Alert } from 'reac
 import firebase from "../database/firebase";
 
 import colors from "../config/colors";
+import * as indexStyles from "../config/indexStyles";
 
 /*
   Screen where users can try to reset their passwords if forgotten
@@ -28,7 +29,7 @@ function ForgotPasswordScreen(props) {
   //Render forgot password screen interface
   return (
     //Render field to input user email
-    <View style={styles.container}>
+    <View style={[styles.container, indexStyles.centering]}>
       <TextInput
         style={styles.inputStyle}
         placeholder="Email"
@@ -44,7 +45,7 @@ function ForgotPasswordScreen(props) {
         onPress={()=>forgotPassword()}
         testID={"TEST_ID_FORGOT_BUTTON"}
       >
-        <Text style= {styles.submitText}>SUBMIT</Text>
+        <Text style= {indexStyles.textWhite}>SUBMIT</Text>
       </TouchableOpacity>
 
       {/*Render button that allows user to go back to login screen*/}
@@ -66,8 +67,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     display: "flex",
-    justifyContent: "center",
-    alignItems: "center",
     padding: 35,
     backgroundColor: "white"
   },
@@ -79,11 +78,6 @@ const styles = StyleSheet.create({
     paddingTop:15,
     paddingBottom:15,
     borderRadius:50,
-  },
-  submitText:{
-    color: "white",
-    textAlign: "center",
-    fontSize: 15
   },
   inputStyle: {
     width: "100%",

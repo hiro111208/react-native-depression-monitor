@@ -13,6 +13,7 @@ import firebase from "../database/firebase";
 import { Tooltip } from "react-native-elements";
 
 import colors from "../config/colors";
+import * as indexStyles from "../config/indexStyles";
 
 const db = firebase.firestore();
 
@@ -242,7 +243,7 @@ function SignUpScreen(props) {
         onPress={() => registerUser()}
         testID={"TEST_ID_SIGNUP_BUTTON"}
       >
-        <Text style={styles.signupText}>SIGNUP</Text>
+        <Text style={indexStyles.textWhite}>SIGNUP</Text>
       </TouchableOpacity>
 
       {/*Render text button that allows user to go to login screen */}
@@ -304,11 +305,6 @@ const styles = StyleSheet.create({
     paddingTop: 15,
     paddingBottom: 15,
     borderRadius: 50,
-  },
-  signupText: {
-    color: "white",
-    textAlign: "center",
-    fontSize: 15,
   },
   image: {
     height: 22,

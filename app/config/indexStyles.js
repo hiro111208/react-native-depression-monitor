@@ -23,6 +23,12 @@ export const textGrey = {
     flexWrap: "wrap",
 };
 
+export const textWhite = {
+    color: "white",
+    textAlign: "center",
+    fontSize: 15
+};
+
 export const preloader = {
     left: 0,
     right: 0,
