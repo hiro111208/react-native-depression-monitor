@@ -96,7 +96,7 @@ export default class TherapyQuestionScreen extends Component {
   render() {
     if (this.state.isLoading) {
       return (
-        <View style={styles.preloader}>
+        <View style={indexStyles.preloader}>
           <ActivityIndicator size="large" color="#9E9E9E" />
         </View>
       );
@@ -336,14 +336,5 @@ const styles = StyleSheet.create({
     flex: 1,
     paddingBottom: 10,
     fontWeight: "bold",
-  },
-  preloader: {
-    left: 0,
-    right: 0,
-    top: 0,
-    bottom: 0,
-    position: "absolute",
-    alignItems: "center",
-    justifyContent: "center",
   },
 });

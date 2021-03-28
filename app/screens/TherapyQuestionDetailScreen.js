@@ -112,7 +112,7 @@ export default class TherapyQuestionDetailScreen extends Component {
   render() {
     if (this.state.isLoading) {
       return (
-        <View style={styles.preloader}>
+        <View style={indexStyles.preloader}>
           <ActivityIndicator size="large" color="#9E9E9E" />
         </View>
       );
@@ -277,15 +277,6 @@ const styles = StyleSheet.create({
   },
   optButton: {
     backgroundColor: "#ffeed2",
-  },
-  preloader: {
-    left: 0,
-    right: 0,
-    top: 0,
-    bottom: 0,
-    position: "absolute",
-    alignItems: "center",
-    justifyContent: "center",
   },
   title: {
     padding: 10,

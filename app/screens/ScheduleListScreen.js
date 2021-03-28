@@ -166,7 +166,7 @@ scheduleNotification4 = async () => {
   render() {
     if (this.state.isLoading) {
       return (
-        <View style={[styles.preloader, indexStyles.centering]}>
+        <View style={[indexStyles.preloader, indexStyles.centering]}>
           <ActivityIndicator size="large" color="#9E9E9E" />
         </View>
       );
@@ -262,13 +262,6 @@ const styles = StyleSheet.create({
     width: "30%",
     backgroundColor: "#ffeed2",
     borderRadius: 10,
-  },
-  preloader: {
-    left: 0,
-    right: 0,
-    top: 0,
-    bottom: 0,
-    position: "absolute",
   },
 });
 

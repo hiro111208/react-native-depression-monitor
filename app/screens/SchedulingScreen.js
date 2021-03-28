@@ -173,7 +173,7 @@ class SchedulingScreen extends Component {
   render() {
     if (this.state.isLoading) {
       return (
-        <View style={styles.preloader}>
+        <View style={indexStyles.preloader}>
           <ActivityIndicator size="large" color="#9E9E9E" />
         </View>
       );

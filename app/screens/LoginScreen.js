@@ -10,6 +10,7 @@ import {
 } from "react-native";
 import firebase from "../database/firebase";
 import colors from "../config/colors";
+import * as indexStyles from "../config/indexStyles";
 
 /*
   Screen where users can login to access their dashboards
@@ -139,7 +140,7 @@ function LoginScreen(props) {
   //While loading show preloader
   if (isLoading) {
     return (
-      <View style={styles.preloader}>
+      <View style={indexStyles.preloader}>
         <ActivityIndicator size="large" color="#9E9E9E" />
       </View>
     );
@@ -258,16 +259,6 @@ const styles = StyleSheet.create({
     color: colors.darkBorder,
     marginTop: 25,
     textAlign: "center",
-  },
-  preloader: {
-    left: 0,
-    right: 0,
-    top: 0,
-    bottom: 0,
-    position: "absolute",
-    alignItems: "center",
-    justifyContent: "center",
-    backgroundColor: "#fff",
   },
   signInText: {
     color: "white",
