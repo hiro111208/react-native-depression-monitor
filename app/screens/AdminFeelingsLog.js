@@ -2,6 +2,7 @@ import { getNextTriggerDateAsync } from "expo-notifications";
 import React from "react";
 import { ScrollView } from "react-native";
 import { SafeAreaView, View, Text, StyleSheet } from "react-native";
+import ProgressBar from "../src/components/ProgressBar";
 
 function getDateToString() {
   const date = new Date();
@@ -18,10 +19,46 @@ function renderData() {
   );
 }
 
+function renderStats() {
+  return (
+    <View style={styles.largeOval}>
+      <View style={styles.bars}>
+        <Text style={styles.statText}>Test</Text>
+        <ProgressBar
+          style={styles.progressBar}
+          segments={5}
+          nextWidth={0}
+        ></ProgressBar>
+        <Text style={styles.statText}>Test</Text>
+        <ProgressBar
+          style={styles.progressBar}
+          segments={5}
+          nextWidth={0}
+        ></ProgressBar>
+        <Text style={styles.statText}>Test</Text>
+        <ProgressBar
+          style={styles.progressBar}
+          segments={5}
+          nextWidth={0}
+        ></ProgressBar>
+        <Text style={styles.statText}>Test</Text>
+        <ProgressBar
+          style={styles.progressBar}
+          segments={5}
+          nextWidth={0}
+        ></ProgressBar>
+      </View>
+    </View>
+  );
+}
+
 const AdminFeelingsLog = () => {
   return (
     <SafeAreaView style={styles.container}>
-      <ScrollView style={styles.data}>{renderData()}</ScrollView>
+      <ScrollView style={styles.data}>
+        {renderData()}
+        {renderStats()}
+      </ScrollView>
     </SafeAreaView>
   );
 };
@@ -50,6 +87,16 @@ const styles = StyleSheet.create({
     alignSelf: "center",
     alignItems: "center",
     justifyContent: "center",
+  },
+  largeOval: {
+    width: "90%",
+    height: 250,
+    borderRadius: 50,
+    borderColor: "black",
+    padding: 10,
+    borderWidth: 5,
+    backgroundColor: "transparent",
+    alignSelf: "center",
   },
 });
 
