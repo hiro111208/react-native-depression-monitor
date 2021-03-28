@@ -239,7 +239,7 @@ function SignUpScreen(props) {
       {/*Render sign up button that calls registerUser method*/}
       <TouchableOpacity
         activeOpacity={0.5}
-        style={styles.signupButton}
+        style={indexStyles.darkButton}
         onPress={() => registerUser()}
         testID={"TEST_ID_SIGNUP_BUTTON"}
       >
@@ -291,15 +291,6 @@ const styles = StyleSheet.create({
     backgroundColor: colors.darkBorder,
     width: 300,
     height: 60,
-  },
-  signupButton: {
-    width: 300,
-    backgroundColor: colors.darkBorder,
-    alignSelf: "center",
-    marginTop: 10,
-    paddingTop: 15,
-    paddingBottom: 15,
-    borderRadius: 50,
   },
   image: {
     height: 22,

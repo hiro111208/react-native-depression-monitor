@@ -41,7 +41,7 @@ function ForgotPasswordScreen(props) {
     {/*Render button that calls forgotPassword method */}
       <TouchableOpacity
         activeOpacity = { .5 }
-        style={styles.submitButton}
+        style={indexStyles.darkButton}
         onPress={()=>forgotPassword()}
         testID={"TEST_ID_FORGOT_BUTTON"}
       >
@@ -69,15 +69,6 @@ const styles = StyleSheet.create({
     display: "flex",
     padding: 35,
     backgroundColor: "white"
-  },
-  submitButton:{
-    width: 300,
-    backgroundColor: colors.darkBorder,
-    alignSelf: "center",
-    marginTop:10,
-    paddingTop:15,
-    paddingBottom:15,
-    borderRadius:50,
   },
   inputStyle: {
     width: "100%",

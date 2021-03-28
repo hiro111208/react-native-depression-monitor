@@ -173,7 +173,7 @@ function LoginScreen(props) {
       {/*Render login button which calls userLogin method and checks credentials in input fields*/}
       <TouchableOpacity
         activeOpacity={0.5}
-        style={styles.loginButton}
+        style={indexStyles.darkButton}
         onPress={()=>userLogin()}
         testID={"TEST_ID_LOGIN_BUTTON"}
       >
@@ -211,7 +211,7 @@ function LoginScreen(props) {
       {!isVerified
         ? <TouchableOpacity
             activeOpacity = { 0.5 }
-            style={styles.loginButton}
+            style={indexStyles.darkButton}
             onPress={()=>sendVerificationEmail()}
             testID={"TEST_ID_VERIFY_BUTTON"}
           >
@@ -245,14 +245,5 @@ const styles = StyleSheet.create({
     alignSelf: "center",
     borderColor: "#ccc",
     borderBottomWidth: 1.5,
-  },
-  loginButton: {
-    width: 300,
-    backgroundColor: colors.darkBorder,
-    alignSelf: "center",
-    marginTop: 10,
-    paddingTop: 15,
-    paddingBottom: 15,
-    borderRadius: 50,
   },
 });

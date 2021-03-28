@@ -38,6 +38,16 @@ export const textButton = {
     textAlign: "center"
 };
 
+export const darkButton = {
+    width: 300,
+    backgroundColor: colors.darkBorder,
+    alignSelf: "center",
+    marginTop: 10,
+    paddingTop: 15,
+    paddingBottom: 15,
+    borderRadius: 50,
+};
+
 export const preloader = {
     left: 0,
     right: 0,
