@@ -11,6 +11,7 @@ import {
   TouchableOpacity,
 } from "react-native";
 import DateTimePicker from "@react-native-community/datetimepicker";
+import * as indexStyles from "../config/indexStyles";
 import firebase from "../database/firebase";
 import moment from "moment";
 

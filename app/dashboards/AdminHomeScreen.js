@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 import { StyleSheet, View, Text, Button, Image } from "react-native";
-import firebase from "../database/firebase";
 
 import colors from "../config/colors";
-import indexStyles from "../config/indexStyles";
+import * as indexStyles from "../config/indexStyles";
 import { TouchableOpacity } from "react-native";
 import { Touchable } from "react-native";
+import firebase from "../database/firebase";
 
 export default function AdminHomeScreen({ props, navigation }) {
   const [errorMessage, setErrorMessage] = useState("");

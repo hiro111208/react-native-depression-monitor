@@ -10,6 +10,7 @@ import {
   Platform,
 } from "react-native";
 import { ListItem } from "react-native-elements";
+import * as indexStyles from "../config/indexStyles";
 import firebase from "../database/firebase";
 
 import DropDownPicker from "react-native-dropdown-picker";

@@ -11,6 +11,8 @@ import firebase from "../database/firebase";
 import FeelingsRadioButtons from "../src/components/FeelingsRadioButtons";
 import FeelingsSlider from "../src/components/FeelingsSlider";
 import colors from "../config/colors";
+import * as indexStyles from "../config/indexStyles";
+
 /**
  * Screen where the user logs their feelings. Users will
  * log their feelings before and after their therapy

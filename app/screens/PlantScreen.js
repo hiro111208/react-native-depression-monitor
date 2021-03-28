@@ -8,6 +8,7 @@ import {
   Image,
 } from "react-native";
 import Constants from "expo-constants";
+import * as indexStyles from "../config/indexStyles";
 import firebase from "../database/firebase";
 
 const PlantScreen = ({ navigation, route }) => {

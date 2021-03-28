@@ -8,6 +8,7 @@ import {
   TouchableOpacity,
 } from "react-native";
 import { ListItem } from "react-native-elements";
+import * as indexStyles from "../config/indexStyles";
 import firebase from "../database/firebase";
 import { Notifications, Permissions } from "expo";
 

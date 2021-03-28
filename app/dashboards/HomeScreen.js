@@ -8,7 +8,7 @@ import {
   TouchableOpacity,
 } from "react-native";
 import firebase from "../database/firebase";
-
+import * as indexStyles from "../config/indexStyles";
 import colors from "../config/colors";
 import indexStyles from "../config/indexStyles";
 import { Alert, Platform } from 'react-native'

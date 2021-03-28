@@ -12,6 +12,7 @@ import {
   View,
   Text,
 } from "react-native";
+import * as indexStyles from "../config/indexStyles";
 import firebase from "../database/firebase";
 
 export default class TherapyQuestionDetailScreen extends Component {

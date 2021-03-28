@@ -12,6 +12,7 @@ import {
 } from "react-native";
 import Constants from "expo-constants";
 import * as Speech from "expo-speech";
+import * as indexStyles from "../config/indexStyles";
 import firebase from "../database/firebase";
 import ProgressBar from "../src/components/ProgressBar";
 

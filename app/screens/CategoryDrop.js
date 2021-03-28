@@ -7,6 +7,7 @@ import {
   TouchableOpacity,
 } from "react-native";
 import Constants from "expo-constants";
+import * as indexStyles from "../config/indexStyles";
 import firebase from "../database/firebase";
 
 const CategoryDrop = ({ route, navigation }) => {
