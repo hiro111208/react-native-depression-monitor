@@ -28,6 +28,7 @@ const AdminFeelingsLog = () => {
         const items = [];
         querySnapshot.forEach((doc) => {
           items.push(doc.data());
+          console.log(doc.data());
         });
         setFeelingsLog(items);
         setLoading(false);
@@ -48,40 +49,6 @@ const AdminFeelingsLog = () => {
     return (
       <View style={styles.oval}>
         <Text style={styles.dateText}>{getDateToString()}</Text>
-      </View>
-    );
-  }
-
-  function renderStats() {
-    return (
-      <View style={styles.largeOval}>
-        <View style={styles.bars}>
-          <Text style={styles.overallText}>DB8 felt very happy!</Text>
-          <Text style={styles.statText}>Anxious</Text>
-          <ProgressBar
-            style={styles.progressBar}
-            segments={5}
-            nextWidth={0}
-          ></ProgressBar>
-          <Text style={styles.statText}>Friendly</Text>
-          <ProgressBar
-            style={styles.progressBar}
-            segments={5}
-            nextWidth={0}
-          ></ProgressBar>
-          <Text style={styles.statText}>Paranoid</Text>
-          <ProgressBar
-            style={styles.progressBar}
-            segments={5}
-            nextWidth={0}
-          ></ProgressBar>
-          <Text style={styles.statText}>Sad</Text>
-          <ProgressBar
-            style={styles.progressBar}
-            segments={5}
-            nextWidth={0}
-          ></ProgressBar>
-        </View>
       </View>
     );
   }
