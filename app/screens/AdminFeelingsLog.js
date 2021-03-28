@@ -82,7 +82,7 @@ const AdminFeelingsLog = () => {
                 <Text style={styles.overallText}>
                   DB8 felt {logItem.overall}!
                 </Text>
-                <Text style={styles.statText}>Anxious</Text>
+                <Text style={styles.statText}>Free from anxiety</Text>
                 <ProgressBar
                   style={styles.progressBar}
                   segments={5}
@@ -94,13 +94,13 @@ const AdminFeelingsLog = () => {
                   segments={5}
                   nextWidth={logItem.friendly}
                 ></ProgressBar>
-                <Text style={styles.statText}>Paranoid</Text>
+                <Text style={styles.statText}>Free from paranoia</Text>
                 <ProgressBar
                   style={styles.progressBar}
                   segments={5}
                   nextWidth={logItem.paranoid}
                 ></ProgressBar>
-                <Text style={styles.statText}>Sad</Text>
+                <Text style={styles.statText}>Happy</Text>
                 <ProgressBar
                   style={styles.progressBar}
                   segments={5}
