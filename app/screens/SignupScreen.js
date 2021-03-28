@@ -233,8 +233,8 @@ function SignUpScreen(props) {
         </Tooltip>
       </View>
       {/*Render error messages or success messages*/}
-      <Text style={{ color: "red" }}>{errorMessage}</Text>
-      <Text style={{ color: "red" }}>{message}</Text>
+      <Text style={indexStyles.errorMessage}>{errorMessage}</Text>
+      <Text style={indexStyles.errorMessage}>{message}</Text>
 
       {/*Render sign up button that calls registerUser method*/}
       <TouchableOpacity

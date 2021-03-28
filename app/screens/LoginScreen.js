@@ -168,7 +168,11 @@ function LoginScreen(props) {
       />   
 
       {/*Render text that shows error  messages */}
-      <Text testID={"TEST_ID_MESSAGE"} style={{color:"red"}}>{errorMessage}</Text>
+      <Text
+        style={indexStyles.errorMessage}
+        testID={"TEST_ID_MESSAGE"} >
+        {errorMessage}
+      </Text>
 
       {/*Render login button which calls userLogin method and checks credentials in input fields*/}
       <TouchableOpacity

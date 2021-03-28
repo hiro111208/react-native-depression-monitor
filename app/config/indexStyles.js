@@ -60,6 +60,13 @@ export const inputArea = {
     borderBottomWidth: 1,
 };
 
+export const errorMessage = {
+    fontSize: 15,
+    textAlign: "center",
+    color: "red",
+    flexWrap: "wrap"
+};
+
 export const preloader = {
     left: 0,
     right: 0,

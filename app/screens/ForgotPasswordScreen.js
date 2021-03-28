@@ -56,7 +56,11 @@ function ForgotPasswordScreen(props) {
       </Text>
 
       {/*Render text that shows error or success messages */}
-      <Text testID={"TEST_ID_MESSAGE"} style={{color:"red"}}>{message}</Text>
+      <Text
+        style={indexStyles.errorMessage}
+        testID={"TEST_ID_MESSAGE"} >
+        {message}
+      </Text>
 
     </View>
   );
