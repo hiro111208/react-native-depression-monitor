@@ -1,3 +1,6 @@
+
+import colors from "./colors";
+
 export const centering = {
     alignItems: "center",
     justifyContent: "center",
@@ -27,6 +30,12 @@ export const textWhite = {
     color: "white",
     textAlign: "center",
     fontSize: 15
+};
+
+export const textButton = {
+    color: colors.darkBorder,
+    marginTop: 25,
+    textAlign: "center"
 };
 
 export const preloader = {

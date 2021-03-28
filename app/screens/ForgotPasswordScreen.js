@@ -50,7 +50,7 @@ function ForgotPasswordScreen(props) {
 
       {/*Render button that allows user to go back to login screen*/}
       <Text 
-        style = {styles.textButton}
+        style = {indexStyles.textButton}
         onPress={() => props.navigation.navigate("LoginScreen")}>
           Back to Login
       </Text>
@@ -87,13 +87,4 @@ const styles = StyleSheet.create({
     borderColor: "#ccc",
     borderBottomWidth: 1
   },
-  textButton: {
-    color: colors.darkBorder,
-    marginTop: 25,
-    textAlign: "center"
-  },
-  textStyle: {
-    fontSize: 15,
-    marginBottom: 20
-  }
 });

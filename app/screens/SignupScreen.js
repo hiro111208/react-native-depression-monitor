@@ -248,7 +248,7 @@ function SignUpScreen(props) {
 
       {/*Render text button that allows user to go to login screen */}
       <Text
-        style={styles.loginText}
+        style={indexStyles.textButton}
         onPress={() => {
           reset();
           props.navigation.navigate("LoginScreen");
@@ -278,11 +278,6 @@ const styles = StyleSheet.create({
     alignSelf: "center",
     borderColor: "#ccc",
     borderBottomWidth: 1.5,
-  },
-  loginText: {
-    color: colors.darkBorder,
-    marginTop: 25,
-    textAlign: "center",
   },
   passwordSection: {
     flexDirection: "row",

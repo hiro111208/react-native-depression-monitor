@@ -184,7 +184,7 @@ function LoginScreen(props) {
 
       {/*Render text to allow user to go to sign up screen*/}
       <Text
-        style={styles.textButton}
+        style={indexStyles.textButton}
         onPress={() => {
           reset(); 
           props.navigation.navigate("SignupScreen");
@@ -196,7 +196,7 @@ function LoginScreen(props) {
 
       {/*Render text to allow user to go to forgot password screen*/}
       <Text
-        style={styles.textButton}
+        style={indexStyles.textButton}
         onPress={() => {
           reset();
           props.navigation.navigate("ForgotPasswordScreen");
@@ -254,10 +254,5 @@ const styles = StyleSheet.create({
     paddingTop: 15,
     paddingBottom: 15,
     borderRadius: 50,
-  },
-  textButton: {
-    color: colors.darkBorder,
-    marginTop: 25,
-    textAlign: "center",
   },
 });
