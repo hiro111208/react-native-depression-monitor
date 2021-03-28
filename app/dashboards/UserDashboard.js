@@ -41,7 +41,6 @@ function UserDashboard(props) {
         const itemIDData = `DB${item.userID}`
           ? `DB${item.userID}`.toUpperCase()
           : "".toUpperCase();
-
         const itemBlockData = item.block.toString()
           ? item.block.toString()
           : "".toUpperCase();
@@ -57,6 +56,7 @@ function UserDashboard(props) {
           itemIDData.indexOf(textData) > -1 ||
           itemBlockData.indexOf(textData) > -1 ||
           itemIDNumberData.indexOf(textData) > -1 ||
+          //take into acount "active" is substring of "inactive"
           (activity.indexOf(textData) > -1 && activity.indexOf(textData) < 2)
         );
       });
