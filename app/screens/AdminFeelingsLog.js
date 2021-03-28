@@ -8,9 +8,34 @@ import {
   ActivityIndicator,
 } from "react-native";
 import ProgressBar from "../src/components/ProgressBar";
+import firebase from "../database/firebase";
+
+const feelingsRef = firebase
+  .firestore()
+  .collection("feelings")
+  .where("userID", "==", "8")
+  .orderBy("timeStamp");
 
 const AdminFeelingsLog = () => {
   const [loading, setLoading] = useState(false);
+  const [feelingsLog, setFeelingsLog] = useState([]);
+
+  // accesses the user's progress and gets the questions
+  function getFeelingsData() {
+    feelingsRef
+      .get()
+      .then((querySnapshot) => {
+        const items = [];
+        querySnapshot.forEach((doc) => {
+          items.push(doc.data());
+        });
+        setFeelingsLog(items);
+        setLoading(false);
+      })
+      .catch((error) => {
+        console.log("Error getting documents: ", error);
+      });
+  }
 
   function getDateToString() {
     const date = new Date();
