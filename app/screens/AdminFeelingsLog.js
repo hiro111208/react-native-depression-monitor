@@ -11,7 +11,7 @@ function getTestDate() {
 function renderData() {
   return (
     <View style={styles.oval}>
-      <Text> {getTestDate()}</Text>
+      <Text style={styles.dateText}>{getTestDate()}</Text>
     </View>
   );
 }
@@ -36,12 +36,18 @@ const styles = StyleSheet.create({
     width: "100%",
     padding: 5,
   },
+  dateText: {
+    fontWeight: "bold",
+    fontSize: 20,
+  },
   oval: {
     width: "100%",
     height: 50,
     borderRadius: 50,
     backgroundColor: "white",
     alignSelf: "center",
+    alignItems: "center",
+    justifyContent: "center",
   },
 });
 
