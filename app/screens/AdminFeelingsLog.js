@@ -70,7 +70,7 @@ const AdminFeelingsLog = () => {
     <SafeAreaView style={styles.container}>
       <ScrollView style={styles.data}>
         {feelingsLog.map((logItem, index) => (
-          <View id={index} style={styles.item}>
+          <View key={index} style={styles.item}>
             <View style={styles.oval}>
               <Text style={styles.dateText}>
                 {getDateToString(logItem.timeStamp.toDate())}
@@ -78,7 +78,9 @@ const AdminFeelingsLog = () => {
             </View>
             <View style={styles.largeOval}>
               <View style={styles.bars}>
-                <Text style={styles.overallText}>DB8 felt very happy!</Text>
+                <Text style={styles.overallText}>
+                  DB8 felt {logItem.overall}!
+                </Text>
                 <Text style={styles.statText}>Anxious</Text>
                 <ProgressBar
                   style={styles.progressBar}
@@ -156,6 +158,7 @@ const styles = StyleSheet.create({
     paddingVertical: 10,
     alignSelf: "center",
     fontSize: 20,
+    fontWeight: "bold",
   },
   preloader: {
     left: 0,
