@@ -3,15 +3,17 @@ import React from "react";
 import { ScrollView } from "react-native";
 import { SafeAreaView, View, Text, StyleSheet } from "react-native";
 
-function getTestDate() {
+function getDateToString() {
   const date = new Date();
-  return date.toString().substr(4, 20);
+  const calender = date.toString().substr(4, 11);
+  const time = date.toString().substr(15, 6);
+  return calender + "  @ " + time;
 }
 
 function renderData() {
   return (
     <View style={styles.oval}>
-      <Text style={styles.dateText}>{getTestDate()}</Text>
+      <Text style={styles.dateText}>{getDateToString()}</Text>
     </View>
   );
 }
