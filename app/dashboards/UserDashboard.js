@@ -36,22 +36,28 @@ function UserDashboard(props) {
       // Filter the items
       // Update items
       const newData = items.filter(function (item) {
-        //allow filtering by block number // id number // full id
+        const textData = text.toUpperCase();
+        //allow filtering by block number // id number // full id // active/inactive
         const itemIDData = `DB${item.userID}`
           ? `DB${item.userID}`.toUpperCase()
           : "".toUpperCase();
-        const textData = text.toUpperCase();
+
         const itemBlockData = item.block.toString()
           ? item.block.toString()
           : "".toUpperCase();
         const itemIDNumberData = item.userID
           ? item.userID.toString().toUpperCase()
           : "".toUpperCase();
-
+        const activity = active[
+          isActive(item.lastActive.toMillis())
+        ].toUpperCase()
+          ? active[isActive(item.lastActive.toMillis())].toUpperCase()
+          : "".toUpperCase();
         return (
           itemIDData.indexOf(textData) > -1 ||
           itemBlockData.indexOf(textData) > -1 ||
-          itemIDNumberData.indexOf(textData) > -1
+          itemIDNumberData.indexOf(textData) > -1 ||
+          (activity.indexOf(textData) > -1 && activity.indexOf(textData) < 2)
         );
       });
       setItems(newData);
@@ -103,7 +109,7 @@ function UserDashboard(props) {
         style={{
           width: 150,
           height: 35,
-          marginTop: 20,
+          marginTop: 30,
           shadowOffset: {
             width: 0,
             height: 10,
@@ -132,7 +138,7 @@ function UserDashboard(props) {
         searchIcon={{ size: 24 }}
         onChangeText={(text) => onChange(text)}
         clearButtonMode={"always"}
-        placeholder="Search by ID or Block Number"
+        placeholder="Search by ID, Activity, Block Number"
         value={searchQuery}
       />
 

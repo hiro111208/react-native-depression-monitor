@@ -73,7 +73,6 @@
     ],
     "modulePaths": [
       "./App/src/components"
-    ],
-    "testEnvironment": "jest-environment-jsdom-fifteen"
+    ]
   }
 }

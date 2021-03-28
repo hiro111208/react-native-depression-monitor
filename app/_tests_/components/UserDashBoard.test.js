@@ -1,7 +1,7 @@
 import React from "react";
 import { shallow } from "enzyme";
 
-import UserDashboard from "../../src/components/UserDashboard";
+import UserDashboard from "../../dashboards/UserDashboard";
 
 // jest.mock("react-native/Libraries/LayoutAnimation/LayoutAnimation", () => ({
 //   ...require.requireActual(

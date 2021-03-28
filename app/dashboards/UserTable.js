@@ -60,12 +60,6 @@ function UserTable(props) {
             borderColor: "black",
           }}
         >
-          {/* <Rows
-            data={dataHead}
-            style={styles.HeadStyle}
-            textStyle={styles.headerText}
-            overflow="hidden"
-          /> */}
           <Row
             data={dataHead}
             style={styles.HeadStyle}

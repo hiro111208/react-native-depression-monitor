@@ -340,6 +340,7 @@ export default class UserInfo extends Component {
               />
             </View>
           </View>
+
           <View
             flex={0.25}
             style={styles.shadow}
