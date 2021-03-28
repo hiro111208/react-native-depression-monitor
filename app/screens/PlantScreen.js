@@ -93,7 +93,7 @@ const PlantScreen = ({ navigation, route }) => {
   }
 
   return (
-    <View style={styles.container}>
+    <View style={[styles.container, indexStyles.centering]}>
       <View style={[styles.middle, indexStyles.shadowEffect]}>
         <View style={{ height: "5%" }}></View>
         <View style={[styles.top, indexStyles.centering]}>
@@ -153,8 +153,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     display: "flex",
-    justifyContent: "center",
-    alignItems: "center",
     padding: 30,
     backgroundColor: "white",
   },

@@ -23,7 +23,7 @@ export default function AccountScreen({ props, navigation }) {
   };
 
   return (
-    <View style={styles.container}>
+    <View style={[styles.container, indexStyles.centering]}>
       <View style={styles.center}>
         <View style={[styles.welcomeArea, indexStyles.shadowEffect]}>
           <View style={[styles.userNote]}>
@@ -62,8 +62,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     display: "flex",
-    justifyContent: "center",
-    alignItems: "center",
     backgroundColor: "white",
   },
   center: {

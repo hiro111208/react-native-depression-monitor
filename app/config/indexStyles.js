@@ -33,3 +33,4 @@ export const preloader = {
     justifyContent: "center",
     backgroundColor: "white",
 };
+
