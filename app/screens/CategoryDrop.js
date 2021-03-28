@@ -49,7 +49,7 @@ const CategoryDrop = ({ route, navigation }) => {
 
   return (
     <View style={styles.container}>
-      <View style={[styles.top, styles.centering]}>
+      <View style={[styles.top, indexStyles.centering]}>
         <Text style={styles.text}>
           Drop the subject you are least interested in.
         </Text>
@@ -60,7 +60,7 @@ const CategoryDrop = ({ route, navigation }) => {
           style={styles.bottomItem}
           onPress={() => chooseOption("SOCIAL")}
         >
-          <View style={[styles.bottomItemInner, styles.centering]}>
+          <View style={[styles.bottomItemInner, indexStyles.centering]}>
             <Text style={styles.text}>Social</Text>
           </View>
         </TouchableOpacity>
@@ -69,7 +69,7 @@ const CategoryDrop = ({ route, navigation }) => {
           style={styles.bottomItem}
           onPress={() => chooseOption("ACADEMIC")}
         >
-          <View style={[styles.bottomItemInner, styles.centering]}>
+          <View style={[styles.bottomItemInner, indexStyles.centering]}>
             <Text style={styles.text}>Academic</Text>
           </View>
         </TouchableOpacity>
@@ -78,7 +78,7 @@ const CategoryDrop = ({ route, navigation }) => {
           style={styles.bottomItem}
           onPress={() => chooseOption("HEALTH")}
         >
-          <View style={[styles.bottomItemInner, styles.centering]}>
+          <View style={[styles.bottomItemInner, indexStyles.centering]}>
             <Text style={styles.text}>Mood</Text>
           </View>
         </TouchableOpacity>
@@ -87,7 +87,7 @@ const CategoryDrop = ({ route, navigation }) => {
           style={styles.bottomItem}
           onPress={() => chooseOption("HEALTH")}
         >
-          <View style={[styles.bottomItemInner, styles.centering]}>
+          <View style={[styles.bottomItemInner, indexStyles.centering]}>
             <Text style={styles.text}>Health</Text>
           </View>
         </TouchableOpacity>
@@ -96,7 +96,7 @@ const CategoryDrop = ({ route, navigation }) => {
           style={styles.bottomItem}
           onPress={() => chooseOption("HOBBIES")}
         >
-          <View style={[styles.bottomItemInner, styles.centering]}>
+          <View style={[styles.bottomItemInner, indexStyles.centering]}>
             <Text style={styles.text}>Hobbies</Text>
           </View>
         </TouchableOpacity>
@@ -105,7 +105,7 @@ const CategoryDrop = ({ route, navigation }) => {
           style={styles.bottomItem}
           onPress={() => chooseOption("FAMILY")}
         >
-          <View style={[styles.bottomItemInner, styles.centering]}>
+          <View style={[styles.bottomItemInner, indexStyles.centering]}>
             <Text style={styles.text}>Family</Text>
           </View>
         </TouchableOpacity>
@@ -114,7 +114,7 @@ const CategoryDrop = ({ route, navigation }) => {
           style={styles.bottomItem}
           onPress={() => chooseOption("WORK")}
         >
-          <View style={[styles.bottomItemInner, styles.centering]}>
+          <View style={[styles.bottomItemInner, indexStyles.centering]}>
             <Text style={styles.text}>Work</Text>
           </View>
         </TouchableOpacity>
@@ -123,7 +123,7 @@ const CategoryDrop = ({ route, navigation }) => {
           style={styles.bottomItem}
           onPress={() => chooseOption("RELATIONSHIP")}
         >
-          <View style={[styles.bottomItemInner, styles.centering]}>
+          <View style={[styles.bottomItemInner, indexStyles.centering]}>
             <Text style={styles.text}>Relationship</Text>
           </View>
         </TouchableOpacity>
@@ -168,10 +168,6 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.25,
     shadowRadius: 3.84,
     elevation: 5,
-  },
-  centering: {
-    alignItems: "center",
-    justifyContent: "center",
   },
 });
 

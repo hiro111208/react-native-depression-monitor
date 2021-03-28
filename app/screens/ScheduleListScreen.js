@@ -165,13 +165,13 @@ scheduleNotification4 = async () => {
   render() {
     if (this.state.isLoading) {
       return (
-        <View style={[styles.preloader, styles.centering]}>
+        <View style={[styles.preloader, indexStyles.centering]}>
           <ActivityIndicator size="large" color="#9E9E9E" />
         </View>
       );
     }
     return (
-      <View style={[styles.container, styles.centering]}>
+      <View style={[styles.container, indexStyles.centering]}>
         <View style={[styles.center, styles.cover, styles.shadowEffect]}>
           <View>
             {this.state.scheduleArr.map((item, i) => {
@@ -192,7 +192,7 @@ scheduleNotification4 = async () => {
                   </ListItem.Content>
                   <TouchableOpacity
                     style={[
-                      styles.centering,
+                      indexStyles.centering,
                       styles.deleteButton,
                       styles.shadowEffect,
                       { alignItems: "center" },
@@ -206,10 +206,10 @@ scheduleNotification4 = async () => {
             })}
           </View>
           <View style={{ height: "10%" }}></View>
-          <View style={[styles.backContainer, styles.centering]}>
+          <View style={[styles.backContainer, indexStyles.centering]}>
             <TouchableOpacity
               onPress={() => this.props.navigation.goBack()}
-              style={[styles.backButton, styles.centering, styles.shadowEffect]}
+              style={[styles.backButton, indexStyles.centering, styles.shadowEffect]}
             >
               <Text style={styles.backText}>Go back</Text>
             </TouchableOpacity>
@@ -245,10 +245,6 @@ const styles = StyleSheet.create({
     alignItems: "center",
     borderWidth: 5,
     borderColor: "#ffeed2",
-  },
-  centering: {
-    alignItems: "center",
-    justifyContent: "center",
   },
   container: {
     flex: 1,

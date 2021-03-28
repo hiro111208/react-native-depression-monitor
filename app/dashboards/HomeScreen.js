@@ -10,15 +10,13 @@ import {
 import firebase from "../database/firebase";
 
 import colors from "../config/colors";
+import indexStyles from "../config/indexStyles";
 import { Alert, Platform } from 'react-native'
 import * as Permissions from 'expo-permissions';
 import { Linking } from 'expo';
 import * as Notifications from "expo-notifications";
 //import firebase from firebase;
 import Constants from "expo-constants";
-
-
-
 
 
 
@@ -170,7 +168,7 @@ const registerForPushNotificationsAsync = async()=> {
             <View style={styles.spacer}></View>
 
             <View
-              style={[styles.plantImage, styles.centering, styles.shadowEffect]}
+              style={[styles.plantImage, indexStyles.centering, styles.shadowEffect]}
             >
               <Image
                 style={{ width: "100%", height: "100%" }}
@@ -183,7 +181,7 @@ const registerForPushNotificationsAsync = async()=> {
           <View style={{ height: "30%" }}></View>
 
           <TouchableOpacity
-            style={[styles.sessionArea, styles.centering, styles.shadowEffect]}
+            style={[styles.sessionArea, indexStyles.centering, styles.shadowEffect]}
             onPress={() => {
               if(user.question===1){
                 navigation.navigate("LogFeelingScreen", {
@@ -201,7 +199,7 @@ const registerForPushNotificationsAsync = async()=> {
           </TouchableOpacity>
 
           <TouchableOpacity
-            style={[styles.sessionArea, styles.centering, styles.shadowEffect]}
+            style={[styles.sessionArea, indexStyles.centering, styles.shadowEffect]}
             onPress={() =>
               navigation.navigate("PlantScreen", {
                 currentUser: user,
@@ -280,9 +278,5 @@ const styles = StyleSheet.create({
     borderWidth: 4,
     borderColor: "#fff",
     backgroundColor: "#eee",
-  },
-  centering: {
-    alignItems: "center",
-    justifyContent: "center",
   },
 });

@@ -117,7 +117,7 @@ export default class TherapyQuestionDetailScreen extends Component {
       );
     }
     return (
-      <View style={[styles.container, styles.centering]}>
+      <View style={[styles.container, indexStyles.centering]}>
         <View style={[styles.center, styles.cover, styles.shadowEffect]}>
           <View style={{ height: "10%" }}>
             <View style={styles.title}>
@@ -128,7 +128,7 @@ export default class TherapyQuestionDetailScreen extends Component {
             </View>
           </View>
 
-          <View style={styles.centering}>
+          <View style={indexStyles.centering}>
             <ScrollView style={{ height: "70%", width: "80%" }}>
               <View>
                 <Text style={{ fontWeight: "bold" }}>Question 1:</Text>
@@ -203,13 +203,13 @@ export default class TherapyQuestionDetailScreen extends Component {
             </ScrollView>
           </View>
 
-          <View style={[{ height: "8%" }, styles.centering]}>
+          <View style={[{ height: "8%" }, indexStyles.centering]}>
             <TouchableOpacity
               onPress={() => this.updateTherapyQuestion()}
               style={[
                 styles.bottomButton,
                 styles.shadowEffect,
-                styles.centering,
+                indexStyles.centering,
               ]}
             >
               <Text style={[styles.fontStyle, { fontSize: 17 }]}>Update</Text>
@@ -218,13 +218,13 @@ export default class TherapyQuestionDetailScreen extends Component {
 
           <View style={{ height: "2%" }}></View>
 
-          <View style={[{ height: "10%" }, styles.centering]}>
+          <View style={[{ height: "10%" }, indexStyles.centering]}>
             <TouchableOpacity
               onPress={() => this.props.navigation.goBack()}
               style={[
                 styles.optButton,
                 styles.cover,
-                styles.centering,
+                indexStyles.centering,
                 { borderBottomLeftRadius: 40, borderBottomRightRadius: 40 },
               ]}
             >
@@ -251,10 +251,6 @@ const styles = StyleSheet.create({
     borderRadius: 50,
     borderWidth: 5,
     borderColor: "#ffeed2",
-  },
-  centering: {
-    alignItems: "center",
-    justifyContent: "center",
   },
   container: {
     flex: 1,

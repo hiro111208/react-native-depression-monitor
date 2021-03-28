@@ -101,13 +101,13 @@ export default class TherapyQuestionScreen extends Component {
       );
     }
     return (
-      <View style={[styles.container, styles.centering]}>
+      <View style={[styles.container, indexStyles.centering]}>
         <View style={[styles.center, styles.cover, styles.shadowEffect]}>
           <View style={{ height: "3%" }}></View>
 
           {Platform.OS === "ios" && (
             <Fragment>
-              <View style={[{ height: "10%", zIndex: 5 }, styles.centering]}>
+              <View style={[{ height: "10%", zIndex: 5 }, indexStyles.centering]}>
                 <DropDownPicker
                   items={[
                     { label: "CONTROL", value: "CONTROL" },
@@ -168,7 +168,7 @@ export default class TherapyQuestionScreen extends Component {
                 />
               </View>
 
-              <View style={[styles.centering, { height: "70%" }]}>
+              <View style={[indexStyles.centering, { height: "70%" }]}>
                 <ScrollView style={{ width: "90%" }}>
                   {this.state.filteredArr.map((item, i) => {
                     return (
@@ -201,7 +201,7 @@ export default class TherapyQuestionScreen extends Component {
 
               <View style={{ height: "7%" }}></View>
 
-              <View style={[{ height: "9%" }, styles.centering]}>
+              <View style={[{ height: "9%" }, indexStyles.centering]}>
                 <TouchableOpacity
                   onPress={() =>
                     this.props.navigation.navigate("AdminDashboard")
@@ -209,7 +209,7 @@ export default class TherapyQuestionScreen extends Component {
                   style={[
                     styles.bottomButton,
                     styles.shadowEffect,
-                    styles.centering,
+                    indexStyles.centering,
                   ]}
                 >
                   <Text style={[styles.fontStyle, { fontSize: 17 }]}>
@@ -225,7 +225,7 @@ export default class TherapyQuestionScreen extends Component {
               <View
                 style={[
                   { height: "100%", width: "100%", paddingBottom: "10%" },
-                  styles.centering,
+                  indexStyles.centering,
                 ]}
               >
                 <DropDownPicker
@@ -332,10 +332,6 @@ const styles = StyleSheet.create({
     borderRadius: 50,
     borderWidth: 5,
     borderColor: "#ffeed2",
-  },
-  centering: {
-    alignItems: "center",
-    justifyContent: "center",
   },
   container: {
     flex: 1,

@@ -53,7 +53,7 @@ const PlantScreen = ({ navigation, route }) => {
       return (
         <TouchableOpacity
           onPress={() => waterPlant()}
-          style={[styles.optButton, styles.centering, styles.shadowEffect]}
+          style={[styles.optButton, indexStyles.centering, styles.shadowEffect]}
         >
           <Text style={styles.text}>Water your plant!</Text>
           <Text style={styles.comment}>-5 coins</Text>
@@ -61,7 +61,7 @@ const PlantScreen = ({ navigation, route }) => {
       );
     } else {
       return (
-        <View style={[styles.optButton, styles.centering, styles.shadowEffect]}>
+        <View style={[styles.optButton, indexStyles.centering, styles.shadowEffect]}>
           <Text style={styles.text}>You reached max level!</Text>
           <Text style={styles.comment}>well done!</Text>
         </View>
@@ -95,12 +95,12 @@ const PlantScreen = ({ navigation, route }) => {
     <View style={styles.container}>
       <View style={[styles.middle, styles.shadowEffect]}>
         <View style={{ height: "5%" }}></View>
-        <View style={[styles.top, styles.centering]}>
-          <View style={[styles.topItem, styles.centering]}>
+        <View style={[styles.top, indexStyles.centering]}>
+          <View style={[styles.topItem, indexStyles.centering]}>
             <View
               style={[
                 styles.featureButton,
-                styles.centering,
+                indexStyles.centering,
                 styles.shadowEffect,
               ]}
             >
@@ -109,7 +109,7 @@ const PlantScreen = ({ navigation, route }) => {
           </View>
         </View>
 
-        <View style={[styles.message, styles.centering]}>
+        <View style={[styles.message, indexStyles.centering]}>
           <Text style={[styles.textStyle]}>
             Keep going! {"\n"}You're almost there!
           </Text>
@@ -117,9 +117,9 @@ const PlantScreen = ({ navigation, route }) => {
 
         <View style={{ height: "2%" }}></View>
 
-        <View style={[styles.plantSpace, styles.centering]}>
+        <View style={[styles.plantSpace, indexStyles.centering]}>
           <View
-            style={[styles.plantImage, styles.centering, styles.shadowEffect]}
+            style={[styles.plantImage, indexStyles.centering, styles.shadowEffect]}
           >
             <Image
               style={{ width: 225, height: 225 }}
@@ -129,15 +129,15 @@ const PlantScreen = ({ navigation, route }) => {
           </View>
         </View>
 
-        <View style={[styles.nextSpace, styles.centering]}>
+        <View style={[styles.nextSpace, indexStyles.centering]}>
           {renderWaterPlantButton()}
         </View>
 
         <View style={{ height: "2%" }}></View>
 
-        <View style={[{ height: "9%", width: "100%" }, styles.centering]}>
+        <View style={[{ height: "9%", width: "100%" }, indexStyles.centering]}>
           <TouchableOpacity
-            style={[styles.homeButton, styles.centering]}
+            style={[styles.homeButton, indexStyles.centering]}
             onPress={() => saveProgress()}
           >
             <Text style={styles.textStyle}>Return Home</Text>
@@ -232,10 +232,6 @@ const styles = StyleSheet.create({
   nextSpace: {
     height: "20%",
     width: "100%",
-  },
-  centering: {
-    alignItems: "center",
-    justifyContent: "center",
   },
 });
 

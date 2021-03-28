@@ -178,7 +178,7 @@ class SchedulingScreen extends Component {
       );
     }
     return (
-      <View style={[styles.container, styles.centering]}>
+      <View style={[styles.container, indexStyles.centering]}>
         <View style={[styles.center, styles.shadowEffect, styles.cover]}>
           <View style={{ height: "7%" }}></View>
 
@@ -272,10 +272,10 @@ class SchedulingScreen extends Component {
 
           <View style={{ height: "2%" }}></View>
 
-          <View style={[{ height: "10%" }, styles.centering]}>
+          <View style={[{ height: "10%" }, indexStyles.centering]}>
             <TouchableOpacity
               onPress={() => this.validateAppointment()}
-              style={[styles.selectButton, styles.cover, styles.centering]}
+              style={[styles.selectButton, styles.cover, indexStyles.centering]}
             >
               <Text style={[styles.textStyle, styles.fontStyle]}>
                 Add Session
@@ -285,8 +285,8 @@ class SchedulingScreen extends Component {
 
           <View style={{ height: "10%" }}></View>
 
-          <View style={[{ height: "25%" }, styles.centering]}>
-            <View style={[styles.cover, styles.centering]}>
+          <View style={[{ height: "25%" }, indexStyles.centering]}>
+            <View style={[styles.cover, indexStyles.centering]}>
               <Image
                 style={{ width: 125, height: 125 }}
                 resizeMode="contain"
@@ -295,14 +295,14 @@ class SchedulingScreen extends Component {
             </View>
           </View>
 
-          <View style={[{ height: "10%" }, styles.centering]}>
+          <View style={[{ height: "10%" }, indexStyles.centering]}>
             <TouchableOpacity
               onPress={() =>
                 this.props.navigation.navigate("ScheduleListScreen")
               }
               style={[
                 styles.bottomBorder,
-                styles.centering,
+                indexStyles.centering,
                 styles.shadowEffect,
               ]}
             >
@@ -329,10 +329,6 @@ const styles = StyleSheet.create({
     borderRadius: 50,
     borderWidth: 5,
     borderColor: "#ffeed2",
-  },
-  centering: {
-    alignItems: "center",
-    justifyContent: "center",
   },
   container: {
     flex: 1,

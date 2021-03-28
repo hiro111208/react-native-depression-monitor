@@ -3,6 +3,7 @@ import { StyleSheet, View, Text, Button, Image } from "react-native";
 import firebase from "../database/firebase";
 
 import colors from "../config/colors";
+import indexStyles from "../config/indexStyles";
 import { TouchableOpacity } from "react-native";
 import { Touchable } from "react-native";
 
@@ -25,7 +26,7 @@ export default function AdminHomeScreen({ props, navigation }) {
       <View style={[styles.center, styles.shadowEffect, styles.cover]}>
         <View style={{ height: "10%" }}></View>
 
-        <View style={[{ height: "40%" }, styles.centering]}>
+        <View style={[{ height: "40%" }, indexStyles.centering]}>
           <Text style={[styles.fontStyle, { fontSize: 25 }]}>
             Hello, admin!
           </Text>
@@ -39,10 +40,10 @@ export default function AdminHomeScreen({ props, navigation }) {
         <View style={{ height: "15%" }}>
           <TouchableOpacity
             onPress={() => navigation.navigate("TherapyQuestionScreen")}
-            style={[styles.centering, styles.optButton, styles.cover]}
+            style={[indexStyles.centering, styles.optButton, styles.cover]}
           >
             <Text
-              style={[styles.fontStyle, styles.centering, { fontSize: 18 }]}
+              style={[styles.fontStyle, indexStyles.centering, { fontSize: 18 }]}
             >
               Therapy Question Management
             </Text>
@@ -51,10 +52,10 @@ export default function AdminHomeScreen({ props, navigation }) {
 
         <View style={{ height: "22%" }}></View>
 
-        <View style={[{ height: "10%" }, styles.centering]}>
+        <View style={[{ height: "10%" }, indexStyles.centering]}>
           <TouchableOpacity
             onPress={() => signOut()}
-            style={[styles.bottomButton, styles.shadowEffect, styles.centering]}
+            style={[styles.bottomButton, styles.shadowEffect, indexStyles.centering]}
           >
             <Text style={[styles.fontStyle, { fontSize: 17 }]}>Log out</Text>
           </TouchableOpacity>
@@ -78,10 +79,6 @@ const styles = StyleSheet.create({
     borderRadius: 50,
     borderWidth: 5,
     borderColor: "#ffeed2",
-  },
-  centering: {
-    alignItems: "center",
-    justifyContent: "center",
   },
   container: {
     flex: 1,

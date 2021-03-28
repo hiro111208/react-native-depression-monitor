@@ -96,7 +96,7 @@ const TherapyScreen = ({ navigation, route }) => {
   // View to display when answer is correct
   function renderCorrectAnswerArea() {
     return (
-      <View style={[styles.answerArea, styles.centering, styles.shadowEffect]}>
+      <View style={[styles.answerArea, indexStyles.centering, styles.shadowEffect]}>
         <TextInput
           style={[styles.input, styles.correctHighlight]}
           value="Well done!"
@@ -109,7 +109,7 @@ const TherapyScreen = ({ navigation, route }) => {
   // View to display when answer is wrong
   function renderIncorrectAnswerArea() {
     return (
-      <View style={[styles.answerArea, styles.centering, styles.shadowEffect]}>
+      <View style={[styles.answerArea, indexStyles.centering, styles.shadowEffect]}>
         <Text style={styles.textNote}>
           {" "}
           The correct answer was "{getCorrectAnswer()}".{" "}
@@ -126,7 +126,7 @@ const TherapyScreen = ({ navigation, route }) => {
   // Renders whilst data is being retrieved
   function renderLoadingAnswerArea() {
     return (
-      <View style={[styles.answerArea, styles.centering, styles.shadowEffect]}>
+      <View style={[styles.answerArea, indexStyles.centering, styles.shadowEffect]}>
         <TextInput
           style={styles.input}
           placeholder="session loading..."
@@ -139,16 +139,16 @@ const TherapyScreen = ({ navigation, route }) => {
   // Renders format for the answer area to the yes or no question
   function renderChoiceAnswerArea() {
     return (
-      <View style={[styles.answerArea, styles.centering, styles.shadowEffect]}>
+      <View style={[styles.answerArea, indexStyles.centering, styles.shadowEffect]}>
         <Text style={styles.textNote}>{items[question].question2}</Text>
         <TouchableOpacity
-          style={[styles.answerButton, styles.centering, styles.shadowEffect]}
+          style={[styles.answerButton, indexStyles.centering, styles.shadowEffect]}
           onPress={() => checkAnswer("Yes")}
         >
           <Text style={styles.text}>YES</Text>
         </TouchableOpacity>
         <TouchableOpacity
-          style={[styles.answerButton, styles.centering, styles.shadowEffect]}
+          style={[styles.answerButton, indexStyles.centering, styles.shadowEffect]}
           onPress={() => checkAnswer("No")}
         >
           <Text style={styles.text}>NO</Text>
@@ -160,7 +160,7 @@ const TherapyScreen = ({ navigation, route }) => {
   // renders answer area to the missing word question
   function renderWordAnswerArea() {
     return (
-      <View style={[styles.answerArea, styles.centering, styles.shadowEffect]}>
+      <View style={[styles.answerArea, indexStyles.centering, styles.shadowEffect]}>
         <Text style={styles.textNote}>Enter the first missing letter</Text>
         <TextInput
           style={styles.input}
@@ -459,7 +459,7 @@ const TherapyScreen = ({ navigation, route }) => {
   return (
     <KeyboardAvoidingView style={styles.container} behavior="position">
       {/* Progress bar of the therapy session */}
-      <View style={[styles.top, styles.centering]}>
+      <View style={[styles.top, indexStyles.centering]}>
         <View style={styles.bar}>
           <ProgressBar
             segments={state.segments}
@@ -468,11 +468,11 @@ const TherapyScreen = ({ navigation, route }) => {
         </View>
 
         {/* Pause button to take a break */}
-        <View style={[styles.horizontal, styles.centering]}>
+        <View style={[styles.horizontal, indexStyles.centering]}>
           <TouchableOpacity
             style={[
               styles.takeBreakButton,
-              styles.centering,
+              indexStyles.centering,
               styles.shadowEffect,
             ]}
             onPress={() => handlePauseButton()}
@@ -483,7 +483,7 @@ const TherapyScreen = ({ navigation, route }) => {
 
           {/* Button to read text aloud */}
           <TouchableOpacity
-            style={[styles.readButton, styles.centering]}
+            style={[styles.readButton, indexStyles.centering]}
             onPress={() => handleReadButtonOnPress()}
           >
             {renderReadTextButton()}
@@ -492,9 +492,9 @@ const TherapyScreen = ({ navigation, route }) => {
       </View>
 
       {/* Displays therapy item story and question */}
-      <View style={[styles.center, styles.centering]}>
+      <View style={[styles.center, indexStyles.centering]}>
         <View
-          style={[styles.questionArea, styles.centering, styles.shadowEffect]}
+          style={[styles.questionArea, indexStyles.centering, styles.shadowEffect]}
         >
           {renderQuestion()}
         </View>
@@ -504,9 +504,9 @@ const TherapyScreen = ({ navigation, route }) => {
       {renderAnswerArea()}
 
       {/* Button to navigate through the therapy session */}
-      <View style={[styles.bottom, styles.centering]}>
+      <View style={[styles.bottom, indexStyles.centering]}>
         <TouchableOpacity
-          style={[styles.optButton, styles.centering, styles.shadowEffect]}
+          style={[styles.optButton, indexStyles.centering, styles.shadowEffect]}
           onPress={() => nextQuestion()}
           disabled={checkDisabledForNext()}
         >
@@ -538,10 +538,6 @@ const styles = StyleSheet.create({
   },
   center: {
     height: "50%",
-  },
-  centering: {
-    alignItems: "center",
-    justifyContent: "center",
   },
   container: {
     marginTop: Constants.statusBarHeight,

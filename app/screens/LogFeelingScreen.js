@@ -100,7 +100,7 @@ function LogFeelingScreen({ navigation, route }) {
   return (
     <View style={styles.container}>
       {/* Render header  */}
-      <View style={[styles.header, styles.centering]}>
+      <View style={[styles.header, indexStyles.centering]}>
         <Text style={styles.headerText}>How are you feeling?</Text>
       </View>
 
@@ -112,7 +112,7 @@ function LogFeelingScreen({ navigation, route }) {
 
       {/* Render sliders for each emotion */}
       <ScrollView style={styles.slidersContainer}>
-        <View style={[styles.topAndBottom, styles.centering]}>
+        <View style={[styles.topAndBottom, indexStyles.centering]}>
           <Text style={styles.text}>Paranoid</Text>
           <FeelingsSlider
             setFeelingState={setParanoid}
@@ -120,17 +120,17 @@ function LogFeelingScreen({ navigation, route }) {
           />
         </View>
 
-        <View style={[styles.topAndBottom, styles.centering]}>
+        <View style={[styles.topAndBottom, indexStyles.centering]}>
           <Text style={styles.text}>Anxious</Text>
           <FeelingsSlider setFeelingState={setAnxious} feelingState={anxious} />
         </View>
 
-        <View style={[styles.topAndBottom, styles.centering]}>
+        <View style={[styles.topAndBottom, indexStyles.centering]}>
           <Text style={styles.text}>Sad</Text>
           <FeelingsSlider setFeelingState={setSad} feelingState={sad} />
         </View>
 
-        <View style={[styles.topAndBottom, styles.centering]}>
+        <View style={[styles.topAndBottom, indexStyles.centering]}>
           <Text style={styles.text}>Friendly</Text>
           <FeelingsSlider
             setFeelingState={setFriendly}
@@ -141,7 +141,7 @@ function LogFeelingScreen({ navigation, route }) {
 
       {/* Render Continue button  */}
       <TouchableOpacity
-        style={[styles.continueButton, styles.centering]}
+        style={[styles.continueButton, indexStyles.centering]}
         onPress={() => {
           handleOnContinuePress();
         }}
@@ -159,10 +159,6 @@ const styles = StyleSheet.create({
     color: "white",
     fontSize: 20,
     fontWeight: "bold",
-  },
-  centering: {
-    alignItems: "center",
-    justifyContent: "center",
   },
   header: {
     backgroundColor: colors.darkBorder,

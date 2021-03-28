@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { View, Text, Button, StyleSheet, TouchableOpacity } from "react-native";
 import colors from "../config/colors";
+import indexStyles from "../config/indexStyles";
 import firebase from "../database/firebase";
 
 export default function AccountScreen({ props, navigation }) {
@@ -30,7 +31,7 @@ export default function AccountScreen({ props, navigation }) {
           </View>
 
           <TouchableOpacity
-            style={[styles.logout, styles.centering]}
+            style={[styles.logout, indexStyles.centering]}
             onPress={() => signOut()}
           >
             <Text style={styles.textStyle}>Logout</Text>
@@ -46,7 +47,7 @@ export default function AccountScreen({ props, navigation }) {
           </View>
 
           <TouchableOpacity
-            style={[styles.logout, styles.centering]}
+            style={[styles.logout, indexStyles.centering]}
             onPress={() => navigation.navigate("SupportResources")}
           >
             <Text style={styles.textStyle}>Support Resources</Text>
@@ -110,9 +111,5 @@ const styles = StyleSheet.create({
     fontSize: 20,
     fontWeight: "bold",
     color: "dimgray",
-  },
-  centering: {
-    alignContent: "center",
-    justifyContent: "center",
   },
 });
