@@ -6,6 +6,7 @@ import {
   Text,
   StyleSheet,
   ActivityIndicator,
+  TouchableOpacity,
 } from "react-native";
 import ProgressBar from "../src/components/ProgressBar";
 import firebase from "../database/firebase";
@@ -109,12 +110,21 @@ const AdminFeelingsLog = () => {
             </View>
           </View>
         ))}
+        <TouchableOpacity style={[styles.centering, styles.backButton]}>
+          <Text style={[, { fontSize: 20 }]}>Return to user stats</Text>
+        </TouchableOpacity>
       </ScrollView>
     </SafeAreaView>
   );
 };
 
 const styles = StyleSheet.create({
+  backButton: {
+    borderWidth: 1,
+    borderColor: "black",
+    marginTop: 10,
+    marginBottom: 50,
+  },
   container: {
     flex: 1,
     backgroundColor: "#ffbe7bff",
@@ -171,6 +181,10 @@ const styles = StyleSheet.create({
     backgroundColor: "#ffbe7bff",
   },
   item: { paddingVertical: 15 },
+  centering: {
+    alignItems: "center",
+    justifyContent: "center",
+  },
 });
 
 export default AdminFeelingsLog;
