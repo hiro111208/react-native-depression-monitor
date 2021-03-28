@@ -100,7 +100,7 @@ const AdminFeelingsLog = () => {
                 <ProgressBar
                   style={styles.progressBar}
                   segments={5}
-                  nextWidth={logItem.anxious}
+                  nextWidth={switchScore(logItem.anxious)}
                 ></ProgressBar>
                 <Text style={styles.statText}>Friendly</Text>
                 <ProgressBar
@@ -112,7 +112,7 @@ const AdminFeelingsLog = () => {
                 <ProgressBar
                   style={styles.progressBar}
                   segments={5}
-                  nextWidth={logItem.paranoid}
+                  nextWidth={switchScore(logItem.paranoid)}
                 ></ProgressBar>
                 <Text style={styles.statText}>Happy</Text>
                 <ProgressBar
