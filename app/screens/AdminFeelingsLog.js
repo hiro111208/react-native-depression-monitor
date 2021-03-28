@@ -1,10 +1,17 @@
-import { getNextTriggerDateAsync } from "expo-notifications";
-import React from "react";
+import React, { useState } from "react";
 import { ScrollView } from "react-native";
-import { SafeAreaView, View, Text, StyleSheet } from "react-native";
+import {
+  SafeAreaView,
+  View,
+  Text,
+  StyleSheet,
+  ActivityIndicator,
+} from "react-native";
 import ProgressBar from "../src/components/ProgressBar";
 
 const AdminFeelingsLog = () => {
+  const [loading, setLoading] = useState(false);
+
   function getDateToString() {
     const date = new Date();
     const calender = date.toString().substr(4, 11);
@@ -50,6 +57,15 @@ const AdminFeelingsLog = () => {
             nextWidth={0}
           ></ProgressBar>
         </View>
+      </View>
+    );
+  }
+
+  //Render the data of the feelings log
+  if (loading) {
+    return (
+      <View style={styles.preloader}>
+        <ActivityIndicator size="large" color="#9E9E9E" />
       </View>
     );
   }
@@ -107,6 +123,16 @@ const styles = StyleSheet.create({
     paddingVertical: 10,
     alignSelf: "center",
     fontSize: 20,
+  },
+  preloader: {
+    left: 0,
+    right: 0,
+    top: 0,
+    bottom: 0,
+    position: "absolute",
+    alignItems: "center",
+    justifyContent: "center",
+    backgroundColor: "#ffbe7bff",
   },
 });
 
