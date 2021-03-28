@@ -1,6 +1,7 @@
 
 import colors from "./colors";
 
+//widely used styles
 export const centering = {
     alignItems: "center",
     justifyContent: "center",
@@ -26,6 +27,7 @@ export const textGrey = {
     flexWrap: "wrap",
 };
 
+// styles used in the login, signup and forgot password screens
 export const textWhite = {
     color: "white",
     textAlign: "center",
@@ -46,6 +48,16 @@ export const darkButton = {
     paddingTop: 15,
     paddingBottom: 15,
     borderRadius: 50,
+};
+
+export const inputArea = {
+    width: "100%",
+    marginBottom: 15,
+    marginTop: 15,
+    paddingBottom: 20,
+    alignSelf: "center",
+    borderColor: "#ccc",
+    borderBottomWidth: 1,
 };
 
 export const preloader = {

@@ -150,7 +150,7 @@ function LoginScreen(props) {
     <View style={styles.container}>
       {/*Render input fields for email and password*/}
       <TextInput
-        style={styles.inputStyle}
+        style={indexStyles.inputArea}
         placeholder="Email"
         value={email}
         keyboardType="email-address"
@@ -158,7 +158,7 @@ function LoginScreen(props) {
         testID={"TEST_ID_EMAIL_INPUT"}
       />
       <TextInput
-        style={styles.inputStyle}
+        style={indexStyles.inputArea}
         placeholder="Password"
         value={password}
         onChangeText={(userPassword) => setPassword(userPassword)}
@@ -236,14 +236,5 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     padding: 35,
     backgroundColor: "white",
-  },
-  inputStyle: {
-    width: "100%",
-    marginBottom: 15,
-    marginTop: 15,
-    paddingBottom: 20,
-    alignSelf: "center",
-    borderColor: "#ccc",
-    borderBottomWidth: 1.5,
   },
 });

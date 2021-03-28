@@ -186,20 +186,20 @@ function SignUpScreen(props) {
   return (
     <View style={styles.container}>
       <TextInput
-        style={styles.inputStyle}
+        style={indexStyles.inputArea}
         placeholder="First Name"
         value={displayName}
         onChangeText={(val) => setDisplayName(val)}
       />
       <TextInput
-        style={styles.inputStyle}
+        style={indexStyles.inputArea}
         placeholder="Email"
         value={email}
         keyboardType="email-address"
         onChangeText={(val) => setEmail(val)}
         testID={"TEST_ID_EMAIL_INPUT"}
       />
-      <View style={[styles.inputStyle, styles.passwordSection]}>
+      <View style={[indexStyles.inputArea, styles.passwordSection]}>
         <TextInput
           placeholder="Password"
           value={password}
@@ -269,15 +269,6 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     padding: 35,
     backgroundColor: "white",
-  },
-  inputStyle: {
-    width: "100%",
-    marginBottom: 15,
-    marginTop: 15,
-    paddingBottom: 20,
-    alignSelf: "center",
-    borderColor: "#ccc",
-    borderBottomWidth: 1.5,
   },
   passwordSection: {
     flexDirection: "row",

@@ -31,7 +31,7 @@ function ForgotPasswordScreen(props) {
     //Render field to input user email
     <View style={[styles.container, indexStyles.centering]}>
       <TextInput
-        style={styles.inputStyle}
+        style={indexStyles.inputArea}
         placeholder="Email"
         value={email}
         onChangeText={(val) => setEmail(val)}
@@ -69,13 +69,5 @@ const styles = StyleSheet.create({
     display: "flex",
     padding: 35,
     backgroundColor: "white"
-  },
-  inputStyle: {
-    width: "100%",
-    marginBottom: 15,
-    paddingBottom: 15,
-    alignSelf: "center",
-    borderColor: "#ccc",
-    borderBottomWidth: 1
   },
 });
