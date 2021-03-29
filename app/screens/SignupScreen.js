@@ -13,6 +13,7 @@ import firebase from "../database/firebase";
 import { Tooltip } from "react-native-elements";
 
 import colors from "../config/colors";
+import DismissKeyboard from "../config/DismissKeyboard";
 
 const db = firebase.firestore();
 
@@ -180,79 +181,81 @@ function SignUpScreen(props) {
 
   //Render the form where the user can input their details
   return (
-    <View style={styles.container}>
-      <TextInput
-        style={styles.inputStyle}
-        placeholder="First Name"
-        value={displayName}
-        onChangeText={(val) => setDisplayName(val)}
-      />
-      <TextInput
-        style={styles.inputStyle}
-        placeholder="Email"
-        value={email}
-        keyboardType="email-address"
-        onChangeText={(val) => setEmail(val)}
-        testID={"TEST_ID_EMAIL_INPUT"}
-      />
-      <View style={[styles.inputStyle, styles.passwordSection]}>
+    <DismissKeyboard>
+      <View style={styles.container}>
         <TextInput
-          placeholder="Password"
-          value={password}
-          onChangeText={(val) => setPassword(val)}
-          maxLength={15}
-          autoCorrect={false}
-          secureTextEntry={true}
-          testID={"TEST_ID_PASSWORD_INPUT"}
+          style={styles.inputStyle}
+          placeholder="First Name"
+          value={displayName}
+          onChangeText={(val) => setDisplayName(val)}
         />
-        {/*Render tooltip with password criteria*/}
-        <Tooltip
-          style={styles.passwordTooltip}
-          withOverlay={false}
-          backgroundColor={colors.darkBorder}
-          width={300}
-          height={80}
-          popover={
-            <Text style={styles.passwordInformation}>
-              Password must be 6 to 15 characters long. Can contain any
-              alphaneumeric or special character.
+        <TextInput
+          style={styles.inputStyle}
+          placeholder="Email"
+          value={email}
+          keyboardType="email-address"
+          onChangeText={(val) => setEmail(val)}
+          testID={"TEST_ID_EMAIL_INPUT"}
+        />
+        <View style={[styles.inputStyle, styles.passwordSection]}>
+          <TextInput
+            placeholder="Password"
+            value={password}
+            onChangeText={(val) => setPassword(val)}
+            maxLength={15}
+            autoCorrect={false}
+            secureTextEntry={true}
+            testID={"TEST_ID_PASSWORD_INPUT"}
+          />
+          {/*Render tooltip with password criteria*/}
+          <Tooltip
+            style={styles.passwordTooltip}
+            withOverlay={false}
+            backgroundColor={colors.darkBorder}
+            width={300}
+            height={80}
+            popover={
+              <Text style={styles.passwordInformation}>
+                Password must be 6 to 15 characters long. Can contain any
+                alphaneumeric or special character.
             </Text>
-          }
+            }
+          >
+            <View style={styles.helpArea}>
+              <Image
+                style={styles.image}
+                resizeMode="contain"
+                source={require("../assets/question_mark.png")}
+              />
+            </View>
+          </Tooltip>
+        </View>
+        {/*Render error messages or success messages*/}
+        <Text style={{ color: "red" }}>{errorMessage}</Text>
+        <Text style={{ color: "red" }}>{message}</Text>
+
+        {/*Render sign up button that calls registerUser method*/}
+        <TouchableOpacity
+          activeOpacity={0.5}
+          style={styles.signupButton}
+          onPress={() => registerUser()}
+          testID={"TEST_ID_SIGNUP_BUTTON"}
         >
-          <View style={styles.helpArea}>
-            <Image
-              style={styles.image}
-              resizeMode="contain"
-              source={require("../assets/question_mark.png")}
-            />
-          </View>
-        </Tooltip>
-      </View>
-      {/*Render error messages or success messages*/}
-      <Text style={{ color: "red" }}>{errorMessage}</Text>
-      <Text style={{ color: "red" }}>{message}</Text>
+          <Text style={styles.signupText}>SIGNUP</Text>
+        </TouchableOpacity>
 
-      {/*Render sign up button that calls registerUser method*/}
-      <TouchableOpacity
-        activeOpacity={0.5}
-        style={styles.signupButton}
-        onPress={() => registerUser()}
-        testID={"TEST_ID_SIGNUP_BUTTON"}
-      >
-        <Text style={styles.signupText}>SIGNUP</Text>
-      </TouchableOpacity>
-
-      {/*Render text button that allows user to go to login screen */}
-      <Text
-        style={styles.loginText}
-        onPress={() => {
-          reset();
-          props.navigation.navigate("LoginScreen");
-        }}
-      >
-        Already Registered? Click here to login
+        {/*Render text button that allows user to go to login screen */}
+        <Text
+          style={styles.loginText}
+          onPress={() => {
+            reset();
+            props.navigation.navigate("LoginScreen");
+          }}
+        >
+          Already Registered? Click here to login
       </Text>
-    </View>
+      </View>
+    </DismissKeyboard>
   );
 }
 export default SignUpScreen;

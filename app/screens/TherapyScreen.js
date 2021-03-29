@@ -14,6 +14,7 @@ import Constants from "expo-constants";
 import * as Speech from "expo-speech";
 import firebase from "../database/firebase";
 import ProgressBar from "../src/components/ProgressBar";
+import DismissKeyboard from "../config/DismissKeyboard";
 
 // must be outside the therapy screen to not reset
 var time1 = 0; //word answer time
@@ -160,16 +161,18 @@ const TherapyScreen = ({ navigation, route }) => {
   // renders answer area to the missing word question
   function renderWordAnswerArea() {
     return (
-      <View style={[styles.answerArea, styles.centering, styles.shadowEffect]}>
-        <Text style={styles.textNote}>Enter the first missing letter</Text>
-        <TextInput
-          style={styles.input}
-          placeholder="Enter answer here"
-          onChangeText={(value) => checkAnswer(value)}
-          maxLength={1}
-          editable={true}
-        />
-      </View>
+      <DismissKeyboard>
+        <View style={[styles.answerArea, styles.centering, styles.shadowEffect]}>
+          <Text style={styles.textNote}>Enter the first missing letter</Text>
+          <TextInput
+            style={styles.input}
+            placeholder="Enter answer here"
+            onChangeText={(value) => checkAnswer(value)}
+            maxLength={1}
+            editable={true}
+          />
+        </View>
+      </DismissKeyboard>
     );
   }
 
@@ -357,8 +360,8 @@ const TherapyScreen = ({ navigation, route }) => {
       Alert.alert(
         "Congratulations",
         "You have completed therapy set " +
-          user.block +
-          "! You have earned 5 coins to grow your plant.",
+        user.block +
+        "! You have earned 5 coins to grow your plant.",
         [{ text: "OK", onPress: () => navigation.goBack() }]
       );
     } else {
