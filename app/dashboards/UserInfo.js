@@ -7,7 +7,6 @@ import {
   TouchableOpacity,
 } from "react-native";
 import * as shape from "d3-shape";
-
 import firebase from "../database/firebase";
 import ProgressBar from "../src/components/ProgressBar";
 import UserTable from "./UserTable";
@@ -17,7 +16,6 @@ import { Circle } from "react-native-svg";
 export default class UserInfo extends Component {
   constructor({ route }) {
     super();
-
     this.state = {
       sessions: [[], [], [], []],
       averageTimePerBlockQ1: [],
@@ -39,7 +37,6 @@ export default class UserInfo extends Component {
   getItemsAndAverages() {
     const ref = firebase.firestore().collection("answers");
     const query = ref.where("userID", "==", this.state.currentUser);
-
     const tempSessions = [];
     const avg1Temp = [];
     const avg2Temp = [];
@@ -54,6 +51,7 @@ export default class UserInfo extends Component {
       // Filter separate session information into arrays
       for (let i = 0; i < 4; i++) {
         tempSessions.push(items.filter((item) => item.sessionNumber == i + 1));
+
         // filter correct questions
         if (tempSessions[i].length > 0) {
           errors.push(
@@ -63,6 +61,7 @@ export default class UserInfo extends Component {
                 item.question2IsCorrect != true
             )
           );
+
           //sum and store Q1 & Q2 response time averages
           const avg1 = tempSessions[i].reduce(
             (a, b) => (a = a + b.question1Time),
@@ -82,6 +81,7 @@ export default class UserInfo extends Component {
           avg2Temp.push(0);
         }
       }
+
       //calculate number of errors
       const numberOfErrors = errors.map((items) => items.length);
       this.setState({ errorsPerSession: numberOfErrors });
@@ -124,6 +124,7 @@ export default class UserInfo extends Component {
         />
       ));
     };
+
     const Decorator2 = ({ x, y, data }) => {
       return data[1].data.map((value, index) => (
         <Circle
@@ -181,6 +182,7 @@ export default class UserInfo extends Component {
               DB{this.state.currentUser}
             </Text>
             <Text style={{ fontSize: 10, fontWeight: "300" }}>User</Text>
+
             <View left={80}>
               <Text
                 style={{
@@ -202,6 +204,7 @@ export default class UserInfo extends Component {
               </Text>
             </View>
           </View>
+
           <View flex={1.375} padding={5} marginBottom={30}>
             <UserTable
               average1={this.state.averageTimePerBlockQ1}
@@ -230,6 +233,7 @@ export default class UserInfo extends Component {
                 Average Response Time Trend Over Sessions
               </Text>
             </View>
+
             <View flexDirection={"row"} flex={3}>
               <YAxis
                 data={data[0].data}
@@ -255,6 +259,7 @@ export default class UserInfo extends Component {
                 >
                   (Q1 scale)
                 </Text>
+
                 <View
                   flex={1}
                   style={styles.shadow}
@@ -331,7 +336,6 @@ export default class UserInfo extends Component {
                 All Sessions Completed!
               </Text>
             )}
-
             <ProgressBar nextWidth={this.state.currentBlock - 1}></ProgressBar>
           </View>
         </View>
