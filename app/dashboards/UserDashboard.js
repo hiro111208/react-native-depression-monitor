@@ -100,29 +100,11 @@ function UserDashboard(props) {
 
   return (
     <View style={styles.container}>
-      <View
-        style={{
-          width: 150,
-          height: 35,
-          marginTop: 30,
-          shadowOffset: {
-            width: 0,
-            height: 10,
-          },
-          padding: 10,
-          shadowOpacity: 0.4,
-          shadowRadius: 20,
-          backgroundColor: "#FFF",
-          borderRadius: 10,
-        }}
-      >
+      <View style={styles.counter}>
         <Text
           adjustsFontSizeToFit={true}
           numberOfLines={1}
-          style={{
-            fontSize: 15,
-            fontWeight: "700",
-          }}
+          style={styles.fontStyle}
         >
           Total Nº Users : {userCount}
         </Text>
@@ -179,7 +161,6 @@ function UserDashboard(props) {
                         style={{
                           color:
                             activeColor[isActive(item.lastActive.toMillis())],
-                          padding: 10,
                           fontSize: 10,
                           fontWeight: "900",
                         }}
@@ -223,6 +204,24 @@ const styles = StyleSheet.create({
     borderColor: "#ffa351ff",
     borderWidth: 3,
     flex: 1,
+  },
+  fontStyle: {
+    fontSize: 15,
+    fontWeight: "700",
+  },
+  counter: {
+    width: 150,
+    height: 35,
+    marginTop: 30,
+    shadowOffset: {
+      width: 0,
+      height: 10,
+    },
+    padding: 10,
+    shadowOpacity: 0.4,
+    shadowRadius: 20,
+    backgroundColor: "#FFF",
+    borderRadius: 10,
   },
   listComponent: {
     flexDirection: "row",
