@@ -13,16 +13,23 @@ import { AntDesign } from "@expo/vector-icons";
 
 const SupportResources = ({ navigation }) => {
   return (
-    <View style={styles.container}>
+    <View style={[styles.container, styles.centering]}>
       <View
         style={[
           styles.center,
-          styles.cover,
           styles.shadowEffect,
           styles.centering,
+          { height: "95%", width: "100%" },
         ]}
       >
-        <View style={[{ height: "10%" }, styles.centering]}>
+        <View
+          style={[
+            {
+              height: "10%",
+            },
+            styles.centering,
+          ]}
+        >
           <Text style={[styles.fontStyle, { fontSize: 22 }]}>
             Support Resources
           </Text>
@@ -49,93 +56,177 @@ const SupportResources = ({ navigation }) => {
             Asking for help doesn't make you weak - it reveals strength even
             when you don't feel strong.
           </Text>
-          <View style={{ height: "10%" }}></View>
-          <View style={{ height: "10%", backgroundColor: "#ffeed2" }}></View>
+          <View style={{ height: "15%" }}></View>
+          <View
+            style={{
+              height: "10%",
+              width: "60%",
+              backgroundColor: "white",
+              borderTopRightRadius: 20,
+            }}
+          >
+            <Text style={[styles.fontStyle, { fontSize: 18, padding: 5 }]}>
+              Support Agencies
+            </Text>
+          </View>
+          <View style={{ height: "3%", backgroundColor: "#ffeed2" }}></View>
 
-          <View style={{ height: "78%", backgroundColor: "#ffeed2" }}>
+          <View
+            style={[
+              { height: "73%", backgroundColor: "#ffeed2" },
+              styles.centering,
+            ]}
+          >
             <ScrollView horizontal>
-              <View style={[styles.boxSmall, styles.boxMargin]}>
-                <Text style={styles.title}>NHS</Text>
-                <Text
-                  style={styles.hyperlinkStyle}
-                  onPress={() => {
-                    Linking.openURL(
-                      "https://www.nhs.uk/service-search/mental-health/find-an-urgent-mental-health-helpline"
-                    );
-                  }}
-                >
-                  NHS Helplines website
-                </Text>
-                <Text>Local NHS urgent mental health helplines</Text>
-                <View style={styles.centering}></View>
+              <View
+                style={[
+                  { margin: 5 },
+                  styles.boxSmall,
+                  styles.boxMargin,
+                  styles.shadowEffect,
+                ]}
+              >
+                <View style={[styles.titleArea, styles.centering]}>
+                  <Text style={styles.title}>NHS</Text>
+                </View>
+
+                <View style={[styles.infoArea, styles.centering]}>
+                  <Text
+                    style={styles.hyperlinkStyle}
+                    onPress={() => {
+                      Linking.openURL(
+                        "https://www.nhs.uk/service-search/mental-health/find-an-urgent-mental-health-helpline"
+                      );
+                    }}
+                  >
+                    NHS Helplines
+                  </Text>
+                  <Text />
+                  <Text style={{ fontSize: 14 }}>
+                    Local NHS Urgent Mental Health Helplines
+                  </Text>
+                </View>
               </View>
 
-              <View style={[styles.boxSmall, styles.boxMargin]}>
-                <Text style={styles.title}>Bipolar UK:</Text>
-                <Text
-                  style={styles.hyperlinkStyle}
-                  onPress={() => {
-                    Linking.openURL("www.bipolaruk.org");
-                  }}
-                >
-                  www.bipolaruk.org
-                </Text>
-                <Text />
-                <Text>
-                  Supply a range of information leaflets, books and tapes.
-                  Network of self help groups for people with manic depression,
-                  relatives and friends.
-                </Text>
+              <View
+                style={[
+                  { margin: 5 },
+                  styles.boxSmall,
+                  styles.boxMargin,
+                  styles.shadowEffect,
+                ]}
+              >
+                <View style={[styles.titleArea, styles.centering]}>
+                  <Text style={styles.title}>Bipolar UK</Text>
+                </View>
+                <View style={[styles.infoArea, styles.centering]}>
+                  <Text
+                    style={styles.hyperlinkStyle}
+                    onPress={() => {
+                      Linking.openURL("www.bipolaruk.org");
+                    }}
+                  >
+                    www.bipolaruk.org
+                  </Text>
+                  <Text />
+                  <Text style={{ fontSize: 12 }}>
+                    Supply a range of information leaflets, books and tapes.
+                    Network of self help groups for people with manic
+                    depression, relatives and friends.
+                  </Text>
+                </View>
               </View>
 
-              <View style={[styles.boxSmall, styles.boxMargin]}>
-                <Text style={styles.title}>Calmzone:</Text>
-                <Text
-                  style={styles.hyperlinkStyle}
-                  onPress={() => {
-                    Linking.openURL("www.thecalmzone.net");
-                  }}
-                >
-                  www.thecalmzone.net
-                </Text>
-                <Text />
-                <Text>
-                  Campaign Against Living Miserably. Help and support for young
-                  men aged 15-35 on issues which include depression and suicide.
-                </Text>
+              <View
+                style={[
+                  { margin: 5 },
+                  styles.boxSmall,
+                  styles.boxMargin,
+                  styles.shadowEffect,
+                ]}
+              >
+                <View style={[styles.titleArea, styles.centering]}>
+                  <Text style={styles.title}>Calmzone</Text>
+                </View>
+                <View style={[styles.infoArea, styles.centering]}>
+                  <Text
+                    style={styles.hyperlinkStyle}
+                    onPress={() => {
+                      Linking.openURL("www.thecalmzone.net");
+                    }}
+                  >
+                    www.thecalmzone.net
+                  </Text>
+                  <Text />
+                  <Text style={{ fontSize: 13 }}>
+                    Campaign Against Living Miserably. Help and support for
+                    young men aged 15-35 on issues which include depression and
+                    suicide.
+                  </Text>
+                </View>
               </View>
 
-              <View style={[styles.boxSmall, styles.boxMargin]}>
-                <Text style={styles.title}>Samaritans:</Text>
-                <Text
-                  style={styles.hyperlinkStyle}
-                  onPress={() => {
-                    Linking.openURL(
-                      "https://www.samaritans.org/how-we-can-help/schools/deal/deal-resources/dealing-feelings/what-is-depression/?gclid=Cj0KCQiAnKeCBhDPARIsAFDTLTIkkHjz1hc7XNw6RtOqswMgB1zpQlKHWeRA5uEqnai06Qw63RGoqQsaAlbJEALw_wcB"
-                    );
-                  }}
-                >
-                  Talk to a Samaritan
-                </Text>
-                <Text></Text>
-                <Text>
-                  Learn more about depression and how to detect it or contact a
-                  Samaritan to have a chat
-                </Text>
+              <View
+                style={[
+                  { margin: 5 },
+                  styles.boxSmall,
+                  styles.boxMargin,
+                  styles.shadowEffect,
+                ]}
+              >
+                <View style={[styles.titleArea, styles.centering]}>
+                  <Text style={styles.title}>Samaritans</Text>
+                </View>
+                <View style={[styles.infoArea, styles.centering]}>
+                  <Text
+                    style={styles.hyperlinkStyle}
+                    onPress={() => {
+                      Linking.openURL(
+                        "https://www.samaritans.org/how-we-can-help/schools/deal/deal-resources/dealing-feelings/what-is-depression/?gclid=Cj0KCQiAnKeCBhDPARIsAFDTLTIkkHjz1hc7XNw6RtOqswMgB1zpQlKHWeRA5uEqnai06Qw63RGoqQsaAlbJEALw_wcB"
+                      );
+                    }}
+                  >
+                    Talk to a Samaritan
+                  </Text>
+                  <Text />
+                  <Text style={{ fontSize: 13 }}>
+                    Learn more about depression and how to detect it. Contact a
+                    Samaritan to have a chat.
+                  </Text>
+                </View>
               </View>
 
-              <View style={[styles.boxSmall, styles.boxMargin]}>
-                <Text style={styles.title}>WLM:</Text>
-                <Text>highburycounselling@wlm.org.uk</Text>
-                <Text>
-                  WLM Highbury Counselling Centre offers counselling and
-                  sychotherapy service for adults, a space to speak with a
-                  trained professional.
-                </Text>
+              <View
+                style={[
+                  { margin: 5 },
+                  styles.boxSmall,
+                  styles.boxMargin,
+                  styles.shadowEffect,
+                ]}
+              >
+                <View style={[styles.titleArea, styles.centering]}>
+                  <Text style={styles.title}>WLM</Text>
+                </View>
+                <View style={[styles.infoArea, styles.centering]}>
+                  <Text
+                    style={styles.hyperlinkStyle}
+                    onPress={() => {
+                      Linking.openURL("https://www.wlm.org.uk/");
+                    }}
+                  >
+                    www.wlm.org.uk
+                  </Text>
+                  <Text />
+                  <Text style={{ fontSize: 13 }}>
+                    WLM Highbury Counselling Centre offers counselling and
+                    psychotherapy service for adults, a space to speak with a
+                    trained professional.
+                  </Text>
+                </View>
               </View>
             </ScrollView>
           </View>
-          <View style={{ height: "4%", backgroundColor: "#ffeed2" }}></View>
+          <View style={{ height: "2%", backgroundColor: "#ffeed2" }}></View>
           <View style={{ height: "3%" }}></View>
         </ScrollView>
 
@@ -313,6 +404,10 @@ const SupportResources = ({ navigation }) => {
 }
 
 const styles = StyleSheet.create({
+  infoArea: {
+    height: "70%",
+    padding: 20,
+  },
   bottomBorder: {
     height: "100%",
     width: "40%",
@@ -367,11 +462,13 @@ const styles = StyleSheet.create({
     fontSize: 18,
   },
   boxSmall: {
-    marginLeft: 10,
+    marginRight: 5,
     width: 225,
     height: 180,
-    backgroundColor: "skyblue",
+    backgroundColor: "white",
     borderRadius: 40,
+    borderWidth: 5,
+    borderColor: "#bcf5bc",
   },
   boxLarge: {
     width: 380,
@@ -380,7 +477,6 @@ const styles = StyleSheet.create({
   },
   boxMargin: {
     marginRight: 10,
-    padding: 15,
   },
   bigWhite: {
     margin: 15,
@@ -406,9 +502,17 @@ const styles = StyleSheet.create({
     margin: 10,
   },
   title: {
-    color: "white",
+    color: "dimgray",
     fontSize: 23,
     fontWeight: "bold",
+    fontStyle: "italic",
+  },
+  titleArea: {
+    height: "30%",
+    width: "100%",
+    backgroundColor: "#bcf5bc",
+    borderTopLeftRadius: 30,
+    borderTopRightRadius: 30,
   },
   smallTitle: {
     color: "white",
