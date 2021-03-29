@@ -2,7 +2,7 @@
 
 Software Name: `HUG - Help U Grow`\
 \
-HUG is a mental health intervention app designed to deliver treatment for clinical depression/anxiety. HUG also provides content management features for administrators.
+HUG is a mental health intervention app designed to deliver treatment for clinical depression and anxiety. HUG also provides content management features for registered administrators.
 
 ## Authors
 
@@ -30,3 +30,6 @@ Username: `admin@joyapp.com`
 Password: `AdminP4ssw0rd`
 
 ## References
+
+1. Firebase. 2021. Auth | JavaScript SDK | Firebase. [online] Available at: <https://firebase.google.com/docs/reference/js/firebase.auth.Auth> [Accessed March 2021].
+2. Firebase. 2021. Add data to Cloud Firestore | Firebase. [online] Available at: <https://firebase.google.com/docs/firestore/manage-data/add-data> [Accessed March 2021].
