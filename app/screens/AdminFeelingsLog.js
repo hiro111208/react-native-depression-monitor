@@ -95,7 +95,7 @@ const AdminFeelingsLog = ({ navigation, route }) => {
             <View style={styles.largeOval}>
               <View style={styles.bars}>
                 <Text style={styles.overallText}>
-                  DB8 felt {logItem.overall}!
+                  DB{route.params.currentUserID} felt {logItem.overall}!
                 </Text>
                 <Text style={styles.statText}>Free from anxiety</Text>
                 <ProgressBar
