@@ -147,7 +147,7 @@ function UserDashboard(props) {
         keyExtractor={(item, index) => index.toString()}
         contentContainerStyle={{
           paddingTop: StatusBar.currentHeight || 42,
-          padding: 10,
+          padding: 5,
         }}
         renderItem={({ item, index }) => {
           return (
