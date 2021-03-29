@@ -17,7 +17,7 @@ const feelingsRef = firebase
   .where("userID", "==", 8)
   .orderBy("timeStamp");
 
-const AdminFeelingsLog = () => {
+const AdminFeelingsLog = ({ navigation }) => {
   const [loading, setLoading] = useState(true);
   const [feelingsLog, setFeelingsLog] = useState([]);
 
@@ -126,7 +126,12 @@ const AdminFeelingsLog = () => {
           </View>
         ))}
         <TouchableOpacity style={[styles.centering, styles.backButton]}>
-          <Text style={[, { fontSize: 20 }]}>Return to user stats</Text>
+          <Text
+            style={[, { fontSize: 20 }]}
+            onPress={() => navigation.goBack()}
+          >
+            Return to user stats
+          </Text>
         </TouchableOpacity>
       </ScrollView>
     </SafeAreaView>
@@ -135,10 +140,22 @@ const AdminFeelingsLog = () => {
 
 const styles = StyleSheet.create({
   backButton: {
-    borderWidth: 1,
-    borderColor: "black",
-    marginTop: 10,
+    width: "80%",
+    height: 50,
+    margin: 11,
+    marginTop: 20,
     marginBottom: 50,
+    shadowOffset: {
+      width: 0,
+      height: 10,
+    },
+    textAlign: "center",
+    padding: 10,
+    shadowOpacity: 0.4,
+    shadowRadius: 20,
+    backgroundColor: "#FFF",
+    borderRadius: 10,
+    alignSelf: "center",
   },
   container: {
     flex: 1,
