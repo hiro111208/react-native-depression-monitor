@@ -8,10 +8,10 @@ function UserTable(props) {
   const dataHead = ["Batch", "AvgTimeQ1", "AvgTimeQ2", "NºErrors"];
 
   const setData = () => {
+    //variables to store averages in one decimal format
     const data = [["º 1"], ["º 2"], ["º 3"], ["º 4"]];
     const average1 = props.average1;
     const average2 = props.average2;
-    //variables to store averages in one decimal format
     const roundedData1 = [];
     const roundedData2 = [];
 
@@ -43,8 +43,6 @@ function UserTable(props) {
     }
     return data;
   };
-
-  // useComponentWillMount(() => setData());
 
   useEffect(() => {}, [setData()]);
   return (
@@ -119,11 +117,3 @@ const styles = StyleSheet.create({
 });
 
 export default UserTable;
-
-//Store Props before child mount to remove undefined values
-const useComponentWillMount = (func) => {
-  const willMount = useRef(true);
-  if (willMount.current) {
-    func();
-  }
-};
