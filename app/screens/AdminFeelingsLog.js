@@ -125,13 +125,11 @@ const AdminFeelingsLog = ({ navigation, route }) => {
             </View>
           </View>
         ))}
-        <TouchableOpacity style={[styles.centering, styles.backButton]}>
-          <Text
-            style={[, { fontSize: 20 }]}
-            onPress={() => navigation.goBack()}
-          >
-            Return to user stats
-          </Text>
+        <TouchableOpacity
+          onPress={() => navigation.goBack()}
+          style={[styles.centering, styles.backButton]}
+        >
+          <Text style={[, { fontSize: 20 }]}>Return to user stats</Text>
         </TouchableOpacity>
       </ScrollView>
     </SafeAreaView>
