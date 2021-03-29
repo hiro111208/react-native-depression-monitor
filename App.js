@@ -61,22 +61,27 @@ function MyStack() {
         component={SignupScreen}
         options={{ title: "SignUp" }}
       />
+
       <Stack.Screen
         name="LoginScreen"
         component={LoginScreen}
         options={{ title: "Login" }}
       />
+
       <Stack.Screen
         name="ForgotPasswordScreen"
         component={ForgotPasswordScreen}
         options={{ title: "Forgot Password" }}
       />
+
       <Stack.Screen name="PatientDashboard" component={PatientDashboard} />
+
       <Stack.Screen
         name="AdminDashboard"
         component={AdminDashboard}
         options={{ title: "AdminDashboard" }}
       />
+
       <Stack.Screen
         name="SchedulingScreen"
         component={SchedulingScreen}
@@ -85,16 +90,19 @@ function MyStack() {
           headerLeft: null,
         }}
       />
+
       <Stack.Screen
         name="ScheduleListScreen"
         component={ScheduleListScreen}
         options={{ title: "Schedule List" }}
       />
+
       <Stack.Screen
         options={{ headerShown: false }}
         name="TherapyScreen"
         component={TherapyScreen}
       />
+
       <Stack.Screen
         name="PauseScreen"
         component={PauseScreen}
@@ -106,27 +114,33 @@ function MyStack() {
         name="PlantScreen"
         component={PlantScreen}
       />
+
       <Stack.Screen
         name="LogFeelingScreen"
         component={LogFeelingScreen}
         options={{ headerShown: false }}
       />
+
       <Stack.Screen name="CategoryDrop" component={CategoryDrop} />
+
       <Stack.Screen
         name="TherapyQuestionScreen"
         component={TherapyQuestionScreen}
         options={{ title: "Therapy Questions" }}
       />
+
       <Stack.Screen
         name="TherapyQuestionDetailScreen"
         component={TherapyQuestionDetailScreen}
         options={{ title: "Question Detail" }}
       />
+
       <Stack.Screen
         options={{ headerShown: false }}
         name="SupportResources"
         component={SupportResources}
       />
+
       <Stack.Screen name="AccountScreen" component={AccountScreen} />
     </Stack.Navigator>
   );
