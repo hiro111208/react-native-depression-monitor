@@ -5,12 +5,14 @@ import {
 } from "react-native";
 
 import Onboarding from 'react-native-onboarding-swiper';
-import colors from "../config/colors";
 
+//This is the demo screen where the user is taught how to interact with the app
 function DemoScreen({ navigation, route }){
 
   const params= route.params
 
+  //Navigate to either CategoryDrop or PatientDashboard 
+  //depending on whether it is the user's first time using the app
   const navigate=()=>{
     if (params && params.user.categoryDropped == "NONE") {
       navigation.navigate("CategoryDrop", {user: user})
@@ -20,6 +22,7 @@ function DemoScreen({ navigation, route }){
     }
   }
 
+  //Create the differnt pages for the demo
 return(
   <Onboarding
     onDone= {()=>navigate()}
@@ -71,6 +74,5 @@ const styles = StyleSheet.create({
   image:{
     width:"100%",
     height:"100%",
-    //resizeMode: 'contain',
   }
 })

@@ -42,7 +42,7 @@ function LoginScreen(props) {
             setIsLoading(false);
           }
 
-          // Proceeds straight to the dashboard (skipping category)
+          // Proceeds straight to the dashboard (skipping category and demo)
           else {
             props.navigation.navigate("PatientDashboard");
             setIsLoading(false);
