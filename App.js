@@ -26,7 +26,6 @@ import SupportResources from "./app/screens/SupportResources";
 import AccountScreen from "./app/dashboards/AccountScreen";
 
 import { withNavigation } from "react-navigation";
-import AdminFeelingsLog from "./app/screens/AdminFeelingsLog";
 
 function MyStack() {
   const Stack = createStackNavigator();
@@ -148,9 +147,8 @@ function MyStack() {
 
 export default function App() {
   return (
-    // <NavigationContainer>
-    //   <MyStack />
-    // </NavigationContainer>
-    <AdminFeelingsLog></AdminFeelingsLog>
+    <NavigationContainer>
+      <MyStack />
+    </NavigationContainer>
   );
 }
