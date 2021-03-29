@@ -4,7 +4,6 @@ import {
   View,
   Dimensions,
   StyleSheet,
-  ImageBackground,
   TouchableOpacity,
 } from "react-native";
 import * as shape from "d3-shape";
