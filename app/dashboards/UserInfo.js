@@ -150,11 +150,7 @@ export default class UserInfo extends Component {
             <Text
               adjustsFontSizeToFit={true}
               numberOfLines={1}
-              style={{
-                fontSize: 35,
-                fontWeight: "700",
-                textAlign: "center",
-              }}
+              style={styles.fontStyle}
             >
               Back
             </Text>
@@ -173,11 +169,7 @@ export default class UserInfo extends Component {
             <Text
               adjustsFontSizeToFit={true}
               numberOfLines={1}
-              style={{
-                fontSize: 35,
-                fontWeight: "700",
-                textAlign: "center",
-              }}
+              style={styles.fontStyle}
             >
               Feelings Log
             </Text>
@@ -427,6 +419,10 @@ const styles = StyleSheet.create({
   buttonsBar: {
     flexDirection: "row",
     justifyContent: "space-between",
+  },
+  fontStyle: {
+    fontWeight: "700",
+    textAlign: "center",
   },
 });
 
