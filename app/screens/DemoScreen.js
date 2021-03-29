@@ -29,13 +29,13 @@ return(
     onSkip= {()=>navigate()}
 
     imageContainerStyles={{height: "70%", paddingBottom:0, justifyContent: "center"}}
-    titleStyles={{ padding:0, paddingTop:20}}
+    titleStyles={{ padding:0, paddingTop:10}}
     subTitleStyles={{ paddingBottom:0, padding:0}}
-    containerStyles={{bottom:"10%", justifyContent: "center"}}
+    containerStyles={{bottom:60, justifyContent: "center", paddingTop:60}}
     pages={[
       {
         backgroundColor: '#fff',
-        image: <Image resizeMode={'contain'} style={styles.image, {height:"90%"}} source={require('../assets/demo/CategoryDrop.png')} />,
+        image: <Image resizeMode={'contain'} style={styles.image} source={require('../assets/demo/CategoryDrop.png')} />,
         title: 'Drop a category',
         subtitle: 'Select the category you are least interested in to be dropped from the therapy questions',
         imageContainerStyles:{padding:30},
