@@ -7,7 +7,6 @@ import {
   View,
   Dimensions,
   StyleSheet,
-  ImageBackground,
   TouchableOpacity,
 } from "react-native";
 
@@ -20,13 +19,10 @@ function UserDashboard(props) {
   const [items, setItems] = useState([]);
   const [userCount, setUserCount] = useState(0);
   const [filterList, setFilterList] = useState([]);
-  const [active, setActive] = useState(["active", "inactive"]);
-  const [activeColor, setActiveColor] = useState(["#00b225", "#e12800"]);
-  //milliseconds in 2 weeks
+  const active = ["active", "inactive"];
+  const activeColor = ["#00b225", "#e12800"];
   const FORTNIGHT = 1209600000;
-  // Queries from firebase database and stores in list
   const ref = firebase.firestore().collection("users");
-  //Default database display format
   const query = ref.orderBy("userID");
 
   const onChange = (text) => {
