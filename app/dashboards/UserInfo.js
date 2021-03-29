@@ -147,32 +147,12 @@ export default class UserInfo extends Component {
         borderColor={"#ffa351ff"}
         borderWidth={3}
       >
-        <TouchableOpacity
-          adjustsFontSizeToFit={true}
-          numberOfLines={1}
-          style={{
-            fontSize: 15,
-            fontWeight: "700",
-          }}
-          onPress={() => this.props.navigation.goBack()}
-        >
-          <View
-            style={{
-              width: 150,
-              height: 35,
-              margin: 11,
-              marginTop: 20,
-              shadowOffset: {
-                width: 0,
-                height: 10,
-              },
-              textAlign: "center",
-              padding: 10,
-              shadowOpacity: 0.4,
-              shadowRadius: 20,
-              backgroundColor: "#FFF",
-              borderRadius: 10,
-            }}
+        <View style={styles.buttonsBar}>
+          <TouchableOpacity
+            adjustsFontSizeToFit={true}
+            numberOfLines={1}
+            style={styles.button}
+            onPress={() => this.props.navigation.goBack()}
           >
             <Text
               adjustsFontSizeToFit={true}
@@ -185,8 +165,27 @@ export default class UserInfo extends Component {
             >
               Back
             </Text>
-          </View>
-        </TouchableOpacity>
+          </TouchableOpacity>
+
+          <TouchableOpacity
+            adjustsFontSizeToFit={true}
+            numberOfLines={1}
+            style={styles.button}
+            onPress={() => this.props.navigation.goBack()}
+          >
+            <Text
+              adjustsFontSizeToFit={true}
+              numberOfLines={1}
+              style={{
+                fontSize: 35,
+                fontWeight: "700",
+                textAlign: "center",
+              }}
+            >
+              Feelings Log
+            </Text>
+          </TouchableOpacity>
+        </View>
 
         <View
           flex={3}
@@ -403,6 +402,25 @@ const styles = StyleSheet.create({
     paddingBottom: 5,
     fontSize: 6,
     fontWeight: "300",
+  },
+  button: {
+    width: 150,
+    height: 35,
+    margin: 11,
+    marginTop: 20,
+    shadowOffset: {
+      width: 0,
+      height: 10,
+    },
+    textAlign: "center",
+    padding: 10,
+    shadowOpacity: 0.4,
+    shadowRadius: 20,
+    backgroundColor: "#FFF",
+    borderRadius: 10,
+  },
+  buttonsBar: {
+    flexDirection: "row",
   },
 });
 
