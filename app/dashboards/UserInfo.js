@@ -421,6 +421,7 @@ const styles = StyleSheet.create({
   },
   buttonsBar: {
     flexDirection: "row",
+    justifyContent: "space-between",
   },
 });
 
