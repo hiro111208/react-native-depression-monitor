@@ -52,6 +52,9 @@ function addUserToDatabase(uid) {
             block: 1,
             categoryDropped: "NONE",
             userID: id,
+            coins: 0,
+            level: 1,
+            lastActive: new Date(),
           })
           .then(() => {
             console.log("User added");
