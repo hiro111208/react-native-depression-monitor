@@ -15,6 +15,7 @@ import SchedulingScreen from "./app/screens/SchedulingScreen";
 import ScheduleListScreen from "./app/screens/ScheduleListScreen";
 import PatientDashboard from "./app/dashboards/PatientDashboard";
 import AdminDashboard from "./app/dashboards/AdminDashboard";
+import DemoScreen from "./app/screens/DemoScreen"
 
 import TherapyQuestionScreen from "./app/screens/TherapyQuestionScreen";
 import TherapyQuestionDetailScreen from "./app/screens/TherapyQuestionDetailScreen";
@@ -71,6 +72,12 @@ function MyStack() {
         component={ForgotPasswordScreen}
         options={{ title: "Forgot Password" }}
       />
+      <Stack.Screen 
+        options={{ headerShown: false }}
+        name="DemoScreen" 
+        component={DemoScreen} 
+      />
+
       <Stack.Screen name="PatientDashboard" component={PatientDashboard} />
       <Stack.Screen
         name="AdminDashboard"

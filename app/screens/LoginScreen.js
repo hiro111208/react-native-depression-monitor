@@ -36,7 +36,7 @@ function LoginScreen(props) {
 
           // A category hasn't been dropped
           if (userProgress.categoryDropped == "NONE") {
-            props.navigation.navigate("CategoryDrop", {
+            props.navigation.navigate("DemoScreen", {
               user: userProgress,
             });
             setIsLoading(false);
