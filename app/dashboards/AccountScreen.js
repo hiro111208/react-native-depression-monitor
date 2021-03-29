@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+<<<<<<< HEAD
 import {
   View,
   Text,
@@ -7,6 +8,9 @@ import {
   TouchableOpacity,
   Image,
 } from "react-native";
+=======
+import { ScrollView ,View, Text, Button, StyleSheet, TouchableOpacity } from "react-native";
+>>>>>>> origin
 import colors from "../config/colors";
 import firebase from "../database/firebase";
 
@@ -29,6 +33,7 @@ export default function AccountScreen({ props, navigation }) {
   };
 
   return (
+<<<<<<< HEAD
     <View style={[styles.container, styles.centering]}>
       <View style={[styles.center, styles.shadowEffect, styles.cover]}>
         <View style={{ height: "5%" }}></View>
@@ -40,6 +45,16 @@ export default function AccountScreen({ props, navigation }) {
           />
         </View>
         <View style={[{ height: "10%" }]}>
+=======
+    <ScrollView style={styles.container}>
+      <View style={styles.center}>
+
+        <View style={[styles.welcomeArea, styles.shadowEffect]}>
+          <View style={[styles.userNote]}>
+            <Text>Log out information here</Text>
+          </View>
+
+>>>>>>> origin
           <TouchableOpacity
             onPress={() => navigation.navigate("SupportResources")}
             style={[styles.optButton, styles.cover, styles.centering]}
@@ -49,8 +64,30 @@ export default function AccountScreen({ props, navigation }) {
             </Text>
           </TouchableOpacity>
         </View>
+<<<<<<< HEAD
         <View style={{ height: "2%" }}></View>
         <View style={[{ height: "10%" }]}>
+=======
+        
+        <View style={[styles.welcomeArea, styles.shadowEffect]}>
+          <View style={[styles.userNote]}>
+            <Text>Demo</Text>
+          </View>
+
+          <TouchableOpacity
+            style={[styles.logout, styles.centering]}
+            onPress={() => navigation.navigate("DemoScreen")}
+          >
+            <Text style={styles.textStyle}>Demo</Text>
+          </TouchableOpacity>
+        </View>
+
+        <View style={[styles.welcomeArea, styles.shadowEffect]}>
+          <View style={[styles.userNote]}>
+            <Text>Support Resources and research authors</Text>
+          </View>
+
+>>>>>>> origin
           <TouchableOpacity
             style={[styles.optButton, styles.cover, styles.centering]}
           >
@@ -75,8 +112,9 @@ export default function AccountScreen({ props, navigation }) {
             </Text>
           </TouchableOpacity>
         </View>
+
       </View>
-    </View>
+    </ScrollView>
   );
 }
 
@@ -98,18 +136,36 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
   container: {
+<<<<<<< HEAD
     flex: 1,
     display: "flex",
     padding: 25,
+=======
+>>>>>>> origin
     backgroundColor: "#fff",
+    height: "100%",
+    width: "100%",
   },
   cover: {
     height: "100%",
     width: "100%",
+<<<<<<< HEAD
   },
   fontStyle: {
     fontWeight: "bold",
     color: "dimgray",
+=======
+    alignItems: "center",
+    justifyContent: "space-between",
+    padding: 25,
+  },
+  welcomeArea: {
+    width: "100%",
+    height: "45%",
+    borderRadius: 50,
+    alignItems: "center",
+    marginBottom:"10%"
+>>>>>>> origin
   },
   optButton: {
     backgroundColor: "#ffeed2",
