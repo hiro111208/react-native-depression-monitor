@@ -19,6 +19,7 @@ function UserDashboard(props) {
   const [items, setItems] = useState([]);
   const [userCount, setUserCount] = useState(0);
   const [filterList, setFilterList] = useState([]);
+  const [filtering, setFiltering] = useState(false);
   const active = ["active", "inactive"];
   const activeColor = ["#00b225", "#e12800"];
   const FORTNIGHT = 1209600000;
@@ -27,7 +28,8 @@ function UserDashboard(props) {
 
   const onChange = (text) => {
     // Check if searched text is not blank
-    if (text) {
+    if (text && !filtering) {
+      setFiltering(true);
       // Inserted text is not blank
       // Filter the items
       // Update items
@@ -58,6 +60,7 @@ function UserDashboard(props) {
       });
       setItems(newData);
       setSearchQuery(text);
+      setFiltering(false);
     } else {
       // Inserted text is blank
       // Update items with filterList
