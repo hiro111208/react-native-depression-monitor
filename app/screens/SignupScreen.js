@@ -208,6 +208,7 @@ function SignUpScreen(props) {
           autoCorrect={false}
           secureTextEntry={true}
           testID={"TEST_ID_PASSWORD_INPUT"}
+          style= {styles.passwordInput}
         />
         {/*Render tooltip with password criteria*/}
         <Tooltip
@@ -274,6 +275,9 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "space-between",
+  },
+  passwordInput:{
+    width: "90%"
   },
   passwordInformation: {
     color: "white",
