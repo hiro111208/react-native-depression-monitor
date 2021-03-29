@@ -139,14 +139,7 @@ export default class UserInfo extends Component {
     };
 
     return (
-      <View
-        marginTop={3}
-        height={"100%"}
-        backgroundColor={"#ffbe7bff"}
-        borderRadius={20}
-        borderColor={"#ffa351ff"}
-        borderWidth={3}
-      >
+      <View style={styles.container}>
         <View style={styles.buttonsBar}>
           <TouchableOpacity
             adjustsFontSizeToFit={true}
@@ -374,6 +367,14 @@ export default class UserInfo extends Component {
 }
 
 const styles = StyleSheet.create({
+  container: {
+    marginTop: 3,
+    height: "100%",
+    backgroundColor: "#ffbe7bff",
+    borderRadius: 20,
+    borderColor: "#ffa351ff",
+    borderWidth: 3,
+  },
   shadow: {
     marginBottom: 10,
     shadowOffset: {
