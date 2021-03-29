@@ -24,8 +24,13 @@ import LogFeelingScreen from "./app/screens/LogFeelingScreen";
 import colors from "./app/config/colors";
 import SupportResources from "./app/screens/SupportResources";
 import AccountScreen from "./app/dashboards/AccountScreen";
-
 import { withNavigation } from "react-navigation";
+import { LogBox } from "react-native";
+
+LogBox.ignoreLogs([
+  "Non-serializable values were found in the navigation state",
+  "Warning: Can't perform a React state update on an unmounted component. This is a no-op, but it indicates a memory leak in your application. To fix, cancel all subscriptions and asynchronous tasks in a useEffect cleanup function.",
+]);
 
 function MyStack() {
   const Stack = createStackNavigator();
