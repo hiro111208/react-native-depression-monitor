@@ -72,6 +72,7 @@ const AdminFeelingsLog = () => {
       case 5:
         return 1;
     }
+  }
 
   //Render the data of the feelings log
   if (loading) {
