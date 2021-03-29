@@ -100,7 +100,7 @@ function UserDashboard(props) {
 
   return (
     <View style={styles.container}>
-      <View style={styles.counter}>
+      <View style={[styles.counter, styles.shadow]}>
         <Text
           adjustsFontSizeToFit={true}
           numberOfLines={1}
@@ -139,21 +139,10 @@ function UserDashboard(props) {
                 })
               }
             >
-              <Animated.View style={styles.listComponent}>
+              <Animated.View style={[styles.listComponent, styles.shadow]}>
                 <View flex={1}>
                   <View flexDirection={"row"}>
-                    <TouchableOpacity
-                      onPress={() =>
-                        props.navigation.navigate("UserInfo", {
-                          user: item.userID,
-                          block: item.block,
-                          lastActive: item.lastActive,
-                        })
-                      }
-                    >
-                      <Text style={styles.idText}>DB{item.userID}</Text>
-                    </TouchableOpacity>
-
+                    <Text style={styles.idText}>DB{item.userID}</Text>
                     <Text style={styles.mainText}>
                       User:
                       <Text
@@ -187,7 +176,6 @@ function UserDashboard(props) {
           );
         }}
       ></Animated.FlatList>
-
       <StatusBar hidden />
     </View>
   );
@@ -214,29 +202,11 @@ const styles = StyleSheet.create({
     width: 150,
     height: 35,
     marginTop: 30,
-    shadowOffset: {
-      width: 0,
-      height: 10,
-    },
-    padding: 10,
-    shadowOpacity: 0.4,
-    shadowRadius: 20,
-    backgroundColor: "#FFF",
-    borderRadius: 10,
   },
   listComponent: {
     flexDirection: "row",
     shadowColor: "#000",
-    shadowOffset: {
-      width: 0,
-      height: 10,
-    },
-    padding: 10,
-    shadowOpacity: 0.4,
-    shadowRadius: 20,
     marginBottom: 10,
-    backgroundColor: "#FFF",
-    borderRadius: 10,
   },
   searchBar: {
     justifyContent: "center",
@@ -258,6 +228,17 @@ const styles = StyleSheet.create({
   mainText: {
     fontSize: 10,
     fontWeight: "300",
+  },
+  shadow: {
+    padding: 10,
+    shadowOpacity: 0.4,
+    shadowRadius: 20,
+    backgroundColor: "#FFF",
+    borderRadius: 10,
+    shadowOffset: {
+      width: 0,
+      height: 10,
+    },
   },
 });
 
