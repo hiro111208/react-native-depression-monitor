@@ -350,45 +350,6 @@ export default class UserInfo extends Component {
 }
 
 const styles = StyleSheet.create({
-  dataContainer: {
-    marginVertical: 10,
-    marginLeft: 20,
-    shadowOffset: {
-      width: 0,
-      height: 10,
-    },
-    padding: 10,
-    shadowOpacity: 0.4,
-    shadowRadius: 20,
-    backgroundColor: "#FFF",
-    borderRadius: 10,
-  },
-  container: {
-    marginTop: 3,
-    height: "100%",
-    backgroundColor: "#ffbe7bff",
-    borderRadius: 20,
-    borderColor: "#ffa351ff",
-    borderWidth: 3,
-  },
-  shadow: {
-    marginBottom: 10,
-    shadowOffset: {
-      width: 2,
-      height: 5,
-    },
-    padding: -10,
-    shadowOpacity: 0.2,
-    shadowRadius: 5,
-    backgroundColor: "#FFF",
-    borderRadius: 10,
-  },
-  label: {
-    marginBottom: 10,
-    paddingHorizontal: 30,
-    fontSize: 8,
-    fontWeight: "300",
-  },
   button: {
     width: 150,
     height: 35,
@@ -409,8 +370,47 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-between",
   },
+  container: {
+    marginTop: 3,
+    height: "100%",
+    backgroundColor: "#ffbe7bff",
+    borderRadius: 20,
+    borderColor: "#ffa351ff",
+    borderWidth: 3,
+  },
+  dataContainer: {
+    marginVertical: 10,
+    marginLeft: 20,
+    shadowOffset: {
+      width: 0,
+      height: 10,
+    },
+    padding: 10,
+    shadowOpacity: 0.4,
+    shadowRadius: 20,
+    backgroundColor: "#FFF",
+    borderRadius: 10,
+  },
   fontStyle: {
     fontWeight: "700",
     textAlign: "center",
+  },
+  label: {
+    marginBottom: 10,
+    paddingHorizontal: 30,
+    fontSize: 8,
+    fontWeight: "300",
+  },
+  shadow: {
+    marginBottom: 10,
+    shadowOffset: {
+      width: 2,
+      height: 5,
+    },
+    padding: 10,
+    shadowOpacity: 0.2,
+    shadowRadius: 5,
+    backgroundColor: "#FFF",
+    borderRadius: 10,
   },
 });
