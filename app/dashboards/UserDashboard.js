@@ -26,16 +26,13 @@ function UserDashboard(props) {
   const ref = firebase.firestore().collection("users");
   const query = ref.orderBy("userID");
 
+  // fliter list when search bar has input
   const onChange = (text) => {
-    // Check if searched text is not blank
+    // Checks if text exists and a filter isn't currently happening
     if (text && !filtering) {
       setFiltering(true);
-      // Inserted text is not blank
-      // Filter the items
-      // Update items
       const newData = items.filter(function (item) {
         const textData = text.toUpperCase();
-        //allow filtering by block number // id number // full id // active/inactive
         const itemIDData = `DB${item.userID}`
           ? `DB${item.userID}`.toUpperCase()
           : "".toUpperCase();
@@ -50,6 +47,8 @@ function UserDashboard(props) {
         ].toUpperCase()
           ? active[isActive(item.lastActive.toMillis())].toUpperCase()
           : "".toUpperCase();
+
+        // return if datasets contain data
         return (
           itemIDData.indexOf(textData) > -1 ||
           itemBlockData.indexOf(textData) > -1 ||
@@ -69,6 +68,7 @@ function UserDashboard(props) {
     }
   };
 
+  // checks if user has been active within the last 2 weeks
   const isActive = (timestamp) => {
     const TimeNow = Date.now();
     if (TimeNow - timestamp >= FORTNIGHT) {
@@ -77,11 +77,13 @@ function UserDashboard(props) {
       return 0;
     }
   };
-  //upon Mount get UserList
+
+  // upon Mount get UserList
   useEffect(() => {
     getItems();
   }, []);
 
+  // retrieve all users from the database
   function getItems() {
     query.onSnapshot((querySnapshot) => {
       const items = [];
@@ -97,14 +99,7 @@ function UserDashboard(props) {
   const { width, height } = Dimensions.get("window");
 
   return (
-    <View
-      margin={10}
-      backgroundColor={"#ffbe7bff"}
-      borderRadius={20}
-      borderColor={"#ffa351ff"}
-      borderWidth={3}
-      flex={1}
-    >
+    <View style={styles.container}>
       <View
         style={{
           width: 150,
@@ -221,6 +216,14 @@ function UserDashboard(props) {
 }
 
 const styles = StyleSheet.create({
+  container: {
+    margin: 10,
+    backgroundColor: "#ffbe7bff",
+    borderRadius: 20,
+    borderColor: "#ffa351ff",
+    borderWidth: 3,
+    flex: 1,
+  },
   listComponent: {
     flexDirection: "row",
     shadowColor: "#000",
@@ -246,7 +249,6 @@ const styles = StyleSheet.create({
     backgroundColor: "white",
     borderRadius: 20,
     shadowColor: "#000",
-
     shadowOffset: {
       width: 10,
       height: 10,
@@ -256,20 +258,3 @@ const styles = StyleSheet.create({
 });
 
 export default UserDashboard;
-
-// <ImageBackground
-// source={require("../images/OrangeLogo.jpeg")}
-// style={{
-//   absoluteFillObject: true,
-//   shadowColor: "#000",
-//   height: height,
-//   width: width,
-//   shadowOffset: {
-//     width: 0,
-//     height: 10,
-//   },
-//   padding: 10,
-//   shadowOpacity: 0.3,
-//   shadowRadius: 20,
-// }}
-// ></ImageBackground>
