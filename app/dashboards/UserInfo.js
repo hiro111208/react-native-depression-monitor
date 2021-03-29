@@ -351,9 +351,8 @@ export default class UserInfo extends Component {
 
 const styles = StyleSheet.create({
   dataContainer: {
-    marginTop: 10,
-    marginLeft: 25,
-    marginBottom: 10,
+    marginVertical: 10,
+    marginLeft: 20,
     shadowOffset: {
       width: 0,
       height: 10,
@@ -386,23 +385,8 @@ const styles = StyleSheet.create({
   },
   label: {
     marginBottom: 10,
-    paddingLeft: 30,
-    paddingRight: 30,
+    paddingHorizontal: 30,
     fontSize: 8,
-    fontWeight: "300",
-  },
-  label2: {
-    paddingLeft: 30,
-    paddingRight: 30,
-    paddingBottom: 5,
-    fontSize: 6,
-    fontWeight: "300",
-  },
-  label3: {
-    paddingLeft: 100,
-    paddingRight: 30,
-    paddingBottom: 5,
-    fontSize: 6,
     fontWeight: "300",
   },
   button: {
@@ -430,10 +414,3 @@ const styles = StyleSheet.create({
     textAlign: "center",
   },
 });
-
-const useComponentWillMount = (func) => {
-  const willMount = useRef(true);
-  if (willMount.current) {
-    func();
-  }
-};
