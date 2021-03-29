@@ -121,7 +121,7 @@ export default class TherapyQuestionDetailScreen extends Component {
       <View style={[indexStyles.containerWhite, indexStyles.centering]}>
         <View style={[indexStyles.containerOrange, indexStyles.cover, indexStyles.shadowEffect]}>
           <View style={{ height: "10%" }}>
-            <View style={styles.title}>
+            <View style={[styles.title, indexStyles.centering]}>
               <Text style={[indexStyles.textGrey]}>
                 {this.state.categoryDropped} {this.state.block}-
                 {this.state.question}
@@ -256,8 +256,6 @@ const styles = StyleSheet.create({
   },
   title: {
     padding: 10,
-    justifyContent: "center",
-    alignItems: "center",
     fontSize: 20,
     fontWeight: "bold",
   },
