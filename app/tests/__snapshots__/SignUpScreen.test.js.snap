@@ -257,6 +257,9 @@ exports[`Testing SignUpScreen.js SignupScreen renders correctly 1`] = `
     style={
       Object {
         "color": "red",
+        "flexWrap": "wrap",
+        "fontSize": 15,
+        "textAlign": "center",
       }
     }
   >
@@ -266,6 +269,9 @@ exports[`Testing SignUpScreen.js SignupScreen renders correctly 1`] = `
     style={
       Object {
         "color": "red",
+        "flexWrap": "wrap",
+        "fontSize": 15,
+        "textAlign": "center",
       }
     }
   >
