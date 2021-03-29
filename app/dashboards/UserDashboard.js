@@ -148,8 +148,6 @@ function UserDashboard(props) {
         contentContainerStyle={{
           paddingTop: StatusBar.currentHeight || 42,
           padding: 10,
-          height,
-          paddingBottom: 130,
         }}
         renderItem={({ item, index }) => {
           return (
