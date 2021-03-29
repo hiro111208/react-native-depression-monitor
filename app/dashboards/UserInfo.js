@@ -176,24 +176,7 @@ export default class UserInfo extends Component {
           </TouchableOpacity>
         </View>
 
-        <View
-          flex={3}
-          style={{
-            width: width - 50,
-            marginTop: 10,
-            marginLeft: 25,
-            marginBottom: 10,
-            shadowOffset: {
-              width: 0,
-              height: 10,
-            },
-            padding: 10,
-            shadowOpacity: 0.4,
-            shadowRadius: 20,
-            backgroundColor: "#FFF",
-            borderRadius: 10,
-          }}
-        >
+        <View flex={3} style={[styles.dataContainer, { width: width - 50 }]}>
           <View flexDirection={"row"}>
             <Text style={{ fontSize: 22, fontWeight: "700" }}>
               DB{this.state.currentUser}
@@ -359,6 +342,20 @@ export default class UserInfo extends Component {
 }
 
 const styles = StyleSheet.create({
+  dataContainer: {
+    marginTop: 10,
+    marginLeft: 25,
+    marginBottom: 10,
+    shadowOffset: {
+      width: 0,
+      height: 10,
+    },
+    padding: 10,
+    shadowOpacity: 0.4,
+    shadowRadius: 20,
+    backgroundColor: "#FFF",
+    borderRadius: 10,
+  },
   container: {
     marginTop: 3,
     height: "100%",
