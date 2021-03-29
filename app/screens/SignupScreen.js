@@ -267,11 +267,12 @@ const styles = StyleSheet.create({
   container: {
     flex:1,
     backgroundColor: "#fff",
-    paddingTop: "10%"
+    paddingTop: "5%"
   },
   signupFormContainer:{
-    flex:4,
-    padding:"8%"
+    flex:5,
+    paddingHorizontal:"8%",
+    justifyContent: "flex-start"
   },
   image:{
     flex:3,
@@ -279,9 +280,9 @@ const styles = StyleSheet.create({
   },
   inputStyle: {
     width: "100%",
-    marginBottom: 15,
-    marginTop: 15,
-    paddingBottom: 20,
+    marginBottom: "5%",
+    marginTop: "5%",
+    paddingBottom: "5%",
     alignSelf: "center",
     borderColor: "#ccc",
     borderBottomWidth: 1.5,
@@ -315,10 +316,9 @@ const styles = StyleSheet.create({
     backgroundColor: "#fff",
   },
   signupButton: {
-    width: 300,
+    width: "90%",
     backgroundColor: colors.darkBorder,
     alignSelf: "center",
-    marginTop: 10,
     paddingTop: 15,
     paddingBottom: 15,
     borderRadius: 50,

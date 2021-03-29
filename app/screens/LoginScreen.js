@@ -255,7 +255,7 @@ const styles = StyleSheet.create({
     alignSelf:"center",
   },
   loginButton: {
-    width: 300,
+    width: "90%",
     backgroundColor: colors.darkBorder,
     alignSelf: "center",
     marginTop: 10,

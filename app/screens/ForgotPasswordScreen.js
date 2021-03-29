@@ -83,7 +83,7 @@ const styles = StyleSheet.create({
     alignSelf:"center",
   },
   submitButton:{
-    width: 300,
+    width: "90%",
     backgroundColor: colors.darkBorder,
     alignSelf: "center",
     marginTop:10,
