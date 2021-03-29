@@ -190,23 +190,27 @@ const styles = StyleSheet.create({
     borderWidth: 3,
     flex: 1,
   },
-  idText: {
-    fontSize: 22,
-    fontWeight: "700",
-  },
-  fontStyle: {
-    fontSize: 15,
-    fontWeight: "700",
-  },
   counter: {
     width: 150,
     height: 35,
     marginTop: 30,
   },
+  fontStyle: {
+    fontSize: 15,
+    fontWeight: "700",
+  },
+  idText: {
+    fontSize: 22,
+    fontWeight: "700",
+  },
   listComponent: {
     flexDirection: "row",
     shadowColor: "#000",
     marginBottom: 10,
+  },
+  mainText: {
+    fontSize: 10,
+    fontWeight: "300",
   },
   searchBar: {
     justifyContent: "center",
@@ -224,10 +228,6 @@ const styles = StyleSheet.create({
       height: 10,
       borderRadius: 20,
     },
-  },
-  mainText: {
-    fontSize: 10,
-    fontWeight: "300",
   },
   shadow: {
     padding: 10,
