@@ -148,7 +148,7 @@ export default function HomeScreen({ route, props, navigation }) {
   return (
     <View style={[indexStyles.containerWhite, indexStyles.centering]}>
       <View style={[styles.center, indexStyles.cover]}>
-        <View style={[styles.welcomeArea, indexStyles.shadowEffect, indexStyles.cover]}>
+        <View style={[styles.welcomeArea, indexStyles.shadowEffect, indexStyles.cover, styles.center]}>
           <View style={[styles.userNoteHeight, indexStyles.userNote]}>
             <Text style={[indexStyles.textGrey]}>Hello there, {displayName}!</Text>
 
@@ -221,7 +221,6 @@ const styles = StyleSheet.create({
   welcomeArea: {
     borderRadius: 50,
     backgroundColor: "#fed8b1",
-    alignItems: "center",
   },
   userNoteHeight: {
     height: "30%",
