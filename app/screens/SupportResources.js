@@ -228,10 +228,7 @@ const SupportResources = ({ navigation }) => {
               The research for this project was done by:
             </Text>
             <Text
-              style={[
-                styles.fontStyle,
-                { fontSize: 15, textAlign: "center", fontStyle: "italic" },
-              ]}
+              style={[styles.fontStyle, { fontSize: 15, textAlign: "center" }]}
             >
               Jenny Yiend{"\n"}Jong-Sun Lee{"\n"}Sinem Tekes{"\n"}Louise Atkins
               {"\n"}Andrew Matthews{"\n"}Manouk Vintren{"\n"}Christian Ferragamo
@@ -249,7 +246,6 @@ const SupportResources = ({ navigation }) => {
                   fontSize: 16,
                   padding: 10,
                   textAlign: "center",
-                  fontStyle: "italic",
                 },
               ]}
             >
