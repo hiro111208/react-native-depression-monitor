@@ -56,10 +56,10 @@ const SupportResources = ({ navigation }) => {
             Asking for help doesn't make you weak - it reveals strength even
             when you don't feel strong.
           </Text>
-          <View style={{ height: "15%" }}></View>
+          <View style={{ height: "7%" }}></View>
           <View
             style={{
-              height: "10%",
+              height: "6%",
               width: "60%",
               backgroundColor: "white",
               borderTopRightRadius: 20,
@@ -69,14 +69,8 @@ const SupportResources = ({ navigation }) => {
               Support Agencies
             </Text>
           </View>
-          <View style={{ height: "3%", backgroundColor: "#ffeed2" }}></View>
 
-          <View
-            style={[
-              { height: "73%", backgroundColor: "#ffeed2" },
-              styles.centering,
-            ]}
-          >
+          <View style={[{ backgroundColor: "#ffeed2" }, styles.centering]}>
             <ScrollView horizontal>
               <View
                 style={[
@@ -226,8 +220,44 @@ const SupportResources = ({ navigation }) => {
               </View>
             </ScrollView>
           </View>
-          <View style={{ height: "2%", backgroundColor: "#ffeed2" }}></View>
+
           <View style={{ height: "3%" }}></View>
+
+          <View style={styles.centering}>
+            <Text style={[{ fontSize: 16, padding: 20, textAlign: "center" }]}>
+              The research for this project was done by:
+            </Text>
+            <Text
+              style={[
+                styles.fontStyle,
+                { fontSize: 15, textAlign: "center", fontStyle: "italic" },
+              ]}
+            >
+              Jenny Yiend{"\n"}Jong-Sun Lee{"\n"}Sinem Tekes{"\n"}Louise Atkins
+              {"\n"}Andrew Matthews{"\n"}Manouk Vintren{"\n"}Christian Ferragamo
+              {"\n"}Sukhwinder Shergill
+            </Text>
+            <Text />
+            <Text />
+            <Text style={[{ fontSize: 16, padding: 5 }]}>
+              In an academic paper entitled:
+            </Text>
+            <Text
+              style={[
+                styles.fontStyle,
+                {
+                  fontSize: 16,
+                  padding: 10,
+                  textAlign: "center",
+                  fontStyle: "italic",
+                },
+              ]}
+            >
+              'Modifying Interpretation in a Clinically Depressed Sample Using
+              'Cognitive Bias Modification-Errors': A Double Blind Randomised
+              Controlled Trial'
+            </Text>
+          </View>
         </ScrollView>
 
         <View
