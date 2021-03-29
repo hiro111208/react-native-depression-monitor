@@ -171,7 +171,11 @@ export default class UserInfo extends Component {
             adjustsFontSizeToFit={true}
             numberOfLines={1}
             style={styles.button}
-            onPress={() => this.props.navigation.goBack()}
+            onPress={() =>
+              this.props.navigation.navigate("AdminFeelingsLog", {
+                currentUserID: this.state.currentUser,
+              })
+            }
           >
             <Text
               adjustsFontSizeToFit={true}
