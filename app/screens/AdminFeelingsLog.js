@@ -11,15 +11,15 @@ import {
 import ProgressBar from "../src/components/ProgressBar";
 import firebase from "../database/firebase";
 
-const feelingsRef = firebase
-  .firestore()
-  .collection("feelings")
-  .where("userID", "==", 8)
-  .orderBy("timeStamp");
-
-const AdminFeelingsLog = ({ navigation }) => {
+const AdminFeelingsLog = ({ navigation, route }) => {
   const [loading, setLoading] = useState(true);
   const [feelingsLog, setFeelingsLog] = useState([]);
+
+  const feelingsRef = firebase
+    .firestore()
+    .collection("feelings")
+    .where("userID", "==", route.params.currentUserID)
+    .orderBy("timeStamp");
 
   // Gets therapy content while screen is rendering
   useEffect(() => {
