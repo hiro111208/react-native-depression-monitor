@@ -7,6 +7,7 @@ import {
   Alert,
   ActivityIndicator,
   TouchableOpacity,
+  Image
 } from "react-native";
 import firebase from "../database/firebase";
 import colors from "../config/colors";
@@ -147,79 +148,82 @@ function LoginScreen(props) {
   //Render the login screen interface
   return (
     <View style={styles.container}>
+      <Image resizeMode={'contain'} style={styles.image} source={require('../assets/hand-logo.png')} />
       {/*Render input fields for email and password*/}
-      <TextInput
-        style={styles.inputStyle}
-        placeholder="Email"
-        value={email}
-        keyboardType="email-address"
-        onChangeText={(userEmail) => setEmail(userEmail)}
-        testID={"TEST_ID_EMAIL_INPUT"}
-      />
-      <TextInput
-        style={styles.inputStyle}
-        placeholder="Password"
-        value={password}
-        onChangeText={(userPassword) => setPassword(userPassword)}
-        maxLength={15}
-        secureTextEntry={true}
-        testID={"TEST_ID_PASSWORD_INPUT"}
-      />   
+      <View style= {styles.loginFormContainer}>
+        <TextInput
+          style={styles.inputStyle}
+          placeholder="Email"
+          value={email}
+          keyboardType="email-address"
+          onChangeText={(userEmail) => setEmail(userEmail)}
+          testID={"TEST_ID_EMAIL_INPUT"}
+        />
+        <TextInput
+          style={styles.inputStyle}
+          placeholder="Password"
+          value={password}
+          onChangeText={(userPassword) => setPassword(userPassword)}
+          maxLength={15}
+          secureTextEntry={true}
+          testID={"TEST_ID_PASSWORD_INPUT"}
+        />   
 
-      {/*Render text that shows error  messages */}
-      <Text testID={"TEST_ID_MESSAGE"} style={{color:"red"}}>{errorMessage}</Text>
+        {/*Render text that shows error  messages */}
+        <Text testID={"TEST_ID_MESSAGE"} style={{color:"red"}}>{errorMessage}</Text>
 
-      {/*Render login button which calls userLogin method and checks credentials in input fields*/}
-      <TouchableOpacity
-        activeOpacity={0.5}
-        style={styles.loginButton}
-        onPress={()=>userLogin()}
-        testID={"TEST_ID_LOGIN_BUTTON"}
-      >
-        <Text style= {styles.signInText}>
-          LOG IN
-        </Text>
-      </TouchableOpacity>
-
-      {/*Render text to allow user to go to sign up screen*/}
-      <Text
-        style={styles.textButton}
-        onPress={() => {
-          reset(); 
-          props.navigation.navigate("SignupScreen");
-        }}
-        testID={"TEST_ID_SIGNUP_BUTTON"}
+        {/*Render login button which calls userLogin method and checks credentials in input fields*/}
+        <TouchableOpacity
+          activeOpacity={0.5}
+          style={styles.loginButton}
+          onPress={()=>userLogin()}
+          testID={"TEST_ID_LOGIN_BUTTON"}
         >
-        Don't have an account? Click here to signup
-      </Text>
-
-      {/*Render text to allow user to go to forgot password screen*/}
-      <Text
-        style={styles.textButton}
-        onPress={() => {
-          reset();
-          props.navigation.navigate("ForgotPasswordScreen");
-        }}
-        testID={"TEST_ID_FORGOT_BUTTON"}
-        >
-        Forgot your password?
-      </Text>
-
-      {/*Render button to send new verification email */}
-      <View> 
-      {!isVerified
-        ? <TouchableOpacity
-            activeOpacity = { 0.5 }
-            style={styles.loginButton}
-            onPress={()=>sendVerificationEmail()}
-            testID={"TEST_ID_VERIFY_BUTTON"}
-          >
           <Text style= {styles.signInText}>
-            Send verification email
+            LOG IN
           </Text>
         </TouchableOpacity>
-        :
-        null}
+
+        {/*Render text to allow user to go to sign up screen*/}
+        <Text
+          style={styles.textButton}
+          onPress={() => {
+            reset(); 
+            props.navigation.navigate("SignupScreen");
+          }}
+          testID={"TEST_ID_SIGNUP_BUTTON"}
+          >
+          Don't have an account? Click here to signup
+        </Text>
+
+        {/*Render text to allow user to go to forgot password screen*/}
+        <Text
+          style={styles.textButton}
+          onPress={() => {
+            reset();
+            props.navigation.navigate("ForgotPasswordScreen");
+          }}
+          testID={"TEST_ID_FORGOT_BUTTON"}
+          >
+          Forgot your password?
+        </Text>
+
+        {/*Render button to send new verification email */}
+        <View> 
+        {!isVerified
+          ? <TouchableOpacity
+              activeOpacity = { 0.5 }
+              style={styles.loginButton}
+              onPress={()=>sendVerificationEmail()}
+              testID={"TEST_ID_VERIFY_BUTTON"}
+            >
+            <Text style= {styles.signInText}>
+              Send verification email
+            </Text>
+          </TouchableOpacity>
+          :
+          null}
+        </View>
       </View>
     </View>
   );
@@ -229,12 +233,13 @@ export default LoginScreen;
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    display: "flex",
-    flexDirection: "column",
-    justifyContent: "center",
-    padding: 35,
+    flex:1,
     backgroundColor: "#fff",
+    paddingTop: "10%"
+  },
+  loginFormContainer:{
+    flex:4,
+    padding:"8%"
   },
   inputStyle: {
     width: "100%",
@@ -244,6 +249,10 @@ const styles = StyleSheet.create({
     alignSelf: "center",
     borderColor: "#ccc",
     borderBottomWidth: 1.5,
+  },
+  image:{
+    flex:3,
+    alignSelf:"center",
   },
   loginButton: {
     width: 300,
