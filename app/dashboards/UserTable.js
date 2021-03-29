@@ -23,6 +23,7 @@ function UserTable(props) {
 
     //format averages and push to table data
     for (let i = 0; i < 4; i++) {
+      // Rounds average to one decimal place
       if (average1[i] !== 0) {
         data[i].push(
           `${(average1[i] / Math.pow(10, roundedData1[i] - 1)).toFixed(1)}(s)`
@@ -31,6 +32,7 @@ function UserTable(props) {
         data[i].push(0);
       }
 
+      // Rounds average to one decimal place
       if (average2[i] !== 0) {
         data[i].push(
           `${(average2[i] / Math.pow(10, roundedData2[i] - 1)).toFixed(1)}(s)`
@@ -89,30 +91,11 @@ const styles = StyleSheet.create({
     alignContent: "center",
     backgroundColor: "#f4cbcb",
   },
-  label: {
-    marginTop: 3,
-    fontSize: 6,
-    fontWeight: "300",
-  },
-  labelText: {
-    marginTop: 3,
-    fontSize: 7,
-    fontWeight: "300",
-  },
   TableText: {
-    fontSize: 8,
+    fontSize: 11,
     fontWeight: "300",
     margin: 5,
     padding: 5,
-  },
-  headerText: {
-    fontStyle: "italic",
-    alignContent: "center",
-    fontSize: 12,
-
-    fontWeight: "300",
-    margin: -5,
-    padding: 10,
   },
 });
 
