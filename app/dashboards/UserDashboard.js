@@ -154,7 +154,7 @@ function UserDashboard(props) {
                       <Text style={styles.idText}>DB{item.userID}</Text>
                     </TouchableOpacity>
 
-                    <Text style={styles.activeText}>
+                    <Text style={styles.mainText}>
                       User:
                       <Text
                         style={{
@@ -173,14 +173,12 @@ function UserDashboard(props) {
 
                 <View width={200} marginLeft={10}>
                   {item.block < 5 && (
-                    <Text style={{ fontSize: 10, fontWeight: "300" }}>
+                    <Text style={styles.mainText}>
                       Current Block: {item.block}
                     </Text>
                   )}
                   {item.block === 5 && (
-                    <Text style={{ fontSize: 10, fontWeight: "300" }}>
-                      All Sessions Completed!
-                    </Text>
+                    <Text style={styles.mainText}>All Sessions Completed!</Text>
                   )}
                   <ProgressBar nextWidth={item.block - 1}></ProgressBar>
                 </View>
@@ -257,7 +255,7 @@ const styles = StyleSheet.create({
       borderRadius: 20,
     },
   },
-  activeText: {
+  mainText: {
     fontSize: 10,
     fontWeight: "300",
   },
