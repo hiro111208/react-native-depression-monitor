@@ -7,12 +7,66 @@ import {
   Text,
   Linking,
   Image,
+  TouchableOpacity,
 } from "react-native";
 import { AntDesign } from "@expo/vector-icons";
 
-const SupportRessources = ({ navigation }) => {
+const SupportResources = ({ navigation }) => {
   return (
-    <View ststyle={styles.container}>
+    <View style={styles.container}>
+      <View style={[styles.center, styles.cover, styles.shadowEffect]}>
+        <View style={[{ height: "10%" }, styles.centering]}>
+          <Text style={[styles.fontStyle, { fontSize: 22 }]}>
+            Support Resources
+          </Text>
+        </View>
+
+        <ScrollView
+          style={[
+            {
+              height: "80%",
+              paddingLeft: 30,
+              paddingRight: 30,
+              paddingTop: 20,
+            },
+          ]}
+        >
+          <Text
+            style={[
+              styles.centering,
+              {
+                fontSize: 17,
+                fontStyle: "italic",
+                color: "dimgray",
+              },
+            ]}
+          >
+            Asking for help doesn't make you weak - it reveals strength even
+            when you don't feel strong.
+          </Text>
+        </ScrollView>
+
+        <View style={[{ height: "10%" }, styles.centering]}>
+          <TouchableOpacity
+            onPress={() => navigation.goBack()}
+            style={[
+              styles.optButton,
+              styles.cover,
+              styles.centering,
+              { borderBottomLeftRadius: 40, borderBottomRightRadius: 40 },
+            ]}
+          >
+            <Text style={[styles.fontStyle, { fontSize: 20 }]}>Return</Text>
+          </TouchableOpacity>
+        </View>
+      </View>
+    </View>
+  );
+};
+
+{
+  /* 
+<View ststyle={styles.container}>
       <ScrollView style={styles.container}>
         <View style={[styles.boxLarge, styles.boxMargin]}>
           <ImageBackground
@@ -145,8 +199,6 @@ const SupportRessources = ({ navigation }) => {
           <Text style={styles.smallTitle}> -Manouk Vrinten</Text>
           <Text style={styles.smallTitle}> -Christian Ferragamo</Text>
           <Text style={styles.smallTitle}> -Sukhwinder Shergill</Text>
-          <Text />
-          <Text />
           <Text style={styles.main}> In an academic paper entitled:</Text>
           <Text style={styles.smallTitle}>
             Modifying Interpretation in a ClinicallyDepressed Sample Using
@@ -156,62 +208,63 @@ const SupportRessources = ({ navigation }) => {
         </View>
       </ScrollView>
     </View>
-  );
-};
+*/
+}
 
 const styles = StyleSheet.create({
-  boxSmall: {
-    marginLeft: 10,
-    width: 180,
-    height: 180,
-    backgroundColor: "skyblue",
+  bottomBorder: {
+    height: "100%",
+    width: "40%",
+    borderRadius: 50,
+    backgroundColor: "#ffeed2",
   },
-  boxLarge: {
-    width: 380,
-    height: 350,
-    backgroundColor: "#ffa351",
+  center: {
+    backgroundColor: "#fed8b1",
+    borderRadius: 50,
+    borderWidth: 5,
+    borderColor: "#ffeed2",
   },
-  boxMargin: {
-    marginBottom: 10,
-    marginRight: 10,
-    padding: 5,
-  },
-  bigWhite: {
-    margin: 15,
-    fontSize: 25,
-    fontWeight: "bold",
-    color: "white",
+  centering: {
+    alignItems: "center",
+    justifyContent: "center",
   },
   container: {
-    marginTop: 10,
+    flex: 1,
+    display: "flex",
+    padding: 25,
+    backgroundColor: "#fff",
   },
-  hyperlinkStyle: {
-    color: "blue",
+  cover: {
+    height: "100%",
+    width: "100%",
   },
-  logo: {
-    width: 400,
-    height: 100,
+  fontStyle: {
+    fontWeight: "bold",
+    color: "dimgray",
   },
-  main: {
-    color: "white",
-    textAlign: "center",
-    fontSize: 17,
+  optButton: {
+    backgroundColor: "#ffeed2",
   },
-  tinyLogo: {
-    width: 160,
-    height: 80,
-    margin: 10,
-  },
-  title: {
-    color: "white",
-    fontSize: 20,
-    textDecorationLine: "underline",
-  },
-  smallTitle: {
-    color: "white",
+  scheduleText: {
     fontSize: 15,
-    margin: 2,
+  },
+  selectButton: {
+    backgroundColor: "#ffeed2",
+  },
+  shadowEffect: {
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
+    elevation: 5,
+    marginVertical: 5,
+  },
+  textStyle: {
+    fontSize: 18,
   },
 });
 
-export default SupportRessources;
+export default SupportResources;
