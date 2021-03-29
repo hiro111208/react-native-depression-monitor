@@ -135,6 +135,7 @@ function UserDashboard(props) {
                   user: item.userID,
                   block: item.block,
                   lastActive: item.lastActive,
+                  category: item.categoryDropped,
                 })
               }
             >

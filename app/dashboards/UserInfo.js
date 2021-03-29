@@ -68,12 +68,14 @@ export default class UserInfo extends Component {
             0
           );
 
+          // Divide total to find average
           avg1Temp.push(Math.floor(avg1 / tempSessions[i].length));
           const avg2 = tempSessions[i].reduce(
             (a, b) => (a = a + b.question2Time),
             0
           );
 
+          // Divide total to find average
           avg2Temp.push(Math.floor(avg2 / tempSessions[i].length));
         } else {
           errors.push([]);
@@ -99,6 +101,7 @@ export default class UserInfo extends Component {
 
   render() {
     const { height, width } = Dimensions.get("window");
+
     //lineChart Data
     const data = [
       {
@@ -111,7 +114,7 @@ export default class UserInfo extends Component {
       },
     ];
 
-    //Line Chart circular markers
+    //Line Chart circular markers for question 1 type
     const Decorator1 = ({ x, y, data }) => {
       return data[0].data.map((value, index) => (
         <Circle
@@ -125,6 +128,7 @@ export default class UserInfo extends Component {
       ));
     };
 
+    //Line Chart circular markers for question 2 type
     const Decorator2 = ({ x, y, data }) => {
       return data[1].data.map((value, index) => (
         <Circle
@@ -230,7 +234,8 @@ export default class UserInfo extends Component {
                   fontWeight: "300",
                 }}
               >
-                Average Response Time Trend Over Sessions
+                Average Response Time Trend Over Sessions (
+                {this.props.route.params.category})
               </Text>
             </View>
 
