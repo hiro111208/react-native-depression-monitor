@@ -24,6 +24,8 @@ This app was deployed at:
 
 Here are the following steps to install the app:
 
+## Access Credentials
+
 ### Admin Account
 
 Username: `admin@joyapp.com`
