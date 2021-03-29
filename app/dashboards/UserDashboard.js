@@ -151,12 +151,10 @@ function UserDashboard(props) {
                         })
                       }
                     >
-                      <Text style={{ fontSize: 22, fontWeight: "700" }}>
-                        DB{item.userID}
-                      </Text>
+                      <Text style={styles.idText}>DB{item.userID}</Text>
                     </TouchableOpacity>
 
-                    <Text style={{ fontSize: 10, fontWeight: "300" }}>
+                    <Text style={styles.activeText}>
                       User:
                       <Text
                         style={{
@@ -206,6 +204,10 @@ const styles = StyleSheet.create({
     borderWidth: 3,
     flex: 1,
   },
+  idText: {
+    fontSize: 22,
+    fontWeight: "700",
+  },
   fontStyle: {
     fontSize: 15,
     fontWeight: "700",
@@ -254,6 +256,10 @@ const styles = StyleSheet.create({
       height: 10,
       borderRadius: 20,
     },
+  },
+  activeText: {
+    fontSize: 10,
+    fontWeight: "300",
   },
 });
 
