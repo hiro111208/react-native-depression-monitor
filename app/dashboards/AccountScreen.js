@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { View, Text, Button, StyleSheet, TouchableOpacity } from "react-native";
+import { ScrollView ,View, Text, Button, StyleSheet, TouchableOpacity } from "react-native";
 import colors from "../config/colors";
 import firebase from "../database/firebase";
 
@@ -22,8 +22,9 @@ export default function AccountScreen({ props, navigation }) {
   };
 
   return (
-    <View style={styles.container}>
+    <ScrollView style={styles.container}>
       <View style={styles.center}>
+
         <View style={[styles.welcomeArea, styles.shadowEffect]}>
           <View style={[styles.userNote]}>
             <Text>Log out information here</Text>
@@ -36,9 +37,19 @@ export default function AccountScreen({ props, navigation }) {
             <Text style={styles.textStyle}>Logout</Text>
           </TouchableOpacity>
         </View>
+        
+        <View style={[styles.welcomeArea, styles.shadowEffect]}>
+          <View style={[styles.userNote]}>
+            <Text>Demo</Text>
+          </View>
 
-        <Text />
-        <Text />
+          <TouchableOpacity
+            style={[styles.logout, styles.centering]}
+            onPress={() => navigation.navigate("DemoScreen")}
+          >
+            <Text style={styles.textStyle}>Demo</Text>
+          </TouchableOpacity>
+        </View>
 
         <View style={[styles.welcomeArea, styles.shadowEffect]}>
           <View style={[styles.userNote]}>
@@ -52,23 +63,23 @@ export default function AccountScreen({ props, navigation }) {
             <Text style={styles.textStyle}>Support Resources</Text>
           </TouchableOpacity>
         </View>
+
       </View>
-    </View>
+    </ScrollView>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "center",
     backgroundColor: "#fff",
+    height: "100%",
+    width: "100%",
   },
   center: {
     height: "100%",
     width: "100%",
     alignItems: "center",
+    justifyContent: "space-between",
     padding: 25,
   },
   welcomeArea: {
@@ -76,6 +87,7 @@ const styles = StyleSheet.create({
     height: "45%",
     borderRadius: 50,
     alignItems: "center",
+    marginBottom:"10%"
   },
   userNote: {
     height: "80%",

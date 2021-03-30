@@ -37,13 +37,13 @@ function LoginScreen(props) {
 
           // A category hasn't been dropped
           if (userProgress.categoryDropped == "NONE") {
-            props.navigation.navigate("CategoryDrop", {
+            props.navigation.navigate("DemoScreen", {
               user: userProgress,
             });
             setIsLoading(false);
           }
 
-          // Proceeds straight to the dashboard (skipping category)
+          // Proceeds straight to the dashboard (skipping category and demo)
           else {
             props.navigation.navigate("PatientDashboard");
             setIsLoading(false);
