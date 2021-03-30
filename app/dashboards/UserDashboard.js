@@ -7,7 +7,6 @@ import {
   View,
   Dimensions,
   StyleSheet,
-  ImageBackground,
   TouchableOpacity,
 } from "react-native";
 
@@ -20,24 +19,20 @@ function UserDashboard(props) {
   const [items, setItems] = useState([]);
   const [userCount, setUserCount] = useState(0);
   const [filterList, setFilterList] = useState([]);
-  const [active, setActive] = useState(["active", "inactive"]);
-  const [activeColor, setActiveColor] = useState(["#00b225", "#e12800"]);
-  //milliseconds in 2 weeks
+  const [filtering, setFiltering] = useState(false);
+  const active = ["active", "inactive"];
+  const activeColor = ["#00b225", "#e12800"];
   const FORTNIGHT = 1209600000;
-  // Queries from firebase database and stores in list
   const ref = firebase.firestore().collection("users");
-  //Default database display format
   const query = ref.orderBy("userID");
 
+  // fliter list when search bar has input
   const onChange = (text) => {
-    // Check if searched text is not blank
-    if (text) {
-      // Inserted text is not blank
-      // Filter the items
-      // Update items
+    // Checks if text exists and a filter isn't currently happening
+    if (text && !filtering) {
+      setFiltering(true);
       const newData = items.filter(function (item) {
         const textData = text.toUpperCase();
-        //allow filtering by block number // id number // full id // active/inactive
         const itemIDData = `DB${item.userID}`
           ? `DB${item.userID}`.toUpperCase()
           : "".toUpperCase();
@@ -52,6 +47,8 @@ function UserDashboard(props) {
         ].toUpperCase()
           ? active[isActive(item.lastActive.toMillis())].toUpperCase()
           : "".toUpperCase();
+
+        // return if datasets contain data
         return (
           itemIDData.indexOf(textData) > -1 ||
           itemBlockData.indexOf(textData) > -1 ||
@@ -62,6 +59,7 @@ function UserDashboard(props) {
       });
       setItems(newData);
       setSearchQuery(text);
+      setFiltering(false);
     } else {
       // Inserted text is blank
       // Update items with filterList
@@ -70,6 +68,7 @@ function UserDashboard(props) {
     }
   };
 
+  // checks if user has been active within the last 2 weeks
   const isActive = (timestamp) => {
     const TimeNow = Date.now();
     if (TimeNow - timestamp >= FORTNIGHT) {
@@ -78,7 +77,8 @@ function UserDashboard(props) {
       return 0;
     }
   };
-  //upon Mount get UserList
+
+  // upon Mount get UserList
   useEffect(() => {
     const ac = new AbortController();
     const sig = ac.signal;
@@ -93,6 +93,7 @@ function UserDashboard(props) {
     };
   }, []);
 
+  // retrieve all users from the database
   function getItems() {
     query.onSnapshot((querySnapshot) => {
       const items = [];
@@ -108,36 +109,12 @@ function UserDashboard(props) {
   const { width, height } = Dimensions.get("window");
 
   return (
-    <View
-      margin={10}
-      backgroundColor={"#ffbe7bff"}
-      borderRadius={20}
-      borderColor={"#ffa351ff"}
-      borderWidth={3}
-    >
-      <View
-        style={{
-          width: 150,
-          height: 35,
-          marginTop: 30,
-          shadowOffset: {
-            width: 0,
-            height: 10,
-          },
-          padding: 10,
-          shadowOpacity: 0.4,
-          shadowRadius: 20,
-          backgroundColor: "#FFF",
-          borderRadius: 10,
-        }}
-      >
+    <View style={styles.container}>
+      <View style={[styles.counter, styles.shadow]}>
         <Text
           adjustsFontSizeToFit={true}
           numberOfLines={1}
-          style={{
-            fontSize: 15,
-            fontWeight: "700",
-          }}
+          style={styles.fontStyle}
         >
           Total Nº Users : {userCount}
         </Text>
@@ -157,7 +134,7 @@ function UserDashboard(props) {
         keyExtractor={(item, index) => index.toString()}
         contentContainerStyle={{
           paddingTop: StatusBar.currentHeight || 42,
-          padding: 10,
+          padding: 5,
         }}
         renderItem={({ item, index }) => {
           return (
@@ -168,33 +145,20 @@ function UserDashboard(props) {
                   user: item.userID,
                   block: item.block,
                   lastActive: item.lastActive,
+                  category: item.categoryDropped,
                 })
               }
             >
-              <Animated.View style={styles.listComponent}>
+              <Animated.View style={[styles.listComponent, styles.shadow]}>
                 <View flex={1}>
                   <View flexDirection={"row"}>
-                    <TouchableOpacity
-                      onPress={() =>
-                        props.navigation.navigate("UserInfo", {
-                          user: item.userID,
-                          block: item.block,
-                          lastActive: item.lastActive,
-                        })
-                      }
-                    >
-                      <Text style={{ fontSize: 22, fontWeight: "700" }}>
-                        DB{item.userID}
-                      </Text>
-                    </TouchableOpacity>
-
-                    <Text style={{ fontSize: 10, fontWeight: "300" }}>
+                    <Text style={styles.idText}>DB{item.userID}</Text>
+                    <Text style={styles.mainText}>
                       User:
                       <Text
                         style={{
                           color:
                             activeColor[isActive(item.lastActive.toMillis())],
-                          padding: 10,
                           fontSize: 10,
                           fontWeight: "900",
                         }}
@@ -208,14 +172,12 @@ function UserDashboard(props) {
 
                 <View width={200} marginLeft={10}>
                   {item.block < 5 && (
-                    <Text style={{ fontSize: 10, fontWeight: "300" }}>
+                    <Text style={styles.mainText}>
                       Current Block: {item.block}
                     </Text>
                   )}
                   {item.block === 5 && (
-                    <Text style={{ fontSize: 10, fontWeight: "300" }}>
-                      All Sessions Completed!
-                    </Text>
+                    <Text style={styles.mainText}>All Sessions Completed!</Text>
                   )}
                   <ProgressBar nextWidth={item.block - 1}></ProgressBar>
                 </View>
@@ -224,26 +186,41 @@ function UserDashboard(props) {
           );
         }}
       ></Animated.FlatList>
-
       <StatusBar hidden />
     </View>
   );
 }
 
 const styles = StyleSheet.create({
+  container: {
+    margin: 10,
+    backgroundColor: "#ffbe7bff",
+    borderRadius: 20,
+    borderColor: "#ffa351ff",
+    borderWidth: 3,
+    flex: 1,
+  },
+  counter: {
+    width: 150,
+    height: 35,
+    marginTop: 30,
+  },
+  fontStyle: {
+    fontSize: 15,
+    fontWeight: "700",
+  },
+  idText: {
+    fontSize: 22,
+    fontWeight: "700",
+  },
   listComponent: {
     flexDirection: "row",
     shadowColor: "#000",
-    shadowOffset: {
-      width: 0,
-      height: 10,
-    },
-    padding: 10,
-    shadowOpacity: 0.4,
-    shadowRadius: 20,
     marginBottom: 10,
-    backgroundColor: "#FFF",
-    borderRadius: 10,
+  },
+  mainText: {
+    fontSize: 10,
+    fontWeight: "300",
   },
   searchBar: {
     justifyContent: "center",
@@ -256,30 +233,23 @@ const styles = StyleSheet.create({
     backgroundColor: "white",
     borderRadius: 20,
     shadowColor: "#000",
-
     shadowOffset: {
       width: 10,
       height: 10,
       borderRadius: 20,
     },
   },
+  shadow: {
+    padding: 10,
+    shadowOpacity: 0.4,
+    shadowRadius: 20,
+    backgroundColor: "#FFF",
+    borderRadius: 10,
+    shadowOffset: {
+      width: 0,
+      height: 10,
+    },
+  },
 });
 
 export default UserDashboard;
-
-// <ImageBackground
-// source={require("../images/OrangeLogo.jpeg")}
-// style={{
-//   absoluteFillObject: true,
-//   shadowColor: "#000",
-//   height: height,
-//   width: width,
-//   shadowOffset: {
-//     width: 0,
-//     height: 10,
-//   },
-//   padding: 10,
-//   shadowOpacity: 0.3,
-//   shadowRadius: 20,
-// }}
-// ></ImageBackground>

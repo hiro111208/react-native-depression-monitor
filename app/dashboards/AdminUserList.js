@@ -3,6 +3,7 @@ import UserDashboard from "./UserDashboard";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import UserInfo from "./UserInfo";
+import AdminFeelingsLog from "../screens/AdminFeelingsLog";
 
 const AdminUserList = () => {
   const userList = createStackNavigator();
@@ -15,6 +16,7 @@ const AdminUserList = () => {
       >
         <userList.Screen name="UserDashboard" component={UserDashboard} />
         <userList.Screen name="UserInfo" component={UserInfo} />
+        <userList.Screen name="AdminFeelingsLog" component={AdminFeelingsLog} />
       </userList.Navigator>
     </NavigationContainer>
   );

@@ -8,41 +8,30 @@ function UserTable(props) {
   const dataHead = ["Batch", "AvgTimeQ1", "AvgTimeQ2", "NºErrors"];
 
   const setData = () => {
+    //variables to store averages in one decimal format
     const data = [["º 1"], ["º 2"], ["º 3"], ["º 4"]];
     const average1 = props.average1;
     const average2 = props.average2;
-    // console.log("t1", average1);
-    // console.log("t2", average2);
-    //variables to store averages in one decimal format
     const roundedData1 = [];
     const roundedData2 = [];
 
     // store averages in string format
-    for (let i = 0; i < 4; i++) {
-      roundedData1.push(`${average1[i] / 1000}`.length);
-      roundedData2.push(`${average2[i] / 1000}`.length);
-    }
+
     // console.log("r1", roundedData1);
     // console.log("r2", roundedData2);
 
     //format averages and push to table data
     for (let i = 0; i < 4; i++) {
+      // Rounds average to one decimal place
       if (average1[i] !== 0) {
-        data[i].push(
-          `${(average1[i] / Math.pow(10, roundedData1[i] - 1)).toFixed(
-            1
-          )}(s/10^${roundedData2[i] - 1})`
-        );
+        data[i].push(`${(average1[i] / 1000).toFixed(2)}(s)`);
       } else {
         data[i].push(0);
       }
 
+      // Rounds average to one decimal place
       if (average2[i] !== 0) {
-        data[i].push(
-          `${(average2[i] / Math.pow(10, roundedData2[i] - 1)).toFixed(
-            1
-          )}(s/10^${roundedData2[i] - 1})`
-        );
+        data[i].push(`${(average2[i] / 1000).toFixed(2)}(s)`);
       } else {
         data[i].push(0);
       }
@@ -112,39 +101,12 @@ const styles = StyleSheet.create({
     alignContent: "center",
     backgroundColor: "#f4cbcb",
   },
-  label: {
-    marginTop: 3,
-    fontSize: 6,
-    fontWeight: "300",
-  },
-  labelText: {
-    marginTop: 3,
-    fontSize: 7,
-    fontWeight: "300",
-  },
   TableText: {
-    fontSize: 8,
+    fontSize: 9,
     fontWeight: "300",
     margin: 5,
     padding: 5,
   },
-  headerText: {
-    fontStyle: "italic",
-    alignContent: "center",
-    fontSize: 12,
-
-    fontWeight: "300",
-    margin: -5,
-    padding: 10,
-  },
 });
 
 export default UserTable;
-
-// //Store Props before child mount to remove undefined values
-// const useComponentWillMount = (func) => {
-//   const willMount = useRef(true);
-//   if (willMount.current) {
-//     func();
-//   }
-// };
