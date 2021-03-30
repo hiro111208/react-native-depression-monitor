@@ -116,6 +116,42 @@ const AdminFeelingsLog = ({ navigation, route }) => {
     }
   }
 
+  function getCorrectArray() {
+    if (!difference) {
+      return feelingsLog;
+    } else {
+      return feelingsDifference;
+    }
+  }
+
+  function getCorrectHeader(logItem) {
+    if (!difference) {
+      return getDateToString(logItem.timeStamp.toDate());
+    } else {
+      return logItem.date;
+    }
+  }
+  function getCorrectHeader() {
+    if (!difference) {
+    } else {
+    }
+  }
+  function getCorrectHeader() {
+    if (!difference) {
+    } else {
+    }
+  }
+  function getCorrectHeader() {
+    if (!difference) {
+    } else {
+    }
+  }
+  function getCorrectHeader() {
+    if (!difference) {
+    } else {
+    }
+  }
+
   //Render the data of the feelings log
   if (loading) {
     return (
@@ -124,15 +160,14 @@ const AdminFeelingsLog = ({ navigation, route }) => {
       </View>
     );
   }
+
   return (
     <SafeAreaView style={styles.container}>
       <ScrollView style={styles.data}>
-        {feelingsLog.map((logItem, index) => (
+        {getCorrectArray().map((logItem, index) => (
           <View key={index} style={styles.item}>
             <View style={styles.oval}>
-              <Text style={styles.dateText}>
-                {getDateToString(logItem.timeStamp.toDate())}
-              </Text>
+              <Text style={styles.dateText}>{getCorrectHeader(logItem)}</Text>
             </View>
             <View style={styles.largeOval}>
               <View style={styles.bars}>
