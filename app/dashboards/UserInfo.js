@@ -114,6 +114,8 @@ export default class UserInfo extends Component {
       },
     ];
 
+    console.log(data[1].data);
+    console.log(data[0].data);
     //Line Chart circular markers for question 1 type
     const Decorator1 = ({ x, y, data }) => {
       return data[0].data.map((value, index) => (
@@ -242,12 +244,12 @@ export default class UserInfo extends Component {
             <View flexDirection={"row"} flex={3}>
               <YAxis
                 data={data[0].data}
-                contentInset={{ top: 20, bottom: 20 }}
+                contentInset={{ top: 30, bottom: 20 }}
                 svg={{
                   fill: "grey",
                   fontSize: 10,
                 }}
-                numberOfTicks={4}
+                numberOfTicks={data[0].data.length}
                 formatLabel={(value) =>
                   `${value / Math.pow(10, value.toString().length - 1)}`
                 }
@@ -302,14 +304,16 @@ export default class UserInfo extends Component {
               </Text>
               <YAxis
                 data={data[1].data}
-                contentInset={{ top: 20, bottom: 20 }}
+                contentInset={{ top: 30, bottom: 20 }}
                 svg={{
                   fill: "grey",
                   fontSize: 10,
                 }}
-                numberOfTicks={5}
+                numberOfTicks={data[1].data.length}
                 formatLabel={(value) =>
-                  `${value / Math.pow(10, value.toString().length - 1)}`
+                  `${(
+                    value / Math.pow(10, value.toString().length - 1)
+                  ).toFixed(1)}`
                 }
               />
             </View>
