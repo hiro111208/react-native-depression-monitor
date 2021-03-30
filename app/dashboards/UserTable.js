@@ -92,7 +92,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#f4cbcb",
   },
   TableText: {
-    fontSize: 11,
+    fontSize: 9,
     fontWeight: "300",
     margin: 5,
     padding: 5,

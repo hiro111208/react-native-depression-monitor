@@ -259,18 +259,12 @@ export default class UserInfo extends Component {
                     left: -40,
                     fontSize: 8,
                     color: "purple",
-                    padding: 0,
                   }}
                 >
                   (Q1 scale)
                 </Text>
 
-                <View
-                  flex={1}
-                  style={styles.shadow}
-                  borderWidth={0.2}
-                  borderRadius={10}
-                >
+                <View flex={1} borderWidth={0.2} borderRadius={10}>
                   <LineChart
                     style={{ height: "100%" }}
                     data={data}
