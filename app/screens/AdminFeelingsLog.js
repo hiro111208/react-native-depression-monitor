@@ -12,6 +12,8 @@ import ProgressBar from "../src/components/ProgressBar";
 import firebase from "../database/firebase";
 import { render } from "enzyme";
 
+var feelingsDifference = [];
+
 const AdminFeelingsLog = ({ navigation, route }) => {
   const [loading, setLoading] = useState(true);
   const [feelingsLog, setFeelingsLog] = useState([]);
@@ -36,14 +38,45 @@ const AdminFeelingsLog = ({ navigation, route }) => {
         const items = [];
         querySnapshot.forEach((doc) => {
           items.push(doc.data());
-          console.log(doc.data());
         });
         setFeelingsLog(items);
         setLoading(false);
+        mapFeelingsLog();
       })
       .catch((error) => {
         console.log("Error getting documents: ", error);
       });
+  }
+
+  function mapFeelingsLog() {
+    var indexCount = 0;
+    for (i = 0; i < 4; i++) {
+      feelingsDifference.push({
+        date: "Session " + (i + 1),
+        data: calculateDifference(indexCount),
+      });
+      indexCount += 2;
+    }
+  }
+
+  function calculateDifference(index) {
+    if (index + 1 <= feelingsLog.length && index + 2 <= feelingsLog.length) {
+      return {
+        anxiousDiff:
+          switchScore(feelingsLog[index + 1].anxious) -
+          switchScore(feelingsLog[index].anxious),
+        sadDiff:
+          switchScore(feelingsLog[index + 1].sad) -
+          switchScore(feelingsLog[index].sad),
+        happyDiff: feelingsLog[index + 1].happy - feelingsLog[index].happy,
+      };
+    } else {
+      return {
+        anxiousDiff: 0,
+        sadDiff: 0,
+        happyDiff: 0,
+      };
+    }
   }
 
   function getDateToString(dateAndTime) {
