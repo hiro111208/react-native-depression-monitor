@@ -11,6 +11,7 @@ import {
 import ProgressBar from "../src/components/ProgressBar";
 import firebase from "../database/firebase";
 import { render } from "enzyme";
+import { floor } from "react-native-reanimated";
 
 var feelingsDifference = [];
 
@@ -51,9 +52,9 @@ const AdminFeelingsLog = ({ navigation, route }) => {
   function mapFeelingsLog() {
     var indexCount = 0;
     var i;
-    for (i = 0; i < 4; i++) {
+    for (i = 0; i < Math.floor(feelingsLog.length / 2); i++) {
       feelingsDifference.push({
-        date: "Session " + (i + 1),
+        date: "End of Session " + (i + 1),
         data: calculateDifference(indexCount),
       });
       indexCount += 2;
@@ -146,7 +147,7 @@ const AdminFeelingsLog = ({ navigation, route }) => {
       return (
         "DB" +
         route.params.currentUserID +
-        " ended up feeling " +
+        " became " +
         logItem.data.overall +
         "!"
       );
