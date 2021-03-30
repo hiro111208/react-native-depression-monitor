@@ -10,10 +10,12 @@ import {
 } from "react-native";
 import ProgressBar from "../src/components/ProgressBar";
 import firebase from "../database/firebase";
+import { render } from "enzyme";
 
 const AdminFeelingsLog = ({ navigation, route }) => {
   const [loading, setLoading] = useState(true);
   const [feelingsLog, setFeelingsLog] = useState([]);
+  const [difference, setDifference] = useState(false);
 
   const feelingsRef = firebase
     .firestore()
@@ -45,7 +47,6 @@ const AdminFeelingsLog = ({ navigation, route }) => {
   }
 
   function getDateToString(dateAndTime) {
-    console.log(dateAndTime);
     const calender = dateAndTime.toString().substr(0, 15);
     const time = dateAndTime.toString().substr(16, 5);
     return calender + "  @ " + time;
@@ -71,6 +72,14 @@ const AdminFeelingsLog = ({ navigation, route }) => {
         return 2;
       case 5:
         return 1;
+    }
+  }
+
+  function renderDifferenceText() {
+    if (!difference) {
+      return "Show feelings difference";
+    } else {
+      return "Show feelings log";
     }
   }
 
@@ -119,12 +128,20 @@ const AdminFeelingsLog = ({ navigation, route }) => {
             </View>
           </View>
         ))}
-        <TouchableOpacity
-          onPress={() => navigation.goBack()}
-          style={[styles.centering, styles.backButton]}
-        >
-          <Text style={[, { fontSize: 20 }]}>Return to user stats</Text>
-        </TouchableOpacity>
+        <View style={styles.buttonsBlock}>
+          <TouchableOpacity
+            onPress={() => setDifference(!difference)}
+            style={[styles.centering, styles.backButton]}
+          >
+            <Text style={[, { fontSize: 20 }]}>{renderDifferenceText()}</Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            onPress={() => navigation.goBack()}
+            style={[styles.centering, styles.backButton]}
+          >
+            <Text style={[, { fontSize: 20 }]}>Return to user stats</Text>
+          </TouchableOpacity>
+        </View>
       </ScrollView>
     </SafeAreaView>
   );
@@ -134,9 +151,8 @@ const styles = StyleSheet.create({
   backButton: {
     width: "80%",
     height: 50,
-    margin: 11,
-    marginTop: 20,
-    marginBottom: 50,
+    marginHorizontal: 11,
+    marginBottom: 15,
     shadowOffset: {
       width: 0,
       height: 10,
@@ -144,10 +160,14 @@ const styles = StyleSheet.create({
     textAlign: "center",
     padding: 10,
     shadowOpacity: 0.4,
-    shadowRadius: 20,
+    shadowRadius: 10,
     backgroundColor: "#FFF",
     borderRadius: 10,
     alignSelf: "center",
+  },
+  buttonsBlock: {
+    marginTop: 15,
+    marginBottom: 30,
   },
   container: {
     flex: 1,
