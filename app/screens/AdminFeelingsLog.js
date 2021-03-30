@@ -103,23 +103,17 @@ const AdminFeelingsLog = ({ navigation, route }) => {
                   segments={5}
                   nextWidth={switchScore(logItem.anxious)}
                 ></ProgressBar>
-                <Text style={styles.statText}>Friendly</Text>
+                <Text style={styles.statText}>Free from sadness</Text>
                 <ProgressBar
                   style={styles.progressBar}
                   segments={5}
-                  nextWidth={logItem.friendly}
-                ></ProgressBar>
-                <Text style={styles.statText}>Free from paranoia</Text>
-                <ProgressBar
-                  style={styles.progressBar}
-                  segments={5}
-                  nextWidth={switchScore(logItem.paranoid)}
+                  nextWidth={switchScore(logItem.sad)}
                 ></ProgressBar>
                 <Text style={styles.statText}>Happy</Text>
                 <ProgressBar
                   style={styles.progressBar}
                   segments={5}
-                  nextWidth={logItem.sad}
+                  nextWidth={logItem.happy}
                 ></ProgressBar>
               </View>
             </View>
@@ -181,9 +175,10 @@ const styles = StyleSheet.create({
   },
   largeOval: {
     width: "90%",
-    height: 300,
+    height: 250,
     borderRadius: 50,
     borderColor: "black",
+    marginTop: 5,
     padding: 10,
     borderWidth: 5,
     backgroundColor: "transparent",
