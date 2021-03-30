@@ -1,19 +1,20 @@
 // screens/TherapyQuestionDetailScreen.js
 
 import React, { Component } from "react";
-import { TouchableOpacity } from "react-native";
 import {
   Alert,
-  Button,
   StyleSheet,
   TextInput,
   ScrollView,
   ActivityIndicator,
   View,
   Text,
+  TouchableOpacity,
 } from "react-native";
 import firebase from "../database/firebase";
+import DismissKeyboard from "../config/DismissKeyboard";
 
+// Screen to edit the content of a therapy question, then update it
 export default class TherapyQuestionDetailScreen extends Component {
   constructor() {
     super();
@@ -63,6 +64,7 @@ export default class TherapyQuestionDetailScreen extends Component {
     this.setState(state);
   };
 
+  // updates the content of a therapy question
   updateTherapyQuestion() {
     this.setState({
       isLoading: true,
@@ -117,122 +119,125 @@ export default class TherapyQuestionDetailScreen extends Component {
       );
     }
     return (
-      <View style={[styles.container, styles.centering]}>
-        <View style={[styles.center, styles.cover, styles.shadowEffect]}>
-          <View style={{ height: "10%" }}>
-            <View style={styles.title}>
-              <Text style={[styles.fontStyle, { fontSize: 20 }]}>
-                {this.state.categoryDropped} {this.state.block}-
+      <DismissKeyboard>
+        <View style={[styles.container, styles.centering]}>
+          <View style={[styles.center, styles.cover, styles.shadowEffect]}>
+            <View style={{ height: "10%" }}>
+              <View style={styles.title}>
+                <Text style={[styles.fontStyle, { fontSize: 20 }]}>
+                  {this.state.categoryDropped} {this.state.block}-
                 {this.state.question}
-              </Text>
+                </Text>
+              </View>
+            </View>
+            <View style={styles.centering}>
+              <ScrollView style={{ height: "70%", width: "80%" }}>
+                <View>
+                  <Text style={{ fontWeight: "bold" }}>Question 1:</Text>
+                </View>
+                <View style={styles.inputGroup}>
+                  <DismissKeyboard>
+                    <TextInput
+                      multiline={true}
+                      numberOfLines={4}
+                      placeholder={"question1"}
+                      value={this.state.question1}
+                      onChangeText={(val) =>
+                        this.inputValueUpdate(val, "question1")
+                      }
+                    />
+                  </DismissKeyboard>
+                </View>
+                <View>
+                  <Text />
+                </View>
+                <View>
+                  <Text style={{ fontWeight: "bold" }}>Word:</Text>
+                </View>
+                <View style={styles.inputGroup}>
+                  <TextInput
+                    placeholder={"word"}
+                    value={this.state.word}
+                    onChangeText={(val) => this.inputValueUpdate(val, "word")}
+                  />
+                </View>
+                <View>
+                  <Text />
+                </View>
+                <View>
+                  <Text style={{ fontWeight: "bold" }}>Answer 1:</Text>
+                </View>
+                <View style={styles.inputGroup}>
+                  <TextInput
+                    placeholder={"answer1"}
+                    value={this.state.answer1}
+                    onChangeText={(val) => this.inputValueUpdate(val, "answer1")}
+                  />
+                </View>
+                <View>
+                  <Text />
+                </View>
+                <View>
+                  <Text style={{ fontWeight: "bold" }}>Question 2:</Text>
+                </View>
+                <View style={styles.inputGroup}>
+                  <TextInput
+                    multiline={true}
+                    numberOfLines={4}
+                    placeholder={"question2"}
+                    value={this.state.question2}
+                    onChangeText={(val) =>
+                      this.inputValueUpdate(val, "question2")
+                    }
+                  />
+                </View>
+                <View>
+                  <Text />
+                </View>
+                <View>
+                  <Text style={{ fontWeight: "bold" }}>Answer 2:</Text>
+                </View>
+                <View style={styles.inputGroup}>
+                  <TextInput
+                    placeholder={"answer2"}
+                    value={this.state.answer2}
+                    onChangeText={(val) => this.inputValueUpdate(val, "answer2")}
+                  />
+                </View>
+              </ScrollView>
+            </View>
+
+            <View style={[{ height: "8%" }, styles.centering]}>
+              <TouchableOpacity
+                onPress={() => this.updateTherapyQuestion()}
+                style={[
+                  styles.bottomButton,
+                  styles.shadowEffect,
+                  styles.centering,
+                ]}
+              >
+                <Text style={[styles.fontStyle, { fontSize: 17 }]}>Update</Text>
+              </TouchableOpacity>
+            </View>
+
+            <View style={{ height: "2%" }}></View>
+
+            <View style={[{ height: "10%" }, styles.centering]}>
+              <TouchableOpacity
+                onPress={() => this.props.navigation.goBack()}
+                style={[
+                  styles.optButton,
+                  styles.cover,
+                  styles.centering,
+                  { borderBottomLeftRadius: 40, borderBottomRightRadius: 40 },
+                ]}
+              >
+                <Text style={[styles.fontStyle, { fontSize: 17 }]}>Go Back</Text>
+              </TouchableOpacity>
             </View>
           </View>
-
-          <View style={styles.centering}>
-            <ScrollView style={{ height: "70%", width: "80%" }}>
-              <View>
-                <Text style={{ fontWeight: "bold" }}>Question 1:</Text>
-              </View>
-              <View style={styles.inputGroup}>
-                <TextInput
-                  multiline={true}
-                  numberOfLines={4}
-                  placeholder={"question1"}
-                  value={this.state.question1}
-                  onChangeText={(val) =>
-                    this.inputValueUpdate(val, "question1")
-                  }
-                />
-              </View>
-              <View>
-                <Text />
-              </View>
-              <View>
-                <Text style={{ fontWeight: "bold" }}>Word:</Text>
-              </View>
-              <View style={styles.inputGroup}>
-                <TextInput
-                  placeholder={"word"}
-                  value={this.state.word}
-                  onChangeText={(val) => this.inputValueUpdate(val, "word")}
-                />
-              </View>
-              <View>
-                <Text />
-              </View>
-              <View>
-                <Text style={{ fontWeight: "bold" }}>Answer 1:</Text>
-              </View>
-              <View style={styles.inputGroup}>
-                <TextInput
-                  placeholder={"answer1"}
-                  value={this.state.answer1}
-                  onChangeText={(val) => this.inputValueUpdate(val, "answer1")}
-                />
-              </View>
-              <View>
-                <Text />
-              </View>
-              <View>
-                <Text style={{ fontWeight: "bold" }}>Question 2:</Text>
-              </View>
-              <View style={styles.inputGroup}>
-                <TextInput
-                  multiline={true}
-                  numberOfLines={4}
-                  placeholder={"question2"}
-                  value={this.state.question2}
-                  onChangeText={(val) =>
-                    this.inputValueUpdate(val, "question2")
-                  }
-                />
-              </View>
-              <View>
-                <Text />
-              </View>
-              <View>
-                <Text style={{ fontWeight: "bold" }}>Answer 2:</Text>
-              </View>
-              <View style={styles.inputGroup}>
-                <TextInput
-                  placeholder={"answer2"}
-                  value={this.state.answer2}
-                  onChangeText={(val) => this.inputValueUpdate(val, "answer2")}
-                />
-              </View>
-            </ScrollView>
-          </View>
-
-          <View style={[{ height: "8%" }, styles.centering]}>
-            <TouchableOpacity
-              onPress={() => this.updateTherapyQuestion()}
-              style={[
-                styles.bottomButton,
-                styles.shadowEffect,
-                styles.centering,
-              ]}
-            >
-              <Text style={[styles.fontStyle, { fontSize: 17 }]}>Update</Text>
-            </TouchableOpacity>
-          </View>
-
-          <View style={{ height: "2%" }}></View>
-
-          <View style={[{ height: "10%" }, styles.centering]}>
-            <TouchableOpacity
-              onPress={() => this.props.navigation.goBack()}
-              style={[
-                styles.optButton,
-                styles.cover,
-                styles.centering,
-                { borderBottomLeftRadius: 40, borderBottomRightRadius: 40 },
-              ]}
-            >
-              <Text style={[styles.fontStyle, { fontSize: 17 }]}>Go Back</Text>
-            </TouchableOpacity>
-          </View>
         </View>
-      </View>
+      </DismissKeyboard>
     );
   }
 }
