@@ -1,20 +1,20 @@
 // screens/TherapyQuestionDetailScreen.js
 
 import React, { Component } from "react";
-import { TouchableOpacity } from "react-native";
 import {
   Alert,
-  Button,
   StyleSheet,
   TextInput,
   ScrollView,
   ActivityIndicator,
   View,
   Text,
+  TouchableOpacity,
 } from "react-native";
 import firebase from "../database/firebase";
 import DismissKeyboard from "../config/DismissKeyboard";
 
+// Screen to edit the content of a therapy question, then update it
 export default class TherapyQuestionDetailScreen extends Component {
   constructor() {
     super();
@@ -64,6 +64,7 @@ export default class TherapyQuestionDetailScreen extends Component {
     this.setState(state);
   };
 
+  // updates the content of a therapy question
   updateTherapyQuestion() {
     this.setState({
       isLoading: true,
