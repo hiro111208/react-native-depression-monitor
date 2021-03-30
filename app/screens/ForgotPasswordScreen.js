@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { StyleSheet, View, Text, TouchableOpacity, TextInput, Alert } from 'react-native';
+import { StyleSheet, View, Text, TouchableOpacity, TextInput, Alert, Image } from 'react-native';
 import firebase from "../database/firebase";
 
 import colors from "../config/colors";
@@ -31,34 +31,37 @@ function ForgotPasswordScreen(props) {
     <DismissKeyboard>
       {/*Render field to input user email*/}
       <View style={styles.container}>
-        <TextInput
-          style={styles.inputStyle}
-          placeholder="Email"
-          value={email}
-          onChangeText={(val) => setEmail(val)}
-          testID={"TEST_ID_EMAIL_INPUT"}
-        />
 
-        {/*Render button that calls forgotPassword method */}
-        <TouchableOpacity
-          activeOpacity={.5}
-          style={styles.submitButton}
-          onPress={() => forgotPassword()}
-          testID={"TEST_ID_FORGOT_BUTTON"}
-        >
-          <Text style={styles.submitText}>SUBMIT</Text>
-        </TouchableOpacity>
+        <Image resizeMode={'contain'} style={styles.image} source={require('../assets/hand-logo.png')} />
+        <View style={styles.forgotFormContainer}>
+          <TextInput
+            style={styles.inputStyle}
+            placeholder="Email"
+            value={email}
+            onChangeText={(val) => setEmail(val)}
+            testID={"TEST_ID_EMAIL_INPUT"}
+          />
 
-        {/*Render button that allows user to go back to login screen*/}
-        <Text
-          style={styles.textButton}
-          onPress={() => props.navigation.navigate("LoginScreen")}>
-          Back to Login
-      </Text>
+          {/*Render button that calls forgotPassword method */}
+          <TouchableOpacity
+            activeOpacity={.5}
+            style={styles.submitButton}
+            onPress={() => forgotPassword()}
+            testID={"TEST_ID_FORGOT_BUTTON"}
+          >
+            <Text style={styles.submitText}>RESET PASSWORD</Text>
+          </TouchableOpacity>
 
-        {/*Render text that shows error or success messages */}
-        <Text testID={"TEST_ID_MESSAGE"} style={{ color: "red" }}>{message}</Text>
+          {/*Render button that allows user to go back to login screen*/}
+          <Text
+            style={styles.textButton}
+            onPress={() => props.navigation.navigate("LoginScreen")}>
+            Back to Login
+          </Text>
 
+          {/*Render text that shows error or success messages */}
+          <Text testID={"TEST_ID_MESSAGE"} style={{ color: "red" }}>{message}</Text>
+        </View>
       </View>
     </DismissKeyboard>
   );
@@ -68,14 +71,22 @@ export default ForgotPasswordScreen;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "center",
-    padding: 35,
-    backgroundColor: "#fff"
+    backgroundColor: "#fff",
+    paddingTop: "10%"
+  },
+  forgotFormContainer: {
+    flex: 4,
+    padding: "8%",
+    top: "5%"
+    //paddingTop: "15%"
+    //marginTop:"10%"
+  },
+  image: {
+    flex: 3,
+    alignSelf: "center",
   },
   submitButton: {
-    width: 300,
+    width: "90%",
     backgroundColor: colors.darkBorder,
     alignSelf: "center",
     marginTop: 10,
