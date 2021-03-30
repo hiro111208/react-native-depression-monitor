@@ -99,7 +99,6 @@ function MyStack() {
         component={PauseScreen}
         options={{ headerShown: false }}
       />
-
       <Stack.Screen
         options={{ headerShown: false }}
         name="PlantScreen"

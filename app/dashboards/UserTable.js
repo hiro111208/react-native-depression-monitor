@@ -11,6 +11,8 @@ function UserTable(props) {
     const data = [["º 1"], ["º 2"], ["º 3"], ["º 4"]];
     const average1 = props.average1;
     const average2 = props.average2;
+    // console.log("t1", average1);
+    // console.log("t2", average2);
     //variables to store averages in one decimal format
     const roundedData1 = [];
     const roundedData2 = [];
@@ -20,6 +22,8 @@ function UserTable(props) {
       roundedData1.push(`${average1[i] / 1000}`.length);
       roundedData2.push(`${average2[i] / 1000}`.length);
     }
+    // console.log("r1", roundedData1);
+    // console.log("r2", roundedData2);
 
     //format averages and push to table data
     for (let i = 0; i < 4; i++) {
@@ -49,8 +53,21 @@ function UserTable(props) {
   };
 
   // useComponentWillMount(() => setData());
+  //upon Mount get UserList
+  useEffect(() => {
+    const ac = new AbortController();
+    const sig = ac.signal;
+    Promise.all([
+      setData(),
+      { signal: sig },
+      console.log("in Table "),
+    ]).catch((ex) => console.error(ex));
+    return function cleanup() {
+      console.log("out Tbale");
+      ac.abort();
+    }; // Abort both fetches on unmount
+  }, []);
 
-  useEffect(() => {}, [setData()]);
   return (
     <View>
       <View style={styles.container}>
@@ -124,10 +141,10 @@ const styles = StyleSheet.create({
 
 export default UserTable;
 
-//Store Props before child mount to remove undefined values
-const useComponentWillMount = (func) => {
-  const willMount = useRef(true);
-  if (willMount.current) {
-    func();
-  }
-};
+// //Store Props before child mount to remove undefined values
+// const useComponentWillMount = (func) => {
+//   const willMount = useRef(true);
+//   if (willMount.current) {
+//     func();
+//   }
+// };

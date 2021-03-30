@@ -80,7 +80,17 @@ function UserDashboard(props) {
   };
   //upon Mount get UserList
   useEffect(() => {
-    getItems();
+    const ac = new AbortController();
+    const sig = ac.signal;
+    Promise.all([
+      getItems(),
+      { signal: sig },
+      console.log("in Dashboard"),
+    ]).catch((ex) => console.error(ex));
+    return function cleanup() {
+      console.log("out Dashboard");
+      ac.abort();
+    };
   }, []);
 
   function getItems() {

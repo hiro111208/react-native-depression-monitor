@@ -54,7 +54,10 @@ export default class UserInfo extends Component {
 
       // Filter separate session information into arrays
       for (let i = 0; i < 4; i++) {
+        console.log("loops", i);
         tempSessions.push(items.filter((item) => item.sessionNumber == i + 1));
+        console.log("tempsesh", tempSessions[i].length);
+
         // filter correct questions
         if (tempSessions[i].length > 0) {
           errors.push(
@@ -69,14 +72,16 @@ export default class UserInfo extends Component {
             (a, b) => (a = a + b.question1Time),
             0
           );
+          console.log("av1 before push", avg1);
 
-          avg1Temp.push(Math.floor(avg1 / tempSessions[i].length));
+          avg1Temp.push(Math.ceil(avg1 / tempSessions[i].length));
           const avg2 = tempSessions[i].reduce(
             (a, b) => (a = a + b.question2Time),
             0
           );
 
-          avg2Temp.push(Math.floor(avg2 / tempSessions[i].length));
+          console.log("av2 before push", avg2);
+          avg2Temp.push(Math.ceil(avg2 / tempSessions[i].length));
         } else {
           errors.push([]);
           avg1Temp.push(0);
@@ -89,15 +94,25 @@ export default class UserInfo extends Component {
       this.setState({ sessions: tempSessions });
       this.setState({ averageTimePerBlockQ1: avg1Temp });
       this.setState({ averageTimePerBlockQ2: avg2Temp });
+      console.log("av1:", this.state.averageTimePerBlockQ1);
+      console.log("av2", this.state.averageTimePerBlockQ2);
     });
   }
 
+  abortController = () => new AbortController();
   //Fetch upon mount
   componentDidMount() {
-    // this.getParams();
-    this.getItemsAndAverages();
+    Promise.all([
+      this.getItemsAndAverages(),
+      { signal: this.abortController().signal },
+      console.log("in userInfo"),
+    ]).catch((ex) => console.error(ex));
   }
 
+  componentWillUnmount() {
+    this.abortController().abort();
+    console.log("out userInfo");
+  }
   render() {
     const { height, width } = Dimensions.get("window");
     //lineChart Data
@@ -106,11 +121,13 @@ export default class UserInfo extends Component {
         data: this.state.averageTimePerBlockQ1,
         svg: { stroke: "purple" },
       },
-      {
-        data: this.state.averageTimePerBlockQ2,
-        svg: { stroke: "green" },
-      },
     ];
+    console.log("data", data[0].data);
+    //   {
+    //     data: this.state.averageTimePerBlockQ2,
+    //     svg: { stroke: "green" },
+    //   },
+    // ];
 
     //Line Chart circular markers
     const Decorator1 = ({ x, y, data }) => {
@@ -125,18 +142,18 @@ export default class UserInfo extends Component {
         />
       ));
     };
-    const Decorator2 = ({ x, y, data }) => {
-      return data[1].data.map((value, index) => (
-        <Circle
-          key={index}
-          cx={x(index)}
-          cy={y(value)}
-          r={4}
-          stroke={"rgb(134, 65, 244)"}
-          fill={"white"}
-        />
-      ));
-    };
+    // const Decorator2 = ({ x, y, data }) => {
+    //   return data[1].data.map((value, index) => (
+    //     <Circle
+    //       key={index}
+    //       cx={x(index)}
+    //       cy={y(value)}
+    //       r={4}
+    //       stroke={"rgb(134, 65, 244)"}
+    //       fill={"white"}
+    //     />
+    //   ));
+    // };
 
     return (
       <View
@@ -299,7 +316,7 @@ export default class UserInfo extends Component {
                     contentInset={{ top: 20, bottom: 20 }}
                   >
                     <Decorator1 />
-                    <Decorator2 />
+                    {/* <Decorator2 /> */}
                   </LineChart>
 
                   <View marginTop={10}>
@@ -327,13 +344,13 @@ export default class UserInfo extends Component {
                 (Q2 scale)
               </Text>
               <YAxis
-                data={data[1].data}
+                data={data[0].data}
                 contentInset={{ top: 20, bottom: 20 }}
                 svg={{
                   fill: "grey",
                   fontSize: 10,
                 }}
-                numberOfTicks={5}
+                numberOfTicks={4}
                 formatLabel={(value) =>
                   `${value / Math.pow(10, value.toString().length - 1)}`
                 }
@@ -405,10 +422,3 @@ const styles = StyleSheet.create({
     fontWeight: "300",
   },
 });
-
-const useComponentWillMount = (func) => {
-  const willMount = useRef(true);
-  if (willMount.current) {
-    func();
-  }
-};
