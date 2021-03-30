@@ -50,6 +50,7 @@ const AdminFeelingsLog = ({ navigation, route }) => {
 
   function mapFeelingsLog() {
     var indexCount = 0;
+    var i;
     for (i = 0; i < 4; i++) {
       feelingsDifference.push({
         date: "Session " + (i + 1),
@@ -57,10 +58,11 @@ const AdminFeelingsLog = ({ navigation, route }) => {
       });
       indexCount += 2;
     }
+    console.log(feelingsDifference);
   }
 
   function calculateDifference(index) {
-    if (index + 1 <= feelingsLog.length && index + 2 <= feelingsLog.length) {
+    if (index < feelingsLog.length && index + 1 < feelingsLog.length) {
       return {
         anxiousDiff:
           switchScore(feelingsLog[index + 1].anxious) -
@@ -69,6 +71,10 @@ const AdminFeelingsLog = ({ navigation, route }) => {
           switchScore(feelingsLog[index + 1].sad) -
           switchScore(feelingsLog[index].sad),
         happyDiff: feelingsLog[index + 1].happy - feelingsLog[index].happy,
+        overall: feelingsLog[index + 1].overall,
+        anxiousFinal: feelingsLog[index + 1].anxious,
+        sadFinal: feelingsLog[index + 1].sad,
+        happyFinal: feelingsLog[index + 1].happy,
       };
     } else {
       return {
@@ -131,24 +137,104 @@ const AdminFeelingsLog = ({ navigation, route }) => {
       return logItem.date;
     }
   }
-  function getCorrectHeader() {
+  function getCorrectOverallFeeling(logItem) {
     if (!difference) {
+      return (
+        "DB" + route.params.currentUserID + " felt " + logItem.overall + "!"
+      );
     } else {
+      return (
+        "DB" +
+        route.params.currentUserID +
+        " ended up feeling " +
+        logItem.data.overall +
+        "!"
+      );
     }
   }
-  function getCorrectHeader() {
-    if (!difference) {
+
+  function generatePercentage(number) {
+    if (number < 0) {
+      return "-" + number * 20 + "%";
     } else {
+      return "+" + number * 20 + "%";
     }
   }
-  function getCorrectHeader() {
+
+  function getCorrectAnxiety(logItem) {
     if (!difference) {
+      return "Free from anxiety";
     } else {
+      return (
+        "Free from anxiety: " + generatePercentage(logItem.data.anxiousDiff)
+      );
     }
   }
-  function getCorrectHeader() {
+
+  function getCorrectSadness(logItem) {
     if (!difference) {
+      return "Free from sadness";
     } else {
+      return "Free from sadness: " + generatePercentage(logItem.data.sadDiff);
+    }
+  }
+  function getCorrectHappiness(logItem) {
+    if (!difference) {
+      return "Happiness";
+    } else {
+      return "Happiness: " + generatePercentage(logItem.data.happyDiff);
+    }
+  }
+
+  function getCorrectAnxietyScore(logItem) {
+    if (!difference) {
+      return switchScore(logItem.anxious);
+    } else {
+      return switchScore(logItem.data.anxiousFinal);
+    }
+  }
+
+  function getCorrectSadScore(logItem) {
+    if (!difference) {
+      return switchScore(logItem.sad);
+    } else {
+      return switchScore(logItem.data.sadFinal);
+    }
+  }
+
+  function getCorrectHappyScore(logItem) {
+    if (!difference) {
+      return logItem.happy;
+    } else {
+      return logItem.data.happyFinal;
+    }
+  }
+
+  function getCorrectColour(logItem, field) {
+    if (!difference) {
+      return "#000000";
+    } else {
+      return getCorrectDifferenceColour(logItem, field);
+    }
+  }
+
+  function getCorrectDifferenceColour(logItem, field) {
+    if (field == "anxious") {
+      return getColour(logItem.data.anxiousDiff);
+    } else if (field == "sad") {
+      return getColour(logItem.data.sadDiff);
+    } else {
+      return getColour(logItem.data.happyDiff);
+    }
+  }
+
+  function getColour(number) {
+    if (number > 0) {
+      return "#013220";
+    } else if (number < 0) {
+      return "#ff0000";
+    } else {
+      return "#ffff00";
     }
   }
 
@@ -172,25 +258,46 @@ const AdminFeelingsLog = ({ navigation, route }) => {
             <View style={styles.largeOval}>
               <View style={styles.bars}>
                 <Text style={styles.overallText}>
-                  DB{route.params.currentUserID} felt {logItem.overall}!
+                  {getCorrectOverallFeeling(logItem)}
                 </Text>
-                <Text style={styles.statText}>Free from anxiety</Text>
+                <Text
+                  style={[
+                    styles.statText,
+                    { color: getCorrectColour(logItem, "anxious") },
+                  ]}
+                >
+                  {getCorrectAnxiety(logItem)}
+                </Text>
                 <ProgressBar
                   style={styles.progressBar}
                   segments={5}
-                  nextWidth={switchScore(logItem.anxious)}
+                  nextWidth={getCorrectAnxietyScore(logItem)}
                 ></ProgressBar>
-                <Text style={styles.statText}>Free from sadness</Text>
+                <Text
+                  style={[
+                    styles.statText,
+                    { color: getCorrectColour(logItem, "sad") },
+                  ]}
+                >
+                  {getCorrectSadness(logItem)}
+                </Text>
                 <ProgressBar
                   style={styles.progressBar}
                   segments={5}
-                  nextWidth={switchScore(logItem.sad)}
+                  nextWidth={getCorrectSadScore(logItem)}
                 ></ProgressBar>
-                <Text style={styles.statText}>Happy</Text>
+                <Text
+                  style={[
+                    styles.statText,
+                    { color: getCorrectColour(logItem, "happy") },
+                  ]}
+                >
+                  {getCorrectHappiness(logItem)}
+                </Text>
                 <ProgressBar
                   style={styles.progressBar}
                   segments={5}
-                  nextWidth={logItem.happy}
+                  nextWidth={getCorrectHappyScore(logItem)}
                 ></ProgressBar>
               </View>
             </View>
