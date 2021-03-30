@@ -239,7 +239,7 @@ const AdminFeelingsLog = ({ navigation, route }) => {
   }
 
   function toggleView() {
-    if (!difference) {
+    if (!difference && feelingsDifference.length == 0) {
       mapFeelingsLog();
     }
     setDifference(!difference);
