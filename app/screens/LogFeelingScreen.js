@@ -17,10 +17,9 @@ import colors from "../config/colors";
  */
 function LogFeelingScreen({ navigation, route }) {
   const [overallFeeling, setOverallFeeling] = useState("");
-  const [paranoid, setParanoid] = useState(1);
   const [anxious, setAnxious] = useState(1);
   const [sad, setSad] = useState(1);
-  const [friendly, setFriendly] = useState(1);
+  const [happy, setHappy] = useState(1);
   const [user, setUser] = useState(undefined);
 
   //Get userID corresponding to current user
@@ -45,8 +44,7 @@ function LogFeelingScreen({ navigation, route }) {
   //Reset all states
   const reset = () => {
     setAnxious(1);
-    setParanoid(1);
-    setFriendly(1);
+    setHappy(1);
     setOverallFeeling("");
     setSad(1);
     setUser(undefined);
@@ -61,8 +59,7 @@ function LogFeelingScreen({ navigation, route }) {
       .doc()
       .set({
         overall: overallFeeling,
-        paranoid: paranoid,
-        friendly: friendly,
+        happy: happy,
         sad: sad,
         anxious: anxious,
         userID: user.userID,
@@ -113,14 +110,6 @@ function LogFeelingScreen({ navigation, route }) {
       {/* Render sliders for each emotion */}
       <ScrollView style={styles.slidersContainer}>
         <View style={[styles.topAndBottom, styles.centering]}>
-          <Text style={styles.text}>Paranoid</Text>
-          <FeelingsSlider
-            setFeelingState={setParanoid}
-            feelingState={paranoid}
-          />
-        </View>
-
-        <View style={[styles.topAndBottom, styles.centering]}>
           <Text style={styles.text}>Anxious</Text>
           <FeelingsSlider setFeelingState={setAnxious} feelingState={anxious} />
         </View>
@@ -131,11 +120,8 @@ function LogFeelingScreen({ navigation, route }) {
         </View>
 
         <View style={[styles.topAndBottom, styles.centering]}>
-          <Text style={styles.text}>Friendly</Text>
-          <FeelingsSlider
-            setFeelingState={setFriendly}
-            feelingState={friendly}
-          />
+          <Text style={styles.text}>Happy</Text>
+          <FeelingsSlider setFeelingState={setHappy} feelingState={happy} />
         </View>
       </ScrollView>
 
