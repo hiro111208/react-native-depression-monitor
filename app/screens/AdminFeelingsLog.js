@@ -42,7 +42,6 @@ const AdminFeelingsLog = ({ navigation, route }) => {
         });
         setFeelingsLog(items);
         setLoading(false);
-        mapFeelingsLog();
       })
       .catch((error) => {
         console.log("Error getting documents: ", error);
@@ -239,6 +238,13 @@ const AdminFeelingsLog = ({ navigation, route }) => {
     }
   }
 
+  function toggleView() {
+    if (!difference) {
+      mapFeelingsLog();
+    }
+    setDifference(!difference);
+  }
+
   //Render the data of the feelings log
   if (loading) {
     return (
@@ -306,7 +312,7 @@ const AdminFeelingsLog = ({ navigation, route }) => {
         ))}
         <View style={styles.buttonsBlock}>
           <TouchableOpacity
-            onPress={() => setDifference(!difference)}
+            onPress={() => toggleView()}
             style={[styles.centering, styles.backButton]}
           >
             <Text style={[, { fontSize: 20 }]}>{renderDifferenceText()}</Text>
