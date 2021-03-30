@@ -17,7 +17,8 @@
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "package.android"
     },
     "android": {
       "googleServicesFile": "./google-services.json",
@@ -25,7 +26,8 @@
       "adaptiveIcon": {
         "foregroundImage": "./App/assets/adaptive-icon.png",
         "backgroundColor": "#FFFFFF"
-      }
+      },
+      "package": "package.android"
     },
     "web": {
       "favicon": "./App/assets/favicon.png"

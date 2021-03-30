@@ -4,22 +4,22 @@ import ProgressBar from "./ProgressBar";
 
 export default class Index extends Component {
   state = {
-    currentWidth: -1,
+    steps: -1,
     segments: 4,
   };
 
   incrementBar = () => {
-    if (this.state.currentWidth < this.state.segments - 1) {
-      this.setState({ currentWidth: ++this.state.currentWidth });
+    if (this.state.steps < this.state.segments - 1) {
+      this.setState({ steps: ++this.state.steps });
     }
-    console.log(this.state.currentWidth + 1);
+    console.log(this.state.steps);
   };
 
   decrementBar = () => {
-    if (this.state.currentWidth > -1) {
-      this.setState({ currentWidth: --this.state.currentWidth });
+    if (this.state.steps > -1) {
+      this.setState({ steps: --this.state.steps });
     }
-    console.log(this.state.currentWidth + 1);
+    console.log(this.state.steps);
   };
 
   render() {
@@ -32,7 +32,7 @@ export default class Index extends Component {
         ></Button>
         <ProgressBar
           segments={this.state.segments}
-          nextWidth={this.state.currentWidth + 1}
+          nextWidth={this.state.steps + 1}
         ></ProgressBar>
         <Button
           className="decrement"

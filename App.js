@@ -15,7 +15,7 @@ import SchedulingScreen from "./app/screens/SchedulingScreen";
 import ScheduleListScreen from "./app/screens/ScheduleListScreen";
 import PatientDashboard from "./app/dashboards/PatientDashboard";
 import AdminDashboard from "./app/dashboards/AdminDashboard";
-import DemoScreen from "./app/screens/DemoScreen"
+import DemoScreen from "./app/screens/DemoScreen";
 
 import TherapyQuestionScreen from "./app/screens/TherapyQuestionScreen";
 import TherapyQuestionDetailScreen from "./app/screens/TherapyQuestionDetailScreen";
@@ -25,12 +25,16 @@ import LogFeelingScreen from "./app/screens/LogFeelingScreen";
 import colors from "./app/config/colors";
 import SupportResources from "./app/screens/SupportResources";
 import AccountScreen from "./app/dashboards/AccountScreen";
-
 import { withNavigation } from "react-navigation";
+import { LogBox } from "react-native";
 
-const Stack = createStackNavigator();
+LogBox.ignoreLogs([
+  "Non-serializable values were found in the navigation state",
+  "Warning: Can't perform a React state update on an unmounted component. This is a no-op, but it indicates a memory leak in your application. To fix, cancel all subscriptions and asynchronous tasks in a useEffect cleanup function.",
+]);
 
 function MyStack() {
+  const Stack = createStackNavigator();
   return (
     <Stack.Navigator
       initialRouteName="LoginScreen"
@@ -62,28 +66,32 @@ function MyStack() {
         component={SignupScreen}
         options={{ title: "SignUp" }}
       />
+
       <Stack.Screen
         name="LoginScreen"
         component={LoginScreen}
         options={{ title: "Login" }}
       />
+
       <Stack.Screen
         name="ForgotPasswordScreen"
         component={ForgotPasswordScreen}
         options={{ title: "Forgot Password" }}
       />
-      <Stack.Screen 
+      <Stack.Screen
         options={{ headerShown: false }}
-        name="DemoScreen" 
-        component={DemoScreen} 
+        name="DemoScreen"
+        component={DemoScreen}
       />
 
       <Stack.Screen name="PatientDashboard" component={PatientDashboard} />
+
       <Stack.Screen
         name="AdminDashboard"
         component={AdminDashboard}
         options={{ title: "AdminDashboard" }}
       />
+
       <Stack.Screen
         name="SchedulingScreen"
         component={SchedulingScreen}
@@ -92,16 +100,19 @@ function MyStack() {
           headerLeft: null,
         }}
       />
+
       <Stack.Screen
         name="ScheduleListScreen"
         component={ScheduleListScreen}
         options={{ title: "Schedule List" }}
       />
+
       <Stack.Screen
         options={{ headerShown: false }}
         name="TherapyScreen"
         component={TherapyScreen}
       />
+
       <Stack.Screen
         name="PauseScreen"
         component={PauseScreen}
@@ -113,27 +124,33 @@ function MyStack() {
         name="PlantScreen"
         component={PlantScreen}
       />
+
       <Stack.Screen
         name="LogFeelingScreen"
         component={LogFeelingScreen}
         options={{ headerShown: false }}
       />
+
       <Stack.Screen name="CategoryDrop" component={CategoryDrop} />
+
       <Stack.Screen
         name="TherapyQuestionScreen"
         component={TherapyQuestionScreen}
         options={{ title: "Therapy Questions" }}
       />
+
       <Stack.Screen
         name="TherapyQuestionDetailScreen"
         component={TherapyQuestionDetailScreen}
         options={{ title: "Question Detail" }}
       />
+
       <Stack.Screen
         options={{ headerShown: false }}
         name="SupportResources"
         component={SupportResources}
       />
+
       <Stack.Screen name="AccountScreen" component={AccountScreen} />
     </Stack.Navigator>
   );
