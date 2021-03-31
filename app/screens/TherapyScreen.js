@@ -616,7 +616,8 @@ const styles = StyleSheet.create({
   },
   textNote: {
     color: "black",
-    fontSize: 15,
+    fontSize: 18,
+    fontWeight:"bold",
     textAlign: "center",
     padding: 10,
     flexWrap: "wrap",
