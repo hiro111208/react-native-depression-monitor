@@ -247,7 +247,12 @@ const TherapyScreen = ({ navigation, route }) => {
       startTimer();
     }
     if (isWordAnswer) {
-      splitScenarioIntoSentences()
+      if(questionRendered===true){
+        setQuestionRendered(false);
+        sentenceNumber= 0;
+      }
+      //splitScenarioIntoSentences();
+      console.log(questionSentences)
       return <Text style={styles.text}>{questionSentences}</Text>;
     } else {
       return (
@@ -258,16 +263,9 @@ const TherapyScreen = ({ navigation, route }) => {
     }
   }
 
-  const [questionSentences, setQuestionSentences]=useState("")
+  const [questionSentences, setQuestionSentences]=useState((loaded) ? items[question].question1.split(".")[0] : "")
   var sentenceNumber= 0;
-  var splitSentences= undefined;
-
-  function splitScenarioIntoSentences(){
-    splitSentences= items[question].question1.split(".")
-    setQuestionRendered(false);
-    setQuestionSentences(splitSentences[0]);
-    sentenceNumber= 0;
-  }
+  const [splitSentences, setSplitSentences]= useState((loaded) ? items[question].question1.split(".") : "");
 
   //render the scenario sentence by sentence 
   function renderQuestionSentence(){
