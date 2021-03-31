@@ -41,7 +41,6 @@ const TherapyScreen = ({ navigation, route }) => {
   const [finished, setFinished] = useState(false);
   const [timerStarted, setTimerStarted] = useState(false);
   const [questionRendered, setQuestionRendered]= useState(false);
-  const [sentenceNumber, setSentenceNumber]= useState(0);
 
   const userRef = firebase
     .firestore()
@@ -86,6 +85,7 @@ const TherapyScreen = ({ navigation, route }) => {
   // Gets therapy content while screen is rendering
   useEffect(() => {
     getItems();
+    console.log("hello")
   }, []);
 
   // Returns text if the answer is wrong
@@ -248,7 +248,7 @@ const TherapyScreen = ({ navigation, route }) => {
     }
     if (isWordAnswer) {
       splitScenarioIntoSentences()
-      return <View>{questionSentences}</View>;
+      return <Text style={styles.text}>{questionSentences}</Text>;
     } else {
       return (
         <Text style={styles.text}>
@@ -258,30 +258,26 @@ const TherapyScreen = ({ navigation, route }) => {
     }
   }
 
-  const questionSentences=[]
+  const [questionSentences, setQuestionSentences]=useState("")
+  var sentenceNumber= 0;
+  var splitSentences= undefined;
 
   function splitScenarioIntoSentences(){
+    splitSentences= items[question].question1.split(".")
     setQuestionRendered(false);
-    let sentences = items[question].question1.split(".")
-
-    for (const [index, value] of sentences.entries()) {
-      questionSentences.push(<Text style={styles.text} visible={false} key={index}>{value}</Text>)
-    }
-    questionSentences[0].visible= true;
-    setSentenceNumber(0);
+    setQuestionSentences(splitSentences[0]);
+    sentenceNumber= 0;
   }
 
   //render the scenario sentence by sentence 
   function renderQuestionSentence(){
-    items[question].question1;
-    if(questionSentences[sentenceNumber+1]){
-      questionSentences[sentenceNumber+1].visible= true
-    
-      if(questionSentences.length === sentenceNumber+1+1){
+    if(sentenceNumber+1<=splitSentences.length-1){
+      setQuestionSentences(questionSentences + splitSentences[sentenceNumber+1])
+      if(splitSentences.length === sentenceNumber+1+1){
         setQuestionRendered(true)
-        setSentenceNumber(0)
+        sentenceNumber=0
       }
-      setSentenceNumber(sentenceNumber+1)
+      sentenceNumber= sentenceNumber+1;
     }
   }
 
