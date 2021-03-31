@@ -2,32 +2,39 @@ import React from "react";
 import { shallow } from "enzyme";
 import Index from "../../src/components/Index";
 
+// jest.mock("react-native/Libraries/LayoutAnimation/LayoutAnimation", () => ({
+//   ...require.requireActual(
+//     "react-native/Libraries/LayoutAnimation/LayoutAnimation"
+//   ),
+//   configureNext: jest.fn(),
+// }));
+
 describe("Testing Index.js", () => {
   it("Index renders correctly", () => {
     shallow(<Index />);
   });
 
-  it('Index renders a "currentWidth" of -1 upon mount', () => {
+  it('Index starts with a "steps" count of -1 upon mount', () => {
     const wrapper = shallow(<Index />);
-    expect(wrapper.state().currentWidth).toEqual(-1);
+    expect(wrapper.state().steps).toEqual(-1);
   });
 
-  it("Index intialisses ProgressBar prop 'nextWidth' = 'currentWidth' + 1 = 0 ", () => {
+  it("Index intialises ProgressBar prop 'nextWidth' as 'steps' + 1 -> 0 ", () => {
     const wrapper = shallow(<Index />);
-    expect(wrapper.state().currentWidth).toEqual(-1);
+    expect(wrapper.state().steps).toEqual(-1);
     const progressBar = wrapper.find("ProgressBar");
     expect(progressBar.props().nextWidth).toEqual(0);
   });
 
-  it("'currentWidth' value updates by 1 when increment button pressed", () => {
+  it("'steps' value updates by 1 when increment button pressed", () => {
     const wrapper = shallow(<Index />);
-    expect(wrapper.state().currentWidth).toEqual(-1);
+    expect(wrapper.state().steps).toEqual(-1);
     const incrementBtn = wrapper.find("Button.increment");
     incrementBtn.simulate("press");
-    expect(wrapper.state().currentWidth).toEqual(0);
+    expect(wrapper.state().steps).toEqual(0);
   });
 
-  it("'nextWidth' prop increases as 'currentWidth' increases ", () => {
+  it("ProgressBar prop 'nextWidth' maintains + 1 relation with 'steps' as 'steps' increases ", () => {
     const wrapper = shallow(<Index />);
     const incrementBtn = wrapper.find("Button.increment");
     incrementBtn.simulate("press");
@@ -36,35 +43,35 @@ describe("Testing Index.js", () => {
     // expect(progressBar).to.have.property("nextWidth", 1);
   });
 
-  it("'currentWidth' value decreases by 1 when decrement button pressed", () => {
+  it("'steps' value decreases by 1 when decrement button pressed", () => {
     const wrapper = shallow(<Index />);
-    wrapper.setState({ currentWidth: 1 });
+    wrapper.setState({ steps: 1 });
     const decrementBtn = wrapper.find("Button.decrement");
     decrementBtn.simulate("press");
-    expect(wrapper.state().currentWidth).toEqual(0);
+    expect(wrapper.state().steps).toEqual(0);
   });
 
-  it("'nextWidth' prop decreases as 'currentWidth' decreases ", () => {
+  it("ProgressBar prop 'nextWidth' maintains + 1 relation with 'steps' as 'steps' decreases ", () => {
     const wrapper = shallow(<Index />);
-    wrapper.setState({ currentWidth: 1 });
+    wrapper.setState({ steps: 1 });
     const decrementBtn = wrapper.find("Button.decrement");
     decrementBtn.simulate("press");
     const progressBar = wrapper.find("ProgressBar");
     expect(progressBar.props().nextWidth).toBe(1);
   });
 
-  it("'currentWidth' max value always less than 'segments'", () => {
+  it("'steps' maximum value remains less than 'segments' even if increment button pressed ", () => {
     const wrapper = shallow(<Index />);
-    wrapper.setState({ currentWidth: 3, segments: 4 });
+    wrapper.setState({ steps: 3, segments: 4 });
     const incrementBtn = wrapper.find("Button.increment");
     incrementBtn.simulate("press");
-    expect(wrapper.state().currentWidth).toEqual(3);
+    expect(wrapper.state().steps).toEqual(3);
   });
 
-  it("'currentWidth' min value always -1 ", () => {
+  it("'steps' minimum value remains as -1 even if decrement button pressed ", () => {
     const wrapper = shallow(<Index />);
     const decrementBtn = wrapper.find("Button.decrement");
     decrementBtn.simulate("press");
-    expect(wrapper.state().currentWidth).toEqual(-1);
+    expect(wrapper.state().steps).toEqual(-1);
   });
 });
