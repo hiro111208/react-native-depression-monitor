@@ -9,6 +9,7 @@ import {
   Alert,
   TextInput,
   Image,
+  TouchableWithoutFeedback
 } from "react-native";
 import Constants from "expo-constants";
 import * as Speech from "expo-speech";
@@ -39,6 +40,8 @@ const TherapyScreen = ({ navigation, route }) => {
   const [user, setUser] = useState(undefined);
   const [finished, setFinished] = useState(false);
   const [timerStarted, setTimerStarted] = useState(false);
+  const [questionRendered, setQuestionRendered]= useState(false);
+  const [sentenceNumber, setSentenceNumber]= useState(0);
 
   const userRef = firebase
     .firestore()
@@ -244,13 +247,41 @@ const TherapyScreen = ({ navigation, route }) => {
       startTimer();
     }
     if (isWordAnswer) {
-      return <Text style={styles.text}>{items[question].question1}</Text>;
+      splitScenarioIntoSentences()
+      return <View>{questionSentences}</View>;
     } else {
       return (
         <Text style={styles.text}>
           {items[question].question1} ({items[question].word})
         </Text>
       );
+    }
+  }
+
+  const questionSentences=[]
+
+  function splitScenarioIntoSentences(){
+    setQuestionRendered(false);
+    let sentences = items[question].question1.split(".")
+
+    for (const [index, value] of sentences.entries()) {
+      questionSentences.push(<Text style={styles.text} visible={false} key={index}>{value}</Text>)
+    }
+    questionSentences[0].visible= true;
+    setSentenceNumber(0);
+  }
+
+  //render the scenario sentence by sentence 
+  function renderQuestionSentence(){
+    items[question].question1;
+    if(questionSentences[sentenceNumber+1]){
+      questionSentences[sentenceNumber+1].visible= true
+    
+      if(questionSentences.length === sentenceNumber+1+1){
+        setQuestionRendered(true)
+        setSentenceNumber(0)
+      }
+      setSentenceNumber(sentenceNumber+1)
     }
   }
 
@@ -494,6 +525,8 @@ const TherapyScreen = ({ navigation, route }) => {
         </View>
       </View>
 
+      <TouchableWithoutFeedback disabled={questionRendered} onPress={()=>renderQuestionSentence()}>
+      <>
       {/* Displays therapy item story and question */}
       
         <View
@@ -516,6 +549,8 @@ const TherapyScreen = ({ navigation, route }) => {
           <Text style={styles.text}>{setNextText()}</Text>
         </TouchableOpacity>
       </View>
+      </>
+      </TouchableWithoutFeedback>
     </KeyboardAvoidingView>
   );
 };
