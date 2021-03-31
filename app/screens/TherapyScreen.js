@@ -460,9 +460,9 @@ const TherapyScreen = ({ navigation, route }) => {
 
   // Returns the whole therapy screen interface
   return (
-    <KeyboardAvoidingView style={styles.container} behavior="position">
+    <KeyboardAvoidingView style={[styles.container, styles.centering]} behavior="position">
       {/* Progress bar of the therapy session */}
-      <View style={[styles.top, styles.centering]}>
+      <View style={[styles.topTools, styles.top, styles.centering]}>
         <View style={styles.bar}>
           <ProgressBar
             segments={state.segments}
@@ -495,19 +495,19 @@ const TherapyScreen = ({ navigation, route }) => {
       </View>
 
       {/* Displays therapy item story and question */}
-      <View style={[styles.center, styles.centering]}>
+      
         <View
           style={[styles.questionArea, styles.centering, styles.shadowEffect]}
         >
           {renderQuestion()}
         </View>
-      </View>
+      
 
       {/* Presents different answer formats for the subquestions*/}
-      {renderAnswerArea()}
+        {renderAnswerArea()}
 
       {/* Button to navigate through the therapy session */}
-      <View style={[styles.bottom, styles.centering]}>
+      <View style={[styles.nextButtonSpace, styles.centering]}>
         <TouchableOpacity
           style={[styles.optButton, styles.centering, styles.shadowEffect]}
           onPress={() => nextQuestion()}
@@ -521,35 +521,37 @@ const TherapyScreen = ({ navigation, route }) => {
 };
 
 const styles = StyleSheet.create({
-  answerButton: {
-    height: "75%",
-    width: 250,
-    backgroundColor: "#ffaa78",
-    borderRadius: 10,
-  },
-  answerArea: {
-    height: "30%",
-    padding: 50,
-    flex: 1,
-  },
-  bar: {
-    width: "85%",
-    padding: 10,
-  },
-  bottom: {
-    height: "10%",
-  },
-  center: {
-    height: "50%",
-  },
-  centering: {
-    alignItems: "center",
-    justifyContent: "center",
-  },
   container: {
     marginTop: Constants.statusBarHeight,
     flex: 1,
     backgroundColor: "#ffd390",
+    paddingHorizontal:"7%",
+    paddingVertical: "5%"
+  },
+  topTools:{
+    flex:1,
+    paddingBottom: "5%"
+  },
+  nextButtonSpace:{
+    flex:1,
+  },
+  answerButton: {
+    height: "20%",
+    width: "80%",
+    backgroundColor: "#ffaa78",
+    borderRadius: 10,
+  },
+  answerArea: {
+    flex:3,
+    justifyContent: "flex-start"
+  },
+  bar: {
+    width: "85%",
+    paddingBottom: 10,
+  },
+  centering: {
+    alignItems: "center",
+    justifyContent: "center",
   },
   correctHighlight: {
     borderColor: "#c7ffd8",
@@ -558,13 +560,12 @@ const styles = StyleSheet.create({
     flexDirection: "row",
   },
   input: {
-    height: "100%",
+    height: "40%",
     width: "90%",
     backgroundColor: "#ffe2e6",
     borderColor: "#ffffff",
     borderWidth: 5,
     borderRadius: 40,
-    padding: 8,
     fontSize: 20,
     textAlign: "center",
   },
@@ -577,8 +578,9 @@ const styles = StyleSheet.create({
     bottom: 0,
   },
   questionArea: {
-    width: "85%",
-    height: "100%",
+    flex:5,
+    height:"100%",
+    width:"100%",
     borderRadius: 50,
     borderWidth: 10,
     borderColor: "#fff",
@@ -586,11 +588,9 @@ const styles = StyleSheet.create({
     padding: 30,
   },
   readButton: {
-    left: "35%",
+    left: "45%",
     position: "absolute",
     backgroundColor: "#ffcccb",
-    width: "10%",
-    height: "100%",
   },
   shadowEffect: {
     shadowColor: "#000",
@@ -604,8 +604,8 @@ const styles = StyleSheet.create({
     marginVertical: 5,
   },
   takeBreakButton: {
-    height: "50%",
-    width: 125,
+    height: "80%",
+    width: "40%",
     backgroundColor: "#fff",
     borderRadius: 20,
   },
@@ -622,12 +622,10 @@ const styles = StyleSheet.create({
     padding: 10,
     flexWrap: "wrap",
   },
-  top: {
-    height: "15%",
-  },
   textToSpeech: {
-    width: 35,
-  },
+     width: 35,
+     height: 40
+  }
 });
 
 export default TherapyScreen;
