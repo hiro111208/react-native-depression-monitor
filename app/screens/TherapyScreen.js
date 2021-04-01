@@ -40,14 +40,9 @@ const TherapyScreen = ({ navigation, route }) => {
   const [user, setUser] = useState(undefined);
   const [finished, setFinished] = useState(false);
   const [timerStarted, setTimerStarted] = useState(false);
-  const [questionRendered, setQuestionRendered]= useState(false);
-  const [questionSentences, setQuestionSentences]=useState((loaded) ? items[question].question1.split(".")[0] : "")
+
   const [sentenceNumber, setSentenceNumber]=useState(0);
-  const [splitSentences, setSplitSentences]= useState((loaded) ? items[question].question1.split(".") : "");
 
-
-  console.log(questionSentences)
-  console.log(splitSentences)
   const userRef = firebase
     .firestore()
     .collection("users")
@@ -56,7 +51,7 @@ const TherapyScreen = ({ navigation, route }) => {
   const answerRef = firebase.firestore().collection("answers");
 
   // currentWidth + 1 / segments = progress bar filled
-  state = {
+  const state = {
     currentWidth: question - 1, // current progress (+1)
     segments: 18, // maximum progress
   };
@@ -81,7 +76,6 @@ const TherapyScreen = ({ navigation, route }) => {
           setItems(items);
           setLoaded(true);
           setQuestion(doc.data().question - 1);
-          setSplitSentences(items[question].question1.split("."));
         });
       })
       .catch((error) => {
@@ -93,6 +87,11 @@ const TherapyScreen = ({ navigation, route }) => {
   useEffect(() => {
     getItems();
   }, []);
+
+  //Split the scenario text into sentences
+  function splitSentences(){
+    return items[question].question1.split(".")
+  }
 
   // Returns text if the answer is wrong
   function getCorrectAnswer() {
@@ -253,11 +252,10 @@ const TherapyScreen = ({ navigation, route }) => {
       startTimer();
     }
     if (isWordAnswer) {
-      if(questionRendered===true){
-        setQuestionRendered(false);
-        setSentenceNumber(0);
-      }
-      return <Text style={styles.text}>{questionSentences}</Text>;
+      return (splitSentences().map((sentence, index) => (
+        <Text style={[styles.text , {opacity:(index<=sentenceNumber) ? 1 : 0}]} key={index}>{sentence}</Text>
+      ))
+      )
     } else {
       return (
         <Text style={styles.text}>
@@ -267,17 +265,12 @@ const TherapyScreen = ({ navigation, route }) => {
     }
   }
 
-  //render the scenario sentence by sentence 
+  //render the next sentence of the scenario
   function renderQuestionSentence(){
-    if(sentenceNumber+1<=splitSentences.length-1){
-      setQuestionSentences(questionSentences + splitSentences[sentenceNumber+1])
-      if(splitSentences.length === sentenceNumber+1+1){
-        setQuestionRendered(true)
-        //setSentenceNumber(0);
-      }
-      setSentenceNumber(sentenceNumber+1);
-    }
+    let newNumber = sentenceNumber+1
+    setSentenceNumber(newNumber);
   }
+
 
   // calculates the response time and stores it in milliseconds
   function endTimer() {
@@ -445,6 +438,7 @@ const TherapyScreen = ({ navigation, route }) => {
     Speech.stop();
     setReading(false);
     setTimerStarted(false);
+    setSentenceNumber(0);
   }
 
   // Can only press button when all the questions have been answered
@@ -525,8 +519,8 @@ const TherapyScreen = ({ navigation, route }) => {
         <View
           style={[styles.questionArea, styles.centering, styles.shadowEffect]}
         >
-          <TouchableOpacity onPress={()=>{renderQuestionSentence()}}><Text>Next</Text>
-          </TouchableOpacity>
+          {isWordAnswer && <TouchableOpacity disabled={(sentenceNumber===splitSentences.length-1)} onPress={()=>{renderQuestionSentence()}}><Text>Next</Text>
+          </TouchableOpacity>}
           {renderQuestion()}
         </View>
 
