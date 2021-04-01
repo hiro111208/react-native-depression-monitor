@@ -26,7 +26,10 @@ import moment from 'moment';
 
 
 export default function AdminHomeScreen({ props, navigation }) {
+
   const [errorMessage, setErrorMessage] = useState("");
+
+  //loading screen trigger
   const [loaded, setLoaded] = useState(false);
 
 
@@ -44,7 +47,7 @@ export default function AdminHomeScreen({ props, navigation }) {
 
 
 
-
+//Loading screen executed via trigger
   const CustomProgressBar = ({ visible }) => (
     <Modal onRequestClose={() => null} transparent={true} visible={visible}>
       <View style={{ 
@@ -72,8 +75,8 @@ export default function AdminHomeScreen({ props, navigation }) {
   );
 
 
-  // method call on ExportCSV
-  onCreateCSV = async () => {
+  // method call on Export answers data to CSV folder
+  onCreateAnswersCSV = async () => {
     setLoaded(true);
     firebase.firestore().collection("answers").get().then(async (querySnapshot) => {
       const headerString = 'categoryDropped, question, question1IsCorrect, question1Time, question2IsCorrect, question2Time, sessionNumber, userId \n';
@@ -105,7 +108,7 @@ export default function AdminHomeScreen({ props, navigation }) {
   }
 
 
-  // method call on ExportCSV
+  // method call on Export feelings data to CSV folder
   onCreateFeelingsCSV = async () => {
     setLoaded(true);
     firebase.firestore().collection("feelings").get().then(async (querySnapshot) => {
@@ -152,7 +155,7 @@ export default function AdminHomeScreen({ props, navigation }) {
             resizeMode="contain"
             source={require("../assets/hand-logo.png")}
           />
-          
+
         </View>
 
 
@@ -182,7 +185,7 @@ export default function AdminHomeScreen({ props, navigation }) {
           }
 
           <TouchableOpacity
-            onPress={() => this.onCreateCSV()}
+            onPress={() => this.onCreateAnswersCSV()}
             style={[styles.centering, styles.optButton, styles.cover]}
           >
             <Text
