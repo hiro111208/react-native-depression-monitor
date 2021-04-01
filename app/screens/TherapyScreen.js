@@ -90,7 +90,10 @@ const TherapyScreen = ({ navigation, route }) => {
 
   //Split the scenario text into sentences
   function splitSentences(){
-    return items[question].question1.split(".")
+    if (loaded){return items[question].question1.replace(".", ".#").split("#")}
+    else{
+      return []
+    }
   }
 
   // Returns text if the answer is wrong
@@ -267,8 +270,7 @@ const TherapyScreen = ({ navigation, route }) => {
 
   //render the next sentence of the scenario
   function renderQuestionSentence(){
-    let newNumber = sentenceNumber+1
-    setSentenceNumber(newNumber);
+    setSentenceNumber(sentenceNumber+1);
   }
 
 
@@ -517,11 +519,11 @@ const TherapyScreen = ({ navigation, route }) => {
       {/* Displays therapy item story and question */}
       
         <View
-          style={[styles.questionArea, styles.centering, styles.shadowEffect]}
+          style={[styles.questionArea, styles.shadowEffect]}
         >
-          {isWordAnswer && <TouchableOpacity disabled={(sentenceNumber===splitSentences.length-1)} onPress={()=>{renderQuestionSentence()}}><Text>Next</Text>
+          <View>{renderQuestion()}</View>
+          {isWordAnswer && (sentenceNumber!==splitSentences().length-1) && <TouchableOpacity style={styles.nextSentenceButton} onPress={()=>{renderQuestionSentence()}}><Text style={styles.nextSentenceText}>></Text>
           </TouchableOpacity>}
-          {renderQuestion()}
         </View>
 
 
@@ -549,6 +551,9 @@ const styles = StyleSheet.create({
     backgroundColor: "#ffd390",
     paddingHorizontal:"7%",
     paddingVertical: "5%"
+  },
+  nextSentenceButton:{
+    //marginTop:"5%"
   },
   topTools:{
     flex:1,
@@ -608,6 +613,8 @@ const styles = StyleSheet.create({
     borderColor: "#fff",
     backgroundColor: "#eee",
     padding: 30,
+    justifyContent:"space-evenly",
+    alignItems:"center"
   },
   readButton: {
     left: "45%",
@@ -647,6 +654,10 @@ const styles = StyleSheet.create({
   textToSpeech: {
      width: 35,
      height: 40
+  },
+  nextSentenceText:{
+    fontSize: 18,
+    fontWeight:"bold"
   }
 });
 
