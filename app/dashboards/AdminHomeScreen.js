@@ -1,5 +1,11 @@
 import React, { useState } from "react";
-import { StyleSheet, View, Text, Button, Image } from "react-native";
+import {
+   StyleSheet,
+   View,
+   Text,
+   Button,
+   Image 
+} from "react-native";
 import firebase from "../database/firebase";
 
 import colors from "../config/colors";
@@ -23,6 +29,7 @@ export default function AdminHomeScreen({ props, navigation }) {
   // method call on ExportCSV
   onCreateCSV = async () => {
     firebase.firestore().collection("answers").get().then(async (querySnapshot) => {
+      const headerString = 'categoryDropped, question, question1IsCorrect, question1Time, question2IsCorrect, question2Time, sessionNumber, userId \n';
       let rowString = ''
       querySnapshot.forEach((doc) => {
         rowString = rowString +
@@ -35,6 +42,8 @@ export default function AdminHomeScreen({ props, navigation }) {
         ${doc.data().sessionNumber},
         ${doc.data().userID} \n`;
       });
+      const csvString = `${headerString}${rowString}`;
+      
     })
   }
 
