@@ -12,6 +12,9 @@ import colors from "../config/colors";
 import { TouchableOpacity } from "react-native";
 import { Touchable } from "react-native";
 
+import * as FileSystem from 'expo-file-system';
+import * as Permissions from 'expo-permissions';
+
 
 export default function AdminHomeScreen({ props, navigation }) {
   const [errorMessage, setErrorMessage] = useState("");
@@ -44,6 +47,8 @@ export default function AdminHomeScreen({ props, navigation }) {
         ${doc.data().userID} \n`;
       });
       const csvString = `${headerString}${rowString}`;
+      const { status } = await Permissions.askAsync(Permissions.CAMERA_ROLL);
+
 
     })
   }
