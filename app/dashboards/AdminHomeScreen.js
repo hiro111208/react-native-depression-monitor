@@ -1,14 +1,15 @@
+
 import React, { useState } from "react";
 import {
-   StyleSheet,
-   View,
-   Text,
-   Button,
-   Image,
-   Platform
+  StyleSheet,
+  View,
+  Text,
+  Button,
+  Image,
+  Platform
 } from "react-native";
-import firebase from "../database/firebase";
 
+import firebase from "../database/firebase";
 import colors from "../config/colors";
 import { TouchableOpacity } from "react-native";
 import { Touchable } from "react-native";
@@ -18,6 +19,7 @@ import * as Permissions from 'expo-permissions';
 import * as MediaLibrary from 'expo-media-library';
 import * as Sharing from 'expo-sharing';
 import moment from 'moment';
+
 
 
 export default function AdminHomeScreen({ props, navigation }) {
@@ -34,36 +36,27 @@ export default function AdminHomeScreen({ props, navigation }) {
       .catch((error) => setErrorMessage(error.message));
   };
 
+
   // method call on ExportCSV
   onCreateCSV = async () => {
     firebase.firestore().collection("answers").get().then(async (querySnapshot) => {
       const headerString = 'categoryDropped, question, question1IsCorrect, question1Time, question2IsCorrect, question2Time, sessionNumber, userId \n';
       let rowString = ''
       querySnapshot.forEach((doc) => {
-        rowString = rowString +
-          `${doc.data().categoryDropped},
-        ${doc.data().question},
-        ${doc.data().question1IsCorrect},
-        ${doc.data().question1Time},
-        ${doc.data().question2IsCorrect},
-        ${doc.data().question2Time},
-        ${doc.data().sessionNumber},
-        ${doc.data().userID} \n`;
+        rowString = rowString + `${doc.data().categoryDropped}, ${doc.data().question}, ${doc.data().question1IsCorrect}, ${doc.data().question1Time}, ${doc.data().question2IsCorrect}, ${doc.data().question2Time}, ${doc.data().sessionNumber}, ${doc.data().userID} \n`;
       });
       const csvString = `${headerString}${rowString}`;
-      const { status } = await Permissions.askAsync(Permissions.CAMERA_ROLL);
 
+      const { status } = await Permissions.askAsync(Permissions.CAMERA_ROLL);
       if (status === "granted") {
         const csvFileName = moment().unix(); // generate unique name for csv file
         let fileUri = FileSystem.documentDirectory + `Answers_${csvFileName}.csv`;
-
         await FileSystem.writeAsStringAsync(fileUri, csvString, { encoding: FileSystem.EncodingType.UTF8 }); // save csv at document directory
         // save csv at specific folder
         if (Platform.OS === 'ios') {
           await Sharing.shareAsync(fileUri);
         } 
       }
-
     })
   }
 
@@ -179,3 +172,4 @@ const styles = StyleSheet.create({
     marginVertical: 5,
   },
 });
+
