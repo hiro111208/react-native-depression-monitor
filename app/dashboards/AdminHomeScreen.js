@@ -140,6 +140,7 @@ export default function AdminHomeScreen({ props, navigation }) {
   return (
     <View style={[styles.container]}>
       <View style={[styles.center, styles.shadowEffect, styles.cover]}>
+
         <View style={{ height: "10%" }}></View>
 
         <View style={[{ height: "40%" }, styles.centering]}>
@@ -151,11 +152,13 @@ export default function AdminHomeScreen({ props, navigation }) {
             resizeMode="contain"
             source={require("../assets/hand-logo.png")}
           />
+          
         </View>
 
 
 
         <View style={{ height: "10%" }}>
+
           <TouchableOpacity
             onPress={() => navigation.navigate("TherapyQuestionScreen")}
             style={[styles.centering, styles.optButton, styles.cover]}
