@@ -36,6 +36,8 @@ export default function AdminHomeScreen({ props, navigation }) {
           />
         </View>
 
+
+
         <View style={{ height: "15%" }}>
           <TouchableOpacity
             onPress={() => navigation.navigate("TherapyQuestionScreen")}
@@ -45,6 +47,24 @@ export default function AdminHomeScreen({ props, navigation }) {
               style={[styles.fontStyle, styles.centering, { fontSize: 18 }]}
             >
               Therapy Question Management
+            </Text>
+          </TouchableOpacity>
+
+        </View>
+
+
+        <View style={{ height: "10%" }}></View>
+
+        <View style={{ height: "15%" }}>
+
+          <TouchableOpacity
+            //onPress={() => this.onCreateCSV()}
+            style={[styles.centering, styles.optButton, styles.cover]}
+          >
+            <Text
+              style={[styles.fontStyle, styles.centering, { fontSize: 18 }]}
+            >
+              Export CSV
             </Text>
           </TouchableOpacity>
         </View>
