@@ -112,7 +112,7 @@ export default function AdminHomeScreen({ props, navigation }) {
       const headerString = 'anxious, friendly, overall, paranoid, sad, timeStamp, userId \n';
       let rowString = ''
       querySnapshot.forEach((doc) => {
-        rowString = rowString + `${doc.data().anxious}, ${doc.data().friendly}, ${doc.data().overall}, ${doc.data().paranoid}, ${doc.data().sad}, ${doc.data().timeStamp}, ${doc.data().userID} \n`;
+        rowString = rowString + `${doc.data().anxious}, ${doc.data().friendly}, ${doc.data().overall}, ${doc.data().paranoid}, ${doc.data().sad}, ${doc.data().timeStamp.toDate()}, ${doc.data().userID} \n`;
       });
       const csvString = `${headerString}${rowString}`;
 
