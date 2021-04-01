@@ -52,7 +52,14 @@ export default function AdminHomeScreen({ props, navigation }) {
       const csvString = `${headerString}${rowString}`;
       const { status } = await Permissions.askAsync(Permissions.CAMERA_ROLL);
 
+      if (status === "granted") {
+        const csvFileName = moment().unix(); // generate unique name for csv file
+        let fileUri = FileSystem.documentDirectory + `Answers_${csvFileName}.csv`;
 
+        await FileSystem.writeAsStringAsync(fileUri, csvString, { encoding: FileSystem.EncodingType.UTF8 }); // save csv at document directory
+        // save csv at specific folder
+        await Sharing.shareAsync(fileUri);
+      }
 
     })
   }
@@ -95,7 +102,7 @@ export default function AdminHomeScreen({ props, navigation }) {
         <View style={{ height: "15%" }}>
 
           <TouchableOpacity
-            //onPress={() => this.onCreateCSV()}
+            onPress={() => this.onCreateCSV()}
             style={[styles.centering, styles.optButton, styles.cover]}
           >
             <Text
