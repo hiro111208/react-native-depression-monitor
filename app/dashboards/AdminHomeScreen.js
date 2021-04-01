@@ -20,6 +20,24 @@ export default function AdminHomeScreen({ props, navigation }) {
       .catch((error) => setErrorMessage(error.message));
   };
 
+  // method call on ExportCSV
+  onCreateCSV = async () => {
+    firebase.firestore().collection("answers").get().then(async (querySnapshot) => {
+      let rowString = ''
+      querySnapshot.forEach((doc) => {
+        rowString = rowString +
+          `${doc.data().categoryDropped},
+        ${doc.data().question},
+        ${doc.data().question1IsCorrect},
+        ${doc.data().question1Time},
+        ${doc.data().question2IsCorrect},
+        ${doc.data().question2Time},
+        ${doc.data().sessionNumber},
+        ${doc.data().userID} \n`;
+      });
+    })
+  }
+
   return (
     <View style={[styles.container]}>
       <View style={[styles.center, styles.shadowEffect, styles.cover]}>
