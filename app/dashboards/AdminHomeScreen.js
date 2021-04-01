@@ -104,6 +104,39 @@ export default function AdminHomeScreen({ props, navigation }) {
     })
   }
 
+
+  // method call on ExportCSV
+  onCreateFeelingsCSV = async () => {
+    setLoaded(true);
+    firebase.firestore().collection("feelings").get().then(async (querySnapshot) => {
+      const headerString = 'anxious, friendly, overall, paranoid, sad, timeStamp, userId \n';
+      let rowString = ''
+      querySnapshot.forEach((doc) => {
+        rowString = rowString + `${doc.data().anxious}, ${doc.data().friendly}, ${doc.data().overall}, ${doc.data().paranoid}, ${doc.data().sad}, ${doc.data().timeStamp}, ${doc.data().userID} \n`;
+      });
+      const csvString = `${headerString}${rowString}`;
+
+      const { status } = await Permissions.askAsync(Permissions.CAMERA_ROLL);
+      if (status === "granted") {
+        const csvFileName = moment().unix(); // generate unique name for csv file
+        let fileUri = FileSystem.documentDirectory + `Feelings_${csvFileName}.csv`;
+        await FileSystem.writeAsStringAsync(fileUri, csvString, { encoding: FileSystem.EncodingType.UTF8 }); // save csv at document directory
+        // save csv at specific folder
+        if (Platform.OS === 'ios') {
+          await Sharing.shareAsync(fileUri);
+          setLoaded(false);
+        } else {
+          const asset = await MediaLibrary.createAssetAsync(fileUri)
+          const is_save = await MediaLibrary.createAlbumAsync("Feelings", asset, false);
+          if (is_save.assetCount === 1) {
+            setLoaded(false);
+            ToastAndroid.show('File save successfully', ToastAndroid.SHORT);
+          }
+        }
+      }
+    })
+  }
+
   return (
     <View style={[styles.container]}>
       <View style={[styles.center, styles.shadowEffect, styles.cover]}>
@@ -122,7 +155,7 @@ export default function AdminHomeScreen({ props, navigation }) {
 
 
 
-        <View style={{ height: "15%" }}>
+        <View style={{ height: "10%" }}>
           <TouchableOpacity
             onPress={() => navigation.navigate("TherapyQuestionScreen")}
             style={[styles.centering, styles.optButton, styles.cover]}
@@ -137,9 +170,9 @@ export default function AdminHomeScreen({ props, navigation }) {
         </View>
 
 
-        <View style={{ height: "10%" }}></View>
+        <View style={{ height: "5%" }}></View>
 
-        <View style={{ height: "15%" }}>
+        <View style={{ height: "10%" }}>
 
           {loaded &&
             <CustomProgressBar />
@@ -152,7 +185,27 @@ export default function AdminHomeScreen({ props, navigation }) {
             <Text
               style={[styles.fontStyle, styles.centering, { fontSize: 18 }]}
             >
-              Export CSV
+              Export User Answers to CSV
+            </Text>
+          </TouchableOpacity>
+        </View>
+
+        <View style={{ height: "5%" }}></View>
+
+        <View style={{ height: "10%" }}>
+
+          {loaded &&
+            <CustomProgressBar />
+          }
+
+          <TouchableOpacity
+            onPress={() => this.onCreateFeelingsCSV()}
+            style={[styles.centering, styles.optButton, styles.cover]}
+          >
+            <Text
+              style={[styles.fontStyle, styles.centering, { fontSize: 18 }]}
+            >
+              Export User Feelings to CSV
             </Text>
           </TouchableOpacity>
         </View>
