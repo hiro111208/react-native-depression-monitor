@@ -6,7 +6,8 @@ import {
   Text,
   Button,
   Image,
-  Platform
+  Platform, 
+  ToastAndroid
 } from "react-native";
 
 import firebase from "../database/firebase";
@@ -55,7 +56,13 @@ export default function AdminHomeScreen({ props, navigation }) {
         // save csv at specific folder
         if (Platform.OS === 'ios') {
           await Sharing.shareAsync(fileUri);
-        } 
+        } else {
+          const asset = await MediaLibrary.createAssetAsync(fileUri)
+          const is_save = await MediaLibrary.createAlbumAsync("Answer", asset, false);
+          if (is_save.assetCount === 1) {
+            ToastAndroid.show('File save successfully', ToastAndroid.SHORT);
+          }
+        }
       }
     })
   }
