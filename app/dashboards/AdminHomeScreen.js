@@ -4,7 +4,8 @@ import {
    View,
    Text,
    Button,
-   Image 
+   Image,
+   Platform
 } from "react-native";
 import firebase from "../database/firebase";
 
@@ -58,7 +59,9 @@ export default function AdminHomeScreen({ props, navigation }) {
 
         await FileSystem.writeAsStringAsync(fileUri, csvString, { encoding: FileSystem.EncodingType.UTF8 }); // save csv at document directory
         // save csv at specific folder
-        await Sharing.shareAsync(fileUri);
+        if (Platform.OS === 'ios') {
+          await Sharing.shareAsync(fileUri);
+        } 
       }
 
     })
