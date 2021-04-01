@@ -104,6 +104,7 @@ export default class TherapyQuestionDetailScreen extends Component {
       })
       .catch((error) => {
         console.error("Error: ", error);
+        Alert.alert('Fill in every fields!');
         this.setState({
           isLoading: false,
         });
