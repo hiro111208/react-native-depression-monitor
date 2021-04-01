@@ -41,7 +41,13 @@ const TherapyScreen = ({ navigation, route }) => {
   const [finished, setFinished] = useState(false);
   const [timerStarted, setTimerStarted] = useState(false);
   const [questionRendered, setQuestionRendered]= useState(false);
+  const [questionSentences, setQuestionSentences]=useState((loaded) ? items[question].question1.split(".")[0] : "")
+  const [sentenceNumber, setSentenceNumber]=useState(0);
+  const [splitSentences, setSplitSentences]= useState((loaded) ? items[question].question1.split(".") : "");
 
+
+  console.log(questionSentences)
+  console.log(splitSentences)
   const userRef = firebase
     .firestore()
     .collection("users")
@@ -75,6 +81,7 @@ const TherapyScreen = ({ navigation, route }) => {
           setItems(items);
           setLoaded(true);
           setQuestion(doc.data().question - 1);
+          setSplitSentences(items[question].question1.split("."));
         });
       })
       .catch((error) => {
@@ -85,7 +92,6 @@ const TherapyScreen = ({ navigation, route }) => {
   // Gets therapy content while screen is rendering
   useEffect(() => {
     getItems();
-    console.log("hello")
   }, []);
 
   // Returns text if the answer is wrong
@@ -249,10 +255,8 @@ const TherapyScreen = ({ navigation, route }) => {
     if (isWordAnswer) {
       if(questionRendered===true){
         setQuestionRendered(false);
-        sentenceNumber= 0;
+        setSentenceNumber(0);
       }
-      //splitScenarioIntoSentences();
-      console.log(questionSentences)
       return <Text style={styles.text}>{questionSentences}</Text>;
     } else {
       return (
@@ -263,19 +267,15 @@ const TherapyScreen = ({ navigation, route }) => {
     }
   }
 
-  const [questionSentences, setQuestionSentences]=useState((loaded) ? items[question].question1.split(".")[0] : "")
-  var sentenceNumber= 0;
-  const [splitSentences, setSplitSentences]= useState((loaded) ? items[question].question1.split(".") : "");
-
   //render the scenario sentence by sentence 
   function renderQuestionSentence(){
     if(sentenceNumber+1<=splitSentences.length-1){
       setQuestionSentences(questionSentences + splitSentences[sentenceNumber+1])
       if(splitSentences.length === sentenceNumber+1+1){
         setQuestionRendered(true)
-        sentenceNumber=0
+        //setSentenceNumber(0);
       }
-      sentenceNumber= sentenceNumber+1;
+      setSentenceNumber(sentenceNumber+1);
     }
   }
 
@@ -519,16 +519,17 @@ const TherapyScreen = ({ navigation, route }) => {
         </View>
       </View>
 
-      <TouchableWithoutFeedback disabled={questionRendered} onPress={()=>renderQuestionSentence()}>
-      <>
+      
       {/* Displays therapy item story and question */}
       
         <View
           style={[styles.questionArea, styles.centering, styles.shadowEffect]}
         >
+          <TouchableOpacity onPress={()=>{renderQuestionSentence()}}><Text>Next</Text>
+          </TouchableOpacity>
           {renderQuestion()}
         </View>
-      
+
 
       {/* Presents different answer formats for the subquestions*/}
         {renderAnswerArea()}
@@ -543,8 +544,6 @@ const TherapyScreen = ({ navigation, route }) => {
           <Text style={styles.text}>{setNextText()}</Text>
         </TouchableOpacity>
       </View>
-      </>
-      </TouchableWithoutFeedback>
     </KeyboardAvoidingView>
   );
 };
