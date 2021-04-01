@@ -92,7 +92,7 @@ function LoginScreen(props) {
         .auth()
         .signInWithEmailAndPassword(email, password)
         .then((res) => {
-          if (firebase.auth().currentUser.email == "admin@joyapp.com") {
+          if (firebase.auth().currentUser.email == "admin@hugapp.com") {
             reset();
             props.navigation.navigate("AdminDashboard");
             setIsLoading(false);
