@@ -48,17 +48,26 @@ export default class UserInfo extends Component {
         items.push(doc.data());
       });
 
-      // Filter separate session information into arrays
+      // Filter session answers into separate arrays [ [#1] , [#2] , [#3] , [#4]]
       for (let i = 0; i < 4; i++) {
         console.log("loops", i);
         tempSessions.push(items.filter((item) => item.sessionNumber == i + 1));
 
-        // filter correct questions
+        // if session has been started
         if (tempSessions[i].length > 0) {
+          // filter incorrect questions
           errors.push(
             tempSessions[i].filter(
               (item) =>
                 item.question1IsCorrect != true ||
+                item.question2IsCorrect != true
+            )
+          );
+          //if both questions wrong == 2 errors, push again to increase length of array to match this.
+          errors.push(
+            tempSessions[i].filter(
+              (item) =>
+                item.question1IsCorrect != true &&
                 item.question2IsCorrect != true
             )
           );
@@ -68,15 +77,14 @@ export default class UserInfo extends Component {
             (a, b) => (a = a + b.question1Time),
             0
           );
-          console.log("av1 before push", avg1);
 
-          // Divide total to find average
-          avg1Temp.push(Math.floor(avg1 / tempSessions[i].length));
           const avg2 = tempSessions[i].reduce(
             (a, b) => (a = a + b.question2Time),
             0
           );
 
+          // Divide total to find average
+          avg1Temp.push(Math.floor(avg1 / tempSessions[i].length));
           // Divide total to find average
           avg2Temp.push(Math.floor(avg2 / tempSessions[i].length));
         } else {
@@ -92,8 +100,6 @@ export default class UserInfo extends Component {
       this.setState({ sessions: tempSessions });
       this.setState({ averageTimePerBlockQ1: avg1Temp });
       this.setState({ averageTimePerBlockQ2: avg2Temp });
-      console.log("av1:", this.state.averageTimePerBlockQ1);
-      console.log("av2", this.state.averageTimePerBlockQ2);
     });
   }
 

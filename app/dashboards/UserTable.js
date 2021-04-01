@@ -15,11 +15,6 @@ function UserTable(props) {
     const roundedData1 = [];
     const roundedData2 = [];
 
-    // store averages in string format
-
-    // console.log("r1", roundedData1);
-    // console.log("r2", roundedData2);
-
     //format averages and push to table data
     for (let i = 0; i < 4; i++) {
       // Rounds average to one decimal place
@@ -41,7 +36,6 @@ function UserTable(props) {
     return data;
   };
 
-  // useComponentWillMount(() => setData());
   //upon Mount get UserList
   useEffect(() => {
     const ac = new AbortController();
