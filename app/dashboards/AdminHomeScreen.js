@@ -7,7 +7,9 @@ import {
   Button,
   Image,
   Platform, 
-  ToastAndroid
+  ToastAndroid,
+  ActivityIndicator,
+  Modal,
 } from "react-native";
 
 import firebase from "../database/firebase";
@@ -25,6 +27,9 @@ import moment from 'moment';
 
 export default function AdminHomeScreen({ props, navigation }) {
   const [errorMessage, setErrorMessage] = useState("");
+  const [loaded, setLoaded] = useState(false);
+
+
 
   const signOut = () => {
     firebase
@@ -38,8 +43,38 @@ export default function AdminHomeScreen({ props, navigation }) {
   };
 
 
+
+
+  const CustomProgressBar = ({ visible }) => (
+    <Modal onRequestClose={() => null} transparent={true} visible={visible}>
+      <View style={{ 
+        flex: 1,
+        alignItems: 'center',
+        justifyContent: 'center' 
+      }}>
+        
+        <View style={{
+          borderRadius: 10,
+          padding: 20,
+          backgroundColor: '#fff',
+          elevation: 5,
+          shadowColor: '#000',
+          shadowOffset: { width: 0, height: 2 },
+          shadowOpacity: 0.5,
+          shadowRadius: 2,
+          justifyContent: 'space-evenly'
+        }}>
+          <ActivityIndicator size="large" color="#ffa351ff" />
+          {/* <Text style={{ fontSize: 20, fontWeight: '200', textAlign: 'center', marginTop: 8 }}>Loading</Text> */}
+        </View>
+      </View>
+    </Modal>
+  );
+
+
   // method call on ExportCSV
   onCreateCSV = async () => {
+    setLoaded(true);
     firebase.firestore().collection("answers").get().then(async (querySnapshot) => {
       const headerString = 'categoryDropped, question, question1IsCorrect, question1Time, question2IsCorrect, question2Time, sessionNumber, userId \n';
       let rowString = ''
@@ -56,10 +91,12 @@ export default function AdminHomeScreen({ props, navigation }) {
         // save csv at specific folder
         if (Platform.OS === 'ios') {
           await Sharing.shareAsync(fileUri);
+          setLoaded(false);
         } else {
           const asset = await MediaLibrary.createAssetAsync(fileUri)
           const is_save = await MediaLibrary.createAlbumAsync("Answer", asset, false);
           if (is_save.assetCount === 1) {
+            setLoaded(false);
             ToastAndroid.show('File save successfully', ToastAndroid.SHORT);
           }
         }
@@ -103,6 +140,10 @@ export default function AdminHomeScreen({ props, navigation }) {
         <View style={{ height: "10%" }}></View>
 
         <View style={{ height: "15%" }}>
+
+          {loaded &&
+            <CustomProgressBar />
+          }
 
           <TouchableOpacity
             onPress={() => this.onCreateCSV()}
@@ -178,5 +219,16 @@ const styles = StyleSheet.create({
     elevation: 5,
     marginVertical: 5,
   },
+  loadingSection: {
+    borderRadius: 10,
+    padding: 20,
+    backgroundColor: '#fff',
+    elevation: 5,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.5,
+    shadowRadius: 2,
+    justifyContent: 'space-evenly'
+  }
 });
 
