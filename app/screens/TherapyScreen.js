@@ -162,7 +162,9 @@ const TherapyScreen = ({ navigation, route }) => {
   function renderWordAnswerArea() {
     return (
       <DismissKeyboard>
-        <View style={[styles.answerArea, styles.centering, styles.shadowEffect]}>
+        <View
+          style={[styles.answerArea, styles.centering, styles.shadowEffect]}
+        >
           <Text style={styles.textNote}>Enter the first missing letter</Text>
           <TextInput
             style={styles.input}
@@ -355,14 +357,27 @@ const TherapyScreen = ({ navigation, route }) => {
   // Updates the question index, until the session ends.
   function incrementQuestion() {
     if (question == 17) {
-      saveProgress(user.block + 1, 1, 5);
+      if (user.block == 4) {
+        saveProgress(5, 1, 5);
+      } else {
+        saveProgress(user.block + 1, 0, 5);
+      }
+
       route.params.onGoBack();
       Alert.alert(
         "Congratulations",
         "You have completed therapy set " +
           user.block +
           "! You have earned 5 coins to grow your plant.",
-        [{ text: "OK", onPress: () => navigation.navigate("LogFeelingScreen", {cameFrom: "TherapyScreen"}) }]
+        [
+          {
+            text: "OK",
+            onPress: () =>
+              navigation.navigate("LogFeelingScreen", {
+                cameFrom: "TherapyScreen",
+              }),
+          },
+        ]
       );
     } else {
       setQuestion(question + 1);
