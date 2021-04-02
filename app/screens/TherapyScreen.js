@@ -375,6 +375,7 @@ const TherapyScreen = ({ navigation, route }) => {
             onPress: () =>
               navigation.navigate("LogFeelingScreen", {
                 cameFrom: "TherapyScreen",
+                userData: user,
               }),
           },
         ]
