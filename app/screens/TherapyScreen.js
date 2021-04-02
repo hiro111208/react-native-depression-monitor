@@ -180,7 +180,7 @@ const TherapyScreen = ({ navigation, route }) => {
             placeholder="Enter answer here"
             onChangeText={(value) => checkAnswer(value)}
             maxLength={1}
-            editable={true}
+            editable={sentenceNumber==splitSentences().length-1}
           />
         </View>
       </DismissKeyboard>
@@ -251,7 +251,7 @@ const TherapyScreen = ({ navigation, route }) => {
 
   // renders the question item and the correct word once the word answer is given
   function renderQuestionText() {
-    if (!timerStarted) {
+    if (!timerStarted && !isWordAnswer) {
       startTimer();
     }
     if (isWordAnswer) {
@@ -270,6 +270,9 @@ const TherapyScreen = ({ navigation, route }) => {
 
   //render the next sentence of the scenario
   function renderQuestionSentence(){
+    if(sentenceNumber+1==splitSentences().length-1){
+      startTimer();
+    }
     setSentenceNumber(sentenceNumber+1);
   }
 
@@ -454,7 +457,7 @@ const TherapyScreen = ({ navigation, route }) => {
 
   // Can only press button when all the questions have been answered
   function checkDisabledForNext() {
-    if (isCorrect || isIncorrect) {
+    if (isCorrect || isIncorrect ) {
       return false;
     } else {
       return true;
@@ -656,7 +659,7 @@ const styles = StyleSheet.create({
      height: 40
   },
   nextSentenceText:{
-    fontSize: 18,
+    fontSize: 24,
     fontWeight:"bold"
   }
 });
