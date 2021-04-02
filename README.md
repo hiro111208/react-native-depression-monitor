@@ -28,7 +28,7 @@ Here are the following steps to install the app:
 
 ### Admin Account
 
-Username: `admin@joyapp.com`
+Username: `admin@hugapp.com`
 Password: `AdminP4ssw0rd`
 
 ### Patient Account
