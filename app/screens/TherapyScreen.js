@@ -525,7 +525,10 @@ const TherapyScreen = ({ navigation, route }) => {
           style={[styles.questionArea, styles.shadowEffect]}
         >
           <View>{renderQuestion()}</View>
-          {isWordAnswer && (sentenceNumber!==splitSentences().length-1) && <TouchableOpacity style={styles.nextSentenceButton} onPress={()=>{renderQuestionSentence()}}><Text style={styles.nextSentenceText}>></Text>
+          {isWordAnswer && (sentenceNumber!==splitSentences().length-1) && <TouchableOpacity 
+            style={styles.nextSentenceButton} 
+            onPress={()=>{renderQuestionSentence()}}>
+              <Text style={styles.nextSentenceText}>></Text>
           </TouchableOpacity>}
         </View>
 
@@ -556,7 +559,11 @@ const styles = StyleSheet.create({
     paddingVertical: "5%"
   },
   nextSentenceButton:{
-    //marginTop:"5%"
+    borderColor:"black",
+    borderWidth:1,
+    padding:3,
+    paddingHorizontal:9,
+    borderRadius:5
   },
   topTools:{
     flex:1,
@@ -660,7 +667,7 @@ const styles = StyleSheet.create({
   },
   nextSentenceText:{
     fontSize: 24,
-    fontWeight:"bold"
+    fontWeight:"bold",
   }
 });
 
