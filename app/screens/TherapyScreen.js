@@ -90,7 +90,7 @@ const TherapyScreen = ({ navigation, route }) => {
 
   //Split the scenario text into sentences
   function splitSentences(){
-    if (loaded){return items[question].question1.replace(".", ".#").split("#")}
+    if (loaded){return items[question].question1.split(".")}
     else{
       return []
     }
@@ -256,7 +256,7 @@ const TherapyScreen = ({ navigation, route }) => {
     }
     if (isWordAnswer) {
       return (splitSentences().map((sentence, index) => (
-        <Text style={[styles.text , {opacity:(index<=sentenceNumber) ? 1 : 0}]} key={index}>{sentence}</Text>
+        <Text style={[styles.text , {opacity:(index<=sentenceNumber) ? 1 : 0}]} key={index}>{sentence+"."}</Text>
       ))
       )
     } else {
