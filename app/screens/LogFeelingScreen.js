@@ -33,12 +33,10 @@ function LogFeelingScreen({ navigation, route }) {
     setHappy(1);
     setOverallFeeling("");
     setSad(1);
-    setUser(undefined);
   };
 
   //Store the user's feelings in the database
   function saveFeelings() {
-    getUser();
     firebase
       .firestore()
       .collection("feelings")
