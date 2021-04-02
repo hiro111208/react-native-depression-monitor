@@ -56,7 +56,7 @@ const SupportResources = ({ navigation }) => {
             Asking for help doesn't make you weak - it reveals strength even
             when you don't feel strong.
           </Text>
-          <View style={{ height: "7%" }}></View>
+          <View style={{ height: "3%" }}></View>
           <View
             style={{
               height: "6%",
@@ -221,9 +221,9 @@ const SupportResources = ({ navigation }) => {
             </ScrollView>
           </View>
 
-          <View style={{ height: "3%" }}></View>
+          <View style={{ height: "1%" }}></View>
 
-          <View style={styles.centering}>
+          <View style={{ alignItems: "center", height: 500 }}>
             <Text style={[{ fontSize: 16, padding: 20, textAlign: "center" }]}>
               The research for this project was done by:
             </Text>
