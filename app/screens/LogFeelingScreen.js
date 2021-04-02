@@ -20,26 +20,12 @@ function LogFeelingScreen({ navigation, route }) {
   const [anxious, setAnxious] = useState(1);
   const [sad, setSad] = useState(1);
   const [happy, setHappy] = useState(1);
-  const [user, setUser] = useState(undefined);
 
-  //Get userID corresponding to current user
-  function getUser() {
-    firebase
-      .firestore()
-      .collection("users")
-      .doc(firebase.auth().currentUser.uid)
-      .get()
-      .then((doc) => {
-        setUser(doc.data());
-      })
-      .catch((error) => {
-        console.log("Error getting document:", error);
-      });
-  }
-
-  useEffect(() => {
-    getUser();
-  }, []);
+  const user = route.params.userData;
+  const userRef = firebase
+    .firestore()
+    .collection("users")
+    .doc(firebase.auth().currentUser.uid);
 
   //Reset all states
   const reset = () => {
@@ -67,9 +53,26 @@ function LogFeelingScreen({ navigation, route }) {
       })
       .then(() => {
         console.log("Feelings saved");
+        if (user.question == 0) {
+          incrementQuestion();
+        }
       })
       .catch((error) => {
         console.error("Error saving feelings: ", error);
+      });
+  }
+
+  function incrementQuestion() {
+    userRef
+      .set(
+        {
+          question: 1,
+          lastActive: new Date(),
+        },
+        { merge: true }
+      )
+      .catch((error) => {
+        console.error("Error writing document: ", error);
       });
   }
 

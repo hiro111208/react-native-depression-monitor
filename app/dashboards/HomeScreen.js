@@ -174,6 +174,7 @@ export default function HomeScreen({ route, props, navigation }) {
                 navigation.navigate("LogFeelingScreen", {
                   cameFrom: "HomeScreen",
                   onGoBack: () => refresh(),
+                  userData: user,
                 });
               } else {
                 navigation.navigate("TherapyScreen", {
