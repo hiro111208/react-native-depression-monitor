@@ -7,8 +7,8 @@
     "icon": "./App/assets/icon.png",
     "splash": {
       "image": "./App/assets/splash.png",
-      "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
+      "resizeMode": "cover",
+      "backgroundColor": "#ffa351ff"
     },
     "updates": {
       "fallbackToCacheTimeout": 0
@@ -30,7 +30,7 @@
       "package": "package.android"
     },
     "web": {
-      "favicon": "./App/assets/favicon.png"
+      "favicon": "./App/assets/icon.png"
     }
   }
 }
