@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Platform } from "react-native";
 import {
   Animated,
   StyleSheet,
@@ -104,9 +105,17 @@ export default class ProgressBar extends Component {
             </Animated.View>
           </View>
         </View>
-        <View marginLeft={10} style={styles.progress} padding={1}>
-          <Text style={{ height: 15, width: 30, fontSize: 11 }}>
-            {" "}
+        <View marginLeft={10}>
+          <Text style={{ fontSize: 10, fontWeight: "300" }}>Progress</Text>
+        </View>
+        <View marginLeft={10} style={styles.progress} padding={0}>
+          <View marginLeft={10} width={30}></View>
+          <Text
+            margin={5}
+            style={{ height: 15, width: 30, fontSize: 11 }}
+            adjustsFontSizeToFit={true}
+          >
+            {""}
             {Math.floor((barWidthAfter / this.state.width) * 100)}%
           </Text>
         </View>
@@ -118,8 +127,8 @@ export default class ProgressBar extends Component {
 const styles = StyleSheet.create({
   shadow: {
     shadowColor: "#000",
-    shadowOpacity: 0.3,
-    shadowRadius: 5,
+    shadowOpacity: 0.1,
+    shadowRadius: 1,
   },
   barContainer: {
     opacity: 1,
