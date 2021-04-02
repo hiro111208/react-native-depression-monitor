@@ -9,7 +9,6 @@ import {
   Alert,
   TextInput,
   Image,
-  TouchableWithoutFeedback
 } from "react-native";
 import Constants from "expo-constants";
 import * as Speech from "expo-speech";
@@ -41,7 +40,7 @@ const TherapyScreen = ({ navigation, route }) => {
   const [finished, setFinished] = useState(false);
   const [timerStarted, setTimerStarted] = useState(false);
 
-  const [sentenceNumber, setSentenceNumber]=useState(0);
+  const [sentenceNumber, setSentenceNumber] = useState(0);
 
   const userRef = firebase
     .firestore()
@@ -89,10 +88,11 @@ const TherapyScreen = ({ navigation, route }) => {
   }, []);
 
   //Split the scenario text into sentences
-  function splitSentences(){
-    if (loaded){return items[question].question1.split(".")}
-    else{
-      return []
+  function splitSentences() {
+    if (loaded) {
+      return items[question].question1.split(".");
+    } else {
+      return [];
     }
   }
 
@@ -173,18 +173,29 @@ const TherapyScreen = ({ navigation, route }) => {
   function renderWordAnswerArea() {
     return (
       <DismissKeyboard>
-        <View style={[styles.answerArea, styles.centering, styles.shadowEffect]}>
-          <Text style={styles.textNote}>Enter the first missing letter</Text>
+        <View
+          style={[styles.answerArea, styles.centering, styles.shadowEffect]}
+        >
+          <Text style={styles.textNote}>{renderInstruction()}</Text>
           <TextInput
             style={styles.input}
             placeholder="Enter answer here"
             onChangeText={(value) => checkAnswer(value)}
             maxLength={1}
-            editable={sentenceNumber==splitSentences().length-1}
+            editable={sentenceNumber == splitSentences().length - 1}
           />
         </View>
       </DismissKeyboard>
     );
+  }
+
+  // Renders instruction to if sentences are still missing
+  function renderInstruction() {
+    if (sentenceNumber == splitSentences().length - 1) {
+      return "Enter the first missing letter";
+    } else {
+      return "Press the arrow to continue";
+    }
   }
 
   // Renders answer portion of the screen
@@ -255,10 +266,14 @@ const TherapyScreen = ({ navigation, route }) => {
       startTimer();
     }
     if (isWordAnswer) {
-      return (splitSentences().map((sentence, index) => (
-        <Text style={[styles.text , {opacity:(index<=sentenceNumber) ? 1 : 0}]} key={index}>{sentence+"."}</Text>
-      ))
-      )
+      return splitSentences().map((sentence, index) => (
+        <Text
+          style={[styles.text, { opacity: index <= sentenceNumber ? 1 : 0 }]}
+          key={index}
+        >
+          {sentence + "."}
+        </Text>
+      ));
     } else {
       return (
         <Text style={styles.text}>
@@ -269,13 +284,12 @@ const TherapyScreen = ({ navigation, route }) => {
   }
 
   //render the next sentence of the scenario
-  function renderQuestionSentence(){
-    if(sentenceNumber+1==splitSentences().length-1){
+  function renderQuestionSentence() {
+    if (sentenceNumber + 1 == splitSentences().length - 1) {
       startTimer();
     }
-    setSentenceNumber(sentenceNumber+1);
+    setSentenceNumber(sentenceNumber + 1);
   }
-
 
   // calculates the response time and stores it in milliseconds
   function endTimer() {
@@ -385,7 +399,15 @@ const TherapyScreen = ({ navigation, route }) => {
         "You have completed therapy set " +
           user.block +
           "! You have earned 5 coins to grow your plant.",
-        [{ text: "OK", onPress: () => navigation.navigate("LogFeelingScreen", {cameFrom: "TherapyScreen"}) }]
+        [
+          {
+            text: "OK",
+            onPress: () =>
+              navigation.navigate("LogFeelingScreen", {
+                cameFrom: "TherapyScreen",
+              }),
+          },
+        ]
       );
     } else {
       setQuestion(question + 1);
@@ -457,7 +479,7 @@ const TherapyScreen = ({ navigation, route }) => {
 
   // Can only press button when all the questions have been answered
   function checkDisabledForNext() {
-    if (isCorrect || isIncorrect ) {
+    if (isCorrect || isIncorrect) {
       return false;
     } else {
       return true;
@@ -484,7 +506,10 @@ const TherapyScreen = ({ navigation, route }) => {
 
   // Returns the whole therapy screen interface
   return (
-    <KeyboardAvoidingView style={[styles.container, styles.centering]} behavior="position">
+    <KeyboardAvoidingView
+      style={[styles.container, styles.centering]}
+      behavior="position"
+    >
       {/* Progress bar of the therapy session */}
       <View style={[styles.topTools, styles.top, styles.centering]}>
         <View style={styles.bar}>
@@ -518,23 +543,24 @@ const TherapyScreen = ({ navigation, route }) => {
         </View>
       </View>
 
-      
       {/* Displays therapy item story and question */}
-      
-        <View
-          style={[styles.questionArea, styles.shadowEffect]}
-        >
-          <View>{renderQuestion()}</View>
-          {isWordAnswer && (sentenceNumber!==splitSentences().length-1) && <TouchableOpacity 
-            style={styles.nextSentenceButton} 
-            onPress={()=>{renderQuestionSentence()}}>
-              <Text style={styles.nextSentenceText}>></Text>
-          </TouchableOpacity>}
-        </View>
 
+      <View style={[styles.questionArea, styles.shadowEffect]}>
+        <View>{renderQuestion()}</View>
+        {isWordAnswer && sentenceNumber !== splitSentences().length - 1 && (
+          <TouchableOpacity
+            style={styles.nextSentenceButton}
+            onPress={() => {
+              renderQuestionSentence();
+            }}
+          >
+            <Text style={styles.nextSentenceText}>></Text>
+          </TouchableOpacity>
+        )}
+      </View>
 
       {/* Presents different answer formats for the subquestions*/}
-        {renderAnswerArea()}
+      {renderAnswerArea()}
 
       {/* Button to navigate through the therapy session */}
       <View style={[styles.nextButtonSpace, styles.centering]}>
@@ -555,22 +581,22 @@ const styles = StyleSheet.create({
     marginTop: Constants.statusBarHeight,
     flex: 1,
     backgroundColor: "#ffd390",
-    paddingHorizontal:"7%",
-    paddingVertical: "5%"
+    paddingHorizontal: "7%",
+    paddingVertical: "5%",
   },
-  nextSentenceButton:{
-    borderColor:"black",
-    borderWidth:1,
-    padding:3,
-    paddingHorizontal:9,
-    borderRadius:5
+  nextSentenceButton: {
+    borderColor: "black",
+    borderWidth: 1,
+    padding: 3,
+    paddingHorizontal: 9,
+    borderRadius: 5,
   },
-  topTools:{
-    flex:1,
-    paddingBottom: "5%"
+  topTools: {
+    flex: 1,
+    paddingBottom: "5%",
   },
-  nextButtonSpace:{
-    flex:1,
+  nextButtonSpace: {
+    flex: 1,
   },
   answerButton: {
     height: "20%",
@@ -579,8 +605,8 @@ const styles = StyleSheet.create({
     borderRadius: 10,
   },
   answerArea: {
-    flex:3,
-    justifyContent: "flex-start"
+    flex: 3,
+    justifyContent: "flex-start",
   },
   bar: {
     width: "85%",
@@ -615,16 +641,16 @@ const styles = StyleSheet.create({
     bottom: 0,
   },
   questionArea: {
-    flex:5,
-    height:"100%",
-    width:"100%",
+    flex: 5,
+    height: "100%",
+    width: "100%",
     borderRadius: 50,
     borderWidth: 10,
     borderColor: "#fff",
     backgroundColor: "#eee",
     padding: 30,
-    justifyContent:"space-evenly",
-    alignItems:"center"
+    justifyContent: "space-evenly",
+    alignItems: "center",
   },
   readButton: {
     left: "45%",
@@ -656,19 +682,19 @@ const styles = StyleSheet.create({
   textNote: {
     color: "black",
     fontSize: 18,
-    fontWeight:"bold",
+    fontWeight: "bold",
     textAlign: "center",
     padding: 10,
     flexWrap: "wrap",
   },
   textToSpeech: {
-     width: 35,
-     height: 40
+    width: 35,
+    height: 40,
   },
-  nextSentenceText:{
+  nextSentenceText: {
     fontSize: 24,
-    fontWeight:"bold",
-  }
+    fontWeight: "bold",
+  },
 });
 
 export default TherapyScreen;
