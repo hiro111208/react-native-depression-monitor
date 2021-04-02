@@ -1,6 +1,6 @@
 # Team Rocket Large Group Project
 
-Software Name: `HUG - Help U Grow`\
+Software Name: `HUG - Helping U Grow`\
 \
 HUG is a mental health intervention app designed to deliver treatment for clinical depression and anxiety. HUG also provides content management features for registered administrators.
 
@@ -43,3 +43,5 @@ Once your account has been verified, proceed to the `Log In screen` and `enter y
 
 1. Firebase. 2021. Auth | JavaScript SDK | Firebase. [online] Available at: <https://firebase.google.com/docs/reference/js/firebase.auth.Auth> [Accessed March 2021].
 2. Firebase. 2021. Add data to Cloud Firestore | Firebase. [online] Available at: <https://firebase.google.com/docs/firestore/manage-data/add-data> [Accessed March 2021].
+3. Gillin. M, 2021. HUG App Logo. [photograph] (HUG App Illustrations).
+4. Diaz, J. 2021. Plant Growth Animations [photograph] (HUG App Illustrations).
