@@ -15,28 +15,18 @@ function UserTable(props) {
     const roundedData1 = [];
     const roundedData2 = [];
 
-    // store averages in string format
-    for (let i = 0; i < 4; i++) {
-      roundedData1.push(`${average1[i] / 1000}`.length);
-      roundedData2.push(`${average2[i] / 1000}`.length);
-    }
-
     //format averages and push to table data
     for (let i = 0; i < 4; i++) {
       // Rounds average to one decimal place
       if (average1[i] !== 0) {
-        data[i].push(
-          `${(average1[i] / Math.pow(10, roundedData1[i] - 1)).toFixed(1)}(s)`
-        );
+        data[i].push(`${(average1[i] / 1000).toFixed(2)}(s)`);
       } else {
         data[i].push(0);
       }
 
       // Rounds average to one decimal place
       if (average2[i] !== 0) {
-        data[i].push(
-          `${(average2[i] / Math.pow(10, roundedData2[i] - 1)).toFixed(1)}(s)`
-        );
+        data[i].push(`${(average2[i] / 1000).toFixed(2)}(s)`);
       } else {
         data[i].push(0);
       }
@@ -46,7 +36,21 @@ function UserTable(props) {
     return data;
   };
 
-  useEffect(() => {}, [setData()]);
+  //upon Mount get UserList
+  useEffect(() => {
+    const ac = new AbortController();
+    const sig = ac.signal;
+    Promise.all([
+      setData(),
+      { signal: sig },
+      console.log("in Table "),
+    ]).catch((ex) => console.error(ex));
+    return function cleanup() {
+      console.log("out Tbale");
+      ac.abort();
+    }; // Abort both fetches on unmount
+  }, []);
+
   return (
     <View>
       <View style={styles.container}>

@@ -170,14 +170,16 @@ export default function HomeScreen({ route, props, navigation }) {
           <TouchableOpacity
             style={[styles.sessionArea, styles.centering, styles.shadowEffect]}
             onPress={() => {
-              if (user.question === 1) {
+              if (user.question === 0) {
                 navigation.navigate("LogFeelingScreen", {
                   cameFrom: "HomeScreen",
                   onGoBack: () => refresh(),
+                  userData: user,
                 });
               } else {
                 navigation.navigate("TherapyScreen", {
                   onGoBack: () => refresh(),
+                  question: user.question,
                 });
               }
             }}

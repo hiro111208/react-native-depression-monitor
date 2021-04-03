@@ -20,5 +20,5 @@ Software Name: `HUG - Help U Grow`
 
 ### Admin Account
 
-Username: `admin@joyapp.com`
+Username: `admin@hugapp.com`
 Password: `AdminP4ssw0rd`
