@@ -111,6 +111,19 @@ const TherapyScreen = ({ navigation, route }) => {
     }
   }
 
+  // View to display when therapy is finished
+  function renderFinishedAnswerArea() {
+    return (
+      <View style={[styles.answerArea, styles.centering, styles.shadowEffect]}>
+        <TextInput
+          style={[styles.input, styles.correctHighlight]}
+          value="Well done!"
+          editable={false}
+        />
+      </View>
+    );
+  }
+
   // View to display when answer is correct
   function renderCorrectAnswerArea() {
     return (
@@ -206,7 +219,9 @@ const TherapyScreen = ({ navigation, route }) => {
 
   // Renders answer portion of the screen
   function renderAnswerArea() {
-    if (isCorrect) {
+    if (finished) {
+      return renderFinishedAnswerArea();
+    } else if (isCorrect) {
       return renderCorrectAnswerArea();
     } else if (isIncorrect) {
       return renderIncorrectAnswerArea();
