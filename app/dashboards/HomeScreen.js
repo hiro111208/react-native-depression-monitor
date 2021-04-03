@@ -8,7 +8,7 @@ import {
   TouchableOpacity,
 } from "react-native";
 import firebase from "../database/firebase";
-import * as indexStyles from "../config/indexStyles";
+
 import colors from "../config/colors";
 import { Alert, Platform } from "react-native";
 import * as Permissions from "expo-permissions";
@@ -155,11 +155,7 @@ export default function HomeScreen({ route, props, navigation }) {
             <View style={styles.spacer}></View>
 
             <View
-              style={[
-                styles.plantImage,
-                indexStyles.centering,
-                indexStyles.shadowEffect,
-              ]}
+              style={[styles.plantImage, styles.centering, styles.shadowEffect]}
             >
               <Image
                 style={{ width: "100%", height: "100%" }}
@@ -172,11 +168,7 @@ export default function HomeScreen({ route, props, navigation }) {
           <View style={{ height: "30%" }}></View>
 
           <TouchableOpacity
-            style={[
-              styles.sessionArea,
-              indexStyles.centering,
-              indexStyles.shadowEffect,
-            ]}
+            style={[styles.sessionArea, styles.centering, styles.shadowEffect]}
             onPress={() => {
               if (user.question === 0) {
                 navigation.navigate("LogFeelingScreen", {
@@ -192,15 +184,11 @@ export default function HomeScreen({ route, props, navigation }) {
               }
             }}
           >
-            <Text style={indexStyles.textGrey}>Go to your session</Text>
+            <Text style={styles.textStyle}>Go to your session</Text>
           </TouchableOpacity>
 
           <TouchableOpacity
-            style={[
-              styles.sessionArea,
-              indexStyles.centering,
-              indexStyles.shadowEffect,
-            ]}
+            style={[styles.sessionArea, styles.centering, styles.shadowEffect]}
             onPress={() =>
               navigation.navigate("PlantScreen", {
                 currentUser: user,
@@ -208,7 +196,7 @@ export default function HomeScreen({ route, props, navigation }) {
               })
             }
           >
-            <Text style={indexStyles.textGrey}>Interact with your plant</Text>
+            <Text style={styles.textStyle}>Interact with your plant</Text>
           </TouchableOpacity>
         </View>
       </View>
@@ -217,17 +205,29 @@ export default function HomeScreen({ route, props, navigation }) {
 }
 
 const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    padding: 25,
+    backgroundColor: "#fff",
+  },
   center: {
+    height: "100%",
+    width: "100%",
     alignItems: "center",
   },
   welcomeArea: {
+    width: "100%",
+    height: "100%",
     borderRadius: 50,
     backgroundColor: "#fed8b1",
     alignItems: "center",
     borderWidth: 5,
     borderColor: "#ffeed2",
   },
-  userNoteHeight: {
+  userNote: {
     height: "30%",
     width: "100%",
     backgroundColor: "#ffeed2",
@@ -243,6 +243,22 @@ const styles = StyleSheet.create({
     padding: 10,
     borderRadius: 20,
   },
+  textStyle: {
+    fontSize: 20,
+    fontWeight: "bold",
+    color: "dimgray",
+  },
+  shadowEffect: {
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
+    elevation: 5,
+    marginVertical: 5,
+  },
   spacer: {
     height: "20%",
   },
@@ -251,7 +267,11 @@ const styles = StyleSheet.create({
     height: 225,
     borderRadius: 100,
     borderWidth: 4,
-    borderColor: "white",
+    borderColor: "#fff",
     backgroundColor: "#eee",
+  },
+  centering: {
+    alignItems: "center",
+    justifyContent: "center",
   },
 });
