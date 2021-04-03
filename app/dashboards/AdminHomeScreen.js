@@ -13,10 +13,8 @@ import {
 
 import firebase from "../database/firebase";
 import colors from "../config/colors";
-import * as indexStyles from "../config/indexStyles";
 import { TouchableOpacity } from "react-native";
 import { Touchable } from "react-native";
-//import firebase from "../database/firebase";
 
 import * as FileSystem from "expo-file-system";
 import * as Permissions from "expo-permissions";
@@ -176,8 +174,8 @@ export default function AdminHomeScreen({ props, navigation }) {
       <View style={[styles.center, styles.shadowEffect, styles.cover]}>
         <View style={{ height: "5%" }}></View>
 
-        <View style={[{ height: "40%" }, indexStyles.centering]}>
-          <Text style={[indexStyles.textGrey, { fontSize: 25 }]}>
+        <View style={[{ height: "40%" }, styles.centering]}>
+          <Text style={[styles.fontStyle, { fontSize: 25 }]}>
             Hello, admin!
           </Text>
           <Image
@@ -190,14 +188,10 @@ export default function AdminHomeScreen({ props, navigation }) {
         <View style={{ height: "10%" }}>
           <TouchableOpacity
             onPress={() => navigation.navigate("TherapyQuestionScreen")}
-            style={[indexStyles.centering, styles.optButton, indexStyles.cover]}
+            style={[styles.centering, styles.optButton, styles.cover]}
           >
             <Text
-              style={[
-                indexStyles.textGrey,
-                indexStyles.centering,
-                { fontSize: 18 },
-              ]}
+              style={[styles.fontStyle, styles.centering, { fontSize: 18 }]}
             >
               Therapy Question Management
             </Text>
@@ -240,18 +234,12 @@ export default function AdminHomeScreen({ props, navigation }) {
 
         <View style={{ height: "5%" }}></View>
 
-        <View style={[{ height: "10%" }, indexStyles.centering]}>
+        <View style={[{ height: "10%" }, styles.centering]}>
           <TouchableOpacity
             onPress={() => signOut()}
-            style={[
-              indexStyles.roundButton,
-              indexStyles.shadowEffect,
-              indexStyles.centering,
-            ]}
+            style={[styles.bottomButton, styles.shadowEffect, styles.centering]}
           >
-            <Text style={[indexStyles.textGrey, { fontSize: 17 }]}>
-              Log out
-            </Text>
+            <Text style={[styles.fontStyle, { fontSize: 17 }]}>Log out</Text>
           </TouchableOpacity>
         </View>
       </View>
@@ -260,6 +248,38 @@ export default function AdminHomeScreen({ props, navigation }) {
 }
 
 const styles = StyleSheet.create({
+  bottomButton: {
+    height: "100%",
+    width: "40%",
+    borderRadius: 50,
+    backgroundColor: "#ffeed2",
+    position: "absolute",
+    bottom: 0,
+  },
+  center: {
+    backgroundColor: "#fed8b1",
+    borderRadius: 50,
+    borderWidth: 5,
+    borderColor: "#ffeed2",
+  },
+  centering: {
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  container: {
+    flex: 1,
+    display: "flex",
+    padding: 25,
+    backgroundColor: "#fff",
+  },
+  cover: {
+    height: "100%",
+    width: "100%",
+  },
+  fontStyle: {
+    fontWeight: "bold",
+    color: "dimgray",
+  },
   optButton: {
     backgroundColor: "#ffeed2",
   },
