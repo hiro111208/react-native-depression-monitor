@@ -1,6 +1,6 @@
 import * as React from 'react';
+import { Image } from "react-native";
 import { getFocusedRouteNameFromRoute } from '@react-navigation/native';
-import { Ionicons } from '@expo/vector-icons';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
 import AdminHomeScreen from './AdminHomeScreen';
@@ -30,28 +30,45 @@ export default function AdminDashboard({ navigation, route}) {
 
 
     return (
-            <Tab.Navigator
-                screenOptions={({ route }) => ({
-                    tabBarIcon: ({ focused, color, size }) => {
-                        let iconName;
+        <Tab.Navigator
+            screenOptions={({ route }) => ({
+                tabBarIcon: ({ focused }) => {
+                    let imageSource;
 
-                        if (route.name === 'Home') {
-                            iconName = focused ? 'ios-home' : 'ios-home-outline';
-                        } else if (route.name === 'Users') {
-                            iconName = focused ? 'ios-people' : 'ios-people-outline';
-                        }
+                    switch (route.name) {
+                        case "Home":
+                            imageSource = focused ? require("../assets/home-active.png") : require("../assets/home.png");
+                            break;
+                        case "Users":
+                            imageSource = focused ? require("../assets/account-active.png") : require("../assets/account.png");
+                            break;
+                    }
 
-                        // You can return any component that you like here!
-                        return <Ionicons name={iconName} size={size} color={color} />;
-                    },
-                })}
-                tabBarOptions={{
-                    activeTintColor: 'tomato',
-                    inactiveTintColor: 'gray',
-                }}
-            >
-                <Tab.Screen name="Home" component={AdminHomeScreen} options={{ tabBarLabel: 'Home' }} />
-                <Tab.Screen name="Users" component={AdminUsersScreen} options={{ tabBarLabel: 'Users' }} />
-            </Tab.Navigator>
+                    // You can return any component that you like here!
+                    return (
+                        <Image
+                            source={imageSource}
+                            style={{ height:"85%", width:"15%" }}
+                        />
+                    );
+                },
+            })}
+            tabBarOptions={{
+                activeTintColor: "orange",
+                inactiveTintColor: "gray",
+            }}
+        >
+
+        <Tab.Screen
+            name="Home"
+            component={AdminHomeScreen}
+            options={{ tabBarLabel: "Home" }}
+        />
+        <Tab.Screen
+            name="Users"
+            component={AdminUsersScreen}
+            options={{ tabBarLabel: "Users" }}
+        />
+        </Tab.Navigator>
     );
 }
