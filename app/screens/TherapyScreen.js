@@ -74,7 +74,7 @@ const TherapyScreen = ({ navigation, route }) => {
           });
           setItems(items);
           setLoaded(true);
-          setQuestion(doc.data().question - 1);
+          setQuestion(route.params.question - 1);
         });
       })
       .catch((error) => {

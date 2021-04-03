@@ -179,6 +179,7 @@ export default function HomeScreen({ route, props, navigation }) {
               } else {
                 navigation.navigate("TherapyScreen", {
                   onGoBack: () => refresh(),
+                  question: user.question,
                 });
               }
             }}

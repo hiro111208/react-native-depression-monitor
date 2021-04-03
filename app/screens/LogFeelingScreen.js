@@ -85,6 +85,7 @@ function LogFeelingScreen({ navigation, route }) {
         reset();
         navigation.navigate("TherapyScreen", {
           onGoBack: () => route.params.onGoBack(),
+          question: 1,
         });
       } else {
         saveFeelings();
