@@ -48,7 +48,7 @@ export default function AdminDashboard({ navigation, route }) {
                     return (
                         <Image
                             source={imageSource}
-                            style={{ height:"85%", width:"15%" }}
+                            style={{ maxHeight:"85%", maxWidth:"15%" }}
                         />
                     );
                 },
