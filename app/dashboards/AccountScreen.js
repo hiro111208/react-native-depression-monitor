@@ -1,5 +1,12 @@
 import React, { useState } from "react";
-import { View, Text, Button, StyleSheet, TouchableOpacity } from "react-native";
+import {
+  View,
+  Text,
+  Button,
+  StyleSheet,
+  TouchableOpacity,
+  Image,
+} from "react-native";
 import colors from "../config/colors";
 import * as indexStyles from "../config/indexStyles";
 import firebase from "../database/firebase";
@@ -23,34 +30,51 @@ export default function AccountScreen({ props, navigation }) {
   };
 
   return (
-    <View style={[styles.container, indexStyles.centering]}>
-      <View style={[styles.center, indexStyles.cover]}>
-        <View style={[styles.welcomeArea, indexStyles.shadowEffect]}>
-          <View style={[styles.userNoteHeight, indexStyles.userNote]}>
-            <Text>Log out information here</Text>
-          </View>
-
+    <View style={[styles.container, styles.centering]}>
+      <View style={[styles.center, styles.shadowEffect, styles.cover]}>
+        <View style={{ height: "5%" }}></View>
+        <View style={[{ height: "40%" }, styles.centering]}>
+          <Image
+            style={{ width: 200, height: 200 }}
+            resizeMode="contain"
+            source={require("../assets/hand-logo.png")}
+          />
+        </View>
+        <View style={[{ height: "10%" }]}>
           <TouchableOpacity
-            style={[styles.logout, indexStyles.centering]}
-            onPress={() => signOut()}
+            onPress={() => navigation.navigate("SupportResources")}
+            style={[styles.optButton, styles.cover, styles.centering]}
           >
-            <Text style={indexStyles.textGrey}>Logout</Text>
+            <Text style={[styles.fontStyle, { fontSize: 17 }]}>
+              Support Resources
+            </Text>
           </TouchableOpacity>
         </View>
-
-        <Text />
-        <Text />
-
-        <View style={[styles.welcomeArea, indexStyles.shadowEffect]}>
-          <View style={[styles.userNoteHeight, indexStyles.userNote]}>
-            <Text>Support Resources and research authors</Text>
-          </View>
-
+        <View style={{ height: "2%" }}></View>
+        <View style={[{ height: "10%" }]}>
           <TouchableOpacity
-            style={[styles.logout, indexStyles.centering]}
-            onPress={() => navigation.navigate("SupportResources")}
+            onPress={() => navigation.navigate("DemoScreen")}
+            style={[styles.optButton, styles.cover, styles.centering]}
           >
-            <Text style={indexStyles.textGrey}>Support Resources</Text>
+            <Text style={[styles.fontStyle, { fontSize: 17 }]}>
+              Replay Demo
+            </Text>
+          </TouchableOpacity>
+        </View>
+        <View style={{ height: "23%" }}></View>
+        <View style={[{ height: "10%" }, styles.centering]}>
+          <TouchableOpacity
+            onPress={() => signOut()}
+            style={[
+              styles.optButton,
+              styles.cover,
+              styles.centering,
+              { borderBottomLeftRadius: 40, borderBottomRightRadius: 40 },
+            ]}
+          >
+            <Text style={[styles.fontStyle, { fontSize: 17, color: "black" }]}>
+              LOG OUT
+            </Text>
           </TouchableOpacity>
         </View>
       </View>
@@ -59,31 +83,59 @@ export default function AccountScreen({ props, navigation }) {
 }
 
 const styles = StyleSheet.create({
+  bottomBorder: {
+    height: "100%",
+    width: "40%",
+    borderRadius: 50,
+    backgroundColor: "#ffeed2",
+  },
+  center: {
+    backgroundColor: "#fed8b1",
+    borderRadius: 50,
+    borderWidth: 5,
+    borderColor: "#ffeed2",
+  },
+  centering: {
+    alignItems: "center",
+    justifyContent: "center",
+  },
   container: {
     flex: 1,
     display: "flex",
-    backgroundColor: "white",
-  },
-  center: {
-    alignItems: "center",
     padding: 25,
-  },
-  welcomeArea: {
+    backgroundColor: "#fff",
+    height: "100%",
     width: "100%",
-    height: "45%",
-    borderRadius: 50,
-    alignItems: "center",
   },
-  userNoteHeight: {
-    height: "80%",
-  },
-  logout: {
-    height: "30%",
+  cover: {
+    height: "100%",
     width: "100%",
-    backgroundColor: "#fed8b1",
-    alignItems: "center",
-    borderBottomStartRadius: 50,
-    borderBottomEndRadius: 50,
-    padding: 20,
+  },
+  fontStyle: {
+    fontWeight: "bold",
+    color: "dimgray",
+  },
+  optButton: {
+    backgroundColor: "#ffeed2",
+  },
+  scheduleText: {
+    fontSize: 15,
+  },
+  selectButton: {
+    backgroundColor: "#ffeed2",
+  },
+  shadowEffect: {
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
+    elevation: 5,
+    marginVertical: 5,
+  },
+  textStyle: {
+    fontSize: 18,
   },
 });

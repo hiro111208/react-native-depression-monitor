@@ -15,6 +15,7 @@ import firebase from "../database/firebase";
 
 import DropDownPicker from "react-native-dropdown-picker";
 
+// Screen to display a table of therapy questions in database
 export default class TherapyQuestionScreen extends Component {
   constructor() {
     super();
@@ -85,6 +86,7 @@ export default class TherapyQuestionScreen extends Component {
     });
   };
 
+  // filter therapy questions by categoryDropped
   filterCollection(categoryDropped) {
     this.setState({
       filteredArr: this.state.questionArr.filter(

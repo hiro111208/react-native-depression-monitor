@@ -14,6 +14,7 @@ import { Tooltip } from "react-native-elements";
 
 import colors from "../config/colors";
 import * as indexStyles from "../config/indexStyles";
+import DismissKeyboard from "../config/DismissKeyboard";
 
 const db = firebase.firestore();
 
@@ -49,7 +50,7 @@ function addUserToDatabase(uid) {
         db.collection("users")
           .doc(uid)
           .set({
-            question: 1,
+            question: 0,
             block: 1,
             categoryDropped: "NONE",
             userID: id,
@@ -184,80 +185,89 @@ function SignUpScreen(props) {
 
   //Render the form where the user can input their details
   return (
-    <View style={styles.container}>
-      <TextInput
-        style={indexStyles.inputArea}
-        placeholder="First Name"
-        value={displayName}
-        onChangeText={(val) => setDisplayName(val)}
-      />
-      <TextInput
-        style={indexStyles.inputArea}
-        placeholder="Email"
-        value={email}
-        keyboardType="email-address"
-        onChangeText={(val) => setEmail(val)}
-        testID={"TEST_ID_EMAIL_INPUT"}
-      />
-      <View style={[indexStyles.inputArea, styles.passwordSection]}>
-        <TextInput
-          placeholder="Password"
-          value={password}
-          onChangeText={(val) => setPassword(val)}
-          maxLength={15}
-          autoCorrect={false}
-          secureTextEntry={true}
-          testID={"TEST_ID_PASSWORD_INPUT"}
-          style= {styles.passwordInput}
+    <DismissKeyboard>
+      <View style={styles.container}>
+        <Image
+          resizeMode={"contain"}
+          style={styles.image}
+          source={require("../assets/hand-logo.png")}
         />
-        {/*Render tooltip with password criteria*/}
-        <Tooltip
-          style={styles.passwordTooltip}
-          withOverlay={false}
-          backgroundColor={colors.darkBorder}
-          width={300}
-          height={80}
-          popover={
-            <Text style={styles.passwordInformation}>
-              Password must be 6 to 15 characters long. Can contain any
-              alphaneumeric or special character.
-            </Text>
-          }
-        >
-          <View style={styles.helpArea}>
-            <Image
-              style={styles.image}
-              resizeMode="contain"
-              source={require("../assets/question_mark.png")}
+        <View style={styles.signupFormContainer}>
+          <TextInput
+            style={styles.inputStyle}
+            placeholder="First Name"
+            value={displayName}
+            onChangeText={(val) => setDisplayName(val)}
+          />
+          <TextInput
+            style={styles.inputStyle}
+            placeholder="Email"
+            value={email}
+            keyboardType="email-address"
+            onChangeText={(val) => setEmail(val)}
+            testID={"TEST_ID_EMAIL_INPUT"}
+          />
+          <View style={[styles.inputStyle, styles.passwordSection]}>
+            <TextInput
+              placeholder="Password"
+              value={password}
+              onChangeText={(val) => setPassword(val)}
+              maxLength={15}
+              autoCorrect={false}
+              secureTextEntry={true}
+              testID={"TEST_ID_PASSWORD_INPUT"}
+              style={styles.passwordInput}
             />
+            {/*Render tooltip with password criteria*/}
+            <Tooltip
+              style={styles.passwordTooltip}
+              withOverlay={false}
+              backgroundColor={colors.darkBorder}
+              width={300}
+              height={80}
+              popover={
+                <Text style={styles.passwordInformation}>
+                  Password must be 6 to 15 characters long. Can contain any
+                  alphaneumeric or special character.
+                </Text>
+              }
+            >
+              <View style={styles.helpArea}>
+                <Image
+                  style={styles.imageTooltip}
+                  resizeMode="contain"
+                  source={require("../assets/question_mark.png")}
+                />
+              </View>
+            </Tooltip>
           </View>
-        </Tooltip>
+          {/*Render error messages or success messages*/}
+          <Text style={{ color: "red" }}>{errorMessage}</Text>
+          <Text style={{ color: "red" }}>{message}</Text>
+
+          {/*Render sign up button that calls registerUser method*/}
+          <TouchableOpacity
+            activeOpacity={0.5}
+            style={styles.signupButton}
+            onPress={() => registerUser()}
+            testID={"TEST_ID_SIGNUP_BUTTON"}
+          >
+            <Text style={styles.signupText}>SIGNUP</Text>
+          </TouchableOpacity>
+
+          {/*Render text button that allows user to go to login screen */}
+          <Text
+            style={styles.loginText}
+            onPress={() => {
+              reset();
+              props.navigation.navigate("LoginScreen");
+            }}
+          >
+            Already Registered? Click here to login
+          </Text>
+        </View>
       </View>
-      {/*Render error messages or success messages*/}
-      <Text style={indexStyles.errorMessage}>{errorMessage}</Text>
-      <Text style={indexStyles.errorMessage}>{message}</Text>
-
-      {/*Render sign up button that calls registerUser method*/}
-      <TouchableOpacity
-        activeOpacity={0.5}
-        style={indexStyles.darkButton}
-        onPress={() => registerUser()}
-        testID={"TEST_ID_SIGNUP_BUTTON"}
-      >
-        <Text style={indexStyles.textWhite}>SIGNUP</Text>
-      </TouchableOpacity>
-
-      {/*Render text button that allows user to go to login screen */}
-      <Text
-        style={indexStyles.textButton}
-        onPress={() => {
-          reset();
-          props.navigation.navigate("LoginScreen");
-        }}
-      >
-        Already Registered? Click here to login
-      </Text>
-    </View>
+    </DismissKeyboard>
   );
 }
 export default SignUpScreen;
@@ -265,19 +275,39 @@ export default SignUpScreen;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    display: "flex",
-    flexDirection: "column",
-    justifyContent: "center",
-    padding: 35,
-    backgroundColor: "white",
+    backgroundColor: "#fff",
+    paddingTop: "5%",
+  },
+  signupFormContainer: {
+    flex: 5,
+    paddingHorizontal: "8%",
+    justifyContent: "flex-start",
+  },
+  image: {
+    flex: 3,
+    alignSelf: "center",
+  },
+  inputStyle: {
+    width: "100%",
+    marginBottom: "5%",
+    marginTop: "5%",
+    paddingBottom: "5%",
+    alignSelf: "center",
+    borderColor: "#ccc",
+    borderBottomWidth: 1.5,
+  },
+  loginText: {
+    color: colors.darkBorder,
+    marginTop: 25,
+    textAlign: "center",
   },
   passwordSection: {
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "space-between",
   },
-  passwordInput:{
-    width: "90%"
+  passwordInput: {
+    width: "90%",
   },
   passwordInformation: {
     color: "white",
@@ -287,7 +317,30 @@ const styles = StyleSheet.create({
     width: 300,
     height: 60,
   },
-  image: {
+  preloader: {
+    left: 0,
+    right: 0,
+    top: 0,
+    bottom: 0,
+    position: "absolute",
+    alignItems: "center",
+    justifyContent: "center",
+    backgroundColor: "#fff",
+  },
+  signupButton: {
+    width: "90%",
+    backgroundColor: colors.darkBorder,
+    alignSelf: "center",
+    paddingTop: 15,
+    paddingBottom: 15,
+    borderRadius: 50,
+  },
+  signupText: {
+    color: "white",
+    textAlign: "center",
+    fontSize: 15,
+  },
+  imageTooltip: {
     height: 22,
     width: 44,
   },
@@ -295,5 +348,8 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "flex-end",
     textAlign: "right",
+  },
+  passwordInput: {
+    width: "90%",
   },
 });

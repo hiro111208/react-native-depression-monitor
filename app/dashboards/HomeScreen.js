@@ -146,11 +146,11 @@ export default function HomeScreen({ route, props, navigation }) {
   ///
 
   return (
-    <View style={[indexStyles.containerWhite, indexStyles.centering]}>
-      <View style={[styles.center, indexStyles.cover]}>
-        <View style={[styles.welcomeArea, indexStyles.shadowEffect, indexStyles.cover, styles.center]}>
-          <View style={[styles.userNoteHeight, indexStyles.userNote]}>
-            <Text style={[indexStyles.textGrey]}>Hello there, {displayName}!</Text>
+    <View style={styles.container}>
+      <View style={styles.center}>
+        <View style={[styles.welcomeArea, styles.shadowEffect]}>
+          <View style={styles.userNote}>
+            <Text style={[styles.textStyle]}>Hello there, {displayName}!</Text>
 
             <View style={styles.spacer}></View>
 
@@ -178,14 +178,16 @@ export default function HomeScreen({ route, props, navigation }) {
               indexStyles.shadowEffect,
             ]}
             onPress={() => {
-              if (user.question === 1) {
+              if (user.question === 0) {
                 navigation.navigate("LogFeelingScreen", {
                   cameFrom: "HomeScreen",
                   onGoBack: () => refresh(),
+                  userData: user,
                 });
               } else {
                 navigation.navigate("TherapyScreen", {
                   onGoBack: () => refresh(),
+                  question: user.question,
                 });
               }
             }}
@@ -221,9 +223,18 @@ const styles = StyleSheet.create({
   welcomeArea: {
     borderRadius: 50,
     backgroundColor: "#fed8b1",
+    alignItems: "center",
+    borderWidth: 5,
+    borderColor: "#ffeed2",
   },
   userNoteHeight: {
     height: "30%",
+    width: "100%",
+    backgroundColor: "#ffeed2",
+    alignItems: "center",
+    borderTopStartRadius: 40,
+    borderTopEndRadius: 40,
+    padding: 20,
   },
   sessionArea: {
     height: "17%",

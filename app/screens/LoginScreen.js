@@ -7,10 +7,12 @@ import {
   Alert,
   ActivityIndicator,
   TouchableOpacity,
+  Image,
 } from "react-native";
 import firebase from "../database/firebase";
 import colors from "../config/colors";
 import * as indexStyles from "../config/indexStyles";
+import DismissKeyboard from "../config/DismissKeyboard";
 
 /*
   Screen where users can login to access their dashboards
@@ -37,13 +39,13 @@ function LoginScreen(props) {
 
           // A category hasn't been dropped
           if (userProgress.categoryDropped == "NONE") {
-            props.navigation.navigate("CategoryDrop", {
+            props.navigation.navigate("DemoScreen", {
               user: userProgress,
             });
             setIsLoading(false);
           }
 
-          // Proceeds straight to the dashboard (skipping category)
+          // Proceeds straight to the dashboard (skipping category and demo)
           else {
             props.navigation.navigate("PatientDashboard");
             setIsLoading(false);
@@ -77,6 +79,7 @@ function LoginScreen(props) {
         setIsLoading(false);
         setErrorMessage(error.message);
       });
+    setIsVerified(true);
   };
 
   //Verify user credentials with firebase. If user has verified their email
@@ -91,27 +94,27 @@ function LoginScreen(props) {
         .auth()
         .signInWithEmailAndPassword(email, password)
         .then((res) => {
-          if (firebase.auth().currentUser.email == "admin@joyapp.com") {
+          if (firebase.auth().currentUser.email == "admin@hugapp.com") {
             reset();
             props.navigation.navigate("AdminDashboard");
             setIsLoading(false);
           } else {
-              if (firebase.auth().currentUser.emailVerified) {
-                console.log("User logged-in successfully!");
-                reset();
-                navigateUser(firebase.auth().currentUser.uid);
-              } else {
-                  setIsLoading(false);
-                  setErrorMessage("Your email has not been verified");
-                  setIsVerified(false);
-              }
+            if (firebase.auth().currentUser.emailVerified) {
+              console.log("User logged-in successfully!");
+              reset();
+              navigateUser(firebase.auth().currentUser.uid);
+            } else {
+              setIsLoading(false);
+              setErrorMessage("Your email has not been verified");
+              setIsVerified(false);
             }
+          }
         })
         .catch((error) => {
           console.log(error.code);
           setIsLoading(false);
 
-          switch(error.code) {
+          switch (error.code) {
             case "auth/invalid-email":
               setErrorMessage(`Please enter a valid email.`);
               break;
@@ -119,7 +122,9 @@ function LoginScreen(props) {
               setErrorMessage(`Incorrect password for '${email}'.`);
               break;
             case "auth/user-not-found":
-              setErrorMessage(`No account for '${email}' exists, please sign up with this email.`);
+              setErrorMessage(
+                `No account for '${email}' exists, please sign up with this email.`
+              );
               break;
             default:
               setErrorMessage(error.message);
@@ -147,86 +152,88 @@ function LoginScreen(props) {
   }
   //Render the login screen interface
   return (
-    <View style={styles.container}>
-      {/*Render input fields for email and password*/}
-      <TextInput
-        style={indexStyles.inputArea}
-        placeholder="Email"
-        value={email}
-        keyboardType="email-address"
-        onChangeText={(userEmail) => setEmail(userEmail)}
-        testID={"TEST_ID_EMAIL_INPUT"}
-      />
-      <TextInput
-        style={indexStyles.inputArea}
-        placeholder="Password"
-        value={password}
-        onChangeText={(userPassword) => setPassword(userPassword)}
-        maxLength={15}
-        secureTextEntry={true}
-        testID={"TEST_ID_PASSWORD_INPUT"}
-      />   
+    <DismissKeyboard>
+      <View style={styles.container}>
+        <Image
+          resizeMode={"contain"}
+          style={styles.image}
+          source={require("../assets/hand-logo.png")}
+        />
+        {/*Render input fields for email and password*/}
+        <View style={styles.loginFormContainer}>
+          <TextInput
+            style={styles.inputStyle}
+            placeholder="Email"
+            value={email}
+            keyboardType="email-address"
+            onChangeText={(userEmail) => setEmail(userEmail)}
+            testID={"TEST_ID_EMAIL_INPUT"}
+          />
+          <TextInput
+            style={styles.inputStyle}
+            placeholder="Password"
+            value={password}
+            onChangeText={(userPassword) => setPassword(userPassword)}
+            maxLength={15}
+            secureTextEntry={true}
+            testID={"TEST_ID_PASSWORD_INPUT"}
+          />
 
-      {/*Render text that shows error  messages */}
-      <Text
-        style={indexStyles.errorMessage}
-        testID={"TEST_ID_MESSAGE"} >
-        {errorMessage}
-      </Text>
-
-      {/*Render login button which calls userLogin method and checks credentials in input fields*/}
-      <TouchableOpacity
-        activeOpacity={0.5}
-        style={indexStyles.darkButton}
-        onPress={()=>userLogin()}
-        testID={"TEST_ID_LOGIN_BUTTON"}
-      >
-        <Text style= {indexStyles.textWhite}>
-          LOG IN
-        </Text>
-      </TouchableOpacity>
-
-      {/*Render text to allow user to go to sign up screen*/}
-      <Text
-        style={indexStyles.textButton}
-        onPress={() => {
-          reset(); 
-          props.navigation.navigate("SignupScreen");
-        }}
-        testID={"TEST_ID_SIGNUP_BUTTON"}
-        >
-        Don't have an account? Click here to signup
-      </Text>
-
-      {/*Render text to allow user to go to forgot password screen*/}
-      <Text
-        style={indexStyles.textButton}
-        onPress={() => {
-          reset();
-          props.navigation.navigate("ForgotPasswordScreen");
-        }}
-        testID={"TEST_ID_FORGOT_BUTTON"}
-        >
-        Forgot your password?
-      </Text>
-
-      {/*Render button to send new verification email */}
-      <View> 
-      {!isVerified
-        ? <TouchableOpacity
-            activeOpacity = { 0.5 }
-            style={indexStyles.darkButton}
-            onPress={()=>sendVerificationEmail()}
-            testID={"TEST_ID_VERIFY_BUTTON"}
-          >
-          <Text style= {indexStyles.textWhite}>
-            Send verification email
+          {/*Render text that shows error  messages */}
+          <Text testID={"TEST_ID_MESSAGE"} style={{ color: "red" }}>
+            {errorMessage}
           </Text>
-        </TouchableOpacity>
-        :
-        null}
+
+          {/*Render login button which calls userLogin method and checks credentials in input fields*/}
+          {isVerified ? (
+            <TouchableOpacity
+              activeOpacity={0.5}
+              style={styles.loginButton}
+              onPress={() => userLogin()}
+              testID={"TEST_ID_LOGIN_BUTTON"}
+            >
+              <Text style={styles.signInText}>LOG IN</Text>
+            </TouchableOpacity>
+          ) : null}
+
+          {/*Render button to send new verification email */}
+          {!isVerified ? (
+            <TouchableOpacity
+              activeOpacity={0.5}
+              style={styles.loginButton}
+              onPress={() => sendVerificationEmail()}
+              testID={"TEST_ID_VERIFY_BUTTON"}
+            >
+              <Text style={styles.signInText}>Send verification email</Text>
+            </TouchableOpacity>
+          ) : null}
+
+          {/*Render text to allow user to go to sign up screen*/}
+          <Text
+            style={styles.textButton}
+            onPress={() => {
+              reset();
+              props.navigation.navigate("SignupScreen");
+            }}
+            testID={"TEST_ID_SIGNUP_BUTTON"}
+          >
+            Don't have an account? Click here to signup
+          </Text>
+
+          {/*Render text to allow user to go to forgot password screen*/}
+          <Text
+            style={styles.textButton}
+            onPress={() => {
+              reset();
+              props.navigation.navigate("ForgotPasswordScreen");
+            }}
+            testID={"TEST_ID_FORGOT_BUTTON"}
+          >
+            Forgot your password?
+          </Text>
+        </View>
       </View>
-    </View>
+    </DismissKeyboard>
   );
 }
 
@@ -235,10 +242,53 @@ export default LoginScreen;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    display: "flex",
-    flexDirection: "column",
+    backgroundColor: "#fff",
+    paddingTop: "10%",
+  },
+  loginFormContainer: {
+    flex: 4,
+    padding: "8%",
+  },
+  inputStyle: {
+    width: "100%",
+    marginBottom: 15,
+    marginTop: 15,
+    paddingBottom: 20,
+    alignSelf: "center",
+    borderColor: "#ccc",
+    borderBottomWidth: 1.5,
+  },
+  image: {
+    flex: 3,
+    alignSelf: "center",
+  },
+  loginButton: {
+    width: "90%",
+    backgroundColor: colors.darkBorder,
+    alignSelf: "center",
+    marginTop: 10,
+    paddingTop: 15,
+    paddingBottom: 15,
+    borderRadius: 50,
+  },
+  textButton: {
+    color: colors.darkBorder,
+    marginTop: 25,
+    textAlign: "center",
+  },
+  preloader: {
+    left: 0,
+    right: 0,
+    top: 0,
+    bottom: 0,
+    position: "absolute",
+    alignItems: "center",
     justifyContent: "center",
-    padding: 35,
-    backgroundColor: "white",
+    backgroundColor: "#fff",
+  },
+  signInText: {
+    color: "white",
+    textAlign: "center",
+    fontSize: 15,
   },
 });

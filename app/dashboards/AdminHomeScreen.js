@@ -1,14 +1,34 @@
 import React, { useState } from "react";
-import { StyleSheet, View, Text, Button, Image } from "react-native";
+import {
+  StyleSheet,
+  View,
+  Text,
+  Button,
+  Image,
+  Platform,
+  ToastAndroid,
+  ActivityIndicator,
+  Modal,
+} from "react-native";
 
+import firebase from "../database/firebase";
 import colors from "../config/colors";
 import * as indexStyles from "../config/indexStyles";
 import { TouchableOpacity } from "react-native";
 import { Touchable } from "react-native";
-import firebase from "../database/firebase";
+//import firebase from "../database/firebase";
+
+import * as FileSystem from "expo-file-system";
+import * as Permissions from "expo-permissions";
+import * as MediaLibrary from "expo-media-library";
+import * as Sharing from "expo-sharing";
+import moment from "moment";
 
 export default function AdminHomeScreen({ props, navigation }) {
   const [errorMessage, setErrorMessage] = useState("");
+
+  //loading screen trigger
+  const [loaded, setLoaded] = useState(false);
 
   const signOut = () => {
     firebase
@@ -21,10 +41,140 @@ export default function AdminHomeScreen({ props, navigation }) {
       .catch((error) => setErrorMessage(error.message));
   };
 
+  //Loading screen executed via trigger
+  const CustomProgressBar = ({ visible }) => (
+    <Modal onRequestClose={() => null} transparent={true} visible={visible}>
+      <View
+        style={{
+          flex: 1,
+          alignItems: "center",
+          justifyContent: "center",
+        }}
+      >
+        <View
+          style={{
+            borderRadius: 10,
+            padding: 20,
+            backgroundColor: "#fff",
+            elevation: 5,
+            shadowColor: "#000",
+            shadowOffset: { width: 0, height: 2 },
+            shadowOpacity: 0.5,
+            shadowRadius: 2,
+            justifyContent: "space-evenly",
+          }}
+        >
+          <ActivityIndicator size="large" color="#ffa351ff" />
+          {/* <Text style={{ fontSize: 20, fontWeight: '200', textAlign: 'center', marginTop: 8 }}>Loading</Text> */}
+        </View>
+      </View>
+    </Modal>
+  );
+
+  // method call on Export answers data to CSV folder
+  onCreateAnswersCSV = async () => {
+    setLoaded(true);
+    firebase
+      .firestore()
+      .collection("answers")
+      .get()
+      .then(async (querySnapshot) => {
+        const headerString =
+          "userId, categoryDropped, question, question1IsCorrect, question1Time, question2IsCorrect, question2Time, sessionNumber \n";
+        let rowString = "";
+        querySnapshot.forEach((doc) => {
+          rowString =
+            rowString +
+            ` ${doc.data().userID}, ${doc.data().categoryDropped}, ${
+              doc.data().question
+            }, ${doc.data().question1IsCorrect}, ${doc.data().question1Time}, ${
+              doc.data().question2IsCorrect
+            }, ${doc.data().question2Time}, ${doc.data().sessionNumber} \n`;
+        });
+        const csvString = `${headerString}${rowString}`;
+
+        const { status } = await Permissions.askAsync(Permissions.CAMERA_ROLL);
+        if (status === "granted") {
+          const csvFileName = moment().unix(); // generate unique name for csv file
+          let fileUri =
+            FileSystem.documentDirectory + `Answers_${csvFileName}.csv`;
+          await FileSystem.writeAsStringAsync(fileUri, csvString, {
+            encoding: FileSystem.EncodingType.UTF8,
+          }); // save csv at document directory
+          // save csv at specific folder
+          if (Platform.OS === "ios") {
+            await Sharing.shareAsync(fileUri);
+            setLoaded(false);
+          } else {
+            const asset = await MediaLibrary.createAssetAsync(fileUri);
+            const is_save = await MediaLibrary.createAlbumAsync(
+              "Answer",
+              asset,
+              false
+            );
+            if (is_save.assetCount === 1) {
+              setLoaded(false);
+              ToastAndroid.show("File save successfully", ToastAndroid.SHORT);
+            }
+          }
+        }
+      });
+  };
+
+  // method call on Export feelings data to CSV folder
+  onCreateFeelingsCSV = async () => {
+    setLoaded(true);
+    firebase
+      .firestore()
+      .collection("feelings")
+      .get()
+      .then(async (querySnapshot) => {
+        const headerString =
+          "userId, overall, anxious, happy, sad, timeStamp \n";
+        let rowString = "";
+        querySnapshot.forEach((doc) => {
+          rowString =
+            rowString +
+            ` ${doc.data().userID}, ${doc.data().overall}, ${
+              doc.data().anxious
+            }, ${doc.data().happy}, ${
+              doc.data().sad
+            }, ${doc.data().timeStamp.toDate()} \n`;
+        });
+        const csvString = `${headerString}${rowString}`;
+
+        const { status } = await Permissions.askAsync(Permissions.CAMERA_ROLL);
+        if (status === "granted") {
+          const csvFileName = moment().unix(); // generate unique name for csv file
+          let fileUri =
+            FileSystem.documentDirectory + `Feelings_${csvFileName}.csv`;
+          await FileSystem.writeAsStringAsync(fileUri, csvString, {
+            encoding: FileSystem.EncodingType.UTF8,
+          }); // save csv at document directory
+          // save csv at specific folder
+          if (Platform.OS === "ios") {
+            await Sharing.shareAsync(fileUri);
+            setLoaded(false);
+          } else {
+            const asset = await MediaLibrary.createAssetAsync(fileUri);
+            const is_save = await MediaLibrary.createAlbumAsync(
+              "Feelings",
+              asset,
+              false
+            );
+            if (is_save.assetCount === 1) {
+              setLoaded(false);
+              ToastAndroid.show("File save successfully", ToastAndroid.SHORT);
+            }
+          }
+        }
+      });
+  };
+
   return (
-    <View style={[indexStyles.containerWhite]}>
-      <View style={[indexStyles.containerOrange, indexStyles.shadowEffect, indexStyles.cover]}>
-        <View style={{ height: "10%" }}></View>
+    <View style={[styles.container]}>
+      <View style={[styles.center, styles.shadowEffect, styles.cover]}>
+        <View style={{ height: "5%" }}></View>
 
         <View style={[{ height: "40%" }, indexStyles.centering]}>
           <Text style={[indexStyles.textGrey, { fontSize: 25 }]}>
@@ -37,27 +187,71 @@ export default function AdminHomeScreen({ props, navigation }) {
           />
         </View>
 
-        <View style={{ height: "15%" }}>
+        <View style={{ height: "10%" }}>
           <TouchableOpacity
             onPress={() => navigation.navigate("TherapyQuestionScreen")}
             style={[indexStyles.centering, styles.optButton, indexStyles.cover]}
           >
             <Text
-              style={[indexStyles.textGrey, indexStyles.centering, { fontSize: 18 }]}
+              style={[
+                indexStyles.textGrey,
+                indexStyles.centering,
+                { fontSize: 18 },
+              ]}
             >
               Therapy Question Management
             </Text>
           </TouchableOpacity>
         </View>
 
-        <View style={{ height: "22%" }}></View>
+        <View style={{ height: "5%" }}></View>
+
+        <View style={{ height: "10%" }}>
+          {loaded && <CustomProgressBar />}
+
+          <TouchableOpacity
+            onPress={() => this.onCreateAnswersCSV()}
+            style={[styles.centering, styles.optButton, styles.cover]}
+          >
+            <Text
+              style={[styles.fontStyle, styles.centering, { fontSize: 18 }]}
+            >
+              Export User Answers to CSV
+            </Text>
+          </TouchableOpacity>
+        </View>
+
+        <View style={{ height: "5%" }}></View>
+
+        <View style={{ height: "10%" }}>
+          {loaded && <CustomProgressBar />}
+
+          <TouchableOpacity
+            onPress={() => this.onCreateFeelingsCSV()}
+            style={[styles.centering, styles.optButton, styles.cover]}
+          >
+            <Text
+              style={[styles.fontStyle, styles.centering, { fontSize: 18 }]}
+            >
+              Export User Feelings to CSV
+            </Text>
+          </TouchableOpacity>
+        </View>
+
+        <View style={{ height: "5%" }}></View>
 
         <View style={[{ height: "10%" }, indexStyles.centering]}>
           <TouchableOpacity
             onPress={() => signOut()}
-            style={[indexStyles.roundButton, indexStyles.shadowEffect, indexStyles.centering]}
+            style={[
+              indexStyles.roundButton,
+              indexStyles.shadowEffect,
+              indexStyles.centering,
+            ]}
           >
-            <Text style={[indexStyles.textGrey, { fontSize: 17 }]}>Log out</Text>
+            <Text style={[indexStyles.textGrey, { fontSize: 17 }]}>
+              Log out
+            </Text>
           </TouchableOpacity>
         </View>
       </View>
@@ -68,5 +262,27 @@ export default function AdminHomeScreen({ props, navigation }) {
 const styles = StyleSheet.create({
   optButton: {
     backgroundColor: "#ffeed2",
+  },
+  shadowEffect: {
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 1,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 3,
+    elevation: 5,
+    marginVertical: 5,
+  },
+  loadingSection: {
+    borderRadius: 10,
+    padding: 20,
+    backgroundColor: "#fff",
+    elevation: 5,
+    shadowColor: "#000",
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.5,
+    shadowRadius: 2,
+    justifyContent: "space-evenly",
   },
 });
