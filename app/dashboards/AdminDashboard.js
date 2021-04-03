@@ -1,25 +1,25 @@
-import * as React from 'react';
+import * as React from "react";
 import { Image } from "react-native";
-import { getFocusedRouteNameFromRoute } from '@react-navigation/native';
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { getFocusedRouteNameFromRoute } from "@react-navigation/native";
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 
-import AdminHomeScreen from './AdminHomeScreen';
-import AdminUsersScreen from './AdminUsersScreen';
+import AdminHomeScreen from "./AdminHomeScreen";
+import AdminUsersScreen from "./AdminUsersScreen";
 
 
 const Tab = createBottomTabNavigator();
 
 function getHeaderTitle(route) {
-    // If the focused route is not found, we need to assume it's the initial screen
-    // This can happen during if there hasn't been any navigation inside the screen
-    // In our case, it's "Home" as that's the first screen inside the navigator
-    const routeName = getFocusedRouteNameFromRoute(route) ?? 'Home';
+    // If the focused route is not found, we need to assume it"s the initial screen
+    // This can happen during if there hasn"t been any navigation inside the screen
+    // In our case, it"s "Home" as that"s the first screen inside the navigator
+    const routeName = getFocusedRouteNameFromRoute(route) ?? "Home";
 
     switch (routeName) {
-        case 'Home':
-            return 'Home';
-        case 'Users':
-            return 'Users';
+        case "Home":
+            return "Home";
+        case "Users":
+            return "Users";
     }
 }
 
