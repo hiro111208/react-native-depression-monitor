@@ -14,6 +14,8 @@ import DateTimePicker from "@react-native-community/datetimepicker";
 import firebase from "../database/firebase";
 import moment from "moment";
 
+
+
 /**
  * Screen to allow patients to schedule notifications
  */
