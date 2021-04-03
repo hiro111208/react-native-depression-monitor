@@ -32,8 +32,6 @@ export default function AdminHomeScreen({ props, navigation }) {
   //loading screen trigger
   const [loaded, setLoaded] = useState(false);
 
-
-
   const signOut = () => {
     firebase
       .auth()
@@ -79,10 +77,10 @@ export default function AdminHomeScreen({ props, navigation }) {
   onCreateAnswersCSV = async () => {
     setLoaded(true);
     firebase.firestore().collection("answers").get().then(async (querySnapshot) => {
-      const headerString = 'categoryDropped, question, question1IsCorrect, question1Time, question2IsCorrect, question2Time, sessionNumber, userId \n';
+      const headerString = 'userId, categoryDropped, question, question1IsCorrect, question1Time, question2IsCorrect, question2Time, sessionNumber \n';
       let rowString = ''
       querySnapshot.forEach((doc) => {
-        rowString = rowString + `${doc.data().categoryDropped}, ${doc.data().question}, ${doc.data().question1IsCorrect}, ${doc.data().question1Time}, ${doc.data().question2IsCorrect}, ${doc.data().question2Time}, ${doc.data().sessionNumber}, ${doc.data().userID} \n`;
+        rowString = rowString + ` ${doc.data().userID}, ${doc.data().categoryDropped}, ${doc.data().question}, ${doc.data().question1IsCorrect}, ${doc.data().question1Time}, ${doc.data().question2IsCorrect}, ${doc.data().question2Time}, ${doc.data().sessionNumber} \n`;
       });
       const csvString = `${headerString}${rowString}`;
 
