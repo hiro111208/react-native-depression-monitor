@@ -11,8 +11,6 @@ import firebase from "../database/firebase";
 import FeelingsRadioButtons from "../src/components/FeelingsRadioButtons";
 import FeelingsSlider from "../src/components/FeelingsSlider";
 import colors from "../config/colors";
-import * as indexStyles from "../config/indexStyles";
-
 /**
  * Screen where the user logs their feelings. Users will
  * log their feelings before and after their therapy
@@ -101,7 +99,7 @@ function LogFeelingScreen({ navigation, route }) {
   return (
     <View style={styles.container}>
       {/* Render header  */}
-      <View style={[styles.header, indexStyles.centering]}>
+      <View style={[styles.header, styles.centering]}>
         <Text style={styles.headerText}>How are you feeling?</Text>
       </View>
 
@@ -118,8 +116,8 @@ function LogFeelingScreen({ navigation, route }) {
           <FeelingsSlider setFeelingState={setAnxious} feelingState={anxious} />
         </View>
 
-        <View style={[styles.topAndBottom, indexStyles.centering]}>
-          <Text style={indexStyles.textGrey}>Sad</Text>
+        <View style={[styles.topAndBottom, styles.centering]}>
+          <Text style={styles.text}>Sad</Text>
           <FeelingsSlider setFeelingState={setSad} feelingState={sad} />
         </View>
 
@@ -131,7 +129,7 @@ function LogFeelingScreen({ navigation, route }) {
 
       {/* Render Continue button  */}
       <TouchableOpacity
-        style={[styles.continueButton, indexStyles.centering]}
+        style={[styles.continueButton, styles.centering]}
         onPress={() => {
           handleOnContinuePress();
         }}
@@ -149,6 +147,10 @@ const styles = StyleSheet.create({
     color: "white",
     fontSize: 20,
     fontWeight: "bold",
+  },
+  centering: {
+    alignItems: "center",
+    justifyContent: "center",
   },
   header: {
     backgroundColor: colors.darkBorder,
@@ -180,6 +182,12 @@ const styles = StyleSheet.create({
     borderColor: colors.darkBorder,
     borderWidth: 2,
     width: "100%",
+  },
+  text: {
+    color: "grey",
+    fontSize: 18,
+    fontWeight: "bold",
+    textAlign: "center",
   },
   topAndBottom: {
     marginTop: 10,
