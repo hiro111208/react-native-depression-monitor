@@ -80,7 +80,7 @@ const TherapyScreen = ({ navigation, route }) => {
           });
           setItems(items);
           setLoaded(true);
-          setQuestion(doc.data().question - 1);
+          setQuestion(route.params.question - 1);
         });
       })
       .catch((error) => {
@@ -95,7 +95,7 @@ const TherapyScreen = ({ navigation, route }) => {
 
   //Split the scenario text into sentences
   function splitSentences() {
-    if (loaded) {
+    if (loaded && !finished) {
       return items[question].question1.split(".");
     } else {
       return [];
@@ -109,6 +109,19 @@ const TherapyScreen = ({ navigation, route }) => {
     } else {
       return items[question].answer2;
     }
+  }
+
+  // View to display when therapy is finished
+  function renderFinishedAnswerArea() {
+    return (
+      <View style={[styles.answerArea, styles.centering, styles.shadowEffect]}>
+        <TextInput
+          style={[styles.input, styles.correctHighlight]}
+          value="Well done!"
+          editable={false}
+        />
+      </View>
+    );
   }
 
   // View to display when answer is correct
@@ -206,7 +219,9 @@ const TherapyScreen = ({ navigation, route }) => {
 
   // Renders answer portion of the screen
   function renderAnswerArea() {
-    if (isCorrect) {
+    if (finished) {
+      return renderFinishedAnswerArea();
+    } else if (isCorrect) {
       return renderCorrectAnswerArea();
     } else if (isIncorrect) {
       return renderIncorrectAnswerArea();
@@ -291,7 +306,9 @@ const TherapyScreen = ({ navigation, route }) => {
 
   //render the next sentence of the scenario
   function renderQuestionSentence() {
-    if (sentenceNumber + 1 == splitSentences().length - 1) {
+    if (finished) {
+      navigation.goBack();
+    } else if (sentenceNumber + 1 == splitSentences().length - 1) {
       startTimer();
     }
     setSentenceNumber(sentenceNumber + 1);
@@ -398,7 +415,12 @@ const TherapyScreen = ({ navigation, route }) => {
   // Updates the question index, until the session ends.
   function incrementQuestion() {
     if (question == 17) {
-      saveProgress(user.block + 1, 1, 5);
+      if (user.block == 4) {
+        saveProgress(5, 1, 5);
+      } else {
+        saveProgress(user.block + 1, 0, 5);
+      }
+
       route.params.onGoBack();
       Alert.alert(
         "Congratulations",
@@ -411,6 +433,7 @@ const TherapyScreen = ({ navigation, route }) => {
             onPress: () =>
               navigation.navigate("LogFeelingScreen", {
                 cameFrom: "TherapyScreen",
+                userData: user,
               }),
           },
         ]
