@@ -23,7 +23,8 @@ function getHeaderTitle(route) {
     }
 }
 
-export default function AdminDashboard({ navigation, route}) {
+export default function AdminDashboard({ navigation, route }) {
+    
     React.useLayoutEffect(() => {
         navigation.setOptions({ headerTitle: getHeaderTitle(route) });
     }, [navigation, route]);
