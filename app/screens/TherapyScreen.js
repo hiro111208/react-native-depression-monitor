@@ -449,9 +449,9 @@ const TherapyScreen = ({ navigation, route }) => {
   function incrementQuestion() {
     if (question == 17) {
       if (user.block == 4) {
-        saveProgress(5, 1, 5);
+        saveProgress(5, 1, 10);
       } else {
-        saveProgress(user.block + 1, 0, 5);
+        saveProgress(user.block + 1, 0, 10);
       }
 
       route.params.onGoBack();
@@ -459,7 +459,7 @@ const TherapyScreen = ({ navigation, route }) => {
         "Congratulations",
         "You have completed therapy set " +
           user.block +
-          "! You have earned 5 coins to grow your plant.",
+          "! You have earned 10 coins to grow your plant.",
         [
           {
             text: "OK",
