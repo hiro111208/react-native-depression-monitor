@@ -46,7 +46,6 @@ const TherapyScreen = ({ navigation, route }) => {
   const [user, setUser] = useState(undefined);
   const [finished, setFinished] = useState(false);
   const [timerStarted, setTimerStarted] = useState(false);
-
   const [sentenceNumber, setSentenceNumber] = useState(0);
 
   const userRef = firebase
@@ -500,11 +499,12 @@ const TherapyScreen = ({ navigation, route }) => {
   function addAnswer(q1, a1, q2, a2) {
     console.log(q1);
     console.log(q2);
+    const arm = user.categoryDropped == "CONTROL" ? "ARM-2" : "ARM-1";
     answerRef
       .add({
         userID: user.userID,
         question: question + 1,
-        categoryDropped: user.categoryDropped,
+        categoryDropped: arm,
         sessionNumber: user.block,
         question1Time: q1,
         question1IsCorrect: a1,
