@@ -110,10 +110,10 @@ export default function AdminHomeScreen({ props, navigation }) {
   onCreateFeelingsCSV = async () => {
     setLoaded(true);
     firebase.firestore().collection("feelings").get().then(async (querySnapshot) => {
-      const headerString = 'anxious, friendly, overall, paranoid, sad, timeStamp, userId \n';
+      const headerString = 'userId, anxious, friendly, overall, paranoid, sad, timeStamp \n';
       let rowString = ''
       querySnapshot.forEach((doc) => {
-        rowString = rowString + `${doc.data().anxious}, ${doc.data().friendly}, ${doc.data().overall}, ${doc.data().paranoid}, ${doc.data().sad}, ${doc.data().timeStamp.toDate()}, ${doc.data().userID} \n`;
+        rowString = rowString + ` ${doc.data().userID}, ${doc.data().anxious}, ${doc.data().friendly}, ${doc.data().overall}, ${doc.data().paranoid}, ${doc.data().sad}, ${doc.data().timeStamp.toDate()} \n`;
       });
       const csvString = `${headerString}${rowString}`;
 
