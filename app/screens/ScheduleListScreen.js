@@ -65,19 +65,7 @@ class ScheduleListScreen extends Component {
     let hours = date_ob.getHours();
     let minutes = date_ob.getMinutes();
     let seconds = date_ob.getSeconds();
-    return (
-      year +
-      "-" +
-      month +
-      "-" +
-      date +
-      " " +
-      hours +
-      ":" +
-      minutes +
-      ":" +
-      seconds
-    );
+    return year + "-" + month + "-" + date + " " + hours + ":" + minutes;
   }
 
   // Returns an alert upon deleting a schedule
@@ -104,64 +92,65 @@ class ScheduleListScreen extends Component {
       this.props.navigation.navigate("ScheduleListScreen");
     });
   }
- 
- 
-scheduleNotification1 = async () => {
-  var n1 = new Date(scheduleDateTime);
-  let notificationId = Notifications.scheduleLocalNotificationAsync(
-    {
-      title: "HUG",
-      body: 'The first set of questions is out now!',
-    },
-    {
-      time: n1.setDate(n1.getDate()),
-    },
-  );
-  console.log(notificationId);
-};
 
-scheduleNotification2 = async () => {
-  var n2 = new Date(scheduleDateTime);
-  let notificationId = Notifications.scheduleLocalNotificationAsync(
-    {
-      title: "HUG",
-      body: '“The secret of getting ahead is getting started.” The 2nd set of question is out now',
-    },
-    {
-      time: n2.setDate(n2.getDate() + 7),
-    },
-  );
-  console.log(notificationId);
-};
+  scheduleNotification1 = async () => {
+    var n1 = new Date(scheduleDateTime);
+    let notificationId = Notifications.scheduleLocalNotificationAsync(
+      {
+        title: "HUG",
+        body: "The first set of questions is out now!",
+      },
+      {
+        time: n1.setDate(n1.getDate()),
+      }
+    );
+    console.log(notificationId);
+  };
 
-scheduleNotification3 = async () => {
-  var n3 = new Date(scheduleDateTime);
-  let notificationId = Notifications.scheduleLocalNotificationAsync(
-    {
-      title: "HUG",
-      body: '“All our dreams can come true, if we have the courage to pursue them.”The 3rd set of question is out now',
-    },
-    {
-      time: n3.setDate(n3.getDate() + 14),
-    },
-  );
-  console.log(notificationId);
-};
+  scheduleNotification2 = async () => {
+    var n2 = new Date(scheduleDateTime);
+    let notificationId = Notifications.scheduleLocalNotificationAsync(
+      {
+        title: "HUG",
+        body:
+          "“The secret of getting ahead is getting started.” The 2nd set of question is out now",
+      },
+      {
+        time: n2.setDate(n2.getDate() + 7),
+      }
+    );
+    console.log(notificationId);
+  };
 
-scheduleNotification4 = async () => {
-  var n4 = new Date(scheduleDateTime);
-  let notificationId = Notifications.scheduleLocalNotificationAsync(
-    {
-      title: "HUG",
-      body: '“Start where you are. Use what you have. Do what you can.” The final set of question is out now',
-    },
-    {
-      time: n4.setDate(n4.getDate() + 21),
-    },
-  );
-  console.log(notificationId);
-};
+  scheduleNotification3 = async () => {
+    var n3 = new Date(scheduleDateTime);
+    let notificationId = Notifications.scheduleLocalNotificationAsync(
+      {
+        title: "HUG",
+        body:
+          "“All our dreams can come true, if we have the courage to pursue them.”The 3rd set of question is out now",
+      },
+      {
+        time: n3.setDate(n3.getDate() + 14),
+      }
+    );
+    console.log(notificationId);
+  };
 
+  scheduleNotification4 = async () => {
+    var n4 = new Date(scheduleDateTime);
+    let notificationId = Notifications.scheduleLocalNotificationAsync(
+      {
+        title: "HUG",
+        body:
+          "“Start where you are. Use what you have. Do what you can.” The final set of question is out now",
+      },
+      {
+        time: n4.setDate(n4.getDate() + 21),
+      }
+    );
+    console.log(notificationId);
+  };
 
   render() {
     if (this.state.isLoading) {
@@ -210,7 +199,11 @@ scheduleNotification4 = async () => {
           <View style={[styles.backContainer, indexStyles.centering]}>
             <TouchableOpacity
               onPress={() => this.props.navigation.goBack()}
-              style={[styles.backButton, indexStyles.centering, indexStyles.shadowEffect]}
+              style={[
+                styles.backButton,
+                indexStyles.centering,
+                indexStyles.shadowEffect,
+              ]}
             >
               <Text style={styles.backText}>Go back</Text>
             </TouchableOpacity>
