@@ -583,7 +583,7 @@ const TherapyScreen = ({ navigation, route }) => {
               renderQuestionSentence();
             }}
           >
-            <Text style={styles.nextSentenceText}></Text>
+            <Text style={styles.nextSentenceText}>></Text>
           </TouchableOpacity>
         )}
       </View>
