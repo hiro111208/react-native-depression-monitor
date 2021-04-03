@@ -7,7 +7,7 @@ import {
   Alert,
   ActivityIndicator,
   TouchableOpacity,
-  Image
+  Image,
 } from "react-native";
 import firebase from "../database/firebase";
 import colors from "../config/colors";
@@ -78,6 +78,7 @@ function LoginScreen(props) {
         setIsLoading(false);
         setErrorMessage(error.message);
       });
+    setIsVerified(true);
   };
 
   //Verify user credentials with firebase. If user has verified their email
@@ -120,7 +121,9 @@ function LoginScreen(props) {
               setErrorMessage(`Incorrect password for '${email}'.`);
               break;
             case "auth/user-not-found":
-              setErrorMessage(`No account for '${email}' exists, please sign up with this email.`);
+              setErrorMessage(
+                `No account for '${email}' exists, please sign up with this email.`
+              );
               break;
             default:
               setErrorMessage(error.message);
@@ -150,7 +153,11 @@ function LoginScreen(props) {
   return (
     <DismissKeyboard>
       <View style={styles.container}>
-        <Image resizeMode={'contain'} style={styles.image} source={require('../assets/hand-logo.png')} />
+        <Image
+          resizeMode={"contain"}
+          style={styles.image}
+          source={require("../assets/hand-logo.png")}
+        />
         {/*Render input fields for email and password*/}
         <View style={styles.loginFormContainer}>
           <TextInput
@@ -172,19 +179,33 @@ function LoginScreen(props) {
           />
 
           {/*Render text that shows error  messages */}
-          <Text testID={"TEST_ID_MESSAGE"} style={{ color: "red" }}>{errorMessage}</Text>
+          <Text testID={"TEST_ID_MESSAGE"} style={{ color: "red" }}>
+            {errorMessage}
+          </Text>
 
           {/*Render login button which calls userLogin method and checks credentials in input fields*/}
-          <TouchableOpacity
-            activeOpacity={0.5}
-            style={styles.loginButton}
-            onPress={() => userLogin()}
-            testID={"TEST_ID_LOGIN_BUTTON"}
-          >
-            <Text style={styles.signInText}>
-              LOG IN
-            </Text>
-          </TouchableOpacity>
+          {isVerified ? (
+            <TouchableOpacity
+              activeOpacity={0.5}
+              style={styles.loginButton}
+              onPress={() => userLogin()}
+              testID={"TEST_ID_LOGIN_BUTTON"}
+            >
+              <Text style={styles.signInText}>LOG IN</Text>
+            </TouchableOpacity>
+          ) : null}
+
+          {/*Render button to send new verification email */}
+          {!isVerified ? (
+            <TouchableOpacity
+              activeOpacity={0.5}
+              style={styles.loginButton}
+              onPress={() => sendVerificationEmail()}
+              testID={"TEST_ID_VERIFY_BUTTON"}
+            >
+              <Text style={styles.signInText}>Send verification email</Text>
+            </TouchableOpacity>
+          ) : null}
 
           {/*Render text to allow user to go to sign up screen*/}
           <Text
@@ -209,23 +230,6 @@ function LoginScreen(props) {
           >
             Forgot your password?
           </Text>
-
-          {/*Render button to send new verification email */}
-          <View>
-            {!isVerified
-              ? <TouchableOpacity
-                activeOpacity={0.5}
-                style={styles.loginButton}
-                onPress={() => sendVerificationEmail()}
-                testID={"TEST_ID_VERIFY_BUTTON"}
-              >
-                <Text style={styles.signInText}>
-                  Send verification email
-                </Text>
-              </TouchableOpacity>
-              :
-              null}
-          </View>
         </View>
       </View>
     </DismissKeyboard>
@@ -238,11 +242,11 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "#fff",
-    paddingTop: "10%"
+    paddingTop: "10%",
   },
   loginFormContainer: {
     flex: 4,
-    padding: "8%"
+    padding: "8%",
   },
   inputStyle: {
     width: "100%",
