@@ -43,7 +43,7 @@ export default function PauseScreen({ props, navigation }) {
     <SafeAreaView style={[styles.container, indexStyles.centering]}>
       <SafeAreaView style={[styles.center, styles.area, indexStyles.cover]}>
         <SafeAreaView style={[styles.messageArea, indexStyles.centering]}>
-          <Text style={styles.text}>
+          <Text style={[styles.text, { textAlign: "center" }]}>
             {generateMessage()} {generateEmoji()}{" "}
           </Text>
         </SafeAreaView>
