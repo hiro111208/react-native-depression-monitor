@@ -156,7 +156,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     padding: 3,
     height: 15,
-    backgroundColor: "#FFF",
+    backgroundColor: "white",
     borderRadius: 20,
   },
 });

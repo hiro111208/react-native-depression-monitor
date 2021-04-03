@@ -13,6 +13,7 @@ import firebase from "../database/firebase";
 import { Tooltip } from "react-native-elements";
 
 import colors from "../config/colors";
+import * as indexStyles from "../config/indexStyles";
 import DismissKeyboard from "../config/DismissKeyboard";
 
 const db = firebase.firestore();
@@ -176,7 +177,7 @@ function SignUpScreen(props) {
   //Render the sign up screen interface
   if (isLoading) {
     return (
-      <View style={styles.preloader}>
+      <View style={indexStyles.preloader}>
         <ActivityIndicator size="large" color="#9E9E9E" />
       </View>
     );
@@ -215,7 +216,7 @@ function SignUpScreen(props) {
               autoCorrect={false}
               secureTextEntry={true}
               testID={"TEST_ID_PASSWORD_INPUT"}
-              style= {styles.passwordInput}
+              style={styles.passwordInput}
             />
             {/*Render tooltip with password criteria*/}
             <Tooltip
@@ -305,6 +306,9 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "space-between",
   },
+  passwordInput: {
+    width: "90%",
+  },
   passwordInformation: {
     color: "white",
   },
@@ -345,7 +349,7 @@ const styles = StyleSheet.create({
     justifyContent: "flex-end",
     textAlign: "right",
   },
-  passwordInput:{
-    width: "90%"
-  }
+  passwordInput: {
+    width: "90%",
+  },
 });

@@ -1,4 +1,3 @@
-
 import React, { useState } from "react";
 import {
   StyleSheet,
@@ -6,7 +5,7 @@ import {
   Text,
   Button,
   Image,
-  Platform, 
+  Platform,
   ToastAndroid,
   ActivityIndicator,
   Modal,
@@ -17,16 +16,13 @@ import colors from "../config/colors";
 import { TouchableOpacity } from "react-native";
 import { Touchable } from "react-native";
 
-import * as FileSystem from 'expo-file-system';
-import * as Permissions from 'expo-permissions';
-import * as MediaLibrary from 'expo-media-library';
-import * as Sharing from 'expo-sharing';
-import moment from 'moment';
-
-
+import * as FileSystem from "expo-file-system";
+import * as Permissions from "expo-permissions";
+import * as MediaLibrary from "expo-media-library";
+import * as Sharing from "expo-sharing";
+import moment from "moment";
 
 export default function AdminHomeScreen({ props, navigation }) {
-
   const [errorMessage, setErrorMessage] = useState("");
 
   //loading screen trigger
@@ -43,28 +39,29 @@ export default function AdminHomeScreen({ props, navigation }) {
       .catch((error) => setErrorMessage(error.message));
   };
 
-
-
-//Loading screen executed via trigger
+  //Loading screen executed via trigger
   const CustomProgressBar = ({ visible }) => (
     <Modal onRequestClose={() => null} transparent={true} visible={visible}>
-      <View style={{ 
-        flex: 1,
-        alignItems: 'center',
-        justifyContent: 'center' 
-      }}>
-        
-        <View style={{
-          borderRadius: 10,
-          padding: 20,
-          backgroundColor: '#fff',
-          elevation: 5,
-          shadowColor: '#000',
-          shadowOffset: { width: 0, height: 2 },
-          shadowOpacity: 0.5,
-          shadowRadius: 2,
-          justifyContent: 'space-evenly'
-        }}>
+      <View
+        style={{
+          flex: 1,
+          alignItems: "center",
+          justifyContent: "center",
+        }}
+      >
+        <View
+          style={{
+            borderRadius: 10,
+            padding: 20,
+            backgroundColor: "#fff",
+            elevation: 5,
+            shadowColor: "#000",
+            shadowOffset: { width: 0, height: 2 },
+            shadowOpacity: 0.5,
+            shadowRadius: 2,
+            justifyContent: "space-evenly",
+          }}
+        >
           <ActivityIndicator size="large" color="#ffa351ff" />
           {/* <Text style={{ fontSize: 20, fontWeight: '200', textAlign: 'center', marginTop: 8 }}>Loading</Text> */}
         </View>
@@ -72,76 +69,109 @@ export default function AdminHomeScreen({ props, navigation }) {
     </Modal>
   );
 
-
   // method call on Export answers data to CSV folder
   onCreateAnswersCSV = async () => {
     setLoaded(true);
-    firebase.firestore().collection("answers").get().then(async (querySnapshot) => {
-      const headerString = 'userId, categoryDropped, question, question1IsCorrect, question1Time, question2IsCorrect, question2Time, sessionNumber \n';
-      let rowString = ''
-      querySnapshot.forEach((doc) => {
-        rowString = rowString + ` ${doc.data().userID}, ${doc.data().categoryDropped}, ${doc.data().question}, ${doc.data().question1IsCorrect}, ${doc.data().question1Time}, ${doc.data().question2IsCorrect}, ${doc.data().question2Time}, ${doc.data().sessionNumber} \n`;
-      });
-      const csvString = `${headerString}${rowString}`;
+    firebase
+      .firestore()
+      .collection("answers")
+      .get()
+      .then(async (querySnapshot) => {
+        const headerString =
+          "userId, categoryDropped, question, question1IsCorrect, question1Time, question2IsCorrect, question2Time, sessionNumber \n";
+        let rowString = "";
+        querySnapshot.forEach((doc) => {
+          rowString =
+            rowString +
+            ` ${doc.data().userID}, ${doc.data().categoryDropped}, ${
+              doc.data().question
+            }, ${doc.data().question1IsCorrect}, ${doc.data().question1Time}, ${
+              doc.data().question2IsCorrect
+            }, ${doc.data().question2Time}, ${doc.data().sessionNumber} \n`;
+        });
+        const csvString = `${headerString}${rowString}`;
 
-      const { status } = await Permissions.askAsync(Permissions.CAMERA_ROLL);
-      if (status === "granted") {
-        const csvFileName = moment().unix(); // generate unique name for csv file
-        let fileUri = FileSystem.documentDirectory + `Answers_${csvFileName}.csv`;
-        await FileSystem.writeAsStringAsync(fileUri, csvString, { encoding: FileSystem.EncodingType.UTF8 }); // save csv at document directory
-        // save csv at specific folder
-        if (Platform.OS === 'ios') {
-          await Sharing.shareAsync(fileUri);
-          setLoaded(false);
-        } else {
-          const asset = await MediaLibrary.createAssetAsync(fileUri)
-          const is_save = await MediaLibrary.createAlbumAsync("Answer", asset, false);
-          if (is_save.assetCount === 1) {
+        const { status } = await Permissions.askAsync(Permissions.CAMERA_ROLL);
+        if (status === "granted") {
+          const csvFileName = moment().unix(); // generate unique name for csv file
+          let fileUri =
+            FileSystem.documentDirectory + `Answers_${csvFileName}.csv`;
+          await FileSystem.writeAsStringAsync(fileUri, csvString, {
+            encoding: FileSystem.EncodingType.UTF8,
+          }); // save csv at document directory
+          // save csv at specific folder
+          if (Platform.OS === "ios") {
+            await Sharing.shareAsync(fileUri);
             setLoaded(false);
-            ToastAndroid.show('File save successfully', ToastAndroid.SHORT);
+          } else {
+            const asset = await MediaLibrary.createAssetAsync(fileUri);
+            const is_save = await MediaLibrary.createAlbumAsync(
+              "Answer",
+              asset,
+              false
+            );
+            if (is_save.assetCount === 1) {
+              setLoaded(false);
+              ToastAndroid.show("File save successfully", ToastAndroid.SHORT);
+            }
           }
         }
-      }
-    })
-  }
-
+      });
+  };
 
   // method call on Export feelings data to CSV folder
   onCreateFeelingsCSV = async () => {
     setLoaded(true);
-    firebase.firestore().collection("feelings").get().then(async (querySnapshot) => {
-      const headerString = 'userId, overall, anxious, happy, sad, timeStamp \n';
-      let rowString = ''
-      querySnapshot.forEach((doc) => {
-        rowString = rowString + ` ${doc.data().userID}, ${doc.data().overall}, ${doc.data().anxious}, ${doc.data().happy}, ${doc.data().sad}, ${doc.data().timeStamp.toDate()} \n`;
-      });
-      const csvString = `${headerString}${rowString}`;
+    firebase
+      .firestore()
+      .collection("feelings")
+      .get()
+      .then(async (querySnapshot) => {
+        const headerString =
+          "userId, overall, anxious, happy, sad, timeStamp \n";
+        let rowString = "";
+        querySnapshot.forEach((doc) => {
+          rowString =
+            rowString +
+            ` ${doc.data().userID}, ${doc.data().overall}, ${
+              doc.data().anxious
+            }, ${doc.data().happy}, ${
+              doc.data().sad
+            }, ${doc.data().timeStamp.toDate()} \n`;
+        });
+        const csvString = `${headerString}${rowString}`;
 
-      const { status } = await Permissions.askAsync(Permissions.CAMERA_ROLL);
-      if (status === "granted") {
-        const csvFileName = moment().unix(); // generate unique name for csv file
-        let fileUri = FileSystem.documentDirectory + `Feelings_${csvFileName}.csv`;
-        await FileSystem.writeAsStringAsync(fileUri, csvString, { encoding: FileSystem.EncodingType.UTF8 }); // save csv at document directory
-        // save csv at specific folder
-        if (Platform.OS === 'ios') {
-          await Sharing.shareAsync(fileUri);
-          setLoaded(false);
-        } else {
-          const asset = await MediaLibrary.createAssetAsync(fileUri)
-          const is_save = await MediaLibrary.createAlbumAsync("Feelings", asset, false);
-          if (is_save.assetCount === 1) {
+        const { status } = await Permissions.askAsync(Permissions.CAMERA_ROLL);
+        if (status === "granted") {
+          const csvFileName = moment().unix(); // generate unique name for csv file
+          let fileUri =
+            FileSystem.documentDirectory + `Feelings_${csvFileName}.csv`;
+          await FileSystem.writeAsStringAsync(fileUri, csvString, {
+            encoding: FileSystem.EncodingType.UTF8,
+          }); // save csv at document directory
+          // save csv at specific folder
+          if (Platform.OS === "ios") {
+            await Sharing.shareAsync(fileUri);
             setLoaded(false);
-            ToastAndroid.show('File save successfully', ToastAndroid.SHORT);
+          } else {
+            const asset = await MediaLibrary.createAssetAsync(fileUri);
+            const is_save = await MediaLibrary.createAlbumAsync(
+              "Feelings",
+              asset,
+              false
+            );
+            if (is_save.assetCount === 1) {
+              setLoaded(false);
+              ToastAndroid.show("File save successfully", ToastAndroid.SHORT);
+            }
           }
         }
-      }
-    })
-  }
+      });
+  };
 
   return (
     <View style={[styles.container]}>
       <View style={[styles.center, styles.shadowEffect, styles.cover]}>
-
         <View style={{ height: "5%" }}></View>
 
         <View style={[{ height: "40%" }, styles.centering]}>
@@ -153,13 +183,9 @@ export default function AdminHomeScreen({ props, navigation }) {
             resizeMode="contain"
             source={require("../assets/hand-logo.png")}
           />
-
         </View>
 
-
-
         <View style={{ height: "10%" }}>
-
           <TouchableOpacity
             onPress={() => navigation.navigate("TherapyQuestionScreen")}
             style={[styles.centering, styles.optButton, styles.cover]}
@@ -170,17 +196,12 @@ export default function AdminHomeScreen({ props, navigation }) {
               Therapy Question Management
             </Text>
           </TouchableOpacity>
-
         </View>
-
 
         <View style={{ height: "5%" }}></View>
 
         <View style={{ height: "10%" }}>
-
-          {loaded &&
-            <CustomProgressBar />
-          }
+          {loaded && <CustomProgressBar />}
 
           <TouchableOpacity
             onPress={() => this.onCreateAnswersCSV()}
@@ -197,10 +218,7 @@ export default function AdminHomeScreen({ props, navigation }) {
         <View style={{ height: "5%" }}></View>
 
         <View style={{ height: "10%" }}>
-
-          {loaded &&
-            <CustomProgressBar />
-          }
+          {loaded && <CustomProgressBar />}
 
           <TouchableOpacity
             onPress={() => this.onCreateFeelingsCSV()}
@@ -279,13 +297,12 @@ const styles = StyleSheet.create({
   loadingSection: {
     borderRadius: 10,
     padding: 20,
-    backgroundColor: '#fff',
+    backgroundColor: "#fff",
     elevation: 5,
-    shadowColor: '#000',
+    shadowColor: "#000",
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.5,
     shadowRadius: 2,
-    justifyContent: 'space-evenly'
-  }
+    justifyContent: "space-evenly",
+  },
 });
-

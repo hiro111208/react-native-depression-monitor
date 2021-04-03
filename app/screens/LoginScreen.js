@@ -11,6 +11,7 @@ import {
 } from "react-native";
 import firebase from "../database/firebase";
 import colors from "../config/colors";
+import * as indexStyles from "../config/indexStyles";
 import DismissKeyboard from "../config/DismissKeyboard";
 
 /*
@@ -144,7 +145,7 @@ function LoginScreen(props) {
   //While loading show preloader
   if (isLoading) {
     return (
-      <View style={styles.preloader}>
+      <View style={indexStyles.preloader}>
         <ActivityIndicator size="large" color="#9E9E9E" />
       </View>
     );

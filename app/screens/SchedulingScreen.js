@@ -11,6 +11,7 @@ import {
   TouchableOpacity,
 } from "react-native";
 import DateTimePicker from "@react-native-community/datetimepicker";
+import * as indexStyles from "../config/indexStyles";
 import firebase from "../database/firebase";
 import moment from "moment";
 
@@ -174,19 +175,19 @@ class SchedulingScreen extends Component {
   render() {
     if (this.state.isLoading) {
       return (
-        <View style={styles.preloader}>
+        <View style={indexStyles.preloader}>
           <ActivityIndicator size="large" color="#9E9E9E" />
         </View>
       );
     }
     return (
-      <View style={[styles.container, styles.centering]}>
-        <View style={[styles.center, styles.shadowEffect, styles.cover]}>
+      <View style={[indexStyles.containerWhite, indexStyles.centering]}>
+        <View style={[indexStyles.containerOrange, indexStyles.shadowEffect, indexStyles.cover]}>
           <View style={{ height: "7%" }}></View>
 
           <View style={[{ height: "6%", flexDirection: "row" }]}>
             <View style={{ width: "20%" }}></View>
-            <Text style={[styles.textStyle, styles.fontStyle]}>
+            <Text style={[indexStyles.textGrey, { fontSize: 18 }]}>
               Select a date:
             </Text>
           </View>
@@ -236,7 +237,7 @@ class SchedulingScreen extends Component {
 
           <View style={[{ height: "6%", flexDirection: "row" }]}>
             <View style={{ width: "20%" }}></View>
-            <Text style={[styles.textStyle, styles.fontStyle]}>
+            <Text style={[indexStyles.textGrey, { fontSize: 18 }]}>
               Select a time:
             </Text>
           </View>
@@ -274,12 +275,12 @@ class SchedulingScreen extends Component {
 
           <View style={{ height: "2%" }}></View>
 
-          <View style={[{ height: "10%" }, styles.centering]}>
+          <View style={[{ height: "10%" }, indexStyles.centering]}>
             <TouchableOpacity
               onPress={() => this.validateAppointment()}
-              style={[styles.selectButton, styles.cover, styles.centering]}
+              style={[styles.selectButton, indexStyles.cover, indexStyles.centering]}
             >
-              <Text style={[styles.textStyle, styles.fontStyle]}>
+              <Text style={[indexStyles.textGrey, { fontSize: 18 }]}>
                 Add Session
               </Text>
             </TouchableOpacity>
@@ -287,8 +288,8 @@ class SchedulingScreen extends Component {
 
           <View style={{ height: "10%" }}></View>
 
-          <View style={[{ height: "25%" }, styles.centering]}>
-            <View style={[styles.cover, styles.centering]}>
+          <View style={[{ height: "25%" }, indexStyles.centering]}>
+            <View style={[indexStyles.cover, indexStyles.centering]}>
               <Image
                 style={{ width: 125, height: 125 }}
                 resizeMode="contain"
@@ -297,18 +298,18 @@ class SchedulingScreen extends Component {
             </View>
           </View>
 
-          <View style={[{ height: "10%" }, styles.centering]}>
+          <View style={[{ height: "10%" }, indexStyles.centering]}>
             <TouchableOpacity
               onPress={() =>
                 this.props.navigation.navigate("ScheduleListScreen")
               }
               style={[
                 styles.bottomBorder,
-                styles.centering,
-                styles.shadowEffect,
+                indexStyles.centering,
+                indexStyles.shadowEffect,
               ]}
             >
-              <Text style={[styles.scheduleText, styles.fontStyle]}>
+              <Text style={[indexStyles.textGrey, { fontSize: 15 }]}>
                 Schedule List
               </Text>
             </TouchableOpacity>
@@ -326,49 +327,8 @@ const styles = StyleSheet.create({
     borderRadius: 50,
     backgroundColor: "#ffeed2",
   },
-  center: {
-    backgroundColor: "#fed8b1",
-    borderRadius: 50,
-    borderWidth: 5,
-    borderColor: "#ffeed2",
-  },
-  centering: {
-    alignItems: "center",
-    justifyContent: "center",
-  },
-  container: {
-    flex: 1,
-    display: "flex",
-    padding: 25,
-    backgroundColor: "#fff",
-  },
-  cover: {
-    height: "100%",
-    width: "100%",
-  },
-  fontStyle: {
-    fontWeight: "bold",
-    color: "dimgray",
-  },
-  scheduleText: {
-    fontSize: 15,
-  },
   selectButton: {
     backgroundColor: "#ffeed2",
-  },
-  shadowEffect: {
-    shadowColor: "#000",
-    shadowOffset: {
-      width: 0,
-      height: 2,
-    },
-    shadowOpacity: 0.25,
-    shadowRadius: 3.84,
-    elevation: 5,
-    marginVertical: 5,
-  },
-  textStyle: {
-    fontSize: 18,
   },
 });
 
