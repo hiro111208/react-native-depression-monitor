@@ -95,7 +95,7 @@ const TherapyScreen = ({ navigation, route }) => {
 
   //Split the scenario text into sentences
   function splitSentences() {
-    if (loaded) {
+    if (loaded && !finished) {
       return items[question].question1.split(".");
     } else {
       return [];
@@ -291,7 +291,9 @@ const TherapyScreen = ({ navigation, route }) => {
 
   //render the next sentence of the scenario
   function renderQuestionSentence() {
-    if (sentenceNumber + 1 == splitSentences().length - 1) {
+    if (finished) {
+      navigation.goBack();
+    } else if (sentenceNumber + 1 == splitSentences().length - 1) {
       startTimer();
     }
     setSentenceNumber(sentenceNumber + 1);
