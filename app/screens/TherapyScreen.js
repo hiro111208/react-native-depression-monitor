@@ -9,12 +9,18 @@ import {
   Alert,
   TextInput,
   Image,
+  LogBox,
 } from "react-native";
 import Constants from "expo-constants";
 import * as Speech from "expo-speech";
 import firebase from "../database/firebase";
 import ProgressBar from "../src/components/ProgressBar";
 import DismissKeyboard from "../config/DismissKeyboard";
+
+LogBox.ignoreLogs([
+  "Non-serializable values were found in the navigation state",
+  "Warning: Can't perform a React state update on an unmounted component. This is a no-op, but it indicates a memory leak in your application. To fix, cancel all subscriptions and asynchronous tasks in a useEffect cleanup function.",
+]);
 
 // must be outside the therapy screen to not reset
 var time1 = 0; //word answer time
