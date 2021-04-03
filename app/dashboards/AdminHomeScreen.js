@@ -142,7 +142,7 @@ export default function AdminHomeScreen({ props, navigation }) {
     <View style={[styles.container]}>
       <View style={[styles.center, styles.shadowEffect, styles.cover]}>
 
-        <View style={{ height: "10%" }}></View>
+        <View style={{ height: "5%" }}></View>
 
         <View style={[{ height: "40%" }, styles.centering]}>
           <Text style={[styles.fontStyle, { fontSize: 25 }]}>
@@ -214,7 +214,7 @@ export default function AdminHomeScreen({ props, navigation }) {
           </TouchableOpacity>
         </View>
 
-        <View style={{ height: "22%" }}></View>
+        <View style={{ height: "5%" }}></View>
 
         <View style={[{ height: "10%" }, styles.centering]}>
           <TouchableOpacity
