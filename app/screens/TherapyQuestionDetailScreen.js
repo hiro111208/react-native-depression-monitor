@@ -11,7 +11,6 @@ import {
   Text,
   TouchableOpacity,
 } from "react-native";
-import * as indexStyles from "../config/indexStyles";
 import firebase from "../database/firebase";
 import DismissKeyboard from "../config/DismissKeyboard";
 
@@ -114,7 +113,7 @@ export default class TherapyQuestionDetailScreen extends Component {
   render() {
     if (this.state.isLoading) {
       return (
-        <View style={indexStyles.preloader}>
+        <View style={styles.preloader}>
           <ActivityIndicator size="large" color="#9E9E9E" />
         </View>
       );
@@ -250,10 +249,42 @@ export default class TherapyQuestionDetailScreen extends Component {
 }
 
 const styles = StyleSheet.create({
+  bottomButton: {
+    height: "100%",
+    width: "40%",
+    borderRadius: 50,
+    backgroundColor: "#ffeed2",
+    position: "absolute",
+    bottom: 0,
+  },
+  center: {
+    backgroundColor: "#fed8b1",
+    borderRadius: 50,
+    borderWidth: 5,
+    borderColor: "#ffeed2",
+  },
+  centering: {
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  container: {
+    flex: 1,
+    display: "flex",
+    padding: 25,
+    backgroundColor: "#fff",
+  },
+  cover: {
+    height: "100%",
+    width: "100%",
+  },
   dropdown: {
     flex: 1,
     paddingBottom: 10,
     fontWeight: "bold",
+  },
+  fontStyle: {
+    fontWeight: "bold",
+    color: "dimgray",
   },
   inputGroup: {
     flex: 1,
@@ -265,8 +296,30 @@ const styles = StyleSheet.create({
   optButton: {
     backgroundColor: "#ffeed2",
   },
+  preloader: {
+    left: 0,
+    right: 0,
+    top: 0,
+    bottom: 0,
+    position: "absolute",
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  shadowEffect: {
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
+    elevation: 5,
+    marginVertical: 5,
+  },
   title: {
     padding: 10,
+    justifyContent: "center",
+    alignItems: "center",
     fontSize: 20,
     fontWeight: "bold",
   },
