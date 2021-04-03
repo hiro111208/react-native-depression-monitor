@@ -49,7 +49,7 @@ function addUserToDatabase(uid) {
         db.collection("users")
           .doc(uid)
           .set({
-            question: 1,
+            question: 0,
             block: 1,
             categoryDropped: "NONE",
             userID: id,
@@ -186,7 +186,11 @@ function SignUpScreen(props) {
   return (
     <DismissKeyboard>
       <View style={styles.container}>
-        <Image resizeMode={'contain'} style={styles.image} source={require('../assets/hand-logo.png')} />
+        <Image
+          resizeMode={"contain"}
+          style={styles.image}
+          source={require("../assets/hand-logo.png")}
+        />
         <View style={styles.signupFormContainer}>
           <TextInput
             style={styles.inputStyle}
@@ -223,7 +227,7 @@ function SignUpScreen(props) {
                 <Text style={styles.passwordInformation}>
                   Password must be 6 to 15 characters long. Can contain any
                   alphaneumeric or special character.
-              </Text>
+                </Text>
               }
             >
               <View style={styles.helpArea}>
@@ -270,12 +274,12 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "#fff",
-    paddingTop: "5%"
+    paddingTop: "5%",
   },
   signupFormContainer: {
     flex: 5,
     paddingHorizontal: "8%",
-    justifyContent: "flex-start"
+    justifyContent: "flex-start",
   },
   image: {
     flex: 3,

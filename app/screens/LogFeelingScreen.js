@@ -17,52 +17,33 @@ import colors from "../config/colors";
  */
 function LogFeelingScreen({ navigation, route }) {
   const [overallFeeling, setOverallFeeling] = useState("");
-  const [paranoid, setParanoid] = useState(1);
   const [anxious, setAnxious] = useState(1);
   const [sad, setSad] = useState(1);
-  const [friendly, setFriendly] = useState(1);
-  const [user, setUser] = useState(undefined);
+  const [happy, setHappy] = useState(1);
 
-  //Get userID corresponding to current user
-  function getUser() {
-    firebase
-      .firestore()
-      .collection("users")
-      .doc(firebase.auth().currentUser.uid)
-      .get()
-      .then((doc) => {
-        setUser(doc.data());
-      })
-      .catch((error) => {
-        console.log("Error getting document:", error);
-      });
-  }
-
-  useEffect(() => {
-    getUser();
-  }, []);
+  const user = route.params.userData;
+  const userRef = firebase
+    .firestore()
+    .collection("users")
+    .doc(firebase.auth().currentUser.uid);
 
   //Reset all states
   const reset = () => {
     setAnxious(1);
-    setParanoid(1);
-    setFriendly(1);
+    setHappy(1);
     setOverallFeeling("");
     setSad(1);
-    setUser(undefined);
   };
 
   //Store the user's feelings in the database
   function saveFeelings() {
-    getUser();
     firebase
       .firestore()
       .collection("feelings")
       .doc()
       .set({
         overall: overallFeeling,
-        paranoid: paranoid,
-        friendly: friendly,
+        happy: happy,
         sad: sad,
         anxious: anxious,
         userID: user.userID,
@@ -70,9 +51,26 @@ function LogFeelingScreen({ navigation, route }) {
       })
       .then(() => {
         console.log("Feelings saved");
+        if (user.question == 0) {
+          incrementQuestion();
+        }
       })
       .catch((error) => {
         console.error("Error saving feelings: ", error);
+      });
+  }
+
+  function incrementQuestion() {
+    userRef
+      .set(
+        {
+          question: 1,
+          lastActive: new Date(),
+        },
+        { merge: true }
+      )
+      .catch((error) => {
+        console.error("Error writing document: ", error);
       });
   }
 
@@ -87,6 +85,7 @@ function LogFeelingScreen({ navigation, route }) {
         reset();
         navigation.navigate("TherapyScreen", {
           onGoBack: () => route.params.onGoBack(),
+          question: 1,
         });
       } else {
         saveFeelings();
@@ -113,14 +112,6 @@ function LogFeelingScreen({ navigation, route }) {
       {/* Render sliders for each emotion */}
       <ScrollView style={styles.slidersContainer}>
         <View style={[styles.topAndBottom, styles.centering]}>
-          <Text style={styles.text}>Paranoid</Text>
-          <FeelingsSlider
-            setFeelingState={setParanoid}
-            feelingState={paranoid}
-          />
-        </View>
-
-        <View style={[styles.topAndBottom, styles.centering]}>
           <Text style={styles.text}>Anxious</Text>
           <FeelingsSlider setFeelingState={setAnxious} feelingState={anxious} />
         </View>
@@ -131,11 +122,8 @@ function LogFeelingScreen({ navigation, route }) {
         </View>
 
         <View style={[styles.topAndBottom, styles.centering]}>
-          <Text style={styles.text}>Friendly</Text>
-          <FeelingsSlider
-            setFeelingState={setFriendly}
-            feelingState={friendly}
-          />
+          <Text style={styles.text}>Happy</Text>
+          <FeelingsSlider setFeelingState={setHappy} feelingState={happy} />
         </View>
       </ScrollView>
 
