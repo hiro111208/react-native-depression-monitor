@@ -1,8 +1,17 @@
-import React, { useState } from 'react';
-import { StyleSheet, View, Text, TouchableOpacity, TextInput, Alert, Image } from 'react-native';
+import React, { useState } from "react";
+import {
+  StyleSheet,
+  View,
+  Text,
+  TouchableOpacity,
+  TextInput,
+  Alert,
+  Image,
+} from "react-native";
 import firebase from "../database/firebase";
 
 import colors from "../config/colors";
+import * as indexStyles from "../config/indexStyles";
 import DismissKeyboard from "../config/DismissKeyboard";
 
 /*
@@ -10,7 +19,6 @@ import DismissKeyboard from "../config/DismissKeyboard";
 */
 
 function ForgotPasswordScreen(props) {
-
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
 
@@ -19,10 +27,15 @@ function ForgotPasswordScreen(props) {
     if (email === "") {
       Alert.alert("Enter an email!");
     } else {
-      firebase.auth().sendPasswordResetEmail(email).then(() => {
-        setMessage("You should have received an email to change your password");
-      })
-        .catch(error => setMessage(error.message))
+      firebase
+        .auth()
+        .sendPasswordResetEmail(email)
+        .then(() => {
+          setMessage(
+            "You should have received an email to change your password"
+          );
+        })
+        .catch((error) => setMessage(error.message));
     }
   };
 
@@ -31,8 +44,11 @@ function ForgotPasswordScreen(props) {
     <DismissKeyboard>
       {/*Render field to input user email*/}
       <View style={styles.container}>
-
-        <Image resizeMode={'contain'} style={styles.image} source={require('../assets/hand-logo.png')} />
+        <Image
+          resizeMode={"contain"}
+          style={styles.image}
+          source={require("../assets/hand-logo.png")}
+        />
         <View style={styles.forgotFormContainer}>
           <TextInput
             style={styles.inputStyle}
@@ -44,7 +60,7 @@ function ForgotPasswordScreen(props) {
 
           {/*Render button that calls forgotPassword method */}
           <TouchableOpacity
-            activeOpacity={.5}
+            activeOpacity={0.5}
             style={styles.submitButton}
             onPress={() => forgotPassword()}
             testID={"TEST_ID_FORGOT_BUTTON"}
@@ -55,12 +71,15 @@ function ForgotPasswordScreen(props) {
           {/*Render button that allows user to go back to login screen*/}
           <Text
             style={styles.textButton}
-            onPress={() => props.navigation.navigate("LoginScreen")}>
+            onPress={() => props.navigation.navigate("LoginScreen")}
+          >
             Back to Login
           </Text>
 
           {/*Render text that shows error or success messages */}
-          <Text testID={"TEST_ID_MESSAGE"} style={{ color: "red" }}>{message}</Text>
+          <Text testID={"TEST_ID_MESSAGE"} style={{ color: "red" }}>
+            {message}
+          </Text>
         </View>
       </View>
     </DismissKeyboard>
@@ -71,13 +90,8 @@ export default ForgotPasswordScreen;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#fff",
-    paddingTop: "10%"
-  },
-  forgotFormContainer: {
-    flex: 4,
     padding: "8%",
-    top: "5%"
+    top: "5%",
     //paddingTop: "15%"
     //marginTop:"10%"
   },
@@ -97,7 +111,7 @@ const styles = StyleSheet.create({
   submitText: {
     color: "white",
     textAlign: "center",
-    fontSize: 15
+    fontSize: 15,
   },
   inputStyle: {
     width: "100%",
@@ -105,15 +119,11 @@ const styles = StyleSheet.create({
     paddingBottom: 15,
     alignSelf: "center",
     borderColor: "#ccc",
-    borderBottomWidth: 1
+    borderBottomWidth: 1,
   },
   textButton: {
     color: colors.darkBorder,
     marginTop: 25,
-    textAlign: "center"
+    textAlign: "center",
   },
-  textStyle: {
-    fontSize: 15,
-    marginBottom: 20
-  }
 });

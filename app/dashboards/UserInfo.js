@@ -48,16 +48,26 @@ export default class UserInfo extends Component {
         items.push(doc.data());
       });
 
-      // Filter separate session information into arrays
+      // Filter session answers into separate arrays [ [#1] , [#2] , [#3] , [#4]]
       for (let i = 0; i < 4; i++) {
+        console.log("loops", i);
         tempSessions.push(items.filter((item) => item.sessionNumber == i + 1));
 
-        // filter correct questions
+        // if session has been started
         if (tempSessions[i].length > 0) {
+          // filter incorrect questions
           errors.push(
             tempSessions[i].filter(
               (item) =>
                 item.question1IsCorrect != true ||
+                item.question2IsCorrect != true
+            )
+          );
+          //if both questions wrong == 2 errors, push again to increase length of array to match this.
+          errors.push(
+            tempSessions[i].filter(
+              (item) =>
+                item.question1IsCorrect != true &&
                 item.question2IsCorrect != true
             )
           );
@@ -68,13 +78,13 @@ export default class UserInfo extends Component {
             0
           );
 
-          // Divide total to find average
-          avg1Temp.push(Math.floor(avg1 / tempSessions[i].length));
           const avg2 = tempSessions[i].reduce(
             (a, b) => (a = a + b.question2Time),
             0
           );
 
+          // Divide total to find average
+          avg1Temp.push(Math.floor(avg1 / tempSessions[i].length));
           // Divide total to find average
           avg2Temp.push(Math.floor(avg2 / tempSessions[i].length));
         } else {
@@ -93,12 +103,20 @@ export default class UserInfo extends Component {
     });
   }
 
+  abortController = () => new AbortController();
   //Fetch upon mount
   componentDidMount() {
-    // this.getParams();
-    this.getItemsAndAverages();
+    Promise.all([
+      this.getItemsAndAverages(),
+      { signal: this.abortController().signal },
+      console.log("in userInfo"),
+    ]).catch((ex) => console.error(ex));
   }
 
+  componentWillUnmount() {
+    this.abortController().abort();
+    console.log("out userInfo");
+  }
   render() {
     const { height, width } = Dimensions.get("window");
 
@@ -113,6 +131,10 @@ export default class UserInfo extends Component {
         svg: { stroke: "green" },
       },
     ];
+
+    console.log("data1", data[0].data);
+
+    console.log("data2", data[1].data);
 
     //Line Chart circular markers for question 1 type
     const Decorator1 = ({ x, y, data }) => {
@@ -234,7 +256,7 @@ export default class UserInfo extends Component {
                   fontWeight: "300",
                 }}
               >
-                Average Response Time Trend Over Sessions (
+                Average Response Time Trend Over Sessions(s) (
                 {this.props.route.params.category})
               </Text>
             </View>
@@ -242,35 +264,52 @@ export default class UserInfo extends Component {
             <View flexDirection={"row"} flex={3}>
               <YAxis
                 data={data[0].data}
-                contentInset={{ top: 20, bottom: 20 }}
+                contentInset={{ top: 30, bottom: 20 }}
                 svg={{
                   fill: "grey",
                   fontSize: 10,
                 }}
-                numberOfTicks={4}
+                numberOfTicks={data[0].data.length}
                 formatLabel={(value) =>
                   `${value / Math.pow(10, value.toString().length - 1)}`
                 }
               />
 
               <View flex={1.375} paddingLeft={30} paddingRight={-30}>
-                <Text
-                  style={{
-                    left: -40,
-                    fontSize: 8,
-                    color: "purple",
-                  }}
-                >
-                  (Q1 scale)
-                </Text>
+                <View flexDirection={"row"}>
+                  <Text
+                    style={{
+                      left: -40,
+                      fontSize: 8,
+                      color: "purple",
+                    }}
+                  >
+                    □Q1
+                  </Text>
+                  <Text
+                    style={{
+                      left: -40,
+                      fontSize: 8,
+                      color: "green",
+                    }}
+                  >
+                    {"  "}□Q2
+                  </Text>
+                </View>
 
-                <View flex={1} borderWidth={0.2} borderRadius={10}>
+                <View
+                  flex={2}
+                  borderWidth={0.5}
+                  borderRadius={10}
+                  marginRight={7}
+                  marginLeft={-25}
+                >
                   <LineChart
                     style={{ height: "100%" }}
                     data={data}
                     svg={{ stroke: "rgb(134, 65, 244)" }}
                     curve={shape.curveLinear}
-                    contentInset={{ top: 20, bottom: 20 }}
+                    contentInset={{ bottom: 10, top: 10 }}
                   >
                     <Decorator1 />
                     <Decorator2 />
@@ -290,28 +329,12 @@ export default class UserInfo extends Component {
                       formatLabel={(value, index) => index + 1}
                     />
                   </View>
+
                   <Text margin={10} style={styles.label}>
                     (Session)
                   </Text>
                 </View>
               </View>
-              <Text
-                style={{ right: -10, fontSize: 8, padding: 0, color: "green" }}
-              >
-                (Q2 scale)
-              </Text>
-              <YAxis
-                data={data[1].data}
-                contentInset={{ top: 20, bottom: 20 }}
-                svg={{
-                  fill: "grey",
-                  fontSize: 10,
-                }}
-                numberOfTicks={5}
-                formatLabel={(value) =>
-                  `${value / Math.pow(10, value.toString().length - 1)}`
-                }
-              />
             </View>
           </View>
 
@@ -320,7 +343,7 @@ export default class UserInfo extends Component {
             style={styles.shadow}
             paddingBottom={20}
             paddingHorizontal={20}
-            marginTop={20}
+            marginTop={30}
             justifyContents={"center"}
             borderWidth={0.4}
             borderRadius={10}

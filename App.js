@@ -55,7 +55,7 @@ function MyStack() {
           shadowRadius: 3.84,
           elevation: 5,
         },
-        headerTintColor: "#fff",
+        headerTintColor: "white",
         headerTitleStyle: {
           fontWeight: "bold",
         },
@@ -118,7 +118,6 @@ function MyStack() {
         component={PauseScreen}
         options={{ headerShown: false }}
       />
-
       <Stack.Screen
         options={{ headerShown: false }}
         name="PlantScreen"

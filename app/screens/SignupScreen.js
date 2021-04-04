@@ -13,6 +13,7 @@ import firebase from "../database/firebase";
 import { Tooltip } from "react-native-elements";
 
 import colors from "../config/colors";
+import * as indexStyles from "../config/indexStyles";
 import DismissKeyboard from "../config/DismissKeyboard";
 
 const db = firebase.firestore();
@@ -49,7 +50,7 @@ function addUserToDatabase(uid) {
         db.collection("users")
           .doc(uid)
           .set({
-            question: 1,
+            question: 0,
             block: 1,
             categoryDropped: "NONE",
             userID: id,
@@ -176,7 +177,7 @@ function SignUpScreen(props) {
   //Render the sign up screen interface
   if (isLoading) {
     return (
-      <View style={styles.preloader}>
+      <View style={indexStyles.preloader}>
         <ActivityIndicator size="large" color="#9E9E9E" />
       </View>
     );
@@ -186,7 +187,11 @@ function SignUpScreen(props) {
   return (
     <DismissKeyboard>
       <View style={styles.container}>
-        <Image resizeMode={'contain'} style={styles.image} source={require('../assets/hand-logo.png')} />
+        <Image
+          resizeMode={"contain"}
+          style={styles.image}
+          source={require("../assets/hand-logo.png")}
+        />
         <View style={styles.signupFormContainer}>
           <TextInput
             style={styles.inputStyle}
@@ -211,6 +216,7 @@ function SignUpScreen(props) {
               autoCorrect={false}
               secureTextEntry={true}
               testID={"TEST_ID_PASSWORD_INPUT"}
+              style={styles.passwordInput}
             />
             {/*Render tooltip with password criteria*/}
             <Tooltip
@@ -223,7 +229,7 @@ function SignUpScreen(props) {
                 <Text style={styles.passwordInformation}>
                   Password must be 6 to 15 characters long. Can contain any
                   alphaneumeric or special character.
-              </Text>
+                </Text>
               }
             >
               <View style={styles.helpArea}>
@@ -270,12 +276,12 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "#fff",
-    paddingTop: "5%"
+    paddingTop: "5%",
   },
   signupFormContainer: {
     flex: 5,
     paddingHorizontal: "8%",
-    justifyContent: "flex-start"
+    justifyContent: "flex-start",
   },
   image: {
     flex: 3,
@@ -299,6 +305,9 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "space-between",
+  },
+  passwordInput: {
+    width: "90%",
   },
   passwordInformation: {
     color: "white",
@@ -339,5 +348,8 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "flex-end",
     textAlign: "right",
+  },
+  passwordInput: {
+    width: "90%",
   },
 });

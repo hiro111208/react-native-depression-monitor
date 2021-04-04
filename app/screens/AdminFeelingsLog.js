@@ -10,10 +10,15 @@ import {
 } from "react-native";
 import ProgressBar from "../src/components/ProgressBar";
 import firebase from "../database/firebase";
+import { render } from "enzyme";
+import { floor } from "react-native-reanimated";
+
+var feelingsDifference = [];
 
 const AdminFeelingsLog = ({ navigation, route }) => {
   const [loading, setLoading] = useState(true);
   const [feelingsLog, setFeelingsLog] = useState([]);
+  const [difference, setDifference] = useState(false);
 
   const feelingsRef = firebase
     .firestore()
@@ -34,7 +39,6 @@ const AdminFeelingsLog = ({ navigation, route }) => {
         const items = [];
         querySnapshot.forEach((doc) => {
           items.push(doc.data());
-          console.log(doc.data());
         });
         setFeelingsLog(items);
         setLoading(false);
@@ -44,8 +48,44 @@ const AdminFeelingsLog = ({ navigation, route }) => {
       });
   }
 
+  function mapFeelingsLog() {
+    var indexCount = 0;
+    var i;
+    for (i = 0; i < Math.floor(feelingsLog.length / 2); i++) {
+      feelingsDifference.push({
+        date: "End of Session " + (i + 1),
+        data: calculateDifference(indexCount),
+      });
+      indexCount += 2;
+    }
+    console.log(feelingsDifference);
+  }
+
+  function calculateDifference(index) {
+    if (index < feelingsLog.length && index + 1 < feelingsLog.length) {
+      return {
+        anxiousDiff:
+          switchScore(feelingsLog[index + 1].anxious) -
+          switchScore(feelingsLog[index].anxious),
+        sadDiff:
+          switchScore(feelingsLog[index + 1].sad) -
+          switchScore(feelingsLog[index].sad),
+        happyDiff: feelingsLog[index + 1].happy - feelingsLog[index].happy,
+        overall: feelingsLog[index + 1].overall,
+        anxiousFinal: feelingsLog[index + 1].anxious,
+        sadFinal: feelingsLog[index + 1].sad,
+        happyFinal: feelingsLog[index + 1].happy,
+      };
+    } else {
+      return {
+        anxiousDiff: 0,
+        sadDiff: 0,
+        happyDiff: 0,
+      };
+    }
+  }
+
   function getDateToString(dateAndTime) {
-    console.log(dateAndTime);
     const calender = dateAndTime.toString().substr(0, 15);
     const time = dateAndTime.toString().substr(16, 5);
     return calender + "  @ " + time;
@@ -74,6 +114,137 @@ const AdminFeelingsLog = ({ navigation, route }) => {
     }
   }
 
+  function renderDifferenceText() {
+    if (!difference) {
+      return "Show feelings difference";
+    } else {
+      return "Show feelings log";
+    }
+  }
+
+  function getCorrectArray() {
+    if (!difference) {
+      return feelingsLog;
+    } else {
+      return feelingsDifference;
+    }
+  }
+
+  function getCorrectHeader(logItem) {
+    if (!difference) {
+      return getDateToString(logItem.timeStamp.toDate());
+    } else {
+      return logItem.date;
+    }
+  }
+  function getCorrectOverallFeeling(logItem) {
+    if (!difference) {
+      return (
+        "DB" + route.params.currentUserID + " felt " + logItem.overall + "!"
+      );
+    } else {
+      return (
+        "DB" +
+        route.params.currentUserID +
+        " became " +
+        logItem.data.overall +
+        "!"
+      );
+    }
+  }
+
+  function generatePercentage(number) {
+    if (number < 0) {
+      return "-" + number * 20 + "%";
+    } else {
+      return "+" + number * 20 + "%";
+    }
+  }
+
+  function getCorrectAnxiety(logItem) {
+    if (!difference) {
+      return "Free from anxiety";
+    } else {
+      return (
+        "Free from anxiety: " + generatePercentage(logItem.data.anxiousDiff)
+      );
+    }
+  }
+
+  function getCorrectSadness(logItem) {
+    if (!difference) {
+      return "Free from sadness";
+    } else {
+      return "Free from sadness: " + generatePercentage(logItem.data.sadDiff);
+    }
+  }
+  function getCorrectHappiness(logItem) {
+    if (!difference) {
+      return "Happiness";
+    } else {
+      return "Happiness: " + generatePercentage(logItem.data.happyDiff);
+    }
+  }
+
+  function getCorrectAnxietyScore(logItem) {
+    if (!difference) {
+      return switchScore(logItem.anxious);
+    } else {
+      return switchScore(logItem.data.anxiousFinal);
+    }
+  }
+
+  function getCorrectSadScore(logItem) {
+    if (!difference) {
+      return switchScore(logItem.sad);
+    } else {
+      return switchScore(logItem.data.sadFinal);
+    }
+  }
+
+  function getCorrectHappyScore(logItem) {
+    if (!difference) {
+      return logItem.happy;
+    } else {
+      return logItem.data.happyFinal;
+    }
+  }
+
+  function getCorrectColour(logItem, field) {
+    if (!difference) {
+      return "#000000";
+    } else {
+      return getCorrectDifferenceColour(logItem, field);
+    }
+  }
+
+  function getCorrectDifferenceColour(logItem, field) {
+    if (field == "anxious") {
+      return getColour(logItem.data.anxiousDiff);
+    } else if (field == "sad") {
+      return getColour(logItem.data.sadDiff);
+    } else {
+      return getColour(logItem.data.happyDiff);
+    }
+  }
+
+  function getColour(number) {
+    if (number > 0) {
+      return "#013220";
+    } else if (number < 0) {
+      return "#ff0000";
+    } else {
+      return "#ffff00";
+    }
+  }
+
+  function toggleView() {
+    if (!difference && feelingsDifference.length == 0) {
+      mapFeelingsLog();
+    }
+    setDifference(!difference);
+  }
+
   //Render the data of the feelings log
   if (loading) {
     return (
@@ -82,55 +253,77 @@ const AdminFeelingsLog = ({ navigation, route }) => {
       </View>
     );
   }
+
   return (
     <SafeAreaView style={styles.container}>
       <ScrollView style={styles.data}>
-        {feelingsLog.map((logItem, index) => (
+        {getCorrectArray().map((logItem, index) => (
           <View key={index} style={styles.item}>
             <View style={styles.oval}>
-              <Text style={styles.dateText}>
-                {getDateToString(logItem.timeStamp.toDate())}
-              </Text>
+              <Text style={styles.dateText}>{getCorrectHeader(logItem)}</Text>
             </View>
             <View style={styles.largeOval}>
               <View style={styles.bars}>
                 <Text style={styles.overallText}>
-                  DB{route.params.currentUserID} felt {logItem.overall}!
+                  {getCorrectOverallFeeling(logItem)}
                 </Text>
-                <Text style={styles.statText}>Free from anxiety</Text>
+                <Text
+                  style={[
+                    styles.statText,
+                    { color: getCorrectColour(logItem, "anxious") },
+                  ]}
+                >
+                  {getCorrectAnxiety(logItem)}
+                </Text>
                 <ProgressBar
                   style={styles.progressBar}
                   segments={5}
-                  nextWidth={switchScore(logItem.anxious)}
+                  nextWidth={getCorrectAnxietyScore(logItem)}
                 ></ProgressBar>
-                <Text style={styles.statText}>Friendly</Text>
+                <Text
+                  style={[
+                    styles.statText,
+                    { color: getCorrectColour(logItem, "sad") },
+                  ]}
+                >
+                  {getCorrectSadness(logItem)}
+                </Text>
                 <ProgressBar
                   style={styles.progressBar}
                   segments={5}
-                  nextWidth={logItem.friendly}
+                  nextWidth={getCorrectSadScore(logItem)}
                 ></ProgressBar>
-                <Text style={styles.statText}>Free from paranoia</Text>
+                <Text
+                  style={[
+                    styles.statText,
+                    { color: getCorrectColour(logItem, "happy") },
+                  ]}
+                >
+                  {getCorrectHappiness(logItem)}
+                </Text>
                 <ProgressBar
                   style={styles.progressBar}
                   segments={5}
-                  nextWidth={switchScore(logItem.paranoid)}
-                ></ProgressBar>
-                <Text style={styles.statText}>Happy</Text>
-                <ProgressBar
-                  style={styles.progressBar}
-                  segments={5}
-                  nextWidth={logItem.sad}
+                  nextWidth={getCorrectHappyScore(logItem)}
                 ></ProgressBar>
               </View>
             </View>
           </View>
         ))}
-        <TouchableOpacity
-          onPress={() => navigation.goBack()}
-          style={[styles.centering, styles.backButton]}
-        >
-          <Text style={[, { fontSize: 20 }]}>Return to user stats</Text>
-        </TouchableOpacity>
+        <View style={styles.buttonsBlock}>
+          <TouchableOpacity
+            onPress={() => toggleView()}
+            style={[styles.centering, styles.backButton]}
+          >
+            <Text style={[, { fontSize: 20 }]}>{renderDifferenceText()}</Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            onPress={() => navigation.goBack()}
+            style={[styles.centering, styles.backButton]}
+          >
+            <Text style={[, { fontSize: 20 }]}>Return to user stats</Text>
+          </TouchableOpacity>
+        </View>
       </ScrollView>
     </SafeAreaView>
   );
@@ -140,9 +333,8 @@ const styles = StyleSheet.create({
   backButton: {
     width: "80%",
     height: 50,
-    margin: 11,
-    marginTop: 20,
-    marginBottom: 50,
+    marginHorizontal: 11,
+    marginBottom: 15,
     shadowOffset: {
       width: 0,
       height: 10,
@@ -150,10 +342,14 @@ const styles = StyleSheet.create({
     textAlign: "center",
     padding: 10,
     shadowOpacity: 0.4,
-    shadowRadius: 20,
+    shadowRadius: 10,
     backgroundColor: "#FFF",
     borderRadius: 10,
     alignSelf: "center",
+  },
+  buttonsBlock: {
+    marginTop: 15,
+    marginBottom: 30,
   },
   container: {
     flex: 1,
@@ -181,9 +377,10 @@ const styles = StyleSheet.create({
   },
   largeOval: {
     width: "90%",
-    height: 300,
+    height: 250,
     borderRadius: 50,
     borderColor: "black",
+    marginTop: 5,
     padding: 10,
     borderWidth: 5,
     backgroundColor: "transparent",

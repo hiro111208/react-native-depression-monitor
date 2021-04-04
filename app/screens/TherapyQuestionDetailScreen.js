@@ -127,7 +127,7 @@ export default class TherapyQuestionDetailScreen extends Component {
               <View style={styles.title}>
                 <Text style={[styles.fontStyle, { fontSize: 20 }]}>
                   {this.state.categoryDropped} {this.state.block}-
-                {this.state.question}
+                  {this.state.question}
                 </Text>
               </View>
             </View>
@@ -172,7 +172,9 @@ export default class TherapyQuestionDetailScreen extends Component {
                   <TextInput
                     placeholder={"answer1"}
                     value={this.state.answer1}
-                    onChangeText={(val) => this.inputValueUpdate(val, "answer1")}
+                    onChangeText={(val) =>
+                      this.inputValueUpdate(val, "answer1")
+                    }
                   />
                 </View>
                 <View>
@@ -202,7 +204,9 @@ export default class TherapyQuestionDetailScreen extends Component {
                   <TextInput
                     placeholder={"answer2"}
                     value={this.state.answer2}
-                    onChangeText={(val) => this.inputValueUpdate(val, "answer2")}
+                    onChangeText={(val) =>
+                      this.inputValueUpdate(val, "answer2")
+                    }
                   />
                 </View>
               </ScrollView>
@@ -233,7 +237,9 @@ export default class TherapyQuestionDetailScreen extends Component {
                   { borderBottomLeftRadius: 40, borderBottomRightRadius: 40 },
                 ]}
               >
-                <Text style={[styles.fontStyle, { fontSize: 17 }]}>Go Back</Text>
+                <Text style={[styles.fontStyle, { fontSize: 17 }]}>
+                  Go Back
+                </Text>
               </TouchableOpacity>
             </View>
           </View>
