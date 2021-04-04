@@ -10,9 +10,12 @@ import {
   View,
   Text,
   TouchableOpacity,
+  LogBox,
 } from "react-native";
 import firebase from "../database/firebase";
 import DismissKeyboard from "../config/DismissKeyboard";
+
+LogBox.ignoreLogs(["FirebaseError: Missing or insufficient permissions"]); // Ignore log notification by message
 
 // Screen to edit the content of a therapy question, then update it
 export default class TherapyQuestionDetailScreen extends Component {
@@ -104,7 +107,7 @@ export default class TherapyQuestionDetailScreen extends Component {
       })
       .catch((error) => {
         console.error("Error: ", error);
-        Alert.alert('Fill in every fields!');
+        Alert.alert("Fill in every fields!");
         this.setState({
           isLoading: false,
         });
