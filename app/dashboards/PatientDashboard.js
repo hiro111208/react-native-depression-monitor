@@ -37,14 +37,6 @@ export default function PatientDashboard({ navigation, route }) {
                 tabBarIcon: ({ focused }) => {
                     let imageSource;
 
-                    // if (route.name === "Home") {
-                    //     imageSource = focused ? "ios-home" : "ios-home-outline";
-                    // } else if (route.name === "Calendar") {
-                    //     imageSource = focused ? "ios-calendar" : "ios-calendar-outline";
-                    // } else if (route.name === "Account") {
-                    //     imageSource = focused ? "ios-person" : "ios-person-outline";
-                    // }
-
                     switch (route.name) {
                         case "Home":
                             imageSource = focused ? require("../assets/home-active.png") : require("../assets/home.png");
