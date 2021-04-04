@@ -54,7 +54,11 @@ const PlantScreen = ({ navigation, route }) => {
       return (
         <TouchableOpacity
           onPress={() => waterPlant()}
-          style={[styles.optButton, indexStyles.centering, indexStyles.shadowEffect]}
+          style={[
+            styles.optButton,
+            indexStyles.centering,
+            indexStyles.shadowEffect,
+          ]}
         >
           <Text style={styles.text}>Water your plant!</Text>
           <Text style={styles.comment}>-5 coins</Text>
@@ -62,7 +66,13 @@ const PlantScreen = ({ navigation, route }) => {
       );
     } else {
       return (
-        <View style={[styles.optButton, indexStyles.centering, indexStyles.shadowEffect]}>
+        <View
+          style={[
+            styles.optButton,
+            indexStyles.centering,
+            indexStyles.shadowEffect,
+          ]}
+        >
           <Text style={styles.text}>You reached max level!</Text>
           <Text style={styles.comment}>well done!</Text>
         </View>
@@ -85,7 +95,7 @@ const PlantScreen = ({ navigation, route }) => {
       .then(() => {
         console.log("Progress saved");
         route.params.onGoBack();
-        navigation.goBack();
+        navigation.navigate("PatientDashboard");
       })
       .catch((error) => {
         console.error("Error saving progress: ", error);
@@ -120,7 +130,11 @@ const PlantScreen = ({ navigation, route }) => {
 
         <View style={[styles.plantSpace, indexStyles.centering]}>
           <View
-            style={[styles.plantImage, indexStyles.centering, indexStyles.shadowEffect]}
+            style={[
+              styles.plantImage,
+              indexStyles.centering,
+              indexStyles.shadowEffect,
+            ]}
           >
             <Image
               style={{ width: 225, height: 225 }}
@@ -138,7 +152,11 @@ const PlantScreen = ({ navigation, route }) => {
 
         <View style={[{ height: "9%", width: "100%" }, indexStyles.centering]}>
           <TouchableOpacity
-            style={[styles.homeButton, indexStyles.centering, indexStyles.cover]}
+            style={[
+              styles.homeButton,
+              indexStyles.centering,
+              indexStyles.cover,
+            ]}
             onPress={() => saveProgress()}
           >
             <Text style={indexStyles.textGrey}>Return Home</Text>

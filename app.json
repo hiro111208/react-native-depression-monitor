@@ -4,9 +4,9 @@
     "slug": "Team-Rocket-Large-Group-Project",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./App/assets/icon.png",
+    "icon": "./app/assets/icon.png",
     "splash": {
-      "image": "./App/assets/splash.png",
+      "image": "./app/assets/splash.png",
       "resizeMode": "cover",
       "backgroundColor": "#ffa351ff"
     },
@@ -24,13 +24,13 @@
       "googleServicesFile": "./google-services.json",
       "useNextNotificationsApi": true,
       "adaptiveIcon": {
-        "foregroundImage": "./App/assets/adaptive-icon.png",
+        "foregroundImage": "./app/assets/adaptive-icon.png",
         "backgroundColor": "#FFFFFF"
       },
       "package": "package.android"
     },
     "web": {
-      "favicon": "./App/assets/icon.png"
+      "favicon": "./app/assets/icon.png"
     }
   }
 }
