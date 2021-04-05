@@ -13,6 +13,7 @@ import {
 } from "react-native";
 import Constants from "expo-constants";
 import * as Speech from "expo-speech";
+import * as indexStyles from "../config/indexStyles";
 import firebase from "../database/firebase";
 import ProgressBar from "../src/components/ProgressBar";
 import DismissKeyboard from "../config/DismissKeyboard";
@@ -45,7 +46,6 @@ const TherapyScreen = ({ navigation, route }) => {
   const [user, setUser] = useState(undefined);
   const [finished, setFinished] = useState(false);
   const [timerStarted, setTimerStarted] = useState(false);
-
   const [sentenceNumber, setSentenceNumber] = useState(0);
 
   const userRef = firebase
@@ -127,7 +127,13 @@ const TherapyScreen = ({ navigation, route }) => {
   // View to display when answer is correct
   function renderCorrectAnswerArea() {
     return (
-      <View style={[styles.answerArea, styles.centering, styles.shadowEffect]}>
+      <View
+        style={[
+          styles.answerArea,
+          indexStyles.centering,
+          indexStyles.shadowEffect,
+        ]}
+      >
         <TextInput
           style={[styles.input, styles.correctHighlight]}
           value="Well done!"
@@ -140,7 +146,13 @@ const TherapyScreen = ({ navigation, route }) => {
   // View to display when answer is wrong
   function renderIncorrectAnswerArea() {
     return (
-      <View style={[styles.answerArea, styles.centering, styles.shadowEffect]}>
+      <View
+        style={[
+          styles.answerArea,
+          indexStyles.centering,
+          indexStyles.shadowEffect,
+        ]}
+      >
         <Text style={styles.textNote}>
           {" "}
           The correct answer was "{getCorrectAnswer()}".{" "}
@@ -157,7 +169,13 @@ const TherapyScreen = ({ navigation, route }) => {
   // Renders whilst data is being retrieved
   function renderLoadingAnswerArea() {
     return (
-      <View style={[styles.answerArea, styles.centering, styles.shadowEffect]}>
+      <View
+        style={[
+          styles.answerArea,
+          indexStyles.centering,
+          indexStyles.shadowEffect,
+        ]}
+      >
         <TextInput
           style={styles.input}
           placeholder="session loading..."
@@ -170,16 +188,30 @@ const TherapyScreen = ({ navigation, route }) => {
   // Renders format for the answer area to the yes or no question
   function renderChoiceAnswerArea() {
     return (
-      <View style={[styles.answerArea, styles.centering, styles.shadowEffect]}>
+      <View
+        style={[
+          styles.answerArea,
+          indexStyles.centering,
+          indexStyles.shadowEffect,
+        ]}
+      >
         <Text style={styles.textNote}>{items[question].question2}</Text>
         <TouchableOpacity
-          style={[styles.answerButton, styles.centering, styles.shadowEffect]}
+          style={[
+            styles.answerButton,
+            indexStyles.centering,
+            indexStyles.shadowEffect,
+          ]}
           onPress={() => checkAnswer("Yes")}
         >
           <Text style={styles.text}>YES</Text>
         </TouchableOpacity>
         <TouchableOpacity
-          style={[styles.answerButton, styles.centering, styles.shadowEffect]}
+          style={[
+            styles.answerButton,
+            indexStyles.centering,
+            indexStyles.shadowEffect,
+          ]}
           onPress={() => checkAnswer("No")}
         >
           <Text style={styles.text}>NO</Text>
@@ -416,9 +448,9 @@ const TherapyScreen = ({ navigation, route }) => {
   function incrementQuestion() {
     if (question == 17) {
       if (user.block == 4) {
-        saveProgress(5, 1, 5);
+        saveProgress(5, 1, 10);
       } else {
-        saveProgress(user.block + 1, 0, 5);
+        saveProgress(user.block + 1, 0, 10);
       }
 
       route.params.onGoBack();
@@ -426,7 +458,7 @@ const TherapyScreen = ({ navigation, route }) => {
         "Congratulations",
         "You have completed therapy set " +
           user.block +
-          "! You have earned 5 coins to grow your plant.",
+          "! You have earned 10 coins to grow your plant.",
         [
           {
             text: "OK",
@@ -467,11 +499,12 @@ const TherapyScreen = ({ navigation, route }) => {
   function addAnswer(q1, a1, q2, a2) {
     console.log(q1);
     console.log(q2);
+    const arm = user.categoryDropped == "CONTROL" ? "ARM-2" : "ARM-1";
     answerRef
       .add({
         userID: user.userID,
         question: question + 1,
-        categoryDropped: user.categoryDropped,
+        categoryDropped: arm,
         sessionNumber: user.block,
         question1Time: q1,
         question1IsCorrect: a1,
@@ -549,12 +582,12 @@ const TherapyScreen = ({ navigation, route }) => {
         </View>
 
         {/* Pause button to take a break */}
-        <View style={[styles.horizontal, styles.centering]}>
+        <View style={[styles.horizontal, indexStyles.centering]}>
           <TouchableOpacity
             style={[
               styles.takeBreakButton,
-              styles.centering,
-              styles.shadowEffect,
+              indexStyles.centering,
+              indexStyles.shadowEffect,
             ]}
             onPress={() => handlePauseButton()}
             disabled={checkDisabledForPause()}
@@ -564,7 +597,7 @@ const TherapyScreen = ({ navigation, route }) => {
 
           {/* Button to read text aloud */}
           <TouchableOpacity
-            style={[styles.readButton, styles.centering]}
+            style={[styles.readButton, indexStyles.centering]}
             onPress={() => handleReadButtonOnPress()}
           >
             {renderReadTextButton()}
@@ -594,7 +627,11 @@ const TherapyScreen = ({ navigation, route }) => {
       {/* Button to navigate through the therapy session */}
       <View style={[styles.nextButtonSpace, styles.centering]}>
         <TouchableOpacity
-          style={[styles.optButton, styles.centering, styles.shadowEffect]}
+          style={[
+            styles.optButton,
+            indexStyles.centering,
+            indexStyles.shadowEffect,
+          ]}
           onPress={() => nextQuestion()}
           disabled={checkDisabledForNext()}
         >
@@ -655,7 +692,7 @@ const styles = StyleSheet.create({
     height: "40%",
     width: "90%",
     backgroundColor: "#ffe2e6",
-    borderColor: "#ffffff",
+    borderColor: "white",
     borderWidth: 5,
     borderRadius: 40,
     fontSize: 20,
@@ -675,7 +712,7 @@ const styles = StyleSheet.create({
     width: "100%",
     borderRadius: 50,
     borderWidth: 10,
-    borderColor: "#fff",
+    borderColor: "white",
     backgroundColor: "#eee",
     padding: 30,
     justifyContent: "space-evenly",
@@ -685,17 +722,6 @@ const styles = StyleSheet.create({
     left: "45%",
     position: "absolute",
     backgroundColor: "#ffcccb",
-  },
-  shadowEffect: {
-    shadowColor: "#000",
-    shadowOffset: {
-      width: 0,
-      height: 2,
-    },
-    shadowOpacity: 0.25,
-    shadowRadius: 3.84,
-    elevation: 5,
-    marginVertical: 5,
   },
   takeBreakButton: {
     height: "80%",

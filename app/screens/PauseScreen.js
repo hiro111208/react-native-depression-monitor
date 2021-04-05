@@ -8,6 +8,7 @@ import {
   Dimensions,
 } from "react-native";
 import Emoji from "react-native-emoji";
+import * as indexStyles from "../config/indexStyles";
 
 /* Constant measurements depending on device screen size */
 const winWidth = Dimensions.get("window").width;
@@ -39,14 +40,14 @@ function generateEmoji() {
 
 export default function PauseScreen({ props, navigation }) {
   return (
-    <SafeAreaView style={styles.container}>
-      <SafeAreaView style={[styles.center, styles.area]}>
-        <SafeAreaView style={styles.messageArea}>
-          <Text style={[styles.text, styles.message]}>
+    <SafeAreaView style={[styles.container, indexStyles.centering]}>
+      <SafeAreaView style={[styles.center, styles.area, indexStyles.cover]}>
+        <SafeAreaView style={[styles.messageArea, indexStyles.centering]}>
+          <Text style={[styles.text, { textAlign: "center" }]}>
             {generateMessage()} {generateEmoji()}{" "}
           </Text>
         </SafeAreaView>
-        <SafeAreaView style={styles.centering}>
+        <SafeAreaView style={indexStyles.centering}>
           <Image
             style={styles.image}
             resizeMode="contain"
@@ -56,12 +57,12 @@ export default function PauseScreen({ props, navigation }) {
 
         <SafeAreaView style={{ height: "7%" }}></SafeAreaView>
 
-        <SafeAreaView style={(styles.centering, styles.buttonArea)}>
+        <SafeAreaView style={[indexStyles.cover, styles.center]}>
           <TouchableOpacity
-            style={[styles.backButton, styles.shadowEffect]}
+            style={[styles.backButton, indexStyles.shadowEffect]}
             onPress={() => navigation.navigate("TherapyScreen")} //implement timer/record the current time
           >
-            <Text style={[styles.text, styles.backText]}>
+            <Text style={[styles.text, indexStyles.textGrey]}>
               Back to the session
             </Text>
           </TouchableOpacity>
@@ -75,23 +76,16 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     display: "flex",
-    justifyContent: "center",
-    alignItems: "center",
     backgroundColor: "#fff7ed",
   },
   center: {
-    height: "100%",
-    width: "100%",
     alignItems: "center",
   },
-
   text: {
-    fontWeight: "bold",
-    textAlign: "center",
-    color: "#4a4b4b",
     maxWidth: winWidth / 1.3,
     lineHeight: winHeight / 27,
     letterSpacing: winWidth / 400,
+    fontSize: 20,
   },
   messageArea: {
     width: "85%",
@@ -99,31 +93,10 @@ const styles = StyleSheet.create({
     marginTop: winHeight / 15,
     borderRadius: 20,
     backgroundColor: "#fed8b1",
-    alignItems: "center",
-    justifyContent: "center",
-  },
-  message: {
-    fontSize: 21,
   },
   image: {
     marginTop: winHeight / 20,
     maxHeight: winHeight / 2.5,
-  },
-  shadowEffect: {
-    shadowColor: "#000",
-    shadowOffset: {
-      width: 0,
-      height: 2,
-    },
-    shadowOpacity: 0.2,
-    shadowRadius: 3,
-    elevation: 5,
-    marginVertical: 5,
-  },
-  buttonArea: {
-    width: "100%",
-    height: "100%",
-    alignItems: "center",
   },
   backButton: {
     height: "9%",
@@ -131,14 +104,6 @@ const styles = StyleSheet.create({
     backgroundColor: "#fecc91",
     padding: 10,
     borderRadius: 20,
-    justifyContent: "center",
-  },
-  backText: {
-    fontSize: 18,
-    color: "dimgray",
-  },
-  centering: {
-    alignItems: "center",
     justifyContent: "center",
   },
 });
