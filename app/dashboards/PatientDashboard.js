@@ -1,7 +1,6 @@
 import * as React from "react";
 import { Image } from "react-native";
 import { getFocusedRouteNameFromRoute } from "@react-navigation/native";
-import { Ionicons } from "@expo/vector-icons";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import HomeScreen from "./HomeScreen";
 import AccountScreen from "./AccountScreen";
