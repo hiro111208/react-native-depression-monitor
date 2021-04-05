@@ -8,15 +8,16 @@ import {
   TouchableOpacity,
 } from "react-native";
 import firebase from "../database/firebase";
-
 import colors from "../config/colors";
 import { Alert, Platform } from "react-native";
 import * as Permissions from "expo-permissions";
 import { Linking } from "expo";
 import * as Notifications from "expo-notifications";
-//import firebase from firebase;
 import Constants from "expo-constants";
 
+/** Default screen in the patient dashboard contain links to
+ * navigate to therapy screen or interact with the plant
+ */
 export default function HomeScreen({ route, props, navigation }) {
   const [user, setUser] = useState(undefined);
   const [plant, setPlant] = useState(require("../assets/stage_1.png"));
@@ -26,10 +27,12 @@ export default function HomeScreen({ route, props, navigation }) {
       : ""
   );
 
+  // Sync user's previous progress
   useEffect(() => {
     getLevel();
   }, []);
 
+  // Get data from firestore
   function getLevel() {
     firebase
       .firestore()
@@ -46,6 +49,7 @@ export default function HomeScreen({ route, props, navigation }) {
       });
   }
 
+  // change rendered plant image according to the level of the user
   function updatePath(lvl) {
     switch (lvl) {
       case 1:
@@ -80,11 +84,10 @@ export default function HomeScreen({ route, props, navigation }) {
     }
   }
 
+  // Update data when returning from interaction or therapy screen
   function refresh() {
     getLevel();
   }
-
-  ///
 
   useEffect(() => {
     (async () => {
@@ -96,12 +99,14 @@ export default function HomeScreen({ route, props, navigation }) {
     })();
   });
 
+  // Setup push notification for user
   useEffect(() => {
     (() => registerForPushNotificationsAsync())();
   }, []);
 
+  // Create token for push notifications and add it to the users collection
   const registerForPushNotificationsAsync = async () => {
-    let token; // undefined initially
+    let token;
     if (Constants.isDevice) {
       const { status: existingStatus } = await Permissions.getAsync(
         Permissions.NOTIFICATIONS
@@ -121,16 +126,15 @@ export default function HomeScreen({ route, props, navigation }) {
     } else {
       alert("Must use physical device for Push Notifications");
     }
+
     // save the users token in firebase
     if (token) {
-      //makes sure there is a token to add to firebase
       const res = await firebase
         .firestore()
         .collection("users")
         .doc(firebase.auth().currentUser.uid)
         .set({ token }, { merge: true });
     }
-
     if (Platform.OS === "android") {
       Notifications.setNotificationChannelAsync("default", {
         name: "default",
@@ -143,17 +147,13 @@ export default function HomeScreen({ route, props, navigation }) {
     return token;
   };
 
-  ///
-
   return (
     <View style={styles.container}>
       <View style={styles.center}>
         <View style={[styles.welcomeArea, styles.shadowEffect]}>
           <View style={styles.userNote}>
             <Text style={[styles.textStyle]}>Hello there, {displayName}!</Text>
-
             <View style={styles.spacer}></View>
-
             <View
               style={[styles.plantImage, styles.centering, styles.shadowEffect]}
             >
@@ -165,8 +165,8 @@ export default function HomeScreen({ route, props, navigation }) {
             </View>
           </View>
 
+          {/** navigation button to begin therapy */}
           <View style={{ height: "30%" }}></View>
-
           <TouchableOpacity
             style={[styles.sessionArea, styles.centering, styles.shadowEffect]}
             onPress={() => {
@@ -187,6 +187,7 @@ export default function HomeScreen({ route, props, navigation }) {
             <Text style={styles.textStyle}>Go to your session</Text>
           </TouchableOpacity>
 
+          {/** interact with plant navigation button */}
           <TouchableOpacity
             style={[styles.sessionArea, styles.centering, styles.shadowEffect]}
             onPress={() =>
