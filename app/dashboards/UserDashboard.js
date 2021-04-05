@@ -11,11 +11,13 @@ import {
 } from "react-native";
 
 import BouncyCheckbox from "react-native-bouncy-checkbox";
-
 import firebase from "../database/firebase";
 import ProgressBar from "../src/components/ProgressBar";
 import { TextInput } from "react-native-gesture-handler";
 
+{
+  /** View the progress of all users of the app */
+}
 function UserDashboard(props) {
   const [isSelected, setSelection] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
@@ -56,16 +58,17 @@ function UserDashboard(props) {
           itemIDData.indexOf(textData) > -1 ||
           itemBlockData.indexOf(textData) > -1 ||
           itemIDNumberData.indexOf(textData) > -1 ||
-          //take into acount "active" is substring of "inactive"
+          // take into acount "active" is substring of "inactive"
           (activity.indexOf(textData) > -1 && activity.indexOf(textData) < 2)
         );
       });
       setItems(newData);
       setSearchQuery(text);
       setFiltering(false);
-    } else {
-      // Inserted text is blank
-      // Update items with filterList
+    }
+
+    // text inserted is blan
+    else {
       setItems(filterList);
       setSearchQuery(text);
     }
@@ -96,7 +99,7 @@ function UserDashboard(props) {
     };
   }, []);
 
-  //display user's categoryDropped
+  // display user's categoryDropped
   function toggleCategory() {
     if (isSelected == false) {
       setSelection(true);
@@ -105,6 +108,7 @@ function UserDashboard(props) {
     }
     console.log(isSelected);
   }
+
   // retrieve all users from the database
   function getItems() {
     query.onSnapshot((querySnapshot) => {
@@ -122,6 +126,7 @@ function UserDashboard(props) {
 
   return (
     <View style={styles.container}>
+      {/** Checkbox to toggle revealing of category */}
       <View
         flexDirection={"row"}
         justifyContent={"flex-end"}
@@ -140,6 +145,8 @@ function UserDashboard(props) {
           }}
         />
       </View>
+
+      {/** Show total number of users */}
       <View style={[styles.counter, styles.shadow]}>
         <Text
           adjustsFontSizeToFit={true}
@@ -150,6 +157,7 @@ function UserDashboard(props) {
         </Text>
       </View>
 
+      {/** Search functionality */}
       <TextInput
         style={styles.searchBar}
         round
@@ -160,6 +168,7 @@ function UserDashboard(props) {
         value={searchQuery}
       />
 
+      {/** Contains list of users from the user collection on firebase */}
       <Animated.FlatList
         data={items}
         keyExtractor={(item, index) => index.toString()}
@@ -180,6 +189,7 @@ function UserDashboard(props) {
                 })
               }
             >
+              {/** Presents the user's ID */}
               <Animated.View style={[styles.listComponent, styles.shadow]}>
                 <View flex={1}>
                   <View flexDirection={"row"}>
@@ -202,6 +212,7 @@ function UserDashboard(props) {
                   </View>
                 </View>
 
+                {/** Show user's progress in the therapy sessions */}
                 <View width={200} marginLeft={10}>
                   <View flexDirection={"row"}>
                     {item.block < 5 && (
