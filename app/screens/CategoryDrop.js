@@ -10,6 +10,9 @@ import Constants from "expo-constants";
 import * as indexStyles from "../config/indexStyles";
 import firebase from "../database/firebase";
 
+{
+  /** Option for the user to drop a category */
+}
 const CategoryDrop = ({ route, navigation }) => {
   // Stores user data passed from the previous screen
   const userProgress = route.params.user;
@@ -61,7 +64,13 @@ const CategoryDrop = ({ route, navigation }) => {
           style={styles.bottomItem}
           onPress={() => chooseOption("SOCIAL")}
         >
-          <View style={[styles.bottomItemInner, indexStyles.shadowEffect, indexStyles.centering]}>
+          <View
+            style={[
+              styles.bottomItemInner,
+              indexStyles.shadowEffect,
+              indexStyles.centering,
+            ]}
+          >
             <Text style={styles.text}>Social</Text>
           </View>
         </TouchableOpacity>
@@ -70,7 +79,13 @@ const CategoryDrop = ({ route, navigation }) => {
           style={styles.bottomItem}
           onPress={() => chooseOption("ACADEMIC")}
         >
-          <View style={[styles.bottomItemInner, indexStyles.shadowEffect, indexStyles.centering]}>
+          <View
+            style={[
+              styles.bottomItemInner,
+              indexStyles.shadowEffect,
+              indexStyles.centering,
+            ]}
+          >
             <Text style={styles.text}>Academic</Text>
           </View>
         </TouchableOpacity>
@@ -79,7 +94,13 @@ const CategoryDrop = ({ route, navigation }) => {
           style={styles.bottomItem}
           onPress={() => chooseOption("HEALTH")}
         >
-          <View style={[styles.bottomItemInner, indexStyles.shadowEffect, indexStyles.centering]}>
+          <View
+            style={[
+              styles.bottomItemInner,
+              indexStyles.shadowEffect,
+              indexStyles.centering,
+            ]}
+          >
             <Text style={styles.text}>Mood</Text>
           </View>
         </TouchableOpacity>
@@ -88,7 +109,13 @@ const CategoryDrop = ({ route, navigation }) => {
           style={styles.bottomItem}
           onPress={() => chooseOption("HEALTH")}
         >
-          <View style={[styles.bottomItemInner, indexStyles.shadowEffect, indexStyles.centering]}>
+          <View
+            style={[
+              styles.bottomItemInner,
+              indexStyles.shadowEffect,
+              indexStyles.centering,
+            ]}
+          >
             <Text style={styles.text}>Health</Text>
           </View>
         </TouchableOpacity>
@@ -97,7 +124,13 @@ const CategoryDrop = ({ route, navigation }) => {
           style={styles.bottomItem}
           onPress={() => chooseOption("HOBBIES")}
         >
-          <View style={[styles.bottomItemInner, indexStyles.shadowEffect, indexStyles.centering]}>
+          <View
+            style={[
+              styles.bottomItemInner,
+              indexStyles.shadowEffect,
+              indexStyles.centering,
+            ]}
+          >
             <Text style={styles.text}>Hobbies</Text>
           </View>
         </TouchableOpacity>
@@ -106,7 +139,13 @@ const CategoryDrop = ({ route, navigation }) => {
           style={styles.bottomItem}
           onPress={() => chooseOption("FAMILY")}
         >
-          <View style={[styles.bottomItemInner, indexStyles.shadowEffect, indexStyles.centering]}>
+          <View
+            style={[
+              styles.bottomItemInner,
+              indexStyles.shadowEffect,
+              indexStyles.centering,
+            ]}
+          >
             <Text style={styles.text}>Family</Text>
           </View>
         </TouchableOpacity>
@@ -115,7 +154,13 @@ const CategoryDrop = ({ route, navigation }) => {
           style={styles.bottomItem}
           onPress={() => chooseOption("WORK")}
         >
-          <View style={[styles.bottomItemInner, indexStyles.shadowEffect, indexStyles.centering]}>
+          <View
+            style={[
+              styles.bottomItemInner,
+              indexStyles.shadowEffect,
+              indexStyles.centering,
+            ]}
+          >
             <Text style={styles.text}>Work</Text>
           </View>
         </TouchableOpacity>
@@ -124,7 +169,13 @@ const CategoryDrop = ({ route, navigation }) => {
           style={styles.bottomItem}
           onPress={() => chooseOption("RELATIONSHIP")}
         >
-          <View style={[styles.bottomItemInner, indexStyles.shadowEffect, indexStyles.centering]}>
+          <View
+            style={[
+              styles.bottomItemInner,
+              indexStyles.shadowEffect,
+              indexStyles.centering,
+            ]}
+          >
             <Text style={styles.text}>Relationship</Text>
           </View>
         </TouchableOpacity>
