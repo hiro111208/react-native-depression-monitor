@@ -8,6 +8,7 @@ import {
   TouchableOpacity,
 } from "react-native";
 import { ListItem } from "react-native-elements";
+import * as indexStyles from "../config/indexStyles";
 import firebase from "../database/firebase";
 import { Notifications, Permissions } from "expo";
 
@@ -64,19 +65,7 @@ class ScheduleListScreen extends Component {
     let hours = date_ob.getHours();
     let minutes = date_ob.getMinutes();
     let seconds = date_ob.getSeconds();
-    return (
-      year +
-      "-" +
-      month +
-      "-" +
-      date +
-      " " +
-      hours +
-      ":" +
-      minutes +
-      ":" +
-      seconds
-    );
+    return year + "-" + month + "-" + date + " " + hours + ":" + minutes;
   }
 
   // Returns an alert upon deleting a schedule
@@ -103,76 +92,77 @@ class ScheduleListScreen extends Component {
       this.props.navigation.navigate("ScheduleListScreen");
     });
   }
- 
- 
-scheduleNotification1 = async () => {
-  var n1 = new Date(scheduleDateTime);
-  let notificationId = Notifications.scheduleLocalNotificationAsync(
-    {
-      title: "HUG",
-      body: 'The first set of questions is out now!',
-    },
-    {
-      time: n1.setDate(n1.getDate()),
-    },
-  );
-  console.log(notificationId);
-};
 
-scheduleNotification2 = async () => {
-  var n2 = new Date(scheduleDateTime);
-  let notificationId = Notifications.scheduleLocalNotificationAsync(
-    {
-      title: "HUG",
-      body: '“The secret of getting ahead is getting started.” The 2nd set of question is out now',
-    },
-    {
-      time: n2.setDate(n2.getDate() + 7),
-    },
-  );
-  console.log(notificationId);
-};
+  scheduleNotification1 = async () => {
+    var n1 = new Date(scheduleDateTime);
+    let notificationId = Notifications.scheduleLocalNotificationAsync(
+      {
+        title: "HUG",
+        body: "The first set of questions is out now!",
+      },
+      {
+        time: n1.setDate(n1.getDate()),
+      }
+    );
+    console.log(notificationId);
+  };
 
-scheduleNotification3 = async () => {
-  var n3 = new Date(scheduleDateTime);
-  let notificationId = Notifications.scheduleLocalNotificationAsync(
-    {
-      title: "HUG",
-      body: '“All our dreams can come true, if we have the courage to pursue them.”The 3rd set of question is out now',
-    },
-    {
-      time: n3.setDate(n3.getDate() + 14),
-    },
-  );
-  console.log(notificationId);
-};
+  scheduleNotification2 = async () => {
+    var n2 = new Date(scheduleDateTime);
+    let notificationId = Notifications.scheduleLocalNotificationAsync(
+      {
+        title: "HUG",
+        body:
+          "“The secret of getting ahead is getting started.” The 2nd set of question is out now",
+      },
+      {
+        time: n2.setDate(n2.getDate() + 7),
+      }
+    );
+    console.log(notificationId);
+  };
 
-scheduleNotification4 = async () => {
-  var n4 = new Date(scheduleDateTime);
-  let notificationId = Notifications.scheduleLocalNotificationAsync(
-    {
-      title: "HUG",
-      body: '“Start where you are. Use what you have. Do what you can.” The final set of question is out now',
-    },
-    {
-      time: n4.setDate(n4.getDate() + 21),
-    },
-  );
-  console.log(notificationId);
-};
+  scheduleNotification3 = async () => {
+    var n3 = new Date(scheduleDateTime);
+    let notificationId = Notifications.scheduleLocalNotificationAsync(
+      {
+        title: "HUG",
+        body:
+          "“All our dreams can come true, if we have the courage to pursue them.”The 3rd set of question is out now",
+      },
+      {
+        time: n3.setDate(n3.getDate() + 14),
+      }
+    );
+    console.log(notificationId);
+  };
 
+  scheduleNotification4 = async () => {
+    var n4 = new Date(scheduleDateTime);
+    let notificationId = Notifications.scheduleLocalNotificationAsync(
+      {
+        title: "HUG",
+        body:
+          "“Start where you are. Use what you have. Do what you can.” The final set of question is out now",
+      },
+      {
+        time: n4.setDate(n4.getDate() + 21),
+      }
+    );
+    console.log(notificationId);
+  };
 
   render() {
     if (this.state.isLoading) {
       return (
-        <View style={[styles.preloader, styles.centering]}>
+        <View style={[indexStyles.preloader, indexStyles.centering]}>
           <ActivityIndicator size="large" color="#9E9E9E" />
         </View>
       );
     }
     return (
-      <View style={[styles.container, styles.centering]}>
-        <View style={[styles.center, styles.cover, styles.shadowEffect]}>
+      <View style={[styles.container, indexStyles.centering]}>
+        <View style={[styles.center, styles.cover, indexStyles.shadowEffect]}>
           <View>
             {this.state.scheduleArr.map((item, i) => {
               return (
@@ -192,9 +182,9 @@ scheduleNotification4 = async () => {
                   </ListItem.Content>
                   <TouchableOpacity
                     style={[
-                      styles.centering,
+                      indexStyles.centering,
                       styles.deleteButton,
-                      styles.shadowEffect,
+                      indexStyles.shadowEffect,
                       { alignItems: "center" },
                     ]}
                     onPress={() => this.openTwoButtonAlert(item.key)}
@@ -206,10 +196,14 @@ scheduleNotification4 = async () => {
             })}
           </View>
           <View style={{ height: "10%" }}></View>
-          <View style={[styles.backContainer, styles.centering]}>
+          <View style={[styles.backContainer, indexStyles.centering]}>
             <TouchableOpacity
               onPress={() => this.props.navigation.goBack()}
-              style={[styles.backButton, styles.centering, styles.shadowEffect]}
+              style={[
+                styles.backButton,
+                indexStyles.centering,
+                indexStyles.shadowEffect,
+              ]}
             >
               <Text style={styles.backText}>Go back</Text>
             </TouchableOpacity>
@@ -246,15 +240,11 @@ const styles = StyleSheet.create({
     borderWidth: 5,
     borderColor: "#ffeed2",
   },
-  centering: {
-    alignItems: "center",
-    justifyContent: "center",
-  },
   container: {
     flex: 1,
     display: "flex",
     padding: 30,
-    backgroundColor: "#fff",
+    backgroundColor: "white",
   },
   cover: {
     width: "100%",
@@ -265,24 +255,6 @@ const styles = StyleSheet.create({
     width: "30%",
     backgroundColor: "#ffeed2",
     borderRadius: 10,
-  },
-  preloader: {
-    left: 0,
-    right: 0,
-    top: 0,
-    bottom: 0,
-    position: "absolute",
-  },
-  shadowEffect: {
-    shadowColor: "#000",
-    shadowOffset: {
-      width: 0,
-      height: 2,
-    },
-    shadowOpacity: 0.25,
-    shadowRadius: 3.84,
-    elevation: 5,
-    marginVertical: 5,
   },
 });
 

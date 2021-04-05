@@ -10,11 +10,14 @@ import {
   TouchableOpacity,
 } from "react-native";
 
+import BouncyCheckbox from "react-native-bouncy-checkbox";
+
 import firebase from "../database/firebase";
 import ProgressBar from "../src/components/ProgressBar";
 import { TextInput } from "react-native-gesture-handler";
 
 function UserDashboard(props) {
+  const [isSelected, setSelection] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
   const [items, setItems] = useState([]);
   const [userCount, setUserCount] = useState(0);
@@ -80,9 +83,28 @@ function UserDashboard(props) {
 
   // upon Mount get UserList
   useEffect(() => {
-    getItems();
+    const ac = new AbortController();
+    const sig = ac.signal;
+    Promise.all([
+      getItems(),
+      { signal: sig },
+      console.log("in Dashboard"),
+    ]).catch((ex) => console.error(ex));
+    return function cleanup() {
+      console.log("out Dashboard");
+      ac.abort();
+    };
   }, []);
 
+  //display user's categoryDropped
+  function toggleCategory() {
+    if (isSelected == false) {
+      setSelection(true);
+    } else {
+      setSelection(false);
+    }
+    console.log(isSelected);
+  }
   // retrieve all users from the database
   function getItems() {
     query.onSnapshot((querySnapshot) => {
@@ -100,6 +122,24 @@ function UserDashboard(props) {
 
   return (
     <View style={styles.container}>
+      <View
+        flexDirection={"row"}
+        justifyContent={"flex-end"}
+        marginBottom={-45}
+      >
+        <BouncyCheckbox
+          style={{ paddingTop: 10, paddingRight: 4 }}
+          size={12}
+          textStyle={{ fontSize: 10, fontWeight: "600", marginLeft: -10 }}
+          fillColor="blue"
+          unfillColor="white"
+          text=" Display Category "
+          iconStyle={{ borderColor: "black" }}
+          onPress={() => {
+            toggleCategory();
+          }}
+        />
+      </View>
       <View style={[styles.counter, styles.shadow]}>
         <Text
           adjustsFontSizeToFit={true}
@@ -109,6 +149,7 @@ function UserDashboard(props) {
           Total Nº Users : {userCount}
         </Text>
       </View>
+
       <TextInput
         style={styles.searchBar}
         round
@@ -143,6 +184,7 @@ function UserDashboard(props) {
                 <View flex={1}>
                   <View flexDirection={"row"}>
                     <Text style={styles.idText}>DB{item.userID}</Text>
+
                     <Text style={styles.mainText}>
                       User:
                       <Text
@@ -161,14 +203,26 @@ function UserDashboard(props) {
                 </View>
 
                 <View width={200} marginLeft={10}>
-                  {item.block < 5 && (
-                    <Text style={styles.mainText}>
-                      Current Block: {item.block}
-                    </Text>
-                  )}
-                  {item.block === 5 && (
-                    <Text style={styles.mainText}>All Sessions Completed!</Text>
-                  )}
+                  <View flexDirection={"row"}>
+                    {item.block < 5 && (
+                      <Text style={styles.mainText}>
+                        Current Block: {item.block}
+                      </Text>
+                    )}
+                    {item.block === 5 && (
+                      <Text style={styles.mainText}>
+                        All Sessions Completed!
+                      </Text>
+                    )}
+                    {isSelected ? (
+                      <View flexDirection={"row"}>
+                        <Text style={styles.category}>Category:</Text>
+                        <Text style={styles.categoryDropped}>
+                          {item.categoryDropped}
+                        </Text>
+                      </View>
+                    ) : null}
+                  </View>
                   <ProgressBar nextWidth={item.block - 1}></ProgressBar>
                 </View>
               </Animated.View>
@@ -191,6 +245,7 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   counter: {
+    marginLeft: 5,
     width: 150,
     height: 35,
     marginTop: 30,
@@ -211,6 +266,17 @@ const styles = StyleSheet.create({
   mainText: {
     fontSize: 10,
     fontWeight: "300",
+  },
+  category: {
+    paddingLeft: 29,
+    paddingBottom: 2,
+    fontSize: 8,
+    fontWeight: "300",
+  },
+  categoryDropped: {
+    paddingBottom: 2,
+    fontSize: 8,
+    fontWeight: "600",
   },
   searchBar: {
     justifyContent: "center",
@@ -239,6 +305,20 @@ const styles = StyleSheet.create({
       width: 0,
       height: 10,
     },
+  },
+  checkboxContainer: {
+    flexDirection: "row",
+    marginBottom: -20,
+  },
+  checkbox: {
+    height: 15,
+    width: 15,
+    borderWidth: 0.5,
+    marginRight: 10,
+    borderRadius: 20,
+    backgroundColor: "white",
+    borderColor: "black",
+    alignSelf: "center",
   },
 });
 

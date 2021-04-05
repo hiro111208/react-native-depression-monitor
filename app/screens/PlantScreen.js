@@ -8,6 +8,7 @@ import {
   Image,
 } from "react-native";
 import Constants from "expo-constants";
+import * as indexStyles from "../config/indexStyles";
 import firebase from "../database/firebase";
 
 const PlantScreen = ({ navigation, route }) => {
@@ -53,7 +54,11 @@ const PlantScreen = ({ navigation, route }) => {
       return (
         <TouchableOpacity
           onPress={() => waterPlant()}
-          style={[styles.optButton, styles.centering, styles.shadowEffect]}
+          style={[
+            styles.optButton,
+            indexStyles.centering,
+            indexStyles.shadowEffect,
+          ]}
         >
           <Text style={styles.text}>Water your plant!</Text>
           <Text style={styles.comment}>-5 coins</Text>
@@ -61,7 +66,13 @@ const PlantScreen = ({ navigation, route }) => {
       );
     } else {
       return (
-        <View style={[styles.optButton, styles.centering, styles.shadowEffect]}>
+        <View
+          style={[
+            styles.optButton,
+            indexStyles.centering,
+            indexStyles.shadowEffect,
+          ]}
+        >
           <Text style={styles.text}>You reached max level!</Text>
           <Text style={styles.comment}>well done!</Text>
         </View>
@@ -84,7 +95,7 @@ const PlantScreen = ({ navigation, route }) => {
       .then(() => {
         console.log("Progress saved");
         route.params.onGoBack();
-        navigation.goBack();
+        navigation.navigate("PatientDashboard");
       })
       .catch((error) => {
         console.error("Error saving progress: ", error);
@@ -92,16 +103,16 @@ const PlantScreen = ({ navigation, route }) => {
   }
 
   return (
-    <View style={styles.container}>
-      <View style={[styles.middle, styles.shadowEffect]}>
+    <View style={[styles.container, indexStyles.centering]}>
+      <View style={[styles.middle, indexStyles.shadowEffect]}>
         <View style={{ height: "5%" }}></View>
-        <View style={[styles.top, styles.centering]}>
-          <View style={[styles.topItem, styles.centering]}>
+        <View style={[styles.top, indexStyles.centering]}>
+          <View style={[styles.topItem, indexStyles.centering]}>
             <View
               style={[
                 styles.featureButton,
-                styles.centering,
-                styles.shadowEffect,
+                indexStyles.centering,
+                indexStyles.shadowEffect,
               ]}
             >
               <Text style={styles.text}>{coins}</Text>
@@ -109,17 +120,21 @@ const PlantScreen = ({ navigation, route }) => {
           </View>
         </View>
 
-        <View style={[styles.message, styles.centering]}>
-          <Text style={[styles.textStyle]}>
+        <View style={[styles.message, indexStyles.centering]}>
+          <Text style={[indexStyles.textGrey]}>
             Keep going! {"\n"}You're almost there!
           </Text>
         </View>
 
         <View style={{ height: "2%" }}></View>
 
-        <View style={[styles.plantSpace, styles.centering]}>
+        <View style={[styles.plantSpace, indexStyles.centering]}>
           <View
-            style={[styles.plantImage, styles.centering, styles.shadowEffect]}
+            style={[
+              styles.plantImage,
+              indexStyles.centering,
+              indexStyles.shadowEffect,
+            ]}
           >
             <Image
               style={{ width: 225, height: 225 }}
@@ -129,18 +144,22 @@ const PlantScreen = ({ navigation, route }) => {
           </View>
         </View>
 
-        <View style={[styles.nextSpace, styles.centering]}>
+        <View style={[styles.nextSpace, indexStyles.centering]}>
           {renderWaterPlantButton()}
         </View>
 
         <View style={{ height: "2%" }}></View>
 
-        <View style={[{ height: "9%", width: "100%" }, styles.centering]}>
+        <View style={[{ height: "9%", width: "100%" }, indexStyles.centering]}>
           <TouchableOpacity
-            style={[styles.homeButton, styles.centering]}
+            style={[
+              styles.homeButton,
+              indexStyles.centering,
+              indexStyles.cover,
+            ]}
             onPress={() => saveProgress()}
           >
-            <Text style={styles.textStyle}>Return Home</Text>
+            <Text style={indexStyles.textGrey}>Return Home</Text>
           </TouchableOpacity>
         </View>
       </View>
@@ -152,10 +171,8 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     display: "flex",
-    justifyContent: "center",
-    alignItems: "center",
     padding: 30,
-    backgroundColor: "#fff",
+    backgroundColor: "white",
   },
   middle: {
     width: "100%",
@@ -179,25 +196,7 @@ const styles = StyleSheet.create({
     borderRadius: 30,
   },
   homeButton: {
-    height: "100%",
-    width: "100%",
     backgroundColor: "#ffeed2",
-  },
-  textStyle: {
-    fontSize: 20,
-    fontWeight: "bold",
-    color: "dimgray",
-  },
-  shadowEffect: {
-    shadowColor: "#000",
-    shadowOffset: {
-      width: 0,
-      height: 2,
-    },
-    shadowOpacity: 0.25,
-    shadowRadius: 3.84,
-    elevation: 5,
-    marginHorizontal: 5,
   },
   comment: {
     color: "dodgerblue",
@@ -226,16 +225,12 @@ const styles = StyleSheet.create({
     height: "100%",
     borderRadius: 100,
     borderWidth: 4,
-    borderColor: "#fff",
+    borderColor: "white",
     backgroundColor: "#eee",
   },
   nextSpace: {
     height: "20%",
     width: "100%",
-  },
-  centering: {
-    alignItems: "center",
-    justifyContent: "center",
   },
 });
 

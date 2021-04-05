@@ -8,6 +8,7 @@ import {
   Image,
 } from "react-native";
 import colors from "../config/colors";
+import * as indexStyles from "../config/indexStyles";
 import firebase from "../database/firebase";
 
 export default function AccountScreen({ props, navigation }) {

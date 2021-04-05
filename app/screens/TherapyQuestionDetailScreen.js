@@ -10,9 +10,12 @@ import {
   View,
   Text,
   TouchableOpacity,
+  LogBox,
 } from "react-native";
 import firebase from "../database/firebase";
 import DismissKeyboard from "../config/DismissKeyboard";
+
+LogBox.ignoreLogs(["FirebaseError: Missing or insufficient permissions"]); // Ignore log notification by message
 
 // Screen to edit the content of a therapy question, then update it
 export default class TherapyQuestionDetailScreen extends Component {
@@ -104,6 +107,7 @@ export default class TherapyQuestionDetailScreen extends Component {
       })
       .catch((error) => {
         console.error("Error: ", error);
+        Alert.alert("Fill in every fields!");
         this.setState({
           isLoading: false,
         });
@@ -126,7 +130,7 @@ export default class TherapyQuestionDetailScreen extends Component {
               <View style={styles.title}>
                 <Text style={[styles.fontStyle, { fontSize: 20 }]}>
                   {this.state.categoryDropped} {this.state.block}-
-                {this.state.question}
+                  {this.state.question}
                 </Text>
               </View>
             </View>
@@ -171,7 +175,9 @@ export default class TherapyQuestionDetailScreen extends Component {
                   <TextInput
                     placeholder={"answer1"}
                     value={this.state.answer1}
-                    onChangeText={(val) => this.inputValueUpdate(val, "answer1")}
+                    onChangeText={(val) =>
+                      this.inputValueUpdate(val, "answer1")
+                    }
                   />
                 </View>
                 <View>
@@ -201,7 +207,9 @@ export default class TherapyQuestionDetailScreen extends Component {
                   <TextInput
                     placeholder={"answer2"}
                     value={this.state.answer2}
-                    onChangeText={(val) => this.inputValueUpdate(val, "answer2")}
+                    onChangeText={(val) =>
+                      this.inputValueUpdate(val, "answer2")
+                    }
                   />
                 </View>
               </ScrollView>
@@ -232,7 +240,9 @@ export default class TherapyQuestionDetailScreen extends Component {
                   { borderBottomLeftRadius: 40, borderBottomRightRadius: 40 },
                 ]}
               >
-                <Text style={[styles.fontStyle, { fontSize: 17 }]}>Go Back</Text>
+                <Text style={[styles.fontStyle, { fontSize: 17 }]}>
+                  Go Back
+                </Text>
               </TouchableOpacity>
             </View>
           </View>

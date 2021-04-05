@@ -10,6 +10,7 @@ import {
   Platform,
 } from "react-native";
 import { ListItem } from "react-native-elements";
+import * as indexStyles from "../config/indexStyles";
 import firebase from "../database/firebase";
 
 import DropDownPicker from "react-native-dropdown-picker";
@@ -97,19 +98,19 @@ export default class TherapyQuestionScreen extends Component {
   render() {
     if (this.state.isLoading) {
       return (
-        <View style={styles.preloader}>
+        <View style={indexStyles.preloader}>
           <ActivityIndicator size="large" color="#9E9E9E" />
         </View>
       );
     }
     return (
-      <View style={[styles.container, styles.centering]}>
-        <View style={[styles.center, styles.cover, styles.shadowEffect]}>
+      <View style={[indexStyles.containerWhite, indexStyles.centering]}>
+        <View style={[indexStyles.containerOrange, indexStyles.cover, indexStyles.shadowEffect]}>
           <View style={{ height: "3%" }}></View>
 
           {Platform.OS === "ios" && (
             <Fragment>
-              <View style={[{ height: "10%", zIndex: 5 }, styles.centering]}>
+              <View style={[{ height: "10%", zIndex: 5 }, indexStyles.centering]}>
                 <DropDownPicker
                   items={[
                     { label: "CONTROL", value: "CONTROL" },
@@ -122,20 +123,12 @@ export default class TherapyQuestionScreen extends Component {
                     { label: "WORK", value: "WORK" },
                     { label: "RELATIONSHIPS", value: "RELATIONSHIPS" },
                   ]}
-                  placeholder="Select a category!"
+                  placeholder="Select a category"
                   defaultIndex={0}
                   onChangeItem={(item) => this.filterCollection(item.value)}
                   containerStyle={{ width: "80%", height: "100%" }}
-                  selectedLabelStyle={{
-                    color: "dimgrey",
-                    fontWeight: "bold",
-                    fontSize: 20,
-                  }}
-                  placeholderStyle={{
-                    fontSize: 18,
-                    fontWeight: "bold",
-                    color: "dimgray",
-                  }}
+                  selectedLabelStyle={indexStyles.textGrey}
+                  placeholderStyle={indexStyles.textGrey}
                   style={{
                     borderTopLeftRadius: 20,
                     borderTopRightRadius: 20,
@@ -170,7 +163,7 @@ export default class TherapyQuestionScreen extends Component {
                 />
               </View>
 
-              <View style={[styles.centering, { height: "70%" }]}>
+              <View style={[indexStyles.centering, { height: "70%" }]}>
                 <ScrollView style={{ width: "90%" }}>
                   {this.state.filteredArr.map((item, i) => {
                     return (
@@ -203,18 +196,18 @@ export default class TherapyQuestionScreen extends Component {
 
               <View style={{ height: "7%" }}></View>
 
-              <View style={[{ height: "9%" }, styles.centering]}>
+              <View style={[{ height: "9%" }, indexStyles.centering]}>
                 <TouchableOpacity
                   onPress={() =>
                     this.props.navigation.navigate("AdminDashboard")
                   }
                   style={[
-                    styles.bottomButton,
-                    styles.shadowEffect,
-                    styles.centering,
+                    indexStyles.roundButton,
+                    indexStyles.shadowEffect,
+                    indexStyles.centering,
                   ]}
                 >
-                  <Text style={[styles.fontStyle, { fontSize: 17 }]}>
+                  <Text style={[indexStyles.textGrey, { fontSize: 17 }]}>
                     Go Back
                   </Text>
                 </TouchableOpacity>
@@ -227,7 +220,7 @@ export default class TherapyQuestionScreen extends Component {
               <View
                 style={[
                   { height: "100%", width: "100%", paddingBottom: "10%" },
-                  styles.centering,
+                  indexStyles.centering,
                 ]}
               >
                 <DropDownPicker
@@ -251,11 +244,7 @@ export default class TherapyQuestionScreen extends Component {
                     fontWeight: "bold",
                     fontSize: 20,
                   }}
-                  placeholderStyle={{
-                    fontSize: 18,
-                    fontWeight: "bold",
-                    color: "dimgray",
-                  }}
+                  placeholderStyle={indexStyles.textGrey}
                   style={{
                     borderTopLeftRadius: 20,
                     borderTopRightRadius: 20,
@@ -321,61 +310,9 @@ export default class TherapyQuestionScreen extends Component {
 }
 
 const styles = StyleSheet.create({
-  bottomButton: {
-    height: "100%",
-    width: "40%",
-    borderRadius: 50,
-    backgroundColor: "#ffeed2",
-    position: "absolute",
-    bottom: 0,
-  },
-  center: {
-    backgroundColor: "#fed8b1",
-    borderRadius: 50,
-    borderWidth: 5,
-    borderColor: "#ffeed2",
-  },
-  centering: {
-    alignItems: "center",
-    justifyContent: "center",
-  },
-  container: {
-    flex: 1,
-    display: "flex",
-    padding: 25,
-    backgroundColor: "#fff",
-  },
-  cover: {
-    height: "100%",
-    width: "100%",
-  },
   dropdown: {
     flex: 1,
     paddingBottom: 10,
     fontWeight: "bold",
-  },
-  fontStyle: {
-    fontWeight: "bold",
-    color: "dimgray",
-  },
-  preloader: {
-    left: 0,
-    right: 0,
-    top: 0,
-    bottom: 0,
-    position: "absolute",
-    alignItems: "center",
-    justifyContent: "center",
-  },
-  shadowEffect: {
-    shadowColor: "#000",
-    shadowOffset: {
-      width: 0,
-      height: 2,
-    },
-    shadowOpacity: 0.25,
-    shadowRadius: 3.84,
-    elevation: 5,
-    marginVertical: 5,
   },
 });
