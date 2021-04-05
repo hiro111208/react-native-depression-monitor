@@ -41,7 +41,16 @@ Once your account has been verified, proceed to the `Log In screen` and `enter y
 
 ## References
 
-1. Firebase. 2021. Auth | JavaScript SDK | Firebase. [online] Available at: <https://firebase.google.com/docs/reference/js/firebase.auth.Auth> [Accessed March 2021].
-2. Firebase. 2021. Add data to Cloud Firestore | Firebase. [online] Available at: <https://firebase.google.com/docs/firestore/manage-data/add-data> [Accessed March 2021].
-3. Gillin, M. 2021. HUG App Logo. [photograph] (HUG App Illustrations).
-4. Diaz, J. 2021. Plant Growth Animations [photograph] (HUG App Illustrations).
+### Source Code
+
+1. Firebase. 2021. Add data to Cloud Firestore | Firebase. [online] Available at: <https://firebase.google.com/docs/firestore/manage-data/add-data> [Accessed March 2021].
+2. Firebase. 2021. Auth | JavaScript SDK | Firebase. [online] Available at: <https://firebase.google.com/docs/reference/js/firebase.auth.Auth> [Accessed March 2021].
+3. Firebase. 2021. Security Rules language | Firebase. [online] Available at: <https://firebase.google.com/docs/rules/rules-language> [Accessed April 2021].
+4. Ionic Framework. 2021. Icons. [online] Available at: <https://ionicframework.com/docs/v3/ionicons/> [Accessed March 2021].
+5. Reactnavigation.org. 2021. Tab navigation | React Navigation. [online] Available at: <https://reactnavigation.org/docs/tab-based-navigation/> [Accessed March 2021].
+6. Snack.expo.io. 2021. Dismiss the Keyboard in React Native from Anywhere - Snack. [online] Available at: <https://snack.expo.io/@spencercarli/dismiss-the-keyboard-in-react-native-from-anywhere> [Accessed April 2021].
+
+### Images
+
+1. Diaz, J. 2021. Plant Growth Animations [photograph] (HUG App Illustrations).
+2. Gillin, M. 2021. HUG App Logo. [photograph] (HUG App Illustrations).
