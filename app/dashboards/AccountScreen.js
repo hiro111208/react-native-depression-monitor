@@ -11,6 +11,10 @@ import colors from "../config/colors";
 import * as indexStyles from "../config/indexStyles";
 import firebase from "../database/firebase";
 
+/**
+ * Screen that renders account options such as signing out,
+ * replaying demo or navigating to support resources
+ */
 export default function AccountScreen({ props, navigation }) {
   const [displayName, setDisplayName] = useState(
     firebase.auth().currentUser !== null
@@ -18,6 +22,7 @@ export default function AccountScreen({ props, navigation }) {
       : ""
   );
 
+  // Sign out from the application
   const signOut = () => {
     firebase
       .auth()
@@ -33,6 +38,8 @@ export default function AccountScreen({ props, navigation }) {
     <View style={[styles.container, styles.centering]}>
       <View style={[styles.center, styles.shadowEffect, styles.cover]}>
         <View style={{ height: "5%" }}></View>
+
+        {/* Render logo of the app */}
         <View style={[{ height: "40%" }, styles.centering]}>
           <Image
             style={{ width: 200, height: 200 }}
@@ -40,6 +47,8 @@ export default function AccountScreen({ props, navigation }) {
             source={require("../assets/hand-logo.png")}
           />
         </View>
+
+        {/* Support resources button */}
         <View style={[{ height: "10%" }]}>
           <TouchableOpacity
             onPress={() => navigation.navigate("SupportResources")}
@@ -50,7 +59,10 @@ export default function AccountScreen({ props, navigation }) {
             </Text>
           </TouchableOpacity>
         </View>
+
         <View style={{ height: "2%" }}></View>
+
+        {/* Button to demo screen */}
         <View style={[{ height: "10%" }]}>
           <TouchableOpacity
             onPress={() => navigation.navigate("DemoScreen")}
@@ -61,7 +73,10 @@ export default function AccountScreen({ props, navigation }) {
             </Text>
           </TouchableOpacity>
         </View>
+
         <View style={{ height: "23%" }}></View>
+
+        {/* Sign out button that goes back to login screen */}
         <View style={[{ height: "10%" }, styles.centering]}>
           <TouchableOpacity
             onPress={() => signOut()}
