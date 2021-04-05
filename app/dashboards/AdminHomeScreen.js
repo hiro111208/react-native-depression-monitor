@@ -22,12 +22,16 @@ import * as MediaLibrary from "expo-media-library";
 import * as Sharing from "expo-sharing";
 import moment from "moment";
 
+{
+  /** Default screen when logged into the admin area */
+}
 export default function AdminHomeScreen({ props, navigation }) {
   const [errorMessage, setErrorMessage] = useState("");
 
-  //loading screen trigger
+  // loading screen trigger
   const [loaded, setLoaded] = useState(false);
 
+  // return to the log in page
   const signOut = () => {
     firebase
       .auth()
@@ -39,7 +43,7 @@ export default function AdminHomeScreen({ props, navigation }) {
       .catch((error) => setErrorMessage(error.message));
   };
 
-  //Loading screen executed via trigger
+  // loading screen executed via trigger
   const CustomProgressBar = ({ visible }) => (
     <Modal onRequestClose={() => null} transparent={true} visible={visible}>
       <View
@@ -63,7 +67,6 @@ export default function AdminHomeScreen({ props, navigation }) {
           }}
         >
           <ActivityIndicator size="large" color="#ffa351ff" />
-          {/* <Text style={{ fontSize: 20, fontWeight: '200', textAlign: 'center', marginTop: 8 }}>Loading</Text> */}
         </View>
       </View>
     </Modal>
@@ -92,13 +95,18 @@ export default function AdminHomeScreen({ props, navigation }) {
         const csvString = `${headerString}${rowString}`;
 
         const { status } = await Permissions.askAsync(Permissions.CAMERA_ROLL);
+
+        // generate unique name for csv file
         if (status === "granted") {
-          const csvFileName = moment().unix(); // generate unique name for csv file
+          const csvFileName = moment().unix();
           let fileUri =
             FileSystem.documentDirectory + `Answers_${csvFileName}.csv`;
+
+          // save csv at document directory
           await FileSystem.writeAsStringAsync(fileUri, csvString, {
             encoding: FileSystem.EncodingType.UTF8,
-          }); // save csv at document directory
+          });
+
           // save csv at specific folder
           if (Platform.OS === "ios") {
             await Sharing.shareAsync(fileUri);
@@ -140,15 +148,17 @@ export default function AdminHomeScreen({ props, navigation }) {
             }, ${doc.data().timeStamp.toDate()} \n`;
         });
         const csvString = `${headerString}${rowString}`;
-
         const { status } = await Permissions.askAsync(Permissions.CAMERA_ROLL);
+
+        // generate unique name for csv file
         if (status === "granted") {
-          const csvFileName = moment().unix(); // generate unique name for csv file
+          const csvFileName = moment().unix();
           let fileUri =
             FileSystem.documentDirectory + `Feelings_${csvFileName}.csv`;
           await FileSystem.writeAsStringAsync(fileUri, csvString, {
             encoding: FileSystem.EncodingType.UTF8,
-          }); // save csv at document directory
+          });
+
           // save csv at specific folder
           if (Platform.OS === "ios") {
             await Sharing.shareAsync(fileUri);
@@ -174,6 +184,7 @@ export default function AdminHomeScreen({ props, navigation }) {
       <View style={[styles.center, styles.shadowEffect, styles.cover]}>
         <View style={{ height: "5%" }}></View>
 
+        {/** Logo and display name */}
         <View style={[{ height: "40%" }, styles.centering]}>
           <Text style={[styles.fontStyle, { fontSize: 25 }]}>
             Hello, admin!
@@ -185,6 +196,7 @@ export default function AdminHomeScreen({ props, navigation }) {
           />
         </View>
 
+        {/** Content management navigation button */}
         <View style={{ height: "10%" }}>
           <TouchableOpacity
             onPress={() => navigation.navigate("TherapyQuestionScreen")}
@@ -200,9 +212,9 @@ export default function AdminHomeScreen({ props, navigation }) {
 
         <View style={{ height: "5%" }}></View>
 
+        {/** Export answer data CSV navigation button */}
         <View style={{ height: "10%" }}>
           {loaded && <CustomProgressBar />}
-
           <TouchableOpacity
             onPress={() => this.onCreateAnswersCSV()}
             style={[styles.centering, styles.optButton, styles.cover]}
@@ -217,9 +229,9 @@ export default function AdminHomeScreen({ props, navigation }) {
 
         <View style={{ height: "5%" }}></View>
 
+        {/** Export feelings data CSV navigation button */}
         <View style={{ height: "10%" }}>
           {loaded && <CustomProgressBar />}
-
           <TouchableOpacity
             onPress={() => this.onCreateFeelingsCSV()}
             style={[styles.centering, styles.optButton, styles.cover]}
@@ -234,6 +246,7 @@ export default function AdminHomeScreen({ props, navigation }) {
 
         <View style={{ height: "5%" }}></View>
 
+        {/** Back to log in screen navigation button */}
         <View style={[{ height: "10%" }, styles.centering]}>
           <TouchableOpacity
             onPress={() => signOut()}
