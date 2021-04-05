@@ -34,6 +34,7 @@ function generateMessage() {
   return messages[Math.floor(Math.random() * messages.length)];
 }
 
+/* Generate a random emoji from the emojis array */
 function generateEmoji() {
   return emojis[Math.floor(Math.random() * emojis.length)];
 }
@@ -60,7 +61,7 @@ export default function PauseScreen({ props, navigation }) {
         <SafeAreaView style={[indexStyles.cover, styles.center]}>
           <TouchableOpacity
             style={[styles.backButton, indexStyles.shadowEffect]}
-            onPress={() => navigation.navigate("TherapyScreen")} //implement timer/record the current time
+            onPress={() => navigation.navigate("TherapyScreen")}
           >
             <Text style={[styles.text, indexStyles.textGrey]}>
               Back to the session

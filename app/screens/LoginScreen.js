@@ -82,9 +82,7 @@ function LoginScreen(props) {
     setIsVerified(true);
   };
 
-  //Verify user credentials with firebase. If user has verified their email
-  //send user to dashboard if not show button to allow user to send a new verification email
-  //if email used is admin email redirect to admin dashboard
+  // Redirect the user according to their credentials
   const userLogin = () => {
     if (email === "" && password === "") {
       Alert.alert("Enter details to login!");

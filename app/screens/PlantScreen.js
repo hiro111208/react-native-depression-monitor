@@ -11,12 +11,15 @@ import Constants from "expo-constants";
 import * as indexStyles from "../config/indexStyles";
 import firebase from "../database/firebase";
 
+{
+  /** Screen to interact with the plant mascot */
+}
 const PlantScreen = ({ navigation, route }) => {
   var user = route.params.currentUser;
-
   const [coins, setCoins] = useState(user.coins);
   const [plant, setPlant] = useState(getPlant());
 
+  // level up if the user has the required coins
   function waterPlant() {
     if (user.coins >= 5) {
       user.coins += -5;
@@ -26,6 +29,7 @@ const PlantScreen = ({ navigation, route }) => {
     }
   }
 
+  // return image of plant according to the level
   function getPlant() {
     switch (user.level) {
       case 1:
@@ -49,6 +53,7 @@ const PlantScreen = ({ navigation, route }) => {
     }
   }
 
+  // renders level up button which is capped at level 9
   function renderWaterPlantButton() {
     if (user.level < 9) {
       return (
@@ -80,6 +85,7 @@ const PlantScreen = ({ navigation, route }) => {
     }
   }
 
+  // sync progress to firestore
   function saveProgress() {
     firebase
       .firestore()
