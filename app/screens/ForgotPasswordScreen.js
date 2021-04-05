@@ -17,7 +17,6 @@ import DismissKeyboard from "../config/DismissKeyboard";
 /*
   Screen where users can try to reset their passwords if forgotten
 */
-
 function ForgotPasswordScreen(props) {
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
@@ -39,7 +38,7 @@ function ForgotPasswordScreen(props) {
     }
   };
 
-  //Render forgot password screen interface
+  // Render forgot password screen interface
   return (
     <DismissKeyboard>
       {/*Render field to input user email*/}
@@ -92,8 +91,6 @@ const styles = StyleSheet.create({
     flex: 1,
     padding: "8%",
     top: "5%",
-    //paddingTop: "15%"
-    //marginTop:"10%"
   },
   image: {
     flex: 3,
