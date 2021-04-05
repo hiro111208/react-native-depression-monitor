@@ -4,11 +4,13 @@ import { StyleSheet, View } from "react-native";
 
 import { Table, Rows, Row } from "react-native-table-component";
 
+/** Returns data displayed in a table format */
 function UserTable(props) {
+  // Headers of the table
   const dataHead = ["Batch", "AvgTimeQ1", "AvgTimeQ2", "NºErrors"];
 
+  //variables to store averages in one decimal format
   const setData = () => {
-    //variables to store averages in one decimal format
     const data = [["º 1"], ["º 2"], ["º 3"], ["º 4"]];
     const average1 = props.average1;
     const average2 = props.average2;
@@ -30,7 +32,6 @@ function UserTable(props) {
       } else {
         data[i].push(0);
       }
-
       data[i].push(props.errorNum[i]);
     }
     return data;
@@ -45,10 +46,12 @@ function UserTable(props) {
       { signal: sig },
       console.log("in Table "),
     ]).catch((ex) => console.error(ex));
+
+    // Abort both fetches on unmount
     return function cleanup() {
       console.log("out Tbale");
       ac.abort();
-    }; // Abort both fetches on unmount
+    };
   }, []);
 
   return (
