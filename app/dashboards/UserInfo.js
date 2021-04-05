@@ -13,6 +13,9 @@ import UserTable from "./UserTable";
 import { LineChart, XAxis, YAxis } from "react-native-svg-charts";
 import { Circle } from "react-native-svg";
 
+{
+  /** Returns user interaction data for a particular user */
+}
 export default class UserInfo extends Component {
   constructor({ route }) {
     super();
@@ -41,7 +44,6 @@ export default class UserInfo extends Component {
     const avg1Temp = [];
     const avg2Temp = [];
     const errors = [];
-
     query.onSnapshot((querySnapshot) => {
       const items = [];
       querySnapshot.forEach((doc) => {
@@ -53,9 +55,8 @@ export default class UserInfo extends Component {
         console.log("loops", i);
         tempSessions.push(items.filter((item) => item.sessionNumber == i + 1));
 
-        // if session has been started
+        // if session has been started filter incorrect questions
         if (tempSessions[i].length > 0) {
-          // filter incorrect questions
           errors.push(
             tempSessions[i].filter(
               (item) =>
@@ -63,6 +64,7 @@ export default class UserInfo extends Component {
                 item.question2IsCorrect != true
             )
           );
+
           //if both questions wrong == 2 errors, push again to increase length of array to match this.
           errors.push(
             tempSessions[i].filter(
@@ -77,7 +79,6 @@ export default class UserInfo extends Component {
             (a, b) => (a = a + b.question1Time),
             0
           );
-
           const avg2 = tempSessions[i].reduce(
             (a, b) => (a = a + b.question2Time),
             0
@@ -85,16 +86,18 @@ export default class UserInfo extends Component {
 
           // Divide total to find average
           avg1Temp.push(Math.floor(avg1 / tempSessions[i].length));
-          // Divide total to find average
           avg2Temp.push(Math.floor(avg2 / tempSessions[i].length));
-        } else {
+        }
+
+        // there is no data
+        else {
           errors.push([]);
           avg1Temp.push(0);
           avg2Temp.push(0);
         }
       }
 
-      //calculate number of errors
+      // calculate number of errors
       const numberOfErrors = errors.map((items) => items.length);
       this.setState({ errorsPerSession: numberOfErrors });
       this.setState({ sessions: tempSessions });
@@ -104,6 +107,7 @@ export default class UserInfo extends Component {
   }
 
   abortController = () => new AbortController();
+
   //Fetch upon mount
   componentDidMount() {
     Promise.all([
@@ -113,10 +117,12 @@ export default class UserInfo extends Component {
     ]).catch((ex) => console.error(ex));
   }
 
+  // clean up on unmount
   componentWillUnmount() {
     this.abortController().abort();
     console.log("out userInfo");
   }
+
   render() {
     const { height, width } = Dimensions.get("window");
 
@@ -136,7 +142,7 @@ export default class UserInfo extends Component {
 
     console.log("data2", data[1].data);
 
-    //Line Chart circular markers for question 1 type
+    // line Chart circular markers for question 1 type
     const Decorator1 = ({ x, y, data }) => {
       return data[0].data.map((value, index) => (
         <Circle
@@ -150,7 +156,7 @@ export default class UserInfo extends Component {
       ));
     };
 
-    //Line Chart circular markers for question 2 type
+    // line Chart circular markers for question 2 type
     const Decorator2 = ({ x, y, data }) => {
       return data[1].data.map((value, index) => (
         <Circle
@@ -167,6 +173,7 @@ export default class UserInfo extends Component {
     return (
       <View style={styles.container}>
         <View style={styles.buttonsBar}>
+          {/** Return to user list */}
           <TouchableOpacity
             adjustsFontSizeToFit={true}
             numberOfLines={1}
@@ -182,6 +189,7 @@ export default class UserInfo extends Component {
             </Text>
           </TouchableOpacity>
 
+          {/** View the user's feelings log */}
           <TouchableOpacity
             adjustsFontSizeToFit={true}
             numberOfLines={1}
@@ -202,6 +210,7 @@ export default class UserInfo extends Component {
           </TouchableOpacity>
         </View>
 
+        {/** Present the user's last active time */}
         <View flex={3} style={[styles.dataContainer, { width: width - 50 }]}>
           <View flexDirection={"row"}>
             <Text style={{ fontSize: 22, fontWeight: "700" }}>
@@ -231,6 +240,7 @@ export default class UserInfo extends Component {
             </View>
           </View>
 
+          {/** Return table of the therapy response times */}
           <View flex={1.375} padding={5} marginBottom={30}>
             <UserTable
               average1={this.state.averageTimePerBlockQ1}
@@ -338,6 +348,7 @@ export default class UserInfo extends Component {
             </View>
           </View>
 
+          {/** return completion status of the user */}
           <View
             flex={0.25}
             style={styles.shadow}
