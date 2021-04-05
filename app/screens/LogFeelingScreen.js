@@ -11,6 +11,7 @@ import firebase from "../database/firebase";
 import FeelingsRadioButtons from "../src/components/FeelingsRadioButtons";
 import FeelingsSlider from "../src/components/FeelingsSlider";
 import colors from "../config/colors";
+
 /**
  * Screen where the user logs their feelings. Users will
  * log their feelings before and after their therapy
@@ -20,7 +21,6 @@ function LogFeelingScreen({ navigation, route }) {
   const [anxious, setAnxious] = useState(1);
   const [sad, setSad] = useState(1);
   const [happy, setHappy] = useState(1);
-
   const user = route.params.userData;
   const userRef = firebase
     .firestore()
@@ -60,6 +60,7 @@ function LogFeelingScreen({ navigation, route }) {
       });
   }
 
+  // Update question field to 1 so the log feeling screen does not get displayed again
   function incrementQuestion() {
     userRef
       .set(
@@ -74,7 +75,6 @@ function LogFeelingScreen({ navigation, route }) {
       });
   }
 
-  //Handle when continue button is pressed
   //Go to either therapy screen or patient dashboard depending on whether therapy has started or ended
   function handleOnContinuePress() {
     if (overallFeeling === "") {
