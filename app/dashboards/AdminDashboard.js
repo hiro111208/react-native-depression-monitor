@@ -9,9 +9,7 @@ import AdminUsersScreen from "./AdminUsersScreen";
 const Tab = createBottomTabNavigator();
 
 function getHeaderTitle(route) {
-  // If the focused route is not found, we need to assume it's the initial screen
-  // This can happen during if there hasn't been any navigation inside the screen
-  // In our case, it's 'Home' as that's the first screen inside the navigator
+  // return route name or the default if it is not found
   const routeName = getFocusedRouteNameFromRoute(route) ?? "Home";
 
   switch (routeName) {

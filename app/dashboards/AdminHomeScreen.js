@@ -267,15 +267,15 @@ const styles = StyleSheet.create({
     height: "100%",
     width: "40%",
     borderRadius: 50,
-    backgroundColor: "#ffeed2",
+    backgroundColor: colors.lightOutline,
     position: "absolute",
     bottom: 0,
   },
   center: {
-    backgroundColor: "#fed8b1",
+    backgroundColor: colors.mainPanel,
     borderRadius: 50,
     borderWidth: 5,
-    borderColor: "#ffeed2",
+    borderColor: colors.lightOutline,
   },
   centering: {
     alignItems: "center",
@@ -296,7 +296,7 @@ const styles = StyleSheet.create({
     color: "dimgray",
   },
   optButton: {
-    backgroundColor: "#ffeed2",
+    backgroundColor: colors.lightOutline,
   },
   shadowEffect: {
     shadowColor: "#000",
