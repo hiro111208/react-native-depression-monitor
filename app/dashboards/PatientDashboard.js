@@ -21,11 +21,9 @@ function getHeaderTitle(route) {
 
 const Tab = createBottomTabNavigator();
 
-{
-  /* Dashboard for the users to undertake therapy,
-   *schedule notifications or view other account information
-   */
-}
+/* Dashboard for the users to undertake therapy,
+ * schedule notifications or view other account information
+ */
 export default function PatientDashboard({ navigation, route }) {
   React.useLayoutEffect(() => {
     navigation.setOptions({ headerTitle: getHeaderTitle(route) });
@@ -71,5 +69,8 @@ export default function PatientDashboard({ navigation, route }) {
 }
 
 const styles = StyleSheet.create({
-  image: { maxHeight: "75%", maxWidth: "20%" },
+  image: {
+    maxHeight: "75%",
+    maxWidth: "20%",
+  },
 });
