@@ -2,14 +2,13 @@ import * as React from "react";
 import { Image, StyleSheet } from "react-native";
 import { getFocusedRouteNameFromRoute } from "@react-navigation/native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-
 import AdminHomeScreen from "./AdminHomeScreen";
 import AdminUsersScreen from "./AdminUsersScreen";
 
 const Tab = createBottomTabNavigator();
 
+// set the header as the tab name
 function getHeaderTitle(route) {
-  // return route name or the default if it is not found
   const routeName = getFocusedRouteNameFromRoute(route) ?? "Home";
 
   switch (routeName) {
@@ -20,6 +19,9 @@ function getHeaderTitle(route) {
   }
 }
 
+/**
+ * Dashboard to navigate to content management or user progress tabs
+ */
 export default function AdminDashboard({ navigation, route }) {
   React.useLayoutEffect(() => {
     navigation.setOptions({ headerTitle: getHeaderTitle(route) });

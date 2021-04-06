@@ -3,28 +3,25 @@ import {
   StyleSheet,
   View,
   Text,
-  Button,
   Image,
   Platform,
   ToastAndroid,
   ActivityIndicator,
   Modal,
+  TouchableOpacity,
 } from "react-native";
-
 import firebase from "../database/firebase";
 import colors from "../config/colors";
-import { TouchableOpacity } from "react-native";
-import { Touchable } from "react-native";
-
 import * as FileSystem from "expo-file-system";
 import * as Permissions from "expo-permissions";
 import * as MediaLibrary from "expo-media-library";
 import * as Sharing from "expo-sharing";
+import * as indexStyles from "../config/indexStyles";
 import moment from "moment";
 
-{
-  /** Default screen when logged into the admin area */
-}
+/**
+ * Default screen when logged into the admin area
+ */
 export default function AdminHomeScreen({ props, navigation }) {
   const [errorMessage, setErrorMessage] = useState("");
 
@@ -46,7 +43,7 @@ export default function AdminHomeScreen({ props, navigation }) {
   // loading screen executed via trigger
   const CustomProgressBar = ({ visible }) => (
     <Modal onRequestClose={() => null} transparent={true} visible={visible}>
-      <View style={[{ flex: 1 }, styles.centering]}>
+      <View style={[{ flex: 1 }, indexStyles.centering]}>
         <View style={styles.loadingSection}>
           <ActivityIndicator size="large" color="#ffa351ff" />
         </View>
@@ -163,12 +160,14 @@ export default function AdminHomeScreen({ props, navigation }) {
 
   return (
     <View style={[styles.container]}>
-      <View style={[styles.center, styles.shadowEffect, styles.cover]}>
+      <View
+        style={[styles.center, indexStyles.shadowEffect, indexStyles.cover]}
+      >
         <View style={{ height: "10%" }}></View>
 
         {/** Logo and display name */}
-        <View style={[{ height: "30%" }, styles.centering]}>
-          <Text style={[styles.fontStyle, { fontSize: 25 }]}>
+        <View style={[{ height: "30%" }, indexStyles.centering]}>
+          <Text style={[indexStyles.fontStyle, { fontSize: 25 }]}>
             Hello, admin!
           </Text>
           <Image
@@ -184,10 +183,14 @@ export default function AdminHomeScreen({ props, navigation }) {
         <View style={{ height: "10%" }}>
           <TouchableOpacity
             onPress={() => navigation.navigate("TherapyQuestionScreen")}
-            style={[styles.centering, styles.optButton, styles.cover]}
+            style={[indexStyles.centering, styles.optButton, indexStyles.cover]}
           >
             <Text
-              style={[styles.fontStyle, styles.centering, { fontSize: 18 }]}
+              style={[
+                indexStyles.fontStyle,
+                indexStyles.centering,
+                { fontSize: 18 },
+              ]}
             >
               Therapy Question Management
             </Text>
@@ -201,10 +204,14 @@ export default function AdminHomeScreen({ props, navigation }) {
           {loaded && <CustomProgressBar />}
           <TouchableOpacity
             onPress={() => this.onCreateAnswersCSV()}
-            style={[styles.centering, styles.optButton, styles.cover]}
+            style={[indexStyles.centering, styles.optButton, indexStyles.cover]}
           >
             <Text
-              style={[styles.fontStyle, styles.centering, { fontSize: 18 }]}
+              style={[
+                indexStyles.fontStyle,
+                indexStyles.centering,
+                { fontSize: 18 },
+              ]}
             >
               Export User Answers to CSV
             </Text>
@@ -218,10 +225,14 @@ export default function AdminHomeScreen({ props, navigation }) {
           {loaded && <CustomProgressBar />}
           <TouchableOpacity
             onPress={() => this.onCreateFeelingsCSV()}
-            style={[styles.centering, styles.optButton, styles.cover]}
+            style={[indexStyles.centering, styles.optButton, indexStyles.cover]}
           >
             <Text
-              style={[styles.fontStyle, styles.centering, { fontSize: 18 }]}
+              style={[
+                indexStyles.fontStyle,
+                indexStyles.centering,
+                { fontSize: 18 },
+              ]}
             >
               Export User Feelings to CSV
             </Text>
@@ -231,12 +242,18 @@ export default function AdminHomeScreen({ props, navigation }) {
         <View style={{ height: "7%" }}></View>
 
         {/** Back to log in screen navigation button */}
-        <View style={[{ height: "10%" }, styles.centering]}>
+        <View style={[{ height: "10%" }, indexStyles.centering]}>
           <TouchableOpacity
             onPress={() => signOut()}
-            style={[styles.bottomButton, styles.shadowEffect, styles.centering]}
+            style={[
+              styles.bottomButton,
+              indexStyles.shadowEffect,
+              indexStyles.centering,
+            ]}
           >
-            <Text style={[styles.fontStyle, { fontSize: 17 }]}>Log out</Text>
+            <Text style={[indexStyles.fontStyle, { fontSize: 17 }]}>
+              Log out
+            </Text>
           </TouchableOpacity>
         </View>
       </View>
@@ -259,37 +276,14 @@ const styles = StyleSheet.create({
     borderWidth: 5,
     borderColor: colors.lightOutline,
   },
-  centering: {
-    alignItems: "center",
-    justifyContent: "center",
-  },
   container: {
     flex: 1,
     display: "flex",
     padding: 25,
     backgroundColor: "#fff",
   },
-  cover: {
-    height: "100%",
-    width: "100%",
-  },
-  fontStyle: {
-    fontWeight: "bold",
-    color: "dimgray",
-  },
   optButton: {
     backgroundColor: colors.lightOutline,
-  },
-  shadowEffect: {
-    shadowColor: "#000",
-    shadowOffset: {
-      width: 0,
-      height: 1,
-    },
-    shadowOpacity: 0.25,
-    shadowRadius: 3,
-    elevation: 5,
-    marginVertical: 5,
   },
   loadingSection: {
     borderRadius: 10,
