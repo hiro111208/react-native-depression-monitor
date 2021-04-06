@@ -1,5 +1,3 @@
-// screens/TherapyQuestionDetailScreen.js
-
 import React, { Component } from "react";
 import {
   Alert,
@@ -15,6 +13,7 @@ import {
 import firebase from "../database/firebase";
 import DismissKeyboard from "../config/DismissKeyboard";
 import colors from "../config/colors";
+import * as indexStyles from "../config/indexStyles";
 
 LogBox.ignoreLogs(["FirebaseError: Missing or insufficient permissions"]); // Ignore log notification by message
 
@@ -35,6 +34,7 @@ export default class TherapyQuestionDetailScreen extends Component {
     };
   }
 
+  // reads from firebase on mount
   componentDidMount() {
     const dbRef = firebase
       .firestore()
@@ -62,6 +62,7 @@ export default class TherapyQuestionDetailScreen extends Component {
     });
   }
 
+  // updates the state of the text input fields
   inputValueUpdate = (val, prop) => {
     const state = this.state;
     state[prop] = val;
@@ -118,24 +119,26 @@ export default class TherapyQuestionDetailScreen extends Component {
   render() {
     if (this.state.isLoading) {
       return (
-        <View style={styles.preloader}>
+        <View style={[indexStyles.preloader, indexStyles.centering]}>
           <ActivityIndicator size="large" color="#9E9E9E" />
         </View>
       );
     }
     return (
       <DismissKeyboard>
-        <View style={[styles.container, styles.centering]}>
-          <View style={[styles.center, styles.cover, styles.shadowEffect]}>
+        <View style={[styles.container, indexStyles.centering]}>
+          <View
+            style={[styles.center, indexStyles.cover, indexStyles.shadowEffect]}
+          >
             <View style={{ height: "10%" }}>
-              <View style={styles.title}>
-                <Text style={[styles.fontStyle, { fontSize: 20 }]}>
+              <View style={[styles.title, indexStyles.centering]}>
+                <Text style={[indexStyles.fontStyle, { fontSize: 20 }]}>
                   {this.state.categoryDropped} {this.state.block}-
                   {this.state.question}
                 </Text>
               </View>
             </View>
-            <View style={styles.centering}>
+            <View style={indexStyles.centering}>
               <ScrollView style={{ height: "70%", width: "80%" }}>
                 <View>
                   <Text style={{ fontWeight: "bold" }}>Question 1:</Text>
@@ -216,32 +219,34 @@ export default class TherapyQuestionDetailScreen extends Component {
               </ScrollView>
             </View>
 
-            <View style={[{ height: "8%" }, styles.centering]}>
+            <View style={[{ height: "8%" }, indexStyles.centering]}>
               <TouchableOpacity
                 onPress={() => this.updateTherapyQuestion()}
                 style={[
                   styles.bottomButton,
-                  styles.shadowEffect,
-                  styles.centering,
+                  indexStyles.shadowEffect,
+                  indexStyles.centering,
                 ]}
               >
-                <Text style={[styles.fontStyle, { fontSize: 17 }]}>Update</Text>
+                <Text style={[indexStyles.fontStyle, { fontSize: 17 }]}>
+                  Update
+                </Text>
               </TouchableOpacity>
             </View>
 
             <View style={{ height: "2%" }}></View>
 
-            <View style={[{ height: "10%" }, styles.centering]}>
+            <View style={[{ height: "10%" }, indexStyles.centering]}>
               <TouchableOpacity
                 onPress={() => this.props.navigation.goBack()}
                 style={[
                   styles.optButton,
-                  styles.cover,
-                  styles.centering,
+                  indexStyles.cover,
+                  indexStyles.centering,
                   { borderBottomLeftRadius: 40, borderBottomRightRadius: 40 },
                 ]}
               >
-                <Text style={[styles.fontStyle, { fontSize: 17 }]}>
+                <Text style={[indexStyles.fontStyle, { fontSize: 17 }]}>
                   Go Back
                 </Text>
               </TouchableOpacity>
@@ -268,28 +273,16 @@ const styles = StyleSheet.create({
     borderWidth: 5,
     borderColor: colors.lightOutline,
   },
-  centering: {
-    alignItems: "center",
-    justifyContent: "center",
-  },
   container: {
     flex: 1,
     display: "flex",
     padding: 25,
     backgroundColor: "#fff",
   },
-  cover: {
-    height: "100%",
-    width: "100%",
-  },
   dropdown: {
     flex: 1,
     paddingBottom: 10,
     fontWeight: "bold",
-  },
-  fontStyle: {
-    fontWeight: "bold",
-    color: "dimgray",
   },
   inputGroup: {
     flex: 1,
@@ -301,30 +294,8 @@ const styles = StyleSheet.create({
   optButton: {
     backgroundColor: colors.lightOutline,
   },
-  preloader: {
-    left: 0,
-    right: 0,
-    top: 0,
-    bottom: 0,
-    position: "absolute",
-    alignItems: "center",
-    justifyContent: "center",
-  },
-  shadowEffect: {
-    shadowColor: "#000",
-    shadowOffset: {
-      width: 0,
-      height: 2,
-    },
-    shadowOpacity: 0.25,
-    shadowRadius: 3.84,
-    elevation: 5,
-    marginVertical: 5,
-  },
   title: {
     padding: 10,
-    justifyContent: "center",
-    alignItems: "center",
     fontSize: 20,
     fontWeight: "bold",
   },
