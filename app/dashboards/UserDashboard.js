@@ -157,7 +157,7 @@ function UserDashboard(props) {
 
       {/** Search functionality */}
       <TextInput
-        style={[styles.searchBar, indexStyles.centering, styles.shadow]}
+        style={[styles.searchBar, indexStyles.centering]}
         round
         searchIcon={{ size: 24 }}
         onChangeText={(text) => onChange(text)}
@@ -305,12 +305,21 @@ const styles = StyleSheet.create({
     },
   },
   searchBar: {
+    justifyContent: "center",
+    alignItems: "center",
     textAlign: "center",
     fontSize: 22,
     marginTop: 20,
+    marginBottom: 0,
     height: 50,
-    backgroundColor: "#fff",
+    backgroundColor: "white",
     borderRadius: 20,
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 10,
+      height: 10,
+      borderRadius: 20,
+    },
   },
 });
 
