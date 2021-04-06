@@ -583,7 +583,7 @@
    "categoryDropped": "CONTROL",
    "block": 4,
    "question": 5,
-   "question1": "You check the clock at the train station and the time is 12.45.  You check the time on your watch and it says it is 12.50.  Your watch must be 5 minutes too f-st ",
+   "question1": "You check the clock at the train station and the time is 12:45.  You check the time on your watch and it says it is 12.50.  Your watch must be 5 minutes too f-st ",
    "answer1": "a",
    "word": "fast",
    "question2": "Are you at the train station? ",
