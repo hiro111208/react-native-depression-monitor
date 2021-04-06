@@ -26,15 +26,6 @@ export const textGrey = {
   flexWrap: "wrap",
 };
 
-export const userNote = {
-  backgroundColor: colors.lightOutline,
-  alignItems: "center",
-  borderTopStartRadius: 50,
-  borderTopEndRadius: 50,
-  padding: 20,
-  width: "100%",
-};
-
 export const containerWhite = {
   flex: 1,
   display: "flex",
