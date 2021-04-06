@@ -316,8 +316,7 @@ const styles = StyleSheet.create({
     width: "90%",
     backgroundColor: colors.darkBorder,
     alignSelf: "center",
-    paddingTop: 15,
-    paddingBottom: 15,
+    paddingVertical: 15,
     borderRadius: 50,
   },
   signupText: {
