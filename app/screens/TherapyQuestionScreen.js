@@ -114,6 +114,7 @@ export default class TherapyQuestionScreen extends Component {
         >
           <View style={{ height: "3%" }}></View>
 
+          {/** Dropdown list for all the categories */}
           {Platform.OS === "ios" && (
             <Fragment>
               <View
@@ -137,37 +138,25 @@ export default class TherapyQuestionScreen extends Component {
                   containerStyle={{ width: "80%", height: "100%" }}
                   selectedLabelStyle={indexStyles.textGrey}
                   placeholderStyle={indexStyles.textGrey}
-                  style={{
-                    borderTopLeftRadius: 20,
-                    borderTopRightRadius: 20,
-                    borderBottomLeftRadius: 20,
-                    borderBottomRightRadius: 20,
-                    backgroundColor: colors.lightOutline,
-                    borderWidth: 0,
-                    shadowColor: "#000",
-                    shadowOffset: {
-                      width: 0,
-                      height: 2,
+                  style={[
+                    {
+                      borderTopLeftRadius: 20,
+                      borderTopRightRadius: 20,
+                      borderBottomLeftRadius: 20,
+                      borderBottomRightRadius: 20,
+                      backgroundColor: colors.lightOutline,
+                      borderWidth: 0,
                     },
-                    shadowOpacity: 0.25,
-                    shadowRadius: 3.84,
-                    elevation: 1,
-                    marginVertical: 2,
-                  }}
-                  dropDownStyle={{
-                    backgroundColor: colors.lightOutline,
-                    borderBottomLeftRadius: 20,
-                    borderBottomRightRadius: 20,
-                    shadowColor: "#000",
-                    shadowOffset: {
-                      width: 0,
-                      height: 2,
+                    indexStyles.shadowEffect,
+                  ]}
+                  dropDownStyle={[
+                    {
+                      backgroundColor: colors.lightOutline,
+                      borderBottomLeftRadius: 20,
+                      borderBottomRightRadius: 20,
                     },
-                    shadowOpacity: 0.25,
-                    shadowRadius: 3.84,
-                    elevation: 2,
-                    marginVertical: 2,
-                  }}
+                    indexStyles.shadowEffect,
+                  ]}
                 />
               </View>
 
