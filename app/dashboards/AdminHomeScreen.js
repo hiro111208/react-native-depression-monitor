@@ -46,26 +46,8 @@ export default function AdminHomeScreen({ props, navigation }) {
   // loading screen executed via trigger
   const CustomProgressBar = ({ visible }) => (
     <Modal onRequestClose={() => null} transparent={true} visible={visible}>
-      <View
-        style={{
-          flex: 1,
-          alignItems: "center",
-          justifyContent: "center",
-        }}
-      >
-        <View
-          style={{
-            borderRadius: 10,
-            padding: 20,
-            backgroundColor: "#fff",
-            elevation: 5,
-            shadowColor: "#000",
-            shadowOffset: { width: 0, height: 2 },
-            shadowOpacity: 0.5,
-            shadowRadius: 2,
-            justifyContent: "space-evenly",
-          }}
-        >
+      <View style={[{ flex: 1 }, styles.centering]}>
+        <View style={styles.loadingSection}>
           <ActivityIndicator size="large" color="#ffa351ff" />
         </View>
       </View>
