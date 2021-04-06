@@ -1,10 +1,11 @@
 import React, { useEffect, useRef, useState } from "react";
-
 import { StyleSheet, View } from "react-native";
-
 import { Table, Rows, Row } from "react-native-table-component";
+import * as indexStyles from "../config/indexStyles";
 
-/** Returns data displayed in a table format */
+/**
+ * Returns data displayed in a table format
+ */
 function UserTable(props) {
   // Headers of the table
   const dataHead = ["Batch", "AvgTimeQ1", "AvgTimeQ2", "NºErrors"];
@@ -41,15 +42,10 @@ function UserTable(props) {
   useEffect(() => {
     const ac = new AbortController();
     const sig = ac.signal;
-    Promise.all([
-      setData(),
-      { signal: sig },
-      console.log("in Table "),
-    ]).catch((ex) => console.error(ex));
+    Promise.all([setData(), { signal: sig }]).catch((ex) => console.error(ex));
 
     // Abort both fetches on unmount
     return function cleanup() {
-      console.log("out Tbale");
       ac.abort();
     };
   }, []);
@@ -65,10 +61,10 @@ function UserTable(props) {
         >
           <Row
             data={dataHead}
-            style={styles.HeadStyle}
-            textStyle={styles.TableText}
+            style={[styles.headStyle, indexStyles.centering]}
+            textStyle={styles.tableText}
           />
-          <Rows data={setData()} textStyle={styles.TableText} />
+          <Rows data={setData()} textStyle={styles.tableText} />
         </Table>
       </View>
     </View>
@@ -89,16 +85,14 @@ const styles = StyleSheet.create({
     padding: 10,
     shadowOpacity: 0.2,
     shadowRadius: 1,
-    backgroundColor: "white",
+    backgroundColor: "#fff",
     borderRadius: 10,
   },
-  HeadStyle: {
+  headStyle: {
     height: 30,
-    justifyContent: "center",
-    alignContent: "center",
     backgroundColor: "#f4cbcb",
   },
-  TableText: {
+  tableText: {
     fontSize: 9,
     fontWeight: "300",
     margin: 5,
