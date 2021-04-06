@@ -1,5 +1,5 @@
 import * as React from "react";
-import { Image } from "react-native";
+import { Image, StyleSheet } from "react-native";
 import { getFocusedRouteNameFromRoute } from "@react-navigation/native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import HomeScreen from "./HomeScreen";
@@ -55,12 +55,7 @@ export default function PatientDashboard({ navigation, route }) {
               break;
           }
 
-          return (
-            <Image
-              source={imageSource}
-              style={{ maxHeight: "75%", maxWidth: "20%" }}
-            />
-          );
+          return <Image source={imageSource} style={styles.image} />;
         },
       })}
       tabBarOptions={{
@@ -74,3 +69,7 @@ export default function PatientDashboard({ navigation, route }) {
     </Tab.Navigator>
   );
 }
+
+const styles = StyleSheet.create({
+  image: { maxHeight: "75%", maxWidth: "20%" },
+});

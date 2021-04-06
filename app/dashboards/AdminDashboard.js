@@ -1,11 +1,17 @@
 import * as React from "react";
-import AdminUsersScreen from "./AdminUsersScreen";
+import { Image, StyleSheet } from "react-native";
+import { getFocusedRouteNameFromRoute } from "@react-navigation/native";
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 
 import AdminHomeScreen from "./AdminHomeScreen";
 import AdminUsersScreen from "./AdminUsersScreen";
 
 const Tab = createBottomTabNavigator();
+
 function getHeaderTitle(route) {
+  // If the focused route is not found, we need to assume it's the initial screen
+  // This can happen during if there hasn't been any navigation inside the screen
+  // In our case, it's 'Home' as that's the first screen inside the navigator
   const routeName = getFocusedRouteNameFromRoute(route) ?? "Home";
 
   switch (routeName) {
@@ -40,12 +46,7 @@ export default function AdminDashboard({ navigation, route }) {
               break;
           }
 
-          return (
-            <Image
-              source={imageSource}
-              style={{ maxHeight: "85%", maxWidth: "15%" }}
-            />
-          );
+          return <Image source={imageSource} style={styles.image} />;
         },
       })}
       tabBarOptions={{
@@ -66,3 +67,10 @@ export default function AdminDashboard({ navigation, route }) {
     </Tab.Navigator>
   );
 }
+
+const styles = StyleSheet.create({
+  image: {
+    maxHeight: "85%",
+    maxWidth: "15%",
+  },
+});
