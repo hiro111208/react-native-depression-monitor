@@ -11,7 +11,7 @@ import { ListItem } from "react-native-elements";
 import * as indexStyles from "../config/indexStyles";
 import firebase from "../database/firebase";
 import colors from "../config/colors";
-import { Notifications, Permissions } from "expo";
+import { Notifications } from "expo";
 
 /**
  * Page that displays all of the scheduled notifications for the patient
@@ -22,7 +22,8 @@ class ScheduleListScreen extends Component {
     this.firestoreRef = firebase
       .firestore()
       .collection("schedule")
-      .where("userID", "==", firebase.auth().currentUser.uid);
+      .where("userID", "==", firebase.auth().currentUser.uid)
+      .orderBy("scheduleDateTime");
     this.state = {
       isLoading: true,
       scheduleArr: [],
@@ -65,7 +66,6 @@ class ScheduleListScreen extends Component {
     let year = date_ob.getFullYear();
     let hours = date_ob.getHours();
     let minutes = date_ob.getMinutes();
-    let seconds = date_ob.getSeconds();
     return year + "-" + month + "-" + date + " " + hours + ":" + minutes;
   }
 
@@ -87,6 +87,7 @@ class ScheduleListScreen extends Component {
     );
   };
 
+  // remove schedule from the firebase collection
   deleteSchedule(id) {
     const dbRef = firebase.firestore().collection("schedule").doc(id);
     dbRef.delete().then((res) => {
@@ -94,6 +95,7 @@ class ScheduleListScreen extends Component {
     });
   }
 
+  // displays a push notification for the first schedule
   scheduleNotification1 = async () => {
     var n1 = new Date(scheduleDateTime);
     let notificationId = Notifications.scheduleLocalNotificationAsync(
@@ -108,6 +110,7 @@ class ScheduleListScreen extends Component {
     console.log(notificationId);
   };
 
+  // displays a push notification for the second schedule
   scheduleNotification2 = async () => {
     var n2 = new Date(scheduleDateTime);
     let notificationId = Notifications.scheduleLocalNotificationAsync(
@@ -123,6 +126,7 @@ class ScheduleListScreen extends Component {
     console.log(notificationId);
   };
 
+  // displays a push notification for the third schedule
   scheduleNotification3 = async () => {
     var n3 = new Date(scheduleDateTime);
     let notificationId = Notifications.scheduleLocalNotificationAsync(
@@ -138,6 +142,7 @@ class ScheduleListScreen extends Component {
     console.log(notificationId);
   };
 
+  // displays a push notification for the fourth schedule
   scheduleNotification4 = async () => {
     var n4 = new Date(scheduleDateTime);
     let notificationId = Notifications.scheduleLocalNotificationAsync(
