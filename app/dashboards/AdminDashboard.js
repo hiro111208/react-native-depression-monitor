@@ -3,7 +3,7 @@ import { Image, StyleSheet } from "react-native";
 import { getFocusedRouteNameFromRoute } from "@react-navigation/native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import AdminHomeScreen from "./AdminHomeScreen";
-import AdminUsersScreen from "./AdminUsersScreen";
+import AdminUserList from "./AdminUserList";
 
 const Tab = createBottomTabNavigator();
 
@@ -61,7 +61,7 @@ export default function AdminDashboard({ navigation, route }) {
       />
       <Tab.Screen
         name="Users"
-        component={AdminUsersScreen}
+        component={AdminUserList}
         options={{ tabBarLabel: "Users" }}
       />
     </Tab.Navigator>
