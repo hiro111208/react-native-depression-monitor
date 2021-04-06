@@ -1,13 +1,5 @@
 import React, { useState } from "react";
-import {
-  StatusBar,
-  StyleSheet,
-  View,
-  Text,
-  TouchableOpacity,
-  Image,
-} from "react-native";
-import Constants from "expo-constants";
+import { StyleSheet, View, Text, TouchableOpacity, Image } from "react-native";
 import * as indexStyles from "../config/indexStyles";
 import firebase from "../database/firebase";
 import colors from "../config/colors";
@@ -141,6 +133,7 @@ const PlantScreen = ({ navigation, route }) => {
               styles.plantImage,
               indexStyles.centering,
               indexStyles.shadowEffect,
+              indexStyles.cover,
             ]}
           >
             <Image
@@ -199,7 +192,7 @@ const styles = StyleSheet.create({
   optButton: {
     height: "50%",
     width: "60%",
-    backgroundColor: "#94ffd3",
+    backgroundColor: colors.therapyButton,
     borderRadius: 30,
   },
   homeButton: {
@@ -228,8 +221,6 @@ const styles = StyleSheet.create({
     height: "40%",
   },
   plantImage: {
-    width: "100%",
-    height: "100%",
     borderRadius: 100,
     borderWidth: 4,
     borderColor: "white",
