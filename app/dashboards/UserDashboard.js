@@ -13,7 +13,7 @@ import firebase from "../database/firebase";
 import ProgressBar from "../src/components/ProgressBar";
 import { TextInput } from "react-native-gesture-handler";
 import * as indexStyles from "../config/indexStyles";
-import * as colors from "../config/colors";
+import colors from "../config/colors";
 
 /*
  * View the progress of all users of the app
@@ -145,7 +145,7 @@ function UserDashboard(props) {
       </View>
 
       {/** Show total number of users */}
-      <View style={[styles.counter, indexStyles.shadowEffect]}>
+      <View style={[styles.counter, styles.shadow]}>
         <Text
           adjustsFontSizeToFit={true}
           numberOfLines={1}
@@ -157,11 +157,7 @@ function UserDashboard(props) {
 
       {/** Search functionality */}
       <TextInput
-        style={[
-          styles.searchBar,
-          indexStyles.centering,
-          indexStyles.shadowEffect,
-        ]}
+        style={[styles.searchBar, indexStyles.centering, styles.shadow]}
         round
         searchIcon={{ size: 24 }}
         onChangeText={(text) => onChange(text)}
@@ -192,9 +188,7 @@ function UserDashboard(props) {
               }
             >
               {/** Presents the user's ID */}
-              <Animated.View
-                style={[styles.listComponent, indexStyles.shadowEffect]}
-              >
+              <Animated.View style={[styles.listComponent, styles.shadow]}>
                 <View flex={1}>
                   <View flexDirection={"row"}>
                     <Text style={styles.idText}>DB{item.userID}</Text>
@@ -233,8 +227,12 @@ function UserDashboard(props) {
                     {/* Space where the category is revealed on toggle */}
                     {isSelected ? (
                       <View flexDirection={"row"}>
-                        <Text style={[styles.category, styles.normalFont}>Category:</Text>
-                        <Text style={[styles.categoryDropped, styles.normalFont]}>
+                        <Text style={[styles.category, styles.normalFont]}>
+                          Category:
+                        </Text>
+                        <Text
+                          style={[styles.categoryDropped, styles.normalFont]}
+                        >
                           {item.categoryDropped}
                         </Text>
                       </View>
@@ -294,6 +292,17 @@ const styles = StyleSheet.create({
   normalFont: {
     paddingBottom: 2,
     fontSize: 8,
+  },
+  shadow: {
+    padding: 10,
+    shadowOpacity: 0.4,
+    shadowRadius: 20,
+    backgroundColor: "#FFF",
+    borderRadius: 10,
+    shadowOffset: {
+      width: 0,
+      height: 10,
+    },
   },
   searchBar: {
     textAlign: "center",
