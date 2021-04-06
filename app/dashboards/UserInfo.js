@@ -177,7 +177,7 @@ export default class UserInfo extends Component {
           <TouchableOpacity
             adjustsFontSizeToFit={true}
             numberOfLines={1}
-            style={styles.button}
+            style={[styles.button, styles.buttonShadow]}
             onPress={() => this.props.navigation.goBack()}
           >
             <Text
@@ -193,7 +193,7 @@ export default class UserInfo extends Component {
           <TouchableOpacity
             adjustsFontSizeToFit={true}
             numberOfLines={1}
-            style={styles.button}
+            style={[styles.button, styles.buttonShadow]}
             onPress={() =>
               this.props.navigation.navigate("AdminFeelingsLog", {
                 currentUserID: this.state.currentUser,
@@ -211,7 +211,14 @@ export default class UserInfo extends Component {
         </View>
 
         {/** Present the user's last active time */}
-        <View flex={3} style={[styles.dataContainer, { width: width - 50 }]}>
+        <View
+          flex={3}
+          style={[
+            styles.dataContainer,
+            styles.buttonShadow,
+            { width: width - 50 },
+          ]}
+        >
           <View flexDirection={"row"}>
             <Text style={{ fontSize: 22, fontWeight: "700" }}>
               DB{this.state.currentUser}
@@ -274,7 +281,7 @@ export default class UserInfo extends Component {
             <View flexDirection={"row"} flex={3}>
               <YAxis
                 data={data[0].data}
-                contentInset={{ top: 30, bottom: 20 }}
+                contentInset={{ top: 20, bottom: 10 }}
                 svg={{
                   fill: "grey",
                   fontSize: 10,
@@ -307,13 +314,7 @@ export default class UserInfo extends Component {
                   </Text>
                 </View>
 
-                <View
-                  flex={2}
-                  borderWidth={0.5}
-                  borderRadius={10}
-                  marginRight={7}
-                  marginLeft={-25}
-                >
+                <View style={styles.chart}>
                   <LineChart
                     style={{ height: "100%" }}
                     data={data}
@@ -349,25 +350,14 @@ export default class UserInfo extends Component {
           </View>
 
           {/** return completion status of the user */}
-          <View
-            flex={0.25}
-            style={styles.shadow}
-            paddingBottom={20}
-            paddingHorizontal={20}
-            marginTop={30}
-            justifyContents={"center"}
-            borderWidth={0.4}
-            borderRadius={10}
-          >
+          <View style={[styles.completionStatus, styles.shadow]}>
             {this.state.currentBlock < 4 && (
-              <Text style={{ fontSize: 10, fontWeight: "300", padding: 5 }}>
+              <Text style={styles.text}>
                 Current Block: {this.state.currentBlock}
               </Text>
             )}
             {this.state.currentBlock == 5 && (
-              <Text style={{ fontSize: 10, fontWeight: "300", padding: 5 }}>
-                All Sessions Completed!
-              </Text>
+              <Text style={styles.text}>All Sessions Completed!</Text>
             )}
             <ProgressBar nextWidth={this.state.currentBlock - 1}></ProgressBar>
           </View>
@@ -383,16 +373,7 @@ const styles = StyleSheet.create({
     height: 35,
     margin: 11,
     marginTop: 20,
-    shadowOffset: {
-      width: 0,
-      height: 10,
-    },
     textAlign: "center",
-    padding: 10,
-    shadowOpacity: 0.4,
-    shadowRadius: 20,
-    backgroundColor: "#FFF",
-    borderRadius: 10,
   },
   buttonsBar: {
     flexDirection: "row",
@@ -409,15 +390,6 @@ const styles = StyleSheet.create({
   dataContainer: {
     marginVertical: 10,
     marginLeft: 20,
-    shadowOffset: {
-      width: 0,
-      height: 10,
-    },
-    padding: 10,
-    shadowOpacity: 0.4,
-    shadowRadius: 20,
-    backgroundColor: "#FFF",
-    borderRadius: 10,
   },
   fontStyle: {
     fontWeight: "700",
@@ -438,7 +410,39 @@ const styles = StyleSheet.create({
     padding: 10,
     shadowOpacity: 0.2,
     shadowRadius: 5,
-    backgroundColor: "#FFF",
+    backgroundColor: "#fff",
     borderRadius: 10,
+  },
+  buttonShadow: {
+    shadowOffset: {
+      width: 0,
+      height: 10,
+    },
+    padding: 10,
+    shadowOpacity: 0.4,
+    shadowRadius: 20,
+    borderRadius: 10,
+    backgroundColor: "#fff",
+  },
+  completionStatus: {
+    flex: 0.25,
+    paddingBottom: 20,
+    paddingHorizontal: 20,
+    marginTop: 30,
+    justifyContent: "center",
+    borderWidth: 0.4,
+    borderRadius: 10,
+  },
+  chart: {
+    flex: 2,
+    borderWidth: 0.5,
+    borderRadius: 10,
+    marginRight: 7,
+    marginLeft: -25,
+  },
+  text: {
+    fontSize: 10,
+    fontWeight: "300",
+    padding: 5,
   },
 });
