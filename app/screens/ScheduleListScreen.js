@@ -133,7 +133,6 @@ function time() {
 
 class ScheduleListScreen extends Component {
   constructor() {
-    time();
     super();
     this.firestoreRef = firebase
       .firestore()
