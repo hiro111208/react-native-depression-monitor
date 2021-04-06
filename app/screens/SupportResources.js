@@ -1,24 +1,26 @@
 import React from "react";
 import {
-  ImageBackground,
   ScrollView,
   View,
   StyleSheet,
   Text,
   Linking,
-  Image,
   TouchableOpacity,
 } from "react-native";
-import { AntDesign } from "@expo/vector-icons";
+import colors from "../config/colors";
+import * as indexStyles from "../config/indexStyles";
 
+/**
+ * Generates support links and contact information for the patient
+ */
 const SupportResources = ({ navigation }) => {
   return (
-    <View style={[styles.container, styles.centering]}>
+    <View style={[styles.container, indexStyles.centering]}>
       <View
         style={[
           styles.center,
-          styles.shadowEffect,
-          styles.centering,
+          indexStyles.shadowEffect,
+          indexStyles.centering,
           { height: "95%", width: "100%" },
         ]}
       >
@@ -27,10 +29,10 @@ const SupportResources = ({ navigation }) => {
             {
               height: "10%",
             },
-            styles.centering,
+            indexStyles.centering,
           ]}
         >
-          <Text style={[styles.fontStyle, { fontSize: 22 }]}>
+          <Text style={[indexStyles.fontStyle, { fontSize: 22 }]}>
             Support Resources
           </Text>
         </View>
@@ -42,10 +44,9 @@ const SupportResources = ({ navigation }) => {
         >
           <Text
             style={[
-              styles.centering,
+              indexStyles.centering,
               {
-                paddingLeft: 30,
-                paddingRight: 30,
+                paddingHorizontal: 30,
                 paddingTop: 20,
                 fontSize: 17,
                 fontStyle: "italic",
@@ -65,26 +66,31 @@ const SupportResources = ({ navigation }) => {
               borderTopRightRadius: 20,
             }}
           >
-            <Text style={[styles.fontStyle, { fontSize: 18, padding: 5 }]}>
+            <Text style={[indexStyles.fontStyle, { fontSize: 18, padding: 5 }]}>
               Support Agencies
             </Text>
           </View>
 
-          <View style={[{ backgroundColor: "#ffeed2" }, styles.centering]}>
+          <View
+            style={[
+              { backgroundColor: colors.lightOutline },
+              indexStyles.centering,
+            ]}
+          >
             <ScrollView horizontal>
               <View
                 style={[
                   { margin: 5 },
                   styles.boxSmall,
                   styles.boxMargin,
-                  styles.shadowEffect,
+                  indexStyles.shadowEffect,
                 ]}
               >
-                <View style={[styles.titleArea, styles.centering]}>
-                  <Text style={styles.title}>NHS</Text>
+                <View style={[styles.titleArea, indexStyles.centering]}>
+                  <Text style={[styles.title, indexStyles.fontStyle]}>NHS</Text>
                 </View>
 
-                <View style={[styles.infoArea, styles.centering]}>
+                <View style={[styles.infoArea, indexStyles.centering]}>
                   <Text
                     style={styles.hyperlinkStyle}
                     onPress={() => {
@@ -107,13 +113,15 @@ const SupportResources = ({ navigation }) => {
                   { margin: 5 },
                   styles.boxSmall,
                   styles.boxMargin,
-                  styles.shadowEffect,
+                  indexStyles.shadowEffect,
                 ]}
               >
-                <View style={[styles.titleArea, styles.centering]}>
-                  <Text style={styles.title}>Bipolar UK</Text>
+                <View style={[styles.titleArea, indexStyles.centering]}>
+                  <Text style={[styles.title, indexStyles.fontStyle]}>
+                    Bipolar UK
+                  </Text>
                 </View>
-                <View style={[styles.infoArea, styles.centering]}>
+                <View style={[styles.infoArea, indexStyles.centering]}>
                   <Text
                     style={styles.hyperlinkStyle}
                     onPress={() => {
@@ -136,13 +144,15 @@ const SupportResources = ({ navigation }) => {
                   { margin: 5 },
                   styles.boxSmall,
                   styles.boxMargin,
-                  styles.shadowEffect,
+                  indexStyles.shadowEffect,
                 ]}
               >
-                <View style={[styles.titleArea, styles.centering]}>
-                  <Text style={styles.title}>Calmzone</Text>
+                <View style={[styles.titleArea, indexStyles.centering]}>
+                  <Text style={[styles.title, indexStyles.fontStyle]}>
+                    Calmzone
+                  </Text>
                 </View>
-                <View style={[styles.infoArea, styles.centering]}>
+                <View style={[styles.infoArea, indexStyles.centering]}>
                   <Text
                     style={styles.hyperlinkStyle}
                     onPress={() => {
@@ -165,13 +175,15 @@ const SupportResources = ({ navigation }) => {
                   { margin: 5 },
                   styles.boxSmall,
                   styles.boxMargin,
-                  styles.shadowEffect,
+                  indexStyles.shadowEffect,
                 ]}
               >
-                <View style={[styles.titleArea, styles.centering]}>
-                  <Text style={styles.title}>Samaritans</Text>
+                <View style={[styles.titleArea, indexStyles.centering]}>
+                  <Text style={[styles.title, indexStyles.fontStyle]}>
+                    Samaritans
+                  </Text>
                 </View>
-                <View style={[styles.infoArea, styles.centering]}>
+                <View style={[styles.infoArea, indexStyles.centering]}>
                   <Text
                     style={styles.hyperlinkStyle}
                     onPress={() => {
@@ -195,13 +207,13 @@ const SupportResources = ({ navigation }) => {
                   { margin: 5 },
                   styles.boxSmall,
                   styles.boxMargin,
-                  styles.shadowEffect,
+                  indexStyles.shadowEffect,
                 ]}
               >
-                <View style={[styles.titleArea, styles.centering]}>
-                  <Text style={styles.title}>WLM</Text>
+                <View style={[styles.titleArea, indexStyles.centering]}>
+                  <Text style={[styles.title, indexStyles.fontStyle]}>WLM</Text>
                 </View>
-                <View style={[styles.infoArea, styles.centering]}>
+                <View style={[styles.infoArea, indexStyles.centering]}>
                   <Text
                     style={styles.hyperlinkStyle}
                     onPress={() => {
@@ -228,7 +240,10 @@ const SupportResources = ({ navigation }) => {
               The research for this project was done by:
             </Text>
             <Text
-              style={[styles.fontStyle, { fontSize: 15, textAlign: "center" }]}
+              style={[
+                indexStyles.fontStyle,
+                { fontSize: 15, textAlign: "center" },
+              ]}
             >
               Jenny Yiend{"\n"}Jong-Sun Lee{"\n"}Sinem Tekes{"\n"}Louise Atkins
               {"\n"}Andrew Matthews{"\n"}Manouk Vintren{"\n"}Christian Ferragamo
@@ -241,7 +256,7 @@ const SupportResources = ({ navigation }) => {
             </Text>
             <Text
               style={[
-                styles.fontStyle,
+                indexStyles.fontStyle,
                 {
                   fontSize: 16,
                   padding: 10,
@@ -259,20 +274,22 @@ const SupportResources = ({ navigation }) => {
         <View
           style={[
             { height: "9%", width: "40%" },
-            styles.centering,
-            styles.shadowEffect,
+            indexStyles.centering,
+            indexStyles.shadowEffect,
           ]}
         >
           <TouchableOpacity
             onPress={() => navigation.goBack()}
             style={[
               styles.optButton,
-              styles.cover,
-              styles.centering,
+              indexStyles.cover,
+              indexStyles.centering,
               { borderRadius: 50 },
             ]}
           >
-            <Text style={[styles.fontStyle, { fontSize: 20 }]}>Return</Text>
+            <Text style={[indexStyles.fontStyle, { fontSize: 20 }]}>
+              Return
+            </Text>
           </TouchableOpacity>
         </View>
 
@@ -291,17 +308,13 @@ const styles = StyleSheet.create({
     height: "100%",
     width: "40%",
     borderRadius: 50,
-    backgroundColor: "#ffeed2",
+    backgroundColor: colors.lightOutline,
   },
   center: {
-    backgroundColor: "#fed8b1",
+    backgroundColor: colors.mainPanel,
     borderRadius: 50,
     borderWidth: 5,
-    borderColor: "#ffeed2",
-  },
-  centering: {
-    alignItems: "center",
-    justifyContent: "center",
+    borderColor: colors.lightOutline,
   },
   container: {
     flex: 1,
@@ -309,33 +322,11 @@ const styles = StyleSheet.create({
     padding: 25,
     backgroundColor: "#fff",
   },
-  cover: {
-    height: "100%",
-    width: "100%",
-  },
-  fontStyle: {
-    fontWeight: "bold",
-    color: "dimgray",
-  },
   optButton: {
-    backgroundColor: "#ffeed2",
+    backgroundColor: colors.lightOutline,
   },
   scheduleText: {
     fontSize: 15,
-  },
-  selectButton: {
-    backgroundColor: "#ffeed2",
-  },
-  shadowEffect: {
-    shadowColor: "#000",
-    shadowOffset: {
-      width: 0,
-      height: 2,
-    },
-    shadowOpacity: 0.25,
-    shadowRadius: 3.84,
-    elevation: 5,
-    marginVertical: 5,
   },
   textStyle: {
     fontSize: 18,
@@ -366,24 +357,8 @@ const styles = StyleSheet.create({
   hyperlinkStyle: {
     color: "blue",
   },
-  logo: {
-    width: 400,
-    height: 100,
-  },
-  main: {
-    color: "white",
-    textAlign: "center",
-    fontSize: 17,
-  },
-  tinyLogo: {
-    width: 160,
-    height: 80,
-    margin: 10,
-  },
   title: {
-    color: "dimgray",
     fontSize: 23,
-    fontWeight: "bold",
     fontStyle: "italic",
   },
   titleArea: {
@@ -392,11 +367,6 @@ const styles = StyleSheet.create({
     backgroundColor: "#bcf5bc",
     borderTopLeftRadius: 30,
     borderTopRightRadius: 30,
-  },
-  smallTitle: {
-    color: "white",
-    fontSize: 15,
-    margin: 2,
   },
 });
 

@@ -1,0 +1,722 @@
+[
+ {
+   "categoryDropped": "CONTROL",
+   "block": 1,
+   "question": 1,
+   "question1": "You turn the kettle on and wait for the water to boil.  You get a teabag out of the tin, which you put into a mug, and pour the boiling water onto the teabag.  Next, you add the m- - k ",
+   "answer1": "i",
+   "word": "milk",
+   "question2": "Have you made a cup of tea?",
+   "answer2": "yes"
+ },
+ {
+   "categoryDropped": "CONTROL",
+   "block": 1,
+   "question": 2,
+   "question1": "You get into the next lift down to the platform.  You wait for four minutes until the next tube arrives.  You get onto the tube and sit down.  You get out your book and start re - di -g",
+   "answer1": "a",
+   "word": "reading",
+   "question2": "Did you get a seat on the tube? ",
+   "answer2": "yes"
+ },
+ {
+   "categoryDropped": "CONTROL",
+   "block": 1,
+   "question": 3,
+   "question1": "The first electronic digital computers were developed in the mid 20th century to efficiently carry out complex calculations. Originally, they were the size of a large room, consuming as much power as several hundred modern personal c-m-u-e-s",
+   "answer1": "o",
+   "word": "computers",
+   "question2": "Were the first computers the size of modern personal computers?",
+   "answer2": "no"
+ },
+ {
+   "categoryDropped": "CONTROL",
+   "block": 1,
+   "question": 4,
+   "question1": "Monarch butterflies are known for their lengthy migration. In North America they migrate downwards in August and northwards in the spring. The monarchs are the only butterflies known to migrate annually both north and south similarly to b-r-s",
+   "answer1": "i",
+   "word": "birds",
+   "question2": "Do the Monarchs migrate on an annual basis? ",
+   "answer2": "yes"
+ },
+ {
+   "categoryDropped": "CONTROL",
+   "block": 1,
+   "question": 5,
+   "question1": "You are reading a book about the history of DNA.  It describes how Watson and Crick deduced the double-helix structure with help from their collaborator Rosalind Franklin at Cambridge u-ivers- -y ",
+   "answer1": "n",
+   "word": "university",
+   "question2": "Are you reading a book about DNA? ",
+   "answer2": "yes"
+ },
+ {
+   "categoryDropped": "CONTROL",
+   "block": 1,
+   "question": 6,
+   "question1": "You are watching a clip on the internet about great engineering achievements.  It describes the construction of the Golden Gate Bridge.  The length of the bridge is over two and a half thousand met- - s ",
+   "answer1": "r",
+   "word": "metres",
+   "question2": "Have you been watching a clip about a bridge? ",
+   "answer2": "yes"
+ },
+ {
+   "categoryDropped": "CONTROL",
+   "block": 1,
+   "question": 7,
+   "question1": "You are watching a gardening program.  The presenter is explaining how to grow fruit and vegetables.  He explains that strawberries grow best in the su-m-r ",
+   "answer1": "m",
+   "word": "summer",
+   "question2": "Does the program have a presenter? ",
+   "answer2": "yes"
+ },
+ {
+   "categoryDropped": "CONTROL",
+   "block": 1,
+   "question": 8,
+   "question1": "You sort out your dirty laundry in two piles, whites and colours. You put the whites in the washing machine and select the quick and cool program. When finished, you wash the other cl-th-s ",
+   "answer1": "o",
+   "word": "clothes",
+   "question2": "Have you been hoovering? ",
+   "answer2": "no"
+ },
+ {
+   "categoryDropped": "CONTROL",
+   "block": 1,
+   "question": 9,
+   "question1": "A visual illusion is a distortion of the senses, revealing how the brain normally organises and interprets sensory stimulation. The information gathered by the eye, does not tally with a physical measurement of the stimulus s-u-ce",
+   "answer1": "o",
+   "word": "source",
+   "question2": "Do visual illusions reveal how the brain normally organises information? ",
+   "answer2": "yes"
+ },
+ {
+   "categoryDropped": "CONTROL",
+   "block": 1,
+   "question": 10,
+   "question1": "You queue up at the checkout with your shopping trolley.  As the person in front of you moves forward you start to put your shopping onto the conveyor belt.  Soon the sales assistant starts scanning your sh - ppi - g ",
+   "answer1": "o",
+   "word": "shopping",
+   "question2": "Did you join the queue? ",
+   "answer2": "yes"
+ },
+ {
+   "categoryDropped": "CONTROL",
+   "block": 1,
+   "question": 11,
+   "question1": "You ordered several DVDs and books from AMAZON but you missed them a few days ago. You notice that the deliveryman left a �something for you� memo card. You check your local delivery office to collect your  pa_c_ls ",
+   "answer1": "r",
+   "word": "parcels",
+   "question2": "Did you order music CDs and books from AMAZON?",
+   "answer2": "no"
+ },
+ {
+   "categoryDropped": "CONTROL",
+   "block": 1,
+   "question": 12,
+   "question1": "You preheat the oven to 200C to make chunky apple crumble cake. You peel and cut the apples into large chunks and add orange juice to the apples and mix them together. Next, you make the crumble t-pp-ng",
+   "answer1": "o",
+   "word": "topping",
+   "question2": "Are you making an apple crumble cake?",
+   "answer2": "yes"
+ },
+ {
+   "categoryDropped": "CONTROL",
+   "block": 1,
+   "question": 13,
+   "question1": "You see your neighbour on a high street and talk about their new beagle dog. They explained that Beagles are very small, energetic and good with children, and most live 12 to 17 years on a_er_ge ",
+   "answer1": "v",
+   "word": "average",
+   "question2": "Did your neighbour get a golden retriever? ",
+   "answer2": "no"
+ },
+ {
+   "categoryDropped": "CONTROL",
+   "block": 1,
+   "question": 14,
+   "question1": "You are reading an article about the weather in a science magazine.  The scientists report that low UV output from the sun might contribute to more cold winters than usual whereas high UV output has the opposite  ef-e-t",
+   "answer1": "f",
+   "word": "effect",
+   "question2": "Do you review the weather broadcasting? ",
+   "answer2": "no"
+ },
+ {
+   "categoryDropped": "CONTROL",
+   "block": 1,
+   "question": 15,
+   "question1": "Green tea originated in China and has become associated with many cultures throughout  Asia. Lately its possible health benefits have been acknowledged in the Western world. The polyphenols present in the tea are believed to have antioxidant effects on c-l-s ",
+   "answer1": "e",
+   "word": "cells",
+   "question2": "Is it believed that polyphenols �have antioxidant effects?",
+   "answer2": "yes"
+ },
+ {
+   "categoryDropped": "CONTROL",
+   "block": 1,
+   "question": 16,
+   "question1": "You are ordering grocery items online. You turn on the computer, find the website and begin adding items to your shopping cart. You now decide the delivery date and time and finish pa-me-t ",
+   "answer1": "y",
+   "word": "payment",
+   "question2": "Do you go to the store for your grocery items?",
+   "answer2": "no"
+ },
+ {
+   "categoryDropped": "CONTROL",
+   "block": 1,
+   "question": 17,
+   "question1": "You find a book in the bookstore. The story starts when a British film producer moves to Los Angeles. They then make the film called Compton Cricket Club which is about a group of young men from a homeless co-mu-ity ",
+   "answer1": "m",
+   "word": "community",
+   "question2": "Have you found an interesting book? ",
+   "answer2": "yes"
+ },
+ {
+   "categoryDropped": "CONTROL",
+   "block": 1,
+   "question": 18,
+   "question1": "Your colleague brings their new camera, Cannon EOS 600D, to the office. They said that it was on sale online, so they bought it at a cheaper price than they expected. They take a picture of everyone in the of_ice ",
+   "answer1": "f",
+   "word": "office",
+   "question2": "Does your colleague bring a phone to the office?",
+   "answer2": "no"
+ },
+ {
+   "categoryDropped": "CONTROL",
+   "block": 2,
+   "question": 1,
+   "question1": "You measure the width of wooden planks to make a fence. It will go around the whole garden and once finished it will be treated and painted in brown which is the same colour as the other fences in the ne-ghb-u-h-od",
+   "answer1": "i",
+   "word": "neighbourhood",
+   "question2": "Are you building a fence?",
+   "answer2": "yes"
+ },
+ {
+   "categoryDropped": "CONTROL",
+   "block": 2,
+   "question": 2,
+   "question1": "You are building a sandcastle on the beach. You have buckets and spades varying in size and shape and you start by digging a little pit. Next you fill the buckets with sand mixed with water and create the castle fo-nd-ti-on",
+   "answer1": "u",
+   "word": "foundation",
+   "question2": "Are you building a sandcastle? ",
+   "answer2": "yes"
+ },
+ {
+   "categoryDropped": "CONTROL",
+   "block": 2,
+   "question": 3,
+   "question1": "You listen to the weather report broadcasted on radio. The meteorologist reports that the weather will be mostly dry and cloudy in the east, but spells of rain will continue in western areas, becoming heavy and pe-si-t-nt ",
+   "answer1": "r",
+   "word": "persistent",
+   "question2": "Did you watch the weather report?",
+   "answer2": "no"
+ },
+ {
+   "categoryDropped": "CONTROL",
+   "block": 2,
+   "question": 4,
+   "question1": "You mix flour and baking powder to make muffins. You then add the butter, eggs and sugar and stir in some milk. Before pouring the mixture into the muffin cases, you add the vanilla and the bl-eb-rr-es",
+   "answer1": "u",
+   "word": "blueberries",
+   "question2": "Are you baking muffins?",
+   "answer2": "yes"
+ },
+ {
+   "categoryDropped": "CONTROL",
+   "block": 2,
+   "question": 5,
+   "question1": "You opened the handbag that you found in the restaurant�s toilet. Inside there was a little mirror, a book, some cigarettes and business cards. You called the phone number and informed the ow-er ",
+   "answer1": "n",
+   "word": "owner",
+   "question2": "Did you find a backpack?",
+   "answer2": "no"
+ },
+ {
+   "categoryDropped": "CONTROL",
+   "block": 2,
+   "question": 6,
+   "question1": "You are reading art magazine. An artist has embraced many different media since the 1950s, including painting, printmaking, installation and industrial design and this exhibition focuses on his political wo-ks ",
+   "answer1": "r",
+   "word": "works",
+   "question2": "Are you going to a gallery?",
+   "answer2": "yes"
+ },
+ {
+   "categoryDropped": "CONTROL",
+   "block": 2,
+   "question": 7,
+   "question1": "You are eating a fresh baguette. It is made from wheat-flour dough that is cultured with yeast, allowed to rise, and finally baked in an oven. Common wheat is the most usual grain used for the preparation of br-ad",
+   "answer1": "e",
+   "word": "bread",
+   "question2": "Did you eat a fresh bagel?",
+   "answer2": "no"
+ },
+ {
+   "categoryDropped": "CONTROL",
+   "block": 2,
+   "question": 8,
+   "question1": "You are sewing a loose button back onto a shirt. You have the thread which is put through the needle hole and then you start making the stitches in single loops of thread brought in and out of the fabric in a particular w-y",
+   "answer1": "a",
+   "word": "way",
+   "question2": "Are you sewing a loose button?",
+   "answer2": "yes"
+ },
+ {
+   "categoryDropped": "CONTROL",
+   "block": 2,
+   "question": 9,
+   "question1": "You are constructing a flat-packed chest of drawers.  The instructions say that you will require a Phillips-head screwdriver and a hammer and estimate the construction takes sixty m-nut-s",
+   "answer1": "i",
+   "word": "minutes",
+   "question2": "Are you constructing a desk? ",
+   "answer2": "no"
+ },
+ {
+   "categoryDropped": "CONTROL",
+   "block": 2,
+   "question": 10,
+   "question1": "You have just finished writing your letter and so fold it up and put it into an envelope.  You write the address on the front of the envelope in block capitals and fix a stamp to the top right hand c-rn-r",
+   "answer1": "o",
+   "word": "corner",
+   "question2": "Did you write the address in capital letters? ",
+   "answer2": "yes"
+ },
+ {
+   "categoryDropped": "CONTROL",
+   "block": 2,
+   "question": 11,
+   "question1": "You collect your washing off the washing line and put it into a basket.  You then carry the basket into the house and turn the iron on.  You wait for the iron to heat up before beginning to iron a sh-r-",
+   "answer1": "i",
+   "word": "shirt",
+   "question2": "Have you been cleaning the house? ",
+   "answer2": "no"
+ },
+ {
+   "categoryDropped": "CONTROL",
+   "block": 2,
+   "question": 12,
+   "question1": "You are watching BBC news. It reports that as technology improves, it is becoming more common for people to download bigger files. These include songs, videos and emails with large at_ta_hments",
+   "answer1": "c",
+   "word": "attachments",
+   "question2": "Are you listening to BBC radio? ",
+   "answer2": "no"
+ },
+ {
+   "categoryDropped": "CONTROL",
+   "block": 2,
+   "question": 13,
+   "question1": "You are planning your journey home from work. You check the train times and work out the journey on the internet. One option is to get the bus but the quicker and easiest form of transport is to get the direct t-a-n ",
+   "answer1": "r",
+   "word": "train",
+   "question2": "Did you plan your journey? ",
+   "answer2": "yes"
+ },
+ {
+   "categoryDropped": "CONTROL",
+   "block": 2,
+   "question": 14,
+   "question1": "You are watching a football game on TV. Both teams are from the same city and there are an equal number of supporters for each team in the stadium. The referee blows the whistle because it is half t-me",
+   "answer1": "i",
+   "word": "time",
+   "question2": "Are you watching a baseball game? ",
+   "answer2": "no"
+ },
+ {
+   "categoryDropped": "CONTROL",
+   "block": 2,
+   "question": 15,
+   "question1": "You are getting ready to cook a curry. You have been to the shop to get all the ingredients and laid them all out on the table. Next you take out the utensils and an apron but before you start cooking you double check the r-c-pe",
+   "answer1": "e",
+   "word": "recipe",
+   "question2": "Are you cooking a curry? ",
+   "answer2": "yes"
+ },
+ {
+   "categoryDropped": "CONTROL",
+   "block": 2,
+   "question": 16,
+   "question1": "You are reading about photography in a newspaper.  The article says that digital imaging uses an electronic image sensor to record the image as a set of electronic data rather than as chemical changes on f-lm ",
+   "answer1": "i",
+   "word": "film",
+   "question2": "Are you reading about photography? ",
+   "answer2": "yes"
+ },
+ {
+   "categoryDropped": "CONTROL",
+   "block": 2,
+   "question": 17,
+   "question1": "You are watching an episode of countdown on the television.  One of the contestants is doing well and has a score of ninety-six, the longest word he made was seven l-tt-rs ",
+   "answer1": "e",
+   "word": "letters",
+   "question2": "Has the best contestant made a word longer than 5 letters? ",
+   "answer2": "yes"
+ },
+ {
+   "categoryDropped": "CONTROL",
+   "block": 2,
+   "question": 18,
+   "question1": "You are turning up the volume on the radio to hear the music. You are not familiar with the piece but you try to make out the instruments and can hear drums, horns, saxophone, trombone, megaphone and tr-mp-t",
+   "answer1": "u",
+   "word": "trumpet",
+   "question2": "Did you turn the volume down? ",
+   "answer2": "no"
+ },
+ {
+   "categoryDropped": "CONTROL",
+   "block": 3,
+   "question": 1,
+   "question1": "You watch a program about penguins. You learn that during the breeding season penguins form monogamous pairs and that with the exception of the Emperor penguin where the male does everything, penguins share the incubation d-ti-s ",
+   "answer1": "u",
+   "word": "duties",
+   "question2": "Did you watch a program about seals? ",
+   "answer2": "no"
+ },
+ {
+   "categoryDropped": "CONTROL",
+   "block": 3,
+   "question": 2,
+   "question1": "You find a magazine in the train on your way to work. You read about greenhouse gases which are gases in the atmosphere that absorbs and emits radiation within the infrared range and this process causes the greenhouse e-ff-ct ",
+   "answer1": "e",
+   "word": "effect",
+   "question2": "Have you found a leaflet? ",
+   "answer2": "no"
+ },
+ {
+   "categoryDropped": "CONTROL",
+   "block": 3,
+   "question": 3,
+   "question1": "You feel a raindrop on your cheek, you open your bag and quickly find your umbrella.  You open up the umbrella and then use it to walk all the way home to stop you from getting w � t",
+   "answer1": "e",
+   "word": "wet",
+   "question2": "Is it raining?",
+   "answer2": "yes"
+ },
+ {
+   "categoryDropped": "CONTROL",
+   "block": 3,
+   "question": 4,
+   "question1": "You open the telephone directory and find the section beginning with: �T�.  You then find the taxi service section.  You find the nearest taxi service and make a note of their n-mb-r ",
+   "answer1": "u",
+   "word": "number",
+   "question2": "Were you looking for the bus timetable?",
+   "answer2": "no"
+ },
+ {
+   "categoryDropped": "CONTROL",
+   "block": 3,
+   "question": 5,
+   "question1": "You walk into the restaurant. The waitress takes you to your table.  You sit down at your table and ask the waitress for an orange juice.  In a few minutes the waitress comes back with your d - - nk",
+   "answer1": "r",
+   "word": "drink",
+   "question2": "Did you order a coke?",
+   "answer2": "no"
+ },
+ {
+   "categoryDropped": "CONTROL",
+   "block": 3,
+   "question": 6,
+   "question1": "You are walking down to the canteen for lunch. You see your boss walking towards you with his/her colleagues and you say �hello� to each other. You are now looking at the menu and wait in the queue to get the food you c-ose ",
+   "answer1": "h",
+   "word": "chose",
+   "question2": "Did you meet your boss in the canteen?",
+   "answer2": "yes"
+ },
+ {
+   "categoryDropped": "CONTROL",
+   "block": 3,
+   "question": 7,
+   "question1": "You would like to buy a new laptop. You are looking at cheap laptop sales online and reading descriptions about design, technical details, and product details. Finally, you are checking for a reasonable pr-ce",
+   "answer1": "i",
+   "word": "price",
+   "question2": "Are you going to buy a new desktop computer?",
+   "answer2": "no"
+ },
+ {
+   "categoryDropped": "CONTROL",
+   "block": 3,
+   "question": 8,
+   "question1": "You walk past a currency exchange shop.  Exchange rates are displayed in the window of the shop.  One US Dollar is equivalent to 0.63 British pounds.   One Euro is equivalent to 0.86 British p-und- ",
+   "answer1": "o",
+   "word": "pounds",
+   "question2": "Is the euro worth less than the dollar?",
+   "answer2": "no"
+ },
+ {
+   "categoryDropped": "CONTROL",
+   "block": 3,
+   "question": 9,
+   "question1": "You read about Yorkshire which is an historic county of Northern England and the largest in the United Kingdom. The emblem of Yorkshire is the white rose of the English royal House of Y-rk ",
+   "answer1": "o",
+   "word": "York",
+   "question2": "Did you read about Yorkshire",
+   "answer2": "yes"
+ },
+ {
+   "categoryDropped": "CONTROL",
+   "block": 3,
+   "question": 10,
+   "question1": "You are planting a seed. It is a small embryonic plant enclosed in a covering called the seed coat, usually with some stored food that is a store of nutrients for the seedling that will grow from the em-ryo",
+   "answer1": "b",
+   "word": "embryo",
+   "question2": "Are you planting a seed?",
+   "answer2": "yes"
+ },
+ {
+   "categoryDropped": "CONTROL",
+   "block": 3,
+   "question": 11,
+   "question1": "You are reading about the secret of Rolex watches and it says that Rolex�s secret is sports marketing. They advertised that a swimmer named Mercedes Gleitz crossed the English Channel in 1927, wearing a waterproof R_l_x ",
+   "answer1": "o",
+   "word": "rolex",
+   "question2": "Is the secret of Rolex brand sport marketing?",
+   "answer2": "yes"
+ },
+ {
+   "categoryDropped": "CONTROL",
+   "block": 3,
+   "question": 12,
+   "question1": "You watched a television programme on organic farming. It was suggested that conventional agriculture might be more energy efficient for certain foods. However, others have told you that organic really is better for the en_iron_ent",
+   "answer1": "v",
+   "word": "environment",
+   "question2": "Is conventional agriculture really better for the environment? ",
+   "answer2": "no"
+ },
+ {
+   "categoryDropped": "CONTROL",
+   "block": 3,
+   "question": 13,
+   "question1": "After months of use it is time for you to buy a new rucksack. You decide that you still prefer the company that you bought your original rucksack from. You buy the same model but one of a different c-lo-r ",
+   "answer1": "o",
+   "word": "colour",
+   "question2": "Are you buying a new rucksack?",
+   "answer2": "yes"
+ },
+ {
+   "categoryDropped": "CONTROL",
+   "block": 3,
+   "question": 14,
+   "question1": "You read a science fiction book. It is set on a spaceship in a distant galaxy and it is about the adventures of a young boy who is trying to find his way back home to his planet where everyone is looking for h-m",
+   "answer1": "i",
+   "word": "him",
+   "question2": "Did you read a science fiction book? ",
+   "answer2": "yes"
+ },
+ {
+   "categoryDropped": "CONTROL",
+   "block": 3,
+   "question": 15,
+   "question1": "You have done some research on birds. You find that migratory birds live in rainforests during the winter and return to cooler regions during the spring and summer, for example many songbirds that nest in the United States winter in the Am-z-n",
+   "answer1": "a",
+   "word": "amazon",
+   "question2": "Have you been researching reptiles? ",
+   "answer2": "no"
+ },
+ {
+   "categoryDropped": "CONTROL",
+   "block": 3,
+   "question": 16,
+   "question1": "You are washing an old wool jumper by hand. You have heard that wool can easily lose its shape and become less defined if washed without care. That�s why you use a special laundry d-te-g-nt ",
+   "answer1": "e",
+   "word": "detergent",
+   "question2": "Did you wash it in the machine? ",
+   "answer2": "no"
+ },
+ {
+   "categoryDropped": "CONTROL",
+   "block": 3,
+   "question": 17,
+   "question1": "You tried to solve a crossword puzzle during the bus ride. There was one word missing when you had to get off the bus and you decided to ask the person sitting next to you. He gave you the right an-w-r ",
+   "answer1": "s",
+   "word": "answer",
+   "question2": "Did you try to solve a crossword puzzle?",
+   "answer2": "yes"
+ },
+ {
+   "categoryDropped": "CONTROL",
+   "block": 3,
+   "question": 18,
+   "question1": "You are going to go food shopping this afternoon and check the items you have to buy and make a note of them. When you arrive at Sainsbury�s and start collecting vegetables first, you notice your neighbor is in the opposite co-n-r",
+   "answer1": "r",
+   "word": "corner",
+   "question2": "Are you shopping for food?",
+   "answer2": "yes"
+ },
+ {
+   "categoryDropped": "CONTROL",
+   "block": 4,
+   "question": 1,
+   "question1": "You receive a letter from your local council about updates to recycling and waste procedures. Collection for recycling had previously been twice a month. You are notified that this will now be done on a weekly b-sis ",
+   "answer1": "a",
+   "word": "basis",
+   "question2": "Have you receieved new information about your taxes? ",
+   "answer2": "no"
+ },
+ {
+   "categoryDropped": "CONTROL",
+   "block": 4,
+   "question": 2,
+   "question1": "You have recently finished construction work on your outside garden. You find that you are now left with an excess of broken bricks. You decide to take the rubbish to the tip this we-ke-d",
+   "answer1": "e",
+   "word": "weekend",
+   "question2": "Have you put a pool in your outside garden?",
+   "answer2": "no"
+ },
+ {
+   "categoryDropped": "CONTROL",
+   "block": 4,
+   "question": 3,
+   "question1": "You decide to update your appliances and go to the store and purchase a new washing machine. You ring the company to ask when you should it expect it to be delivered. You are told that it will arrive on M-nd-y",
+   "answer1": "o",
+   "word": "Monday",
+   "question2": "Have you bought a new dishwasher?",
+   "answer2": "no"
+ },
+ {
+   "categoryDropped": "CONTROL",
+   "block": 4,
+   "question": 4,
+   "question1": "You are watching the 6 O�Clock news.  The news presenter is describing a story about recent changes to the government�s economic policy.  An MP is being in-erv-ewed. ",
+   "answer1": "t",
+   "word": "interviewed",
+   "question2": "Is it early evening? ",
+   "answer2": "yes"
+ },
+ {
+   "categoryDropped": "CONTROL",
+   "block": 4,
+   "question": 5,
+   "question1": "You check the clock at the train station and the time is 12:45.  You check the time on your watch and it says it is 12.50.  Your watch must be 5 minutes too f-st ",
+   "answer1": "a",
+   "word": "fast",
+   "question2": "Are you at the train station? ",
+   "answer2": "yes"
+ },
+ {
+   "categoryDropped": "CONTROL",
+   "block": 4,
+   "question": 6,
+   "question1": "You are using a compass. It has four different points, North, South, East and West and is a navigational instrument. There are two different kinds of compasses, gyro and m-gne-ic ",
+   "answer1": "a",
+   "word": "magnetic",
+   "question2": "Are you using a telephone?",
+   "answer2": "no"
+ },
+ {
+   "categoryDropped": "CONTROL",
+   "block": 4,
+   "question": 7,
+   "question1": " You go onto the internet and use Bing.  Bing is a web search engine from Microsoft.  In October 2011, Bing announced it is working on delivering faster and more relevant search re- -lts ",
+   "answer1": "s",
+   "word": "results",
+   "question2": "Did you use google? ",
+   "answer2": "no"
+ },
+ {
+   "categoryDropped": "CONTROL",
+   "block": 4,
+   "question": 8,
+   "question1": "You look at the London underground tube map. You notice that there are four connections at Liverpool Street and three connections at Oxford circus. There are many tube lines and they all have different co-ou-s",
+   "answer1": "l",
+   "word": "colours",
+   "question2": "Did you look at a tube map? ",
+   "answer2": "yes"
+ },
+ {
+   "categoryDropped": "CONTROL",
+   "block": 4,
+   "question": 9,
+   "question1": "You listen to a guitar playing. It is a plucked string instrument, usually played with fingers or a pick and consists of a body with a rigid neck to which the strings, generally six in number are att-ch-d ",
+   "answer1": "a",
+   "word": "attached",
+   "question2": "Did you listen to the piano?",
+   "answer2": "no"
+ },
+ {
+   "categoryDropped": "CONTROL",
+   "block": 4,
+   "question": 10,
+   "question1": "You are going for a walk. You pass by the local corner shop, a pub and charity shop. You walk down the street and when you make it to the crossing, you turn l-ft ",
+   "answer1": "e",
+   "word": "left",
+   "question2": "Did you turn right? ",
+   "answer2": "no"
+ },
+ {
+   "categoryDropped": "CONTROL",
+   "block": 4,
+   "question": 11,
+   "question1": "You start reading a book about wildlife and learn that it includes all non-domesticated plants, animals and other organisms. Wildlife can be found in all ecosystems including fauna, rain forests and de-er-ts ",
+   "answer1": "s",
+   "word": "deserts",
+   "question2": "Are you reading about the weather?",
+   "answer2": "no"
+ },
+ {
+   "categoryDropped": "CONTROL",
+   "block": 4,
+   "question": 12,
+   "question1": "You are watching a documentary about evolution. The narrator mentions that evolution is a change across successive generations in the heritable characteristics of p-pul-at-io-s ",
+   "answer1": "o",
+   "word": "populations",
+   "question2": "Is the documentary about evolution?",
+   "answer2": "yes"
+ },
+ {
+   "categoryDropped": "CONTROL",
+   "block": 4,
+   "question": 13,
+   "question1": "You wait for a bus to go home in central London. The bus is approaching the bus stop. You get on the bus and look for a seat. You find one and sit down. You open your backpack get out your ipod and start listening to m-s-c ",
+   "answer1": "u",
+   "word": "music",
+   "question2": "Are you waiting for the train? ",
+   "answer2": "no"
+ },
+ {
+   "categoryDropped": "CONTROL",
+   "block": 4,
+   "question": 14,
+   "question1": "You look for a new telephone on the internet.  You decide to buy the BT Home Hub 2.0 which is a wireless router and combined phone.  The Hub connects to the internet using a standard ADSL c-nnec-ion",
+   "answer1": "o",
+   "word": "connection",
+   "question2": "Are you looking for a radio? ",
+   "answer2": "no"
+ },
+ {
+   "categoryDropped": "CONTROL",
+   "block": 4,
+   "question": 15,
+   "question1": "You read about The Great Wall of China. It was built in the 5th century BC. All the walls measure close to 9000 km and include actual wall and natural defence barriers such as hills and r-v-r- ",
+   "answer1": "i",
+   "word": "rivers",
+   "question2": "Does the Great Wall of China only consist of actual wall?",
+   "answer2": "no"
+ },
+ {
+   "categoryDropped": "CONTROL",
+   "block": 4,
+   "question": 16,
+   "question1": "You are reading about the solar system. It consists of the sun and the astronomical objects gravitationally bound in orbit around it. Of the many objects that orbit the sun most of the mass is contained within the p-an-ets ",
+   "answer1": "l",
+   "word": "planets",
+   "question2": "Have you been reading about the solar system? ",
+   "answer2": "yes"
+ },
+ {
+   "categoryDropped": "CONTROL",
+   "block": 4,
+   "question": 17,
+   "question1": "You need to get up at 8.30 am tomorrow morning in order to catch the bus to get to your doctor�s appointment on time.  It takes you one hour to get ready in the morning so you set your alarm for 7.30 a- ",
+   "answer1": "m",
+   "word": "am",
+   "question2": "Are you going to get the bus tomorrow? ",
+   "answer2": "yes"
+ },
+ {
+   "categoryDropped": "CONTROL",
+   "block": 4,
+   "question": 18,
+   "question1": "You go onto the BBC iplayer website.  Recent shows are displayed on the right hand corner of the web page.  Two of the recent shows are �Frozen Planet� and �Children in N - - d� ",
+   "answer1": "e",
+   "word": "need",
+   "question2": "Did you go on ITV player?",
+   "answer2": "no"
+ }
+]

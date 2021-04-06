@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-
 import {
   StatusBar,
   Animated,
@@ -9,13 +8,16 @@ import {
   StyleSheet,
   TouchableOpacity,
 } from "react-native";
-
 import BouncyCheckbox from "react-native-bouncy-checkbox";
-
 import firebase from "../database/firebase";
 import ProgressBar from "../src/components/ProgressBar";
 import { TextInput } from "react-native-gesture-handler";
+import * as indexStyles from "../config/indexStyles";
+import colors from "../config/colors";
 
+/*
+ * View the progress of all users of the app
+ */
 function UserDashboard(props) {
   const [isSelected, setSelection] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
@@ -56,16 +58,17 @@ function UserDashboard(props) {
           itemIDData.indexOf(textData) > -1 ||
           itemBlockData.indexOf(textData) > -1 ||
           itemIDNumberData.indexOf(textData) > -1 ||
-          //take into acount "active" is substring of "inactive"
+          // take into acount "active" is substring of "inactive"
           (activity.indexOf(textData) > -1 && activity.indexOf(textData) < 2)
         );
       });
       setItems(newData);
       setSearchQuery(text);
       setFiltering(false);
-    } else {
-      // Inserted text is blank
-      // Update items with filterList
+    }
+
+    // text inserted is blank
+    else {
       setItems(filterList);
       setSearchQuery(text);
     }
@@ -96,7 +99,7 @@ function UserDashboard(props) {
     };
   }, []);
 
-  //display user's categoryDropped
+  // display user's categoryDropped
   function toggleCategory() {
     if (isSelected == false) {
       setSelection(true);
@@ -105,6 +108,7 @@ function UserDashboard(props) {
     }
     console.log(isSelected);
   }
+
   // retrieve all users from the database
   function getItems() {
     query.onSnapshot((querySnapshot) => {
@@ -118,10 +122,9 @@ function UserDashboard(props) {
     });
   }
 
-  const { width, height } = Dimensions.get("window");
-
   return (
     <View style={styles.container}>
+      {/** Checkbox to toggle revealing of category */}
       <View
         flexDirection={"row"}
         justifyContent={"flex-end"}
@@ -140,6 +143,8 @@ function UserDashboard(props) {
           }}
         />
       </View>
+
+      {/** Show total number of users */}
       <View style={[styles.counter, styles.shadow]}>
         <Text
           adjustsFontSizeToFit={true}
@@ -150,8 +155,9 @@ function UserDashboard(props) {
         </Text>
       </View>
 
+      {/** Search functionality */}
       <TextInput
-        style={styles.searchBar}
+        style={[styles.searchBar, indexStyles.centering]}
         round
         searchIcon={{ size: 24 }}
         onChangeText={(text) => onChange(text)}
@@ -160,6 +166,7 @@ function UserDashboard(props) {
         value={searchQuery}
       />
 
+      {/** Contains list of users from the user collection on firebase */}
       <Animated.FlatList
         data={items}
         keyExtractor={(item, index) => index.toString()}
@@ -180,6 +187,7 @@ function UserDashboard(props) {
                 })
               }
             >
+              {/** Presents the user's ID */}
               <Animated.View style={[styles.listComponent, styles.shadow]}>
                 <View flex={1}>
                   <View flexDirection={"row"}>
@@ -202,6 +210,7 @@ function UserDashboard(props) {
                   </View>
                 </View>
 
+                {/** Show user's progress in the therapy sessions */}
                 <View width={200} marginLeft={10}>
                   <View flexDirection={"row"}>
                     {item.block < 5 && (
@@ -214,10 +223,16 @@ function UserDashboard(props) {
                         All Sessions Completed!
                       </Text>
                     )}
+
+                    {/* Space where the category is revealed on toggle */}
                     {isSelected ? (
                       <View flexDirection={"row"}>
-                        <Text style={styles.category}>Category:</Text>
-                        <Text style={styles.categoryDropped}>
+                        <Text style={[styles.category, styles.normalFont]}>
+                          Category:
+                        </Text>
+                        <Text
+                          style={[styles.categoryDropped, styles.normalFont]}
+                        >
                           {item.categoryDropped}
                         </Text>
                       </View>
@@ -238,9 +253,9 @@ function UserDashboard(props) {
 const styles = StyleSheet.create({
   container: {
     margin: 10,
-    backgroundColor: "#ffbe7bff",
+    backgroundColor: colors.background,
     borderRadius: 20,
-    borderColor: "#ffa351ff",
+    borderColor: colors.darkBorder,
     borderWidth: 3,
     flex: 1,
   },
@@ -269,14 +284,25 @@ const styles = StyleSheet.create({
   },
   category: {
     paddingLeft: 29,
-    paddingBottom: 2,
-    fontSize: 8,
     fontWeight: "300",
   },
   categoryDropped: {
+    fontWeight: "600",
+  },
+  normalFont: {
     paddingBottom: 2,
     fontSize: 8,
-    fontWeight: "600",
+  },
+  shadow: {
+    padding: 10,
+    shadowOpacity: 0.4,
+    shadowRadius: 20,
+    backgroundColor: "#FFF",
+    borderRadius: 10,
+    shadowOffset: {
+      width: 0,
+      height: 10,
+    },
   },
   searchBar: {
     justifyContent: "center",
@@ -294,31 +320,6 @@ const styles = StyleSheet.create({
       height: 10,
       borderRadius: 20,
     },
-  },
-  shadow: {
-    padding: 10,
-    shadowOpacity: 0.4,
-    shadowRadius: 20,
-    backgroundColor: "#FFF",
-    borderRadius: 10,
-    shadowOffset: {
-      width: 0,
-      height: 10,
-    },
-  },
-  checkboxContainer: {
-    flexDirection: "row",
-    marginBottom: -20,
-  },
-  checkbox: {
-    height: 15,
-    width: 15,
-    borderWidth: 0.5,
-    marginRight: 10,
-    borderRadius: 20,
-    backgroundColor: "white",
-    borderColor: "black",
-    alignSelf: "center",
   },
 });
 

@@ -13,6 +13,9 @@ import UserTable from "./UserTable";
 import { LineChart, XAxis, YAxis } from "react-native-svg-charts";
 import { Circle } from "react-native-svg";
 
+{
+  /** Returns user interaction data for a particular user */
+}
 export default class UserInfo extends Component {
   constructor({ route }) {
     super();
@@ -41,7 +44,6 @@ export default class UserInfo extends Component {
     const avg1Temp = [];
     const avg2Temp = [];
     const errors = [];
-
     query.onSnapshot((querySnapshot) => {
       const items = [];
       querySnapshot.forEach((doc) => {
@@ -53,9 +55,8 @@ export default class UserInfo extends Component {
         console.log("loops", i);
         tempSessions.push(items.filter((item) => item.sessionNumber == i + 1));
 
-        // if session has been started
+        // if session has been started filter incorrect questions
         if (tempSessions[i].length > 0) {
-          // filter incorrect questions
           errors.push(
             tempSessions[i].filter(
               (item) =>
@@ -63,6 +64,7 @@ export default class UserInfo extends Component {
                 item.question2IsCorrect != true
             )
           );
+
           //if both questions wrong == 2 errors, push again to increase length of array to match this.
           errors.push(
             tempSessions[i].filter(
@@ -77,7 +79,6 @@ export default class UserInfo extends Component {
             (a, b) => (a = a + b.question1Time),
             0
           );
-
           const avg2 = tempSessions[i].reduce(
             (a, b) => (a = a + b.question2Time),
             0
@@ -85,16 +86,18 @@ export default class UserInfo extends Component {
 
           // Divide total to find average
           avg1Temp.push(Math.floor(avg1 / tempSessions[i].length));
-          // Divide total to find average
           avg2Temp.push(Math.floor(avg2 / tempSessions[i].length));
-        } else {
+        }
+
+        // there is no data
+        else {
           errors.push([]);
           avg1Temp.push(0);
           avg2Temp.push(0);
         }
       }
 
-      //calculate number of errors
+      // calculate number of errors
       const numberOfErrors = errors.map((items) => items.length);
       this.setState({ errorsPerSession: numberOfErrors });
       this.setState({ sessions: tempSessions });
@@ -104,6 +107,7 @@ export default class UserInfo extends Component {
   }
 
   abortController = () => new AbortController();
+
   //Fetch upon mount
   componentDidMount() {
     Promise.all([
@@ -113,10 +117,12 @@ export default class UserInfo extends Component {
     ]).catch((ex) => console.error(ex));
   }
 
+  // clean up on unmount
   componentWillUnmount() {
     this.abortController().abort();
     console.log("out userInfo");
   }
+
   render() {
     const { height, width } = Dimensions.get("window");
 
@@ -136,7 +142,7 @@ export default class UserInfo extends Component {
 
     console.log("data2", data[1].data);
 
-    //Line Chart circular markers for question 1 type
+    // line Chart circular markers for question 1 type
     const Decorator1 = ({ x, y, data }) => {
       return data[0].data.map((value, index) => (
         <Circle
@@ -150,7 +156,7 @@ export default class UserInfo extends Component {
       ));
     };
 
-    //Line Chart circular markers for question 2 type
+    // line Chart circular markers for question 2 type
     const Decorator2 = ({ x, y, data }) => {
       return data[1].data.map((value, index) => (
         <Circle
@@ -167,10 +173,11 @@ export default class UserInfo extends Component {
     return (
       <View style={styles.container}>
         <View style={styles.buttonsBar}>
+          {/** Return to user list */}
           <TouchableOpacity
             adjustsFontSizeToFit={true}
             numberOfLines={1}
-            style={styles.button}
+            style={[styles.button, styles.buttonShadow]}
             onPress={() => this.props.navigation.goBack()}
           >
             <Text
@@ -182,10 +189,11 @@ export default class UserInfo extends Component {
             </Text>
           </TouchableOpacity>
 
+          {/** View the user's feelings log */}
           <TouchableOpacity
             adjustsFontSizeToFit={true}
             numberOfLines={1}
-            style={styles.button}
+            style={[styles.button, styles.buttonShadow]}
             onPress={() =>
               this.props.navigation.navigate("AdminFeelingsLog", {
                 currentUserID: this.state.currentUser,
@@ -202,7 +210,15 @@ export default class UserInfo extends Component {
           </TouchableOpacity>
         </View>
 
-        <View flex={3} style={[styles.dataContainer, { width: width - 50 }]}>
+        {/** Present the user's last active time */}
+        <View
+          flex={3}
+          style={[
+            styles.dataContainer,
+            styles.buttonShadow,
+            { width: width - 50 },
+          ]}
+        >
           <View flexDirection={"row"}>
             <Text style={{ fontSize: 22, fontWeight: "700" }}>
               DB{this.state.currentUser}
@@ -231,6 +247,7 @@ export default class UserInfo extends Component {
             </View>
           </View>
 
+          {/** Return table of the therapy response times */}
           <View flex={1.375} padding={5} marginBottom={30}>
             <UserTable
               average1={this.state.averageTimePerBlockQ1}
@@ -264,7 +281,7 @@ export default class UserInfo extends Component {
             <View flexDirection={"row"} flex={3}>
               <YAxis
                 data={data[0].data}
-                contentInset={{ top: 30, bottom: 20 }}
+                contentInset={{ top: 20, bottom: 10 }}
                 svg={{
                   fill: "grey",
                   fontSize: 10,
@@ -297,13 +314,7 @@ export default class UserInfo extends Component {
                   </Text>
                 </View>
 
-                <View
-                  flex={2}
-                  borderWidth={0.5}
-                  borderRadius={10}
-                  marginRight={7}
-                  marginLeft={-25}
-                >
+                <View style={styles.chart}>
                   <LineChart
                     style={{ height: "100%" }}
                     data={data}
@@ -338,25 +349,15 @@ export default class UserInfo extends Component {
             </View>
           </View>
 
-          <View
-            flex={0.25}
-            style={styles.shadow}
-            paddingBottom={20}
-            paddingHorizontal={20}
-            marginTop={30}
-            justifyContents={"center"}
-            borderWidth={0.4}
-            borderRadius={10}
-          >
+          {/** return completion status of the user */}
+          <View style={[styles.completionStatus, styles.shadow]}>
             {this.state.currentBlock < 4 && (
-              <Text style={{ fontSize: 10, fontWeight: "300", padding: 5 }}>
+              <Text style={styles.text}>
                 Current Block: {this.state.currentBlock}
               </Text>
             )}
             {this.state.currentBlock == 5 && (
-              <Text style={{ fontSize: 10, fontWeight: "300", padding: 5 }}>
-                All Sessions Completed!
-              </Text>
+              <Text style={styles.text}>All Sessions Completed!</Text>
             )}
             <ProgressBar nextWidth={this.state.currentBlock - 1}></ProgressBar>
           </View>
@@ -372,16 +373,7 @@ const styles = StyleSheet.create({
     height: 35,
     margin: 11,
     marginTop: 20,
-    shadowOffset: {
-      width: 0,
-      height: 10,
-    },
     textAlign: "center",
-    padding: 10,
-    shadowOpacity: 0.4,
-    shadowRadius: 20,
-    backgroundColor: "#FFF",
-    borderRadius: 10,
   },
   buttonsBar: {
     flexDirection: "row",
@@ -398,15 +390,6 @@ const styles = StyleSheet.create({
   dataContainer: {
     marginVertical: 10,
     marginLeft: 20,
-    shadowOffset: {
-      width: 0,
-      height: 10,
-    },
-    padding: 10,
-    shadowOpacity: 0.4,
-    shadowRadius: 20,
-    backgroundColor: "#FFF",
-    borderRadius: 10,
   },
   fontStyle: {
     fontWeight: "700",
@@ -427,7 +410,39 @@ const styles = StyleSheet.create({
     padding: 10,
     shadowOpacity: 0.2,
     shadowRadius: 5,
-    backgroundColor: "#FFF",
+    backgroundColor: "#fff",
     borderRadius: 10,
+  },
+  buttonShadow: {
+    shadowOffset: {
+      width: 0,
+      height: 10,
+    },
+    padding: 10,
+    shadowOpacity: 0.4,
+    shadowRadius: 20,
+    borderRadius: 10,
+    backgroundColor: "#fff",
+  },
+  completionStatus: {
+    flex: 0.25,
+    paddingBottom: 20,
+    paddingHorizontal: 20,
+    marginTop: 30,
+    justifyContent: "center",
+    borderWidth: 0.4,
+    borderRadius: 10,
+  },
+  chart: {
+    flex: 2,
+    borderWidth: 0.5,
+    borderRadius: 10,
+    marginRight: 7,
+    marginLeft: -25,
+  },
+  text: {
+    fontSize: 10,
+    fontWeight: "300",
+    padding: 5,
   },
 });

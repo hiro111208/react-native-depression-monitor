@@ -9,6 +9,7 @@ import {
 } from "react-native";
 import Emoji from "react-native-emoji";
 import * as indexStyles from "../config/indexStyles";
+import colors from "../config/colors";
 
 /* Constant measurements depending on device screen size */
 const winWidth = Dimensions.get("window").width;
@@ -34,6 +35,7 @@ function generateMessage() {
   return messages[Math.floor(Math.random() * messages.length)];
 }
 
+/* Generate a random emoji from the emojis array */
 function generateEmoji() {
   return emojis[Math.floor(Math.random() * emojis.length)];
 }
@@ -41,33 +43,33 @@ function generateEmoji() {
 export default function PauseScreen({ props, navigation }) {
   return (
     <SafeAreaView style={[styles.container, indexStyles.centering]}>
-      <SafeAreaView style={[styles.center, styles.area, indexStyles.cover]}>
-        <SafeAreaView style={[styles.messageArea, indexStyles.centering]}>
+      <View style={[styles.center, styles.area, indexStyles.cover]}>
+        <View style={[styles.messageArea, indexStyles.centering]}>
           <Text style={[styles.text, { textAlign: "center" }]}>
             {generateMessage()} {generateEmoji()}{" "}
           </Text>
-        </SafeAreaView>
-        <SafeAreaView style={indexStyles.centering}>
+        </View>
+        <View style={indexStyles.centering}>
           <Image
             style={styles.image}
             resizeMode="contain"
             source={require("../assets/pause.png")}
           />
-        </SafeAreaView>
+        </View>
 
-        <SafeAreaView style={{ height: "7%" }}></SafeAreaView>
+        <View style={{ height: "7%" }}></View>
 
-        <SafeAreaView style={[indexStyles.cover, styles.center]}>
+        <View style={[indexStyles.cover, styles.center]}>
           <TouchableOpacity
             style={[styles.backButton, indexStyles.shadowEffect]}
-            onPress={() => navigation.navigate("TherapyScreen")} //implement timer/record the current time
+            onPress={() => navigation.navigate("TherapyScreen")}
           >
             <Text style={[styles.text, indexStyles.textGrey]}>
               Back to the session
             </Text>
           </TouchableOpacity>
-        </SafeAreaView>
-      </SafeAreaView>
+        </View>
+      </View>
     </SafeAreaView>
   );
 }
@@ -92,7 +94,7 @@ const styles = StyleSheet.create({
     height: "18%",
     marginTop: winHeight / 15,
     borderRadius: 20,
-    backgroundColor: "#fed8b1",
+    backgroundColor: colors.mainPanel,
   },
   image: {
     marginTop: winHeight / 20,

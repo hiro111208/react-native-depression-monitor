@@ -64,9 +64,7 @@ function addUserToDatabase(uid) {
           .catch((error) => {
             console.error("Error writing document: ", error);
           });
-      }
-      // doc.data() will be undefined in this case
-      else {
+      } else {
         console.log("No such document!");
       }
     })
@@ -177,7 +175,7 @@ function SignUpScreen(props) {
   //Render the sign up screen interface
   if (isLoading) {
     return (
-      <View style={indexStyles.preloader}>
+      <View style={[indexStyles.preloader, indexStyles.centering]}>
         <ActivityIndicator size="large" color="#9E9E9E" />
       </View>
     );
@@ -189,7 +187,7 @@ function SignUpScreen(props) {
       <View style={styles.container}>
         <Image
           resizeMode={"contain"}
-          style={styles.image}
+          style={indexStyles.loginImage}
           source={require("../assets/hand-logo.png")}
         />
         <View style={styles.signupFormContainer}>
@@ -283,14 +281,9 @@ const styles = StyleSheet.create({
     paddingHorizontal: "8%",
     justifyContent: "flex-start",
   },
-  image: {
-    flex: 3,
-    alignSelf: "center",
-  },
   inputStyle: {
     width: "100%",
-    marginBottom: "5%",
-    marginTop: "5%",
+    marginVertical: "5%",
     paddingBottom: "5%",
     alignSelf: "center",
     borderColor: "#ccc",
@@ -317,22 +310,11 @@ const styles = StyleSheet.create({
     width: 300,
     height: 60,
   },
-  preloader: {
-    left: 0,
-    right: 0,
-    top: 0,
-    bottom: 0,
-    position: "absolute",
-    alignItems: "center",
-    justifyContent: "center",
-    backgroundColor: "#fff",
-  },
   signupButton: {
     width: "90%",
     backgroundColor: colors.darkBorder,
     alignSelf: "center",
-    paddingTop: 15,
-    paddingBottom: 15,
+    paddingVertical: 15,
     borderRadius: 50,
   },
   signupText: {

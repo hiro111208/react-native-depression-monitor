@@ -5,6 +5,7 @@ import { createStackNavigator } from "@react-navigation/stack";
 import UserInfo from "./UserInfo";
 import AdminFeelingsLog from "../screens/AdminFeelingsLog";
 
+/** Contains the react stack navigation for the admin area */
 const AdminUserList = () => {
   const userList = createStackNavigator();
   return (

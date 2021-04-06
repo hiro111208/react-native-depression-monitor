@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import {
-  StatusBar,
   StyleSheet,
   Text,
   View,
@@ -17,6 +16,7 @@ import * as indexStyles from "../config/indexStyles";
 import firebase from "../database/firebase";
 import ProgressBar from "../src/components/ProgressBar";
 import DismissKeyboard from "../config/DismissKeyboard";
+import colors from "../config/colors";
 
 LogBox.ignoreLogs([
   "Non-serializable values were found in the navigation state",
@@ -114,7 +114,9 @@ const TherapyScreen = ({ navigation, route }) => {
   // View to display when therapy is finished
   function renderFinishedAnswerArea() {
     return (
-      <View style={[styles.answerArea, styles.centering, styles.shadowEffect]}>
+      <View
+        style={[styles.answerArea, indexStyles.centering, styles.shadowEffect]}
+      >
         <TextInput
           style={[styles.input, styles.correctHighlight]}
           value="Well done!"
@@ -225,7 +227,11 @@ const TherapyScreen = ({ navigation, route }) => {
     return (
       <DismissKeyboard>
         <View
-          style={[styles.answerArea, styles.centering, styles.shadowEffect]}
+          style={[
+            styles.answerArea,
+            indexStyles.centering,
+            styles.shadowEffect,
+          ]}
         >
           <Text style={styles.textNote}>{renderInstruction()}</Text>
           <TextInput
@@ -569,11 +575,11 @@ const TherapyScreen = ({ navigation, route }) => {
   // Returns the whole therapy screen interface
   return (
     <KeyboardAvoidingView
-      style={[styles.container, styles.centering]}
+      style={[styles.container, indexStyles.centering]}
       behavior="position"
     >
       {/* Progress bar of the therapy session */}
-      <View style={[styles.topTools, styles.top, styles.centering]}>
+      <View style={[styles.topTools, styles.top, indexStyles.centering]}>
         <View style={styles.bar}>
           <ProgressBar
             segments={state.segments}
@@ -625,7 +631,7 @@ const TherapyScreen = ({ navigation, route }) => {
       {renderAnswerArea()}
 
       {/* Button to navigate through the therapy session */}
-      <View style={[styles.nextButtonSpace, styles.centering]}>
+      <View style={[styles.nextButtonSpace, indexStyles.centering]}>
         <TouchableOpacity
           style={[
             styles.optButton,
@@ -678,10 +684,6 @@ const styles = StyleSheet.create({
     width: "85%",
     paddingBottom: 10,
   },
-  centering: {
-    alignItems: "center",
-    justifyContent: "center",
-  },
   correctHighlight: {
     borderColor: "#c7ffd8",
   },
@@ -701,7 +703,7 @@ const styles = StyleSheet.create({
   optButton: {
     height: "80%",
     width: "70%",
-    backgroundColor: "#a9eed1",
+    backgroundColor: colors.therapyButton,
     borderRadius: 20,
     position: "absolute",
     bottom: 0,

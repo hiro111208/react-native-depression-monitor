@@ -3,21 +3,21 @@ import {
   StyleSheet,
   View,
   Text,
-  Button,
   Image,
   TouchableOpacity,
+  Platform,
 } from "react-native";
 import firebase from "../database/firebase";
-
 import colors from "../config/colors";
-import { Alert, Platform } from "react-native";
 import * as Permissions from "expo-permissions";
-import { Linking } from "expo";
 import * as Notifications from "expo-notifications";
-//import firebase from firebase;
+import * as indexStyles from "../config/indexStyles";
 import Constants from "expo-constants";
 
-export default function HomeScreen({ route, props, navigation }) {
+/** Default screen in the patient dashboard contain links to
+ * navigate to therapy screen or interact with the plant
+ */
+export default function HomeScreen({ navigation }) {
   const [user, setUser] = useState(undefined);
   const [plant, setPlant] = useState(require("../assets/stage_1.png"));
   const [displayName, setDisplayName] = useState(
@@ -26,10 +26,12 @@ export default function HomeScreen({ route, props, navigation }) {
       : ""
   );
 
+  // Sync user's previous progress
   useEffect(() => {
     getLevel();
   }, []);
 
+  // Get data from firestore
   function getLevel() {
     firebase
       .firestore()
@@ -46,6 +48,7 @@ export default function HomeScreen({ route, props, navigation }) {
       });
   }
 
+  // change rendered plant image according to the level of the user
   function updatePath(lvl) {
     switch (lvl) {
       case 1:
@@ -80,28 +83,19 @@ export default function HomeScreen({ route, props, navigation }) {
     }
   }
 
+  // Update data when returning from interaction or therapy screen
   function refresh() {
     getLevel();
   }
 
-  ///
-
-  useEffect(() => {
-    (async () => {
-      const user = await firebase
-        .firestore()
-        .collection("users")
-        .doc(firebase.auth().currentUser.uid)
-        .get();
-    })();
-  });
-
+  // Setup push notification for user
   useEffect(() => {
     (() => registerForPushNotificationsAsync())();
   }, []);
 
+  // Create token for push notifications and add it to the users collection
   const registerForPushNotificationsAsync = async () => {
-    let token; // undefined initially
+    let token;
     if (Constants.isDevice) {
       const { status: existingStatus } = await Permissions.getAsync(
         Permissions.NOTIFICATIONS
@@ -121,16 +115,15 @@ export default function HomeScreen({ route, props, navigation }) {
     } else {
       alert("Must use physical device for Push Notifications");
     }
+
     // save the users token in firebase
     if (token) {
-      //makes sure there is a token to add to firebase
       const res = await firebase
         .firestore()
         .collection("users")
         .doc(firebase.auth().currentUser.uid)
         .set({ token }, { merge: true });
     }
-
     if (Platform.OS === "android") {
       Notifications.setNotificationChannelAsync("default", {
         name: "default",
@@ -139,23 +132,28 @@ export default function HomeScreen({ route, props, navigation }) {
         lightColor: "#FF231F7C",
       });
     }
-
     return token;
   };
 
-  ///
-
   return (
-    <View style={styles.container}>
-      <View style={styles.center}>
-        <View style={[styles.welcomeArea, styles.shadowEffect]}>
+    <View style={[styles.container, indexStyles.centering]}>
+      <View style={[styles.center, indexStyles.cover]}>
+        <View
+          style={[
+            styles.welcomeArea,
+            indexStyles.shadowEffect,
+            indexStyles.cover,
+          ]}
+        >
           <View style={styles.userNote}>
             <Text style={[styles.textStyle]}>Hello there, {displayName}!</Text>
-
-            <View style={styles.spacer}></View>
-
+            <View style={{ height: "20%" }}></View>
             <View
-              style={[styles.plantImage, styles.centering, styles.shadowEffect]}
+              style={[
+                styles.plantImage,
+                indexStyles.centering,
+                indexStyles.shadowEffect,
+              ]}
             >
               <Image
                 style={{ width: "100%", height: "100%" }}
@@ -165,10 +163,14 @@ export default function HomeScreen({ route, props, navigation }) {
             </View>
           </View>
 
+          {/** navigation button to begin therapy */}
           <View style={{ height: "30%" }}></View>
-
           <TouchableOpacity
-            style={[styles.sessionArea, styles.centering, styles.shadowEffect]}
+            style={[
+              styles.sessionArea,
+              indexStyles.centering,
+              indexStyles.shadowEffect,
+            ]}
             onPress={() => {
               if (user.question === 0) {
                 navigation.navigate("LogFeelingScreen", {
@@ -187,8 +189,13 @@ export default function HomeScreen({ route, props, navigation }) {
             <Text style={styles.textStyle}>Go to your session</Text>
           </TouchableOpacity>
 
+          {/** interact with plant navigation button */}
           <TouchableOpacity
-            style={[styles.sessionArea, styles.centering, styles.shadowEffect]}
+            style={[
+              styles.sessionArea,
+              indexStyles.centering,
+              indexStyles.shadowEffect,
+            ]}
             onPress={() =>
               navigation.navigate("PlantScreen", {
                 currentUser: user,
@@ -208,29 +215,23 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     display: "flex",
-    justifyContent: "center",
-    alignItems: "center",
     padding: 25,
     backgroundColor: "#fff",
   },
   center: {
-    height: "100%",
-    width: "100%",
     alignItems: "center",
   },
   welcomeArea: {
-    width: "100%",
-    height: "100%",
     borderRadius: 50,
-    backgroundColor: "#fed8b1",
+    backgroundColor: colors.mainPanel,
     alignItems: "center",
     borderWidth: 5,
-    borderColor: "#ffeed2",
+    borderColor: colors.lightOutline,
   },
   userNote: {
     height: "30%",
     width: "100%",
-    backgroundColor: "#ffeed2",
+    backgroundColor: colors.lightOutline,
     alignItems: "center",
     borderTopStartRadius: 40,
     borderTopEndRadius: 40,
@@ -239,7 +240,7 @@ const styles = StyleSheet.create({
   sessionArea: {
     height: "17%",
     width: "90%",
-    backgroundColor: "#ffeed2",
+    backgroundColor: colors.lightOutline,
     padding: 10,
     borderRadius: 20,
   },
@@ -248,20 +249,6 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     color: "dimgray",
   },
-  shadowEffect: {
-    shadowColor: "#000",
-    shadowOffset: {
-      width: 0,
-      height: 2,
-    },
-    shadowOpacity: 0.25,
-    shadowRadius: 3.84,
-    elevation: 5,
-    marginVertical: 5,
-  },
-  spacer: {
-    height: "20%",
-  },
   plantImage: {
     width: 225,
     height: 225,
@@ -269,9 +256,5 @@ const styles = StyleSheet.create({
     borderWidth: 4,
     borderColor: "#fff",
     backgroundColor: "#eee",
-  },
-  centering: {
-    alignItems: "center",
-    justifyContent: "center",
   },
 });

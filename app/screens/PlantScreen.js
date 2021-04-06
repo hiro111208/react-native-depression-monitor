@@ -1,22 +1,18 @@
 import React, { useState } from "react";
-import {
-  StatusBar,
-  StyleSheet,
-  View,
-  Text,
-  TouchableOpacity,
-  Image,
-} from "react-native";
-import Constants from "expo-constants";
+import { StyleSheet, View, Text, TouchableOpacity, Image } from "react-native";
 import * as indexStyles from "../config/indexStyles";
 import firebase from "../database/firebase";
+import colors from "../config/colors";
 
+{
+  /** Screen to interact with the plant mascot */
+}
 const PlantScreen = ({ navigation, route }) => {
   var user = route.params.currentUser;
-
   const [coins, setCoins] = useState(user.coins);
   const [plant, setPlant] = useState(getPlant());
 
+  // level up if the user has the required coins
   function waterPlant() {
     if (user.coins >= 5) {
       user.coins += -5;
@@ -26,6 +22,7 @@ const PlantScreen = ({ navigation, route }) => {
     }
   }
 
+  // return image of plant according to the level
   function getPlant() {
     switch (user.level) {
       case 1:
@@ -49,6 +46,7 @@ const PlantScreen = ({ navigation, route }) => {
     }
   }
 
+  // renders level up button which is capped at level 9
   function renderWaterPlantButton() {
     if (user.level < 9) {
       return (
@@ -80,6 +78,7 @@ const PlantScreen = ({ navigation, route }) => {
     }
   }
 
+  // sync progress to firestore
   function saveProgress() {
     firebase
       .firestore()
@@ -134,6 +133,7 @@ const PlantScreen = ({ navigation, route }) => {
               styles.plantImage,
               indexStyles.centering,
               indexStyles.shadowEffect,
+              indexStyles.cover,
             ]}
           >
             <Image
@@ -178,10 +178,10 @@ const styles = StyleSheet.create({
     width: "100%",
     height: "90%",
     borderRadius: 40,
-    backgroundColor: "#fed8b1",
+    backgroundColor: colors.mainPanel,
     alignItems: "center",
     borderWidth: 5,
-    borderColor: "#ffeed2",
+    borderColor: colors.lightOutline,
   },
   featureButton: {
     height: "100%",
@@ -192,11 +192,11 @@ const styles = StyleSheet.create({
   optButton: {
     height: "50%",
     width: "60%",
-    backgroundColor: "#94ffd3",
+    backgroundColor: colors.therapyButton,
     borderRadius: 30,
   },
   homeButton: {
-    backgroundColor: "#ffeed2",
+    backgroundColor: colors.lightOutline,
   },
   comment: {
     color: "dodgerblue",
@@ -221,8 +221,6 @@ const styles = StyleSheet.create({
     height: "40%",
   },
   plantImage: {
-    width: "100%",
-    height: "100%",
     borderRadius: 100,
     borderWidth: 4,
     borderColor: "white",

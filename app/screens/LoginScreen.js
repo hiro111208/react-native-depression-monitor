@@ -82,9 +82,7 @@ function LoginScreen(props) {
     setIsVerified(true);
   };
 
-  //Verify user credentials with firebase. If user has verified their email
-  //send user to dashboard if not show button to allow user to send a new verification email
-  //if email used is admin email redirect to admin dashboard
+  // Redirect the user according to their credentials
   const userLogin = () => {
     if (email === "" && password === "") {
       Alert.alert("Enter details to login!");
@@ -145,7 +143,7 @@ function LoginScreen(props) {
   //While loading show preloader
   if (isLoading) {
     return (
-      <View style={indexStyles.preloader}>
+      <View style={[indexStyles.preloader, indexStyles.centering]}>
         <ActivityIndicator size="large" color="#9E9E9E" />
       </View>
     );
@@ -156,7 +154,7 @@ function LoginScreen(props) {
       <View style={styles.container}>
         <Image
           resizeMode={"contain"}
-          style={styles.image}
+          style={indexStyles.loginImage}
           source={require("../assets/hand-logo.png")}
         />
         {/*Render input fields for email and password*/}
@@ -188,11 +186,11 @@ function LoginScreen(props) {
           {isVerified ? (
             <TouchableOpacity
               activeOpacity={0.5}
-              style={styles.loginButton}
+              style={indexStyles.loginButton}
               onPress={() => userLogin()}
               testID={"TEST_ID_LOGIN_BUTTON"}
             >
-              <Text style={styles.signInText}>LOG IN</Text>
+              <Text style={indexStyles.loginButtonText}>LOG IN</Text>
             </TouchableOpacity>
           ) : null}
 
@@ -200,11 +198,13 @@ function LoginScreen(props) {
           {!isVerified ? (
             <TouchableOpacity
               activeOpacity={0.5}
-              style={styles.loginButton}
+              style={indexStyles.loginButton}
               onPress={() => sendVerificationEmail()}
               testID={"TEST_ID_VERIFY_BUTTON"}
             >
-              <Text style={styles.signInText}>Send verification email</Text>
+              <Text style={indexStyles.loginButtonText}>
+                Send verification email
+              </Text>
             </TouchableOpacity>
           ) : null}
 
@@ -251,44 +251,15 @@ const styles = StyleSheet.create({
   },
   inputStyle: {
     width: "100%",
-    marginBottom: 15,
-    marginTop: 15,
+    marginVertical: 15,
     paddingBottom: 20,
     alignSelf: "center",
     borderColor: "#ccc",
     borderBottomWidth: 1.5,
   },
-  image: {
-    flex: 3,
-    alignSelf: "center",
-  },
-  loginButton: {
-    width: "90%",
-    backgroundColor: colors.darkBorder,
-    alignSelf: "center",
-    marginTop: 10,
-    paddingTop: 15,
-    paddingBottom: 15,
-    borderRadius: 50,
-  },
   textButton: {
     color: colors.darkBorder,
     marginTop: 25,
     textAlign: "center",
-  },
-  preloader: {
-    left: 0,
-    right: 0,
-    top: 0,
-    bottom: 0,
-    position: "absolute",
-    alignItems: "center",
-    justifyContent: "center",
-    backgroundColor: "#fff",
-  },
-  signInText: {
-    color: "white",
-    textAlign: "center",
-    fontSize: 15,
   },
 });

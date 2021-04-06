@@ -12,7 +12,7 @@ import {
 import { ListItem } from "react-native-elements";
 import * as indexStyles from "../config/indexStyles";
 import firebase from "../database/firebase";
-
+import colors from "../config/colors";
 import DropDownPicker from "react-native-dropdown-picker";
 
 // Screen to display a table of therapy questions in database
@@ -98,19 +98,28 @@ export default class TherapyQuestionScreen extends Component {
   render() {
     if (this.state.isLoading) {
       return (
-        <View style={indexStyles.preloader}>
+        <View style={[indexStyles.preloader, indexStyles.centering]}>
           <ActivityIndicator size="large" color="#9E9E9E" />
         </View>
       );
     }
     return (
       <View style={[indexStyles.containerWhite, indexStyles.centering]}>
-        <View style={[indexStyles.containerOrange, indexStyles.cover, indexStyles.shadowEffect]}>
+        <View
+          style={[
+            indexStyles.containerOrange,
+            indexStyles.cover,
+            indexStyles.shadowEffect,
+          ]}
+        >
           <View style={{ height: "3%" }}></View>
 
+          {/** Dropdown list for all the categories */}
           {Platform.OS === "ios" && (
             <Fragment>
-              <View style={[{ height: "10%", zIndex: 5 }, indexStyles.centering]}>
+              <View
+                style={[{ height: "10%", zIndex: 5 }, indexStyles.centering]}
+              >
                 <DropDownPicker
                   items={[
                     { label: "CONTROL", value: "CONTROL" },
@@ -129,37 +138,25 @@ export default class TherapyQuestionScreen extends Component {
                   containerStyle={{ width: "80%", height: "100%" }}
                   selectedLabelStyle={indexStyles.textGrey}
                   placeholderStyle={indexStyles.textGrey}
-                  style={{
-                    borderTopLeftRadius: 20,
-                    borderTopRightRadius: 20,
-                    borderBottomLeftRadius: 20,
-                    borderBottomRightRadius: 20,
-                    backgroundColor: "#ffeed2",
-                    borderWidth: 0,
-                    shadowColor: "#000",
-                    shadowOffset: {
-                      width: 0,
-                      height: 2,
+                  style={[
+                    {
+                      borderTopLeftRadius: 20,
+                      borderTopRightRadius: 20,
+                      borderBottomLeftRadius: 20,
+                      borderBottomRightRadius: 20,
+                      backgroundColor: colors.lightOutline,
+                      borderWidth: 0,
                     },
-                    shadowOpacity: 0.25,
-                    shadowRadius: 3.84,
-                    elevation: 1,
-                    marginVertical: 2,
-                  }}
-                  dropDownStyle={{
-                    backgroundColor: "#ffeed2",
-                    borderBottomLeftRadius: 20,
-                    borderBottomRightRadius: 20,
-                    shadowColor: "#000",
-                    shadowOffset: {
-                      width: 0,
-                      height: 2,
+                    indexStyles.shadowEffect,
+                  ]}
+                  dropDownStyle={[
+                    {
+                      backgroundColor: colors.lightOutline,
+                      borderBottomLeftRadius: 20,
+                      borderBottomRightRadius: 20,
                     },
-                    shadowOpacity: 0.25,
-                    shadowRadius: 3.84,
-                    elevation: 2,
-                    marginVertical: 2,
-                  }}
+                    indexStyles.shadowEffect,
+                  ]}
                 />
               </View>
 
@@ -169,7 +166,7 @@ export default class TherapyQuestionScreen extends Component {
                     return (
                       <ListItem
                         containerStyle={{
-                          backgroundColor: "#fed8b1",
+                          backgroundColor: colors.mainPanel,
                         }}
                         key={i}
                         chevron
@@ -250,11 +247,11 @@ export default class TherapyQuestionScreen extends Component {
                     borderTopRightRadius: 20,
                     borderBottomLeftRadius: 20,
                     borderBottomRightRadius: 20,
-                    backgroundColor: "#ffeed2",
+                    backgroundColor: colors.lightOutline,
                     borderWidth: 0,
                   }}
                   dropDownStyle={{
-                    backgroundColor: "#ffeed2",
+                    backgroundColor: colors.lightOutline,
                     borderBottomLeftRadius: 20,
                     borderBottomRightRadius: 20,
                   }}
@@ -267,7 +264,7 @@ export default class TherapyQuestionScreen extends Component {
                     return (
                       <ListItem
                         containerStyle={{
-                          backgroundColor: "#fed8b1",
+                          backgroundColor: colors.mainPanel,
                         }}
                         key={i}
                         chevron

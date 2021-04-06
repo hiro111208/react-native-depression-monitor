@@ -14,8 +14,7 @@ import DateTimePicker from "@react-native-community/datetimepicker";
 import * as indexStyles from "../config/indexStyles";
 import firebase from "../database/firebase";
 import moment from "moment";
-
-
+import colors from "../config/colors";
 
 /**
  * Screen to allow patients to schedule notifications
@@ -175,14 +174,20 @@ class SchedulingScreen extends Component {
   render() {
     if (this.state.isLoading) {
       return (
-        <View style={indexStyles.preloader}>
+        <View style={[indexStyles.preloader, indexStyles.centering]}>
           <ActivityIndicator size="large" color="#9E9E9E" />
         </View>
       );
     }
     return (
       <View style={[indexStyles.containerWhite, indexStyles.centering]}>
-        <View style={[indexStyles.containerOrange, indexStyles.shadowEffect, indexStyles.cover]}>
+        <View
+          style={[
+            indexStyles.containerOrange,
+            indexStyles.shadowEffect,
+            indexStyles.cover,
+          ]}
+        >
           <View style={{ height: "7%" }}></View>
 
           <View style={[{ height: "6%", flexDirection: "row" }]}>
@@ -278,7 +283,11 @@ class SchedulingScreen extends Component {
           <View style={[{ height: "10%" }, indexStyles.centering]}>
             <TouchableOpacity
               onPress={() => this.validateAppointment()}
-              style={[styles.selectButton, indexStyles.cover, indexStyles.centering]}
+              style={[
+                styles.selectButton,
+                indexStyles.cover,
+                indexStyles.centering,
+              ]}
             >
               <Text style={[indexStyles.textGrey, { fontSize: 18 }]}>
                 Add Session
@@ -325,10 +334,10 @@ const styles = StyleSheet.create({
     height: "100%",
     width: "40%",
     borderRadius: 50,
-    backgroundColor: "#ffeed2",
+    backgroundColor: colors.lightOutline,
   },
   selectButton: {
-    backgroundColor: "#ffeed2",
+    backgroundColor: colors.lightOutline,
   },
 });
 

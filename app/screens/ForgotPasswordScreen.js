@@ -15,9 +15,8 @@ import * as indexStyles from "../config/indexStyles";
 import DismissKeyboard from "../config/DismissKeyboard";
 
 /*
-  Screen where users can try to reset their passwords if forgotten
-*/
-
+ * Screen where users can try to reset their passwords if forgotten
+ */
 function ForgotPasswordScreen(props) {
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
@@ -39,14 +38,14 @@ function ForgotPasswordScreen(props) {
     }
   };
 
-  //Render forgot password screen interface
+  // Render forgot password screen interface
   return (
     <DismissKeyboard>
       {/*Render field to input user email*/}
       <View style={styles.container}>
         <Image
           resizeMode={"contain"}
-          style={styles.image}
+          style={indexStyles.loginImage}
           source={require("../assets/hand-logo.png")}
         />
         <View style={styles.forgotFormContainer}>
@@ -61,11 +60,11 @@ function ForgotPasswordScreen(props) {
           {/*Render button that calls forgotPassword method */}
           <TouchableOpacity
             activeOpacity={0.5}
-            style={styles.submitButton}
+            style={indexStyles.loginButton}
             onPress={() => forgotPassword()}
             testID={"TEST_ID_FORGOT_BUTTON"}
           >
-            <Text style={styles.submitText}>RESET PASSWORD</Text>
+            <Text style={indexStyles.loginButtonText}>RESET PASSWORD</Text>
           </TouchableOpacity>
 
           {/*Render button that allows user to go back to login screen*/}
@@ -92,26 +91,6 @@ const styles = StyleSheet.create({
     flex: 1,
     padding: "8%",
     top: "5%",
-    //paddingTop: "15%"
-    //marginTop:"10%"
-  },
-  image: {
-    flex: 3,
-    alignSelf: "center",
-  },
-  submitButton: {
-    width: "90%",
-    backgroundColor: colors.darkBorder,
-    alignSelf: "center",
-    marginTop: 10,
-    paddingTop: 15,
-    paddingBottom: 15,
-    borderRadius: 50,
-  },
-  submitText: {
-    color: "white",
-    textAlign: "center",
-    fontSize: 15,
   },
   inputStyle: {
     width: "100%",

@@ -10,7 +10,7 @@ firebase.initializeApp({
 
 var db = firebase.firestore();
 
-var questions = "";
+var questions;
 
 questions.forEach(function (obj) {
   db.collection("questions")
