@@ -160,7 +160,7 @@ const AdminFeelingsLog = ({ navigation, route }) => {
   // shows the change of value in a percentage
   function generatePercentage(number) {
     if (number < 0) {
-      return "-" + number * 20 + "%";
+      return number * 20 + "%";
     } else {
       return "+" + number * 20 + "%";
     }
