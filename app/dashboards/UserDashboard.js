@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-
 import {
   StatusBar,
   Animated,
@@ -9,15 +8,16 @@ import {
   StyleSheet,
   TouchableOpacity,
 } from "react-native";
-
 import BouncyCheckbox from "react-native-bouncy-checkbox";
 import firebase from "../database/firebase";
 import ProgressBar from "../src/components/ProgressBar";
 import { TextInput } from "react-native-gesture-handler";
+import * as indexStyles from "../config/indexStyles";
+import * as colors from "../config/colors";
 
-{
-  /** View the progress of all users of the app */
-}
+/*
+ * View the progress of all users of the app
+ */
 function UserDashboard(props) {
   const [isSelected, setSelection] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
@@ -67,7 +67,7 @@ function UserDashboard(props) {
       setFiltering(false);
     }
 
-    // text inserted is blan
+    // text inserted is blank
     else {
       setItems(filterList);
       setSearchQuery(text);
@@ -122,8 +122,6 @@ function UserDashboard(props) {
     });
   }
 
-  const { width, height } = Dimensions.get("window");
-
   return (
     <View style={styles.container}>
       {/** Checkbox to toggle revealing of category */}
@@ -147,7 +145,7 @@ function UserDashboard(props) {
       </View>
 
       {/** Show total number of users */}
-      <View style={[styles.counter, styles.shadow]}>
+      <View style={[styles.counter, indexStyles.shadowEffect]}>
         <Text
           adjustsFontSizeToFit={true}
           numberOfLines={1}
@@ -159,7 +157,11 @@ function UserDashboard(props) {
 
       {/** Search functionality */}
       <TextInput
-        style={styles.searchBar}
+        style={[
+          styles.searchBar,
+          indexStyles.centering,
+          indexStyles.shadowEffect,
+        ]}
         round
         searchIcon={{ size: 24 }}
         onChangeText={(text) => onChange(text)}
@@ -190,7 +192,9 @@ function UserDashboard(props) {
               }
             >
               {/** Presents the user's ID */}
-              <Animated.View style={[styles.listComponent, styles.shadow]}>
+              <Animated.View
+                style={[styles.listComponent, indexStyles.shadowEffect]}
+              >
                 <View flex={1}>
                   <View flexDirection={"row"}>
                     <Text style={styles.idText}>DB{item.userID}</Text>
@@ -225,10 +229,12 @@ function UserDashboard(props) {
                         All Sessions Completed!
                       </Text>
                     )}
+
+                    {/* Space where the category is revealed on toggle */}
                     {isSelected ? (
                       <View flexDirection={"row"}>
-                        <Text style={styles.category}>Category:</Text>
-                        <Text style={styles.categoryDropped}>
+                        <Text style={[styles.category, styles.normalFont}>Category:</Text>
+                        <Text style={[styles.categoryDropped, styles.normalFont]}>
                           {item.categoryDropped}
                         </Text>
                       </View>
@@ -249,9 +255,9 @@ function UserDashboard(props) {
 const styles = StyleSheet.create({
   container: {
     margin: 10,
-    backgroundColor: "#ffbe7bff",
+    backgroundColor: colors.background,
     borderRadius: 20,
-    borderColor: "#ffa351ff",
+    borderColor: colors.darkBorder,
     borderWidth: 3,
     flex: 1,
   },
@@ -280,56 +286,22 @@ const styles = StyleSheet.create({
   },
   category: {
     paddingLeft: 29,
-    paddingBottom: 2,
-    fontSize: 8,
     fontWeight: "300",
   },
   categoryDropped: {
-    paddingBottom: 2,
-    fontSize: 8,
     fontWeight: "600",
   },
+  normalFont: {
+    paddingBottom: 2,
+    fontSize: 8,
+  },
   searchBar: {
-    justifyContent: "center",
-    alignItems: "center",
     textAlign: "center",
     fontSize: 22,
     marginTop: 20,
-    marginBottom: 0,
     height: 50,
-    backgroundColor: "white",
+    backgroundColor: "#fff",
     borderRadius: 20,
-    shadowColor: "#000",
-    shadowOffset: {
-      width: 10,
-      height: 10,
-      borderRadius: 20,
-    },
-  },
-  shadow: {
-    padding: 10,
-    shadowOpacity: 0.4,
-    shadowRadius: 20,
-    backgroundColor: "#FFF",
-    borderRadius: 10,
-    shadowOffset: {
-      width: 0,
-      height: 10,
-    },
-  },
-  checkboxContainer: {
-    flexDirection: "row",
-    marginBottom: -20,
-  },
-  checkbox: {
-    height: 15,
-    width: 15,
-    borderWidth: 0.5,
-    marginRight: 10,
-    borderRadius: 20,
-    backgroundColor: "white",
-    borderColor: "black",
-    alignSelf: "center",
   },
 });
 
