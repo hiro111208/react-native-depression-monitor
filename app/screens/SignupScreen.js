@@ -189,7 +189,7 @@ function SignUpScreen(props) {
       <View style={styles.container}>
         <Image
           resizeMode={"contain"}
-          style={styles.image}
+          style={indexStyles.loginImage}
           source={require("../assets/hand-logo.png")}
         />
         <View style={styles.signupFormContainer}>
@@ -283,14 +283,9 @@ const styles = StyleSheet.create({
     paddingHorizontal: "8%",
     justifyContent: "flex-start",
   },
-  image: {
-    flex: 3,
-    alignSelf: "center",
-  },
   inputStyle: {
     width: "100%",
-    marginBottom: "5%",
-    marginTop: "5%",
+    marginVertical: "5%",
     paddingBottom: "5%",
     alignSelf: "center",
     borderColor: "#ccc",
@@ -316,16 +311,6 @@ const styles = StyleSheet.create({
     backgroundColor: colors.darkBorder,
     width: 300,
     height: 60,
-  },
-  preloader: {
-    left: 0,
-    right: 0,
-    top: 0,
-    bottom: 0,
-    position: "absolute",
-    alignItems: "center",
-    justifyContent: "center",
-    backgroundColor: "#fff",
   },
   signupButton: {
     width: "90%",

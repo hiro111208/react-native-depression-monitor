@@ -1,7 +1,7 @@
 import React from "react";
-import { Image, StyleSheet } from "react-native";
-
+import { Image } from "react-native";
 import Onboarding from "react-native-onboarding-swiper";
+import * as indexStyles from "../config/indexStyles";
 
 {
   /**This is the demo screen where the user is taught how to interact with the app */
@@ -37,7 +37,7 @@ function DemoScreen({ navigation, route }) {
           image: (
             <Image
               resizeMode={"contain"}
-              style={styles.image}
+              style={indexStyles.cover}
               source={require("../assets/demo/CategoryDropGif.gif")}
             />
           ),
@@ -51,7 +51,7 @@ function DemoScreen({ navigation, route }) {
           image: (
             <Image
               resizeMode={"contain"}
-              style={styles.image}
+              style={indexStyles.cover}
               source={require("../assets/demo/SchedulerGif.gif")}
             />
           ),
@@ -64,7 +64,7 @@ function DemoScreen({ navigation, route }) {
           image: (
             <Image
               resizeMode={"contain"}
-              style={styles.image}
+              style={indexStyles.cover}
               source={require("../assets/demo/TherapyScreenGif.gif")}
             />
           ),
@@ -77,7 +77,7 @@ function DemoScreen({ navigation, route }) {
           image: (
             <Image
               resizeMode={"contain"}
-              style={styles.image}
+              style={indexStyles.cover}
               source={require("../assets/demo/PauseScreenGif.gif")}
             />
           ),
@@ -90,7 +90,7 @@ function DemoScreen({ navigation, route }) {
           image: (
             <Image
               resizeMode={"contain"}
-              style={styles.image}
+              style={indexStyles.cover}
               source={require("../assets/demo/PlantScreenGif.gif")}
             />
           ),
@@ -104,10 +104,3 @@ function DemoScreen({ navigation, route }) {
 }
 
 export default DemoScreen;
-
-const styles = StyleSheet.create({
-  image: {
-    width: "100%",
-    height: "100%",
-  },
-});

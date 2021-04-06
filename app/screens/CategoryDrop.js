@@ -1,18 +1,11 @@
 import React from "react";
-import {
-  StatusBar,
-  StyleSheet,
-  View,
-  Text,
-  TouchableOpacity,
-} from "react-native";
-import Constants from "expo-constants";
+import { StyleSheet, View, Text, TouchableOpacity } from "react-native";
 import * as indexStyles from "../config/indexStyles";
 import firebase from "../database/firebase";
 
-{
-  /** Option for the user to drop a category */
-}
+/*
+ * Option for the user to drop a category
+ */
 const CategoryDrop = ({ route, navigation }) => {
   // Stores user data passed from the previous screen
   const userProgress = route.params.user;

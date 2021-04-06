@@ -46,6 +46,27 @@ export const inputArea = {
   borderBottomWidth: 1,
 };
 
+export const loginButton = {
+  width: "90%",
+  backgroundColor: colors.darkBorder,
+  alignSelf: "center",
+  marginTop: 10,
+  paddingTop: 15,
+  paddingBottom: 15,
+  borderRadius: 50,
+};
+
+export const loginButtonText = {
+  color: "white",
+  textAlign: "center",
+  fontSize: 15,
+};
+
+export const loginImage = {
+  flex: 3,
+  alignSelf: "center",
+};
+
 export const preloader = {
   left: 0,
   right: 0,
