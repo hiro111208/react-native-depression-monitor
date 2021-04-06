@@ -64,9 +64,7 @@ function addUserToDatabase(uid) {
           .catch((error) => {
             console.error("Error writing document: ", error);
           });
-      }
-      // doc.data() will be undefined in this case
-      else {
+      } else {
         console.log("No such document!");
       }
     })
