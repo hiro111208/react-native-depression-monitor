@@ -43,23 +43,23 @@ function generateEmoji() {
 export default function PauseScreen({ props, navigation }) {
   return (
     <SafeAreaView style={[styles.container, indexStyles.centering]}>
-      <SafeAreaView style={[styles.center, styles.area, indexStyles.cover]}>
-        <SafeAreaView style={[styles.messageArea, indexStyles.centering]}>
+      <View style={[styles.center, styles.area, indexStyles.cover]}>
+        <View style={[styles.messageArea, indexStyles.centering]}>
           <Text style={[styles.text, { textAlign: "center" }]}>
             {generateMessage()} {generateEmoji()}{" "}
           </Text>
-        </SafeAreaView>
-        <SafeAreaView style={indexStyles.centering}>
+        </View>
+        <View style={indexStyles.centering}>
           <Image
             style={styles.image}
             resizeMode="contain"
             source={require("../assets/pause.png")}
           />
-        </SafeAreaView>
+        </View>
 
-        <SafeAreaView style={{ height: "7%" }}></SafeAreaView>
+        <View style={{ height: "7%" }}></View>
 
-        <SafeAreaView style={[indexStyles.cover, styles.center]}>
+        <View style={[indexStyles.cover, styles.center]}>
           <TouchableOpacity
             style={[styles.backButton, indexStyles.shadowEffect]}
             onPress={() => navigation.navigate("TherapyScreen")}
@@ -68,8 +68,8 @@ export default function PauseScreen({ props, navigation }) {
               Back to the session
             </Text>
           </TouchableOpacity>
-        </SafeAreaView>
-      </SafeAreaView>
+        </View>
+      </View>
     </SafeAreaView>
   );
 }

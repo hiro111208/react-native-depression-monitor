@@ -251,8 +251,7 @@ const styles = StyleSheet.create({
   },
   inputStyle: {
     width: "100%",
-    marginBottom: 15,
-    marginTop: 15,
+    marginVertical: 15,
     paddingBottom: 20,
     alignSelf: "center",
     borderColor: "#ccc",

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import {
   StyleSheet,
   Text,
@@ -11,6 +11,7 @@ import firebase from "../database/firebase";
 import FeelingsRadioButtons from "../src/components/FeelingsRadioButtons";
 import FeelingsSlider from "../src/components/FeelingsSlider";
 import colors from "../config/colors";
+import * as indexStyles from "../config/indexStyles";
 
 /**
  * Screen where the user logs their feelings. Users will
@@ -99,7 +100,7 @@ function LogFeelingScreen({ navigation, route }) {
   return (
     <View style={styles.container}>
       {/* Render header  */}
-      <View style={[styles.header, styles.centering]}>
+      <View style={[styles.header, indexStyles.centering]}>
         <Text style={styles.headerText}>How are you feeling?</Text>
       </View>
 
@@ -111,17 +112,17 @@ function LogFeelingScreen({ navigation, route }) {
 
       {/* Render sliders for each emotion */}
       <ScrollView style={styles.slidersContainer}>
-        <View style={[styles.topAndBottom, styles.centering]}>
+        <View style={[styles.topAndBottom, indexStyles.centering]}>
           <Text style={styles.text}>Anxious</Text>
           <FeelingsSlider setFeelingState={setAnxious} feelingState={anxious} />
         </View>
 
-        <View style={[styles.topAndBottom, styles.centering]}>
+        <View style={[styles.topAndBottom, indexStyles.centering]}>
           <Text style={styles.text}>Sad</Text>
           <FeelingsSlider setFeelingState={setSad} feelingState={sad} />
         </View>
 
-        <View style={[styles.topAndBottom, styles.centering]}>
+        <View style={[styles.topAndBottom, indexStyles.centering]}>
           <Text style={styles.text}>Happy</Text>
           <FeelingsSlider setFeelingState={setHappy} feelingState={happy} />
         </View>
@@ -129,7 +130,7 @@ function LogFeelingScreen({ navigation, route }) {
 
       {/* Render Continue button  */}
       <TouchableOpacity
-        style={[styles.continueButton, styles.centering]}
+        style={[styles.continueButton, indexStyles.centering]}
         onPress={() => {
           handleOnContinuePress();
         }}
@@ -148,10 +149,7 @@ const styles = StyleSheet.create({
     fontSize: 20,
     fontWeight: "bold",
   },
-  centering: {
-    alignItems: "center",
-    justifyContent: "center",
-  },
+
   header: {
     backgroundColor: colors.darkBorder,
     height: "12%",
