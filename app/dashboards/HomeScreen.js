@@ -226,12 +226,12 @@ const styles = StyleSheet.create({
     backgroundColor: "#fed8b1",
     alignItems: "center",
     borderWidth: 5,
-    borderColor: "#ffeed2",
+    borderColor: colors.lightOutline,
   },
   userNote: {
     height: "30%",
     width: "100%",
-    backgroundColor: "#ffeed2",
+    backgroundColor: colors.lightOutline,
     alignItems: "center",
     borderTopStartRadius: 40,
     borderTopEndRadius: 40,
@@ -240,7 +240,7 @@ const styles = StyleSheet.create({
   sessionArea: {
     height: "17%",
     width: "90%",
-    backgroundColor: "#ffeed2",
+    backgroundColor: colors.lightOutline,
     padding: 10,
     borderRadius: 20,
   },

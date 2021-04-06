@@ -10,6 +10,7 @@ import {
 import { ListItem } from "react-native-elements";
 import * as indexStyles from "../config/indexStyles";
 import firebase from "../database/firebase";
+import colors from "../config/colors";
 import { Notifications, Permissions } from "expo";
 
 /**
@@ -218,7 +219,7 @@ const styles = StyleSheet.create({
   backButton: {
     height: "90%",
     width: "40%",
-    backgroundColor: "#ffeed2",
+    backgroundColor: colors.lightOutline,
     borderRadius: 50,
   },
   backContainer: {
@@ -238,7 +239,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#fed8b1",
     alignItems: "center",
     borderWidth: 5,
-    borderColor: "#ffeed2",
+    borderColor: colors.lightOutline,
   },
   container: {
     flex: 1,
@@ -253,7 +254,7 @@ const styles = StyleSheet.create({
   deleteButton: {
     height: "60%",
     width: "30%",
-    backgroundColor: "#ffeed2",
+    backgroundColor: colors.lightOutline,
     borderRadius: 10,
   },
 });

@@ -102,13 +102,13 @@ const styles = StyleSheet.create({
     height: "100%",
     width: "40%",
     borderRadius: 50,
-    backgroundColor: "#ffeed2",
+    backgroundColor: colors.lightOutline,
   },
   center: {
     backgroundColor: "#fed8b1",
     borderRadius: 50,
     borderWidth: 5,
-    borderColor: "#ffeed2",
+    borderColor: colors.lightOutline,
   },
   centering: {
     alignItems: "center",
@@ -131,13 +131,13 @@ const styles = StyleSheet.create({
     color: "dimgray",
   },
   optButton: {
-    backgroundColor: "#ffeed2",
+    backgroundColor: colors.lightOutline,
   },
   scheduleText: {
     fontSize: 15,
   },
   selectButton: {
-    backgroundColor: "#ffeed2",
+    backgroundColor: colors.lightOutline,
   },
   shadowEffect: {
     shadowColor: "#000",

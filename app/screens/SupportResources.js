@@ -10,6 +10,7 @@ import {
   TouchableOpacity,
 } from "react-native";
 import { AntDesign } from "@expo/vector-icons";
+import colors from "../config/colors";
 
 const SupportResources = ({ navigation }) => {
   return (
@@ -70,7 +71,9 @@ const SupportResources = ({ navigation }) => {
             </Text>
           </View>
 
-          <View style={[{ backgroundColor: "#ffeed2" }, styles.centering]}>
+          <View
+            style={[{ backgroundColor: colors.lightOutline }, styles.centering]}
+          >
             <ScrollView horizontal>
               <View
                 style={[
@@ -291,13 +294,13 @@ const styles = StyleSheet.create({
     height: "100%",
     width: "40%",
     borderRadius: 50,
-    backgroundColor: "#ffeed2",
+    backgroundColor: colors.lightOutline,
   },
   center: {
     backgroundColor: "#fed8b1",
     borderRadius: 50,
     borderWidth: 5,
-    borderColor: "#ffeed2",
+    borderColor: colors.lightOutline,
   },
   centering: {
     alignItems: "center",
@@ -318,13 +321,13 @@ const styles = StyleSheet.create({
     color: "dimgray",
   },
   optButton: {
-    backgroundColor: "#ffeed2",
+    backgroundColor: colors.lightOutline,
   },
   scheduleText: {
     fontSize: 15,
   },
   selectButton: {
-    backgroundColor: "#ffeed2",
+    backgroundColor: colors.lightOutline,
   },
   shadowEffect: {
     shadowColor: "#000",

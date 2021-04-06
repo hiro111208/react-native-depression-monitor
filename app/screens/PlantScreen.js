@@ -10,6 +10,7 @@ import {
 import Constants from "expo-constants";
 import * as indexStyles from "../config/indexStyles";
 import firebase from "../database/firebase";
+import colors from "../config/colors";
 
 {
   /** Screen to interact with the plant mascot */
@@ -187,7 +188,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#fed8b1",
     alignItems: "center",
     borderWidth: 5,
-    borderColor: "#ffeed2",
+    borderColor: colors.lightOutline,
   },
   featureButton: {
     height: "100%",
@@ -202,7 +203,7 @@ const styles = StyleSheet.create({
     borderRadius: 30,
   },
   homeButton: {
-    backgroundColor: "#ffeed2",
+    backgroundColor: colors.lightOutline,
   },
   comment: {
     color: "dodgerblue",

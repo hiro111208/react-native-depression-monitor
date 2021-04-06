@@ -14,6 +14,7 @@ import {
 } from "react-native";
 import firebase from "../database/firebase";
 import DismissKeyboard from "../config/DismissKeyboard";
+import colors from "../config/colors";
 
 LogBox.ignoreLogs(["FirebaseError: Missing or insufficient permissions"]); // Ignore log notification by message
 
@@ -257,7 +258,7 @@ const styles = StyleSheet.create({
     height: "100%",
     width: "40%",
     borderRadius: 50,
-    backgroundColor: "#ffeed2",
+    backgroundColor: colors.lightOutline,
     position: "absolute",
     bottom: 0,
   },
@@ -265,7 +266,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#fed8b1",
     borderRadius: 50,
     borderWidth: 5,
-    borderColor: "#ffeed2",
+    borderColor: colors.lightOutline,
   },
   centering: {
     alignItems: "center",
@@ -298,7 +299,7 @@ const styles = StyleSheet.create({
     borderBottomColor: "#cccccc",
   },
   optButton: {
-    backgroundColor: "#ffeed2",
+    backgroundColor: colors.lightOutline,
   },
   preloader: {
     left: 0,
