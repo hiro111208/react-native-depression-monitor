@@ -105,7 +105,7 @@ const styles = StyleSheet.create({
     backgroundColor: colors.lightOutline,
   },
   center: {
-    backgroundColor: "#fed8b1",
+    backgroundColor: colors.mainPanel,
     borderRadius: 50,
     borderWidth: 5,
     borderColor: colors.lightOutline,

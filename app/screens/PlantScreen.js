@@ -185,7 +185,7 @@ const styles = StyleSheet.create({
     width: "100%",
     height: "90%",
     borderRadius: 40,
-    backgroundColor: "#fed8b1",
+    backgroundColor: colors.mainPanel,
     alignItems: "center",
     borderWidth: 5,
     borderColor: colors.lightOutline,

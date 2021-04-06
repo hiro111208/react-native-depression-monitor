@@ -169,7 +169,7 @@ class ScheduleListScreen extends Component {
               return (
                 <ListItem
                   containerStyle={{
-                    backgroundColor: "#fed8b1",
+                    backgroundColor: colors.mainPanel,
                     flex: 1,
                   }}
                   style={{ width: 250, height: 70 }}
@@ -236,7 +236,7 @@ const styles = StyleSheet.create({
   },
   center: {
     borderRadius: 40,
-    backgroundColor: "#fed8b1",
+    backgroundColor: colors.mainPanel,
     alignItems: "center",
     borderWidth: 5,
     borderColor: colors.lightOutline,

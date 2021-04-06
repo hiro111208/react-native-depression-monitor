@@ -177,7 +177,7 @@ export default class TherapyQuestionScreen extends Component {
                     return (
                       <ListItem
                         containerStyle={{
-                          backgroundColor: "#fed8b1",
+                          backgroundColor: colors.mainPanel,
                         }}
                         key={i}
                         chevron
@@ -275,7 +275,7 @@ export default class TherapyQuestionScreen extends Component {
                     return (
                       <ListItem
                         containerStyle={{
-                          backgroundColor: "#fed8b1",
+                          backgroundColor: colors.mainPanel,
                         }}
                         key={i}
                         chevron

@@ -9,6 +9,7 @@ import {
 } from "react-native";
 import Emoji from "react-native-emoji";
 import * as indexStyles from "../config/indexStyles";
+import colors from "../config/colors";
 
 /* Constant measurements depending on device screen size */
 const winWidth = Dimensions.get("window").width;
@@ -93,7 +94,7 @@ const styles = StyleSheet.create({
     height: "18%",
     marginTop: winHeight / 15,
     borderRadius: 20,
-    backgroundColor: "#fed8b1",
+    backgroundColor: colors.mainPanel,
   },
   image: {
     marginTop: winHeight / 20,

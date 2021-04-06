@@ -43,7 +43,7 @@ export const containerWhite = {
 };
 
 export const containerOrange = {
-  backgroundColor: "#fed8b1",
+  backgroundColor: colors.mainPanel,
   borderRadius: 50,
   borderWidth: 5,
   borderColor: colors.lightOutline,
