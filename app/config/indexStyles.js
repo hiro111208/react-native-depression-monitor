@@ -52,8 +52,6 @@ export const preloader = {
   top: 0,
   bottom: 0,
   position: "absolute",
-  alignItems: "center",
-  justifyContent: "center",
   backgroundColor: "white",
 };
 

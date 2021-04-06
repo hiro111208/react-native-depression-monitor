@@ -98,7 +98,7 @@ export default class TherapyQuestionScreen extends Component {
   render() {
     if (this.state.isLoading) {
       return (
-        <View style={indexStyles.preloader}>
+        <View style={[indexStyles.preloader, indexStyles.centering]}>
           <ActivityIndicator size="large" color="#9E9E9E" />
         </View>
       );

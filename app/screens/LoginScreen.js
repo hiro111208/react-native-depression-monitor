@@ -143,7 +143,7 @@ function LoginScreen(props) {
   //While loading show preloader
   if (isLoading) {
     return (
-      <View style={indexStyles.preloader}>
+      <View style={[indexStyles.preloader, indexStyles.centering]}>
         <ActivityIndicator size="large" color="#9E9E9E" />
       </View>
     );

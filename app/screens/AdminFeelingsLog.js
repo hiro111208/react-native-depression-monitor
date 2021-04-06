@@ -10,15 +10,13 @@ import {
 } from "react-native";
 import ProgressBar from "../src/components/ProgressBar";
 import firebase from "../database/firebase";
-import { render } from "enzyme";
-import { floor } from "react-native-reanimated";
+import * as indexStyles from "../config/indexStyles";
+import colors from "../config/colors";
 
 // option to toggle view to see the difference of feelings
 var feelingsDifference = [];
 
-{
-  /** Returns the feelings data for a user */
-}
+/** Returns the feelings data for a user */
 const AdminFeelingsLog = ({ navigation, route }) => {
   const [loading, setLoading] = useState(true);
   const [feelingsLog, setFeelingsLog] = useState([]);
@@ -97,15 +95,6 @@ const AdminFeelingsLog = ({ navigation, route }) => {
     const calender = dateAndTime.toString().substr(0, 15);
     const time = dateAndTime.toString().substr(16, 5);
     return calender + "  @ " + time;
-  }
-
-  // return firestore data in a readable format
-  function renderData() {
-    return (
-      <View style={styles.oval}>
-        <Text style={styles.dateText}>{getDateToString()}</Text>
-      </View>
-    );
   }
 
   // convert a negative score into a positive (changing sad to freedom from sadness)
@@ -275,7 +264,7 @@ const AdminFeelingsLog = ({ navigation, route }) => {
   //Render the data of the feelings log
   if (loading) {
     return (
-      <View style={styles.preloader}>
+      <View style={[indexStyles.preloader, indexStyles.centering]}>
         <ActivityIndicator size="large" color="#9E9E9E" />
       </View>
     );
@@ -287,7 +276,7 @@ const AdminFeelingsLog = ({ navigation, route }) => {
         {/** Map data to a view to present each element */}
         {getCorrectArray().map((logItem, index) => (
           <View key={index} style={styles.item}>
-            <View style={styles.oval}>
+            <View style={[styles.oval, indexStyles.centering]}>
               <Text style={styles.dateText}>{getCorrectHeader(logItem)}</Text>
             </View>
             <View style={styles.largeOval}>
@@ -344,15 +333,15 @@ const AdminFeelingsLog = ({ navigation, route }) => {
         <View style={styles.buttonsBlock}>
           <TouchableOpacity
             onPress={() => toggleView()}
-            style={[styles.centering, styles.backButton]}
+            style={[indexStyles.centering, styles.backButton]}
           >
-            <Text style={[, { fontSize: 20 }]}>{renderDifferenceText()}</Text>
+            <Text style={{ fontSize: 20 }}>{renderDifferenceText()}</Text>
           </TouchableOpacity>
           <TouchableOpacity
             onPress={() => navigation.goBack()}
-            style={[styles.centering, styles.backButton]}
+            style={[indexStyles.centering, styles.backButton]}
           >
-            <Text style={[, { fontSize: 20 }]}>Return to user stats</Text>
+            <Text style={{ fontSize: 20 }}>Return to user stats</Text>
           </TouchableOpacity>
         </View>
       </ScrollView>
@@ -384,9 +373,9 @@ const styles = StyleSheet.create({
   },
   container: {
     marginTop: 3,
-    backgroundColor: "#ffbe7bff",
+    backgroundColor: colors.background,
     borderRadius: 20,
-    borderColor: "#ffa351ff",
+    borderColor: colors.darkBorder,
     borderWidth: 3,
     flex: 1,
   },
@@ -405,8 +394,6 @@ const styles = StyleSheet.create({
     borderRadius: 50,
     backgroundColor: "white",
     alignSelf: "center",
-    alignItems: "center",
-    justifyContent: "center",
   },
   largeOval: {
     width: "90%",
@@ -430,21 +417,7 @@ const styles = StyleSheet.create({
     fontSize: 20,
     fontWeight: "bold",
   },
-  preloader: {
-    left: 0,
-    right: 0,
-    top: 0,
-    bottom: 0,
-    position: "absolute",
-    alignItems: "center",
-    justifyContent: "center",
-    backgroundColor: "#ffbe7bff",
-  },
   item: { paddingVertical: 15 },
-  centering: {
-    alignItems: "center",
-    justifyContent: "center",
-  },
 });
 
 export default AdminFeelingsLog;
