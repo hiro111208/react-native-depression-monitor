@@ -1,6 +1,6 @@
 import * as React from "react";
+import { Image } from "react-native";
 import { getFocusedRouteNameFromRoute } from "@react-navigation/native";
-import { Ionicons } from "@expo/vector-icons";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import HomeScreen from "./HomeScreen";
 import AccountScreen from "./AccountScreen";
@@ -34,20 +34,37 @@ export default function PatientDashboard({ navigation, route }) {
   return (
     <Tab.Navigator
       screenOptions={({ route }) => ({
-        tabBarIcon: ({ focused, color, size }) => {
-          let iconName;
-          if (route.name === "Home") {
-            iconName = focused ? "ios-home" : "ios-home-outline";
-          } else if (route.name === "Calendar") {
-            iconName = focused ? "ios-calendar" : "ios-calendar-outline";
-          } else if (route.name === "Account") {
-            iconName = focused ? "ios-person" : "ios-person-outline";
+        tabBarIcon: ({ focused }) => {
+          let imageSource;
+
+          switch (route.name) {
+            case "Home":
+              imageSource = focused
+                ? require("../assets/home-active.png")
+                : require("../assets/home.png");
+              break;
+            case "Calendar":
+              imageSource = focused
+                ? require("../assets/calendar-active.png")
+                : require("../assets/calendar.png");
+              break;
+            case "Account":
+              imageSource = focused
+                ? require("../assets/account-active.png")
+                : require("../assets/account.png");
+              break;
           }
-          return <Ionicons name={iconName} size={size} color={color} />;
+
+          return (
+            <Image
+              source={imageSource}
+              style={{ maxHeight: "75%", maxWidth: "20%" }}
+            />
+          );
         },
       })}
       tabBarOptions={{
-        activeTintColor: "#1999CE",
+        activeTintColor: "orange",
         inactiveTintColor: "gray",
       }}
     >

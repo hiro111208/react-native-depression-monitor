@@ -181,7 +181,7 @@ const styles = StyleSheet.create({
     paddingTop: 20,
     borderColor: colors.darkBorder,
     borderWidth: 2,
-    width: "100%",
+    width: "95%",
   },
   text: {
     color: "grey",

@@ -182,21 +182,23 @@ export default function AdminHomeScreen({ props, navigation }) {
   return (
     <View style={[styles.container]}>
       <View style={[styles.center, styles.shadowEffect, styles.cover]}>
-        <View style={{ height: "5%" }}></View>
+        <View style={{ height: "10%" }}></View>
 
         {/** Logo and display name */}
-        <View style={[{ height: "40%" }, styles.centering]}>
+        <View style={[{ height: "30%" }, styles.centering]}>
           <Text style={[styles.fontStyle, { fontSize: 25 }]}>
             Hello, admin!
           </Text>
           <Image
-            style={{ width: 200, height: 200 }}
+            style={{ width: 150, height: 150 }}
             resizeMode="contain"
             source={require("../assets/hand-logo.png")}
           />
         </View>
 
         {/** Content management navigation button */}
+        <View style={{ height: "5%" }}></View>
+
         <View style={{ height: "10%" }}>
           <TouchableOpacity
             onPress={() => navigation.navigate("TherapyQuestionScreen")}
@@ -210,7 +212,7 @@ export default function AdminHomeScreen({ props, navigation }) {
           </TouchableOpacity>
         </View>
 
-        <View style={{ height: "5%" }}></View>
+        <View style={{ height: "3%" }}></View>
 
         {/** Export answer data CSV navigation button */}
         <View style={{ height: "10%" }}>
@@ -227,7 +229,7 @@ export default function AdminHomeScreen({ props, navigation }) {
           </TouchableOpacity>
         </View>
 
-        <View style={{ height: "5%" }}></View>
+        <View style={{ height: "3%" }}></View>
 
         {/** Export feelings data CSV navigation button */}
         <View style={{ height: "10%" }}>
@@ -244,7 +246,7 @@ export default function AdminHomeScreen({ props, navigation }) {
           </TouchableOpacity>
         </View>
 
-        <View style={{ height: "5%" }}></View>
+        <View style={{ height: "7%" }}></View>
 
         {/** Back to log in screen navigation button */}
         <View style={[{ height: "10%" }, styles.centering]}>

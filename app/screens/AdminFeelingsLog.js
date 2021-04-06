@@ -383,10 +383,12 @@ const styles = StyleSheet.create({
     marginBottom: 30,
   },
   container: {
-    flex: 1,
+    marginTop: 3,
     backgroundColor: "#ffbe7bff",
-    alignItems: "center",
-    justifyContent: "center",
+    borderRadius: 20,
+    borderColor: "#ffa351ff",
+    borderWidth: 3,
+    flex: 1,
   },
   data: {
     paddingTop: 20,
@@ -398,7 +400,7 @@ const styles = StyleSheet.create({
     fontSize: 24,
   },
   oval: {
-    width: "100%",
+    width: "90%",
     height: 50,
     borderRadius: 50,
     backgroundColor: "white",
@@ -410,7 +412,7 @@ const styles = StyleSheet.create({
     width: "90%",
     height: 250,
     borderRadius: 50,
-    borderColor: "black",
+    borderColor: "dimgray",
     marginTop: 5,
     padding: 10,
     borderWidth: 5,
