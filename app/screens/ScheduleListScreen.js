@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, useEffect } from "react";
 import {
   StyleSheet,
   ActivityIndicator,
@@ -8,7 +8,6 @@ import {
   TouchableOpacity,
 } from "react-native";
 import { ListItem } from "react-native-elements";
-import * as indexStyles from "../config/indexStyles";
 import firebase from "../database/firebase";
 import colors from "../config/colors";
 import { Notifications } from "expo";
@@ -16,8 +15,125 @@ import { Notifications } from "expo";
 /**
  * Page that displays all of the scheduled notifications for the patient
  */
+
+//function to check for inactivity every 60 seconds
+
+var lastActivity;
+
+function time() {
+  useEffect(() => {
+    const interval = setInterval(() => {
+      inactivnotif();
+    }, 60000);
+    return () => clearInterval(interval);
+  }, []);
+
+  // inactivity notifications
+
+  const inactivitynotif = () => {
+    function getLastActive() {
+      firebase
+        .firestore()
+        .collection("users")
+        .doc(firebase.auth().currentUser.uid)
+        .get()
+        .then((doc) => {
+          lastActivity = doc.data().lastActive.toMillis();
+        })
+        .catch((error) => {
+          console.log("Error getting document:", error);
+        });
+    }
+
+    var inactivityCounter = 0;
+    if (Date.now() < lastActivity + 777600000) {
+      if (inactivityCounter == 0) {
+        scheduleInactiveNotification1 = async () => {
+          let notificationId = Notifications.scheduleLocalNotificationAsync(
+            {
+              title: "HUG",
+              body:
+                "It’s been so long since we last saw you that HUG has webs everywhere. Come back and kick the spiders out.",
+            },
+            {
+              time: Date().now,
+            }
+          );
+          console.log(notificationId);
+          inactivityCounter = inactivityCounter + 1;
+        };
+      }
+
+      if (inactivityCounter == 1) {
+        scheduleInactiveNotification2 = async () => {
+          let notificationId = Notifications.scheduleLocalNotificationAsync(
+            {
+              title: "HUG",
+              body: "Bro seriously? You cheating?",
+            },
+            {
+              time: Date().now,
+            }
+          );
+          console.log(notificationId);
+        };
+
+        scheduleInactiveNotification2 = async () => {
+          let notificationId = Notifications.scheduleLocalNotificationAsync(
+            {
+              title: "HUG",
+              body:
+                "We would like to apologize for our developer Chad, who has been sending push notifications to people with better answers than him. Come back to make Chad more angry.",
+            },
+            {
+              time: Date().now,
+            }
+          );
+          console.log(notificationId);
+          inactivityCounter = inactivityCounter + 1;
+        };
+      }
+
+      if (inactivityCounter == 2) {
+        scheduleInactiveNotification3 = async () => {
+          let notificationId = Notifications.scheduleLocalNotificationAsync(
+            {
+              title: "HUG",
+              body:
+                "Your plant has not seen you in a long time. Come back to give her company and finish your questions.",
+            },
+            {
+              time: Date().now,
+            }
+          );
+          console.log(notificationId);
+          inactivityCounter = inactivityCounter + 1;
+        };
+      }
+
+      if (inactivityCounter == 3) {
+        scheduleInactiveNotification4 = async () => {
+          let notificationId = Notifications.scheduleLocalNotificationAsync(
+            {
+              title: "HUG",
+              body:
+                "Congratulation you have done more than 75% of the question. Would you like to finish them now?",
+            },
+            {
+              time: Date().now,
+            }
+          );
+          console.log(notificationId);
+          inactivityCounter = inactivityCounter + 1;
+        };
+      }
+    }
+  };
+}
+
 class ScheduleListScreen extends Component {
   constructor() {
+    time();
     super();
     this.firestoreRef = firebase
       .firestore()
@@ -97,14 +213,13 @@ class ScheduleListScreen extends Component {
 
   // displays a push notification for the first schedule
   scheduleNotification1 = async () => {
-    var n1 = new Date(scheduleDateTime);
     let notificationId = Notifications.scheduleLocalNotificationAsync(
       {
         title: "HUG",
         body: "The first set of questions is out now!",
       },
       {
-        time: n1.setDate(n1.getDate()),
+        time: this.state.scheduleArr[0],
       }
     );
     console.log(notificationId);
@@ -112,7 +227,6 @@ class ScheduleListScreen extends Component {
 
   // displays a push notification for the second schedule
   scheduleNotification2 = async () => {
-    var n2 = new Date(scheduleDateTime);
     let notificationId = Notifications.scheduleLocalNotificationAsync(
       {
         title: "HUG",
@@ -120,7 +234,7 @@ class ScheduleListScreen extends Component {
           "“The secret of getting ahead is getting started.” The 2nd set of question is out now",
       },
       {
-        time: n2.setDate(n2.getDate() + 7),
+        time: this.state.scheduleArr[1],
       }
     );
     console.log(notificationId);
@@ -128,7 +242,6 @@ class ScheduleListScreen extends Component {
 
   // displays a push notification for the third schedule
   scheduleNotification3 = async () => {
-    var n3 = new Date(scheduleDateTime);
     let notificationId = Notifications.scheduleLocalNotificationAsync(
       {
         title: "HUG",
@@ -136,7 +249,7 @@ class ScheduleListScreen extends Component {
           "“All our dreams can come true, if we have the courage to pursue them.”The 3rd set of question is out now",
       },
       {
-        time: n3.setDate(n3.getDate() + 14),
+        time: this.state.scheduleArr[2],
       }
     );
     console.log(notificationId);
@@ -144,7 +257,6 @@ class ScheduleListScreen extends Component {
 
   // displays a push notification for the fourth schedule
   scheduleNotification4 = async () => {
-    var n4 = new Date(scheduleDateTime);
     let notificationId = Notifications.scheduleLocalNotificationAsync(
       {
         title: "HUG",
@@ -152,7 +264,7 @@ class ScheduleListScreen extends Component {
           "“Start where you are. Use what you have. Do what you can.” The final set of question is out now",
       },
       {
-        time: n4.setDate(n4.getDate() + 21),
+        time: this.state.scheduleArr[3],
       }
     );
     console.log(notificationId);
@@ -161,14 +273,14 @@ class ScheduleListScreen extends Component {
   render() {
     if (this.state.isLoading) {
       return (
-        <View style={[indexStyles.preloader, indexStyles.centering]}>
+        <View style={[styles.preloader, styles.centering]}>
           <ActivityIndicator size="large" color="#9E9E9E" />
         </View>
       );
     }
     return (
-      <View style={[styles.container, indexStyles.centering]}>
-        <View style={[styles.center, styles.cover, indexStyles.shadowEffect]}>
+      <View style={[styles.container, styles.centering]}>
+        <View style={[styles.center, styles.cover, styles.shadowEffect]}>
           <View>
             {this.state.scheduleArr.map((item, i) => {
               return (
@@ -188,9 +300,9 @@ class ScheduleListScreen extends Component {
                   </ListItem.Content>
                   <TouchableOpacity
                     style={[
-                      indexStyles.centering,
+                      styles.centering,
                       styles.deleteButton,
-                      indexStyles.shadowEffect,
+                      styles.shadowEffect,
                       { alignItems: "center" },
                     ]}
                     onPress={() => this.openTwoButtonAlert(item.key)}
@@ -202,14 +314,10 @@ class ScheduleListScreen extends Component {
             })}
           </View>
           <View style={{ height: "10%" }}></View>
-          <View style={[styles.backContainer, indexStyles.centering]}>
+          <View style={[styles.backContainer, styles.centering]}>
             <TouchableOpacity
               onPress={() => this.props.navigation.goBack()}
-              style={[
-                styles.backButton,
-                indexStyles.centering,
-                indexStyles.shadowEffect,
-              ]}
+              style={[styles.backButton, styles.centering, styles.shadowEffect]}
             >
               <Text style={styles.backText}>Go back</Text>
             </TouchableOpacity>
@@ -246,11 +354,15 @@ const styles = StyleSheet.create({
     borderWidth: 5,
     borderColor: colors.lightOutline,
   },
+  centering: {
+    alignItems: "center",
+    justifyContent: "center",
+  },
   container: {
     flex: 1,
     display: "flex",
     padding: 30,
-    backgroundColor: "white",
+    backgroundColor: "#fff",
   },
   cover: {
     width: "100%",
@@ -261,6 +373,24 @@ const styles = StyleSheet.create({
     width: "30%",
     backgroundColor: colors.lightOutline,
     borderRadius: 10,
+  },
+  preloader: {
+    left: 0,
+    right: 0,
+    top: 0,
+    bottom: 0,
+    position: "absolute",
+  },
+  shadowEffect: {
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
+    elevation: 5,
+    marginVertical: 5,
   },
 });
 
