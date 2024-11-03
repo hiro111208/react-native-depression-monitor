@@ -5,7 +5,7 @@
     "ios": "react-native run-ios",
     "web": "expo start --web",
     "eject": "expo eject",
-    "test": "jest"
+    "test": "jest --silent --detectOpenHandles"
   },
   "dependencies": {
     "@firebase/app": "^0.6.17",
@@ -19,6 +19,7 @@
     "@react-navigation/stack": "^5.14.3",
     "@testing-library/react": "^11.2.5",
     "@unimodules/core": "^7.0.0",
+    "@unimodules/react-native-adapter": "^6.1.0",
     "babel-preset-expo": "^8.3.0",
     "d3-shape": "^2.1.0",
     "expo": "^40.0.1",
@@ -52,7 +53,6 @@
     "react-native-svg-charts": "^5.4.0",
     "react-native-table-component": "^1.2.1",
     "react-native-unimodules": "^0.13.0",
-    "react-native-web": "^0.15.0",
     "react-navigation": "^4.4.4",
     "react-navigation-stack": "^2.10.3",
     "react-test-renderer": "^17.0.1",
@@ -73,7 +73,21 @@
     "react-simple-tooltip": "^2.6.2"
   },
   "jest": {
-    "preset": "jest-expo-enzyme",
+    "preset": "react-native",
+    "snapshotSerializers": [
+      "enzyme-to-json/serializer"
+    ],
+    "collectCoverageFrom": [
+      "src/**/*.js",
+      "!src/index.js"
+    ],
+    "coverageReporters": [
+      "text"
+    ],
+    "setupFilesAfterEnv": [
+      "./setupTests.js",
+      "./node_modules/react-native-gesture-handler/jestSetup.js"
+    ],
     "verbose": true,
     "transformIgnorePatterns": [
       "node_modules/(?!(jest-)?react-native|react-clone-referenced-element|@react-native-community|expo(nent)?|@expo(nent)?/.*|react-navigation|@react-navigation/.*|@unimodules/.*|unimodules|sentry-expo|native-base|@sentry/.*)"
