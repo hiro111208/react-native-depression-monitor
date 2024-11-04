@@ -1,0 +1,136 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Testing FeelingsSlider.js FeelingsSlider renders correctly across screens 1`] = `
+<View
+  style={
+    Object {
+      "width": "85%",
+    }
+  }
+>
+  <View
+    onLayout={[Function]}
+    style={
+      Array [
+        Object {
+          "marginHorizontal": 16,
+          "marginTop": 12,
+        },
+        Object {
+          "marginBottom": 44,
+        },
+      ]
+    }
+  >
+    <RCTSlider
+      disabled={false}
+      enabled={true}
+      maximumTrackTintColor="#ddd"
+      maximumValue={5}
+      minimumTrackTintColor="#ffd390"
+      minimumValue={1}
+      onChange={[Function]}
+      onResponderTerminationRequest={[Function]}
+      onSlidingComplete={[Function]}
+      onStartShouldSetResponder={[Function]}
+      onValueChange={[Function]}
+      step={1}
+      style={
+        Object {
+          "height": 40,
+        }
+      }
+      testID="SLIDER"
+      thumbTintColor="#ffa351ff"
+      value={0.5}
+    />
+    <View
+      style={
+        Object {
+          "flexDirection": "row",
+          "left": 0,
+          "position": "absolute",
+          "right": 0,
+          "top": 44,
+        }
+      }
+    >
+      <Text
+        style={
+          Array [
+            Object {
+              "fontSize": 16,
+              "position": "absolute",
+              "textAlign": "center",
+            },
+            Object {
+              "color": "#ddd",
+              "transform": Array [
+                Object {
+                  "translateX": -0,
+                },
+              ],
+              "width": 0,
+            },
+            Object {
+              "left": 5,
+            },
+          ]
+        }
+      >
+        Not at all
+      </Text>
+      <Text
+        style={
+          Array [
+            Object {
+              "fontSize": 16,
+              "position": "absolute",
+              "textAlign": "center",
+            },
+            Object {
+              "color": "#ddd",
+              "transform": Array [
+                Object {
+                  "translateX": -0,
+                },
+              ],
+              "width": 0,
+            },
+            Object {
+              "left": 0,
+            },
+          ]
+        }
+      >
+        Somewhat
+      </Text>
+      <Text
+        style={
+          Array [
+            Object {
+              "fontSize": 16,
+              "position": "absolute",
+              "textAlign": "center",
+            },
+            Object {
+              "color": "#ddd",
+              "transform": Array [
+                Object {
+                  "translateX": -0,
+                },
+              ],
+              "width": 0,
+            },
+            Object {
+              "left": -5,
+            },
+          ]
+        }
+      >
+        Very much
+      </Text>
+    </View>
+  </View>
+</View>
+`;

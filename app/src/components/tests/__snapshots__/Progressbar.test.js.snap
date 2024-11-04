@@ -1,0 +1,169 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Testing ProgressBar.js ProgressBar renders correctly across screens 1`] = `
+<View
+  flexDirection="row"
+  style={
+    Object {
+      "shadowColor": "#000",
+      "shadowOpacity": 0.1,
+      "shadowRadius": 1,
+    }
+  }
+>
+  <View
+    flex={1}
+    flexDirection="column"
+  >
+    <View
+      onLayout={[Function]}
+      style={
+        Object {
+          "backgroundColor": "white",
+          "borderRadius": 7,
+          "borderWidth": 1,
+          "height": 15,
+          "opacity": 1,
+          "overflow": "hidden",
+        }
+      }
+    >
+      <View
+        style={
+          Object {
+            "backgroundColor": "rgba(255, 0, 0, 1)",
+            "borderRadius": 7,
+            "bottom": 0,
+            "height": 20,
+            "left": 0,
+            "maxWidth": "100%",
+            "opacity": 0.7,
+            "position": "absolute",
+            "top": 0,
+            "width": 0,
+          }
+        }
+      >
+        <View>
+          <View
+            style={
+              Object {
+                "backgroundColor": "transparent",
+                "flexDirection": "row",
+                "height": "100%",
+                "width": "100%",
+              }
+            }
+          >
+            <View
+              left={0}
+              style={
+                Object {
+                  "backgroundColor": "black",
+                  "flexDirection": "column",
+                  "opacity": 0.5,
+                  "width": 1,
+                }
+              }
+            />
+            <View
+              left={0}
+              style={
+                Object {
+                  "backgroundColor": "black",
+                  "flexDirection": "column",
+                  "opacity": 0.5,
+                  "width": 1,
+                }
+              }
+            />
+            <View
+              left={0}
+              style={
+                Object {
+                  "backgroundColor": "black",
+                  "flexDirection": "column",
+                  "opacity": 0.5,
+                  "width": 1,
+                }
+              }
+            />
+            <View
+              left={0}
+              style={
+                Object {
+                  "backgroundColor": "black",
+                  "flexDirection": "column",
+                  "opacity": 0.5,
+                  "width": 1,
+                }
+              }
+            />
+            <View
+              left={0}
+              style={
+                Object {
+                  "backgroundColor": "black",
+                  "flexDirection": "column",
+                  "opacity": 0.5,
+                  "width": 1,
+                }
+              }
+            />
+          </View>
+        </View>
+      </View>
+    </View>
+  </View>
+  <View
+    marginLeft={10}
+  >
+    <Text
+      style={
+        Object {
+          "fontSize": 10,
+          "fontWeight": "300",
+        }
+      }
+    >
+      Progress
+    </Text>
+  </View>
+  <View
+    marginLeft={10}
+    padding={0}
+    style={
+      Object {
+        "alignItems": "center",
+        "backgroundColor": "white",
+        "borderRadius": 20,
+        "borderWidth": 1,
+        "height": 15,
+        "opacity": 1,
+        "padding": 3,
+        "textAlign": "center",
+      }
+    }
+  >
+    <View
+      marginLeft={10}
+      width={30}
+    />
+    <Text
+      adjustsFontSizeToFit={true}
+      margin={5}
+      style={
+        Object {
+          "fontSize": 11,
+          "height": 15,
+          "width": 30,
+        }
+      }
+    >
+      
+      NaN
+      %
+    </Text>
+  </View>
+</View>
+`;
