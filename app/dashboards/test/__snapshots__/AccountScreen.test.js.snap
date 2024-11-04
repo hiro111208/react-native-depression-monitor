@@ -1,0 +1,254 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Testing AccountScreen.js rendering AccountScreen snapshot 1`] = `
+<View
+  style={
+    Array [
+      Object {
+        "backgroundColor": "#fff",
+        "display": "flex",
+        "flex": 1,
+        "padding": 25,
+      },
+      Object {
+        "alignItems": "center",
+        "justifyContent": "center",
+      },
+      Object {
+        "height": "100%",
+        "width": "100%",
+      },
+    ]
+  }
+>
+  <View
+    style={
+      Array [
+        Object {
+          "backgroundColor": "#fed8b1",
+          "borderColor": "#ffeed2",
+          "borderRadius": 50,
+          "borderWidth": 5,
+        },
+        Object {
+          "elevation": 5,
+          "marginVertical": 5,
+          "shadowColor": "#000",
+          "shadowOffset": Object {
+            "height": 2,
+            "width": 0,
+          },
+          "shadowOpacity": 0.25,
+          "shadowRadius": 3.84,
+        },
+        Object {
+          "height": "100%",
+          "width": "100%",
+        },
+      ]
+    }
+  >
+    <View
+      style={
+        Object {
+          "height": "5%",
+        }
+      }
+    />
+    <View
+      style={
+        Array [
+          Object {
+            "height": "40%",
+          },
+          Object {
+            "alignItems": "center",
+            "justifyContent": "center",
+          },
+        ]
+      }
+    >
+      <Image
+        resizeMode="contain"
+        source={
+          Object {
+            "testUri": "../../../app/assets/hand-logo.png",
+          }
+        }
+        style={
+          Object {
+            "height": 200,
+            "width": 200,
+          }
+        }
+        testID="LOGO"
+      />
+    </View>
+    <View
+      style={
+        Array [
+          Object {
+            "height": "10%",
+          },
+        ]
+      }
+    >
+      <View
+        accessible={true}
+        focusable={true}
+        onClick={[Function]}
+        onResponderGrant={[Function]}
+        onResponderMove={[Function]}
+        onResponderRelease={[Function]}
+        onResponderTerminate={[Function]}
+        onResponderTerminationRequest={[Function]}
+        onStartShouldSetResponder={[Function]}
+        style={
+          Object {
+            "alignItems": "center",
+            "backgroundColor": "#ffeed2",
+            "height": "100%",
+            "justifyContent": "center",
+            "opacity": 1,
+            "width": "100%",
+          }
+        }
+        testID="SUPPORT_BUTTON"
+      >
+        <Text
+          style={
+            Array [
+              Object {
+                "color": "dimgray",
+                "fontWeight": "bold",
+              },
+              Object {
+                "fontSize": 17,
+              },
+            ]
+          }
+        >
+          Support Resources
+        </Text>
+      </View>
+    </View>
+    <View
+      style={
+        Object {
+          "height": "2%",
+        }
+      }
+    />
+    <View
+      style={
+        Array [
+          Object {
+            "height": "10%",
+          },
+        ]
+      }
+    >
+      <View
+        accessible={true}
+        focusable={true}
+        onClick={[Function]}
+        onResponderGrant={[Function]}
+        onResponderMove={[Function]}
+        onResponderRelease={[Function]}
+        onResponderTerminate={[Function]}
+        onResponderTerminationRequest={[Function]}
+        onStartShouldSetResponder={[Function]}
+        style={
+          Object {
+            "alignItems": "center",
+            "backgroundColor": "#ffeed2",
+            "height": "100%",
+            "justifyContent": "center",
+            "opacity": 1,
+            "width": "100%",
+          }
+        }
+        testID="DEMO_BUTTON"
+      >
+        <Text
+          style={
+            Array [
+              Object {
+                "color": "dimgray",
+                "fontWeight": "bold",
+              },
+              Object {
+                "fontSize": 17,
+              },
+            ]
+          }
+        >
+          Replay Demo
+        </Text>
+      </View>
+    </View>
+    <View
+      style={
+        Object {
+          "height": "23%",
+        }
+      }
+    />
+    <View
+      style={
+        Array [
+          Object {
+            "height": "10%",
+          },
+          Object {
+            "alignItems": "center",
+            "justifyContent": "center",
+          },
+        ]
+      }
+    >
+      <View
+        accessible={true}
+        focusable={true}
+        onClick={[Function]}
+        onResponderGrant={[Function]}
+        onResponderMove={[Function]}
+        onResponderRelease={[Function]}
+        onResponderTerminate={[Function]}
+        onResponderTerminationRequest={[Function]}
+        onStartShouldSetResponder={[Function]}
+        style={
+          Object {
+            "alignItems": "center",
+            "backgroundColor": "#ffeed2",
+            "borderBottomLeftRadius": 40,
+            "borderBottomRightRadius": 40,
+            "height": "100%",
+            "justifyContent": "center",
+            "opacity": 1,
+            "width": "100%",
+          }
+        }
+        testID="LOGOUT_BUTTON"
+      >
+        <Text
+          style={
+            Array [
+              Object {
+                "color": "dimgray",
+                "fontWeight": "bold",
+              },
+              Object {
+                "color": "black",
+                "fontSize": 17,
+              },
+            ]
+          }
+        >
+          LOG OUT
+        </Text>
+      </View>
+    </View>
+  </View>
+</View>
+`;
