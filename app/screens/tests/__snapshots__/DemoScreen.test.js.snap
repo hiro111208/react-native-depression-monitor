@@ -1,0 +1,495 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Testing DemoScreen renders correctly 1`] = `
+<View
+  onLayout={[Function]}
+  style={
+    Object {
+      "backgroundColor": "#fff",
+      "flex": 1,
+      "justifyContent": "center",
+    }
+  }
+>
+  <RCTScrollView
+    data={
+      Array [
+        Object {
+          "backgroundColor": "#fff",
+          "image": <Component
+            resizeMode="contain"
+            source={
+              Object {
+                "testUri": "../../../app/assets/demo/CategoryDropGif.gif",
+              }
+            }
+            style={
+              Object {
+                "height": "100%",
+                "width": "100%",
+              }
+            }
+          />,
+          "imageContainerStyles": Object {
+            "padding": 30,
+          },
+          "subtitle": "Select the category you are least interested in to be dropped from the therapy questions",
+          "title": "Drop a category",
+        },
+        Object {
+          "backgroundColor": "#fff",
+          "image": <Component
+            resizeMode="contain"
+            source={
+              Object {
+                "testUri": "../../../app/assets/demo/SchedulerGif.gif",
+              }
+            }
+            style={
+              Object {
+                "height": "100%",
+                "width": "100%",
+              }
+            }
+          />,
+          "subtitle": "Select a date and time for your therapy sessions to be reminded using notifications",
+          "title": "Schedule your therapy sessions",
+        },
+        Object {
+          "backgroundColor": "#fff",
+          "image": <Component
+            resizeMode="contain"
+            source={
+              Object {
+                "testUri": "../../../app/assets/demo/TherapyScreenGif.gif",
+              }
+            }
+            style={
+              Object {
+                "height": "100%",
+                "width": "100%",
+              }
+            }
+          />,
+          "subtitle": "Read the scenarios and answer the questions. Click the text to speech button to read the scenario aloud.",
+          "title": "Therapy session",
+        },
+        Object {
+          "backgroundColor": "#fff",
+          "image": <Component
+            resizeMode="contain"
+            source={
+              Object {
+                "testUri": "../../../app/assets/demo/PauseScreenGif.gif",
+              }
+            }
+            style={
+              Object {
+                "height": "100%",
+                "width": "100%",
+              }
+            }
+          />,
+          "subtitle": "You can take a break in between your therapy questions by clicking the \\"Take a break\\" button at the top of your therapy screen.",
+          "title": "Take a break",
+        },
+        Object {
+          "backgroundColor": "#fff",
+          "image": <Component
+            resizeMode="contain"
+            source={
+              Object {
+                "testUri": "../../../app/assets/demo/PlantScreenGif.gif",
+              }
+            }
+            style={
+              Object {
+                "height": "100%",
+                "width": "100%",
+              }
+            }
+          />,
+          "subtitle": "Water your plant with coins you have earned by logging your feelings and completing your therapy sessions. ",
+          "title": "Water your plant and watch it grow!",
+        },
+      ]
+    }
+    disableVirtualization={false}
+    extraData={null}
+    getItem={[Function]}
+    getItemCount={[Function]}
+    horizontal={true}
+    initialNumToRender={1}
+    keyExtractor={[Function]}
+    maxToRenderPerBatch={10}
+    onContentSizeChange={[Function]}
+    onEndReachedThreshold={2}
+    onLayout={[Function]}
+    onMomentumScrollEnd={[Function]}
+    onScroll={[Function]}
+    onScrollBeginDrag={[Function]}
+    onScrollEndDrag={[Function]}
+    onViewableItemsChanged={[Function]}
+    pagingEnabled={true}
+    removeClippedSubviews={false}
+    renderItem={[Function]}
+    scrollEventThrottle={50}
+    showsHorizontalScrollIndicator={false}
+    stickyHeaderIndices={Array []}
+    updateCellsBatchingPeriod={50}
+    viewabilityConfig={
+      Object {
+        "itemVisiblePercentThreshold": 100,
+      }
+    }
+    viewabilityConfigCallbackPairs={
+      Array [
+        Object {
+          "onViewableItemsChanged": [Function],
+          "viewabilityConfig": Object {
+            "itemVisiblePercentThreshold": 100,
+          },
+        },
+      ]
+    }
+    windowSize={21}
+  >
+    <View>
+      <View
+        onLayout={[Function]}
+        style={
+          Array [
+            Object {
+              "flexDirection": "row",
+            },
+            null,
+          ]
+        }
+      >
+        <View
+          style={
+            Array [
+              Object {
+                "alignItems": "center",
+                "flex": 1,
+                "flexDirection": "column",
+                "justifyContent": "center",
+                "paddingTop": 0,
+              },
+              Object {
+                "bottom": 60,
+                "justifyContent": "center",
+                "paddingTop": 60,
+              },
+              Object {
+                "height": 1334,
+                "width": 750,
+              },
+            ]
+          }
+        >
+          <View
+            style={
+              Array [
+                Object {
+                  "alignItems": "center",
+                  "flex": 0,
+                  "paddingBottom": 60,
+                  "width": "100%",
+                },
+                Object {
+                  "height": "70%",
+                  "justifyContent": "center",
+                  "paddingBottom": 0,
+                },
+              ]
+            }
+          >
+            <Image
+              resizeMode="contain"
+              source={
+                Object {
+                  "testUri": "../../../app/assets/demo/CategoryDropGif.gif",
+                }
+              }
+              style={
+                Object {
+                  "height": "100%",
+                  "width": "100%",
+                }
+              }
+            />
+          </View>
+          <View
+            style={
+              Object {
+                "paddingHorizontal": 10,
+              }
+            }
+          >
+            <Text
+              allowFontScaling={true}
+              style={
+                Array [
+                  Object {
+                    "color": "#fff",
+                    "fontSize": 26,
+                    "paddingBottom": 15,
+                    "textAlign": "center",
+                  },
+                  Object {
+                    "color": "#000",
+                  },
+                  Object {
+                    "padding": 0,
+                    "paddingTop": 10,
+                  },
+                ]
+              }
+            >
+              Drop a category
+            </Text>
+          </View>
+          <View
+            style={
+              Object {
+                "paddingHorizontal": 10,
+              }
+            }
+          >
+            <Text
+              allowFontScaling={true}
+              style={
+                Array [
+                  Object {
+                    "color": "rgba(255, 255, 255, 0.7)",
+                    "fontSize": 16,
+                    "textAlign": "center",
+                  },
+                  Object {
+                    "color": "rgba(0, 0, 0, 0.7)",
+                  },
+                  Object {
+                    "padding": 0,
+                    "paddingBottom": 0,
+                  },
+                ]
+              }
+            >
+              Select the category you are least interested in to be dropped from the therapy questions
+            </Text>
+          </View>
+        </View>
+      </View>
+      <View
+        style={
+          Object {
+            "width": 0,
+          }
+        }
+      />
+    </View>
+  </RCTScrollView>
+  <RCTSafeAreaView
+    emulateUnlessSupported={true}
+    style={
+      Object {
+        "backgroundColor": "rgba(0, 0, 0, 0.1)",
+      }
+    }
+  >
+    <View
+      style={
+        Object {
+          "alignItems": "center",
+          "backgroundColor": "transparent",
+          "flexDirection": "row",
+          "height": 60,
+          "justifyContent": "space-between",
+          "paddingHorizontal": 0,
+        }
+      }
+    >
+      <View
+        style={
+          Object {
+            "alignItems": "flex-start",
+            "flexShrink": 1,
+            "width": 200,
+          }
+        }
+      >
+        <View
+          style={
+            Object {
+              "flex": 0,
+              "marginLeft": 10,
+              "paddingHorizontal": 10,
+            }
+          }
+        >
+          <View
+            accessible={true}
+            focusable={true}
+            hitSlop={
+              Object {
+                "bottom": 15,
+                "left": 15,
+                "right": 15,
+                "top": 15,
+              }
+            }
+            onClick={[Function]}
+            onResponderGrant={[Function]}
+            onResponderMove={[Function]}
+            onResponderRelease={[Function]}
+            onResponderTerminate={[Function]}
+            onResponderTerminationRequest={[Function]}
+            onStartShouldSetResponder={[Function]}
+            style={
+              Object {
+                "flex": 0,
+                "opacity": 1,
+              }
+            }
+          >
+            <Text
+              allowFontScaling={true}
+              style={
+                Object {
+                  "color": "rgba(0, 0, 0, 0.8)",
+                  "fontSize": 16,
+                }
+              }
+            >
+              Skip
+            </Text>
+          </View>
+        </View>
+      </View>
+      <View
+        style={
+          Object {
+            "alignItems": "center",
+            "flex": 0,
+            "flexDirection": "row",
+          }
+        }
+      >
+        <View
+          style={
+            Object {
+              "backgroundColor": "rgba(0, 0, 0, 0.8)",
+              "borderRadius": 3,
+              "height": 6,
+              "marginHorizontal": 3,
+              "width": 6,
+            }
+          }
+        />
+        <View
+          style={
+            Object {
+              "backgroundColor": "rgba(0, 0, 0, 0.3)",
+              "borderRadius": 3,
+              "height": 6,
+              "marginHorizontal": 3,
+              "width": 6,
+            }
+          }
+        />
+        <View
+          style={
+            Object {
+              "backgroundColor": "rgba(0, 0, 0, 0.3)",
+              "borderRadius": 3,
+              "height": 6,
+              "marginHorizontal": 3,
+              "width": 6,
+            }
+          }
+        />
+        <View
+          style={
+            Object {
+              "backgroundColor": "rgba(0, 0, 0, 0.3)",
+              "borderRadius": 3,
+              "height": 6,
+              "marginHorizontal": 3,
+              "width": 6,
+            }
+          }
+        />
+        <View
+          style={
+            Object {
+              "backgroundColor": "rgba(0, 0, 0, 0.3)",
+              "borderRadius": 3,
+              "height": 6,
+              "marginHorizontal": 3,
+              "width": 6,
+            }
+          }
+        />
+      </View>
+      <View
+        style={
+          Object {
+            "alignItems": "flex-end",
+            "flexShrink": 1,
+            "width": 200,
+          }
+        }
+      >
+        <View
+          style={
+            Object {
+              "flex": 0,
+              "marginRight": 10,
+              "paddingHorizontal": 10,
+            }
+          }
+        >
+          <View
+            accessible={true}
+            focusable={true}
+            hitSlop={
+              Object {
+                "bottom": 15,
+                "left": 15,
+                "right": 15,
+                "top": 15,
+              }
+            }
+            onClick={[Function]}
+            onResponderGrant={[Function]}
+            onResponderMove={[Function]}
+            onResponderRelease={[Function]}
+            onResponderTerminate={[Function]}
+            onResponderTerminationRequest={[Function]}
+            onStartShouldSetResponder={[Function]}
+            style={
+              Object {
+                "flex": 0,
+                "opacity": 1,
+              }
+            }
+          >
+            <Text
+              allowFontScaling={true}
+              style={
+                Object {
+                  "color": "rgba(0, 0, 0, 0.8)",
+                  "fontSize": 16,
+                }
+              }
+            >
+              Next
+            </Text>
+          </View>
+        </View>
+      </View>
+    </View>
+  </RCTSafeAreaView>
+</View>
+`;

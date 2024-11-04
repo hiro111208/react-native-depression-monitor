@@ -1,0 +1,338 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Testing PlantScreen.js rendering PlantScreen snapshot - max level not reached 1`] = `
+<View
+  style={
+    Array [
+      Object {
+        "backgroundColor": "white",
+        "display": "flex",
+        "flex": 1,
+        "padding": 30,
+      },
+      Object {
+        "alignItems": "center",
+        "justifyContent": "center",
+      },
+    ]
+  }
+>
+  <View
+    style={
+      Array [
+        Object {
+          "alignItems": "center",
+          "backgroundColor": "#fed8b1",
+          "borderColor": "#ffeed2",
+          "borderRadius": 40,
+          "borderWidth": 5,
+          "height": "90%",
+          "width": "100%",
+        },
+        Object {
+          "elevation": 5,
+          "marginVertical": 5,
+          "shadowColor": "#000",
+          "shadowOffset": Object {
+            "height": 2,
+            "width": 0,
+          },
+          "shadowOpacity": 0.25,
+          "shadowRadius": 3.84,
+        },
+      ]
+    }
+  >
+    <View
+      style={
+        Object {
+          "height": "5%",
+        }
+      }
+    />
+    <View
+      style={
+        Array [
+          Object {
+            "alignSelf": "flex-end",
+            "flexDirection": "row",
+            "flexWrap": "wrap",
+            "height": "6%",
+            "padding": 5,
+          },
+          Object {
+            "alignItems": "center",
+            "justifyContent": "center",
+          },
+        ]
+      }
+    >
+      <View
+        style={
+          Array [
+            Object {
+              "height": "100%",
+              "width": "30%",
+            },
+            Object {
+              "alignItems": "center",
+              "justifyContent": "center",
+            },
+          ]
+        }
+      >
+        <View
+          style={
+            Array [
+              Object {
+                "backgroundColor": "#f0e5d8",
+                "borderRadius": 10,
+                "height": "100%",
+                "width": "90%",
+              },
+              Object {
+                "alignItems": "center",
+                "justifyContent": "center",
+              },
+              Object {
+                "elevation": 5,
+                "marginVertical": 5,
+                "shadowColor": "#000",
+                "shadowOffset": Object {
+                  "height": 2,
+                  "width": 0,
+                },
+                "shadowOpacity": 0.25,
+                "shadowRadius": 3.84,
+              },
+            ]
+          }
+        >
+          <Text>
+            5
+          </Text>
+        </View>
+      </View>
+    </View>
+    <View
+      style={
+        Array [
+          Object {
+            "height": "10%",
+          },
+          Object {
+            "alignItems": "center",
+            "justifyContent": "center",
+          },
+        ]
+      }
+    >
+      <Text
+        style={
+          Array [
+            Object {
+              "color": "dimgray",
+              "flexWrap": "wrap",
+              "fontSize": 20,
+              "fontWeight": "bold",
+              "textAlign": "center",
+            },
+          ]
+        }
+      >
+        Keep going! 
+        
+
+        You're almost there!
+      </Text>
+    </View>
+    <View
+      style={
+        Object {
+          "height": "2%",
+        }
+      }
+    />
+    <View
+      style={
+        Array [
+          Object {
+            "height": "40%",
+          },
+          Object {
+            "alignItems": "center",
+            "justifyContent": "center",
+          },
+        ]
+      }
+    >
+      <View
+        style={
+          Array [
+            Object {
+              "backgroundColor": "#eee",
+              "borderColor": "white",
+              "borderRadius": 100,
+              "borderWidth": 4,
+            },
+            Object {
+              "alignItems": "center",
+              "justifyContent": "center",
+            },
+            Object {
+              "elevation": 5,
+              "marginVertical": 5,
+              "shadowColor": "#000",
+              "shadowOffset": Object {
+                "height": 2,
+                "width": 0,
+              },
+              "shadowOpacity": 0.25,
+              "shadowRadius": 3.84,
+            },
+            Object {
+              "height": "100%",
+              "width": "100%",
+            },
+          ]
+        }
+      >
+        <Image
+          resizeMode="contain"
+          source={
+            Object {
+              "testUri": "../../../app/assets/stage_1.png",
+            }
+          }
+          style={
+            Object {
+              "height": 225,
+              "width": 225,
+            }
+          }
+        />
+      </View>
+    </View>
+    <View
+      style={
+        Array [
+          Object {
+            "height": "20%",
+            "width": "100%",
+          },
+          Object {
+            "alignItems": "center",
+            "justifyContent": "center",
+          },
+        ]
+      }
+    >
+      <View
+        accessible={true}
+        focusable={true}
+        onClick={[Function]}
+        onResponderGrant={[Function]}
+        onResponderMove={[Function]}
+        onResponderRelease={[Function]}
+        onResponderTerminate={[Function]}
+        onResponderTerminationRequest={[Function]}
+        onStartShouldSetResponder={[Function]}
+        style={
+          Object {
+            "alignItems": "center",
+            "backgroundColor": "#94ffd3",
+            "borderRadius": 30,
+            "elevation": 5,
+            "height": "50%",
+            "justifyContent": "center",
+            "marginVertical": 5,
+            "opacity": 1,
+            "shadowColor": "#000",
+            "shadowOffset": Object {
+              "height": 2,
+              "width": 0,
+            },
+            "shadowOpacity": 0.25,
+            "shadowRadius": 3.84,
+            "width": "60%",
+          }
+        }
+        testID="WATER_BUTTON"
+      >
+        <Text>
+          Water your plant!
+        </Text>
+        <Text
+          style={
+            Object {
+              "color": "dodgerblue",
+              "fontSize": 16,
+              "fontStyle": "italic",
+            }
+          }
+        >
+          -5 coins
+        </Text>
+      </View>
+    </View>
+    <View
+      style={
+        Object {
+          "height": "2%",
+        }
+      }
+    />
+    <View
+      style={
+        Array [
+          Object {
+            "height": "9%",
+            "width": "100%",
+          },
+          Object {
+            "alignItems": "center",
+            "justifyContent": "center",
+          },
+        ]
+      }
+    >
+      <View
+        accessible={true}
+        focusable={true}
+        onClick={[Function]}
+        onResponderGrant={[Function]}
+        onResponderMove={[Function]}
+        onResponderRelease={[Function]}
+        onResponderTerminate={[Function]}
+        onResponderTerminationRequest={[Function]}
+        onStartShouldSetResponder={[Function]}
+        style={
+          Object {
+            "alignItems": "center",
+            "backgroundColor": "#ffeed2",
+            "height": "100%",
+            "justifyContent": "center",
+            "opacity": 1,
+            "width": "100%",
+          }
+        }
+        testID="RETURN_BUTTON"
+      >
+        <Text
+          style={
+            Object {
+              "color": "dimgray",
+              "flexWrap": "wrap",
+              "fontSize": 20,
+              "fontWeight": "bold",
+              "textAlign": "center",
+            }
+          }
+        >
+          Return Home
+        </Text>
+      </View>
+    </View>
+  </View>
+</View>
+`;

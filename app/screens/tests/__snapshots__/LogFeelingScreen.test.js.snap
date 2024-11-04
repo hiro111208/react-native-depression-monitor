@@ -1,0 +1,753 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Testing LogFeelingScreen.js rendering LogFeelingScreen renders correctly 1`] = `
+<View
+  style={
+    Object {
+      "alignItems": "center",
+      "backgroundColor": "#ffd390",
+      "height": "100%",
+      "justifyContent": "space-between",
+      "paddingBottom": "5%",
+    }
+  }
+>
+  <View
+    style={
+      Array [
+        Object {
+          "alignSelf": "flex-start",
+          "backgroundColor": "#ffa351ff",
+          "borderBottomLeftRadius": 50,
+          "borderBottomRightRadius": 50,
+          "height": "12%",
+          "paddingTop": 30,
+          "width": "100%",
+        },
+        Object {
+          "alignItems": "center",
+          "justifyContent": "center",
+        },
+      ]
+    }
+  >
+    <Text
+      style={
+        Object {
+          "color": "white",
+          "fontSize": 20,
+          "fontWeight": "bold",
+        }
+      }
+    >
+      How are you feeling?
+    </Text>
+  </View>
+  <View
+    style={
+      Object {
+        "alignItems": "center",
+        "backgroundColor": "white",
+        "borderColor": "#ffa351ff",
+        "borderRadius": 50,
+        "borderWidth": 2,
+        "flexDirection": "row",
+        "justifyContent": "space-between",
+        "padding": 10,
+        "width": "95%",
+      }
+    }
+  >
+    <View
+      accessible={true}
+      focusable={true}
+      onClick={[Function]}
+      onResponderGrant={[Function]}
+      onResponderMove={[Function]}
+      onResponderRelease={[Function]}
+      onResponderTerminate={[Function]}
+      onResponderTerminationRequest={[Function]}
+      onStartShouldSetResponder={[Function]}
+      style={
+        Object {
+          "opacity": 1,
+        }
+      }
+      testID="VERY_SAD"
+    >
+      <Image
+        source={
+          Object {
+            "testUri": "../../../app/assets/images/verySad.png",
+          }
+        }
+        style={
+          Object {
+            "height": 50,
+            "marginHorizontal": 7,
+            "marginVertical": 7,
+            "width": 50,
+          }
+        }
+      />
+    </View>
+    <View
+      accessible={true}
+      focusable={true}
+      onClick={[Function]}
+      onResponderGrant={[Function]}
+      onResponderMove={[Function]}
+      onResponderRelease={[Function]}
+      onResponderTerminate={[Function]}
+      onResponderTerminationRequest={[Function]}
+      onStartShouldSetResponder={[Function]}
+      style={
+        Object {
+          "opacity": 1,
+        }
+      }
+      testID="SAD"
+    >
+      <Image
+        source={
+          Object {
+            "testUri": "../../../app/assets/images/sad.png",
+          }
+        }
+        style={
+          Object {
+            "height": 50,
+            "marginHorizontal": 7,
+            "marginVertical": 7,
+            "width": 50,
+          }
+        }
+      />
+    </View>
+    <View
+      accessible={true}
+      focusable={true}
+      onClick={[Function]}
+      onResponderGrant={[Function]}
+      onResponderMove={[Function]}
+      onResponderRelease={[Function]}
+      onResponderTerminate={[Function]}
+      onResponderTerminationRequest={[Function]}
+      onStartShouldSetResponder={[Function]}
+      style={
+        Object {
+          "opacity": 1,
+        }
+      }
+      testID="NEUTRAL"
+    >
+      <Image
+        source={
+          Object {
+            "testUri": "../../../app/assets/images/neutral.png",
+          }
+        }
+        style={
+          Object {
+            "height": 50,
+            "marginHorizontal": 7,
+            "marginVertical": 7,
+            "width": 50,
+          }
+        }
+      />
+    </View>
+    <View
+      accessible={true}
+      focusable={true}
+      onClick={[Function]}
+      onResponderGrant={[Function]}
+      onResponderMove={[Function]}
+      onResponderRelease={[Function]}
+      onResponderTerminate={[Function]}
+      onResponderTerminationRequest={[Function]}
+      onStartShouldSetResponder={[Function]}
+      style={
+        Object {
+          "opacity": 1,
+        }
+      }
+      testID="HAPPY"
+    >
+      <Image
+        source={
+          Object {
+            "testUri": "../../../app/assets/images/happy.png",
+          }
+        }
+        style={
+          Object {
+            "height": 50,
+            "marginHorizontal": 7,
+            "marginVertical": 7,
+            "width": 50,
+          }
+        }
+      />
+    </View>
+    <View
+      accessible={true}
+      focusable={true}
+      onClick={[Function]}
+      onResponderGrant={[Function]}
+      onResponderMove={[Function]}
+      onResponderRelease={[Function]}
+      onResponderTerminate={[Function]}
+      onResponderTerminationRequest={[Function]}
+      onStartShouldSetResponder={[Function]}
+      style={
+        Object {
+          "opacity": 1,
+        }
+      }
+      testID="VERY_HAPPY"
+    >
+      <Image
+        source={
+          Object {
+            "testUri": "../../../app/assets/images/veryHappy.png",
+          }
+        }
+        style={
+          Object {
+            "height": 50,
+            "marginHorizontal": 7,
+            "marginVertical": 7,
+            "width": 50,
+          }
+        }
+      />
+    </View>
+  </View>
+  <RCTScrollView
+    style={
+      Object {
+        "backgroundColor": "white",
+        "borderColor": "#ffa351ff",
+        "borderRadius": 50,
+        "borderWidth": 2,
+        "paddingTop": 20,
+        "width": "95%",
+      }
+    }
+  >
+    <View>
+      <View
+        style={
+          Array [
+            Object {
+              "marginTop": 10,
+            },
+            Object {
+              "alignItems": "center",
+              "justifyContent": "center",
+            },
+          ]
+        }
+      >
+        <Text
+          style={
+            Object {
+              "color": "grey",
+              "fontSize": 18,
+              "fontWeight": "bold",
+              "textAlign": "center",
+            }
+          }
+        >
+          Anxious
+        </Text>
+        <View
+          style={
+            Object {
+              "width": "85%",
+            }
+          }
+        >
+          <View
+            onLayout={[Function]}
+            style={
+              Array [
+                Object {
+                  "marginHorizontal": 16,
+                  "marginTop": 12,
+                },
+                Object {
+                  "marginBottom": 44,
+                },
+              ]
+            }
+          >
+            <RCTSlider
+              disabled={false}
+              enabled={true}
+              maximumTrackTintColor="#ddd"
+              maximumValue={5}
+              minimumTrackTintColor="#ffd390"
+              minimumValue={1}
+              onChange={[Function]}
+              onResponderTerminationRequest={[Function]}
+              onSlidingComplete={[Function]}
+              onStartShouldSetResponder={[Function]}
+              onValueChange={[Function]}
+              step={1}
+              style={
+                Object {
+                  "height": 40,
+                }
+              }
+              testID="SLIDER"
+              thumbTintColor="#ffa351ff"
+              value={1}
+            />
+            <View
+              style={
+                Object {
+                  "flexDirection": "row",
+                  "left": 0,
+                  "position": "absolute",
+                  "right": 0,
+                  "top": 44,
+                }
+              }
+            >
+              <Text
+                style={
+                  Array [
+                    Object {
+                      "fontSize": 16,
+                      "position": "absolute",
+                      "textAlign": "center",
+                    },
+                    Object {
+                      "color": "#ffd390",
+                      "transform": Array [
+                        Object {
+                          "translateX": -0,
+                        },
+                      ],
+                      "width": 0,
+                    },
+                    Object {
+                      "left": 5,
+                    },
+                  ]
+                }
+              >
+                Not at all
+              </Text>
+              <Text
+                style={
+                  Array [
+                    Object {
+                      "fontSize": 16,
+                      "position": "absolute",
+                      "textAlign": "center",
+                    },
+                    Object {
+                      "color": "#ddd",
+                      "transform": Array [
+                        Object {
+                          "translateX": -0,
+                        },
+                      ],
+                      "width": 0,
+                    },
+                    Object {
+                      "left": 0,
+                    },
+                  ]
+                }
+              >
+                Somewhat
+              </Text>
+              <Text
+                style={
+                  Array [
+                    Object {
+                      "fontSize": 16,
+                      "position": "absolute",
+                      "textAlign": "center",
+                    },
+                    Object {
+                      "color": "#ddd",
+                      "transform": Array [
+                        Object {
+                          "translateX": -0,
+                        },
+                      ],
+                      "width": 0,
+                    },
+                    Object {
+                      "left": -5,
+                    },
+                  ]
+                }
+              >
+                Very much
+              </Text>
+            </View>
+          </View>
+        </View>
+      </View>
+      <View
+        style={
+          Array [
+            Object {
+              "marginTop": 10,
+            },
+            Object {
+              "alignItems": "center",
+              "justifyContent": "center",
+            },
+          ]
+        }
+      >
+        <Text
+          style={
+            Object {
+              "color": "grey",
+              "fontSize": 18,
+              "fontWeight": "bold",
+              "textAlign": "center",
+            }
+          }
+        >
+          Sad
+        </Text>
+        <View
+          style={
+            Object {
+              "width": "85%",
+            }
+          }
+        >
+          <View
+            onLayout={[Function]}
+            style={
+              Array [
+                Object {
+                  "marginHorizontal": 16,
+                  "marginTop": 12,
+                },
+                Object {
+                  "marginBottom": 44,
+                },
+              ]
+            }
+          >
+            <RCTSlider
+              disabled={false}
+              enabled={true}
+              maximumTrackTintColor="#ddd"
+              maximumValue={5}
+              minimumTrackTintColor="#ffd390"
+              minimumValue={1}
+              onChange={[Function]}
+              onResponderTerminationRequest={[Function]}
+              onSlidingComplete={[Function]}
+              onStartShouldSetResponder={[Function]}
+              onValueChange={[Function]}
+              step={1}
+              style={
+                Object {
+                  "height": 40,
+                }
+              }
+              testID="SLIDER"
+              thumbTintColor="#ffa351ff"
+              value={1}
+            />
+            <View
+              style={
+                Object {
+                  "flexDirection": "row",
+                  "left": 0,
+                  "position": "absolute",
+                  "right": 0,
+                  "top": 44,
+                }
+              }
+            >
+              <Text
+                style={
+                  Array [
+                    Object {
+                      "fontSize": 16,
+                      "position": "absolute",
+                      "textAlign": "center",
+                    },
+                    Object {
+                      "color": "#ffd390",
+                      "transform": Array [
+                        Object {
+                          "translateX": -0,
+                        },
+                      ],
+                      "width": 0,
+                    },
+                    Object {
+                      "left": 5,
+                    },
+                  ]
+                }
+              >
+                Not at all
+              </Text>
+              <Text
+                style={
+                  Array [
+                    Object {
+                      "fontSize": 16,
+                      "position": "absolute",
+                      "textAlign": "center",
+                    },
+                    Object {
+                      "color": "#ddd",
+                      "transform": Array [
+                        Object {
+                          "translateX": -0,
+                        },
+                      ],
+                      "width": 0,
+                    },
+                    Object {
+                      "left": 0,
+                    },
+                  ]
+                }
+              >
+                Somewhat
+              </Text>
+              <Text
+                style={
+                  Array [
+                    Object {
+                      "fontSize": 16,
+                      "position": "absolute",
+                      "textAlign": "center",
+                    },
+                    Object {
+                      "color": "#ddd",
+                      "transform": Array [
+                        Object {
+                          "translateX": -0,
+                        },
+                      ],
+                      "width": 0,
+                    },
+                    Object {
+                      "left": -5,
+                    },
+                  ]
+                }
+              >
+                Very much
+              </Text>
+            </View>
+          </View>
+        </View>
+      </View>
+      <View
+        style={
+          Array [
+            Object {
+              "marginTop": 10,
+            },
+            Object {
+              "alignItems": "center",
+              "justifyContent": "center",
+            },
+          ]
+        }
+      >
+        <Text
+          style={
+            Object {
+              "color": "grey",
+              "fontSize": 18,
+              "fontWeight": "bold",
+              "textAlign": "center",
+            }
+          }
+        >
+          Happy
+        </Text>
+        <View
+          style={
+            Object {
+              "width": "85%",
+            }
+          }
+        >
+          <View
+            onLayout={[Function]}
+            style={
+              Array [
+                Object {
+                  "marginHorizontal": 16,
+                  "marginTop": 12,
+                },
+                Object {
+                  "marginBottom": 44,
+                },
+              ]
+            }
+          >
+            <RCTSlider
+              disabled={false}
+              enabled={true}
+              maximumTrackTintColor="#ddd"
+              maximumValue={5}
+              minimumTrackTintColor="#ffd390"
+              minimumValue={1}
+              onChange={[Function]}
+              onResponderTerminationRequest={[Function]}
+              onSlidingComplete={[Function]}
+              onStartShouldSetResponder={[Function]}
+              onValueChange={[Function]}
+              step={1}
+              style={
+                Object {
+                  "height": 40,
+                }
+              }
+              testID="SLIDER"
+              thumbTintColor="#ffa351ff"
+              value={1}
+            />
+            <View
+              style={
+                Object {
+                  "flexDirection": "row",
+                  "left": 0,
+                  "position": "absolute",
+                  "right": 0,
+                  "top": 44,
+                }
+              }
+            >
+              <Text
+                style={
+                  Array [
+                    Object {
+                      "fontSize": 16,
+                      "position": "absolute",
+                      "textAlign": "center",
+                    },
+                    Object {
+                      "color": "#ffd390",
+                      "transform": Array [
+                        Object {
+                          "translateX": -0,
+                        },
+                      ],
+                      "width": 0,
+                    },
+                    Object {
+                      "left": 5,
+                    },
+                  ]
+                }
+              >
+                Not at all
+              </Text>
+              <Text
+                style={
+                  Array [
+                    Object {
+                      "fontSize": 16,
+                      "position": "absolute",
+                      "textAlign": "center",
+                    },
+                    Object {
+                      "color": "#ddd",
+                      "transform": Array [
+                        Object {
+                          "translateX": -0,
+                        },
+                      ],
+                      "width": 0,
+                    },
+                    Object {
+                      "left": 0,
+                    },
+                  ]
+                }
+              >
+                Somewhat
+              </Text>
+              <Text
+                style={
+                  Array [
+                    Object {
+                      "fontSize": 16,
+                      "position": "absolute",
+                      "textAlign": "center",
+                    },
+                    Object {
+                      "color": "#ddd",
+                      "transform": Array [
+                        Object {
+                          "translateX": -0,
+                        },
+                      ],
+                      "width": 0,
+                    },
+                    Object {
+                      "left": -5,
+                    },
+                  ]
+                }
+              >
+                Very much
+              </Text>
+            </View>
+          </View>
+        </View>
+      </View>
+    </View>
+  </RCTScrollView>
+  <View
+    accessible={true}
+    focusable={true}
+    onClick={[Function]}
+    onResponderGrant={[Function]}
+    onResponderMove={[Function]}
+    onResponderRelease={[Function]}
+    onResponderTerminate={[Function]}
+    onResponderTerminationRequest={[Function]}
+    onStartShouldSetResponder={[Function]}
+    style={
+      Object {
+        "alignItems": "center",
+        "alignSelf": "center",
+        "backgroundColor": "#c7ffd8",
+        "borderRadius": 20,
+        "height": "6%",
+        "justifyContent": "center",
+        "opacity": 1,
+        "width": "40%",
+      }
+    }
+    testID="CONTINUE_BUTTON"
+  >
+    <Text
+      style={
+        Object {
+          "color": "black",
+          "fontSize": 20,
+          "textAlign": "center",
+        }
+      }
+    >
+      Continue
+    </Text>
+  </View>
+</View>
+`;

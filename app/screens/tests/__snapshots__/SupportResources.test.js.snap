@@ -1,0 +1,851 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Testing SupportResources.js rendering SupportResources snapshot test 1`] = `
+<View
+  style={
+    Array [
+      Object {
+        "backgroundColor": "#fff",
+        "display": "flex",
+        "flex": 1,
+        "padding": 25,
+      },
+      Object {
+        "alignItems": "center",
+        "justifyContent": "center",
+      },
+    ]
+  }
+>
+  <View
+    style={
+      Array [
+        Object {
+          "backgroundColor": "#fed8b1",
+          "borderColor": "#ffeed2",
+          "borderRadius": 50,
+          "borderWidth": 5,
+        },
+        Object {
+          "elevation": 5,
+          "marginVertical": 5,
+          "shadowColor": "#000",
+          "shadowOffset": Object {
+            "height": 2,
+            "width": 0,
+          },
+          "shadowOpacity": 0.25,
+          "shadowRadius": 3.84,
+        },
+        Object {
+          "alignItems": "center",
+          "justifyContent": "center",
+        },
+        Object {
+          "height": "95%",
+          "width": "100%",
+        },
+      ]
+    }
+  >
+    <View
+      style={
+        Array [
+          Object {
+            "height": "10%",
+          },
+          Object {
+            "alignItems": "center",
+            "justifyContent": "center",
+          },
+        ]
+      }
+    >
+      <Text
+        style={
+          Array [
+            Object {
+              "color": "dimgray",
+              "fontWeight": "bold",
+            },
+            Object {
+              "fontSize": 22,
+            },
+          ]
+        }
+      >
+        Support Resources
+      </Text>
+    </View>
+    <RCTScrollView
+      style={
+        Object {
+          "height": "81%",
+        }
+      }
+    >
+      <View>
+        <Text
+          style={
+            Array [
+              Object {
+                "alignItems": "center",
+                "justifyContent": "center",
+              },
+              Object {
+                "color": "dimgray",
+                "fontSize": 17,
+                "fontStyle": "italic",
+                "paddingHorizontal": 30,
+                "paddingTop": 20,
+              },
+            ]
+          }
+          testID="QUOTE"
+        >
+          Asking for help doesn't make you weak - it reveals strength even when you don't feel strong.
+        </Text>
+        <View
+          style={
+            Object {
+              "height": "3%",
+            }
+          }
+        />
+        <View
+          style={
+            Object {
+              "backgroundColor": "white",
+              "borderTopRightRadius": 20,
+              "height": "6%",
+              "width": "60%",
+            }
+          }
+        >
+          <Text
+            style={
+              Array [
+                Object {
+                  "color": "dimgray",
+                  "fontWeight": "bold",
+                },
+                Object {
+                  "fontSize": 18,
+                  "padding": 5,
+                },
+              ]
+            }
+          >
+            Support Agencies
+          </Text>
+        </View>
+        <View
+          style={
+            Array [
+              Object {
+                "backgroundColor": "#ffeed2",
+              },
+              Object {
+                "alignItems": "center",
+                "justifyContent": "center",
+              },
+            ]
+          }
+        >
+          <RCTScrollView
+            horizontal={true}
+          >
+            <View>
+              <View
+                style={
+                  Array [
+                    Object {
+                      "margin": 5,
+                    },
+                    Object {
+                      "backgroundColor": "white",
+                      "borderColor": "#bcf5bc",
+                      "borderRadius": 40,
+                      "borderWidth": 5,
+                      "height": 180,
+                      "marginRight": 5,
+                      "width": 225,
+                    },
+                    Object {
+                      "marginRight": 10,
+                    },
+                    Object {
+                      "elevation": 5,
+                      "marginVertical": 5,
+                      "shadowColor": "#000",
+                      "shadowOffset": Object {
+                        "height": 2,
+                        "width": 0,
+                      },
+                      "shadowOpacity": 0.25,
+                      "shadowRadius": 3.84,
+                    },
+                  ]
+                }
+              >
+                <View
+                  style={
+                    Array [
+                      Object {
+                        "backgroundColor": "#bcf5bc",
+                        "borderTopLeftRadius": 30,
+                        "borderTopRightRadius": 30,
+                        "height": "30%",
+                        "width": "100%",
+                      },
+                      Object {
+                        "alignItems": "center",
+                        "justifyContent": "center",
+                      },
+                    ]
+                  }
+                >
+                  <Text
+                    style={
+                      Array [
+                        Object {
+                          "fontSize": 23,
+                          "fontStyle": "italic",
+                        },
+                        Object {
+                          "color": "dimgray",
+                          "fontWeight": "bold",
+                        },
+                      ]
+                    }
+                  >
+                    NHS
+                  </Text>
+                </View>
+                <View
+                  style={
+                    Array [
+                      Object {
+                        "height": "70%",
+                        "padding": 20,
+                      },
+                      Object {
+                        "alignItems": "center",
+                        "justifyContent": "center",
+                      },
+                    ]
+                  }
+                >
+                  <Text
+                    onPress={[Function]}
+                    style={
+                      Object {
+                        "color": "blue",
+                      }
+                    }
+                    testID="NHS"
+                  >
+                    NHS Helplines
+                  </Text>
+                  <Text />
+                  <Text
+                    style={
+                      Object {
+                        "fontSize": 14,
+                      }
+                    }
+                  >
+                    Local NHS Urgent Mental Health Helplines
+                  </Text>
+                </View>
+              </View>
+              <View
+                style={
+                  Array [
+                    Object {
+                      "margin": 5,
+                    },
+                    Object {
+                      "backgroundColor": "white",
+                      "borderColor": "#bcf5bc",
+                      "borderRadius": 40,
+                      "borderWidth": 5,
+                      "height": 180,
+                      "marginRight": 5,
+                      "width": 225,
+                    },
+                    Object {
+                      "marginRight": 10,
+                    },
+                    Object {
+                      "elevation": 5,
+                      "marginVertical": 5,
+                      "shadowColor": "#000",
+                      "shadowOffset": Object {
+                        "height": 2,
+                        "width": 0,
+                      },
+                      "shadowOpacity": 0.25,
+                      "shadowRadius": 3.84,
+                    },
+                  ]
+                }
+              >
+                <View
+                  style={
+                    Array [
+                      Object {
+                        "backgroundColor": "#bcf5bc",
+                        "borderTopLeftRadius": 30,
+                        "borderTopRightRadius": 30,
+                        "height": "30%",
+                        "width": "100%",
+                      },
+                      Object {
+                        "alignItems": "center",
+                        "justifyContent": "center",
+                      },
+                    ]
+                  }
+                >
+                  <Text
+                    style={
+                      Array [
+                        Object {
+                          "fontSize": 23,
+                          "fontStyle": "italic",
+                        },
+                        Object {
+                          "color": "dimgray",
+                          "fontWeight": "bold",
+                        },
+                      ]
+                    }
+                  >
+                    Bipolar UK
+                  </Text>
+                </View>
+                <View
+                  style={
+                    Array [
+                      Object {
+                        "height": "70%",
+                        "padding": 20,
+                      },
+                      Object {
+                        "alignItems": "center",
+                        "justifyContent": "center",
+                      },
+                    ]
+                  }
+                >
+                  <Text
+                    onPress={[Function]}
+                    style={
+                      Object {
+                        "color": "blue",
+                      }
+                    }
+                    testID="BIPOLAR"
+                  >
+                    www.bipolaruk.org
+                  </Text>
+                  <Text />
+                  <Text
+                    style={
+                      Object {
+                        "fontSize": 12,
+                      }
+                    }
+                  >
+                    Supply a range of information leaflets, books and tapes. Network of self help groups for people with manic depression, relatives and friends.
+                  </Text>
+                </View>
+              </View>
+              <View
+                style={
+                  Array [
+                    Object {
+                      "margin": 5,
+                    },
+                    Object {
+                      "backgroundColor": "white",
+                      "borderColor": "#bcf5bc",
+                      "borderRadius": 40,
+                      "borderWidth": 5,
+                      "height": 180,
+                      "marginRight": 5,
+                      "width": 225,
+                    },
+                    Object {
+                      "marginRight": 10,
+                    },
+                    Object {
+                      "elevation": 5,
+                      "marginVertical": 5,
+                      "shadowColor": "#000",
+                      "shadowOffset": Object {
+                        "height": 2,
+                        "width": 0,
+                      },
+                      "shadowOpacity": 0.25,
+                      "shadowRadius": 3.84,
+                    },
+                  ]
+                }
+              >
+                <View
+                  style={
+                    Array [
+                      Object {
+                        "backgroundColor": "#bcf5bc",
+                        "borderTopLeftRadius": 30,
+                        "borderTopRightRadius": 30,
+                        "height": "30%",
+                        "width": "100%",
+                      },
+                      Object {
+                        "alignItems": "center",
+                        "justifyContent": "center",
+                      },
+                    ]
+                  }
+                >
+                  <Text
+                    style={
+                      Array [
+                        Object {
+                          "fontSize": 23,
+                          "fontStyle": "italic",
+                        },
+                        Object {
+                          "color": "dimgray",
+                          "fontWeight": "bold",
+                        },
+                      ]
+                    }
+                  >
+                    Calmzone
+                  </Text>
+                </View>
+                <View
+                  style={
+                    Array [
+                      Object {
+                        "height": "70%",
+                        "padding": 20,
+                      },
+                      Object {
+                        "alignItems": "center",
+                        "justifyContent": "center",
+                      },
+                    ]
+                  }
+                >
+                  <Text
+                    onPress={[Function]}
+                    style={
+                      Object {
+                        "color": "blue",
+                      }
+                    }
+                    testID="CALMZONE"
+                  >
+                    www.thecalmzone.net
+                  </Text>
+                  <Text />
+                  <Text
+                    style={
+                      Object {
+                        "fontSize": 13,
+                      }
+                    }
+                  >
+                    Campaign Against Living Miserably. Help and support for young men aged 15-35 on issues which include depression and suicide.
+                  </Text>
+                </View>
+              </View>
+              <View
+                style={
+                  Array [
+                    Object {
+                      "margin": 5,
+                    },
+                    Object {
+                      "backgroundColor": "white",
+                      "borderColor": "#bcf5bc",
+                      "borderRadius": 40,
+                      "borderWidth": 5,
+                      "height": 180,
+                      "marginRight": 5,
+                      "width": 225,
+                    },
+                    Object {
+                      "marginRight": 10,
+                    },
+                    Object {
+                      "elevation": 5,
+                      "marginVertical": 5,
+                      "shadowColor": "#000",
+                      "shadowOffset": Object {
+                        "height": 2,
+                        "width": 0,
+                      },
+                      "shadowOpacity": 0.25,
+                      "shadowRadius": 3.84,
+                    },
+                  ]
+                }
+              >
+                <View
+                  style={
+                    Array [
+                      Object {
+                        "backgroundColor": "#bcf5bc",
+                        "borderTopLeftRadius": 30,
+                        "borderTopRightRadius": 30,
+                        "height": "30%",
+                        "width": "100%",
+                      },
+                      Object {
+                        "alignItems": "center",
+                        "justifyContent": "center",
+                      },
+                    ]
+                  }
+                >
+                  <Text
+                    style={
+                      Array [
+                        Object {
+                          "fontSize": 23,
+                          "fontStyle": "italic",
+                        },
+                        Object {
+                          "color": "dimgray",
+                          "fontWeight": "bold",
+                        },
+                      ]
+                    }
+                  >
+                    Samaritans
+                  </Text>
+                </View>
+                <View
+                  style={
+                    Array [
+                      Object {
+                        "height": "70%",
+                        "padding": 20,
+                      },
+                      Object {
+                        "alignItems": "center",
+                        "justifyContent": "center",
+                      },
+                    ]
+                  }
+                >
+                  <Text
+                    onPress={[Function]}
+                    style={
+                      Object {
+                        "color": "blue",
+                      }
+                    }
+                    testID="SAMARITANS"
+                  >
+                    Talk to a Samaritan
+                  </Text>
+                  <Text />
+                  <Text
+                    style={
+                      Object {
+                        "fontSize": 13,
+                      }
+                    }
+                  >
+                    Learn more about depression and how to detect it. Contact a Samaritan to have a chat.
+                  </Text>
+                </View>
+              </View>
+              <View
+                style={
+                  Array [
+                    Object {
+                      "margin": 5,
+                    },
+                    Object {
+                      "backgroundColor": "white",
+                      "borderColor": "#bcf5bc",
+                      "borderRadius": 40,
+                      "borderWidth": 5,
+                      "height": 180,
+                      "marginRight": 5,
+                      "width": 225,
+                    },
+                    Object {
+                      "marginRight": 10,
+                    },
+                    Object {
+                      "elevation": 5,
+                      "marginVertical": 5,
+                      "shadowColor": "#000",
+                      "shadowOffset": Object {
+                        "height": 2,
+                        "width": 0,
+                      },
+                      "shadowOpacity": 0.25,
+                      "shadowRadius": 3.84,
+                    },
+                  ]
+                }
+              >
+                <View
+                  style={
+                    Array [
+                      Object {
+                        "backgroundColor": "#bcf5bc",
+                        "borderTopLeftRadius": 30,
+                        "borderTopRightRadius": 30,
+                        "height": "30%",
+                        "width": "100%",
+                      },
+                      Object {
+                        "alignItems": "center",
+                        "justifyContent": "center",
+                      },
+                    ]
+                  }
+                >
+                  <Text
+                    style={
+                      Array [
+                        Object {
+                          "fontSize": 23,
+                          "fontStyle": "italic",
+                        },
+                        Object {
+                          "color": "dimgray",
+                          "fontWeight": "bold",
+                        },
+                      ]
+                    }
+                  >
+                    WLM
+                  </Text>
+                </View>
+                <View
+                  style={
+                    Array [
+                      Object {
+                        "height": "70%",
+                        "padding": 20,
+                      },
+                      Object {
+                        "alignItems": "center",
+                        "justifyContent": "center",
+                      },
+                    ]
+                  }
+                >
+                  <Text
+                    onPress={[Function]}
+                    style={
+                      Object {
+                        "color": "blue",
+                      }
+                    }
+                    testID="WLM"
+                  >
+                    www.wlm.org.uk
+                  </Text>
+                  <Text />
+                  <Text
+                    style={
+                      Object {
+                        "fontSize": 13,
+                      }
+                    }
+                  >
+                    WLM Highbury Counselling Centre offers counselling and psychotherapy service for adults, a space to speak with a trained professional.
+                  </Text>
+                </View>
+              </View>
+            </View>
+          </RCTScrollView>
+        </View>
+        <View
+          style={
+            Object {
+              "height": "1%",
+            }
+          }
+        />
+        <View
+          style={
+            Object {
+              "alignItems": "center",
+              "height": 500,
+            }
+          }
+        >
+          <Text
+            style={
+              Array [
+                Object {
+                  "fontSize": 16,
+                  "padding": 20,
+                  "textAlign": "center",
+                },
+              ]
+            }
+          >
+            The research for this project was done by:
+          </Text>
+          <Text
+            style={
+              Array [
+                Object {
+                  "color": "dimgray",
+                  "fontWeight": "bold",
+                },
+                Object {
+                  "fontSize": 15,
+                  "textAlign": "center",
+                },
+              ]
+            }
+            testID="CONTRIBUTORS"
+          >
+            Jenny Yiend
+            
+
+            Jong-Sun Lee
+            
+
+            Sinem Tekes
+            
+
+            Louise Atkins
+            
+
+            Andrew Matthews
+            
+
+            Manouk Vintren
+            
+
+            Christian Ferragamo
+            
+
+            Sukhwinder Shergill
+          </Text>
+          <Text />
+          <Text />
+          <Text
+            style={
+              Array [
+                Object {
+                  "fontSize": 16,
+                  "padding": 5,
+                },
+              ]
+            }
+          >
+            In an academic paper entitled:
+          </Text>
+          <Text
+            style={
+              Array [
+                Object {
+                  "color": "dimgray",
+                  "fontWeight": "bold",
+                },
+                Object {
+                  "fontSize": 16,
+                  "padding": 10,
+                  "textAlign": "center",
+                },
+              ]
+            }
+          >
+            'Modifying Interpretation in a Clinically Depressed Sample Using 'Cognitive Bias Modification-Errors': A Double Blind Randomised Controlled Trial'
+          </Text>
+        </View>
+      </View>
+    </RCTScrollView>
+    <View
+      style={
+        Array [
+          Object {
+            "height": "9%",
+            "width": "40%",
+          },
+          Object {
+            "alignItems": "center",
+            "justifyContent": "center",
+          },
+          Object {
+            "elevation": 5,
+            "marginVertical": 5,
+            "shadowColor": "#000",
+            "shadowOffset": Object {
+              "height": 2,
+              "width": 0,
+            },
+            "shadowOpacity": 0.25,
+            "shadowRadius": 3.84,
+          },
+        ]
+      }
+    >
+      <View
+        accessible={true}
+        focusable={true}
+        onClick={[Function]}
+        onResponderGrant={[Function]}
+        onResponderMove={[Function]}
+        onResponderRelease={[Function]}
+        onResponderTerminate={[Function]}
+        onResponderTerminationRequest={[Function]}
+        onStartShouldSetResponder={[Function]}
+        style={
+          Object {
+            "alignItems": "center",
+            "backgroundColor": "#ffeed2",
+            "borderRadius": 50,
+            "height": "100%",
+            "justifyContent": "center",
+            "opacity": 1,
+            "width": "100%",
+          }
+        }
+        testID="RETURN_BUTTON"
+      >
+        <Text
+          style={
+            Array [
+              Object {
+                "color": "dimgray",
+                "fontWeight": "bold",
+              },
+              Object {
+                "fontSize": 20,
+              },
+            ]
+          }
+        >
+          Return
+        </Text>
+      </View>
+    </View>
+    <View
+      style={
+        Object {
+          "height": "1%",
+        }
+      }
+    />
+  </View>
+</View>
+`;
